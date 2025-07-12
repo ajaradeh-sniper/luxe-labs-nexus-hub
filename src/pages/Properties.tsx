@@ -55,11 +55,12 @@ const Properties = () => {
       name: 'Marina Bay Tower',
       location: 'Dubai Marina',
       type: 'residential',
-      status: 'completed',
+      status: 'available',
       acquisitionPrice: '$2.5M',
       currentValue: '$2.8M',
       roi: 12.5,
-      acquisitionDate: '2024-12-01'
+      acquisitionDate: '2024-12-01',
+      image: '/src/assets/marina-tower.jpg'
     },
     {
       id: '2',
@@ -70,29 +71,32 @@ const Properties = () => {
       acquisitionPrice: '$4.2M',
       currentValue: '$4.8M',
       roi: 14.3,
-      acquisitionDate: '2024-10-15'
+      acquisitionDate: '2024-10-15',
+      image: '/src/assets/downtown-luxury.jpg'
     },
     {
       id: '3',
       name: 'Business Bay Complex',
       location: 'Business Bay',
       type: 'commercial',
-      status: 'under-contract',
+      status: 'available',
       acquisitionPrice: '$6.1M',
       currentValue: '$6.5M',
       roi: 6.6,
-      acquisitionDate: '2024-11-20'
+      acquisitionDate: '2024-11-20',
+      image: '/src/assets/business-bay.jpg'
     },
     {
       id: '4',
       name: 'Palm Residence Villa',
       location: 'Palm Jumeirah',
       type: 'residential',
-      status: 'available',
+      status: 'completed',
       acquisitionPrice: '$8.5M',
       currentValue: '$9.2M',
       roi: 8.2,
-      acquisitionDate: '2024-09-10'
+      acquisitionDate: '2024-09-10',
+      image: '/src/assets/marina-tower.jpg'
     }
   ]
 
@@ -185,21 +189,37 @@ const Properties = () => {
         {/* Properties Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProperties.map((property) => (
-            <Card key={property.id} className="hover:shadow-luxury transition-all duration-300 group">
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center text-2xl">
+            <Card key={property.id} className="hover:shadow-luxury transition-all duration-300 group overflow-hidden">
+              {/* Property Image */}
+              {property.image && (
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={property.image} 
+                    alt={property.name}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute top-3 right-3">
+                    <Badge variant="secondary" className={`${getStatusColor(property.status)}`}>
+                      {property.status.charAt(0).toUpperCase() + property.status.slice(1).replace('-', ' ')}
+                    </Badge>
+                  </div>
+                  <div className="absolute top-3 left-3">
+                    <div className="w-10 h-10 bg-black/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-xl">
                       {getTypeIcon(property.type)}
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {property.name}
-                      </h3>
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <MapPin className="h-3 w-3" />
-                        {property.location}
-                      </div>
+                  </div>
+                </div>
+              )}
+              
+              <CardHeader className="pb-3">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-lg">
+                      {property.name}
+                    </h3>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground mt-1">
+                      <MapPin className="h-3 w-3" />
+                      {property.location}
                     </div>
                   </div>
                   
@@ -221,10 +241,6 @@ const Properties = () => {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-                
-                <Badge variant="secondary" className={`${getStatusColor(property.status)} w-fit`}>
-                  {property.status.charAt(0).toUpperCase() + property.status.slice(1).replace('-', ' ')}
-                </Badge>
               </CardHeader>
               
               <CardContent className="space-y-4">
@@ -256,11 +272,18 @@ const Properties = () => {
                 </div>
                 
                 <div className="flex gap-2 pt-2">
+                  {property.status === 'available' ? (
+                    <Button variant="luxury" size="sm" className="flex-1">
+                      <DollarSign className="mr-1 h-3 w-3" />
+                      Invest in Flip
+                    </Button>
+                  ) : (
+                    <Button variant="outline" size="sm" className="flex-1">
+                      <Eye className="mr-1 h-3 w-3" />
+                      View Details
+                    </Button>
+                  )}
                   <Button variant="outline" size="sm" className="flex-1">
-                    <Eye className="mr-1 h-3 w-3" />
-                    View
-                  </Button>
-                  <Button variant="luxury" size="sm" className="flex-1">
                     <Edit className="mr-1 h-3 w-3" />
                     Manage
                   </Button>
