@@ -24,7 +24,8 @@ import {
   PiggyBank,
   MessageCircle,
   Calculator,
-  Compass
+  Compass,
+  Calendar
 } from "lucide-react"
 import { Link } from "react-router-dom"
 
@@ -333,43 +334,129 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Process Section */}
+      {/* Approach Section */}
       <section id="process" className="py-32 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-24">
             <div className="inline-flex items-center space-x-3 text-primary mb-8">
               <span className="w-12 h-px bg-gradient-luxury"></span>
-              <span className="text-sm uppercase tracking-wider font-semibold">Our Process</span>
+              <span className="text-sm uppercase tracking-wider font-semibold">Our Approach</span>
               <span className="w-12 h-px bg-gradient-luxury"></span>
             </div>
             <h2 className="text-5xl md:text-7xl font-bold mb-8 text-foreground">The Luxury Labs</h2>
-            <h3 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-luxury bg-clip-text text-transparent">10-Step Process</h3>
+            <h3 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-luxury bg-clip-text text-transparent">Approach</h3>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Our proven methodology ensures transparent communication, exceptional results, 
-              and complete satisfaction from inquiry to completion.
+              Our end-to-end transformation process delivers exceptional returns through strategic renovation and design excellence.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
-            {processSteps.map((step, index) => (
-              <Card key={index} className="group hover:shadow-luxury transition-all duration-300 relative overflow-hidden p-8 hover:-translate-y-2">
-                <div className="absolute inset-0 bg-gradient-luxury opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                
-                <div className="relative text-center">
-                  <div className="relative mb-6">
-                    <div className="h-20 w-20 mx-auto bg-gradient-luxury rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-glow">
-                      <step.icon className="h-10 w-10 text-background" />
-                    </div>
-                    <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground font-bold text-sm px-3 py-1">
-                      {step.step}
-                    </Badge>
+          {/* 3-Step Process */}
+          <div className="grid md:grid-cols-3 gap-12 mb-24">
+            <Card className="group hover:shadow-luxury transition-all duration-300 relative overflow-hidden p-12 hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-luxury opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+              
+              <div className="relative text-center">
+                <div className="relative mb-8">
+                  <div className="h-24 w-24 mx-auto bg-gradient-luxury rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-glow">
+                    <Eye className="h-12 w-12 text-background" />
                   </div>
-                  
-                  <h3 className="font-bold text-lg mb-4 leading-tight text-foreground">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                  <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground font-bold text-lg px-4 py-2">
+                    1
+                  </Badge>
                 </div>
-              </Card>
-            ))}
+                
+                <h3 className="font-bold text-2xl mb-6 leading-tight text-foreground">Property Selection</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Strategic acquisition of high-potential properties in prime Dubai locations with detailed market analysis.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="group hover:shadow-luxury transition-all duration-300 relative overflow-hidden p-12 hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-luxury opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+              
+              <div className="relative text-center">
+                <div className="relative mb-8">
+                  <div className="h-24 w-24 mx-auto bg-gradient-luxury rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-glow">
+                    <Hammer className="h-12 w-12 text-background" />
+                  </div>
+                  <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground font-bold text-lg px-4 py-2">
+                    2
+                  </Badge>
+                </div>
+                
+                <h3 className="font-bold text-2xl mb-6 leading-tight text-foreground">Luxury Renovation</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Complete transformation with premium finishes, modern design, and meticulous attention to detail.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="group hover:shadow-luxury transition-all duration-300 relative overflow-hidden p-12 hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-luxury opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+              
+              <div className="relative text-center">
+                <div className="relative mb-8">
+                  <div className="h-24 w-24 mx-auto bg-gradient-luxury rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-glow">
+                    <TrendingUp className="h-12 w-12 text-background" />
+                  </div>
+                  <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground font-bold text-lg px-4 py-2">
+                    3
+                  </Badge>
+                </div>
+                
+                <h3 className="font-bold text-2xl mb-6 leading-tight text-foreground">Profitable Sale</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Strategic marketing and sale optimization to maximize investor returns and portfolio growth.
+                </p>
+              </div>
+            </Card>
+          </div>
+
+          {/* Timeline Section */}
+          <div className="bg-muted/10 rounded-3xl p-16">
+            <div className="text-center mb-16">
+              <h3 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Sample 5-Month Timeline</h3>
+              <p className="text-xl text-muted-foreground">
+                Based on 5-month project cycles with premium property selection and expert renovation management.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center">
+                <div className="bg-gradient-luxury w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-glow">
+                  <Calendar className="h-10 w-10 text-background" />
+                </div>
+                <h4 className="text-xl font-bold mb-3 text-foreground">Property Purchase & Analysis</h4>
+                <p className="text-primary font-semibold text-lg">Month 1</p>
+              </div>
+
+              <div className="text-center">
+                <div className="bg-gradient-luxury w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-glow">
+                  <Hammer className="h-10 w-10 text-background" />
+                </div>
+                <h4 className="text-xl font-bold mb-3 text-foreground">Design & Renovation Phase</h4>
+                <p className="text-primary font-semibold text-lg">Months 2-4</p>
+              </div>
+
+              <div className="text-center">
+                <div className="bg-gradient-luxury w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-glow">
+                  <DollarSign className="h-10 w-10 text-background" />
+                </div>
+                <h4 className="text-xl font-bold mb-3 text-foreground">Marketing & Sale</h4>
+                <p className="text-primary font-semibold text-lg">Month 5</p>
+              </div>
+            </div>
+
+            <div className="text-center bg-card rounded-2xl p-12">
+              <div className="mb-8">
+                <div className="text-6xl font-bold text-primary mb-4">15% ROI</div>
+                <div className="text-2xl font-semibold text-foreground">Average Annual Return</div>
+              </div>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Expected returns based on 5-month project cycles with premium property selection and expert renovation management.
+              </p>
+            </div>
           </div>
         </div>
       </section>
