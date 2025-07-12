@@ -5,7 +5,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Properties from "./pages/Properties";
+import Projects from "./pages/Projects";
 import Financial from "./pages/Financial";
+import Documents from "./pages/Documents";
+import Team from "./pages/Team";
+import Analytics from "./pages/Analytics";
+import Messages from "./pages/Messages";
+import QualityAssurance from "./pages/QualityAssurance";
+import Notifications from "./pages/Notifications";
+import Settings from "./pages/Settings";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
@@ -24,7 +32,15 @@ const App = () => (
           <Route path="/" element={<Landing />} />
           <Route path="/dashboard" element={<Index />} />
           <Route path="/properties" element={<Properties />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/financial" element={<Financial />} />
+          <Route path="/documents" element={<Documents />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/qa" element={<QualityAssurance />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
