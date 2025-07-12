@@ -15,7 +15,7 @@ import { User, Settings, LogOut, Shield } from "lucide-react"
 type UserRole = 'admin' | 'employee' | 'investor' | 'partner'
 
 export function UserProfile() {
-  const [userRole] = useState<UserRole>('admin') // This would come from auth context
+  const [userRole] = useState<UserRole>('investor') // This would come from auth context
   
   const roleConfig = {
     admin: { label: 'Administrator', color: 'bg-primary text-primary-foreground', icon: Shield },
