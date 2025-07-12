@@ -9,8 +9,12 @@ import {
   Calendar,
   TrendingUp,
   Users,
-  MoreHorizontal
+  MoreHorizontal,
+  Eye
 } from "lucide-react"
+import marinaTower from "@/assets/marina-tower.jpg"
+import downtownLuxury from "@/assets/downtown-luxury.jpg"
+import businessBay from "@/assets/business-bay.jpg"
 
 interface Property {
   id: string
@@ -29,7 +33,7 @@ interface Property {
     lead: string
     members: number
   }
-  image?: string
+  image: string
 }
 
 export function PropertyOverview() {
@@ -44,7 +48,8 @@ export function PropertyOverview() {
       currentValue: '$2.8M',
       roi: 12.5,
       progress: 100,
-      team: { lead: 'Ahmed Al-Mansouri', members: 3 }
+      team: { lead: 'Ahmed Al-Mansouri', members: 3 },
+      image: marinaTower
     },
     {
       id: '2',
@@ -56,7 +61,8 @@ export function PropertyOverview() {
       currentValue: '$4.8M',
       roi: 14.3,
       progress: 65,
-      team: { lead: 'Sarah Johnson', members: 6 }
+      team: { lead: 'Sarah Johnson', members: 6 },
+      image: downtownLuxury
     },
     {
       id: '3',
@@ -68,7 +74,8 @@ export function PropertyOverview() {
       currentValue: '$6.5M',
       roi: 6.6,
       progress: 25,
-      team: { lead: 'Michael Chen', members: 4 }
+      team: { lead: 'Michael Chen', members: 4 },
+      image: businessBay
     }
   ]
 
@@ -92,77 +99,100 @@ export function PropertyOverview() {
   }
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-lg font-semibold">Property Portfolio</CardTitle>
-        <Button variant="outline" size="sm">View All Properties</Button>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {properties.map((property) => (
-            <div key={property.id} className="p-4 border border-border rounded-lg hover:bg-accent/30 transition-all duration-200">
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-start gap-3">
-                  <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center text-2xl">
-                    {getTypeIcon(property.type)}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">{property.name}</h3>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground mt-1">
-                      <MapPin className="h-3 w-3" />
-                      {property.location}
-                    </div>
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold bg-gradient-luxury bg-clip-text text-transparent">
+            Property Portfolio
+          </h2>
+          <p className="text-muted-foreground">Manage your luxury property investments</p>
+        </div>
+        <Button variant="luxury" size="sm">
+          <Eye className="h-4 w-4 mr-2" />
+          View All Properties
+        </Button>
+      </div>
+
+      <div className="grid gap-6">
+        {properties.map((property) => (
+          <Card key={property.id} className="overflow-hidden hover:shadow-luxury transition-all duration-300 group">
+            <div className="md:flex">
+              {/* Property Image */}
+              <div className="md:w-80 h-48 md:h-auto relative overflow-hidden">
+                <img 
+                  src={property.image} 
+                  alt={property.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <Badge 
+                  variant="secondary" 
+                  className={`absolute top-4 left-4 ${getStatusColor(property.status)}`}
+                >
+                  {property.status.charAt(0).toUpperCase() + property.status.slice(1)}
+                </Badge>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <div className="flex items-center gap-1 text-sm">
+                    <MapPin className="h-3 w-3" />
+                    {property.location}
                   </div>
                 </div>
-                
-                <div className="flex items-center gap-2">
-                  <Badge variant="secondary" className={getStatusColor(property.status)}>
-                    {property.status.charAt(0).toUpperCase() + property.status.slice(1)}
-                  </Badge>
+              </div>
+
+              {/* Property Details */}
+              <CardContent className="flex-1 p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold text-foreground mb-1">{property.name}</h3>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span className="text-2xl">{getTypeIcon(property.type)}</span>
+                      <span className="capitalize">{property.type} Property</span>
+                    </div>
+                  </div>
                   <Button variant="ghost" size="icon" className="h-8 w-8">
                     <MoreHorizontal className="h-4 w-4" />
                   </Button>
                 </div>
-              </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                <div>
-                  <p className="text-xs text-muted-foreground">Acquisition</p>
-                  <p className="text-sm font-medium">{property.acquisition.price}</p>
-                  <p className="text-xs text-muted-foreground">{property.acquisition.date}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Current Value</p>
-                  <p className="text-sm font-medium text-success">{property.currentValue}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">ROI</p>
-                  <div className="flex items-center gap-1">
-                    <TrendingUp className="h-3 w-3 text-success" />
-                    <p className="text-sm font-medium text-success">+{property.roi}%</p>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                  <div className="text-center p-3 bg-accent/30 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Acquisition</p>
+                    <p className="font-bold text-lg">{property.acquisition.price}</p>
+                    <p className="text-xs text-muted-foreground">{property.acquisition.date}</p>
+                  </div>
+                  <div className="text-center p-3 bg-success/10 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Current Value</p>
+                    <p className="font-bold text-lg text-success">{property.currentValue}</p>
+                  </div>
+                  <div className="text-center p-3 bg-success/10 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">ROI</p>
+                    <div className="flex items-center justify-center gap-1">
+                      <TrendingUp className="h-4 w-4 text-success" />
+                      <p className="font-bold text-lg text-success">+{property.roi}%</p>
+                    </div>
+                  </div>
+                  <div className="text-center p-3 bg-primary/10 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Team</p>
+                    <p className="font-semibold text-sm">{property.team.lead}</p>
+                    <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
+                      <Users className="h-3 w-3" />
+                      {property.team.members} members
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Team Lead</p>
-                  <p className="text-sm font-medium">{property.team.lead}</p>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Users className="h-3 w-3" />
-                    {property.team.members} members
-                  </div>
-                </div>
-              </div>
 
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">Project Progress</span>
-                  <span className="font-medium">{property.progress}%</span>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium">Project Progress</span>
+                    <span className="text-sm font-bold text-primary">{property.progress}%</span>
+                  </div>
+                  <Progress value={property.progress} className="h-3" />
                 </div>
-                <Progress value={property.progress} className="h-2" />
-              </div>
+              </CardContent>
             </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+          </Card>
+        ))}
+      </div>
+    </div>
   )
 }

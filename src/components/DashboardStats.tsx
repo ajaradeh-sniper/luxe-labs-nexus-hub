@@ -19,23 +19,32 @@ function StatCard({ title, value, change, icon, color = "primary" }: StatCardPro
   const TrendIcon = isPositive ? TrendingUp : TrendingDown
   
   return (
-    <Card className="hover:shadow-elegant transition-all duration-300">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+    <Card className="hover:shadow-luxury transition-all duration-300 group overflow-hidden relative">
+      <div className="absolute inset-0 bg-gradient-luxury opacity-5 group-hover:opacity-10 transition-opacity duration-300" />
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
         <CardTitle className="text-sm font-medium text-muted-foreground">
           {title}
         </CardTitle>
-        <div className={`p-2 rounded-lg bg-${color}/10 text-${color}`}>
-          {icon}
+        <div className="h-12 w-12 rounded-xl bg-gradient-luxury flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+          <div className="text-white h-6 w-6 flex items-center justify-center">
+            {icon}
+          </div>
         </div>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold text-foreground mb-1">{value}</div>
-        <div className="flex items-center gap-1 text-xs">
-          <TrendIcon className={`h-3 w-3 ${isPositive ? 'text-success' : 'text-destructive'}`} />
-          <span className={isPositive ? 'text-success' : 'text-destructive'}>
-            {Math.abs(change.value)}%
-          </span>
-          <span className="text-muted-foreground">from {change.period}</span>
+        <div className="text-3xl font-bold mb-2 bg-gradient-luxury bg-clip-text text-transparent">
+          {value}
+        </div>
+        <div className="flex items-center text-sm">
+          <div className={`flex items-center px-2 py-1 rounded-full ${
+            isPositive 
+              ? 'bg-success/10 text-success' 
+              : 'bg-destructive/10 text-destructive'
+          }`}>
+            <TrendIcon className="h-3 w-3 mr-1" />
+            <span className="font-medium">{Math.abs(change.value)}%</span>
+          </div>
+          <span className="ml-2 text-muted-foreground text-xs">vs {change.period}</span>
         </div>
       </CardContent>
     </Card>
