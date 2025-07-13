@@ -1,7 +1,7 @@
 import { Building2, LayoutDashboard } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
-import heroImage from "@/assets/luxury-labs-hero.jpg"
+import heroImage from "@/assets/luxury-labs-hero-refined.jpg"
 
 export default function Landing() {
   return (
@@ -45,24 +45,24 @@ export default function Landing() {
         <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]"></div>
         
         <div className="container mx-auto text-center relative z-10">
-          <h1 className="text-6xl md:text-8xl font-bold mb-8 text-white drop-shadow-2xl">
+          <h1 className="text-6xl md:text-8xl font-montserrat font-bold mb-8 text-white drop-shadow-2xl">
             Welcome to
             <br />
             <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">LUXURY LABS</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto drop-shadow-lg">
+          <p className="text-xl md:text-2xl font-playfair text-white/90 mb-12 max-w-3xl mx-auto drop-shadow-lg">
             Premier property transformation and investment solutions in Dubai
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button asChild size="lg" className="text-xl px-12 py-6 bg-gradient-luxury hover:shadow-glow">
+            <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold bg-gradient-luxury hover:shadow-glow">
               <Link to="/dashboard">
                 <LayoutDashboard className="mr-3 h-6 w-6" />
                 Access Dashboard
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-xl px-12 py-6 border-white text-white hover:bg-white hover:text-black">
+            <Button asChild variant="outline" size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold border-white text-white hover:bg-white hover:text-black">
               <Link to="/">
                 Learn More
               </Link>
