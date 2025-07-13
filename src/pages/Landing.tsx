@@ -50,8 +50,10 @@ export default function Landing() {
                 Access Dashboard
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="text-xl px-12 py-6 border-primary text-primary hover:bg-primary hover:text-background">
-              Learn More
+            <Button asChild variant="outline" size="lg" className="text-xl px-12 py-6 border-primary text-primary hover:bg-primary hover:text-background">
+              <Link to="/">
+                Learn More
+              </Link>
             </Button>
           </div>
         </div>
