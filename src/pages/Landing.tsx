@@ -70,6 +70,109 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      {/* Services Section */}
+      <section className="py-24 px-4 bg-background">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-foreground mb-6">
+              Our <span className="bg-gradient-luxury bg-clip-text text-transparent">Premium Services</span>
+            </h2>
+            <p className="text-xl font-playfair text-muted-foreground max-w-3xl mx-auto">
+              Discover how Luxury Labs transforms Dubai's real estate landscape through our three core specializations
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Unique Properties Selection */}
+            <div className="group cursor-pointer">
+              <div className="bg-card border border-border rounded-xl p-8 hover:shadow-glow transition-all duration-300 group-hover:scale-105">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6">
+                  <Building2 className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-montserrat font-bold text-foreground mb-4">
+                  Unique Properties Selection
+                </h3>
+                <p className="text-muted-foreground font-playfair leading-relaxed mb-6">
+                  Curating Dubai's rarest addresses. We identify exceptional properties in prime locations like Palm Jumeirah, offering exclusive access to luxury real estate opportunities.
+                </p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                    Prime waterfront locations
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                    Exclusive off-market properties
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                    Expert market analysis
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Luxury Transformation */}
+            <div className="group cursor-pointer">
+              <div className="bg-card border border-border rounded-xl p-8 hover:shadow-glow transition-all duration-300 group-hover:scale-105">
+                <div className="w-16 h-16 bg-gradient-luxury rounded-xl flex items-center justify-center mb-6">
+                  <div className="text-white font-bold text-xl">LL</div>
+                </div>
+                <h3 className="text-2xl font-montserrat font-bold text-foreground mb-4">
+                  The LL Signature Transformation
+                </h3>
+                <p className="text-muted-foreground font-playfair leading-relaxed mb-6">
+                  Our signature renovation process elevates properties to luxury standards. From design to execution, we create bespoke living spaces that maximize value and appeal.
+                </p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                    Bespoke interior design
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                    Premium material selection
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                    Project management excellence
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Exceptional Returns */}
+            <div className="group cursor-pointer">
+              <div className="bg-card border border-border rounded-xl p-8 hover:shadow-glow transition-all duration-300 group-hover:scale-105">
+                <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mb-6">
+                  <div className="text-white font-bold text-2xl">%</div>
+                </div>
+                <h3 className="text-2xl font-montserrat font-bold text-foreground mb-4">
+                  Exceptional Returns
+                </h3>
+                <p className="text-muted-foreground font-playfair leading-relaxed mb-6">
+                  Where investments reach new heights. Our strategic approach delivers superior ROI through careful market timing, premium transformations, and expert sales execution.
+                </p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                    Target 30%+ ROI
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                    Strategic market timing
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                    Premium sales execution
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
