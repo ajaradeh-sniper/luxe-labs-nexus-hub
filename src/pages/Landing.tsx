@@ -3,55 +3,16 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Link } from "react-router-dom"
-import { useAuth } from "@/contexts/AuthContext"
-import { LoginDialog } from "@/components/LoginDialog"
+import { Navigation } from "@/components/Navigation"
 import heroImage from "@/assets/luxury-labs-hero-refined.jpg"
 import businessBayImage from "@/assets/business-bay.jpg"
 import downtownImage from "@/assets/downtown-luxury.jpg"
 import marinaTowerImage from "@/assets/marina-tower.jpg"
 
 export default function Landing() {
-  const { user } = useAuth()
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 luxury-gradient rounded-xl flex items-center justify-center luxury-shadow">
-              <Building2 className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <div>
-              <div className="font-bold text-2xl text-foreground tracking-tight font-playfair">LUXURY LABS</div>
-              <div className="text-xs text-primary uppercase tracking-widest font-medium font-montserrat">Property Solutions</div>
-            </div>
-          </div>
-          
-          <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className="text-primary font-medium font-montserrat">Home</Link>
-            <Link to="/about" className="text-foreground hover:text-primary transition-colors font-montserrat">About</Link>
-            <Link to="/services" className="text-foreground hover:text-primary transition-colors font-montserrat">Services</Link>
-            <Link to="/projects" className="text-foreground hover:text-primary transition-colors font-montserrat">Projects</Link>
-            <Link to="/media" className="text-foreground hover:text-primary transition-colors font-montserrat">Media</Link>
-            <Link to="/partners" className="text-foreground hover:text-primary transition-colors font-montserrat">Partners</Link>
-            <Link to="/investors" className="text-foreground hover:text-primary transition-colors font-montserrat">Investors</Link>
-            <Link to="/contact" className="text-foreground hover:text-primary transition-colors font-montserrat">Contact</Link>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            {user ? (
-              <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground luxury-shadow">
-                <Link to="/dashboard">
-                  <LayoutDashboard className="h-5 w-5 mr-2" />
-                  Dashboard
-                </Link>
-              </Button>
-            ) : (
-              <LoginDialog />
-            )}
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* HOME - Hero Section */}
       <section 
@@ -80,41 +41,18 @@ export default function Landing() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            {user ? (
-              <>
-                <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow">
-                  <Link to="/dashboard">
-                    <TrendingUp className="mr-3 h-6 w-6" />
-                    Access Dashboard
-                  </Link>
-                </Button>
-                <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow">
-                  <Link to="/dashboard">
-                    <Building2 className="mr-3 h-6 w-6" />
-                    View Portfolio
-                  </Link>
-                </Button>
-              </>
-            ) : (
-              <>
-                <LoginDialog 
-                  trigger={
-                    <Button size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow">
-                      <TrendingUp className="mr-3 h-6 w-6" />
-                      Invest in a Flip
-                    </Button>
-                  }
-                />
-                <LoginDialog 
-                  trigger={
-                    <Button size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow">
-                      <Building2 className="mr-3 h-6 w-6" />
-                      Start a Flip with Luxury Labs
-                    </Button>
-                  }
-                />
-              </>
-            )}
+            <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow">
+              <Link to="/contact">
+                <TrendingUp className="mr-3 h-6 w-6" />
+                Invest in a Flip
+              </Link>
+            </Button>
+            <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow">
+              <Link to="/contact">
+                <Building2 className="mr-3 h-6 w-6" />
+                Start a Flip
+              </Link>
+            </Button>
             <Button asChild variant="outline" size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold border-white text-white hover:bg-white hover:text-black">
               <a href="#contact">
                 Contact Us
@@ -366,23 +304,12 @@ export default function Landing() {
           </div>
 
           <div className="text-center mt-12">
-            {user ? (
-              <Button asChild size="lg" className="luxury-gradient hover:luxury-glow font-montserrat">
-                <Link to="/dashboard">
-                  View All Projects
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            ) : (
-              <LoginDialog 
-                trigger={
-                  <Button size="lg" className="luxury-gradient hover:luxury-glow font-montserrat">
-                    View All Projects
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                }
-              />
-            )}
+            <Button asChild size="lg" className="luxury-gradient hover:luxury-glow font-montserrat">
+              <Link to="/projects">
+                View All Projects
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -521,21 +448,10 @@ export default function Landing() {
                   Access our investor dashboard to explore current opportunities and track your portfolio performance.
                 </p>
                 <Button asChild size="lg" className="w-full luxury-gradient hover:luxury-glow font-montserrat">
-                  {user ? (
-                    <Link to="/dashboard">
-                      <TrendingUp className="mr-2 h-5 w-5" />
-                      Access Investor Portal
-                    </Link>
-                  ) : (
-                    <LoginDialog 
-                      trigger={
-                        <span className="flex items-center">
-                          <TrendingUp className="mr-2 h-5 w-5" />
-                          Access Investor Portal
-                        </span>
-                      }
-                    />
-                  )}
+                  <Link to="/investors">
+                    <TrendingUp className="mr-2 h-5 w-5" />
+                    Access Investor Portal
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -598,23 +514,12 @@ export default function Landing() {
           </div>
 
           <div className="text-center mt-12">
-            {user ? (
-              <Button asChild size="lg" className="luxury-gradient hover:luxury-glow font-montserrat">
-                <Link to="/dashboard">
-                  Schedule a Consultation
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            ) : (
-              <LoginDialog 
-                trigger={
-                  <Button size="lg" className="luxury-gradient hover:luxury-glow font-montserrat">
-                    Schedule a Consultation
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                }
-              />
-            )}
+            <Button asChild size="lg" className="luxury-gradient hover:luxury-glow font-montserrat">
+              <Link to="/contact">
+                Schedule a Consultation
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
