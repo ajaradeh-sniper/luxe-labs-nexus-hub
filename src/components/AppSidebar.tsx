@@ -10,7 +10,9 @@ import {
   Bell,
   BarChart3,
   ShieldCheck,
-  FolderOpen
+  FolderOpen,
+  DollarSign,
+  CheckCircle
 } from "lucide-react"
 import { NavLink, useLocation } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
@@ -30,8 +32,18 @@ import {
 
 // Role-based navigation items
 const getNavigationItems = (userRole: string) => {
+  // Role-specific dashboard routing
+  const getDashboardUrl = (role: string) => {
+    switch(role) {
+      case 'project_manager': return '/pm-dashboard';
+      case 'investor': return '/investor-dashboard';
+      case 'client': return '/client-dashboard';
+      default: return '/dashboard';
+    }
+  };
+
   const baseItems = [
-    { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard, roles: ['all'] }
+    { title: "Dashboard", url: getDashboardUrl(userRole), icon: LayoutDashboard, roles: ['all'] }
   ];
 
   const adminItems = [
@@ -43,19 +55,22 @@ const getNavigationItems = (userRole: string) => {
     { title: "Analytics", url: "/analytics", icon: BarChart3, roles: ['administrator'] }
   ];
 
-  const projectManagerItems = [
-    { title: "Projects", url: "/projects", icon: FolderOpen, roles: ['administrator', 'project_manager'] },
-    { title: "Properties", url: "/properties", icon: Building, roles: ['administrator', 'project_manager'] },
-    { title: "Messages", url: "/messages", icon: MessageSquare, roles: ['administrator', 'project_manager'] }
+  const operationalItems = [
+    { title: "Projects", url: "/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client'] },
+    { title: "Properties", url: "/properties", icon: Building, roles: ['administrator', 'real_estate_director', 'real_estate_agent', 'investor'] },
+    { title: "Financial", url: "/financial", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor'] },
+    { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'lawyer', 'client', 'project_manager'] },
+    { title: "Team", url: "/team", icon: Users, roles: ['administrator', 'project_manager', 'vendor_manager'] },
+    { title: "QA", url: "/qa", icon: CheckCircle, roles: ['administrator', 'project_manager', 'head_of_design'] },
+    { title: "Messages", url: "/messages", icon: MessageSquare, roles: ['all'] },
+    { title: "Notifications", url: "/notifications", icon: Bell, roles: ['all'] }
   ];
 
   const investorItems = [
-    { title: "Portfolio", url: "/portfolio", icon: TrendingUp, roles: ['administrator', 'investor'] },
-    { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'investor'] },
-    { title: "Notifications", url: "/notifications", icon: Bell, roles: ['administrator', 'investor'] }
+    { title: "Portfolio", url: "/portfolio", icon: TrendingUp, roles: ['administrator', 'investor'] }
   ];
 
-  const allItems = [...baseItems, ...adminItems, ...projectManagerItems, ...investorItems];
+  const allItems = [...baseItems, ...adminItems, ...operationalItems, ...investorItems];
   
   return allItems.filter(item => 
     item.roles.includes('all') || 

@@ -29,6 +29,7 @@ import Landing from "./pages/Landing";
 import ProjectDetail from "./pages/ProjectDetail";
 import ProjectManagerDashboard from "./pages/ProjectManagerDashboard";
 import InvestorDashboard from "./pages/InvestorDashboard";
+import ClientDashboard from "./pages/ClientDashboard";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/pm-dashboard" element={<ProjectManagerDashboard />} />
             <Route path="/investor-dashboard" element={<InvestorDashboard />} />
+            <Route path="/client-dashboard" element={<ClientDashboard />} />
             <Route path="/portfolio" element={<Properties />} />
             <Route path="/financial" element={<Financial />} />
             <Route path="/documents" element={<Documents />} />
