@@ -14,31 +14,54 @@ import {
 const systemStats = [
   {
     title: 'Total Users',
-    value: '142',
-    change: '+12%',
+    value: '348',
+    change: '+23%',
     icon: Users,
-    color: 'text-blue-600'
+    color: 'text-blue-600',
+    breakdown: {
+      'Staff': 89,
+      'Investors': 145,
+      'Clients': 67,
+      'Partners': 47
+    }
   },
   {
     title: 'Active Projects',
-    value: '28',
-    change: '+5%',
+    value: '42',
+    change: '+8%',
     icon: Building,
-    color: 'text-green-600'
+    color: 'text-green-600',
+    breakdown: {
+      'Design Phase': 12,
+      'Construction': 18,
+      'Completion': 8,
+      'Planning': 4
+    }
   },
   {
     title: 'Monthly Revenue',
-    value: '$2.4M',
-    change: '+18%',
+    value: '$4.2M',
+    change: '+28%',
     icon: DollarSign,
-    color: 'text-purple-600'
+    color: 'text-purple-600',
+    breakdown: {
+      'New Investments': 2800000,
+      'Project Fees': 900000,
+      'Partnerships': 500000
+    }
   },
   {
     title: 'System Health',
-    value: '99.2%',
-    change: '+0.1%',
+    value: '99.8%',
+    change: '+0.3%',
     icon: TrendingUp,
-    color: 'text-emerald-600'
+    color: 'text-emerald-600',
+    breakdown: {
+      'Database': 99.9,
+      'API': 99.7,
+      'Storage': 100,
+      'Network': 99.8
+    }
   }
 ];
 

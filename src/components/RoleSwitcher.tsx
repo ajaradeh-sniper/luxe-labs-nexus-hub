@@ -49,9 +49,9 @@ export function RoleSwitcher() {
           <User className="h-5 w-5" />
           Role Switcher (Demo)
         </CardTitle>
-        <p className="text-sm text-muted-foreground">
+        <div className="text-sm text-muted-foreground">
           Current role: <Badge variant="outline">{user?.role}</Badge>
-        </p>
+        </div>
       </CardHeader>
       <CardContent className="space-y-6">
         {roleGroups.map((group) => (

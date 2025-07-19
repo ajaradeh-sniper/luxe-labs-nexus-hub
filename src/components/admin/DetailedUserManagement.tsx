@@ -129,6 +129,97 @@ const mockDetailedUsers: DetailedUser[] = [
     joinedDate: '2023-02-01',
     projectsAssigned: 15,
     notes: 'Senior finance lead overseeing all project budgets'
+  },
+  {
+    id: '6',
+    name: 'Maria Rodriguez',
+    email: 'maria.r@luxurylabs.com',
+    phone: '+971-50-678-9012',
+    role: 'head_of_design',
+    department: 'Design',
+    status: 'active',
+    lastLogin: '2024-01-15 10:30',
+    joinedDate: '2023-05-12',
+    projectsAssigned: 12,
+    notes: 'Leading all design initiatives and contractor coordination'
+  },
+  {
+    id: '7',
+    name: 'David Thompson',
+    email: 'david.t@luxurylabs.com',
+    phone: '+971-50-789-0123',
+    role: 'lawyer',
+    department: 'Legal',
+    status: 'active',
+    lastLogin: '2024-01-14 09:15',
+    joinedDate: '2023-04-18',
+    projectsAssigned: 25,
+    notes: 'Senior legal counsel handling all property contracts'
+  },
+  {
+    id: '8',
+    name: 'Lisa Park',
+    email: 'lisa.p@luxurylabs.com',
+    phone: '+971-50-890-1234',
+    role: 'marketing_lead',
+    department: 'Marketing',
+    status: 'active',
+    lastLogin: '2024-01-15 13:45',
+    joinedDate: '2023-07-22',
+    projectsAssigned: 6,
+    notes: 'Overseeing all marketing campaigns and social media'
+  },
+  {
+    id: '9',
+    name: 'James Wilson',
+    email: 'james.w@luxurylabs.com',
+    phone: '+971-50-901-2345',
+    role: 'vendor_manager',
+    department: 'Procurement',
+    status: 'active',
+    lastLogin: '2024-01-14 16:20',
+    joinedDate: '2023-08-10',
+    projectsAssigned: 18,
+    notes: 'Managing all vendor relationships and contracts'
+  },
+  {
+    id: '10',
+    name: 'Isabella Garcia',
+    email: 'isabella.g@luxurylabs.com',
+    phone: '+971-50-012-3456',
+    role: 'real_estate_agent',
+    department: 'Sales',
+    status: 'active',
+    lastLogin: '2024-01-15 12:00',
+    joinedDate: '2023-09-15',
+    projectsAssigned: 8,
+    notes: 'Top performing agent specializing in luxury properties'
+  },
+  {
+    id: '11',
+    name: 'Alex Thompson',
+    email: 'alex.t@client.com',
+    phone: '+971-50-123-7890',
+    role: 'client',
+    department: 'External',
+    status: 'active',
+    lastLogin: '2024-01-14 18:30',
+    joinedDate: '2024-01-05',
+    projectsAssigned: 1,
+    notes: 'VIP client with ongoing downtown apartment renovation'
+  },
+  {
+    id: '12',
+    name: 'Premium Contractors LLC',
+    email: 'contact@premiumcontractors.ae',
+    phone: '+971-50-234-8901',
+    role: 'partner',
+    department: 'External',
+    status: 'active',
+    lastLogin: '2024-01-15 08:45',
+    joinedDate: '2023-11-20',
+    projectsAssigned: 5,
+    notes: 'Trusted contractor partner for high-end renovations'
   }
 ];
 
@@ -160,10 +251,21 @@ const statusColors = {
 
 const roleColors = {
   administrator: 'bg-red-100 text-red-800',
+  real_estate_director: 'bg-orange-100 text-orange-800',
+  real_estate_agent: 'bg-amber-100 text-amber-800',
+  investor_relations_manager: 'bg-cyan-100 text-cyan-800',
+  property_sales_lead: 'bg-lime-100 text-lime-800',
+  bd_manager: 'bg-emerald-100 text-emerald-800',
   project_manager: 'bg-blue-100 text-blue-800',
-  investor: 'bg-green-100 text-green-800',
+  head_of_design: 'bg-violet-100 text-violet-800',
+  lawyer: 'bg-slate-100 text-slate-800',
   finance_lead: 'bg-purple-100 text-purple-800',
-  real_estate_director: 'bg-orange-100 text-orange-800'
+  marketing_lead: 'bg-pink-100 text-pink-800',
+  vendor_manager: 'bg-rose-100 text-rose-800',
+  automation_lead: 'bg-teal-100 text-teal-800',
+  investor: 'bg-green-100 text-green-800',
+  client: 'bg-indigo-100 text-indigo-800',
+  partner: 'bg-yellow-100 text-yellow-800'
 };
 
 export function DetailedUserManagement() {
