@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
 import { LoginDialog } from "@/components/LoginDialog"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
+import { ThemeToggle } from "@/components/ThemeToggle"
 import { useTranslation } from 'react-i18next'
 
 export function Navigation() {
@@ -54,6 +55,7 @@ export function Navigation() {
         </div>
         
         <div className="flex items-center gap-4">
+          <ThemeToggle />
           <LanguageSwitcher />
           {user ? (
             <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground luxury-shadow">

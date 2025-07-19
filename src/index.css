@@ -12,123 +12,123 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Luxury Labs Brand Colors - Light Mode */
-    --background: 45 80% 96%; /* Champagne White #FDF9F2 */
-    --foreground: 0 0% 10%; /* Jet Black #1A1A1A */
+    --background: 0 0% 98%; /* Lighter champagne white */
+    --foreground: 0 0% 8%; /* Darker for better contrast */
 
-    --card: 45 60% 98%;
-    --card-foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 45 60% 98%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
 
     --primary: 42 35% 55%; /* Primary Gold #B89B5E */
-    --primary-foreground: 45 80% 96%;
+    --primary-foreground: 0 0% 98%;
     --primary-glow: 42 45% 65%;
 
-    --secondary: 0 0% 23%; /* Charcoal Gray #3B3B3B */
-    --secondary-foreground: 45 80% 96%;
+    --secondary: 0 0% 15%; /* Darker charcoal */
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 85%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 42 25% 75%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 60 9% 98%;
+    --destructive-foreground: 0 0% 98%;
 
     --success: 142 76% 36%;
-    --success-foreground: 60 9% 98%;
+    --success-foreground: 0 0% 98%;
 
     --warning: 38 92% 50%;
-    --warning-foreground: 220 13% 6%;
+    --warning-foreground: 0 0% 8%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 95%;
+    --border: 0 0% 88%;
+    --input: 0 0% 96%;
     --ring: 42 35% 55%;
 
     --radius: 0.75rem;
 
     /* Luxury Labs Brand Gradients */
     --gradient-luxury: linear-gradient(135deg, hsl(42 35% 55%) 0%, hsl(42 45% 65%) 100%);
-    --gradient-elegant: linear-gradient(180deg, hsl(45 80% 96%) 0%, hsl(42 25% 75%) 100%);
-    --gradient-dark: linear-gradient(135deg, hsl(0 0% 10%) 0%, hsl(0 0% 23%) 100%);
+    --gradient-elegant: linear-gradient(180deg, hsl(0 0% 98%) 0%, hsl(0 0% 94%) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(0 0% 8%) 0%, hsl(0 0% 15%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 5% / 0.8) 0%, hsl(0 0% 15% / 0.6) 100%);
 
     /* Luxury Labs Brand Shadows */
     --shadow-luxury: 0 25px 50px -12px hsl(42 35% 55% / 0.25);
-    --shadow-elegant: 0 10px 30px -10px hsl(42 35% 55% / 0.15);
+    --shadow-elegant: 0 10px 30px -10px hsl(0 0% 0% / 0.1);
     --shadow-glow: 0 0 40px hsl(42 45% 65% / 0.4);
+    --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.05);
 
     /* Animation variables */
     --animation-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --animation-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 42 35% 55%;
     --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 88%;
+    --sidebar-ring: 42 35% 55%;
   }
 
   .dark {
     /* Luxury Labs Brand Colors - Dark Mode */
-    --background: 0 0% 10%; /* Jet Black #1A1A1A */
-    --foreground: 45 80% 96%; /* Champagne White #FDF9F2 */
+    --background: 0 0% 8%; /* Rich dark background */
+    --foreground: 0 0% 96%; /* Champagne White #FDF9F2 */
 
-    --card: 0 0% 15%;
-    --card-foreground: 45 80% 96%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 0 0% 15%;
-    --popover-foreground: 45 80% 96%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 96%;
 
     --primary: 42 35% 55%; /* Primary Gold #B89B5E */
-    --primary-foreground: 0 0% 10%;
+    --primary-foreground: 0 0% 8%;
     --primary-glow: 42 45% 65%;
 
-    --secondary: 0 0% 23%; /* Charcoal Gray #3B3B3B */
-    --secondary-foreground: 45 80% 96%;
+    --secondary: 0 0% 18%; /* Rich charcoal */
+    --secondary-foreground: 0 0% 96%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 0 0% 25%;
-    --accent-foreground: 45 80% 96%;
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 96%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 60 9% 98%;
+    --destructive-foreground: 0 0% 98%;
 
     --success: 142 76% 36%;
-    --success-foreground: 60 9% 98%;
+    --success-foreground: 0 0% 98%;
 
     --warning: 38 92% 50%;
-    --warning-foreground: 220 13% 4%;
+    --warning-foreground: 0 0% 8%;
 
-    --border: 0 0% 25%;
-    --input: 0 0% 20%;
+    --border: 0 0% 22%;
+    --input: 0 0% 16%;
     --ring: 42 35% 55%;
 
     /* Dark mode gradients */
     --gradient-luxury: linear-gradient(135deg, hsl(42 35% 55%) 0%, hsl(42 45% 65%) 100%);
-    --gradient-elegant: linear-gradient(180deg, hsl(0 0% 10%) 0%, hsl(0 0% 20%) 100%);
-    --gradient-dark: linear-gradient(135deg, hsl(0 0% 8%) 0%, hsl(0 0% 15%) 100%);
+    --gradient-elegant: linear-gradient(180deg, hsl(0 0% 8%) 0%, hsl(0 0% 16%) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 12%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0% / 0.8) 0%, hsl(0 0% 10% / 0.6) 100%);
 
-    --sidebar-background: 0 0% 12%;
-    --sidebar-foreground: 45 80% 96%;
+    /* Dark mode shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(0 0% 0% / 0.3);
+    --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.2);
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 96%;
     --sidebar-primary: 42 35% 55%;
-    --sidebar-primary-foreground: 0 0% 10%;
-    --sidebar-accent: 0 0% 18%;
-    --sidebar-accent-foreground: 45 80% 96%;
-    --sidebar-border: 0 0% 25%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 0 0% 22%;
     --sidebar-ring: 42 35% 55%;
   }
 }
@@ -164,6 +164,19 @@ All colors MUST be HSL.
   }
 
   .elegant-card {
-    @apply bg-card/80 backdrop-blur-md border border-border/50 rounded-xl hover:shadow-elegant transition-all duration-300;
+    @apply bg-card/90 backdrop-blur-md border border-border/50 rounded-xl hover:shadow-elegant transition-all duration-300 hover:scale-[1.02];
   }
+
+  .glass-card {
+    @apply bg-card/40 backdrop-blur-lg border border-border/30 rounded-xl;
+  }
+
+  .dark-gradient {
+    @apply bg-gradient-dark;
+  }
+
+  .hero-overlay {
+    @apply bg-gradient-hero backdrop-blur-sm;
+  }
+}
 }

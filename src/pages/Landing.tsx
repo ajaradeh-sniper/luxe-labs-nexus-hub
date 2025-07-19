@@ -4,10 +4,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Link } from "react-router-dom"
 import { Navigation } from "@/components/Navigation"
-import heroImage from "@/assets/luxury-labs-hero-refined.jpg"
-import businessBayImage from "@/assets/business-bay.jpg"
-import downtownImage from "@/assets/downtown-luxury.jpg"
-import marinaTowerImage from "@/assets/marina-tower.jpg"
+import heroImage from "@/assets/tech-circuit-hero.jpg"
+import modernArchImage from "@/assets/modern-architecture.jpg"
+import luxuryBuildingImage from "@/assets/luxury-building.jpg"
+import premiumTowerImage from "@/assets/premium-tower.jpg"
 
 export default function Landing() {
   return (
@@ -25,47 +25,49 @@ export default function Landing() {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
+        <div className="absolute inset-0 hero-overlay"></div>
         
         <div className="container mx-auto text-center relative z-10">
-          <h1 className="text-6xl md:text-8xl font-playfair font-bold mb-8 text-white drop-shadow-2xl">
-            Transform Strategic
-            <br />
-            <span className="luxury-text">Premium Properties</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl font-playfair text-white/90 mb-12 max-w-4xl mx-auto drop-shadow-lg">
-            Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets
-            <br />
-            Dubai's Premier Property Investment & Transformation Platform
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow">
-              <Link to="/contact">
-                <TrendingUp className="mr-3 h-6 w-6" />
-                Invest in a Flip
-              </Link>
-            </Button>
-            <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow">
-              <Link to="/contact">
-                <Building2 className="mr-3 h-6 w-6" />
-                Start a Flip
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold border-white text-white hover:bg-white hover:text-black">
-              <a href="#contact">
-                Contact Us
-              </a>
-            </Button>
+          <div className="animate-fade-in">
+            <h1 className="text-6xl md:text-8xl font-playfair font-bold mb-8 text-white drop-shadow-2xl">
+              Transform Strategic
+              <br />
+              <span className="luxury-text text-transparent bg-clip-text bg-gradient-luxury">Premium Properties</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl font-playfair text-white/90 mb-12 max-w-4xl mx-auto drop-shadow-lg">
+              Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets
+              <br />
+              Dubai's Premier Property Investment & Transformation Platform
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-scale-in">
+              <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300">
+                <Link to="/contact">
+                  <TrendingUp className="mr-3 h-6 w-6" />
+                  Invest in a Flip
+                </Link>
+              </Button>
+              <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300">
+                <Link to="/contact">
+                  <Building2 className="mr-3 h-6 w-6" />
+                  Start a Flip
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold border-white/30 text-white hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+                <a href="#contact">
+                  Contact Us
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ABOUT Section */}
-      <section id="about" className="py-24 px-4 bg-background">
+      <section id="about" className="py-24 px-4 bg-gradient-elegant">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
               About <span className="luxury-text">Luxury Labs</span>
             </h2>
@@ -75,9 +77,9 @@ export default function Landing() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card className="elegant-card group">
+            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
+                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
                   <Award className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Premium Expertise</h3>
@@ -87,9 +89,9 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            <Card className="elegant-card group">
+            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
+                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
                   <TrendingUp className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Exceptional Returns</h3>
@@ -99,9 +101,9 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            <Card className="elegant-card group">
+            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
+                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
                   <Users className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">HNWI Focus</h3>
@@ -230,16 +232,16 @@ export default function Landing() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="elegant-card group overflow-hidden">
+            <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in">
               <div className="relative h-64 overflow-hidden">
                 <img 
-                  src={businessBayImage} 
+                  src={luxuryBuildingImage} 
                   alt="Business Bay Luxury Apartment"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <div className="font-bold text-2xl font-playfair">32% ROI</div>
+                  <div className="font-bold text-2xl font-playfair drop-shadow-lg">32% ROI</div>
                 </div>
               </div>
               <CardContent className="p-6">
@@ -249,21 +251,21 @@ export default function Landing() {
                 </p>
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-montserrat text-muted-foreground">6 months</span>
-                  <ArrowRight className="h-4 w-4 text-primary" />
+                  <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="elegant-card group overflow-hidden">
+            <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <div className="relative h-64 overflow-hidden">
                 <img 
-                  src={downtownImage} 
+                  src={modernArchImage} 
                   alt="Downtown Dubai Penthouse"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <div className="font-bold text-2xl font-playfair">45% ROI</div>
+                  <div className="font-bold text-2xl font-playfair drop-shadow-lg">45% ROI</div>
                 </div>
               </div>
               <CardContent className="p-6">
@@ -273,21 +275,21 @@ export default function Landing() {
                 </p>
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-montserrat text-muted-foreground">8 months</span>
-                  <ArrowRight className="h-4 w-4 text-primary" />
+                  <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="elegant-card group overflow-hidden">
+            <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="relative h-64 overflow-hidden">
                 <img 
-                  src={marinaTowerImage} 
+                  src={premiumTowerImage} 
                   alt="Marina Tower Villa"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <Badge className="absolute top-4 right-4 bg-green-500 text-white font-montserrat">ACTIVE</Badge>
+                <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground font-montserrat">ACTIVE</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <div className="font-bold text-2xl font-playfair">Est. 38% ROI</div>
+                  <div className="font-bold text-2xl font-playfair drop-shadow-lg">Est. 38% ROI</div>
                 </div>
               </div>
               <CardContent className="p-6">
@@ -297,14 +299,14 @@ export default function Landing() {
                 </p>
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-montserrat text-muted-foreground">12 months</span>
-                  <ArrowRight className="h-4 w-4 text-primary" />
+                  <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          <div className="text-center mt-12">
-            <Button asChild size="lg" className="luxury-gradient hover:luxury-glow font-montserrat">
+          <div className="text-center mt-12 animate-fade-in">
+            <Button asChild size="lg" className="luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 font-montserrat">
               <Link to="/projects">
                 View All Projects
                 <ArrowRight className="ml-2 h-5 w-5" />
