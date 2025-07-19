@@ -35,7 +35,38 @@ export default function Landing() {
             
             <h1 className="text-5xl font-playfair mb-8 drop-shadow-2xl leading-tight text-yellow-500 font-bold md:text-2xl">Transform Strategic Premium Properties • Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets</h1>
             
-            
+            {/* Three Feature Sections */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12 animate-scale-in">
+              <div className="group">
+                <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
+                  <img src={premiumSelectionImage} alt="Premium Selection" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-xl font-playfair font-bold">PREMIUM SELECTION</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="group">
+                <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
+                  <img src={luxuryTransformationImage} alt="Luxury Transformation" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-xl font-playfair font-bold">LUXURY TRANSFORMATION</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="group">
+                <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
+                  <img src={exceptionalReturnsImage} alt="Exceptional Assets & Returns" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-xl font-playfair font-bold">EXCEPTIONAL ASSETS & RETURNS</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center animate-scale-in">
               <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300">
