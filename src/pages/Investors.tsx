@@ -1,8 +1,9 @@
-import { Building2, TrendingUp, Shield, Users, DollarSign, BarChart3, Award, ArrowRight, CheckCircle } from "lucide-react"
+import { TrendingUp, Shield, Users, DollarSign, BarChart3, Award, ArrowRight, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Link } from "react-router-dom"
+import { Navigation } from "@/components/Navigation"
 import businessBayImage from "@/assets/business-bay.jpg"
 import downtownImage from "@/assets/downtown-luxury.jpg"
 import marinaTowerImage from "@/assets/marina-tower.jpg"
@@ -10,37 +11,7 @@ import marinaTowerImage from "@/assets/marina-tower.jpg"
 export default function Investors() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 luxury-gradient rounded-xl flex items-center justify-center luxury-shadow">
-              <Building2 className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <div>
-              <div className="font-bold text-2xl text-foreground tracking-tight font-playfair">LUXURY LABS</div>
-              <div className="text-xs text-primary uppercase tracking-widest font-medium font-montserrat">Property Solutions</div>
-            </div>
-          </div>
-          
-          <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className="text-foreground hover:text-primary transition-colors font-montserrat">Home</Link>
-            <Link to="/about" className="text-foreground hover:text-primary transition-colors font-montserrat">About</Link>
-            <Link to="/services" className="text-foreground hover:text-primary transition-colors font-montserrat">Services</Link>
-            <Link to="/projects" className="text-foreground hover:text-primary transition-colors font-montserrat">Projects</Link>
-            <Link to="/media" className="text-foreground hover:text-primary transition-colors font-montserrat">Media</Link>
-            <Link to="/partners" className="text-foreground hover:text-primary transition-colors font-montserrat">Partners</Link>
-            <Link to="/investors" className="text-primary font-medium font-montserrat">Investors</Link>
-            <Link to="/contact" className="text-foreground hover:text-primary transition-colors font-montserrat">Contact</Link>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground luxury-shadow">
-              <Link to="/dashboard">Dashboard</Link>
-            </Button>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Investors Section */}
       <section className="py-24 bg-background">
