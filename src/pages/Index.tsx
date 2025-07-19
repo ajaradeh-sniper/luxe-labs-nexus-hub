@@ -2,6 +2,7 @@ import { DashboardLayout } from "@/components/DashboardLayout"
 import { DashboardStats } from "@/components/DashboardStats"
 import { RecentActivities } from "@/components/RecentActivities"
 import { PropertyOverview } from "@/components/PropertyOverview"
+import { RoleSwitcher } from "@/components/RoleSwitcher"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -35,6 +36,9 @@ const Index = () => {
             </div>
           </div>
         </div>
+
+        {/* Role Switcher for Demo */}
+        <RoleSwitcher />
 
         {/* Dashboard Stats */}
         <DashboardStats />
@@ -74,7 +78,7 @@ const Index = () => {
         <PropertyOverview />
       </div>
     </DashboardLayout>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index
