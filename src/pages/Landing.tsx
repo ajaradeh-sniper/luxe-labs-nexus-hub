@@ -28,14 +28,14 @@ export default function Landing() {
           </div>
           
           <div className="hidden md:flex items-center gap-8">
-            <a href="#home" className="text-foreground hover:text-primary transition-colors font-montserrat">Home</a>
-            <a href="#about" className="text-foreground hover:text-primary transition-colors font-montserrat">About</a>
-            <a href="#services" className="text-foreground hover:text-primary transition-colors font-montserrat">Services</a>
-            <a href="#projects" className="text-foreground hover:text-primary transition-colors font-montserrat">Projects</a>
-            <a href="#media" className="text-foreground hover:text-primary transition-colors font-montserrat">Media</a>
-            <a href="#partners" className="text-foreground hover:text-primary transition-colors font-montserrat">Partners</a>
-            <a href="#investors" className="text-foreground hover:text-primary transition-colors font-montserrat">Investors</a>
-            <a href="#contact" className="text-foreground hover:text-primary transition-colors font-montserrat">Contact</a>
+            <Link to="/" className="text-primary font-medium font-montserrat">Home</Link>
+            <Link to="/about" className="text-foreground hover:text-primary transition-colors font-montserrat">About</Link>
+            <Link to="/services" className="text-foreground hover:text-primary transition-colors font-montserrat">Services</Link>
+            <Link to="/projects" className="text-foreground hover:text-primary transition-colors font-montserrat">Projects</Link>
+            <Link to="/media" className="text-foreground hover:text-primary transition-colors font-montserrat">Media</Link>
+            <Link to="/partners" className="text-foreground hover:text-primary transition-colors font-montserrat">Partners</Link>
+            <Link to="/investors" className="text-foreground hover:text-primary transition-colors font-montserrat">Investors</Link>
+            <Link to="/contact" className="text-foreground hover:text-primary transition-colors font-montserrat">Contact</Link>
           </div>
           
           <div className="flex items-center gap-4">

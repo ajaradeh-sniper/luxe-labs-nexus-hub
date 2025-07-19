@@ -27,6 +27,9 @@ import AdminProperties from "./pages/admin/Properties";
 import AdminSystemSettings from "./pages/admin/SystemSettings";
 import NotFound from "./pages/NotFound";
 import Landing from "./pages/Landing";
+import Media from "./pages/Media";
+import Partners from "./pages/Partners";
+import Investors from "./pages/Investors";
 import ProjectDetail from "./pages/ProjectDetail";
 import ProjectManagerDashboard from "./pages/ProjectManagerDashboard";
 import InvestorDashboard from "./pages/InvestorDashboard";
@@ -61,6 +64,9 @@ const App = () => (
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/media" element={<Media />} />
+            <Route path="/partners" element={<Partners />} />
+            <Route path="/investors" element={<Investors />} />
             <Route path="/contact" element={<Contact />} />
             {/* Admin Routes */}
            <Route path="/admin/users" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />
