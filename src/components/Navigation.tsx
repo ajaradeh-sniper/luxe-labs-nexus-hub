@@ -29,8 +29,12 @@ export function Navigation() {
     <nav className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 luxury-gradient rounded-xl flex items-center justify-center luxury-shadow">
-            <Building2 className="h-6 w-6 text-primary-foreground" />
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center">
+            <img 
+              src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+              alt="Luxury Labs Logo" 
+              className="h-10 w-auto"
+            />
           </div>
           <div>
             <div className="font-bold text-2xl text-foreground tracking-tight font-playfair">LUXURY LABS</div>
