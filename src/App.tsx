@@ -34,6 +34,7 @@ import ProjectDetail from "./pages/ProjectDetail";
 import ProjectManagerDashboard from "./pages/ProjectManagerDashboard";
 import InvestorDashboard from "./pages/InvestorDashboard";
 import ClientDashboard from "./pages/ClientDashboard";
+import DashboardProjects from "./pages/DashboardProjects";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsOfService from "./pages/legal/TermsOfService";
 import InvestmentDisclaimer from "./pages/legal/InvestmentDisclaimer";
@@ -51,7 +52,8 @@ const App = () => (
             <Route path="/" element={<Landing />} />
             <Route path="/dashboard" element={<ProtectedRoute><Index /></ProtectedRoute>} />
             <Route path="/properties" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
-            <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/dashboard/projects" element={<ProtectedRoute><DashboardProjects /></ProtectedRoute>} />
             <Route path="/projects/:id" element={<ProtectedRoute><ProjectDetail /></ProtectedRoute>} />
             <Route path="/pm-dashboard" element={<ProtectedRoute><ProjectManagerDashboard /></ProtectedRoute>} />
             <Route path="/investor-dashboard" element={<ProtectedRoute><InvestorDashboard /></ProtectedRoute>} />

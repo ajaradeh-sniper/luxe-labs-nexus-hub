@@ -56,7 +56,7 @@ const getNavigationItems = (userRole: string) => {
   ];
 
   const operationalItems = [
-    { title: "Projects", url: "/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client'] },
+    { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client'] },
     { title: "Properties", url: "/properties", icon: Building, roles: ['administrator', 'real_estate_director', 'real_estate_agent', 'investor'] },
     { title: "Financial", url: "/financial", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor'] },
     { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'lawyer', 'client', 'project_manager'] },
