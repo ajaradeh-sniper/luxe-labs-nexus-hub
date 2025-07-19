@@ -79,7 +79,8 @@ export default {
 			backgroundImage: {
 				'gradient-luxury': 'var(--gradient-luxury)',
 				'gradient-elegant': 'var(--gradient-elegant)',
-				'gradient-dark': 'var(--gradient-dark)'
+				'gradient-dark': 'var(--gradient-dark)',
+				'gradient-hero': 'var(--gradient-hero)'
 			},
 			boxShadow: {
 				'luxury': 'var(--shadow-luxury)',
