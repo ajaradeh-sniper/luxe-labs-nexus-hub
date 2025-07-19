@@ -1,10 +1,13 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { DashboardLayout } from "@/components/DashboardLayout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useWorkflowModals } from "@/components/IntegratedWorkflows"
+import { useToast } from "@/hooks/use-toast"
 import { 
   Plus, 
   Search, 
@@ -25,11 +28,27 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 const DashboardProjects = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [typeFilter, setTypeFilter] = useState("all")
+  const [deleteProjectId, setDeleteProjectId] = useState<string | null>(null)
+  
+  const navigate = useNavigate()
+  const { toast } = useToast()
+  const { openProjectWizard, WorkflowModals } = useWorkflowModals()
 
   const projects = [
     {
@@ -141,6 +160,31 @@ const DashboardProjects = () => {
     return matchesSearch && matchesStatus && matchesType
   })
 
+  const handleViewProject = (projectId: string) => {
+    navigate(`/projects/${projectId}`)
+  }
+
+  const handleEditProject = (projectId: string) => {
+    toast({
+      title: "Edit Project",
+      description: `Opening edit dialog for project ${projectId}`,
+    })
+    // Future: Open edit modal or navigate to edit page
+  }
+
+  const handleDeleteProject = (projectId: string) => {
+    const project = projects.find(p => p.id === projectId)
+    if (project) {
+      toast({
+        title: "Project Deleted",
+        description: `${project.name} has been successfully deleted.`,
+        variant: "destructive",
+      })
+      // Future: Actually remove from data source
+    }
+    setDeleteProjectId(null)
+  }
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
@@ -150,7 +194,7 @@ const DashboardProjects = () => {
             <h1 className="text-3xl font-bold text-foreground">Projects</h1>
             <p className="text-muted-foreground">Manage and monitor all project activities</p>
           </div>
-          <Button className="w-fit">
+          <Button className="w-fit" onClick={openProjectWizard}>
             <Plus className="h-4 w-4 mr-2" />
             New Project
           </Button>
@@ -219,16 +263,19 @@ const DashboardProjects = () => {
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>
+                      <DropdownMenuContent align="end" className="bg-card border border-border shadow-lg z-50">
+                        <DropdownMenuItem onClick={() => handleViewProject(project.id)} className="hover:bg-accent">
                           <Eye className="h-4 w-4 mr-2" />
                           View Details
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleEditProject(project.id)} className="hover:bg-accent">
                           <Edit className="h-4 w-4 mr-2" />
                           Edit Project
                         </DropdownMenuItem>
-                        <DropdownMenuItem className="text-red-600">
+                        <DropdownMenuItem 
+                          className="text-destructive hover:bg-destructive/10"
+                          onClick={() => setDeleteProjectId(project.id)}
+                        >
                           <Trash2 className="h-4 w-4 mr-2" />
                           Delete
                         </DropdownMenuItem>
@@ -292,7 +339,7 @@ const DashboardProjects = () => {
                       <p className="text-sm text-muted-foreground">Project Manager</p>
                       <p className="font-medium">{project.manager}</p>
                     </div>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" onClick={() => handleViewProject(project.id)}>
                       View Project
                     </Button>
                   </div>
@@ -310,13 +357,38 @@ const DashboardProjects = () => {
               <p className="text-muted-foreground mb-4">
                 Try adjusting your search terms or filters to find projects.
               </p>
-              <Button>
+              <Button onClick={openProjectWizard}>
                 <Plus className="h-4 w-4 mr-2" />
                 Create New Project
               </Button>
             </CardContent>
           </Card>
         )}
+
+        {/* Delete Confirmation Dialog */}
+        <AlertDialog open={!!deleteProjectId} onOpenChange={() => setDeleteProjectId(null)}>
+          <AlertDialogContent className="bg-card border border-border">
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete Project</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to delete "{projects.find(p => p.id === deleteProjectId)?.name}"? 
+                This action cannot be undone and will permanently remove all project data.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction 
+                onClick={() => deleteProjectId && handleDeleteProject(deleteProjectId)}
+                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              >
+                Delete Project
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Workflow Modals */}
+        <WorkflowModals />
       </div>
     </DashboardLayout>
   )
