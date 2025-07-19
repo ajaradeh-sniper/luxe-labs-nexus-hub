@@ -36,7 +36,7 @@ export default function Landing() {
               <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-96 w-auto mx-auto drop-shadow-2xl" />
             </div>
             
-            <h1 className="text-7xl md:text-8xl font-playfair mb-16 drop-shadow-2xl leading-tight text-yellow-500 font-bold">Transform Strategic Premium Properties • Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets</h1>
+            <h1 className="text-4xl md:text-5xl font-playfair mb-16 drop-shadow-2xl leading-tight text-yellow-500 font-bold">Transform Strategic Premium Properties • Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets</h1>
             
             {/* Three Feature Sections */}
             <div className="grid md:grid-cols-3 gap-8 mb-12 animate-scale-in">
