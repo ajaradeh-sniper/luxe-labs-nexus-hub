@@ -24,7 +24,11 @@ export interface RolePermissions {
 
 export const ROLE_PERMISSIONS: Record<UserRole, RolePermissions> = {
   administrator: {
-    all: ['view', 'edit', 'approve', 'delete']
+    all: ['view', 'edit', 'approve', 'delete'],
+    project_management: ['view', 'edit', 'approve', 'delete'],
+    costs: ['view', 'edit', 'approve', 'delete'],
+    risks: ['view', 'edit', 'approve', 'delete'],
+    tenders: ['view', 'edit', 'approve', 'delete']
   },
   real_estate_director: {
     opportunities: ['view', 'edit', 'approve'],
@@ -55,7 +59,11 @@ export const ROLE_PERMISSIONS: Record<UserRole, RolePermissions> = {
   project_manager: {
     projects: ['view', 'edit', 'approve'],
     timelines: ['view', 'edit', 'approve'],
-    partners: ['view', 'edit', 'approve']
+    partners: ['view', 'edit', 'approve'],
+    project_management: ['view', 'edit', 'approve'],
+    costs: ['view', 'edit', 'approve'],
+    risks: ['view', 'edit', 'approve'],
+    tenders: ['view', 'edit', 'approve']
   },
   head_of_design: {
     design_boards: ['view', 'edit'],
