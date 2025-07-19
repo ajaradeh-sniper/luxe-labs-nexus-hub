@@ -41,6 +41,8 @@ import TermsOfService from "./pages/legal/TermsOfService";
 import InvestmentDisclaimer from "./pages/legal/InvestmentDisclaimer";
 import Marketing from "./pages/Marketing";
 import TrafficAnalytics from "./pages/TrafficAnalytics";
+import Opportunities from "./pages/Opportunities";
+import ProjectAgreements from "./pages/ProjectAgreements";
 
 const queryClient = new QueryClient();
 
@@ -82,6 +84,8 @@ const App = () => (
             <Route path="/investment-disclaimer" element={<InvestmentDisclaimer />} />
             <Route path="/marketing" element={<ProtectedRoute><Marketing /></ProtectedRoute>} />
             <Route path="/traffic-analytics" element={<ProtectedRoute><TrafficAnalytics /></ProtectedRoute>} />
+            <Route path="/opportunities" element={<ProtectedRoute><Opportunities /></ProtectedRoute>} />
+            <Route path="/agreements" element={<ProtectedRoute><ProjectAgreements /></ProtectedRoute>} />
             {/* Admin Routes */}
            <Route path="/admin/users" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />
            <Route path="/admin/detailed-users" element={<ProtectedRoute><AdminDetailedUsers /></ProtectedRoute>} />

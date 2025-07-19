@@ -56,7 +56,9 @@ const getNavigationItems = (userRole: string) => {
     { title: "System Overview", url: "/admin/system", icon: ShieldCheck, roles: ['administrator'] },
     { title: "Analytics", url: "/analytics", icon: BarChart3, roles: ['administrator'] },
     { title: "Marketing", url: "/marketing", icon: Target, roles: ['administrator', 'marketing_lead'] },
-    { title: "Traffic Analytics", url: "/traffic-analytics", icon: Globe, roles: ['administrator', 'marketing_lead'] }
+    { title: "Traffic Analytics", url: "/traffic-analytics", icon: Globe, roles: ['administrator', 'marketing_lead'] },
+    { title: "Opportunities", url: "/opportunities", icon: Target, roles: ['administrator', 'real_estate_director', 'real_estate_agent'] },
+    { title: "Agreements", url: "/agreements", icon: FileText, roles: ['administrator', 'project_manager', 'lawyer'] }
   ];
 
   const operationalItems = [

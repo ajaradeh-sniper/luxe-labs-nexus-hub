@@ -36,7 +36,8 @@ export const ROLE_PERMISSIONS: Record<UserRole, RolePermissions> = {
     projects: ['view'],
     docs: ['view'],
     payments: ['view'],
-    invoices: ['view']
+    invoices: ['view'],
+    opportunities: ['view', 'edit']
   },
   investor_relations_manager: {
     investors: ['view', 'edit', 'approve'],
@@ -99,7 +100,8 @@ export const ROLE_PERMISSIONS: Record<UserRole, RolePermissions> = {
     projects: ['view'],
     docs: ['view'],
     payments: ['view'],
-    invoices: ['view']
+    invoices: ['view'],
+    project_agreements: ['view']
   }
 };
 
