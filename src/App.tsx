@@ -20,6 +20,10 @@ import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import AdminUsers from "./pages/admin/Users";
 import AdminSystem from "./pages/admin/System";
+import AdminDetailedUsers from "./pages/admin/DetailedUsers";
+import AdminInvestors from "./pages/admin/Investors";
+import AdminProperties from "./pages/admin/Properties";
+import AdminSystemSettings from "./pages/admin/SystemSettings";
 import NotFound from "./pages/NotFound";
 import Landing from "./pages/Landing";
 
@@ -50,8 +54,12 @@ const App = () => (
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             {/* Admin Routes */}
-            <Route path="/admin/users" element={<AdminUsers />} />
-            <Route path="/admin/system" element={<AdminSystem />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/detailed-users" element={<AdminDetailedUsers />} />
+          <Route path="/admin/investors" element={<AdminInvestors />} />
+          <Route path="/admin/properties" element={<AdminProperties />} />
+          <Route path="/admin/system-settings" element={<AdminSystemSettings />} />
+          <Route path="/admin/system" element={<AdminSystem />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
