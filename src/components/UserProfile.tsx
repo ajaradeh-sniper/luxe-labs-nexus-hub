@@ -15,7 +15,7 @@ import { useAuth } from "@/contexts/AuthContext"
 import { UserRole } from "@/types/auth"
 
 export function UserProfile() {
-  const { user, logout, switchRole } = useAuth()
+  const { user, logout } = useAuth()
   
   if (!user) return null
 
@@ -72,23 +72,6 @@ export function UserProfile() {
           <Settings className="mr-2 h-4 w-4" />
           <span>Settings</span>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        
-        {/* Demo: Role Switching */}
-        <DropdownMenuLabel className="text-xs text-muted-foreground">Switch Role (Demo)</DropdownMenuLabel>
-        <DropdownMenuItem onClick={() => switchRole('administrator')}>
-          <ShieldCheck className="mr-2 h-4 w-4" />
-          <span>Administrator</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => switchRole('project_manager')}>
-          <User className="mr-2 h-4 w-4" />
-          <span>Project Manager</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => switchRole('investor')}>
-          <User className="mr-2 h-4 w-4" />
-          <span>Investor</span>
-        </DropdownMenuItem>
-        
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={logout} className="cursor-pointer text-destructive focus:text-destructive">
           <LogOut className="mr-2 h-4 w-4" />

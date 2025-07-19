@@ -63,7 +63,11 @@ export function Navigation() {
               </Link>
             </Button>
           ) : (
-            <LoginDialog />
+            <Button asChild variant="luxury" className="luxury-shadow">
+              <Link to="/auth">
+                {t('navigation.signIn')}
+              </Link>
+            </Button>
           )}
         </div>
       </div>

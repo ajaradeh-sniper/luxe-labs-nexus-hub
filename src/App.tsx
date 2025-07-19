@@ -44,6 +44,7 @@ import TrafficAnalytics from "./pages/TrafficAnalytics";
 import Opportunities from "./pages/Opportunities";
 import ProjectAgreements from "./pages/ProjectAgreements";
 import ProjectManagement from "./pages/ProjectManagement";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing />} />
+            <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={<ProtectedRoute><Index /></ProtectedRoute>} />
             <Route path="/properties" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
             <Route path="/projects" element={<Projects />} />
