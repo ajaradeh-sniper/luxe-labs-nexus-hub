@@ -237,7 +237,11 @@ const Projects = () => {
                     </div>
                   </div>
                   
-                  <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <Button 
+                    variant="outline" 
+                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    onClick={() => window.location.href = `/project/${project.id}`}
+                  >
                     View Details
                   </Button>
                 </CardContent>
@@ -253,10 +257,18 @@ const Projects = () => {
             Let us help you transform your vision into reality with our expertise in luxury real estate development.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90"
+              onClick={() => window.location.href = '/contact'}
+            >
               Start a Project
             </Button>
-            <Button variant="outline" size="lg">
+            <Button 
+              variant="outline" 
+              size="lg"
+              onClick={() => window.location.href = '/projects'}
+            >
               View All Projects
             </Button>
           </div>

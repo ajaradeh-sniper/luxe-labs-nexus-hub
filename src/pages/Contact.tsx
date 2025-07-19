@@ -226,15 +226,36 @@ const Contact = () => {
               <CardContent className="p-6 text-center">
                 <h3 className="font-semibold mb-4">Quick Actions</h3>
                 <div className="space-y-3">
-                  <Button variant="outline" size="sm" className="w-full bg-background text-foreground hover:bg-background/90">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full bg-background text-foreground hover:bg-background/90"
+                    onClick={() => window.location.href = '/projects'}
+                  >
                     <TrendingUp className="mr-2 h-4 w-4" />
                     View Investment Opportunities
                   </Button>
-                  <Button variant="outline" size="sm" className="w-full bg-background text-foreground hover:bg-background/90">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full bg-background text-foreground hover:bg-background/90"
+                    onClick={() => {
+                      const messageElement = document.querySelector('textarea[placeholder*="Tell us about your project"]') as HTMLTextAreaElement;
+                      if (messageElement) {
+                        messageElement.value = 'I would like to schedule a consultation to discuss my investment needs.';
+                        messageElement.focus();
+                      }
+                    }}
+                  >
                     <Users className="mr-2 h-4 w-4" />
                     Schedule Consultation
                   </Button>
-                  <Button variant="outline" size="sm" className="w-full bg-background text-foreground hover:bg-background/90">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full bg-background text-foreground hover:bg-background/90"
+                    onClick={() => window.open('https://wa.me/971501234567', '_blank')}
+                  >
                     <MessageSquare className="mr-2 h-4 w-4" />
                     WhatsApp Chat
                   </Button>

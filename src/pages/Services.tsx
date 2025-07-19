@@ -167,6 +167,7 @@ const Services = () => {
                   <Button 
                     variant={service.highlight ? "luxury" : "outline"} 
                     className="w-full mt-4"
+                    onClick={() => window.location.href = '/contact'}
                   >
                     {service.cta}
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -219,11 +220,21 @@ const Services = () => {
               our expert team is ready to deliver exceptional results.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="outline" size="lg" className="bg-background text-foreground hover:bg-background/90">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="bg-background text-foreground hover:bg-background/90"
+                onClick={() => window.location.href = '/contact'}
+              >
                 <TrendingUp className="mr-2 h-4 w-4" />
                 Start a Flip Investment
               </Button>
-              <Button variant="outline" size="lg" className="bg-background text-foreground hover:bg-background/90">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="bg-background text-foreground hover:bg-background/90"
+                onClick={() => window.location.href = '/contact'}
+              >
                 <Users className="mr-2 h-4 w-4" />
                 Request Consultation
               </Button>
