@@ -1,105 +1,99 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import { DashboardLayout } from "@/components/DashboardLayout"
-import { Button } from "@/components/ui/button"
+import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Input } from "@/components/ui/input"
-import { ProjectCreationWizard } from "@/components/ProjectCreationWizard"
+import { Button } from "@/components/ui/button"
 import { 
-  FolderOpen, 
-  Plus, 
-  Search, 
-  Calendar,
-  Users,
-  DollarSign,
-  Clock,
+  Target, 
+  TrendingUp, 
+  Shield, 
+  Award,
   CheckCircle,
-  AlertCircle,
-  MoreHorizontal,
-  Eye,
-  Edit,
-  Play,
-  Pause
+  Users,
+  Calendar,
+  MapPin,
+  Building,
+  Home,
+  Briefcase
 } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
-interface Project {
-  id: string
-  name: string
-  property: string
-  status: 'planning' | 'active' | 'renovation' | 'marketing' | 'completed' | 'on-hold'
-  progress: number
-  budget: string
-  spent: string
-  startDate: string
-  expectedCompletion: string
-  teamMembers: number
-  roi: number
-}
 
 const Projects = () => {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [wizardOpen, setWizardOpen] = useState(false)
+  const areasOfFocus = [
+    {
+      icon: Building,
+      title: "Luxury Residential",
+      description: "High-end apartment complexes, penthouses, and premium residential developments with focus on modern amenities and lifestyle enhancement.",
+      features: ["Premium finishes", "Smart home integration", "Luxury amenities", "Concierge services"]
+    },
+    {
+      icon: Briefcase,
+      title: "Commercial Spaces",
+      description: "Office buildings, retail spaces, and mixed-use developments designed for maximum functionality and aesthetic appeal.",
+      features: ["Modern workspaces", "Retail optimization", "Mixed-use design", "Technology integration"]
+    },
+    {
+      icon: Home,
+      title: "Villa & Estate",
+      description: "Exclusive villas and private estates with custom designs, premium materials, and personalized luxury features.",
+      features: ["Custom architecture", "Landscape design", "Private amenities", "Sustainable solutions"]
+    }
+  ]
 
-  const projects: Project[] = [
+  const approaches = [
+    {
+      icon: Target,
+      title: "Strategic Planning",
+      description: "Comprehensive market analysis and strategic planning to ensure optimal project outcomes and maximum ROI."
+    },
+    {
+      icon: Shield,
+      title: "Quality Assurance",
+      description: "Rigorous quality control processes and premium material selection for lasting value and excellence."
+    },
+    {
+      icon: TrendingUp,
+      title: "Value Engineering",
+      description: "Optimizing design and construction methods to maximize value while maintaining luxury standards."
+    },
+    {
+      icon: Award,
+      title: "Excellence Standards",
+      description: "Commitment to award-winning design and construction that exceeds industry benchmarks."
+    }
+  ]
+
+  const sampleProjects = [
     {
       id: '1',
-      name: 'Marina Bay Luxury Renovation',
-      property: 'Marina Bay Tower',
-      status: 'active',
-      progress: 65,
-      budget: '$800K',
-      spent: '$520K',
-      startDate: '2024-10-01',
-      expectedCompletion: '2025-02-15',
-      teamMembers: 12,
-      roi: 18.5
+      name: 'Marina Bay Luxury Towers',
+      location: 'Dubai Marina',
+      type: 'Residential',
+      status: 'completed',
+      budget: '$120M',
+      duration: '36 months',
+      units: 280,
+      features: ['Premium finishes', 'Smart home systems', 'Infinity pool', 'Sky gardens']
     },
     {
       id: '2',
-      name: 'Downtown Penthouse Transformation',
-      property: 'Downtown Luxury Apartments',
-      status: 'renovation',
-      progress: 45,
-      budget: '$1.2M',
-      spent: '$540K',
-      startDate: '2024-11-15',
-      expectedCompletion: '2025-04-30',
-      teamMembers: 15,
-      roi: 22.3
+      name: 'Downtown Business Hub',
+      location: 'DIFC',
+      type: 'Commercial',
+      status: 'active',
+      budget: '$85M',
+      duration: '24 months',
+      units: 150,
+      features: ['Grade A offices', 'Conference facilities', 'Retail spaces', 'Parking complex']
     },
     {
       id: '3',
-      name: 'Business Bay Commercial Upgrade',
-      property: 'Business Bay Complex',
+      name: 'Palm Residence Villas',
+      location: 'Palm Jumeirah',
+      type: 'Villa',
       status: 'planning',
-      progress: 15,
-      budget: '$2.1M',
-      spent: '$315K',
-      startDate: '2024-12-01',
-      expectedCompletion: '2025-07-15',
-      teamMembers: 8,
-      roi: 16.8
-    },
-    {
-      id: '4',
-      name: 'Palm Villa Premium Finishing',
-      property: 'Palm Residence Villa',
-      status: 'completed',
-      progress: 100,
-      budget: '$1.5M',
-      spent: '$1.4M',
-      startDate: '2024-06-01',
-      expectedCompletion: '2024-11-30',
-      teamMembers: 18,
-      roi: 25.2
+      budget: '$200M',
+      duration: '42 months',
+      units: 45,
+      features: ['Private beaches', 'Custom architecture', 'Smart automation', 'Wellness centers']
     }
   ]
 
@@ -107,215 +101,168 @@ const Projects = () => {
     switch (status) {
       case 'completed': return 'bg-success/10 text-success border-success/20'
       case 'active': return 'bg-primary/10 text-primary border-primary/20'
-      case 'renovation': return 'bg-warning/10 text-warning border-warning/20'
       case 'planning': return 'bg-blue-500/10 text-blue-500 border-blue-500/20'
-      case 'marketing': return 'bg-purple-500/10 text-purple-500 border-purple-500/20'
-      case 'on-hold': return 'bg-destructive/10 text-destructive border-destructive/20'
       default: return 'bg-muted text-muted-foreground'
     }
   }
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'completed': return <CheckCircle className="h-4 w-4" />
-      case 'active': return <Play className="h-4 w-4" />
-      case 'on-hold': return <Pause className="h-4 w-4" />
-      default: return <Clock className="h-4 w-4" />
-    }
-  }
-
-  const filteredProjects = projects.filter(project => 
-    project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    project.property.toLowerCase().includes(searchTerm.toLowerCase())
-  )
-
   return (
-    <DashboardLayout>
-      <div className="p-6 space-y-6">
+    <>
+      <Navigation />
+      <div className="container mx-auto px-4 py-8 space-y-16">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Projects</h1>
-            <p className="text-muted-foreground">Manage your property transformation projects</p>
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-bold text-foreground">Our Projects</h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Transforming spaces through innovative design, premium construction, and strategic development 
+            to create exceptional real estate experiences.
+          </p>
+        </div>
+
+        {/* Areas of Focus Section */}
+        <section className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold text-foreground">Areas of Focus</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              We specialize in diverse property types, each tailored to meet specific market demands and lifestyle requirements.
+            </p>
           </div>
-          <Button variant="luxury" size="lg" className="gap-2" onClick={() => setWizardOpen(true)}>
-            <Plus className="h-4 w-4" />
-            New Project
-          </Button>
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <FolderOpen className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-foreground">12</p>
-                  <p className="text-sm text-muted-foreground">Total Projects</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-warning/10 rounded-lg flex items-center justify-center">
-                  <Play className="h-6 w-6 text-warning" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-foreground">3</p>
-                  <p className="text-sm text-muted-foreground">Active Projects</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
-                  <CheckCircle className="h-6 w-6 text-success" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-foreground">8</p>
-                  <p className="text-sm text-muted-foreground">Completed</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                  <DollarSign className="h-6 w-6 text-blue-500" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-foreground">$5.6M</p>
-                  <p className="text-sm text-muted-foreground">Total Budget</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Search */}
-        <Card>
-          <CardContent className="p-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search projects..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Projects List */}
-        <div className="space-y-4">
-          {filteredProjects.map((project) => (
-            <Card key={project.id} className="hover:shadow-luxury transition-all duration-300">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-foreground mb-1">{project.name}</h3>
-                    <p className="text-muted-foreground">{project.property}</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {areasOfFocus.map((area, index) => (
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300">
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                    <area.icon className="h-8 w-8 text-primary" />
                   </div>
-                  <div className="flex items-center gap-2">
+                  <CardTitle className="text-xl">{area.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-muted-foreground">{area.description}</p>
+                  <div className="space-y-2">
+                    {area.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-success" />
+                        <span className="text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Our Approach Section */}
+        <section className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold text-foreground">Our Approach</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our methodology combines strategic planning, quality assurance, and innovative solutions 
+              to deliver exceptional results that exceed expectations.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {approaches.map((approach, index) => (
+              <Card key={index} className="text-center group hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 space-y-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto group-hover:bg-primary/20 transition-colors">
+                    <approach.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold">{approach.title}</h3>
+                  <p className="text-sm text-muted-foreground">{approach.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Sample Projects Section */}
+        <section className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold text-foreground">Sample Projects</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Explore our portfolio of successful developments that showcase our commitment to excellence 
+              and innovation in real estate transformation.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {sampleProjects.map((project) => (
+              <Card key={project.id} className="group hover:shadow-lg transition-all duration-300">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <CardTitle className="text-lg mb-2">{project.name}</CardTitle>
+                      <div className="flex items-center gap-1 text-muted-foreground mb-2">
+                        <MapPin className="h-4 w-4" />
+                        <span className="text-sm">{project.location}</span>
+                      </div>
+                    </div>
                     <Badge className={getStatusColor(project.status)}>
-                      {getStatusIcon(project.status)}
-                      <span className="ml-1 capitalize">{project.status.replace('-', ' ')}</span>
+                      {project.status}
                     </Badge>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>
-                          <Eye className="mr-2 h-4 w-4" />
-                          View Details
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Edit className="mr-2 h-4 w-4" />
-                          Edit Project
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
                   </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-4">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Progress</p>
-                    <div className="flex items-center gap-2">
-                      <Progress value={project.progress} className="flex-1 h-2" />
-                      <span className="text-sm font-medium">{project.progress}%</span>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-muted-foreground">Type:</span>
+                      <p className="font-medium">{project.type}</p>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">Budget:</span>
+                      <p className="font-medium">{project.budget}</p>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">Duration:</span>
+                      <p className="font-medium">{project.duration}</p>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">Units:</span>
+                      <p className="font-medium">{project.units}</p>
                     </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Budget</p>
-                    <p className="font-semibold">{project.budget}</p>
-                    <p className="text-xs text-muted-foreground">Spent: {project.spent}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Team</p>
-                    <div className="flex items-center gap-1">
-                      <Users className="h-4 w-4 text-muted-foreground" />
-                      <span className="font-semibold">{project.teamMembers}</span>
+                  
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-sm">Key Features:</h4>
+                    <div className="grid grid-cols-2 gap-1">
+                      {project.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-1">
+                          <CheckCircle className="h-3 w-3 text-success" />
+                          <span className="text-xs">{feature}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Expected ROI</p>
-                    <p className="font-semibold text-success">+{project.roi}%</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Completion</p>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm font-medium">
-                        {new Date(project.expectedCompletion).toLocaleDateString()}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                  
+                  <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    View Details
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
-                <div className="flex gap-2">
-                  <Link to={`/projects/${project.id}`}>
-                    <Button variant="outline" size="sm">
-                      <Eye className="mr-1 h-3 w-3" />
-                      View Details
-                    </Button>
-                  </Link>
-                  {project.status === 'active' && (
-                    <Button variant="luxury" size="sm">
-                      <Edit className="mr-1 h-3 w-3" />
-                      Manage
-                    </Button>
-                  )}
-                  {project.status === 'planning' && (
-                    <Button variant="outline" size="sm">
-                      <Play className="mr-1 h-3 w-3" />
-                      Start Project
-                    </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <ProjectCreationWizard open={wizardOpen} onOpenChange={setWizardOpen} />
+        {/* Call to Action */}
+        <section className="text-center space-y-6 bg-muted/50 rounded-lg p-8">
+          <h2 className="text-2xl font-bold text-foreground">Ready to Start Your Project?</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Let us help you transform your vision into reality with our expertise in luxury real estate development.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-primary hover:bg-primary/90">
+              Start a Project
+            </Button>
+            <Button variant="outline" size="lg">
+              View All Projects
+            </Button>
+          </div>
+        </section>
       </div>
-    </DashboardLayout>
+    </>
   )
 }
 
