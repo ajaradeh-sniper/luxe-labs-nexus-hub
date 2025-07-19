@@ -1,55 +1,41 @@
-import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Link } from "react-router-dom"
-import { Navigation } from "@/components/Navigation"
-import luxuryLabsLogo from "@/assets/luxury-labs-logo.png"
-import heroImage from "/lovable-uploads/116909a8-0f62-4f76-9b4d-43d93a586fd4.png"
-import flippingDubaiLogo from "/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png"
-import modernArchImage from "@/assets/modern-architecture.jpg"
-import luxuryBuildingImage from "@/assets/luxury-building.jpg"
-import premiumTowerImage from "@/assets/premium-tower.jpg"
-import premiumSelectionImage from "@/assets/premium-selection.jpg"
-import luxuryTransformationImage from "@/assets/luxury-transformation.jpg"
-import exceptionalReturnsImage from "@/assets/exceptional-returns.jpg"
-
+import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
+import { Navigation } from "@/components/Navigation";
+import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
+import heroImage from "/lovable-uploads/116909a8-0f62-4f76-9b4d-43d93a586fd4.png";
+import flippingDubaiLogo from "/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png";
+import modernArchImage from "@/assets/modern-architecture.jpg";
+import luxuryBuildingImage from "@/assets/luxury-building.jpg";
+import premiumTowerImage from "@/assets/premium-tower.jpg";
+import premiumSelectionImage from "@/assets/premium-selection.jpg";
+import luxuryTransformationImage from "@/assets/luxury-transformation.jpg";
+import exceptionalReturnsImage from "@/assets/exceptional-returns.jpg";
 export default function Landing() {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Navigation />
 
       {/* HOME - Hero Section */}
-      <section 
-        id="home"
-        className="py-32 px-4 relative overflow-hidden min-h-screen flex items-center"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
+      <section id="home" className="py-32 px-4 relative overflow-hidden min-h-screen flex items-center" style={{
+      backgroundImage: `url(${heroImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }}>
         <div className="absolute inset-0 hero-overlay"></div>
         
         <div className="container mx-auto text-center relative z-10">
           <div className="animate-fade-in">
             {/* Logo */}
             <div className="mb-8">
-              <img 
-                src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
-                alt="Luxury Labs Logo" 
-                className="h-96 w-auto mx-auto drop-shadow-2xl"
-              />
+              <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-96 w-auto mx-auto drop-shadow-2xl" />
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-8 text-white drop-shadow-2xl leading-tight">
-              Transform Strategic Premium Properties • Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets
-            </h1>
+            <h1 className="text-5xl font-playfair mb-8 drop-shadow-2xl leading-tight text-yellow-500 font-bold md:text-2xl">Transform Strategic Premium Properties • Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets</h1>
             
-            <p className="text-xl md:text-2xl font-playfair text-white/90 mb-12 max-w-4xl mx-auto drop-shadow-lg">
-              Dubai's Premier Property Investment & Transformation Platform
-            </p>
+            
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center animate-scale-in">
               <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300">
@@ -95,11 +81,7 @@ export default function Landing() {
                   <span className="text-primary-foreground font-bold text-2xl font-playfair">1</span>
                 </div>
                 <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img 
-                    src={premiumSelectionImage} 
-                    alt="Premium Selection Process"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={premiumSelectionImage} alt="Premium Selection Process" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="text-2xl font-playfair font-bold">PREMIUM SELECTION</h3>
@@ -112,17 +94,15 @@ export default function Landing() {
             </div>
 
             {/* Step 2: Luxury Transformation */}
-            <div className="text-center group animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <div className="text-center group animate-fade-in" style={{
+            animationDelay: '0.2s'
+          }}>
               <div className="relative mb-8">
                 <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
                   <span className="text-primary-foreground font-bold text-2xl font-playfair">2</span>
                 </div>
                 <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img 
-                    src={luxuryTransformationImage} 
-                    alt="Luxury Transformation Process"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={luxuryTransformationImage} alt="Luxury Transformation Process" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="text-2xl font-playfair font-bold">LUXURY TRANSFORMATION</h3>
@@ -135,17 +115,15 @@ export default function Landing() {
             </div>
 
             {/* Step 3: Exceptional Returns */}
-            <div className="text-center group animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="text-center group animate-fade-in" style={{
+            animationDelay: '0.4s'
+          }}>
               <div className="relative mb-8">
                 <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
                   <span className="text-primary-foreground font-bold text-2xl font-playfair">3</span>
                 </div>
                 <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img 
-                    src={exceptionalReturnsImage} 
-                    alt="Exceptional Returns Process"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={exceptionalReturnsImage} alt="Exceptional Returns Process" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="text-2xl font-playfair font-bold">EXCEPTIONAL RETURNS</h3>
@@ -185,7 +163,9 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{
+            animationDelay: '0.1s'
+          }}>
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
                   <TrendingUp className="h-8 w-8 text-primary-foreground" />
@@ -197,7 +177,9 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{
+            animationDelay: '0.2s'
+          }}>
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
                   <Users className="h-8 w-8 text-primary-foreground" />
@@ -330,11 +312,7 @@ export default function Landing() {
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in">
               <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={luxuryBuildingImage} 
-                  alt="Business Bay Luxury Apartment"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+                <img src={luxuryBuildingImage} alt="Business Bay Luxury Apartment" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="font-bold text-2xl font-playfair drop-shadow-lg">32% ROI</div>
@@ -352,13 +330,11 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in" style={{
+            animationDelay: '0.1s'
+          }}>
               <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={modernArchImage} 
-                  alt="Downtown Dubai Penthouse"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+                <img src={modernArchImage} alt="Downtown Dubai Penthouse" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="font-bold text-2xl font-playfair drop-shadow-lg">45% ROI</div>
@@ -376,13 +352,11 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in" style={{
+            animationDelay: '0.2s'
+          }}>
               <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={premiumTowerImage} 
-                  alt="Marina Tower Villa"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+                <img src={premiumTowerImage} alt="Marina Tower Villa" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground font-montserrat">ACTIVE</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="font-bold text-2xl font-playfair drop-shadow-lg">Est. 38% ROI</div>
@@ -425,8 +399,7 @@ export default function Landing() {
           </div>
 
           <div className="grid md:grid-cols-4 gap-6">
-            {['Forbes Middle East', 'Arabian Business', 'Gulf News', 'Emirates Business'].map((publication, index) => (
-              <Card key={index} className="elegant-card">
+            {['Forbes Middle East', 'Arabian Business', 'Gulf News', 'Emirates Business'].map((publication, index) => <Card key={index} className="elegant-card">
                 <CardContent className="p-6 text-center">
                   <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center mb-4 mx-auto">
                     <Star className="h-6 w-6 text-primary-foreground" />
@@ -434,8 +407,7 @@ export default function Landing() {
                   <h3 className="font-playfair font-bold text-foreground mb-2">{publication}</h3>
                   <p className="text-sm text-muted-foreground font-montserrat">Featured Article</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -630,17 +602,8 @@ export default function Landing() {
               Our <span className="luxury-text">Media Partner</span>
             </h3>
             <div className="flex justify-center items-center">
-              <a 
-                href="https://www.youtube.com/@FlippingDubai" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group hover:scale-105 transition-all duration-300"
-              >
-                <img 
-                  src={flippingDubaiLogo} 
-                  alt="Flipping Dubai - YouTube Channel" 
-                  className="h-16 object-contain drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-300"
-                />
+              <a href="https://www.youtube.com/@FlippingDubai" target="_blank" rel="noopener noreferrer" className="group hover:scale-105 transition-all duration-300">
+                <img src={flippingDubaiLogo} alt="Flipping Dubai - YouTube Channel" className="h-16 object-contain drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-300" />
               </a>
             </div>
             <p className="text-muted-foreground font-montserrat text-sm mt-4 max-w-2xl mx-auto">
@@ -704,6 +667,5 @@ export default function Landing() {
           </div>
         </div>
       </footer>
-    </div>
-  )
+    </div>;
 }
