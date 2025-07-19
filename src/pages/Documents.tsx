@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
+import { DocumentUpload } from "@/components/DocumentUpload"
 import { 
   FileText, 
   Plus, 
@@ -40,6 +41,7 @@ interface Document {
 const Documents = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
+  const [uploadOpen, setUploadOpen] = useState(false)
 
   const documents: Document[] = [
     {
@@ -148,7 +150,7 @@ const Documents = () => {
             <p className="text-muted-foreground">Manage all property-related documents and files</p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" onClick={() => setUploadOpen(true)}>
               <Upload className="mr-2 h-4 w-4" />
               Upload Files
             </Button>
@@ -326,6 +328,8 @@ const Documents = () => {
             </CardContent>
           </Card>
         )}
+
+        <DocumentUpload open={uploadOpen} onOpenChange={setUploadOpen} />
       </div>
     </DashboardLayout>
   )

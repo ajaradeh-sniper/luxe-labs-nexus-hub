@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
+import { TeamInvite } from "@/components/TeamInvite"
 import { 
   Users, 
   Plus, 
@@ -44,6 +45,7 @@ interface TeamMember {
 const Team = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedDepartment, setSelectedDepartment] = useState("all")
+  const [inviteOpen, setInviteOpen] = useState(false)
 
   const teamMembers: TeamMember[] = [
     {
@@ -187,7 +189,7 @@ const Team = () => {
             <p className="text-muted-foreground">Manage your team members and partner network</p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" onClick={() => setInviteOpen(true)}>
               <UserPlus className="mr-2 h-4 w-4" />
               Invite Member
             </Button>
@@ -400,6 +402,8 @@ const Team = () => {
             </CardContent>
           </Card>
         )}
+
+        <TeamInvite open={inviteOpen} onOpenChange={setInviteOpen} />
       </div>
     </DashboardLayout>
   )

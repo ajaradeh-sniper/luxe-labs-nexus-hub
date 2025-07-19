@@ -1,10 +1,12 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { DashboardLayout } from "@/components/DashboardLayout"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Input } from "@/components/ui/input"
+import { ProjectCreationWizard } from "@/components/ProjectCreationWizard"
 import { 
   FolderOpen, 
   Plus, 
@@ -44,6 +46,7 @@ interface Project {
 
 const Projects = () => {
   const [searchTerm, setSearchTerm] = useState("")
+  const [wizardOpen, setWizardOpen] = useState(false)
 
   const projects: Project[] = [
     {
@@ -135,7 +138,7 @@ const Projects = () => {
             <h1 className="text-3xl font-bold text-foreground">Projects</h1>
             <p className="text-muted-foreground">Manage your property transformation projects</p>
           </div>
-          <Button variant="luxury" size="lg" className="gap-2">
+          <Button variant="luxury" size="lg" className="gap-2" onClick={() => setWizardOpen(true)}>
             <Plus className="h-4 w-4" />
             New Project
           </Button>
@@ -286,10 +289,12 @@ const Projects = () => {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm">
-                    <Eye className="mr-1 h-3 w-3" />
-                    View Details
-                  </Button>
+                  <Link to={`/projects/${project.id}`}>
+                    <Button variant="outline" size="sm">
+                      <Eye className="mr-1 h-3 w-3" />
+                      View Details
+                    </Button>
+                  </Link>
                   {project.status === 'active' && (
                     <Button variant="luxury" size="sm">
                       <Edit className="mr-1 h-3 w-3" />
@@ -307,6 +312,8 @@ const Projects = () => {
             </Card>
           ))}
         </div>
+
+        <ProjectCreationWizard open={wizardOpen} onOpenChange={setWizardOpen} />
       </div>
     </DashboardLayout>
   )

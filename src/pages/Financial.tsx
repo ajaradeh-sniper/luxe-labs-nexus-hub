@@ -1,6 +1,8 @@
+import { useState } from "react"
 import { DashboardLayout } from "@/components/DashboardLayout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { FinancialReportGenerator } from "@/components/FinancialReportGenerator"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { 
@@ -16,6 +18,7 @@ import {
 } from "lucide-react"
 
 const Financial = () => {
+  const [reportGeneratorOpen, setReportGeneratorOpen] = useState(false)
   const portfolioMetrics = {
     totalValue: "$24.5M",
     totalInvestment: "$18.2M", 
@@ -98,7 +101,7 @@ const Financial = () => {
               <Download className="mr-2 h-4 w-4" />
               Export Report
             </Button>
-            <Button variant="luxury" size="lg">
+            <Button variant="luxury" size="lg" onClick={() => setReportGeneratorOpen(true)}>
               <BarChart3 className="mr-2 h-4 w-4" />
               Generate Analysis
             </Button>
@@ -260,6 +263,8 @@ const Financial = () => {
             </div>
           </CardContent>
         </Card>
+
+        <FinancialReportGenerator open={reportGeneratorOpen} onOpenChange={setReportGeneratorOpen} />
       </div>
     </DashboardLayout>
   )

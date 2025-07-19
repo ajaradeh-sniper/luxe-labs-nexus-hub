@@ -26,6 +26,7 @@ import AdminProperties from "./pages/admin/Properties";
 import AdminSystemSettings from "./pages/admin/SystemSettings";
 import NotFound from "./pages/NotFound";
 import Landing from "./pages/Landing";
+import ProjectDetail from "./pages/ProjectDetail";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/dashboard" element={<Index />} />
             <Route path="/properties" element={<Properties />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/portfolio" element={<Properties />} />
             <Route path="/financial" element={<Financial />} />
             <Route path="/documents" element={<Documents />} />
