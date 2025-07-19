@@ -13,6 +13,7 @@ import premiumTowerImage from "@/assets/premium-tower.jpg";
 import premiumSelectionImage from "@/assets/premium-selection.jpg";
 import luxuryTransformationImage from "@/assets/luxury-transformation.jpg";
 import exceptionalReturnsImage from "@/assets/exceptional-returns.jpg";
+import roiInvestmentImage from "@/assets/roi-investment.jpg";
 export default function Landing() {
   return <div className="min-h-screen bg-background">
       <Navigation />
@@ -59,10 +60,13 @@ export default function Landing() {
               
               <div className="group">
                 <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img src={exceptionalReturnsImage} alt="Exceptional Assets & Returns" className="w-full h-full object-cover" />
+                  <img src={roiInvestmentImage} alt="ROI Investment Returns" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-playfair font-bold">EXCEPTIONAL ASSETS & RETURNS</h3>
+                    <h3 className="text-xl font-playfair font-bold">ROI UP TO 30%</h3>
+                  </div>
+                  <div className="absolute top-4 right-4 text-white">
+                    <TrendingUp className="h-8 w-8 text-green-400" />
                   </div>
                 </div>
               </div>
