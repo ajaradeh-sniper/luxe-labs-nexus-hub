@@ -1,4 +1,4 @@
-import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe } from "lucide-react";
+import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -44,6 +44,9 @@ export default function Landing() {
                 <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
                   <img src={premiumVillaSelectionImage} alt="Premium Villa Selection" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute top-4 right-4 bg-primary/20 backdrop-blur-sm rounded-full p-2">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="text-xl font-playfair font-bold">PREMIUM SELECTION</h3>
                   </div>
@@ -54,6 +57,9 @@ export default function Landing() {
                 <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
                   <img src={beforeAfterTransformationImage} alt="Before After Transformation" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute top-4 right-4 bg-primary/20 backdrop-blur-sm rounded-full p-2">
+                    <Palette className="w-6 h-6 text-white" />
+                  </div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="text-xl font-playfair font-bold">LUXURY TRANSFORMATION</h3>
                   </div>
