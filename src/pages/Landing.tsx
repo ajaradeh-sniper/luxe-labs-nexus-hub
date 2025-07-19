@@ -37,9 +37,9 @@ export default function Landing() {
             {/* Logo */}
             <div className="mb-8">
               <img 
-                src={luxuryLabsLogo} 
+                src="/lovable-uploads/9bdf3759-8541-414d-a494-7d6f9d38185c.png" 
                 alt="Luxury Labs Logo" 
-                className="h-24 w-24 mx-auto drop-shadow-2xl"
+                className="h-24 w-auto mx-auto drop-shadow-2xl"
               />
             </div>
             
