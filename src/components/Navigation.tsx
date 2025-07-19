@@ -31,7 +31,7 @@ export function Navigation() {
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-xl flex items-center justify-center">
             <img 
-              src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+              src="/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png" 
               alt="Luxury Labs Logo" 
               className="h-10 w-auto"
             />
