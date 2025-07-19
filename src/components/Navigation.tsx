@@ -32,7 +32,7 @@ export function Navigation() {
           <img 
             src="/lovable-uploads/4a28db7f-c64a-4b5a-9ec6-71ad24f468f6.png" 
             alt="Luxury Labs Logo" 
-            className="h-16 w-auto"
+            className="h-32 w-auto"
           />
         </div>
         
