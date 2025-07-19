@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
-import heroImage from "/lovable-uploads/116909a8-0f62-4f76-9b4d-43d93a586fd4.png";
+import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
 import flippingDubaiLogo from "/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png";
 import modernArchImage from "@/assets/modern-architecture.jpg";
 import luxuryBuildingImage from "@/assets/luxury-building.jpg";
