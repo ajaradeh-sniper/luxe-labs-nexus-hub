@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { DashboardLayout } from "@/components/DashboardLayout"
+import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -83,8 +83,9 @@ const Contact = () => {
   ]
 
   return (
-    <DashboardLayout>
-      <div className="p-6 space-y-8">
+    <>
+      <Navigation />
+      <div className="container mx-auto px-4 py-8 space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold text-foreground">Contact Us</h1>
@@ -264,7 +265,7 @@ const Contact = () => {
           </CardContent>
         </Card>
       </div>
-    </DashboardLayout>
+    </>
   )
 }
 

@@ -1,4 +1,4 @@
-import { DashboardLayout } from "@/components/DashboardLayout"
+import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { 
@@ -64,8 +64,9 @@ const About = () => {
   ]
 
   return (
-    <DashboardLayout>
-      <div className="p-6 space-y-8">
+    <>
+      <Navigation />
+      <div className="container mx-auto px-4 py-8 space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold text-foreground">About Luxury Labs</h1>
@@ -214,7 +215,7 @@ const About = () => {
           </CardContent>
         </Card>
       </div>
-    </DashboardLayout>
+    </>
   )
 }
 
