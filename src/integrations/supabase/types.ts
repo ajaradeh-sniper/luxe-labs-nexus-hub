@@ -14,6 +14,68 @@ export type Database = {
   }
   public: {
     Tables: {
+      opportunities: {
+        Row: {
+          contact_info: Json | null
+          created_at: string
+          created_by: string | null
+          deadline: string | null
+          description: string | null
+          documents: Json | null
+          expected_roi: number | null
+          id: string
+          investment_required: number | null
+          location: string
+          opportunity_type: string
+          risk_rating: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          contact_info?: Json | null
+          created_at?: string
+          created_by?: string | null
+          deadline?: string | null
+          description?: string | null
+          documents?: Json | null
+          expected_roi?: number | null
+          id?: string
+          investment_required?: number | null
+          location: string
+          opportunity_type: string
+          risk_rating?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          contact_info?: Json | null
+          created_at?: string
+          created_by?: string | null
+          deadline?: string | null
+          description?: string | null
+          documents?: Json | null
+          expected_roi?: number | null
+          id?: string
+          investment_required?: number | null
+          location?: string
+          opportunity_type?: string
+          risk_rating?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunities_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -41,6 +103,307 @@ export type Database = {
           role?: string
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      project_costs: {
+        Row: {
+          actual_cost: number | null
+          category: string
+          created_at: string
+          created_by: string | null
+          description: string
+          estimated_cost: number
+          id: string
+          project_id: string
+          status: string
+          updated_at: string
+          vendor: string | null
+        }
+        Insert: {
+          actual_cost?: number | null
+          category: string
+          created_at?: string
+          created_by?: string | null
+          description: string
+          estimated_cost: number
+          id?: string
+          project_id: string
+          status?: string
+          updated_at?: string
+          vendor?: string | null
+        }
+        Update: {
+          actual_cost?: number | null
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string
+          estimated_cost?: number
+          id?: string
+          project_id?: string
+          status?: string
+          updated_at?: string
+          vendor?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_costs_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "project_costs_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      project_risks: {
+        Row: {
+          assigned_to: string | null
+          category: string
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          impact_score: number | null
+          mitigation_plan: string | null
+          probability: number | null
+          project_id: string
+          risk_level: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          category: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          impact_score?: number | null
+          mitigation_plan?: string | null
+          probability?: number | null
+          project_id: string
+          risk_level: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          impact_score?: number | null
+          mitigation_plan?: string | null
+          probability?: number | null
+          project_id?: string
+          risk_level?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_risks_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "project_risks_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "project_risks_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          actual_cost: number | null
+          budget: number | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          end_date: string | null
+          id: string
+          manager_id: string | null
+          name: string
+          project_type: string
+          property_id: string | null
+          roi_percentage: number | null
+          start_date: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          actual_cost?: number | null
+          budget?: number | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          manager_id?: string | null
+          name: string
+          project_type: string
+          property_id?: string | null
+          roi_percentage?: number | null
+          start_date?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          actual_cost?: number | null
+          budget?: number | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          manager_id?: string | null
+          name?: string
+          project_type?: string
+          property_id?: string | null
+          roi_percentage?: number | null
+          start_date?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "projects_manager_id_fkey"
+            columns: ["manager_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "projects_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      properties: {
+        Row: {
+          address: string | null
+          area_sqft: number | null
+          bathrooms: number | null
+          bedrooms: number | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          features: Json | null
+          id: string
+          images: Json | null
+          location: string
+          price: number
+          property_type: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          area_sqft?: number | null
+          bathrooms?: number | null
+          bedrooms?: number | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          features?: Json | null
+          id?: string
+          images?: Json | null
+          location: string
+          price: number
+          property_type: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          area_sqft?: number | null
+          bathrooms?: number | null
+          bedrooms?: number | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          features?: Json | null
+          id?: string
+          images?: Json | null
+          location?: string
+          price?: number
+          property_type?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "properties_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      system_analytics: {
+        Row: {
+          category: string
+          id: string
+          metadata: Json | null
+          metric_name: string
+          metric_type: string
+          metric_value: number
+          recorded_at: string
+        }
+        Insert: {
+          category: string
+          id?: string
+          metadata?: Json | null
+          metric_name: string
+          metric_type: string
+          metric_value: number
+          recorded_at?: string
+        }
+        Update: {
+          category?: string
+          id?: string
+          metadata?: Json | null
+          metric_name?: string
+          metric_type?: string
+          metric_value?: number
+          recorded_at?: string
         }
         Relationships: []
       }
