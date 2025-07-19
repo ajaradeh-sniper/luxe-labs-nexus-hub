@@ -1,0 +1,57 @@
+{
+  "navigation": {
+    "home": "首页",
+    "about": "关于",
+    "services": "服务",
+    "projects": "项目",
+    "media": "媒体",
+    "partners": "合作伙伴",
+    "investors": "投资者",
+    "contact": "联系",
+    "login": "登录",
+    "dashboard": "仪表板"
+  },
+  "hero": {
+    "title": "豪华房地产开发与投资",
+    "subtitle": "与我们合作，将优质物业转化为卓越的投资机会",
+    "cta_primary": "探索机会",
+    "cta_secondary": "了解更多"
+  },
+  "about": {
+    "title": "关于奢华实验室",
+    "subtitle": "通过创新改变房地产",
+    "description": "我们是一家专业从事迪拜和阿联酋豪华物业的顶级房地产开发和投资公司。我们的专业知识涵盖住宅、商业和混合用途开发。",
+    "feature1_title": "专业开发",
+    "feature1_desc": "在豪华房地产开发方面拥有25年以上的综合经验",
+    "feature2_title": "优越位置",
+    "feature2_desc": "通过战略合作伙伴关系获得最受欢迎位置的机会",
+    "feature3_title": "经证实的回报",
+    "feature3_desc": "为投资者提供卓越投资回报的一致记录"
+  },
+  "services": {
+    "title": "我们的服务",
+    "subtitle": "房地产成功的综合解决方案",
+    "development_title": "物业开发",
+    "development_desc": "从概念到完成的端到端开发服务",
+    "investment_title": "投资管理",
+    "investment_desc": "具有保证回报的战略投资机会",
+    "consultation_title": "房地产咨询",
+    "consultation_desc": "物业收购和投资组合优化的专家指导"
+  },
+  "projects": {
+    "title": "精选项目",
+    "subtitle": "将愿景变为现实",
+    "view_all": "查看所有项目"
+  },
+  "footer": {
+    "description": "迪拜领先的房地产开发和投资公司，专门从事豪华物业和卓越回报。",
+    "quick_links": "快速链接",
+    "services_links": "服务",
+    "legal": "法律",
+    "privacy_policy": "隐私政策",
+    "terms_of_service": "服务条款",
+    "investment_disclaimer": "投资免责声明",
+    "rights_reserved": "保留所有权利。",
+    "financial_disclaimer": "所有投资都有风险。过去的表现不能保证未来的结果。"
+  }
+}

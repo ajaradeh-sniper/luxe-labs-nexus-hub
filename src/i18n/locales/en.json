@@ -1,0 +1,57 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "media": "Media",
+    "partners": "Partners",
+    "investors": "Investors",
+    "contact": "Contact",
+    "login": "Login",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Luxury Real Estate Development & Investment",
+    "subtitle": "Partner with us to transform premium properties into exceptional investment opportunities",
+    "cta_primary": "Explore Opportunities",
+    "cta_secondary": "Learn More"
+  },
+  "about": {
+    "title": "About Luxury Labs",
+    "subtitle": "Transforming Real Estate Through Innovation",
+    "description": "We are a premier real estate development and investment firm specializing in luxury properties across Dubai and the UAE. Our expertise spans residential, commercial, and mixed-use developments.",
+    "feature1_title": "Expert Development",
+    "feature1_desc": "25+ years of combined experience in luxury real estate development",
+    "feature2_title": "Prime Locations",
+    "feature2_desc": "Strategic partnerships for access to the most sought-after locations",
+    "feature3_title": "Proven Returns",
+    "feature3_desc": "Consistent track record of delivering exceptional ROI for investors"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive Solutions for Real Estate Success",
+    "development_title": "Property Development",
+    "development_desc": "End-to-end development services from concept to completion",
+    "investment_title": "Investment Management",
+    "investment_desc": "Strategic investment opportunities with guaranteed returns",
+    "consultation_title": "Real Estate Consultation",
+    "consultation_desc": "Expert guidance for property acquisition and portfolio optimization"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Transforming Visions into Reality",
+    "view_all": "View All Projects"
+  },
+  "footer": {
+    "description": "Leading real estate development and investment firm in Dubai, specializing in luxury properties and exceptional returns.",
+    "quick_links": "Quick Links",
+    "services_links": "Services",
+    "legal": "Legal",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service",
+    "investment_disclaimer": "Investment Disclaimer",
+    "rights_reserved": "All rights reserved.",
+    "financial_disclaimer": "All investments carry risk. Past performance does not guarantee future results."
+  }
+}

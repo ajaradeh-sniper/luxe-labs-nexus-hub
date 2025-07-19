@@ -1,0 +1,57 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "projects": "Projets",
+    "media": "Médias",
+    "partners": "Partenaires",
+    "investors": "Investisseurs",
+    "contact": "Contact",
+    "login": "Connexion",
+    "dashboard": "Tableau de bord"
+  },
+  "hero": {
+    "title": "Développement et Investissement Immobilier de Luxe",
+    "subtitle": "Partenaire avec nous pour transformer les propriétés haut de gamme en opportunités d'investissement exceptionnelles",
+    "cta_primary": "Explorer les Opportunités",
+    "cta_secondary": "En Savoir Plus"
+  },
+  "about": {
+    "title": "À Propos de Luxury Labs",
+    "subtitle": "Transformer l'Immobilier par l'Innovation",
+    "description": "Nous sommes une société de développement et d'investissement immobilier de premier plan spécialisée dans les propriétés de luxe à Dubaï et aux Émirats arabes unis. Notre expertise couvre les développements résidentiels, commerciaux et à usage mixte.",
+    "feature1_title": "Développement Expert",
+    "feature1_desc": "Plus de 25 ans d'expérience combinée dans le développement immobilier de luxe",
+    "feature2_title": "Emplacements Premium",
+    "feature2_desc": "Partenariats stratégiques pour accéder aux emplacements les plus recherchés",
+    "feature3_title": "Rendements Prouvés",
+    "feature3_desc": "Historique cohérent de livraison d'un ROI exceptionnel pour les investisseurs"
+  },
+  "services": {
+    "title": "Nos Services",
+    "subtitle": "Solutions Complètes pour le Succès Immobilier",
+    "development_title": "Développement Immobilier",
+    "development_desc": "Services de développement de bout en bout du concept à l'achèvement",
+    "investment_title": "Gestion d'Investissement",
+    "investment_desc": "Opportunités d'investissement stratégiques avec rendements garantis",
+    "consultation_title": "Consultation Immobilière",
+    "consultation_desc": "Conseils d'experts pour l'acquisition de propriétés et l'optimisation de portefeuille"
+  },
+  "projects": {
+    "title": "Projets Phares",
+    "subtitle": "Transformer les Visions en Réalité",
+    "view_all": "Voir Tous les Projets"
+  },
+  "footer": {
+    "description": "Société leader de développement et d'investissement immobilier à Dubaï, spécialisée dans les propriétés de luxe et les rendements exceptionnels.",
+    "quick_links": "Liens Rapides",
+    "services_links": "Services",
+    "legal": "Légal",
+    "privacy_policy": "Politique de Confidentialité",
+    "terms_of_service": "Conditions de Service",
+    "investment_disclaimer": "Avertissement d'Investissement",
+    "rights_reserved": "Tous droits réservés.",
+    "financial_disclaimer": "Tous les investissements comportent des risques. Les performances passées ne garantissent pas les résultats futurs."
+  }
+}

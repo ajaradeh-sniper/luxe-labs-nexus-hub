@@ -3,20 +3,23 @@ import { Button } from "@/components/ui/button"
 import { Link, useLocation } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
 import { LoginDialog } from "@/components/LoginDialog"
+import { LanguageSwitcher } from "@/components/LanguageSwitcher"
+import { useTranslation } from 'react-i18next'
 
 export function Navigation() {
   const { user } = useAuth()
   const location = useLocation()
+  const { t } = useTranslation()
   
   const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
-    { path: "/services", label: "Services" },
-    { path: "/projects", label: "Projects" },
-    { path: "/media", label: "Media" },
-    { path: "/partners", label: "Partners" },
-    { path: "/investors", label: "Investors" },
-    { path: "/contact", label: "Contact" }
+    { path: "/", label: t('navigation.home') },
+    { path: "/about", label: t('navigation.about') },
+    { path: "/services", label: t('navigation.services') },
+    { path: "/projects", label: t('navigation.projects') },
+    { path: "/media", label: t('navigation.media') },
+    { path: "/partners", label: t('navigation.partners') },
+    { path: "/investors", label: t('navigation.investors') },
+    { path: "/contact", label: t('navigation.contact') }
   ]
   
   const isActive = (path: string) => location.pathname === path
@@ -51,11 +54,12 @@ export function Navigation() {
         </div>
         
         <div className="flex items-center gap-4">
+          <LanguageSwitcher />
           {user ? (
             <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground luxury-shadow">
               <Link to="/dashboard">
                 <LayoutDashboard className="h-5 w-5 mr-2" />
-                Dashboard
+                {t('navigation.dashboard')}
               </Link>
             </Button>
           ) : (

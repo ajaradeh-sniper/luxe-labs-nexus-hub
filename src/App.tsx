@@ -34,6 +34,9 @@ import ProjectDetail from "./pages/ProjectDetail";
 import ProjectManagerDashboard from "./pages/ProjectManagerDashboard";
 import InvestorDashboard from "./pages/InvestorDashboard";
 import ClientDashboard from "./pages/ClientDashboard";
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import TermsOfService from "./pages/legal/TermsOfService";
+import InvestmentDisclaimer from "./pages/legal/InvestmentDisclaimer";
 
 const queryClient = new QueryClient();
 
@@ -68,6 +71,9 @@ const App = () => (
             <Route path="/partners" element={<Partners />} />
             <Route path="/investors" element={<Investors />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/investment-disclaimer" element={<InvestmentDisclaimer />} />
             {/* Admin Routes */}
            <Route path="/admin/users" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />
            <Route path="/admin/detailed-users" element={<ProtectedRoute><AdminDetailedUsers /></ProtectedRoute>} />
