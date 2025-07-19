@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import Properties from "./pages/Properties";
 import Projects from "./pages/Projects";
@@ -42,32 +43,32 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing />} />
-            <Route path="/dashboard" element={<Index />} />
-            <Route path="/properties" element={<Properties />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:id" element={<ProjectDetail />} />
-            <Route path="/pm-dashboard" element={<ProjectManagerDashboard />} />
-            <Route path="/investor-dashboard" element={<InvestorDashboard />} />
-            <Route path="/client-dashboard" element={<ClientDashboard />} />
-            <Route path="/portfolio" element={<Properties />} />
-            <Route path="/financial" element={<Financial />} />
-            <Route path="/documents" element={<Documents />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="/qa" element={<QualityAssurance />} />
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/dashboard" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+            <Route path="/properties" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
+            <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>} />
+            <Route path="/projects/:id" element={<ProtectedRoute><ProjectDetail /></ProtectedRoute>} />
+            <Route path="/pm-dashboard" element={<ProtectedRoute><ProjectManagerDashboard /></ProtectedRoute>} />
+            <Route path="/investor-dashboard" element={<ProtectedRoute><InvestorDashboard /></ProtectedRoute>} />
+            <Route path="/client-dashboard" element={<ProtectedRoute><ClientDashboard /></ProtectedRoute>} />
+            <Route path="/portfolio" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
+            <Route path="/financial" element={<ProtectedRoute><Financial /></ProtectedRoute>} />
+            <Route path="/documents" element={<ProtectedRoute><Documents /></ProtectedRoute>} />
+            <Route path="/team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
+            <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+            <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
+            <Route path="/qa" element={<ProtectedRoute><QualityAssurance /></ProtectedRoute>} />
+            <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+            <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             {/* Admin Routes */}
-          <Route path="/admin/users" element={<AdminUsers />} />
-          <Route path="/admin/detailed-users" element={<AdminDetailedUsers />} />
-          <Route path="/admin/investors" element={<AdminInvestors />} />
-          <Route path="/admin/properties" element={<AdminProperties />} />
-          <Route path="/admin/system-settings" element={<AdminSystemSettings />} />
-          <Route path="/admin/system" element={<AdminSystem />} />
+           <Route path="/admin/users" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />
+           <Route path="/admin/detailed-users" element={<ProtectedRoute><AdminDetailedUsers /></ProtectedRoute>} />
+           <Route path="/admin/investors" element={<ProtectedRoute><AdminInvestors /></ProtectedRoute>} />
+           <Route path="/admin/properties" element={<ProtectedRoute><AdminProperties /></ProtectedRoute>} />
+           <Route path="/admin/system-settings" element={<ProtectedRoute><AdminSystemSettings /></ProtectedRoute>} />
+           <Route path="/admin/system" element={<ProtectedRoute><AdminSystem /></ProtectedRoute>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -28,6 +28,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     setUser(null);
+    // Redirect to landing page after logout
+    window.location.href = '/';
   };
 
   const hasPermission = (resource: string, permission: Permission): boolean => {
