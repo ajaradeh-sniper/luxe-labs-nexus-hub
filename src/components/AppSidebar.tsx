@@ -60,10 +60,10 @@ const getNavigationItems = (userRole: string) => {
   ];
 
   const operationalItems = [
-    { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client'] },
+    { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client', 'real_estate_agent', 'partner'] },
     { title: "Properties", url: "/properties", icon: Building, roles: ['administrator', 'real_estate_director', 'real_estate_agent', 'investor'] },
-    { title: "Financial", url: "/financial", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor'] },
-    { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'lawyer', 'client', 'project_manager'] },
+    { title: "Financial", url: "/financial", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor', 'real_estate_agent', 'partner'] },
+    { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'lawyer', 'client', 'project_manager', 'real_estate_agent', 'partner'] },
     { title: "Team", url: "/team", icon: Users, roles: ['administrator', 'project_manager', 'vendor_manager'] },
     { title: "QA", url: "/qa", icon: CheckCircle, roles: ['administrator', 'project_manager', 'head_of_design'] },
     { title: "Messages", url: "/messages", icon: MessageSquare, roles: ['all'] },

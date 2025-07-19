@@ -32,7 +32,11 @@ export const ROLE_PERMISSIONS: Record<UserRole, RolePermissions> = {
   },
   real_estate_agent: {
     listings: ['view', 'edit'],
-    crm_leads: ['view', 'edit']
+    crm_leads: ['view', 'edit'],
+    projects: ['view'],
+    docs: ['view'],
+    payments: ['view'],
+    invoices: ['view']
   },
   investor_relations_manager: {
     investors: ['view', 'edit', 'approve'],
@@ -91,7 +95,11 @@ export const ROLE_PERMISSIONS: Record<UserRole, RolePermissions> = {
   },
   partner: {
     assigned_tasks: ['view'],
-    uploads: ['view', 'edit']
+    uploads: ['view', 'edit'],
+    projects: ['view'],
+    docs: ['view'],
+    payments: ['view'],
+    invoices: ['view']
   }
 };
 
