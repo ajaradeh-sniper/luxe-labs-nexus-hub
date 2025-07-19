@@ -12,7 +12,9 @@ import {
   ShieldCheck,
   FolderOpen,
   DollarSign,
-  CheckCircle
+  CheckCircle,
+  Target,
+  Globe
 } from "lucide-react"
 import { NavLink, useLocation } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
@@ -52,7 +54,9 @@ const getNavigationItems = (userRole: string) => {
     { title: "Property Management", url: "/admin/properties", icon: Building, roles: ['administrator'] },
     { title: "System Settings", url: "/admin/system-settings", icon: Settings, roles: ['administrator'] },
     { title: "System Overview", url: "/admin/system", icon: ShieldCheck, roles: ['administrator'] },
-    { title: "Analytics", url: "/analytics", icon: BarChart3, roles: ['administrator'] }
+    { title: "Analytics", url: "/analytics", icon: BarChart3, roles: ['administrator'] },
+    { title: "Marketing", url: "/marketing", icon: Target, roles: ['administrator', 'marketing_lead'] },
+    { title: "Traffic Analytics", url: "/traffic-analytics", icon: Globe, roles: ['administrator', 'marketing_lead'] }
   ];
 
   const operationalItems = [

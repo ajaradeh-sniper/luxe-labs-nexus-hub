@@ -67,7 +67,11 @@ export const ROLE_PERMISSIONS: Record<UserRole, RolePermissions> = {
   },
   marketing_lead: {
     media: ['view', 'edit', 'approve'],
-    campaign_builder: ['view', 'edit', 'approve']
+    campaign_builder: ['view', 'edit', 'approve'],
+    marketing: ['view', 'edit', 'approve'],
+    traffic_analytics: ['view', 'edit', 'approve'],
+    seo: ['view', 'edit', 'approve'],
+    social_media: ['view', 'edit', 'approve']
   },
   vendor_manager: {
     partner_profiles: ['view', 'edit'],

@@ -39,6 +39,8 @@ import DashboardProjects from "./pages/DashboardProjects";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsOfService from "./pages/legal/TermsOfService";
 import InvestmentDisclaimer from "./pages/legal/InvestmentDisclaimer";
+import Marketing from "./pages/Marketing";
+import TrafficAnalytics from "./pages/TrafficAnalytics";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +80,8 @@ const App = () => (
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/investment-disclaimer" element={<InvestmentDisclaimer />} />
+            <Route path="/marketing" element={<ProtectedRoute><Marketing /></ProtectedRoute>} />
+            <Route path="/traffic-analytics" element={<ProtectedRoute><TrafficAnalytics /></ProtectedRoute>} />
             {/* Admin Routes */}
            <Route path="/admin/users" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />
            <Route path="/admin/detailed-users" element={<ProtectedRoute><AdminDetailedUsers /></ProtectedRoute>} />
