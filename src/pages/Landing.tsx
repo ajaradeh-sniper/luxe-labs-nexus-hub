@@ -14,6 +14,8 @@ import premiumSelectionImage from "@/assets/premium-selection.jpg";
 import luxuryTransformationImage from "@/assets/luxury-transformation.jpg";
 import exceptionalReturnsImage from "@/assets/exceptional-returns.jpg";
 import roiInvestmentImage from "@/assets/roi-investment.jpg";
+import premiumVillaSelectionImage from "@/assets/premium-villa-selection.jpg";
+import beforeAfterTransformationImage from "@/assets/before-after-transformation.jpg";
 export default function Landing() {
   return <div className="min-h-screen bg-background">
       <Navigation />
@@ -40,7 +42,7 @@ export default function Landing() {
             <div className="grid md:grid-cols-3 gap-8 mb-12 animate-scale-in">
               <div className="group">
                 <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img src={premiumSelectionImage} alt="Premium Selection" className="w-full h-full object-cover" />
+                  <img src={premiumVillaSelectionImage} alt="Premium Villa Selection" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="text-xl font-playfair font-bold">PREMIUM SELECTION</h3>
@@ -50,7 +52,7 @@ export default function Landing() {
               
               <div className="group">
                 <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img src={luxuryTransformationImage} alt="Luxury Transformation" className="w-full h-full object-cover" />
+                  <img src={beforeAfterTransformationImage} alt="Before After Transformation" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="text-xl font-playfair font-bold">LUXURY TRANSFORMATION</h3>
