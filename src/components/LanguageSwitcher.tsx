@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Globe } from "lucide-react"
+import { Globe, Check } from "lucide-react"
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
@@ -35,21 +35,40 @@ export const LanguageSwitcher = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2">
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="gap-2 hover:bg-accent/50 transition-colors duration-200"
+          aria-label={`Current language: ${getCurrentLanguage().name}. Click to change language`}
+        >
           <Globe className="h-4 w-4" />
           <span className="hidden sm:inline">{getCurrentLanguage().flag}</span>
           <span className="hidden md:inline">{getCurrentLanguage().name}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-48">
+      <DropdownMenuContent 
+        align="end" 
+        className="w-48 bg-card/95 backdrop-blur-md border border-border/50"
+        role="menu"
+        aria-label="Language selection menu"
+      >
         {languages.map((language) => (
           <DropdownMenuItem
             key={language.code}
             onClick={() => changeLanguage(language.code)}
-            className={`cursor-pointer ${currentLang === language.code ? 'bg-muted' : ''}`}
+            className={`cursor-pointer flex items-center justify-between py-3 px-3 hover:bg-accent/80 transition-colors duration-200 ${
+              currentLang === language.code ? 'bg-accent text-accent-foreground font-medium' : ''
+            }`}
+            role="menuitem"
+            aria-selected={currentLang === language.code}
           >
-            <span className="mr-2">{language.flag}</span>
-            <span>{language.name}</span>
+            <div className="flex items-center gap-3">
+              <span className="text-lg">{language.flag}</span>
+              <span className="font-medium">{language.name}</span>
+            </div>
+            {currentLang === language.code && (
+              <Check className="h-4 w-4 text-primary" aria-hidden="true" />
+            )}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
