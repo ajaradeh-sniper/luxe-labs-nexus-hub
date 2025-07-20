@@ -110,7 +110,9 @@ export function DashboardStats() {
     projectsBreakdown: { planning: 0, in_progress: 0, completed: 0 }
   };
 
-  const currentStats = stats || defaultStats;
+  // Show loading state if no stats and we're loading
+  const showLoading = loading && !stats;
+  const currentStats = stats?.data || defaultStats;
 
   const dashboardStats = [
     {
@@ -162,7 +164,7 @@ export function DashboardStats() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {dashboardStats.map((stat, index) => (
-        <StatCard key={index} {...stat} loading={loading} />
+        <StatCard key={index} {...stat} loading={showLoading} />
       ))}
     </div>
   )

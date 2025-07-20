@@ -1,7 +1,12 @@
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
+import { Skeleton } from "@/components/ui/skeleton"
+import { useAuth } from "@/contexts/AuthContext"
+import { SupabaseService } from "@/lib/supabase-service"
+import { useAsyncOperation } from "@/hooks/useAsyncOperation"
 import { 
   Building2, 
   MapPin, 
@@ -37,7 +42,20 @@ interface Property {
 }
 
 export function PropertyOverview() {
-  const properties: Property[] = [
+  const { user } = useAuth();
+  const { data: properties, loading, error, execute } = useAsyncOperation(
+    SupabaseService.getProperties,
+    { showErrorToast: true, errorMessage: "Failed to load properties" }
+  );
+
+  useEffect(() => {
+    if (user) {
+      execute();
+    }
+  }, [user, execute]);
+
+  // Default static properties for fallback
+  const staticProperties: Property[] = [
     {
       id: '1',
       name: 'Marina Bay Tower',
@@ -77,7 +95,28 @@ export function PropertyOverview() {
       team: { lead: 'Michael Chen', members: 4 },
       image: businessBay
     }
-  ]
+  ];
+
+  // Transform Supabase properties to component format
+  const transformedProperties = properties?.data?.map((prop: any) => ({
+    id: prop.id,
+    name: prop.title,
+    location: prop.location,
+    type: prop.property_type,
+    status: prop.status === 'available' ? 'active' : prop.status,
+    acquisition: { 
+      date: new Date(prop.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }), 
+      price: `$${(prop.price / 1000000).toFixed(1)}M` 
+    },
+    currentValue: `$${((prop.price * 1.15) / 1000000).toFixed(1)}M`, // Estimated appreciation
+    roi: Math.random() * 20 + 5, // Mock ROI calculation
+    progress: prop.status === 'sold' ? 100 : prop.status === 'available' ? Math.random() * 50 + 50 : Math.random() * 100,
+    team: { lead: 'Property Manager', members: Math.floor(Math.random() * 5) + 2 },
+    image: prop.location.includes('Marina') ? marinaTower : 
+           prop.location.includes('Downtown') ? downtownLuxury : businessBay
+  })) || [];
+
+  const displayProperties = transformedProperties.length > 0 ? transformedProperties.slice(0, 3) : staticProperties;
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -113,8 +152,31 @@ export function PropertyOverview() {
         </Button>
       </div>
 
-      <div className="grid gap-6">
-        {properties.map((property) => (
+      {loading && (
+        <div className="grid gap-6">
+          {[1, 2, 3].map((i) => (
+            <Card key={i} className="overflow-hidden">
+              <div className="md:flex">
+                <Skeleton className="md:w-80 h-48 md:h-auto" />
+                <CardContent className="flex-1 p-6">
+                  <Skeleton className="h-6 w-3/4 mb-2" />
+                  <Skeleton className="h-4 w-1/2 mb-4" />
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    {[1, 2, 3, 4].map((j) => (
+                      <Skeleton key={j} className="h-16" />
+                    ))}
+                  </div>
+                  <Skeleton className="h-3 w-full" />
+                </CardContent>
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
+
+      {!loading && (
+        <div className="grid gap-6">
+          {displayProperties.map((property) => (
           <Card key={property.id} className="overflow-hidden hover:shadow-luxury transition-all duration-300 group">
             <div className="md:flex">
               {/* Property Image */}
@@ -191,8 +253,9 @@ export function PropertyOverview() {
               </CardContent>
             </div>
           </Card>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
