@@ -4,6 +4,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/AppSidebar"
 import { UserProfile } from "@/components/UserProfile"
 import { NotificationBell } from "@/components/NotificationBell"
+import { RealTimeStatus, OnlineUsers } from '@/components/realtime/RealTimeProvider'
 import { Button } from "@/components/ui/button"
 import { Home, Building2 } from "lucide-react"
 
@@ -41,6 +42,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               </div>
               
               <div className="flex items-center gap-4">
+                <OnlineUsers />
+                <RealTimeStatus />
                 <NotificationBell />
                 <UserProfile />
               </div>

@@ -1,217 +1,172 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { supabase } from '@/integrations/supabase/client'
-import { useAppStore } from '@/store/useAppStore'
-import { useAuth } from '@/contexts/AuthContext'
-import { toast } from '@/hooks/use-toast'
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/hooks/use-toast';
+import { Badge } from '@/components/ui/badge';
+import { Circle, Users } from 'lucide-react';
 
 interface RealTimeContextType {
-  isConnected: boolean
-  onlineUsers: string[]
-  connectionStatus: 'connecting' | 'connected' | 'disconnected' | 'error'
+  isConnected: boolean;
+  onlineUsers: number;
+  connectionStatus: 'connecting' | 'connected' | 'disconnected';
 }
 
-const RealTimeContext = createContext<RealTimeContextType | undefined>(undefined)
+const RealTimeContext = createContext<RealTimeContextType | undefined>(undefined);
 
-export function useRealTime() {
-  const context = useContext(RealTimeContext)
+export function useRealTime(): RealTimeContextType {
+  const context = useContext(RealTimeContext);
   if (!context) {
-    throw new Error('useRealTime must be used within RealTimeProvider')
+    throw new Error('useRealTime must be used within a RealTimeProvider');
   }
-  return context
+  return context;
 }
 
 interface RealTimeProviderProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function RealTimeProvider({ children }: RealTimeProviderProps) {
-  const { user } = useAuth()
-  const { addNotification, setOnlineUsers, addOnlineUser, removeOnlineUser } = useAppStore()
-  const [isConnected, setIsConnected] = useState(false)
-  const [connectionStatus, setConnectionStatus] = useState<'connecting' | 'connected' | 'disconnected' | 'error'>('disconnected')
+  const [isConnected, setIsConnected] = useState(false);
+  const [onlineUsers, setOnlineUsers] = useState(0);
+  const [connectionStatus, setConnectionStatus] = useState<'connecting' | 'connected' | 'disconnected'>('connecting');
+  const { user } = useAuth();
+  const { toast } = useToast();
 
   useEffect(() => {
-    if (!user) return
+    if (!user) return;
 
-    setConnectionStatus('connecting')
+    setConnectionStatus('connecting');
 
-    // Create a presence channel for real-time user tracking
-    const channel = supabase.channel('online_users', {
+    // Set up presence channel for online users
+    const presenceChannel = supabase.channel('online_users', {
       config: {
         presence: {
           key: user.id,
         },
       },
-    })
+    });
 
-    // Track user presence
-    channel
+    presenceChannel
       .on('presence', { event: 'sync' }, () => {
-        const presenceState = channel.presenceState()
-        const onlineUsers = Object.keys(presenceState)
-        setOnlineUsers(onlineUsers)
-        setIsConnected(true)
-        setConnectionStatus('connected')
+        const state = presenceChannel.presenceState();
+        const users = Object.keys(state).length;
+        setOnlineUsers(users);
+        setIsConnected(true);
+        setConnectionStatus('connected');
       })
-      .on('presence', { event: 'join' }, ({ key, newPresences }) => {
-        addOnlineUser(key)
-        console.log('User joined:', key, newPresences)
+      .on('presence', { event: 'join' }, ({ newPresences }) => {
+        console.log('User joined:', newPresences);
       })
-      .on('presence', { event: 'leave' }, ({ key, leftPresences }) => {
-        removeOnlineUser(key)
-        console.log('User left:', key, leftPresences)
+      .on('presence', { event: 'leave' }, ({ leftPresences }) => {
+        console.log('User left:', leftPresences);
       })
       .subscribe(async (status) => {
         if (status === 'SUBSCRIBED') {
-          await channel.track({
+          await presenceChannel.track({
             user_id: user.id,
             online_at: new Date().toISOString(),
-          })
+          });
         }
-      })
+      });
 
-    // Listen to database changes for real-time notifications
-    const projectsChannel = supabase
-      .channel('projects_changes')
+    // Set up database changes channel
+    const dbChannel = supabase
+      .channel('schema-db-changes')
       .on(
         'postgres_changes',
         {
-          event: '*',
+          event: 'INSERT',
           schema: 'public',
-          table: 'projects'
+          table: 'projects',
         },
         (payload) => {
-          if (payload.eventType === 'INSERT') {
-            addNotification({
-              title: 'New Project Created',
-              message: `Project "${payload.new.name}" has been created`,
-              type: 'info',
-              read: false
-            })
-          } else if (payload.eventType === 'UPDATE') {
-            addNotification({
-              title: 'Project Updated',
-              message: `Project "${payload.new.name}" has been updated`,
-              type: 'info',
-              read: false
-            })
-          }
+          toast({
+            title: 'New Project Created',
+            description: `Project "${payload.new.name}" has been added`,
+          });
         }
       )
-      .subscribe()
-
-    const propertiesChannel = supabase
-      .channel('properties_changes')
       .on(
         'postgres_changes',
         {
-          event: '*',
+          event: 'INSERT',
           schema: 'public',
-          table: 'properties'
+          table: 'properties',
         },
         (payload) => {
-          if (payload.eventType === 'INSERT') {
-            addNotification({
-              title: 'New Property Added',
-              message: `Property "${payload.new.title}" has been added`,
-              type: 'success',
-              read: false
-            })
-          }
+          toast({
+            title: 'New Property Listed',
+            description: `Property "${payload.new.title}" has been added`,
+          });
         }
       )
-      .subscribe()
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'opportunities',
+        },
+        (payload) => {
+          toast({
+            title: 'New Opportunity',
+            description: `Opportunity "${payload.new.title}" has been added`,
+          });
+        }
+      )
+      .subscribe();
 
-    // Handle connection errors
-    const handleError = (error: any) => {
-      console.error('Real-time connection error:', error)
-      setConnectionStatus('error')
-      setIsConnected(false)
-      toast({
-        title: "Connection Error",
-        description: "Real-time features may not work properly",
-        variant: "destructive"
-      })
-    }
-
-    // Cleanup function
     return () => {
-      channel.unsubscribe()
-      projectsChannel.unsubscribe()
-      propertiesChannel.unsubscribe()
-      setIsConnected(false)
-      setConnectionStatus('disconnected')
-    }
-  }, [user, addNotification, setOnlineUsers, addOnlineUser, removeOnlineUser])
-
-  const value = {
-    isConnected,
-    onlineUsers: useAppStore((state) => state.onlineUsers),
-    connectionStatus
-  }
+      supabase.removeChannel(presenceChannel);
+      supabase.removeChannel(dbChannel);
+      setIsConnected(false);
+      setConnectionStatus('disconnected');
+    };
+  }, [user, toast]);
 
   return (
-    <RealTimeContext.Provider value={value}>
+    <RealTimeContext.Provider value={{ isConnected, onlineUsers, connectionStatus }}>
       {children}
     </RealTimeContext.Provider>
-  )
+  );
 }
 
-// Real-time status indicator component
 export function RealTimeStatus() {
-  const { isConnected, connectionStatus } = useRealTime()
+  const { isConnected, connectionStatus } = useRealTime();
 
   const getStatusColor = () => {
     switch (connectionStatus) {
-      case 'connected': return 'bg-success'
-      case 'connecting': return 'bg-warning'
-      case 'error': return 'bg-destructive'
-      default: return 'bg-muted'
+      case 'connected': return 'text-green-500';
+      case 'connecting': return 'text-yellow-500';
+      case 'disconnected': return 'text-red-500';
+      default: return 'text-gray-500';
     }
-  }
+  };
 
   const getStatusText = () => {
     switch (connectionStatus) {
-      case 'connected': return 'Connected'
-      case 'connecting': return 'Connecting...'
-      case 'error': return 'Connection Error'
-      default: return 'Disconnected'
+      case 'connected': return 'Connected';
+      case 'connecting': return 'Connecting...';
+      case 'disconnected': return 'Disconnected';
+      default: return 'Unknown';
     }
-  }
-
-  return (
-    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-      <div className={`w-2 h-2 rounded-full ${getStatusColor()}`} />
-      <span>{getStatusText()}</span>
-    </div>
-  )
-}
-
-// Online users display component
-export function OnlineUsers() {
-  const { onlineUsers } = useRealTime()
+  };
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm text-muted-foreground">
-        Online: {onlineUsers.length}
-      </span>
-      <div className="flex -space-x-2">
-        {onlineUsers.slice(0, 5).map((userId, index) => (
-          <div
-            key={userId}
-            className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-medium border-2 border-background"
-            title={`User ${userId}`}
-          >
-            {index + 1}
-          </div>
-        ))}
-        {onlineUsers.length > 5 && (
-          <div className="w-8 h-8 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-medium border-2 border-background">
-            +{onlineUsers.length - 5}
-          </div>
-        )}
-      </div>
+      <Circle className={`h-2 w-2 fill-current ${getStatusColor()}`} />
+      <span className="text-sm text-muted-foreground">{getStatusText()}</span>
     </div>
-  )
+  );
+}
+
+export function OnlineUsers() {
+  const { onlineUsers } = useRealTime();
+
+  return (
+    <Badge variant="outline" className="flex items-center gap-1">
+      <Users className="h-3 w-3" />
+      <span>{onlineUsers} online</span>
+    </Badge>
+  );
 }
