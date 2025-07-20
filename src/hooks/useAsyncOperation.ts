@@ -12,6 +12,8 @@ export interface AsyncOperationOptions {
   showErrorToast?: boolean;
   successMessage?: string;
   errorMessage?: string;
+  onSuccess?: () => void;
+  onError?: (error: string) => void;
 }
 
 export function useAsyncOperation<T = any, Args extends any[] = any[]>(
@@ -47,6 +49,11 @@ export function useAsyncOperation<T = any, Args extends any[] = any[]>(
           });
         }
 
+        // Call error callback if provided
+        if (options.onError) {
+          options.onError(result.error);
+        }
+
         return { success: false, error: result.error, data: null };
       } else {
         setState({
@@ -60,6 +67,11 @@ export function useAsyncOperation<T = any, Args extends any[] = any[]>(
             title: 'Success',
             description: options.successMessage || 'Operation completed successfully'
           });
+        }
+
+        // Call success callback if provided
+        if (options.onSuccess) {
+          options.onSuccess();
         }
 
         return { success: true, error: null, data: result.data };
