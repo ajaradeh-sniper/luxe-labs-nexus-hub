@@ -47,7 +47,7 @@ export function NotificationSettings() {
 
   const { execute: loadPreferences } = useAsyncOperation(
     async () => {
-      if (!user) return
+      if (!user) return { data: null, error: null }
 
       const { data, error } = await supabase
         .from('notification_preferences')
@@ -55,24 +55,22 @@ export function NotificationSettings() {
         .eq('user_id', user.id)
         .maybeSingle()
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
 
       if (data) {
+        const notificationTypes = typeof data.notification_types === 'object' && data.notification_types !== null 
+          ? data.notification_types as any
+          : { projects: true, properties: true, messages: true, calendar: true, financial: true, system: true }
+          
         setPreferences({
           ...data,
-          notification_types: data.notification_types || {
-            projects: true,
-            properties: true,
-            messages: true,
-            calendar: true,
-            financial: true,
-            system: true
-          }
+          notification_types: notificationTypes
         })
       } else {
-        // Set default preferences if none exist
         setPreferences(prev => ({ ...prev, user_id: user.id }))
       }
+      
+      return { data, error: null }
     },
     {
       onError: (error) => {
@@ -87,9 +85,9 @@ export function NotificationSettings() {
 
   const { execute: savePreferences } = useAsyncOperation(
     async () => {
-      if (!user) return
+      if (!user) return { data: null, error: null }
 
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('notification_preferences')
         .upsert({
           user_id: user.id,
@@ -100,9 +98,12 @@ export function NotificationSettings() {
         }, {
           onConflict: 'user_id'
         })
+        .select()
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
+      
       setHasChanges(false)
+      return { data, error: null }
     },
     {
       onSuccess: () => {
@@ -114,7 +115,7 @@ export function NotificationSettings() {
       onError: (error) => {
         toast({
           title: "Error",
-          description: error.message,
+          description: error,
           variant: "destructive",
         })
       }

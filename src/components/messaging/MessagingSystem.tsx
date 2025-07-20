@@ -56,19 +56,23 @@ export function MessagingSystem() {
 
   const { execute: loadMessages } = useAsyncOperation(
     async () => {
-      if (!user) return
+      if (!user) return { data: null, error: null }
 
       const { data, error } = await supabase
         .from('messages')
-        .select(`
-          *,
-          sender_profile:profiles!messages_sender_id_fkey(name, avatar_url)
-        `)
+        .select('*')
         .or(`sender_id.eq.${user.id},recipient_id.eq.${user.id}`)
         .order('created_at', { ascending: false })
 
-      if (error) throw error
-      setMessages(data || [])
+      if (error) return { data: null, error: error.message }
+      
+      const typedMessages = (data || []).map(msg => ({
+        ...msg,
+        sender_profile: { name: 'Unknown User', avatar_url: null }
+      }))
+      
+      setMessages(typedMessages as Message[])
+      return { data: typedMessages, error: null }
     },
     {
       onError: (error) => {
@@ -88,8 +92,10 @@ export function MessagingSystem() {
         .select('*')
         .order('name')
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
+      
       setProfiles(data || [])
+      return { data, error: null }
     },
     {
       onError: (error) => {
@@ -105,10 +111,10 @@ export function MessagingSystem() {
   const { execute: sendMessage } = useAsyncOperation(
     async () => {
       if (!user || !newMessage.recipient_id || !newMessage.content.trim()) {
-        throw new Error("Please fill in all required fields")
+        return { data: null, error: "Please fill in all required fields" }
       }
 
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('messages')
         .insert({
           sender_id: user.id,
@@ -117,8 +123,9 @@ export function MessagingSystem() {
           content: newMessage.content.trim(),
           message_type: newMessage.message_type
         })
+        .select()
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
 
       setIsNewMessageOpen(false)
       setNewMessage({
@@ -128,6 +135,8 @@ export function MessagingSystem() {
         message_type: "direct"
       })
       loadMessages()
+      
+      return { data, error: null }
     },
     {
       onSuccess: () => {
@@ -139,7 +148,7 @@ export function MessagingSystem() {
       onError: (error) => {
         toast({
           title: "Error",
-          description: error.message,
+          description: error,
           variant: "destructive",
         })
       }
@@ -148,14 +157,17 @@ export function MessagingSystem() {
 
   const { execute: markAsRead } = useAsyncOperation(
     async (messageId: string) => {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('messages')
         .update({ read_at: new Date().toISOString() })
         .eq('id', messageId)
         .eq('recipient_id', user?.id)
+        .select()
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
+      
       loadMessages()
+      return { data, error: null }
     }
   )
 

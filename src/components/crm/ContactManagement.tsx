@@ -67,8 +67,15 @@ export function ContactManagement() {
         .select('*')
         .order('created_at', { ascending: false })
 
-      if (error) throw error
-      setContacts(data || [])
+      if (error) return { data: null, error: error.message }
+      
+      const typedContacts = (data || []).map(contact => ({
+        ...contact,
+        tags: Array.isArray(contact.tags) ? contact.tags : []
+      }))
+      
+      setContacts(typedContacts as Contact[])
+      return { data: typedContacts, error: null }
     },
     {
       onError: (error) => {
@@ -89,8 +96,10 @@ export function ContactManagement() {
         .eq('contact_id', contactId)
         .order('created_at', { ascending: false })
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
+      
       setInteractions(data || [])
+      return { data, error: null }
     },
     {
       onError: (error) => {
@@ -106,10 +115,10 @@ export function ContactManagement() {
   const { execute: createContact } = useAsyncOperation(
     async () => {
       if (!contactForm.name || !contactForm.contact_type) {
-        throw new Error("Name and contact type are required")
+        return { data: null, error: "Name and contact type are required" }
       }
 
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('contacts')
         .insert({
           name: contactForm.name,
@@ -121,8 +130,9 @@ export function ContactManagement() {
           notes: contactForm.notes || null,
           tags: []
         })
+        .select()
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
 
       setIsContactDialogOpen(false)
       setContactForm({
@@ -135,6 +145,8 @@ export function ContactManagement() {
         notes: ""
       })
       loadContacts()
+      
+      return { data, error: null }
     },
     {
       onSuccess: () => {
@@ -146,7 +158,7 @@ export function ContactManagement() {
       onError: (error) => {
         toast({
           title: "Error",
-          description: error.message,
+          description: error,
           variant: "destructive",
         })
       }
@@ -156,10 +168,10 @@ export function ContactManagement() {
   const { execute: createInteraction } = useAsyncOperation(
     async () => {
       if (!selectedContact || !interactionForm.interaction_type || !interactionForm.subject) {
-        throw new Error("Please fill in all required fields")
+        return { data: null, error: "Please fill in all required fields" }
       }
 
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('contact_interactions')
         .insert({
           contact_id: selectedContact.id,
@@ -167,8 +179,9 @@ export function ContactManagement() {
           subject: interactionForm.subject,
           description: interactionForm.description || null
         })
+        .select()
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
 
       setIsInteractionDialogOpen(false)
       setInteractionForm({
@@ -177,6 +190,8 @@ export function ContactManagement() {
         description: ""
       })
       loadInteractions(selectedContact.id)
+      
+      return { data, error: null }
     },
     {
       onSuccess: () => {
@@ -188,7 +203,7 @@ export function ContactManagement() {
       onError: (error) => {
         toast({
           title: "Error",
-          description: error.message,
+          description: error,
           variant: "destructive",
         })
       }

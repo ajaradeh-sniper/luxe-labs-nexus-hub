@@ -49,8 +49,10 @@ export function MarketingTools() {
         .select('*')
         .order('created_at', { ascending: false })
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
+      
       setCampaigns(data || [])
+      return { data, error: null }
     },
     {
       onError: (error) => {
@@ -66,10 +68,10 @@ export function MarketingTools() {
   const { execute: createCampaign } = useAsyncOperation(
     async () => {
       if (!campaignForm.name || !campaignForm.campaign_type) {
-        throw new Error("Name and campaign type are required")
+        return { data: null, error: "Name and campaign type are required" }
       }
 
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('marketing_campaigns')
         .insert({
           name: campaignForm.name,
@@ -80,8 +82,9 @@ export function MarketingTools() {
           end_date: campaignForm.end_date || null,
           metrics: { impressions: 0, clicks: 0, conversions: 0, ctr: 0 }
         })
+        .select()
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
 
       setIsDialogOpen(false)
       setCampaignForm({
@@ -94,6 +97,8 @@ export function MarketingTools() {
         description: ""
       })
       loadCampaigns()
+      
+      return { data, error: null }
     },
     {
       onSuccess: () => {
@@ -105,7 +110,7 @@ export function MarketingTools() {
       onError: (error) => {
         toast({
           title: "Error",
-          description: error.message,
+          description: error,
           variant: "destructive",
         })
       }
@@ -114,13 +119,16 @@ export function MarketingTools() {
 
   const { execute: updateCampaignStatus } = useAsyncOperation(
     async (campaignId: string, newStatus: string) => {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('marketing_campaigns')
         .update({ status: newStatus })
         .eq('id', campaignId)
+        .select()
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
+      
       loadCampaigns()
+      return { data, error: null }
     },
     {
       onSuccess: () => {
@@ -132,7 +140,7 @@ export function MarketingTools() {
       onError: (error) => {
         toast({
           title: "Error",
-          description: error.message,
+          description: error,
           variant: "destructive",
         })
       }

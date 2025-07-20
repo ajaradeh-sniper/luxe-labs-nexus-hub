@@ -54,8 +54,15 @@ export function CalendarManagement() {
         .select('*')
         .order('start_time', { ascending: true })
 
-      if (error) throw error
-      setEvents(data || [])
+      if (error) return { data: null, error: error.message }
+      
+      const typedEvents = (data || []).map(event => ({
+        ...event,
+        attendees: Array.isArray(event.attendees) ? event.attendees : []
+      }))
+      
+      setEvents(typedEvents as CalendarEvent[])
+      return { data: typedEvents, error: null }
     },
     {
       onError: (error) => {
@@ -71,17 +78,17 @@ export function CalendarManagement() {
   const { execute: createEvent } = useAsyncOperation(
     async () => {
       if (!eventForm.title || !eventForm.event_type || !eventForm.start_time || !eventForm.end_time) {
-        throw new Error("Please fill in all required fields")
+        return { data: null, error: "Please fill in all required fields" }
       }
 
       const startTime = new Date(`${format(selectedDate, 'yyyy-MM-dd')}T${eventForm.start_time}`)
       const endTime = new Date(`${format(selectedDate, 'yyyy-MM-dd')}T${eventForm.end_time}`)
 
       if (endTime <= startTime) {
-        throw new Error("End time must be after start time")
+        return { data: null, error: "End time must be after start time" }
       }
 
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('calendar_events')
         .insert({
           title: eventForm.title,
@@ -92,8 +99,9 @@ export function CalendarManagement() {
           location: eventForm.location || null,
           attendees: eventForm.attendees ? eventForm.attendees.split(',').map(a => a.trim()) : []
         })
+        .select()
 
-      if (error) throw error
+      if (error) return { data: null, error: error.message }
 
       setIsDialogOpen(false)
       setEventForm({
@@ -106,6 +114,8 @@ export function CalendarManagement() {
         attendees: ""
       })
       loadEvents()
+      
+      return { data, error: null }
     },
     {
       onSuccess: () => {
@@ -117,7 +127,7 @@ export function CalendarManagement() {
       onError: (error) => {
         toast({
           title: "Error",
-          description: error.message,
+          description: error,
           variant: "destructive",
         })
       }
