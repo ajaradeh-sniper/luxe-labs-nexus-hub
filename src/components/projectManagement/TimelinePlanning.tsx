@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { ProjectTimeline, Task, Milestone } from '@/types/projectManagement';
 import { Calendar, Clock, Users, CheckCircle, AlertTriangle, Zap } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 // Mock data
 const mockTimeline: ProjectTimeline = {
@@ -90,8 +92,39 @@ const mockTimeline: ProjectTimeline = {
   updated_at: '2024-02-20T15:30:00Z'
 };
 
-export function TimelinePlanning() {
-  const [timeline] = useState<ProjectTimeline>(mockTimeline);
+interface TimelinePlanningProps {
+  projectId?: string;
+}
+
+export function TimelinePlanning({ projectId }: TimelinePlanningProps = {}) {
+  const [timeline, setTimeline] = useState<ProjectTimeline>(mockTimeline);
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (projectId) {
+      // In a real implementation, fetch timeline from Supabase
+      setTimeline(mockTimeline);
+    } else {
+      setTimeline(mockTimeline);
+    }
+    setLoading(false);
+  }, [projectId]);
+
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <div className="animate-pulse space-y-4">
+          <div className="h-8 bg-muted rounded w-1/3"></div>
+          <div className="grid gap-4">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="h-32 bg-muted rounded"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const getStatusColor = (status: Task['status']) => {
     switch (status) {

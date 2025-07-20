@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -6,6 +6,8 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { ProjectCosts, CostCategory } from '@/types/projectManagement';
 import { DollarSign, TrendingUp, TrendingDown, AlertCircle, CheckCircle, Clock } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 // Mock data
 const mockCosts: ProjectCosts = {
@@ -115,8 +117,62 @@ const mockCosts: ProjectCosts = {
   updated_at: '2024-03-10T15:30:00Z'
 };
 
-export function CostManagement() {
-  const [costs] = useState<ProjectCosts>(mockCosts);
+interface CostManagementProps {
+  projectId?: string;
+}
+
+export function CostManagement({ projectId }: CostManagementProps = {}) {
+  const [costs, setCosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (projectId) {
+      fetchProjectCosts();
+    } else {
+      setCosts([mockCosts]);
+      setLoading(false);
+    }
+  }, [projectId]);
+
+  const fetchProjectCosts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('project_costs')
+        .select('*')
+        .eq('project_id', projectId);
+
+      if (error) throw error;
+      setCosts(data || []);
+    } catch (error) {
+      console.error('Error fetching project costs:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load project costs. Using sample data.",
+        variant: "destructive",
+      });
+      setCosts([mockCosts]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const currentCosts = costs.length > 0 ? costs[0] : mockCosts;
+
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <div className="animate-pulse space-y-4">
+          <div className="h-8 bg-muted rounded w-1/3"></div>
+          <div className="grid grid-cols-4 gap-4">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="h-24 bg-muted rounded"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-AE', {
@@ -138,7 +194,7 @@ export function CostManagement() {
     return <Clock className="h-4 w-4 text-gray-600" />;
   };
 
-  const budgetUtilization = (costs.spent_to_date / costs.total_budget) * 100;
+  const budgetUtilization = currentCosts.total_budget ? (currentCosts.spent_to_date / currentCosts.total_budget) * 100 : 0;
 
   return (
     <div className="space-y-6">
@@ -160,7 +216,7 @@ export function CostManagement() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{formatCurrency(costs.total_budget)}</div>
+            <div className="text-2xl font-bold">{formatCurrency(currentCosts.total_budget || 0)}</div>
           </CardContent>
         </Card>
 
@@ -169,7 +225,7 @@ export function CostManagement() {
             <CardTitle className="text-sm font-medium">Spent to Date</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{formatCurrency(costs.spent_to_date)}</div>
+            <div className="text-2xl font-bold">{formatCurrency(currentCosts.spent_to_date || 0)}</div>
             <div className="text-xs text-muted-foreground">
               {budgetUtilization.toFixed(1)}% of budget
             </div>
@@ -181,7 +237,7 @@ export function CostManagement() {
             <CardTitle className="text-sm font-medium">Remaining Budget</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{formatCurrency(costs.remaining_budget)}</div>
+            <div className="text-2xl font-bold">{formatCurrency(currentCosts.remaining_budget || 0)}</div>
             <div className="text-xs text-muted-foreground">
               Including committed costs
             </div>
@@ -191,16 +247,16 @@ export function CostManagement() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              {getVarianceIcon(costs.cost_variance)}
+              {getVarianceIcon(currentCosts.cost_variance || 0)}
               Cost Variance
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className={`text-2xl font-bold ${getVarianceColor(costs.cost_variance)}`}>
-              {formatCurrency(Math.abs(costs.cost_variance))}
+            <div className={`text-2xl font-bold ${getVarianceColor(currentCosts.cost_variance || 0)}`}>
+              {formatCurrency(Math.abs(currentCosts.cost_variance || 0))}
             </div>
             <div className="text-xs text-muted-foreground">
-              CPI: {costs.cost_performance_index.toFixed(2)}
+              CPI: {(currentCosts.cost_performance_index || 0).toFixed(2)}
             </div>
           </CardContent>
         </Card>
@@ -220,24 +276,24 @@ export function CostManagement() {
             </div>
             <Progress value={budgetUtilization} className="h-3" />
             <div className="flex justify-between text-xs text-muted-foreground">
-              <span>Spent: {formatCurrency(costs.spent_to_date)}</span>
-              <span>Budget: {formatCurrency(costs.total_budget)}</span>
+              <span>Spent: {formatCurrency(currentCosts.spent_to_date || 0)}</span>
+              <span>Budget: {formatCurrency(currentCosts.total_budget || 0)}</span>
             </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="text-center p-3 border rounded-lg">
               <div className="font-medium">Committed</div>
-              <div className="text-lg font-bold text-orange-600">{formatCurrency(costs.committed_costs)}</div>
+              <div className="text-lg font-bold text-orange-600">{formatCurrency(currentCosts.committed_costs || 0)}</div>
             </div>
             <div className="text-center p-3 border rounded-lg">
               <div className="font-medium">Estimate at Completion</div>
-              <div className="text-lg font-bold text-blue-600">{formatCurrency(costs.estimate_at_completion)}</div>
+              <div className="text-lg font-bold text-blue-600">{formatCurrency(currentCosts.estimate_at_completion || 0)}</div>
             </div>
             <div className="text-center p-3 border rounded-lg">
               <div className="font-medium">Projected Variance</div>
-              <div className={`text-lg font-bold ${getVarianceColor(costs.total_budget - costs.estimate_at_completion)}`}>
-                {formatCurrency(Math.abs(costs.total_budget - costs.estimate_at_completion))}
+              <div className={`text-lg font-bold ${getVarianceColor((currentCosts.total_budget || 0) - (currentCosts.estimate_at_completion || 0))}`}>
+                {formatCurrency(Math.abs((currentCosts.total_budget || 0) - (currentCosts.estimate_at_completion || 0)))}
               </div>
             </div>
           </div>
@@ -253,7 +309,7 @@ export function CostManagement() {
 
         <TabsContent value="categories" className="space-y-4">
           <div className="grid gap-4">
-            {costs.cost_categories.map((category) => (
+            {(currentCosts.cost_categories || []).map((category) => (
               <Card key={category.id} className="animate-fade-in">
                 <CardHeader>
                   <div className="flex items-center justify-between">
@@ -310,8 +366,8 @@ export function CostManagement() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {costs.cost_categories.flatMap(category => 
-                  category.line_items.map(item => (
+                {(currentCosts.cost_categories || []).flatMap(category => 
+                  (category.line_items || []).map(item => (
                     <div key={item.id} className="flex items-center justify-between p-4 border rounded-lg">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
@@ -356,8 +412,8 @@ export function CostManagement() {
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span>Cost Performance Index (CPI):</span>
-                        <span className={costs.cost_performance_index >= 1 ? 'text-green-600' : 'text-red-600'}>
-                          {costs.cost_performance_index.toFixed(2)}
+                        <span className={(currentCosts.cost_performance_index || 0) >= 1 ? 'text-green-600' : 'text-red-600'}>
+                          {(currentCosts.cost_performance_index || 0).toFixed(2)}
                         </span>
                       </div>
                       <div className="flex justify-between">
@@ -366,7 +422,7 @@ export function CostManagement() {
                       </div>
                       <div className="flex justify-between">
                         <span>Remaining Budget:</span>
-                        <span>{formatCurrency(costs.remaining_budget)}</span>
+                        <span>{formatCurrency(currentCosts.remaining_budget || 0)}</span>
                       </div>
                     </div>
                   </div>
@@ -376,32 +432,32 @@ export function CostManagement() {
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span>Estimate at Completion:</span>
-                        <span>{formatCurrency(costs.estimate_at_completion)}</span>
+                        <span>{formatCurrency(currentCosts.estimate_at_completion || 0)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Projected Variance:</span>
-                        <span className={getVarianceColor(costs.total_budget - costs.estimate_at_completion)}>
-                          {formatCurrency(Math.abs(costs.total_budget - costs.estimate_at_completion))}
+                        <span className={getVarianceColor((currentCosts.total_budget || 0) - (currentCosts.estimate_at_completion || 0))}>
+                          {formatCurrency(Math.abs((currentCosts.total_budget || 0) - (currentCosts.estimate_at_completion || 0)))}
                         </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Variance %:</span>
-                        <span className={getVarianceColor(costs.total_budget - costs.estimate_at_completion)}>
-                          {(((costs.estimate_at_completion - costs.total_budget) / costs.total_budget) * 100).toFixed(1)}%
+                        <span className={getVarianceColor((currentCosts.total_budget || 0) - (currentCosts.estimate_at_completion || 0))}>
+                          {(currentCosts.total_budget ? (((currentCosts.estimate_at_completion || 0) - currentCosts.total_budget) / currentCosts.total_budget) * 100 : 0).toFixed(1)}%
                         </span>
                       </div>
                     </div>
                   </div>
                 </div>
                 
-                {costs.estimate_at_completion > costs.total_budget && (
+                {(currentCosts.estimate_at_completion || 0) > (currentCosts.total_budget || 0) && (
                   <div className="p-4 border-l-4 border-red-500 bg-red-50 dark:bg-red-950/20">
                     <div className="flex items-center gap-2">
                       <AlertCircle className="h-5 w-5 text-red-600" />
                       <h4 className="font-medium text-red-800 dark:text-red-200">Budget Overrun Alert</h4>
                     </div>
                     <p className="text-sm text-red-700 dark:text-red-300 mt-1">
-                      Project is forecasted to exceed budget by {formatCurrency(costs.estimate_at_completion - costs.total_budget)}. 
+                      Project is forecasted to exceed budget by {formatCurrency((currentCosts.estimate_at_completion || 0) - (currentCosts.total_budget || 0))}. 
                       Consider cost reduction measures or budget reallocation.
                     </p>
                   </div>

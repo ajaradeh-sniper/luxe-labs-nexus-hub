@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -14,6 +14,7 @@ import { ProjectTender, TenderSubmission, EvaluationCriteria } from '@/types/pro
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
 import { 
   FileText, 
   Calendar as CalendarIcon, 
@@ -164,11 +165,41 @@ const mockTenders: ProjectTender[] = [
   }
 ];
 
-export function TenderManagement() {
-  const [tenders, setTenders] = useState<ProjectTender[]>(mockTenders);
+interface TenderManagementProps {
+  projectId?: string;
+}
+
+export function TenderManagement({ projectId }: TenderManagementProps = {}) {
+  const [tenders, setTenders] = useState<ProjectTender[]>([]);
+  const [loading, setLoading] = useState(true);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [selectedTender, setSelectedTender] = useState<ProjectTender | null>(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (projectId) {
+      // In a real implementation, fetch tenders from Supabase
+      setTenders(mockTenders);
+    } else {
+      setTenders(mockTenders);
+    }
+    setLoading(false);
+  }, [projectId]);
+
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <div className="animate-pulse space-y-4">
+          <div className="h-8 bg-muted rounded w-1/3"></div>
+          <div className="grid grid-cols-4 gap-4">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="h-24 bg-muted rounded"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const getStatusColor = (status: ProjectTender['status']) => {
     switch (status) {

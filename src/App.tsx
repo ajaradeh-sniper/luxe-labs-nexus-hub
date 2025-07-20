@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { PermissionBasedRoute } from "@/components/PermissionBasedRoute";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Index from "./pages/Index";
 import Properties from "./pages/Properties";
@@ -91,14 +92,42 @@ const App = () => (
             <Route path="/traffic-analytics" element={<ProtectedRoute><TrafficAnalytics /></ProtectedRoute>} />
             <Route path="/opportunities" element={<ProtectedRoute><Opportunities /></ProtectedRoute>} />
             <Route path="/agreements" element={<ProtectedRoute><ProjectAgreements /></ProtectedRoute>} />
-            <Route path="/project-management" element={<ProtectedRoute><ProjectManagement /></ProtectedRoute>} />
+            <Route path="/project-management" element={
+              <PermissionBasedRoute resource="projects" permission="view">
+                <ProjectManagement />
+              </PermissionBasedRoute>
+            } />
             {/* Admin Routes */}
-           <Route path="/admin/users" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />
-           <Route path="/admin/detailed-users" element={<ProtectedRoute><AdminDetailedUsers /></ProtectedRoute>} />
-           <Route path="/admin/investors" element={<ProtectedRoute><AdminInvestors /></ProtectedRoute>} />
-           <Route path="/admin/properties" element={<ProtectedRoute><AdminProperties /></ProtectedRoute>} />
-           <Route path="/admin/system-settings" element={<ProtectedRoute><AdminSystemSettings /></ProtectedRoute>} />
-           <Route path="/admin/system" element={<ProtectedRoute><AdminSystem /></ProtectedRoute>} />
+            <Route path="/admin/users" element={
+              <PermissionBasedRoute resource="users" permission="view">
+                <AdminUsers />
+              </PermissionBasedRoute>
+            } />
+            <Route path="/admin/detailed-users" element={
+              <PermissionBasedRoute resource="users" permission="view">
+                <AdminDetailedUsers />
+              </PermissionBasedRoute>
+            } />
+            <Route path="/admin/investors" element={
+              <PermissionBasedRoute resource="users" permission="view">
+                <AdminInvestors />
+              </PermissionBasedRoute>
+            } />
+            <Route path="/admin/properties" element={
+              <PermissionBasedRoute resource="properties" permission="edit">
+                <AdminProperties />
+              </PermissionBasedRoute>
+            } />
+            <Route path="/admin/system-settings" element={
+              <PermissionBasedRoute resource="system" permission="edit">
+                <AdminSystemSettings />
+              </PermissionBasedRoute>
+            } />
+            <Route path="/admin/system" element={
+              <PermissionBasedRoute resource="system" permission="view">
+                <AdminSystem />
+              </PermissionBasedRoute>
+            } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

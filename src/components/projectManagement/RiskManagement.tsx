@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -12,6 +12,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { ProjectRisk, MitigationAction } from '@/types/projectManagement';
 import { useToast } from '@/hooks/use-toast';
 import { AlertTriangle, Shield, Clock, User, Plus, Eye, Edit, TrendingUp, TrendingDown } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 // Mock data
 const mockRisks: ProjectRisk[] = [
@@ -106,11 +107,62 @@ const mockRisks: ProjectRisk[] = [
   }
 ];
 
-export function RiskManagement() {
-  const [risks, setRisks] = useState<ProjectRisk[]>(mockRisks);
+interface RiskManagementProps {
+  projectId?: string;
+}
+
+export function RiskManagement({ projectId }: RiskManagementProps = {}) {
+  const [risks, setRisks] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [selectedRisk, setSelectedRisk] = useState<ProjectRisk | null>(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (projectId) {
+      fetchProjectRisks();
+    } else {
+      setRisks(mockRisks);
+      setLoading(false);
+    }
+  }, [projectId]);
+
+  const fetchProjectRisks = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('project_risks')
+        .select('*')
+        .eq('project_id', projectId);
+
+      if (error) throw error;
+      setRisks(data || []);
+    } catch (error) {
+      console.error('Error fetching project risks:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load project risks. Using sample data.",
+        variant: "destructive",
+      });
+      setRisks(mockRisks);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <div className="animate-pulse space-y-4">
+          <div className="h-8 bg-muted rounded w-1/3"></div>
+          <div className="grid grid-cols-4 gap-4">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="h-24 bg-muted rounded"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const getRiskScoreColor = (score: number) => {
     if (score >= 20) return 'bg-red-500';
@@ -500,8 +552,8 @@ export function RiskManagement() {
                         <span className="capitalize">{category}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Progress value={(count / risks.length) * 100} className="w-20 h-2" />
-                        <span className="text-sm font-medium">{count}</span>
+                        <Progress value={risks.length > 0 ? ((count as number) / risks.length) * 100 : 0} className="w-20 h-2" />
+                        <span className="text-sm font-medium">{count as number}</span>
                       </div>
                     </div>
                   ))}
@@ -524,8 +576,8 @@ export function RiskManagement() {
                     <div key={status} className="flex items-center justify-between">
                       <span className="capitalize">{status.replace('_', ' ')}</span>
                       <div className="flex items-center gap-2">
-                        <Progress value={(count / risks.length) * 100} className="w-20 h-2" />
-                        <span className="text-sm font-medium">{count}</span>
+                        <Progress value={risks.length > 0 ? ((count as number) / risks.length) * 100 : 0} className="w-20 h-2" />
+                        <span className="text-sm font-medium">{count as number}</span>
                       </div>
                     </div>
                   ))}
