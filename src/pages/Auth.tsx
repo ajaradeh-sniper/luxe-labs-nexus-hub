@@ -1,160 +1,240 @@
-import { useState, useEffect } from 'react';
-import { Navigate, Link } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, Mail, Lock, User, Shield, ArrowLeft } from 'lucide-react';
-import { UserRole } from '@/types/auth';
+import { useState, useEffect } from 'react'
+import { useNavigate, Navigate } from 'react-router-dom'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Badge } from '@/components/ui/badge'
+import { useAuth } from '@/contexts/AuthContext'
+import { Loader2, Building2, TrendingUp, Shield, Mail, Lock, User, UserCheck } from 'lucide-react'
+import { toast } from '@/hooks/use-toast'
+import { UserRole } from '@/types/auth'
 
-export default function Auth() {
-  const { user, login, signUp, loading } = useAuth();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  
-  // Login form state
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
-  
-  // Sign up form state
-  const [signupEmail, setSignupEmail] = useState('');
-  const [signupPassword, setSignupPassword] = useState('');
-  const [signupName, setSignupName] = useState('');
-  const [signupRole, setSignupRole] = useState<UserRole>('client');
+const Auth = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState('login')
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    name: '',
+    role: 'client' as UserRole
+  })
+
+  const { login, signUp, user } = useAuth()
+  const navigate = useNavigate()
 
   // Redirect if already authenticated
   if (user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" replace />
+  }
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+    setError(null)
   }
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
-
-    const result = await login(loginEmail, loginPassword);
-    
-    if (result.error) {
-      setError(result.error);
+    e.preventDefault()
+    if (!formData.email || !formData.password) {
+      setError('Please fill in all fields')
+      return
     }
-    
-    setIsLoading(false);
-  };
+
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const result = await login(formData.email, formData.password)
+      if (result.error) {
+        if (result.error.includes('Invalid login credentials')) {
+          setError('Invalid email or password. Please check your credentials.')
+        } else if (result.error.includes('Email not confirmed')) {
+          setError('Please check your email and confirm your account before logging in.')
+        } else {
+          setError(result.error)
+        }
+      } else {
+        toast({
+          title: "Welcome back!",
+          description: "You have successfully logged in.",
+        })
+        navigate('/')
+      }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
-
-    const result = await signUp(signupEmail, signupPassword, signupName, signupRole);
+    e.preventDefault()
     
-    if (result.error) {
-      setError(result.error);
+    if (!formData.email || !formData.password || !formData.name) {
+      setError('Please fill in all required fields')
+      return
     }
-    
-    setIsLoading(false);
-  };
 
-  const roleOptions = [
-    { value: 'client', label: 'Client', description: 'Property owner or buyer' },
-    { value: 'investor', label: 'Investor', description: 'Real estate investor' },
-    { value: 'partner', label: 'Partner', description: 'Contractor or supplier' },
-    { value: 'real_estate_agent', label: 'Real Estate Agent', description: 'Property agent' },
-  ];
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match')
+      return
+    }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-luxury">
-        <div className="text-center space-y-4">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary-foreground" />
-          <p className="text-primary-foreground/80">Loading...</p>
-        </div>
-      </div>
-    );
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long')
+      return
+    }
+
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const result = await signUp(formData.email, formData.password, formData.name, formData.role)
+      if (result.error) {
+        if (result.error.includes('User already registered')) {
+          setError('This email is already registered. Please try logging in instead.')
+        } else {
+          setError(result.error)
+        }
+      } else {
+        toast({
+          title: "Account created successfully!",
+          description: "Welcome to Luxury Labs. You can now start managing your real estate investments.",
+        })
+        navigate('/')
+      }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const getRoleIcon = (role: UserRole) => {
+    switch (role) {
+      case 'administrator': return <Shield className="h-4 w-4" />
+      case 'real_estate_director': return <Building2 className="h-4 w-4" />
+      case 'real_estate_agent': return <UserCheck className="h-4 w-4" />
+      case 'project_manager': return <TrendingUp className="h-4 w-4" />
+      case 'finance_lead': return <TrendingUp className="h-4 w-4" />
+      case 'investor': return <TrendingUp className="h-4 w-4" />
+      default: return <User className="h-4 w-4" />
+    }
+  }
+
+  const getRoleDescription = (role: UserRole) => {
+    switch (role) {
+      case 'administrator': return 'Full system access and user management'
+      case 'real_estate_director': return 'Property portfolio management and oversight'
+      case 'real_estate_agent': return 'Property sales and client relations'
+      case 'project_manager': return 'Project planning and execution'
+      case 'finance_lead': return 'Financial analysis and reporting'
+      case 'investor': return 'Investment opportunities and portfolio tracking'
+      default: return 'Basic access to properties and investments'
+    }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-luxury flex items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-background via-accent/10 to-background flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
         {/* Header */}
-        <div className="text-center space-y-2">
-          <Link to="/" className="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground mb-4">
-            <ArrowLeft className="h-4 w-4" />
-            Back to Home
-          </Link>
-          <h1 className="text-3xl font-bold text-primary-foreground">Luxury Labs</h1>
-          <p className="text-primary-foreground/80">Premium Real Estate Management</p>
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-luxury">
+            <Building2 className="h-8 w-8 text-primary-foreground" />
+          </div>
+          <h1 className="text-3xl font-bold bg-gradient-luxury bg-clip-text text-transparent">
+            Luxury Labs
+          </h1>
+          <p className="text-muted-foreground mt-2">
+            Transform luxury real estate investments
+          </p>
         </div>
 
-        {/* Auth Card */}
-        <Card className="border-white/20 bg-white/95 backdrop-blur-sm">
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center">Welcome</CardTitle>
-            <CardDescription className="text-center">
-              Sign in to your account or create a new one
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Tabs defaultValue="login" className="space-y-4">
+        <Card className="shadow-luxury border-0">
+          <CardHeader className="space-y-1 pb-4">
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="login">Sign In</TabsTrigger>
                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
               </TabsList>
+              
+              <TabsContent value="login" className="space-y-4 mt-6">
+                <div className="space-y-2 text-center">
+                  <CardTitle className="text-2xl">Welcome back</CardTitle>
+                  <CardDescription>
+                    Enter your credentials to access your dashboard
+                  </CardDescription>
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="signup" className="space-y-4 mt-6">
+                <div className="space-y-2 text-center">
+                  <CardTitle className="text-2xl">Create account</CardTitle>
+                  <CardDescription>
+                    Join Luxury Labs to start your investment journey
+                  </CardDescription>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </CardHeader>
 
-              {error && (
-                <Alert variant="destructive">
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
-
-              {/* Login Tab */}
-              <TabsContent value="login" className="space-y-4">
+          <CardContent>
+            <Tabs value={activeTab} className="w-full">
+              {/* Login Form */}
+              <TabsContent value="login">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="login-email">Email</Label>
+                    <Label htmlFor="email">Email</Label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
-                        id="login-email"
+                        id="email"
                         type="email"
-                        placeholder="your@email.com"
-                        value={loginEmail}
-                        onChange={(e) => setLoginEmail(e.target.value)}
+                        placeholder="name@example.com"
+                        value={formData.email}
+                        onChange={(e) => handleInputChange('email', e.target.value)}
                         className="pl-10"
+                        disabled={isLoading}
                         required
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
-                    <Label htmlFor="login-password">Password</Label>
+                    <Label htmlFor="password">Password</Label>
                     <div className="relative">
-                      <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
-                        id="login-password"
+                        id="password"
                         type="password"
-                        placeholder="••••••••"
-                        value={loginPassword}
-                        onChange={(e) => setLoginPassword(e.target.value)}
+                        value={formData.password}
+                        onChange={(e) => handleInputChange('password', e.target.value)}
                         className="pl-10"
+                        disabled={isLoading}
                         required
                       />
                     </div>
                   </div>
+
+                  {error && (
+                    <Alert className="border-destructive/50 text-destructive">
+                      <AlertDescription>{error}</AlertDescription>
+                    </Alert>
+                  )}
 
                   <Button 
                     type="submit" 
-                    className="w-full"
+                    className="w-full" 
                     variant="luxury"
                     disabled={isLoading}
                   >
                     {isLoading ? (
                       <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                         Signing in...
                       </>
                     ) : (
@@ -164,20 +244,21 @@ export default function Auth() {
                 </form>
               </TabsContent>
 
-              {/* Sign Up Tab */}
-              <TabsContent value="signup" className="space-y-4">
+              {/* Sign Up Form */}
+              <TabsContent value="signup">
                 <form onSubmit={handleSignUp} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="signup-name">Full Name</Label>
+                    <Label htmlFor="name">Full Name</Label>
                     <div className="relative">
-                      <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
-                        id="signup-name"
+                        id="name"
                         type="text"
-                        placeholder="John Doe"
-                        value={signupName}
-                        onChange={(e) => setSignupName(e.target.value)}
+                        placeholder="Your full name"
+                        value={formData.name}
+                        onChange={(e) => handleInputChange('name', e.target.value)}
                         className="pl-10"
+                        disabled={isLoading}
                         required
                       />
                     </div>
@@ -186,64 +267,91 @@ export default function Auth() {
                   <div className="space-y-2">
                     <Label htmlFor="signup-email">Email</Label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
                         id="signup-email"
                         type="email"
-                        placeholder="your@email.com"
-                        value={signupEmail}
-                        onChange={(e) => setSignupEmail(e.target.value)}
+                        placeholder="name@example.com"
+                        value={formData.email}
+                        onChange={(e) => handleInputChange('email', e.target.value)}
                         className="pl-10"
+                        disabled={isLoading}
                         required
                       />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="role">Role</Label>
+                    <select
+                      id="role"
+                      value={formData.role}
+                      onChange={(e) => handleInputChange('role', e.target.value)}
+                      className="w-full p-2 border border-input bg-background rounded-md"
+                      disabled={isLoading}
+                    >
+                      <option value="client">Client</option>
+                      <option value="investor">Investor</option>
+                      <option value="real_estate_agent">Real Estate Agent</option>
+                      <option value="project_manager">Project Manager</option>
+                      <option value="finance_lead">Finance Lead</option>
+                      <option value="real_estate_director">Real Estate Director</option>
+                    </select>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      {getRoleIcon(formData.role)}
+                      <span>{getRoleDescription(formData.role)}</span>
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="signup-password">Password</Label>
                     <div className="relative">
-                      <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
                         id="signup-password"
                         type="password"
-                        placeholder="••••••••"
-                        value={signupPassword}
-                        onChange={(e) => setSignupPassword(e.target.value)}
+                        placeholder="Minimum 6 characters"
+                        value={formData.password}
+                        onChange={(e) => handleInputChange('password', e.target.value)}
                         className="pl-10"
-                        minLength={6}
+                        disabled={isLoading}
                         required
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="signup-role">Role</Label>
-                    <Select value={signupRole} onValueChange={(value) => setSignupRole(value as UserRole)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select your role" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {roleOptions.map((role) => (
-                          <SelectItem key={role.value} value={role.value}>
-                            <div>
-                              <div className="font-medium">{role.label}</div>
-                              <div className="text-xs text-muted-foreground">{role.description}</div>
-                            </div>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <Label htmlFor="confirm-password">Confirm Password</Label>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        id="confirm-password"
+                        type="password"
+                        placeholder="Confirm your password"
+                        value={formData.confirmPassword}
+                        onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+                        className="pl-10"
+                        disabled={isLoading}
+                        required
+                      />
+                    </div>
                   </div>
+
+                  {error && (
+                    <Alert className="border-destructive/50 text-destructive">
+                      <AlertDescription>{error}</AlertDescription>
+                    </Alert>
+                  )}
 
                   <Button 
                     type="submit" 
-                    className="w-full"
+                    className="w-full" 
                     variant="luxury"
                     disabled={isLoading}
                   >
                     {isLoading ? (
                       <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                         Creating account...
                       </>
                     ) : (
@@ -253,30 +361,17 @@ export default function Auth() {
                 </form>
               </TabsContent>
             </Tabs>
-
-            <div className="mt-6 text-center">
-              <p className="text-xs text-muted-foreground">
-                By signing up, you agree to our Terms of Service and Privacy Policy
-              </p>
-            </div>
           </CardContent>
         </Card>
 
-        {/* Demo Account Info */}
-        <Card className="border-white/20 bg-white/90 backdrop-blur-sm">
-          <CardContent className="pt-6">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm">
-                <Shield className="h-4 w-4 text-muted-foreground" />
-                <span className="font-medium">Demo Account Available</span>
-              </div>
-              <p className="text-xs text-muted-foreground">
-                Email: admin@luxurylabs.com / Password: admin123
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="text-center mt-6">
+          <p className="text-sm text-muted-foreground">
+            By continuing, you agree to our Terms of Service and Privacy Policy
+          </p>
+        </div>
       </div>
     </div>
-  );
+  )
 }
+
+export default Auth

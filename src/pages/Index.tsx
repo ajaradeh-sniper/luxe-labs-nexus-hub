@@ -54,19 +54,39 @@ const Index = () => {
               <CardTitle className="text-lg font-semibold">Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <Button variant="luxury" className="w-full justify-start" size="lg">
+              <Button 
+                variant="luxury" 
+                className="w-full justify-start" 
+                size="lg"
+                onClick={() => window.location.href = '/documents'}
+              >
                 <FileText className="mr-2 h-4 w-4" />
                 Upload Document
               </Button>
-              <Button variant="elegant" className="w-full justify-start" size="lg">
+              <Button 
+                variant="elegant" 
+                className="w-full justify-start" 
+                size="lg"
+                onClick={() => window.location.href = '/analytics'}
+              >
                 <TrendingUp className="mr-2 h-4 w-4" />
                 View Analytics
               </Button>
-              <Button variant="outline" className="w-full justify-start" size="lg">
+              <Button 
+                variant="outline" 
+                className="w-full justify-start" 
+                size="lg"
+                onClick={() => window.location.href = '/team'}
+              >
                 <Calendar className="mr-2 h-4 w-4" />
                 Schedule Meeting
               </Button>
-              <Button variant="outline" className="w-full justify-start" size="lg">
+              <Button 
+                variant="outline" 
+                className="w-full justify-start" 
+                size="lg"
+                onClick={() => window.location.href = '/team'}
+              >
                 <Users className="mr-2 h-4 w-4" />
                 Manage Team
               </Button>

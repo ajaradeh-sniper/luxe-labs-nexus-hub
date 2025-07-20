@@ -94,9 +94,10 @@ export default function Landing() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold border-white/30 text-white hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300 backdrop-blur-sm">
-                <a href="#contact">
-                  Contact Us
-                </a>
+                <Link to="/auth">
+                  <LayoutDashboard className="mr-3 h-6 w-6" />
+                  Access Dashboard
+                </Link>
               </Button>
             </div>
           </div>
