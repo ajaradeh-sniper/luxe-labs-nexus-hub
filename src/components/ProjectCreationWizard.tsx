@@ -1,4 +1,7 @@
 import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -10,7 +13,10 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { format } from "date-fns"
+import { cn } from "@/lib/utils"
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -20,9 +26,50 @@ import {
   Users,
   FileText,
   Star,
-  Check
+  Check,
+  AlertTriangle
 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { SupabaseService } from "@/lib/supabase-service"
+import { useAsyncOperation } from "@/hooks/useAsyncOperation"
+import { log } from "@/lib/logger"
+import { useAuth } from "@/contexts/AuthContext"
+
+// Validation schemas for each step
+const basicInfoSchema = z.object({
+  projectName: z.string().min(3, "Project name must be at least 3 characters"),
+  projectType: z.enum(['renovation', 'development', 'investment', 'flip']).nullable().refine(val => val !== null, {
+    message: "Please select a project type"
+  }),
+  description: z.string().min(10, "Description must be at least 10 characters"),
+})
+
+const timelineBudgetSchema = z.object({
+  startDate: z.date().nullable().refine(val => val !== null, {
+    message: "Start date is required"
+  }),
+  endDate: z.date().nullable().refine(val => val !== null, {
+    message: "End date is required"
+  }),
+  budget: z.number().min(1000, "Budget must be at least AED 1,000"),
+  priority: z.enum(['low', 'medium', 'high', 'critical']).nullable().refine(val => val !== null, {
+    message: "Please select a priority level"
+  })
+}).refine((data) => {
+  if (data.endDate && data.startDate) {
+    return data.endDate > data.startDate;
+  }
+  return true;
+}, {
+  message: "End date must be after start date",
+  path: ["endDate"]
+})
+
+const teamResourcesSchema = z.object({
+  projectManager: z.string().min(1, "Project manager is required"),
+  teamSize: z.number().min(1, "Team must have at least 1 member").max(50, "Team size cannot exceed 50"),
+  requiredSkills: z.array(z.string()).optional()
+})
 
 interface ProjectCreationWizardProps {
   open: boolean
@@ -31,75 +78,75 @@ interface ProjectCreationWizardProps {
 
 export function ProjectCreationWizard({ open, onOpenChange }: ProjectCreationWizardProps) {
   const [currentStep, setCurrentStep] = useState(1)
-  const [formData, setFormData] = useState({
-    // Basic Info
-    projectName: "",
-    projectType: "",
-    property: "",
-    description: "",
-    
-    // Timeline & Budget
-    startDate: undefined as Date | undefined,
-    expectedCompletion: undefined as Date | undefined,
-    totalBudget: "",
-    priority: "",
-    
-    // Team & Resources
-    projectManager: "",
-    teamMembers: [] as string[],
-    consultants: [] as string[],
-    
-    // Goals & Requirements
-    primaryGoals: [] as string[],
-    requirements: "",
-    successMetrics: [] as string[]
+  const [completedSteps, setCompletedSteps] = useState<number[]>([])
+  const { toast } = useToast()
+  const { user } = useAuth()
+
+  const { execute: createProject, loading: creating } = useAsyncOperation(
+    SupabaseService.createProject,
+    { 
+      showSuccessToast: true, 
+      successMessage: "Project created successfully!",
+      showErrorToast: true 
+    }
+  )
+
+  // Forms for each step
+  const basicInfoForm = useForm<z.infer<typeof basicInfoSchema>>({
+    resolver: zodResolver(basicInfoSchema),
+    defaultValues: {
+      projectName: "",
+      projectType: undefined,
+      description: ""
+    }
   })
 
-  const { toast } = useToast()
+  const timelineBudgetForm = useForm<z.infer<typeof timelineBudgetSchema>>({
+    resolver: zodResolver(timelineBudgetSchema),
+    defaultValues: {
+      budget: 0,
+      priority: undefined
+    }
+  })
 
-  const steps = [
-    { id: 1, title: "Basic Information", icon: Building2 },
-    { id: 2, title: "Timeline & Budget", icon: DollarSign },
-    { id: 3, title: "Team & Resources", icon: Users },
-    { id: 4, title: "Goals & Requirements", icon: Star },
-    { id: 5, title: "Review & Create", icon: Check }
-  ]
+  const teamResourcesForm = useForm<z.infer<typeof teamResourcesSchema>>({
+    resolver: zodResolver(teamResourcesSchema),
+    defaultValues: {
+      projectManager: "",
+      teamSize: 1,
+      requiredSkills: []
+    }
+  })
 
-  const projectTemplates = [
-    { id: "renovation", name: "Luxury Renovation", description: "Complete property renovation project" },
-    { id: "development", name: "New Development", description: "Ground-up development project" },
-    { id: "interior", name: "Interior Design", description: "Interior design and finishing project" },
-    { id: "commercial", name: "Commercial Upgrade", description: "Commercial property enhancement" }
-  ]
+  const totalSteps = 3
+  const progress = (currentStep / totalSteps) * 100
 
-  const availableProperties = [
-    "Marina Bay Tower",
-    "Downtown Luxury Apartments",
-    "Business Bay Complex",
-    "Palm Residence Villa",
-    "DIFC Office Tower"
-  ]
+  const handleNext = async () => {
+    let isValid = false
 
-  const availableTeam = [
-    "Elena Rodriguez - Project Manager",
-    "Michael Chen - Lead Designer",
-    "Sarah Johnson - Operations Manager",
-    "David Kim - Financial Analyst",
-    "Fatima Al-Zahra - Legal Advisor"
-  ]
+    if (currentStep === 1) {
+      isValid = await basicInfoForm.trigger()
+    } else if (currentStep === 2) {
+      isValid = await timelineBudgetForm.trigger()
+    } else if (currentStep === 3) {
+      isValid = await teamResourcesForm.trigger()
+    }
 
-  const goalOptions = [
-    "Maximize ROI",
-    "Premium Quality Finish",
-    "On-Time Delivery",
-    "Cost Optimization",
-    "Client Satisfaction",
-    "Sustainability Focus"
-  ]
+    if (isValid) {
+      if (!completedSteps.includes(currentStep)) {
+        setCompletedSteps(prev => [...prev, currentStep])
+      }
 
-  const handleNext = () => {
-    if (currentStep < 5) {
-      setCurrentStep(currentStep + 1)
+      if (currentStep < totalSteps) {
+        setCurrentStep(currentStep + 1)
+      } else {
+        await handleSubmit()
+      }
+    } else {
+      log.warn(`Step ${currentStep} validation failed`, 'PROJECT_WIZARD', { 
+        step: currentStep,
+        userId: user?.id 
+      })
     }
   }
 
@@ -109,396 +156,426 @@ export function ProjectCreationWizard({ open, onOpenChange }: ProjectCreationWiz
     }
   }
 
-  const handleCreateProject = () => {
-    toast({
-      title: "Project Created Successfully",
-      description: `${formData.projectName} has been created and added to your portfolio.`,
-    })
-    onOpenChange(false)
+  const handleSubmit = async () => {
+    try {
+      // Combine all form data
+      const basicData = basicInfoForm.getValues()
+      const timelineData = timelineBudgetForm.getValues()
+      const teamData = teamResourcesForm.getValues()
+
+      const projectData = {
+        name: basicData.projectName,
+        description: basicData.description,
+        project_type: basicData.projectType,
+        status: 'planning' as const,
+        start_date: format(timelineData.startDate, 'yyyy-MM-dd'),
+        end_date: format(timelineData.endDate, 'yyyy-MM-dd'),
+        budget: timelineData.budget,
+        actual_cost: 0,
+        manager_id: user?.id,
+        created_by: user?.id
+      }
+
+      log.info('Creating new project', 'PROJECT_WIZARD', { 
+        projectName: projectData.name,
+        projectType: projectData.project_type,
+        userId: user?.id 
+      })
+
+      const result = await createProject(projectData)
+
+      if (result.success) {
+        onOpenChange(false)
+        resetForms()
+      }
+    } catch (error) {
+      log.error('Project creation failed', 'PROJECT_WIZARD', error)
+    }
+  }
+
+  const resetForms = () => {
     setCurrentStep(1)
-    setFormData({
-      projectName: "",
-      projectType: "",
-      property: "",
-      description: "",
-      startDate: undefined,
-      expectedCompletion: undefined,
-      totalBudget: "",
-      priority: "",
-      projectManager: "",
-      teamMembers: [],
-      consultants: [],
-      primaryGoals: [],
-      requirements: "",
-      successMetrics: []
-    })
+    setCompletedSteps([])
+    basicInfoForm.reset()
+    timelineBudgetForm.reset()
+    teamResourcesForm.reset()
   }
 
-  const isStepValid = () => {
-    switch (currentStep) {
-      case 1:
-        return formData.projectName && formData.projectType && formData.property
-      case 2:
-        return formData.startDate && formData.expectedCompletion && formData.totalBudget
-      case 3:
-        return formData.projectManager
-      case 4:
-        return formData.primaryGoals.length > 0
-      case 5:
-        return true
-      default:
-        return false
-    }
-  }
+  const projectTypes = [
+    { value: 'renovation', label: 'Renovation', description: 'Property improvement and upgrades' },
+    { value: 'development', label: 'Development', description: 'New construction projects' },
+    { value: 'investment', label: 'Investment', description: 'Property investment analysis' },
+    { value: 'flip', label: 'Flip', description: 'Buy, renovate, and sell properties' }
+  ]
 
-  const toggleArrayItem = (array: string[], item: string, setter: (newArray: string[]) => void) => {
-    if (array.includes(item)) {
-      setter(array.filter(i => i !== item))
-    } else {
-      setter([...array, item])
-    }
-  }
+  const priorityLevels = [
+    { value: 'low', label: 'Low', color: 'bg-gray-100 text-gray-800' },
+    { value: 'medium', label: 'Medium', color: 'bg-blue-100 text-blue-800' },
+    { value: 'high', label: 'High', color: 'bg-orange-100 text-orange-800' },
+    { value: 'critical', label: 'Critical', color: 'bg-red-100 text-red-800' }
+  ]
+
+  const skillOptions = [
+    'Project Management', 'Construction', 'Electrical', 'Plumbing', 'HVAC',
+    'Interior Design', 'Architecture', 'Legal', 'Finance', 'Marketing'
+  ]
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl">Create New Project</DialogTitle>
+          <DialogTitle className="flex items-center gap-2">
+            <Building2 className="h-5 w-5" />
+            Create New Project
+          </DialogTitle>
         </DialogHeader>
 
-        {/* Progress Bar */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            {steps.map((step, index) => (
-              <div key={step.id} className="flex items-center">
-                <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
-                  currentStep >= step.id 
-                    ? "bg-primary border-primary text-primary-foreground" 
-                    : "border-border text-muted-foreground"
-                }`}>
-                  <step.icon className="h-4 w-4" />
-                </div>
-                {index < steps.length - 1 && (
-                  <div className={`w-16 h-0.5 mx-2 ${
-                    currentStep > step.id ? "bg-primary" : "bg-border"
-                  }`} />
+        <div className="space-y-6">
+          {/* Progress Bar */}
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm text-muted-foreground">
+              <span>Step {currentStep} of {totalSteps}</span>
+              <span>{Math.round(progress)}% Complete</span>
+            </div>
+            <Progress value={progress} className="w-full" />
+          </div>
+
+          {/* Step Indicators */}
+          <div className="flex justify-center space-x-4">
+            {Array.from({ length: totalSteps }, (_, i) => i + 1).map((step) => (
+              <div
+                key={step}
+                className={cn(
+                  "w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium",
+                  currentStep === step
+                    ? "bg-primary text-primary-foreground"
+                    : completedSteps.includes(step)
+                    ? "bg-success text-success-foreground"
+                    : "bg-muted text-muted-foreground"
+                )}
+              >
+                {completedSteps.includes(step) ? (
+                  <Check className="h-4 w-4" />
+                ) : (
+                  step
                 )}
               </div>
             ))}
           </div>
-          <Progress value={(currentStep / steps.length) * 100} className="h-2" />
-        </div>
 
-        {/* Step Content */}
-        <div className="min-h-[400px]">
-          {currentStep === 1 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Basic Project Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="projectName">Project Name *</Label>
-                  <Input
-                    id="projectName"
-                    value={formData.projectName}
-                    onChange={(e) => setFormData(prev => ({ ...prev, projectName: e.target.value }))}
-                    placeholder="Enter project name"
-                  />
-                </div>
+          {/* Step Content */}
+          <Card>
+            <CardContent className="pt-6">
+              {currentStep === 1 && (
+                <Form {...basicInfoForm}>
+                  <form className="space-y-4">
+                    <div className="text-center mb-4">
+                      <h3 className="text-lg font-semibold">Basic Information</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Tell us about your project
+                      </p>
+                    </div>
 
-                <div className="space-y-3">
-                  <Label>Project Template *</Label>
-                  <div className="grid grid-cols-2 gap-3">
-                    {projectTemplates.map((template) => (
-                      <Card 
-                        key={template.id}
-                        className={`cursor-pointer transition-colors ${
-                          formData.projectType === template.id ? 'border-primary bg-primary/5' : 'hover:bg-muted/50'
-                        }`}
-                        onClick={() => setFormData(prev => ({ ...prev, projectType: template.id }))}
-                      >
-                        <CardContent className="p-4">
-                          <h3 className="font-medium">{template.name}</h3>
-                          <p className="text-sm text-muted-foreground">{template.description}</p>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="property">Property *</Label>
-                  <Select value={formData.property} onValueChange={(value) => setFormData(prev => ({ ...prev, property: value }))}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select property" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {availableProperties.map((property) => (
-                        <SelectItem key={property} value={property}>{property}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="description">Project Description</Label>
-                  <Textarea
-                    id="description"
-                    value={formData.description}
-                    onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                    placeholder="Describe the project scope and objectives"
-                    rows={3}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {currentStep === 2 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Timeline & Budget</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label>Start Date *</Label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className="w-full justify-start text-left font-normal"
-                        >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
-                          {formData.startDate ? format(formData.startDate, "PPP") : "Select start date"}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={formData.startDate}
-                          onSelect={(date) => setFormData(prev => ({ ...prev, startDate: date }))}
-                          initialFocus
-                          className="pointer-events-auto"
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label>Expected Completion *</Label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className="w-full justify-start text-left font-normal"
-                        >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
-                          {formData.expectedCompletion ? format(formData.expectedCompletion, "PPP") : "Select completion date"}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={formData.expectedCompletion}
-                          onSelect={(date) => setFormData(prev => ({ ...prev, expectedCompletion: date }))}
-                          initialFocus
-                          className="pointer-events-auto"
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="budget">Total Budget *</Label>
-                    <Input
-                      id="budget"
-                      value={formData.totalBudget}
-                      onChange={(e) => setFormData(prev => ({ ...prev, totalBudget: e.target.value }))}
-                      placeholder="e.g. $500,000"
+                    <FormField
+                      control={basicInfoForm.control}
+                      name="projectName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Project Name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Enter project name" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
-                  </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="priority">Priority Level</Label>
-                    <Select value={formData.priority} onValueChange={(value) => setFormData(prev => ({ ...prev, priority: value }))}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select priority" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="low">Low</SelectItem>
-                        <SelectItem value="medium">Medium</SelectItem>
-                        <SelectItem value="high">High</SelectItem>
-                        <SelectItem value="critical">Critical</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )}
+                    <FormField
+                      control={basicInfoForm.control}
+                      name="projectType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Project Type</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select project type" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {projectTypes.map((type) => (
+                                <SelectItem key={type.value} value={type.value}>
+                                  <div>
+                                    <div className="font-medium">{type.label}</div>
+                                    <div className="text-xs text-muted-foreground">
+                                      {type.description}
+                                    </div>
+                                  </div>
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-          {currentStep === 3 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Team & Resources</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="projectManager">Project Manager *</Label>
-                  <Select value={formData.projectManager} onValueChange={(value) => setFormData(prev => ({ ...prev, projectManager: value }))}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select project manager" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {availableTeam.map((member) => (
-                        <SelectItem key={member} value={member}>{member}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                    <FormField
+                      control={basicInfoForm.control}
+                      name="description"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Description</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Describe your project goals and scope"
+                              className="resize-none"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </form>
+                </Form>
+              )}
 
-                <div className="space-y-3">
-                  <Label>Team Members</Label>
-                  <div className="grid grid-cols-1 gap-2">
-                    {availableTeam.map((member) => (
-                      <div key={member} className="flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          id={member}
-                          checked={formData.teamMembers.includes(member)}
-                          onChange={() => toggleArrayItem(
-                            formData.teamMembers, 
-                            member, 
-                            (newArray) => setFormData(prev => ({ ...prev, teamMembers: newArray }))
-                          )}
-                          className="rounded"
-                        />
-                        <Label htmlFor={member} className="cursor-pointer">{member}</Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )}
+              {currentStep === 2 && (
+                <Form {...timelineBudgetForm}>
+                  <form className="space-y-4">
+                    <div className="text-center mb-4">
+                      <h3 className="text-lg font-semibold">Timeline & Budget</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Set your project timeline and budget
+                      </p>
+                    </div>
 
-          {currentStep === 4 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Goals & Requirements</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-3">
-                  <Label>Primary Goals *</Label>
-                  <div className="grid grid-cols-2 gap-2">
-                    {goalOptions.map((goal) => (
-                      <Badge
-                        key={goal}
-                        variant={formData.primaryGoals.includes(goal) ? "default" : "outline"}
-                        className="cursor-pointer justify-center p-2"
-                        onClick={() => toggleArrayItem(
-                          formData.primaryGoals,
-                          goal,
-                          (newArray) => setFormData(prev => ({ ...prev, primaryGoals: newArray }))
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <FormField
+                        control={timelineBudgetForm.control}
+                        name="startDate"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-col">
+                            <FormLabel>Start Date</FormLabel>
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <FormControl>
+                                  <Button
+                                    variant="outline"
+                                    className={cn(
+                                      "w-full pl-3 text-left font-normal",
+                                      !field.value && "text-muted-foreground"
+                                    )}
+                                  >
+                                    {field.value ? (
+                                      format(field.value, "PPP")
+                                    ) : (
+                                      <span>Pick start date</span>
+                                    )}
+                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                  </Button>
+                                </FormControl>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-auto p-0" align="start">
+                                <Calendar
+                                  mode="single"
+                                  selected={field.value}
+                                  onSelect={field.onChange}
+                                  disabled={(date) =>
+                                    date < new Date(new Date().setHours(0, 0, 0, 0))
+                                  }
+                                  initialFocus
+                                  className="pointer-events-auto"
+                                />
+                              </PopoverContent>
+                            </Popover>
+                            <FormMessage />
+                          </FormItem>
                         )}
-                      >
-                        {goal}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
+                      />
 
-                <div className="space-y-2">
-                  <Label htmlFor="requirements">Specific Requirements</Label>
-                  <Textarea
-                    id="requirements"
-                    value={formData.requirements}
-                    onChange={(e) => setFormData(prev => ({ ...prev, requirements: e.target.value }))}
-                    placeholder="List any specific requirements, constraints, or special considerations"
-                    rows={4}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {currentStep === 5 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Review & Create Project</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h3 className="font-semibold">Project Details</h3>
-                    <div className="space-y-2 text-sm">
-                      <div><span className="font-medium">Name:</span> {formData.projectName}</div>
-                      <div><span className="font-medium">Type:</span> {projectTemplates.find(t => t.id === formData.projectType)?.name}</div>
-                      <div><span className="font-medium">Property:</span> {formData.property}</div>
-                      <div><span className="font-medium">Budget:</span> {formData.totalBudget}</div>
+                      <FormField
+                        control={timelineBudgetForm.control}
+                        name="endDate"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-col">
+                            <FormLabel>End Date</FormLabel>
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <FormControl>
+                                  <Button
+                                    variant="outline"
+                                    className={cn(
+                                      "w-full pl-3 text-left font-normal",
+                                      !field.value && "text-muted-foreground"
+                                    )}
+                                  >
+                                    {field.value ? (
+                                      format(field.value, "PPP")
+                                    ) : (
+                                      <span>Pick end date</span>
+                                    )}
+                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                  </Button>
+                                </FormControl>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-auto p-0" align="start">
+                                <Calendar
+                                  mode="single"
+                                  selected={field.value}
+                                  onSelect={field.onChange}
+                                  disabled={(date) =>
+                                    date <= (timelineBudgetForm.getValues().startDate || new Date())
+                                  }
+                                  initialFocus
+                                  className="pointer-events-auto"
+                                />
+                              </PopoverContent>
+                            </Popover>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     </div>
-                  </div>
 
-                  <div className="space-y-4">
-                    <h3 className="font-semibold">Timeline & Team</h3>
-                    <div className="space-y-2 text-sm">
-                      <div><span className="font-medium">Start:</span> {formData.startDate ? format(formData.startDate, "PPP") : "Not set"}</div>
-                      <div><span className="font-medium">Completion:</span> {formData.expectedCompletion ? format(formData.expectedCompletion, "PPP") : "Not set"}</div>
-                      <div><span className="font-medium">Project Manager:</span> {formData.projectManager.split(' - ')[0]}</div>
-                      <div><span className="font-medium">Team Size:</span> {formData.teamMembers.length} members</div>
+                    <FormField
+                      control={timelineBudgetForm.control}
+                      name="budget"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Budget (AED)</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="number"
+                              placeholder="Enter budget amount"
+                              {...field}
+                              onChange={(e) => field.onChange(Number(e.target.value))}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={timelineBudgetForm.control}
+                      name="priority"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Priority Level</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select priority level" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {priorityLevels.map((priority) => (
+                                <SelectItem key={priority.value} value={priority.value}>
+                                  <div className="flex items-center gap-2">
+                                    <Badge className={priority.color}>
+                                      {priority.label}
+                                    </Badge>
+                                  </div>
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </form>
+                </Form>
+              )}
+
+              {currentStep === 3 && (
+                <Form {...teamResourcesForm}>
+                  <form className="space-y-4">
+                    <div className="text-center mb-4">
+                      <h3 className="text-lg font-semibold">Team & Resources</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Configure your project team
+                      </p>
                     </div>
-                  </div>
-                </div>
 
-                <div className="space-y-2">
-                  <h3 className="font-semibold">Project Goals</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {formData.primaryGoals.map((goal) => (
-                      <Badge key={goal} variant="secondary">{goal}</Badge>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-        </div>
+                    <FormField
+                      control={teamResourcesForm.control}
+                      name="projectManager"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Project Manager</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Enter project manager name" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-        {/* Navigation */}
-        <div className="flex items-center justify-between pt-4 border-t">
-          <Button
-            variant="outline"
-            onClick={handlePrevious}
-            disabled={currentStep === 1}
-          >
-            <ChevronLeft className="mr-2 h-4 w-4" />
-            Previous
-          </Button>
+                    <FormField
+                      control={teamResourcesForm.control}
+                      name="teamSize"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Team Size</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="number"
+                              placeholder="Enter team size"
+                              {...field}
+                              onChange={(e) => field.onChange(Number(e.target.value))}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-          <div className="text-sm text-muted-foreground">
-            Step {currentStep} of {steps.length}
-          </div>
+                    <Alert>
+                      <AlertTriangle className="h-4 w-4" />
+                      <AlertDescription>
+                        Review all details before creating the project. You can modify settings later from the project dashboard.
+                      </AlertDescription>
+                    </Alert>
+                  </form>
+                </Form>
+              )}
+            </CardContent>
+          </Card>
 
-          {currentStep < 5 ? (
+          {/* Navigation Buttons */}
+          <div className="flex justify-between">
+            <Button
+              variant="outline"
+              onClick={handlePrevious}
+              disabled={currentStep === 1}
+            >
+              <ChevronLeft className="h-4 w-4 mr-2" />
+              Previous
+            </Button>
+
             <Button
               onClick={handleNext}
-              disabled={!isStepValid()}
+              disabled={creating}
+              className="min-w-[100px]"
             >
-              Next
-              <ChevronRight className="ml-2 h-4 w-4" />
+              {creating ? (
+                "Creating..."
+              ) : currentStep === totalSteps ? (
+                <>
+                  <Check className="h-4 w-4 mr-2" />
+                  Create Project
+                </>
+              ) : (
+                <>
+                  Next
+                  <ChevronRight className="h-4 w-4 ml-2" />
+                </>
+              )}
             </Button>
-          ) : (
-            <Button
-              variant="luxury"
-              onClick={handleCreateProject}
-              disabled={!isStepValid()}
-            >
-              Create Project
-            </Button>
-          )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>

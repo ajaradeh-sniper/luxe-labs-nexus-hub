@@ -3,6 +3,7 @@ import { User, UserRole, Permission, ROLE_PERMISSIONS } from '@/types/auth';
 import { supabase } from '@/integrations/supabase/client';
 import { User as SupabaseUser, Session } from '@supabase/supabase-js';
 import { useToast } from '@/hooks/use-toast';
+import { log } from '@/lib/logger';
 
 interface AuthContextType {
   user: User | null;
@@ -26,6 +27,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        log.info(`Auth state changed: ${event}`, 'AUTH', { 
+          hasSession: !!session, 
+          userId: session?.user?.id 
+        });
+        
         setSession(session);
         
         if (session?.user) {
@@ -53,6 +59,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const fetchUserProfile = async (supabaseUser: SupabaseUser) => {
     try {
+      log.debug('Fetching user profile', 'AUTH', { userId: supabaseUser.id });
+      
       const { data: profile, error } = await supabase
         .from('profiles')
         .select('*')
@@ -60,6 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .single();
 
       if (error) {
+        log.error('Error fetching profile', 'AUTH', { error: error.message, userId: supabaseUser.id });
         console.error('Error fetching profile:', error);
         toast({
           title: "Error",
@@ -70,21 +79,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       if (profile) {
-        setUser({
+        const userData = {
           id: profile.user_id,
           email: supabaseUser.email || '',
           name: profile.name,
           role: profile.role as UserRole,
           avatar: profile.avatar_url
+        };
+        
+        setUser(userData);
+        log.auth.success('Profile loaded successfully', userData.id, { 
+          role: userData.role, 
+          name: userData.name 
         });
       }
     } catch (error) {
+      log.error('Profile fetch error', 'AUTH', error);
       console.error('Profile fetch error:', error);
     }
   };
 
   const login = async (email: string, password: string): Promise<{ error?: string }> => {
     try {
+      log.api.request('/auth/signin', 'POST', { email }, undefined);
       setLoading(true);
       const { error } = await supabase.auth.signInWithPassword({
         email,
@@ -92,6 +109,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
 
       if (error) {
+        log.auth.error('Login failed', { error: error.message, email });
         toast({
           title: "Login Failed",
           description: error.message,
@@ -100,6 +118,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return { error: error.message };
       }
 
+      log.auth.success('Login successful', email);
       toast({
         title: "Welcome back!",
         description: "Successfully logged in"
