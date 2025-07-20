@@ -58,80 +58,78 @@ const App = () => (
           <TooltipProvider>
             <Toaster />
             <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={<ProtectedRoute><Index /></ProtectedRoute>} />
-            <Route path="/properties" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/dashboard/projects" element={<ProtectedRoute><DashboardProjects /></ProtectedRoute>} />
-            <Route path="/projects/:id" element={<ProtectedRoute><ProjectDetail /></ProtectedRoute>} />
-            <Route path="/pm-dashboard" element={<ProtectedRoute><ProjectManagerDashboard /></ProtectedRoute>} />
-            <Route path="/investor-dashboard" element={<ProtectedRoute><InvestorDashboard /></ProtectedRoute>} />
-            <Route path="/client-dashboard" element={<ProtectedRoute><ClientDashboard /></ProtectedRoute>} />
-            <Route path="/portfolio" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
-            <Route path="/financial" element={<ProtectedRoute><Financial /></ProtectedRoute>} />
-            <Route path="/documents" element={<ProtectedRoute><Documents /></ProtectedRoute>} />
-            <Route path="/team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
-            <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
-            <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
-            <Route path="/qa" element={<ProtectedRoute><QualityAssurance /></ProtectedRoute>} />
-            <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
-            <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/media" element={<Media />} />
-            <Route path="/partners" element={<Partners />} />
-            <Route path="/investors" element={<Investors />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/investment-disclaimer" element={<InvestmentDisclaimer />} />
-            <Route path="/marketing" element={<ProtectedRoute><Marketing /></ProtectedRoute>} />
-            <Route path="/traffic-analytics" element={<ProtectedRoute><TrafficAnalytics /></ProtectedRoute>} />
-            <Route path="/opportunities" element={<ProtectedRoute><Opportunities /></ProtectedRoute>} />
-            <Route path="/agreements" element={<ProtectedRoute><ProjectAgreements /></ProtectedRoute>} />
-            <Route path="/project-management" element={
-              <PermissionBasedRoute resource="projects" permission="view">
-                <ProjectManagement />
-              </PermissionBasedRoute>
-            } />
-            {/* Admin Routes */}
-            <Route path="/admin/users" element={
-              <PermissionBasedRoute resource="users" permission="view">
-                <AdminUsers />
-              </PermissionBasedRoute>
-            } />
-            <Route path="/admin/detailed-users" element={
-              <PermissionBasedRoute resource="users" permission="view">
-                <AdminDetailedUsers />
-              </PermissionBasedRoute>
-            } />
-            <Route path="/admin/investors" element={
-              <PermissionBasedRoute resource="users" permission="view">
-                <AdminInvestors />
-              </PermissionBasedRoute>
-            } />
-            <Route path="/admin/properties" element={
-              <PermissionBasedRoute resource="properties" permission="edit">
-                <AdminProperties />
-              </PermissionBasedRoute>
-            } />
-            <Route path="/admin/system-settings" element={
-              <PermissionBasedRoute resource="system" permission="edit">
-                <AdminSystemSettings />
-              </PermissionBasedRoute>
-            } />
-            <Route path="/admin/system" element={
-              <PermissionBasedRoute resource="system" permission="view">
-                <AdminSystem />
-              </PermissionBasedRoute>
-            } />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/dashboard" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+              <Route path="/properties" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/dashboard/projects" element={<ProtectedRoute><DashboardProjects /></ProtectedRoute>} />
+              <Route path="/projects/:id" element={<ProtectedRoute><ProjectDetail /></ProtectedRoute>} />
+              <Route path="/pm-dashboard" element={<ProtectedRoute><ProjectManagerDashboard /></ProtectedRoute>} />
+              <Route path="/investor-dashboard" element={<ProtectedRoute><InvestorDashboard /></ProtectedRoute>} />
+              <Route path="/client-dashboard" element={<ProtectedRoute><ClientDashboard /></ProtectedRoute>} />
+              <Route path="/portfolio" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
+              <Route path="/financial" element={<ProtectedRoute><Financial /></ProtectedRoute>} />
+              <Route path="/documents" element={<ProtectedRoute><Documents /></ProtectedRoute>} />
+              <Route path="/team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
+              <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+              <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
+              <Route path="/qa" element={<ProtectedRoute><QualityAssurance /></ProtectedRoute>} />
+              <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+              <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/media" element={<Media />} />
+              <Route path="/partners" element={<Partners />} />
+              <Route path="/investors" element={<Investors />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/investment-disclaimer" element={<InvestmentDisclaimer />} />
+              <Route path="/marketing" element={<ProtectedRoute><Marketing /></ProtectedRoute>} />
+              <Route path="/traffic-analytics" element={<ProtectedRoute><TrafficAnalytics /></ProtectedRoute>} />
+              <Route path="/opportunities" element={<ProtectedRoute><Opportunities /></ProtectedRoute>} />
+              <Route path="/agreements" element={<ProtectedRoute><ProjectAgreements /></ProtectedRoute>} />
+              <Route path="/project-management" element={
+                <PermissionBasedRoute resource="projects" permission="view">
+                  <ProjectManagement />
+                </PermissionBasedRoute>
+              } />
+              {/* Admin Routes */}
+              <Route path="/admin/users" element={
+                <PermissionBasedRoute resource="users" permission="view">
+                  <AdminUsers />
+                </PermissionBasedRoute>
+              } />
+              <Route path="/admin/detailed-users" element={
+                <PermissionBasedRoute resource="users" permission="view">
+                  <AdminDetailedUsers />
+                </PermissionBasedRoute>
+              } />
+              <Route path="/admin/investors" element={
+                <PermissionBasedRoute resource="users" permission="view">
+                  <AdminInvestors />
+                </PermissionBasedRoute>
+              } />
+              <Route path="/admin/properties" element={
+                <PermissionBasedRoute resource="properties" permission="edit">
+                  <AdminProperties />
+                </PermissionBasedRoute>
+              } />
+              <Route path="/admin/system-settings" element={
+                <PermissionBasedRoute resource="system" permission="edit">
+                  <AdminSystemSettings />
+                </PermissionBasedRoute>
+              } />
+              <Route path="/admin/system" element={
+                <PermissionBasedRoute resource="system" permission="view">
+                  <AdminSystem />
+                </PermissionBasedRoute>
+              } />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </TooltipProvider>
         </AuthProvider>
       </ThemeProvider>
