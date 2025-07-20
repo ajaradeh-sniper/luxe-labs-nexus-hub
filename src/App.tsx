@@ -48,6 +48,14 @@ import ProjectAgreements from "./pages/ProjectAgreements";
 import ProjectManagement from "./pages/ProjectManagement";
 import Auth from "./pages/Auth";
 
+// New feature components
+import { CalendarManagement } from "./components/calendar/CalendarManagement";
+import { ContactManagement } from "./components/crm/ContactManagement";
+import { FinancialReports } from "./components/analytics/FinancialReports";
+import { MarketingTools } from "./components/marketing/MarketingTools";
+import { MessagingSystem } from "./components/messaging/MessagingSystem";
+import { NotificationSettings } from "./components/settings/NotificationSettings";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -127,6 +135,15 @@ const App = () => (
                   <AdminSystem />
                 </PermissionBasedRoute>
               } />
+              
+              {/* New Feature Routes */}
+              <Route path="/calendar" element={<ProtectedRoute><CalendarManagement /></ProtectedRoute>} />
+              <Route path="/crm" element={<ProtectedRoute><ContactManagement /></ProtectedRoute>} />
+              <Route path="/reports" element={<ProtectedRoute><FinancialReports /></ProtectedRoute>} />
+              <Route path="/marketing-tools" element={<ProtectedRoute><MarketingTools /></ProtectedRoute>} />
+              <Route path="/messaging" element={<ProtectedRoute><MessagingSystem /></ProtectedRoute>} />
+              <Route path="/notification-settings" element={<ProtectedRoute><NotificationSettings /></ProtectedRoute>} />
+              
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

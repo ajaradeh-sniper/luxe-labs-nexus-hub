@@ -14,10 +14,27 @@ import {
   DollarSign,
   CheckCircle,
   Target,
-  Globe
+  Globe,
+  Calendar,
+  LogOut
 } from "lucide-react"
 import { NavLink, useLocation } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
+
+// Logout button component to handle auth context properly
+function LogoutButton({ collapsed }: { collapsed: boolean }) {
+  const { logout } = useAuth();
+  
+  return (
+    <SidebarMenuButton 
+      onClick={logout}
+      className="w-full text-destructive hover:text-destructive hover:bg-destructive/10"
+    >
+      <LogOut className="h-4 w-4" />
+      {!collapsed && <span>Logout</span>}
+    </SidebarMenuButton>
+  );
+}
 
 import {
   Sidebar,
@@ -69,6 +86,11 @@ const getNavigationItems = (userRole: string) => {
     { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'lawyer', 'client', 'project_manager', 'real_estate_agent', 'partner'] },
     { title: "Team", url: "/team", icon: Users, roles: ['administrator', 'project_manager', 'vendor_manager'] },
     { title: "QA", url: "/qa", icon: CheckCircle, roles: ['administrator', 'project_manager', 'head_of_design'] },
+    { title: "Calendar", url: "/calendar", icon: Bell, roles: ['all'] },
+    { title: "CRM", url: "/crm", icon: Users, roles: ['administrator', 'real_estate_director', 'real_estate_agent'] },
+    { title: "Reports", url: "/reports", icon: BarChart3, roles: ['administrator', 'finance_lead', 'project_manager', 'real_estate_director'] },
+    { title: "Marketing Tools", url: "/marketing-tools", icon: Target, roles: ['administrator', 'marketing_lead'] },
+    { title: "Messaging", url: "/messaging", icon: MessageSquare, roles: ['all'] },
     { title: "Messages", url: "/messages", icon: MessageSquare, roles: ['all'] },
     { title: "Notifications", url: "/notifications", icon: Bell, roles: ['all'] }
   ];
@@ -145,6 +167,27 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {/* User actions */}
+        <div className="mt-auto border-t border-border p-4">
+          {user && (
+            <div className="space-y-2">
+              {!collapsed && (
+                <div className="text-xs text-muted-foreground">
+                  <p className="font-medium">{user.name}</p>
+                  <p className="capitalize">{user.role.replace('_', ' ')}</p>
+                </div>
+              )}
+              <SidebarMenuButton asChild>
+                <NavLink to="/notification-settings" className="w-full">
+                  <Settings className="h-4 w-4" />
+                  {!collapsed && <span>Settings</span>}
+                </NavLink>
+              </SidebarMenuButton>
+              <LogoutButton collapsed={collapsed} />
+            </div>
+          )}
+        </div>
       </SidebarContent>
     </Sidebar>
   )

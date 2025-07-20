@@ -56,12 +56,17 @@ export function Navigation() {
           <ThemeToggle />
           <LanguageSwitcher />
           {user ? (
-            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground luxury-shadow">
-              <Link to="/dashboard">
-                <LayoutDashboard className="h-5 w-5 mr-2" />
-                {t('navigation.dashboard')}
-              </Link>
-            </Button>
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-muted-foreground">
+                Welcome, {user.name}
+              </span>
+              <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground luxury-shadow">
+                <Link to="/dashboard">
+                  <LayoutDashboard className="h-5 w-5 mr-2" />
+                  {t('navigation.dashboard')}
+                </Link>
+              </Button>
+            </div>
           ) : (
             <Button asChild variant="luxury" className="luxury-shadow">
               <Link to="/auth">
