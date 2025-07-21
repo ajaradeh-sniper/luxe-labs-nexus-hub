@@ -7,7 +7,7 @@ import { Progress } from '@/components/ui/progress'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { supabase } from '@/integrations/supabase/client'
-import { LoadingSpinner } from '@/components/LoadingSpinner'
+import { LoadingOverlay } from '@/components/LoadingSpinner'
 import { useToast } from '@/hooks/use-toast'
 import { 
   Briefcase,
@@ -115,7 +115,7 @@ export function ProjectManagement() {
   }
 
   if (loading) {
-    return <LoadingSpinner isLoading={true} loadingText="Loading projects..." />
+    return <LoadingOverlay isLoading={true} loadingText="Loading projects..."><div /></LoadingOverlay>
   }
 
   return (

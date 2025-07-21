@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { supabase } from '@/integrations/supabase/client'
-import { LoadingSpinner } from '@/components/LoadingSpinner'
+import { LoadingOverlay } from '@/components/LoadingSpinner'
 import { useToast } from '@/hooks/use-toast'
 import { 
   Building2, 
@@ -26,17 +26,17 @@ import {
 interface Property {
   id: string
   title: string
-  description: string
+  description: string | null
   property_type: string
   location: string
-  address: string
+  address: string | null
   price: number
-  area_sqft: number
-  bedrooms: number
-  bathrooms: number
+  area_sqft: number | null
+  bedrooms: number | null
+  bathrooms: number | null
   status: string
-  features: string[]
-  images: string[]
+  features: any
+  images: any
   created_at: string
 }
 
@@ -102,7 +102,7 @@ export function PropertyManagement() {
   }
 
   if (loading) {
-    return <LoadingSpinner isLoading={true} loadingText="Loading properties..." />
+    return <LoadingOverlay isLoading={true} loadingText="Loading properties..."><div /></LoadingOverlay>
   }
 
   return (
