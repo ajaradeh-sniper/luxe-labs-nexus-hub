@@ -1,235 +1,103 @@
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from 'react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { Input } from '@/components/ui/input'
+import { useRealTime } from '@/components/realtime/RealTimeProvider'
 import { 
-  Wifi, 
-  Users, 
-  MessageCircle, 
-  Bell, 
-  Activity, 
-  Zap,
-  Eye,
-  Clock
-} from "lucide-react"
+  Users,
+  MessageSquare,
+  Wifi,
+  WifiOff,
+  Send,
+  Circle
+} from 'lucide-react'
 
-interface RealTimeUpdate {
-  id: string
-  type: 'message' | 'activity' | 'notification' | 'system'
-  title: string
-  message: string
-  timestamp: Date
-  user?: string
-  read: boolean
-}
+export function RealTimeFeatures() {
+  const { onlineUsers, isConnected, joinRoom, leaveRoom, sendMessage, messages } = useRealTime()
+  const [currentRoom, setCurrentRoom] = useState<string>('')
+  const [messageText, setMessageText] = useState('')
 
-const RealTimeFeatures = () => {
-  const [isConnected, setIsConnected] = useState(true)
-  const [activeUsers, setActiveUsers] = useState(12)
-  const [updates, setUpdates] = useState<RealTimeUpdate[]>([
-    {
-      id: "1",
-      type: "message",
-      title: "New Team Message",
-      message: "Elena Rodriguez posted in Marina Bay project channel",
-      timestamp: new Date(Date.now() - 2 * 60 * 1000),
-      user: "Elena Rodriguez",
-      read: false
-    },
-    {
-      id: "2",
-      type: "activity",
-      title: "Project Update",
-      message: "Marina Bay project progress updated to 67%",
-      timestamp: new Date(Date.now() - 5 * 60 * 1000),
-      user: "System",
-      read: false
-    },
-    {
-      id: "3",
-      type: "notification",
-      title: "Document Approved",
-      message: "Design blueprints approved by Michael Chen",
-      timestamp: new Date(Date.now() - 10 * 60 * 1000),
-      user: "Michael Chen",
-      read: true
-    }
-  ])
-
-  const [onlineUsers] = useState([
-    { name: "Elena Rodriguez", role: "Project Manager", status: "active" },
-    { name: "Michael Chen", role: "Lead Designer", status: "active" },
-    { name: "Sarah Johnson", role: "Operations Manager", status: "idle" },
-    { name: "David Kim", role: "Financial Analyst", status: "active" },
-    { name: "Fatima Al-Zahra", role: "Legal Advisor", status: "busy" }
-  ])
-
-  // Simulate real-time updates
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const updateTypes = ['message', 'activity', 'notification', 'system'] as const
-      const randomType = updateTypes[Math.floor(Math.random() * updateTypes.length)]
-      
-      const newUpdate: RealTimeUpdate = {
-        id: Date.now().toString(),
-        type: randomType,
-        title: getRandomTitle(randomType),
-        message: getRandomMessage(randomType),
-        timestamp: new Date(),
-        user: getRandomUser(),
-        read: false
-      }
-
-      setUpdates(prev => [newUpdate, ...prev.slice(0, 19)]) // Keep last 20 updates
-      
-      // Simulate connection status changes
-      if (Math.random() > 0.95) {
-        setIsConnected(false)
-        setTimeout(() => setIsConnected(true), 2000)
-      }
-
-      // Simulate active user count changes
-      setActiveUsers(prev => prev + (Math.random() > 0.5 ? 1 : -1))
-    }, 15000) // Update every 15 seconds
-
-    return () => clearInterval(interval)
-  }, [])
-
-  const getRandomTitle = (type: RealTimeUpdate['type']) => {
-    const titles = {
-      message: ["New Team Message", "Direct Message", "Channel Update"],
-      activity: ["Project Update", "Task Completed", "Milestone Reached"],
-      notification: ["Document Approved", "Meeting Scheduled", "Deadline Reminder"],
-      system: ["Backup Completed", "System Update", "Workflow Triggered"]
-    }
-    const typeTitle = titles[type]
-    return typeTitle[Math.floor(Math.random() * typeTitle.length)]
-  }
-
-  const getRandomMessage = (type: RealTimeUpdate['type']) => {
-    const messages = {
-      message: ["New message in project channel", "Direct message received", "Team announcement posted"],
-      activity: ["Project progress updated", "New task assigned", "Document uploaded"],
-      notification: ["Approval request pending", "Meeting in 30 minutes", "Review deadline approaching"],
-      system: ["Automated backup completed", "System maintenance scheduled", "New workflow executed"]
-    }
-    const typeMessages = messages[type]
-    return typeMessages[Math.floor(Math.random() * typeMessages.length)]
-  }
-
-  const getRandomUser = () => {
-    const users = ["Elena Rodriguez", "Michael Chen", "Sarah Johnson", "David Kim", "System"]
-    return users[Math.floor(Math.random() * users.length)]
-  }
-
-  const getUpdateIcon = (type: RealTimeUpdate['type']) => {
-    switch (type) {
-      case 'message': return <MessageCircle className="h-4 w-4 text-blue-500" />
-      case 'activity': return <Activity className="h-4 w-4 text-primary" />
-      case 'notification': return <Bell className="h-4 w-4 text-warning" />
-      case 'system': return <Zap className="h-4 w-4 text-success" />
+  const handleJoinRoom = () => {
+    if (currentRoom.trim()) {
+      joinRoom(currentRoom)
     }
   }
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active': return 'bg-success'
-      case 'idle': return 'bg-warning' 
-      case 'busy': return 'bg-destructive'
-      default: return 'bg-muted-foreground'
+  const handleSendMessage = () => {
+    if (messageText.trim()) {
+      sendMessage({
+        text: messageText,
+        type: 'chat'
+      })
+      setMessageText('')
     }
   }
 
-  const formatTimeAgo = (timestamp: Date) => {
-    const now = new Date()
-    const diffMs = now.getTime() - timestamp.getTime()
-    const diffMins = Math.floor(diffMs / 60000)
-    
-    if (diffMins < 1) return 'just now'
-    if (diffMins < 60) return `${diffMins}m ago`
-    
-    const diffHours = Math.floor(diffMins / 60)
-    if (diffHours < 24) return `${diffHours}h ago`
-    
-    return timestamp.toLocaleDateString()
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSendMessage()
+    }
   }
 
   return (
     <div className="space-y-6">
-      {/* Connection Status */}
-      <Card>
-        <CardContent className="p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-success' : 'bg-destructive'} ${isConnected ? 'animate-pulse' : ''}`} />
-              <span className="font-medium">
-                {isConnected ? 'Connected' : 'Reconnecting...'}
-              </span>
-              <Badge variant="secondary">
-                <Wifi className="mr-1 h-3 w-3" />
-                Real-time
-              </Badge>
-            </div>
-            
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <Users className="h-4 w-4" />
-                <span>{activeUsers} online</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Eye className="h-4 w-4" />
-                <span>{updates.filter(u => !u.read).length} unread</span>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-foreground">Real-Time Collaboration</h2>
+        <div className="flex items-center gap-2">
+          {isConnected ? (
+            <Badge className="bg-success/10 text-success border-success/20">
+              <Circle className="w-2 h-2 mr-1 fill-current" />
+              Connected
+            </Badge>
+          ) : (
+            <Badge variant="outline">
+              <Circle className="w-2 h-2 mr-1" />
+              Disconnected
+            </Badge>
+          )}
+        </div>
+      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Real-Time Updates Feed */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Room Connection */}
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="flex items-center gap-2">
-                <Activity className="h-5 w-5" />
-                Live Updates
-              </CardTitle>
-              <Button variant="outline" size="sm">
-                Mark All Read
-              </Button>
-            </div>
+            <CardTitle className="flex items-center gap-2">
+              {isConnected ? <Wifi className="h-5 w-5" /> : <WifiOff className="h-5 w-5" />}
+              Room Connection
+            </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-3 max-h-96 overflow-y-auto">
-              {updates.map((update) => (
-                <div 
-                  key={update.id} 
-                  className={`p-3 border border-border rounded-lg transition-colors ${
-                    !update.read ? 'bg-primary/5 border-primary/20' : 'hover:bg-muted/50'
-                  }`}
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Input
+                placeholder="Enter room ID..."
+                value={currentRoom}
+                onChange={(e) => setCurrentRoom(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleJoinRoom()}
+              />
+              <div className="flex gap-2">
+                <Button 
+                  onClick={handleJoinRoom} 
+                  disabled={!currentRoom.trim()}
+                  className="flex-1"
                 >
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 mt-0.5">
-                      {getUpdateIcon(update.type)}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-1">
-                        <h3 className="text-sm font-medium">{update.title}</h3>
-                        {!update.read && (
-                          <div className="w-2 h-2 bg-primary rounded-full" />
-                        )}
-                      </div>
-                      <p className="text-sm text-muted-foreground">{update.message}</p>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
-                        <span>{update.user}</span>
-                        <span>•</span>
-                        <span>{formatTimeAgo(update.timestamp)}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                  Join Room
+                </Button>
+                <Button 
+                  variant="outline" 
+                  onClick={leaveRoom}
+                  disabled={!isConnected}
+                >
+                  Leave
+                </Button>
+              </div>
             </div>
+            {isConnected && (
+              <div className="text-sm text-muted-foreground">
+                Connected to room: <span className="font-medium">{currentRoom}</span>
+              </div>
+            )}
           </CardContent>
         </Card>
 
@@ -238,48 +106,103 @@ const RealTimeFeatures = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Users className="h-5 w-5" />
-              Team Status
+              Online Users ({onlineUsers.length})
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {onlineUsers.map((user, index) => (
-                <div key={index} className="flex items-center gap-3 p-3 border border-border rounded-lg">
-                  <div className="relative">
-                    <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center">
-                      <span className="text-sm font-medium">
-                        {user.name.split(' ').map(n => n[0]).join('')}
-                      </span>
-                    </div>
-                    <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-background ${getStatusColor(user.status)}`} />
+            <div className="space-y-2">
+              {onlineUsers.length > 0 ? (
+                onlineUsers.map((user, index) => (
+                  <div key={index} className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
+                    <Circle className="w-2 h-2 fill-success text-success" />
+                    <span className="text-sm">{user}</span>
                   </div>
-                  <div className="flex-1">
-                    <p className="font-medium">{user.name}</p>
-                    <p className="text-sm text-muted-foreground">{user.role}</p>
-                  </div>
-                  <Badge variant="secondary" className="capitalize">
-                    {user.status}
-                  </Badge>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p className="text-sm text-muted-foreground text-center py-4">
+                  No users online
+                </p>
+              )}
             </div>
+          </CardContent>
+        </Card>
 
-            <div className="mt-4 p-3 bg-muted/50 rounded-lg">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Last activity sync:</span>
-                <span className="font-medium">
-                  {new Date().toLocaleTimeString('en-US', { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                  })}
-                </span>
-              </div>
+        {/* Live Chat */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <MessageSquare className="h-5 w-5" />
+              Live Chat
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-48 border border-border rounded-lg p-3 overflow-y-auto bg-muted/10">
+              {messages.length > 0 ? (
+                <div className="space-y-2">
+                  {messages.map((message, index) => (
+                    <div key={index} className="text-sm">
+                      <span className="font-medium text-primary">{message.user_id}:</span>
+                      <span className="ml-2">{message.text}</span>
+                      <div className="text-xs text-muted-foreground">
+                        {new Date(message.timestamp).toLocaleTimeString()}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-sm text-muted-foreground">No messages yet</p>
+                </div>
+              )}
+            </div>
+            <div className="flex gap-2">
+              <Input
+                placeholder="Type a message..."
+                value={messageText}
+                onChange={(e) => setMessageText(e.target.value)}
+                onKeyPress={handleKeyPress}
+                disabled={!isConnected}
+              />
+              <Button 
+                onClick={handleSendMessage} 
+                disabled={!isConnected || !messageText.trim()}
+                size="sm"
+              >
+                <Send className="h-4 w-4" />
+              </Button>
             </div>
           </CardContent>
         </Card>
       </div>
+
+      {/* Real-time Data Updates */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Real-time Data Updates</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-4 bg-muted/20 rounded-lg">
+              <h4 className="font-medium mb-2">Property Updates</h4>
+              <p className="text-sm text-muted-foreground">
+                Real-time notifications when properties are added, updated, or sold
+              </p>
+            </div>
+            <div className="p-4 bg-muted/20 rounded-lg">
+              <h4 className="font-medium mb-2">Project Progress</h4>
+              <p className="text-sm text-muted-foreground">
+                Live updates on project milestones and completion status
+              </p>
+            </div>
+            <div className="p-4 bg-muted/20 rounded-lg">
+              <h4 className="font-medium mb-2">Market Changes</h4>
+              <p className="text-sm text-muted-foreground">
+                Instant alerts on market trends and investment opportunities
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
-
-export default RealTimeFeatures

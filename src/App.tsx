@@ -56,6 +56,7 @@ import { FinancialReports } from "./components/analytics/FinancialReports";
 import { MarketingTools } from "./components/marketing/MarketingTools";
 import { MessagingSystem } from "./components/messaging/MessagingSystem";
 import { NotificationSettings } from "./components/settings/NotificationSettings";
+import { RealTimeFeatures } from "./components/RealTimeFeatures";
 
 const queryClient = new QueryClient();
 
@@ -79,9 +80,9 @@ const App = () => (
               <Route path="/investor-dashboard" element={<ProtectedRoute><InvestorDashboard /></ProtectedRoute>} />
               <Route path="/client-dashboard" element={<ProtectedRoute><ClientDashboard /></ProtectedRoute>} />
               <Route path="/portfolio" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
-              <Route path="/financial" element={<ProtectedRoute><Financial /></ProtectedRoute>} />
-              <Route path="/documents" element={<ProtectedRoute><Documents /></ProtectedRoute>} />
-              <Route path="/team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
+          <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>} />
+          <Route path="/contacts" element={<ProtectedRoute><ContactManagement /></ProtectedRoute>} />
+              <Route path="/realtime" element={<ProtectedRoute><RealTimeFeatures /></ProtectedRoute>} />
               <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
               <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
               <Route path="/qa" element={<ProtectedRoute><QualityAssurance /></ProtectedRoute>} />
