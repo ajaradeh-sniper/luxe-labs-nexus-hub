@@ -146,9 +146,9 @@ const Auth = () => {
           <img 
             src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
             alt="Luxury Labs Logo" 
-            className="h-24 w-auto mx-auto mb-4" 
+            className="h-32 w-auto mx-auto mb-4" 
           />
-          <p className="text-muted-foreground text-lg font-montserrat">
+          <p className="text-yellow-500 text-lg font-montserrat font-medium">
             Luxury Property Transformation & Investment
           </p>
         </div>
