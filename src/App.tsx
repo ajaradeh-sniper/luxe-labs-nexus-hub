@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { PermissionBasedRoute } from "@/components/PermissionBasedRoute";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { LoadingOverlay } from "@/components/LoadingSpinner";
 import Index from "./pages/Index";
 import Properties from "./pages/Properties";
 import Projects from "./pages/Projects";

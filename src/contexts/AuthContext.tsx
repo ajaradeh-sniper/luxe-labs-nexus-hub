@@ -13,6 +13,7 @@ interface AuthContextType {
   signUp: (email: string, password: string, name: string, role?: UserRole) => Promise<{ error?: string }>;
   logout: () => Promise<void>;
   hasPermission: (resource: string, permission: Permission) => boolean;
+  isInitialized: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,6 +22,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isInitialized, setIsInitialized] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -41,6 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
         
         setLoading(false);
+        setIsInitialized(true);
       }
     );
 
@@ -51,6 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         fetchUserProfile(session.user);
       } else {
         setLoading(false);
+        setIsInitialized(true);
       }
     });
 
@@ -222,7 +226,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       login, 
       signUp, 
       logout, 
-      hasPermission 
+      hasPermission,
+      isInitialized
     }}>
       {children}
     </AuthContext.Provider>

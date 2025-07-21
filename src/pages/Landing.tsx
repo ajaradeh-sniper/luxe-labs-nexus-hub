@@ -21,7 +21,7 @@ export default function Landing() {
       <Navigation />
 
       {/* HOME - Hero Section */}
-      <section id="home" className="py-32 px-4 relative overflow-hidden min-h-screen flex items-center" style={{
+      <section id="home" className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden min-h-screen flex items-center" style={{
       backgroundImage: `url(${heroImage})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -29,76 +29,102 @@ export default function Landing() {
     }}>
         <div className="absolute inset-0 hero-overlay"></div>
         
-        <div className="container mx-auto text-center relative z-10">
+        <div className="container mx-auto text-center relative z-10 max-w-7xl">
           <div className="animate-fade-in">
             {/* Logo */}
-            <div className="mb-16">
-              <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-96 w-auto mx-auto drop-shadow-2xl" />
+            <div className="mb-8 sm:mb-12 lg:mb-16">
+              <img 
+                src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+                alt="Luxury Labs Logo" 
+                className="h-48 sm:h-64 lg:h-96 w-auto mx-auto drop-shadow-2xl animate-scale-in" 
+              />
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-playfair mb-16 drop-shadow-2xl leading-tight text-yellow-500 font-bold">Transform Strategic Premium Properties • Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair mb-8 sm:mb-12 lg:mb-16 drop-shadow-2xl leading-tight text-yellow-500 font-bold px-4 animate-fade-in">
+              Transform Strategic Premium Properties • Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets
+            </h1>
             
             {/* Three Feature Sections */}
-            <div className="grid md:grid-cols-3 gap-8 mb-12 animate-scale-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 animate-scale-in">
               <div className="group">
-                <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img src={premiumVillaSelectionImage} alt="Premium Villa Selection" className="w-full h-full object-cover" />
+                <div className="relative h-32 sm:h-40 lg:h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-all duration-500 hover:shadow-glow">
+                  <img src={premiumVillaSelectionImage} alt="Premium Villa Selection" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  <div className="absolute top-4 right-4 bg-primary/20 backdrop-blur-sm rounded-full p-2">
-                    <MapPin className="w-6 h-6 text-white" />
+                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-primary/20 backdrop-blur-sm rounded-full p-1.5 sm:p-2">
+                    <MapPin className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
                   </div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-playfair font-bold">PREMIUM SELECTION</h3>
+                  <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 text-white">
+                    <h3 className="text-sm sm:text-lg lg:text-xl font-playfair font-bold">PREMIUM SELECTION</h3>
                   </div>
                 </div>
               </div>
               
               <div className="group">
-                <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img src={beforeAfterTransformationImage} alt="Before After Transformation" className="w-full h-full object-cover" />
+                <div className="relative h-32 sm:h-40 lg:h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-all duration-500 hover:shadow-glow">
+                  <img src={beforeAfterTransformationImage} alt="Before After Transformation" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  <div className="absolute top-4 right-4 bg-primary/20 backdrop-blur-sm rounded-full p-2">
-                    <Palette className="w-6 h-6 text-white" />
+                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-primary/20 backdrop-blur-sm rounded-full p-1.5 sm:p-2">
+                    <Palette className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
                   </div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-playfair font-bold">LUXURY TRANSFORMATION</h3>
+                  <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 text-white">
+                    <h3 className="text-sm sm:text-lg lg:text-xl font-playfair font-bold">LUXURY TRANSFORMATION</h3>
                   </div>
                 </div>
               </div>
               
-              <div className="group">
-                <div className="relative h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img src={roiInvestmentImage} alt="ROI Investment Returns" className="w-full h-full object-cover" />
+              <div className="group sm:col-span-2 lg:col-span-1">
+                <div className="relative h-32 sm:h-40 lg:h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-all duration-500 hover:shadow-glow">
+                  <img src={roiInvestmentImage} alt="ROI Investment Returns" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-playfair font-bold">ROI UP TO 30%</h3>
+                  <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 text-white">
+                    <h3 className="text-sm sm:text-lg lg:text-xl font-playfair font-bold">ROI UP TO 30%</h3>
                   </div>
-                  <div className="absolute top-4 right-4 text-white">
-                    <TrendingUp className="h-8 w-8 text-green-400" />
+                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 text-white">
+                    <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-green-400" />
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-scale-in">
-              <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300">
+            {/* Enhanced CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center animate-scale-in px-4">
+              <Button asChild size="lg" className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 group">
                 <Link to="/contact">
-                  <TrendingUp className="mr-3 h-6 w-6" />
+                  <TrendingUp className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform duration-300" />
                   Invest in a Flip
+                  <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
               </Button>
-              <Button asChild size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300">
+              <Button asChild size="lg" className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 group">
                 <Link to="/contact">
-                  <Building2 className="mr-3 h-6 w-6" />
+                  <Building2 className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform duration-300" />
                   Start a Flip
+                  <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-xl px-12 py-6 font-montserrat font-semibold border-white/30 text-white hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold border-white/30 text-white hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300 backdrop-blur-sm group">
                 <Link to="/auth">
-                  <LayoutDashboard className="mr-3 h-6 w-6" />
+                  <LayoutDashboard className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform duration-300" />
                   Access Dashboard
+                  <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
               </Button>
+            </div>
+
+            {/* Trust indicators */}
+            <div className="mt-8 sm:mt-12 lg:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-white/80 animate-fade-in">
+              <div className="flex items-center gap-2">
+                <Star className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400 fill-current" />
+                <span className="text-sm sm:text-base font-montserrat">Premium Properties</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 fill-current" />
+                <span className="text-sm sm:text-base font-montserrat">Verified Returns</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Award className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" />
+                <span className="text-sm sm:text-base font-montserrat">Expert Team</span>
+              </div>
             </div>
           </div>
         </div>
