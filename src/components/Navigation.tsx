@@ -30,7 +30,7 @@ export function Navigation() {
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <div className="flex items-center">
           <img 
-            src="/lovable-uploads/4a28db7f-c64a-4b5a-9ec6-71ad24f468f6.png" 
+            src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
             alt="Luxury Labs Logo" 
             className="h-32 w-auto"
           />

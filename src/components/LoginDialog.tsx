@@ -64,9 +64,11 @@ export function LoginDialog({ trigger }: LoginDialogProps) {
       <DialogContent className="sm:max-w-md bg-background border luxury-shadow">
         <DialogHeader className="text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-12 h-12 luxury-gradient rounded-xl flex items-center justify-center luxury-shadow">
-              <Building2 className="h-6 w-6 text-primary-foreground" />
-            </div>
+            <img 
+              src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+              alt="Luxury Labs Logo" 
+              className="h-12 w-auto" 
+            />
             <div>
               <DialogTitle className="text-2xl font-playfair">Luxury Labs</DialogTitle>
               <DialogDescription className="text-primary font-montserrat text-sm">

@@ -31,9 +31,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   </Link>
                 </Button>
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center">
-                    <Building2 className="h-4 w-4 text-primary-foreground" />
-                  </div>
+                  <img 
+                    src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+                    alt="Luxury Labs Logo" 
+                    className="h-8 w-auto" 
+                  />
                   <div className="hidden md:block">
                     <h2 className="text-lg font-semibold text-foreground font-playfair">Luxury Labs Dashboard</h2>
                     <p className="text-sm text-muted-foreground font-montserrat">Manage your luxury real estate investments</p>
