@@ -11,6 +11,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { Loader2, Building2, TrendingUp, Shield, Mail, Lock, User, UserCheck } from 'lucide-react'
 import { toast } from '@/hooks/use-toast'
 import { UserRole } from '@/types/auth'
+import { Navigation } from '@/components/Navigation'
 
 const Auth = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -139,7 +140,9 @@ const Auth = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-accent/10 to-background flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-background via-accent/10 to-background">
+      <Navigation />
+      <div className="flex items-center justify-center p-4 pt-24">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
@@ -368,6 +371,7 @@ const Auth = () => {
             By continuing, you agree to our Terms of Service and Privacy Policy
           </p>
         </div>
+      </div>
       </div>
     </div>
   )
