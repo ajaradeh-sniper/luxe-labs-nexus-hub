@@ -143,14 +143,13 @@ const Auth = () => {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-luxury">
-            <Building2 className="h-8 w-8 text-primary-foreground" />
-          </div>
-          <h1 className="text-3xl font-bold bg-gradient-luxury bg-clip-text text-transparent">
-            Luxury Labs
-          </h1>
-          <p className="text-muted-foreground mt-2">
-            Transform luxury real estate investments
+          <img 
+            src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+            alt="Luxury Labs Logo" 
+            className="h-24 w-auto mx-auto mb-4" 
+          />
+          <p className="text-muted-foreground text-lg font-montserrat">
+            Luxury Property Transformation & Investment
           </p>
         </div>
 
