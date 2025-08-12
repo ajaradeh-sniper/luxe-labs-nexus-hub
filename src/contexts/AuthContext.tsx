@@ -29,6 +29,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log('AUTH EVENT:', event, 'SESSION:', !!session);
         log.info(`Auth state changed: ${event}`, 'AUTH', { 
           hasSession: !!session, 
           userId: session?.user?.id 
@@ -37,8 +38,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setSession(session);
         
         if (session?.user) {
+          console.log('FETCHING PROFILE FOR USER:', session.user.id);
           await fetchUserProfile(session.user);
         } else {
+          console.log('NO SESSION - CLEARING USER');
           setUser(null);
         }
         
@@ -48,9 +51,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     );
 
     // Check for existing session
+    console.log('CHECKING FOR EXISTING SESSION...');
     supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log('EXISTING SESSION:', !!session);
       setSession(session);
       if (session?.user) {
+        console.log('EXISTING SESSION - FETCHING PROFILE');
         fetchUserProfile(session.user);
       } else {
         setLoading(false);
