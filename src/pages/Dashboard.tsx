@@ -17,7 +17,8 @@ import {
   Target,
   FileText,
   MessageSquare,
-  Bell
+  Bell,
+  Settings
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { DashboardStats } from '@/components/DashboardStats';
