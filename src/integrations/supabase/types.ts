@@ -717,6 +717,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_user_role: {
+        Args: { user_uuid?: string }
+        Returns: string
+      }
+      is_admin: {
+        Args: { user_uuid?: string }
+        Returns: boolean
+      }
       promote_to_admin: {
         Args: { user_email: string }
         Returns: undefined
