@@ -43,6 +43,7 @@ import DetailedUsers from "./pages/admin/DetailedUsers"
 import AdminInvestors from "./pages/admin/Investors"
 import AdminProperties from "./pages/admin/Properties"
 import AdminSystemSettings from "./pages/admin/SystemSettings"
+import AdminSystemHealth from "./pages/admin/SystemHealth"
 
 // Import public pages
 import About from "./pages/About"
@@ -152,6 +153,12 @@ function App() {
               <DashboardLayout>
                 <AdminSystemSettings />
               </DashboardLayout>
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/admin/system-health" element={
+            <SmartProtectedRoute requiredRoles={['administrator']}>
+              <AdminSystemHealth />
             </SmartProtectedRoute>
           } />
           

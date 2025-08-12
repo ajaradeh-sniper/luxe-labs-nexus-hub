@@ -98,28 +98,67 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log('AuthProvider: Fetching profile for user:', supabaseUser.id);
       log.debug('Fetching user profile', 'AUTH', { userId: supabaseUser.id });
       
-      const { data: profile, error } = await supabase
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Profile fetch timeout')), 8000);
+      });
+
+      const fetchPromise = supabase
         .from('profiles')
         .select('*')
         .eq('user_id', supabaseUser.id)
-        .single();
+        .maybeSingle(); // Use maybeSingle to handle no data gracefully
+
+      const { data: profile, error } = await Promise.race([fetchPromise, timeoutPromise]) as any;
 
       if (error) {
+        if (error.message === 'Profile fetch timeout') {
+          console.error('AuthProvider: Profile fetch timed out');
+          log.error('Profile fetch timeout', 'AUTH', { userId: supabaseUser.id });
+          const userData = {
+            id: supabaseUser.id,
+            email: supabaseUser.email || '',
+            name: supabaseUser.user_metadata?.name || supabaseUser.email || 'User',
+            role: 'client' as UserRole,
+            avatar: supabaseUser.user_metadata?.avatar_url
+          };
+          setUser(userData);
+          return;
+        }
+        
         console.error('AuthProvider: Error fetching profile:', error);
         log.error('Error fetching profile', 'AUTH', { error: error.message, userId: supabaseUser.id });
-        
-        // If profile doesn't exist, create one
-        if (error.code === 'PGRST116') {
-          console.log('AuthProvider: Profile not found, creating default profile...');
+        const userData = {
+          id: supabaseUser.id,
+          email: supabaseUser.email || '',
+          name: supabaseUser.user_metadata?.name || supabaseUser.email || 'User',
+          role: 'client' as UserRole,
+          avatar: supabaseUser.user_metadata?.avatar_url
+        };
+        setUser(userData);
+        return;
+      }
+
+      if (!profile) {
+        console.log('AuthProvider: Profile not found, creating default profile...');
+        try {
+          // Check if this is the first user
+          const { count } = await supabase
+            .from('profiles')
+            .select('*', { count: 'exact', head: true });
+          
+          const isFirstUser = count === 0;
+          const role = isFirstUser ? 'administrator' : 'client';
+          
           const { data: newProfile, error: createError } = await supabase
             .from('profiles')
             .insert({
               user_id: supabaseUser.id,
               name: supabaseUser.user_metadata?.name || supabaseUser.email || 'User',
-              role: 'administrator' // First user gets admin role
+              role: role
             })
             .select()
-            .single();
+            .maybeSingle();
 
           if (createError) {
             console.error('AuthProvider: Error creating profile:', createError);
@@ -149,12 +188,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               name: userData.name 
             });
           }
-        } else {
+        } catch (createError) {
+          console.error('AuthProvider: Error in profile creation:', createError);
           toast({
             title: "Error",
-            description: "Failed to load user profile",
+            description: "Failed to create user profile",
             variant: "destructive"
           });
+          const fallbackUserData = {
+            id: supabaseUser.id,
+            email: supabaseUser.email || '',
+            name: supabaseUser.user_metadata?.name || supabaseUser.email || 'User',
+            role: 'client' as UserRole,
+            avatar: supabaseUser.user_metadata?.avatar_url
+          };
+          setUser(fallbackUserData);
         }
         setLoading(false);
         setIsInitialized(true);
