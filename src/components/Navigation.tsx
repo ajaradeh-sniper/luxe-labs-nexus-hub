@@ -1,25 +1,27 @@
+
 import { Building2, LayoutDashboard } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Link, useLocation } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
-import { LoginDialog } from "@/components/LoginDialog"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { useTranslation } from 'react-i18next'
-import { useContext } from 'react'
 
 export function Navigation() {
-  // Try to use auth safely
+  const location = useLocation()
+  const { t } = useTranslation()
+  
+  // Safely access auth context
   let user = null;
+  let isAuthAvailable = true;
+  
   try {
     const auth = useAuth();
     user = auth.user;
   } catch (error) {
-    console.warn('Navigation component rendered outside AuthProvider, continuing without auth');
+    console.warn('Navigation: AuthProvider not available, continuing without auth features');
+    isAuthAvailable = false;
   }
-  
-  const location = useLocation()
-  const { t } = useTranslation()
   
   const navItems = [
     { path: "/", label: t('navigation.home') },
@@ -64,9 +66,9 @@ export function Navigation() {
         <div className="flex items-center gap-4">
           <ThemeToggle />
           <LanguageSwitcher />
-          {user ? (
+          {isAuthAvailable && user ? (
             <div className="flex items-center gap-3">
-              <span className="text-sm text-muted-foreground">
+              <span className="text-sm text-muted-foreground hidden sm:inline">
                 Welcome, {user.name}
               </span>
               <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground luxury-shadow">

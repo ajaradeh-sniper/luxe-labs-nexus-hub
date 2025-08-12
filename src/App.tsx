@@ -1,159 +1,301 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "@/contexts/AuthContext";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { PermissionBasedRoute } from "@/components/PermissionBasedRoute";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { LoadingOverlay } from "@/components/LoadingSpinner";
-import Index from "./pages/Index";
-import Properties from "./pages/Properties";
-import Projects from "./pages/Projects";
-import Financial from "./pages/Financial";
-import Documents from "./pages/Documents";
-import Team from "./pages/Team";
-import Analytics from "./pages/Analytics";
-import Messages from "./pages/Messages";
-import QualityAssurance from "./pages/QualityAssurance";
-import Notifications from "./pages/Notifications";
-import Settings from "./pages/Settings";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact";
-import AdminUsers from "./pages/admin/Users";
-import AdminSystem from "./pages/admin/System";
-import AdminDetailedUsers from "./pages/admin/DetailedUsers";
-import AdminInvestors from "./pages/admin/Investors";
-import AdminProperties from "./pages/admin/Properties";
-import AdminSystemSettings from "./pages/admin/SystemSettings";
-import NotFound from "./pages/NotFound";
-import Landing from "./pages/Landing";
-import Media from "./pages/Media";
-import Partners from "./pages/Partners";
-import Investors from "./pages/Investors";
-import ProjectDetail from "./pages/ProjectDetail";
-import ProjectManagerDashboard from "./pages/ProjectManagerDashboard";
-import InvestorDashboard from "./pages/InvestorDashboard";
-import ClientDashboard from "./pages/ClientDashboard";
-import DashboardProjects from "./pages/DashboardProjects";
-import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
-import TermsOfService from "./pages/legal/TermsOfService";
-import InvestmentDisclaimer from "./pages/legal/InvestmentDisclaimer";
-import Marketing from "./pages/Marketing";
-import TrafficAnalytics from "./pages/TrafficAnalytics";
-import Opportunities from "./pages/Opportunities";
-import ProjectAgreements from "./pages/ProjectAgreements";
-import ProjectManagement from "./pages/ProjectManagement";
-import Auth from "./pages/Auth";
 
-// New feature components
-import { CalendarManagement } from "./components/calendar/CalendarManagement";
-import { ContactManagement } from "./components/crm/ContactManagement";
-import { FinancialReports } from "./components/analytics/FinancialReports";
-import { MarketingTools } from "./components/marketing/MarketingTools";
-import { MessagingSystem } from "./components/messaging/MessagingSystem";
-import { NotificationSettings } from "./components/settings/NotificationSettings";
-import { RealTimeFeatures } from "./components/RealTimeFeatures";
+import { Toaster } from "@/components/ui/toaster"
+import { Toaster as Sonner } from "@/components/ui/sonner"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { AuthProvider } from "@/contexts/AuthContext"
+import { ThemeProvider } from "@/components/ThemeProvider"
+import { AccessibilityProvider } from "@/components/AccessibilityProvider"
+import { RealTimeProvider } from "@/components/realtime/RealTimeProvider"
+import Index from "./pages/Index"
+import Auth from "./pages/Auth"
+import Dashboard from "./pages/Dashboard"
+import { SmartProtectedRoute } from "@/components/SmartProtectedRoute"
+import { DashboardLayout } from "@/components/DashboardLayout"
+import { ErrorBoundary } from "@/components/ErrorBoundary"
 
-const queryClient = new QueryClient();
+// Import all dashboard pages
+import Properties from "./pages/Properties"
+import Financial from "./pages/Financial"
+import Documents from "./pages/Documents"
+import Team from "./pages/Team"
+import QualityAssurance from "./pages/QualityAssurance"
+import Analytics from "./pages/Analytics"
+import Marketing from "./pages/Marketing"
+import TrafficAnalytics from "./pages/TrafficAnalytics"
+import Opportunities from "./pages/Opportunities"
+import ProjectAgreements from "./pages/ProjectAgreements"
+import ProjectManagement from "./pages/ProjectManagement"
+import Messages from "./pages/Messages"
+import Notifications from "./pages/Notifications"
+import Settings from "./pages/Settings"
+import DashboardProjects from "./pages/DashboardProjects"
 
-const App = () => (
-  <ErrorBoundary>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="system" storageKey="luxury-labs-theme">
-        <AuthProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/dashboard" element={<ProtectedRoute><Index /></ProtectedRoute>} />
-              <Route path="/properties" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/dashboard/projects" element={<ProtectedRoute><DashboardProjects /></ProtectedRoute>} />
-              <Route path="/projects/:id" element={<ProtectedRoute><ProjectDetail /></ProtectedRoute>} />
-              <Route path="/pm-dashboard" element={<ProtectedRoute><ProjectManagerDashboard /></ProtectedRoute>} />
-              <Route path="/investor-dashboard" element={<ProtectedRoute><InvestorDashboard /></ProtectedRoute>} />
-              <Route path="/client-dashboard" element={<ProtectedRoute><ClientDashboard /></ProtectedRoute>} />
-              <Route path="/portfolio" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
-          <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>} />
-          <Route path="/contacts" element={<ProtectedRoute><ContactManagement /></ProtectedRoute>} />
-              <Route path="/realtime" element={<ProtectedRoute><RealTimeFeatures /></ProtectedRoute>} />
-              <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
-              <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
-              <Route path="/qa" element={<ProtectedRoute><QualityAssurance /></ProtectedRoute>} />
-              <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
-              <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/media" element={<Media />} />
-              <Route path="/partners" element={<Partners />} />
-              <Route path="/investors" element={<Investors />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
-              <Route path="/investment-disclaimer" element={<InvestmentDisclaimer />} />
-              <Route path="/marketing" element={<ProtectedRoute><Marketing /></ProtectedRoute>} />
-              <Route path="/traffic-analytics" element={<ProtectedRoute><TrafficAnalytics /></ProtectedRoute>} />
-              <Route path="/opportunities" element={<ProtectedRoute><Opportunities /></ProtectedRoute>} />
-              <Route path="/agreements" element={<ProtectedRoute><ProjectAgreements /></ProtectedRoute>} />
-              <Route path="/project-management" element={
-                <PermissionBasedRoute resource="projects" permission="view">
-                  <ProjectManagement />
-                </PermissionBasedRoute>
-              } />
-              {/* Admin Routes */}
-              <Route path="/admin/users" element={
-                <PermissionBasedRoute resource="users" permission="view">
-                  <AdminUsers />
-                </PermissionBasedRoute>
-              } />
-              <Route path="/admin/detailed-users" element={
-                <PermissionBasedRoute resource="users" permission="view">
-                  <AdminDetailedUsers />
-                </PermissionBasedRoute>
-              } />
-              <Route path="/admin/investors" element={
-                <PermissionBasedRoute resource="users" permission="view">
-                  <AdminInvestors />
-                </PermissionBasedRoute>
-              } />
-              <Route path="/admin/properties" element={
-                <PermissionBasedRoute resource="properties" permission="edit">
-                  <AdminProperties />
-                </PermissionBasedRoute>
-              } />
-              <Route path="/admin/system-settings" element={
-                <PermissionBasedRoute resource="system" permission="edit">
-                  <AdminSystemSettings />
-                </PermissionBasedRoute>
-              } />
-              <Route path="/admin/system" element={
-                <PermissionBasedRoute resource="system" permission="view">
-                  <AdminSystem />
-                </PermissionBasedRoute>
-              } />
-              
-              {/* New Feature Routes */}
-              <Route path="/calendar" element={<ProtectedRoute><CalendarManagement /></ProtectedRoute>} />
-              <Route path="/crm" element={<ProtectedRoute><ContactManagement /></ProtectedRoute>} />
-              <Route path="/reports" element={<ProtectedRoute><FinancialReports /></ProtectedRoute>} />
-              <Route path="/marketing-tools" element={<ProtectedRoute><MarketingTools /></ProtectedRoute>} />
-              <Route path="/messaging" element={<ProtectedRoute><MessagingSystem /></ProtectedRoute>} />
-              <Route path="/notification-settings" element={<ProtectedRoute><NotificationSettings /></ProtectedRoute>} />
-              
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </TooltipProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
-  </ErrorBoundary>
-);
+// Import role-specific dashboards
+import ProjectManagerDashboard from "./pages/ProjectManagerDashboard"
+import InvestorDashboard from "./pages/InvestorDashboard"
+import ClientDashboard from "./pages/ClientDashboard"
 
-export default App;
+// Import admin pages
+import SystemOverview from "./pages/admin/System"
+import DetailedUsers from "./pages/admin/DetailedUsers"
+import AdminInvestors from "./pages/admin/Investors"
+import AdminProperties from "./pages/admin/Properties"
+import AdminSystemSettings from "./pages/admin/SystemSettings"
+
+// Import public pages
+import About from "./pages/About"
+import Services from "./pages/Services"
+import Projects from "./pages/Projects"
+import Media from "./pages/Media"
+import Partners from "./pages/Partners"
+import Investors from "./pages/Investors"
+import Contact from "./pages/Contact"
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 1,
+    },
+  },
+})
+
+function App() {
+  return (
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+          <AccessibilityProvider>
+            <BrowserRouter>
+              <AuthProvider>
+                <RealTimeProvider>
+                  <TooltipProvider>
+                    <Routes>
+                      {/* Public Routes */}
+                      <Route path="/" element={<Index />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/services" element={<Services />} />
+                      <Route path="/projects" element={<Projects />} />
+                      <Route path="/media" element={<Media />} />
+                      <Route path="/partners" element={<Partners />} />
+                      <Route path="/investors" element={<Investors />} />
+                      <Route path="/contact" element={<Contact />} />
+                      
+                      {/* Auth Route */}
+                      <Route path="/auth" element={<Auth />} />
+                      
+                      {/* Protected Dashboard Routes */}
+                      <Route path="/dashboard" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Dashboard />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      {/* Role-Specific Dashboards */}
+                      <Route path="/pm-dashboard" element={
+                        <SmartProtectedRoute requiredRoles={['project_manager', 'administrator']}>
+                          <DashboardLayout>
+                            <ProjectManagerDashboard />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/investor-dashboard" element={
+                        <SmartProtectedRoute requiredRoles={['investor', 'administrator']}>
+                          <DashboardLayout>
+                            <InvestorDashboard />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/client-dashboard" element={
+                        <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
+                          <DashboardLayout>
+                            <ClientDashboard />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      {/* Admin Routes */}
+                      <Route path="/admin/system" element={
+                        <SmartProtectedRoute requiredRoles={['administrator']}>
+                          <DashboardLayout>
+                            <SystemOverview />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/admin/detailed-users" element={
+                        <SmartProtectedRoute requiredRoles={['administrator']}>
+                          <DashboardLayout>
+                            <DetailedUsers />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/admin/investors" element={
+                        <SmartProtectedRoute requiredRoles={['administrator']}>
+                          <DashboardLayout>
+                            <AdminInvestors />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/admin/properties" element={
+                        <SmartProtectedRoute requiredRoles={['administrator']}>
+                          <DashboardLayout>
+                            <AdminProperties />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/admin/system-settings" element={
+                        <SmartProtectedRoute requiredRoles={['administrator']}>
+                          <DashboardLayout>
+                            <AdminSystemSettings />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      {/* Feature Routes */}
+                      <Route path="/properties" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Properties />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/financial" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Financial />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/documents" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Documents />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/team" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Team />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/qa" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <QualityAssurance />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/analytics" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Analytics />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/marketing" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Marketing />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/traffic-analytics" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <TrafficAnalytics />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/opportunities" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Opportunities />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/agreements" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <ProjectAgreements />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/project-management" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <ProjectManagement />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/dashboard/projects" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <DashboardProjects />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/messages" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Messages />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/notifications" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Notifications />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      <Route path="/notification-settings" element={
+                        <SmartProtectedRoute>
+                          <DashboardLayout>
+                            <Settings />
+                          </DashboardLayout>
+                        </SmartProtectedRoute>
+                      } />
+                      
+                      {/* Catch all route */}
+                      <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                    <Toaster />
+                    <Sonner />
+                  </TooltipProvider>
+                </RealTimeProvider>
+              </AuthProvider>
+            </BrowserRouter>
+          </AccessibilityProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
+  )
+}
+
+export default App

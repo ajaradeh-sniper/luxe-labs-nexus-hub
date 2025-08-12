@@ -4,6 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { User as SupabaseUser, Session } from '@supabase/supabase-js';
 import { useToast } from '@/hooks/use-toast';
 import { log } from '@/lib/logger';
+import { systemDebugger } from '@/lib/systemDebugger';
 
 interface AuthContextType {
   user: User | null;
@@ -26,10 +27,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
 
   useEffect(() => {
+    console.log('AuthProvider: Initializing...');
+    
+    // Run system diagnostic in development
+    if (import.meta.env.DEV) {
+      systemDebugger.runFullDiagnostic();
+    }
+    
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log('AUTH EVENT:', event, 'SESSION:', !!session);
+        console.log('AuthProvider: Auth event:', event, 'Has session:', !!session);
         log.info(`Auth state changed: ${event}`, 'AUTH', { 
           hasSession: !!session, 
           userId: session?.user?.id 
@@ -38,10 +46,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setSession(session);
         
         if (session?.user) {
-          console.log('FETCHING PROFILE FOR USER:', session.user.id);
+          console.log('AuthProvider: User found, fetching profile...');
           await fetchUserProfile(session.user);
         } else {
-          console.log('NO SESSION - CLEARING USER');
+          console.log('AuthProvider: No session, clearing user');
           setUser(null);
         }
         
@@ -50,25 +58,44 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     );
 
-    // Check for existing session
-    console.log('CHECKING FOR EXISTING SESSION...');
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      console.log('EXISTING SESSION:', !!session);
-      setSession(session);
-      if (session?.user) {
-        console.log('EXISTING SESSION - FETCHING PROFILE');
-        fetchUserProfile(session.user);
-      } else {
+    // Check for existing session immediately
+    const initializeAuth = async () => {
+      console.log('AuthProvider: Checking for existing session...');
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (error) {
+          console.error('AuthProvider: Error getting session:', error);
+          setLoading(false);
+          setIsInitialized(true);
+          return;
+        }
+
+        console.log('AuthProvider: Existing session found:', !!session);
+        setSession(session);
+        
+        if (session?.user) {
+          console.log('AuthProvider: Existing session has user, fetching profile...');
+          await fetchUserProfile(session.user);
+        } else {
+          setLoading(false);
+          setIsInitialized(true);
+        }
+      } catch (error) {
+        console.error('AuthProvider: Error during initialization:', error);
         setLoading(false);
         setIsInitialized(true);
       }
-    });
+    };
+
+    initializeAuth();
 
     return () => subscription.unsubscribe();
   }, []);
 
   const fetchUserProfile = async (supabaseUser: SupabaseUser) => {
     try {
+      console.log('AuthProvider: Fetching profile for user:', supabaseUser.id);
       log.debug('Fetching user profile', 'AUTH', { userId: supabaseUser.id });
       
       const { data: profile, error } = await supabase
@@ -78,13 +105,59 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .single();
 
       if (error) {
+        console.error('AuthProvider: Error fetching profile:', error);
         log.error('Error fetching profile', 'AUTH', { error: error.message, userId: supabaseUser.id });
-        console.error('Error fetching profile:', error);
-        toast({
-          title: "Error",
-          description: "Failed to load user profile",
-          variant: "destructive"
-        });
+        
+        // If profile doesn't exist, create one
+        if (error.code === 'PGRST116') {
+          console.log('AuthProvider: Profile not found, creating default profile...');
+          const { data: newProfile, error: createError } = await supabase
+            .from('profiles')
+            .insert({
+              user_id: supabaseUser.id,
+              name: supabaseUser.user_metadata?.name || supabaseUser.email || 'User',
+              role: 'administrator' // First user gets admin role
+            })
+            .select()
+            .single();
+
+          if (createError) {
+            console.error('AuthProvider: Error creating profile:', createError);
+            toast({
+              title: "Error",
+              description: "Failed to create user profile",
+              variant: "destructive"
+            });
+            setLoading(false);
+            setIsInitialized(true);
+            return;
+          }
+
+          if (newProfile) {
+            const userData = {
+              id: newProfile.user_id,
+              email: supabaseUser.email || '',
+              name: newProfile.name,
+              role: newProfile.role as UserRole,
+              avatar: newProfile.avatar_url
+            };
+            
+            console.log('AuthProvider: Created and loaded new profile:', userData);
+            setUser(userData);
+            log.auth.success('Profile created and loaded', userData.id, { 
+              role: userData.role, 
+              name: userData.name 
+            });
+          }
+        } else {
+          toast({
+            title: "Error",
+            description: "Failed to load user profile",
+            variant: "destructive"
+          });
+        }
+        setLoading(false);
+        setIsInitialized(true);
         return;
       }
 
@@ -97,38 +170,48 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           avatar: profile.avatar_url
         };
         
-        console.log('USER PROFILE LOADED:', userData);
+        console.log('AuthProvider: Profile loaded successfully:', userData);
         setUser(userData);
         log.auth.success('Profile loaded successfully', userData.id, { 
           role: userData.role, 
           name: userData.name 
         });
       }
+      
+      setLoading(false);
+      setIsInitialized(true);
     } catch (error) {
+      console.error('AuthProvider: Profile fetch error:', error);
       log.error('Profile fetch error', 'AUTH', error);
-      console.error('Profile fetch error:', error);
+      setLoading(false);
+      setIsInitialized(true);
     }
   };
 
   const login = async (email: string, password: string): Promise<{ error?: string }> => {
     try {
+      console.log('AuthProvider: Attempting login for:', email);
       log.api.request('/auth/signin', 'POST', { email }, undefined);
       setLoading(true);
+      
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password
       });
 
       if (error) {
+        console.error('AuthProvider: Login failed:', error);
         log.auth.error('Login failed', { error: error.message, email });
         toast({
           title: "Login Failed",
           description: error.message,
           variant: "destructive"
         });
+        setLoading(false);
         return { error: error.message };
       }
 
+      console.log('AuthProvider: Login successful');
       log.auth.success('Login successful', email);
       toast({
         title: "Welcome back!",
@@ -137,15 +220,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       return {};
     } catch (error) {
+      console.error('AuthProvider: Login error:', error);
       const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
-      return { error: errorMessage };
-    } finally {
       setLoading(false);
+      return { error: errorMessage };
     }
   };
 
   const signUp = async (email: string, password: string, name: string, role: UserRole = 'client'): Promise<{ error?: string }> => {
     try {
+      console.log('AuthProvider: Attempting signup for:', email);
       setLoading(true);
       const redirectUrl = `${window.location.origin}/`;
       
@@ -162,32 +246,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
 
       if (error) {
+        console.error('AuthProvider: Signup failed:', error);
         toast({
           title: "Sign Up Failed",
           description: error.message,
           variant: "destructive"
         });
+        setLoading(false);
         return { error: error.message };
       }
 
+      console.log('AuthProvider: Signup successful');
       toast({
         title: "Account Created!",
         description: "Please check your email to verify your account"
       });
 
+      setLoading(false);
       return {};
     } catch (error) {
+      console.error('AuthProvider: Signup error:', error);
       const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
-      return { error: errorMessage };
-    } finally {
       setLoading(false);
+      return { error: errorMessage };
     }
   };
 
   const logout = async (): Promise<void> => {
     try {
+      console.log('AuthProvider: Logging out...');
       const { error } = await supabase.auth.signOut();
       if (error) {
+        console.error('AuthProvider: Logout error:', error);
         toast({
           title: "Error",
           description: "Failed to log out",
@@ -198,6 +288,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       setUser(null);
       setSession(null);
+      console.log('AuthProvider: Logout successful');
       toast({
         title: "Logged out",
         description: "Successfully logged out"
@@ -206,7 +297,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Redirect to landing page
       window.location.href = '/';
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error('AuthProvider: Logout error:', error);
     }
   };
 
@@ -224,6 +315,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     
     return resourcePermissions.includes(permission);
   };
+
+  console.log('AuthProvider: Rendering with state:', { 
+    user: !!user, 
+    loading, 
+    isInitialized,
+    userRole: user?.role 
+  });
 
   return (
     <AuthContext.Provider value={{ 
