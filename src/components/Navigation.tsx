@@ -6,9 +6,18 @@ import { LoginDialog } from "@/components/LoginDialog"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { useTranslation } from 'react-i18next'
+import { useContext } from 'react'
 
 export function Navigation() {
-  const { user } = useAuth()
+  // Try to use auth safely
+  let user = null;
+  try {
+    const auth = useAuth();
+    user = auth.user;
+  } catch (error) {
+    console.warn('Navigation component rendered outside AuthProvider, continuing without auth');
+  }
+  
   const location = useLocation()
   const { t } = useTranslation()
   
