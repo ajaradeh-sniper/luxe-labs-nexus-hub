@@ -91,6 +91,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           avatar: profile.avatar_url
         };
         
+        console.log('USER PROFILE LOADED:', userData);
         setUser(userData);
         log.auth.success('Profile loaded successfully', userData.id, { 
           role: userData.role, 
