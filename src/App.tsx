@@ -66,8 +66,9 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <ErrorBoundary>
-      <TooltipProvider>
-        <Routes>
+      <AuthProvider>
+        <TooltipProvider>
+          <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
@@ -289,6 +290,7 @@ function App() {
         <Toaster />
         <Sonner />
       </TooltipProvider>
+      </AuthProvider>
     </ErrorBoundary>
   )
 }
