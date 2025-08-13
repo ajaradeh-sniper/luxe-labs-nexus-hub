@@ -45,6 +45,14 @@ import AdminProperties from "./pages/admin/Properties"
 import AdminSystemSettings from "./pages/admin/SystemSettings"
 import AdminSystemHealth from "./pages/admin/SystemHealth"
 
+// Import missing pages
+import Calendar from "./pages/Calendar"
+import Portfolio from "./pages/Portfolio"
+import CRM from "./pages/CRM"
+import Reports from "./pages/Reports"
+import MarketingTools from "./pages/MarketingTools"
+import Messaging from "./pages/Messaging"
+
 // Import public pages
 import About from "./pages/About"
 import Services from "./pages/Services"
@@ -159,7 +167,9 @@ function App() {
           
           <Route path="/admin/system-health" element={
             <SmartProtectedRoute requiredRoles={['administrator']}>
-              <AdminSystemHealth />
+              <DashboardLayout>
+                <AdminSystemHealth />
+              </DashboardLayout>
             </SmartProtectedRoute>
           } />
           
@@ -280,6 +290,55 @@ function App() {
             <SmartProtectedRoute>
               <DashboardLayout>
                 <Settings />
+              </DashboardLayout>
+            </SmartProtectedRoute>
+          } />
+          
+          {/* Missing Pages */}
+          <Route path="/calendar" element={
+            <SmartProtectedRoute>
+              <DashboardLayout>
+                <Calendar />
+              </DashboardLayout>
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/portfolio" element={
+            <SmartProtectedRoute requiredRoles={['investor', 'administrator']}>
+              <DashboardLayout>
+                <Portfolio />
+              </DashboardLayout>
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/crm" element={
+            <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_director', 'real_estate_agent']}>
+              <DashboardLayout>
+                <CRM />
+              </DashboardLayout>
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/reports" element={
+            <SmartProtectedRoute requiredRoles={['administrator', 'finance_lead', 'project_manager', 'real_estate_director']}>
+              <DashboardLayout>
+                <Reports />
+              </DashboardLayout>
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/marketing-tools" element={
+            <SmartProtectedRoute requiredRoles={['administrator', 'marketing_lead']}>
+              <DashboardLayout>
+                <MarketingTools />
+              </DashboardLayout>
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/messaging" element={
+            <SmartProtectedRoute>
+              <DashboardLayout>
+                <Messaging />
               </DashboardLayout>
             </SmartProtectedRoute>
           } />
