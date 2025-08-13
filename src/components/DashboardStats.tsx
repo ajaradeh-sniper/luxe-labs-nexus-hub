@@ -85,7 +85,7 @@ export function DashboardStats() {
       log.info("Loading dashboard stats", "DASHBOARD", { userId: user.id });
       execute();
     }
-  }, [user, execute]);
+  }, [user?.id]);
 
   if (error) {
     return (
