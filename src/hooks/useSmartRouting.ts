@@ -66,7 +66,7 @@ export function useSmartRouting() {
     return true; // Default allow
   };
 
-  // Auto-redirect on successful login
+  // Auto-redirect on successful login (only from auth page)
   useEffect(() => {
     if (!loading && user && location.pathname === '/auth') {
       redirectToDashboard();

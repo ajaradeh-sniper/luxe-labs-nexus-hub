@@ -50,9 +50,13 @@ export function PropertyOverview() {
 
   useEffect(() => {
     if (user) {
-      execute();
+      // Add a small delay to prevent multiple rapid executions
+      const timer = setTimeout(() => {
+        execute();
+      }, 100);
+      return () => clearTimeout(timer);
     }
-  }, [user, execute]);
+  }, [user]);
 
   // Default static properties for fallback
   const staticProperties: Property[] = [
