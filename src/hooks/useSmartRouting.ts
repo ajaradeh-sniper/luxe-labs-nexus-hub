@@ -78,7 +78,9 @@ export function useSmartRouting() {
     if (!loading && user && !isAuthorizedForRoute(location.pathname)) {
       // Don't redirect from public routes like home page
       const publicRoutes = ['/', '/about', '/services', '/projects', '/media', '/partners', '/investors', '/contact'];
-      if (!publicRoutes.includes(location.pathname)) {
+      const isPublicRoute = publicRoutes.some(route => location.pathname === route || location.pathname.startsWith(route));
+      
+      if (!isPublicRoute) {
         redirectToDefaultRoute();
       }
     }

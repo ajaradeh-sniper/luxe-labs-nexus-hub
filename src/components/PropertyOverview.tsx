@@ -45,18 +45,28 @@ export function PropertyOverview() {
   const { user } = useAuth();
   const { data: properties, loading, error, execute } = useAsyncOperation(
     SupabaseService.getProperties,
-    { showErrorToast: true, errorMessage: "Failed to load properties" }
+    { showErrorToast: false, errorMessage: "Failed to load properties" }
   );
 
   useEffect(() => {
-    if (user) {
-      // Add a small delay to prevent multiple rapid executions
+    let isMounted = true;
+    
+    if (user && !loading && !properties) {
       const timer = setTimeout(() => {
-        execute();
-      }, 100);
-      return () => clearTimeout(timer);
+        if (isMounted) {
+          execute();
+        }
+      }, 300);
+      return () => {
+        clearTimeout(timer);
+        isMounted = false;
+      };
     }
-  }, [user]);
+    
+    return () => {
+      isMounted = false;
+    };
+  }, [user, loading, properties]);
 
   // Default static properties for fallback
   const staticProperties: Property[] = [
