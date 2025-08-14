@@ -73,10 +73,14 @@ export function useSmartRouting() {
     }
   }, [user, loading, location.pathname]);
 
-  // Check route authorization
+  // Check route authorization (skip for public routes)
   useEffect(() => {
     if (!loading && user && !isAuthorizedForRoute(location.pathname)) {
-      redirectToDefaultRoute();
+      // Don't redirect from public routes like home page
+      const publicRoutes = ['/', '/about', '/services', '/projects', '/media', '/partners', '/investors', '/contact'];
+      if (!publicRoutes.includes(location.pathname)) {
+        redirectToDefaultRoute();
+      }
     }
   }, [user, loading, location.pathname]);
 
