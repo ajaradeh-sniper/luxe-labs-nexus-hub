@@ -6,6 +6,7 @@ import { useAuth } from "@/contexts/AuthContext"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { useTranslation } from 'react-i18next'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 export function Navigation() {
   const location = useLocation()
@@ -69,17 +70,21 @@ export function Navigation() {
           <ThemeToggle />
           <LanguageSwitcher />
           {isAuthAvailable && user ? (
-            <div className="flex items-center gap-3">
-              <span className="text-sm text-muted-foreground hidden sm:inline">
-                Welcome, {user.name}
-              </span>
-              <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground luxury-shadow">
-                <Link to="/dashboard">
-                  <LayoutDashboard className="h-5 w-5 mr-2" />
-                  {t('navigation.dashboard')}
-                </Link>
-              </Button>
-            </div>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground luxury-shadow">
+                    <Link to="/dashboard">
+                      <LayoutDashboard className="h-5 w-5 mr-2" />
+                      {t('navigation.dashboard')}
+                    </Link>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Welcome, Master Administrator</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           ) : (
             <Button asChild variant="luxury" className="luxury-shadow">
               <Link to="/auth">
