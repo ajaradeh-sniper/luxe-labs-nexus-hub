@@ -8,6 +8,7 @@ import { AuthProvider } from "@/contexts/AuthContext"
 import { ThemeProvider } from "@/components/ThemeProvider"
 import { AccessibilityProvider } from "@/components/AccessibilityProvider"
 import { RealTimeProvider } from "@/components/realtime/RealTimeProvider"
+import Landing from "./pages/Landing"
 import Index from "./pages/Index"
 import Auth from "./pages/Auth"
 import Dashboard from "./pages/Dashboard"
@@ -78,7 +79,7 @@ function App() {
         <TooltipProvider>
           <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/projects" element={<Projects />} />
@@ -94,7 +95,7 @@ function App() {
           <Route path="/dashboard" element={
             <SmartProtectedRoute>
               <DashboardLayout>
-                <Dashboard />
+                <Index />
               </DashboardLayout>
             </SmartProtectedRoute>
           } />
