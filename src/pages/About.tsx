@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { 
   Users, 
   Target, 
@@ -9,8 +10,13 @@ import {
   TrendingUp,
   Shield,
   Heart,
-  Lightbulb
+  Lightbulb,
+  ArrowRight,
+  Star
 } from "lucide-react"
+import professionalTeam from "@/assets/professional-team.jpg"
+import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
+import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
 
 const About = () => {
   const values = [
@@ -66,15 +72,26 @@ const About = () => {
   return (
     <>
       <Navigation />
-      <div className="container mx-auto px-4 py-8 space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-foreground">About Luxury Labs</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+      
+      {/* Hero Section with Image */}
+      <section className="relative h-96 flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaeMarinaLuxury})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+        </div>
+        
+        <div className="relative container mx-auto px-4 text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">About Luxury Labs</h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
             Dubai's premier luxury property transformation company, specializing in high-end renovations 
             and profitable real estate investments for discerning clients.
           </p>
         </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12 space-y-12">
 
         {/* Company Overview */}
         <Card>
@@ -155,30 +172,49 @@ const About = () => {
           </CardContent>
         </Card>
 
-        {/* Team */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5" />
-              Leadership Team
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {team.map((member, index) => (
-                <div key={index} className="p-4 border rounded-lg">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h3 className="font-semibold text-foreground">{member.name}</h3>
-                      <p className="text-sm text-primary font-medium">{member.role}</p>
-                    </div>
-                    <Badge variant="secondary">{member.experience}</Badge>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{member.specialty}</p>
-                </div>
-              ))}
+        {/* Team Section with Hero Image */}
+        <Card className="overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="aspect-video lg:aspect-auto">
+              <img 
+                src={professionalTeam} 
+                alt="Professional Team" 
+                className="w-full h-full object-cover"
+              />
             </div>
-          </CardContent>
+            <div className="p-8">
+              <CardHeader className="p-0 mb-6">
+                <CardTitle className="flex items-center gap-2 text-2xl">
+                  <Users className="h-6 w-6" />
+                  Leadership Team
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Meet the experts behind Luxury Labs' exceptional success
+                </p>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="space-y-6">
+                  {team.map((member, index) => (
+                    <div key={index} className="flex items-start gap-4 p-4 border rounded-lg hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center flex-shrink-0">
+                        <Star className="h-6 w-6 text-background" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <h3 className="font-semibold text-foreground">{member.name}</h3>
+                            <p className="text-sm text-primary font-medium">{member.role}</p>
+                          </div>
+                          <Badge variant="secondary">{member.experience}</Badge>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{member.specialty}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </div>
+          </div>
         </Card>
 
         {/* Certifications */}
@@ -211,6 +247,35 @@ const About = () => {
                 <p className="text-sm font-medium">ISO Certified</p>
                 <p className="text-xs text-muted-foreground">Quality Management</p>
               </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* CTA Section */}
+        <Card className="bg-gradient-luxury text-background">
+          <CardContent className="p-8 text-center">
+            <h2 className="text-3xl font-bold mb-4">Experience Luxury Labs Excellence</h2>
+            <p className="text-background/80 mb-6 max-w-2xl mx-auto text-lg">
+              Ready to transform your property investment journey with Dubai's most trusted luxury real estate experts?
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="bg-background text-foreground hover:bg-background/90"
+                onClick={() => window.location.href = '/contact'}
+              >
+                Schedule Consultation
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="bg-background text-foreground hover:bg-background/90"
+                onClick={() => window.location.href = '/services'}
+              >
+                View Our Services
+              </Button>
             </div>
           </CardContent>
         </Card>

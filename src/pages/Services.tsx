@@ -12,8 +12,12 @@ import {
   Shield,
   Settings,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Star
 } from "lucide-react"
+import renovationShowcase from "@/assets/renovation-showcase.jpg"
+import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
+import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
 
 const Services = () => {
   const services = [
@@ -107,22 +111,99 @@ const Services = () => {
   return (
     <>
       <Navigation />
-      <div className="container mx-auto px-4 py-8 space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-foreground">Our Services</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+      
+      {/* Hero Section */}
+      <section className="relative h-96 flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${renovationShowcase})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+        </div>
+        
+        <div className="relative container mx-auto px-4 text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Our Services</h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
             Comprehensive luxury property services designed for investors and high-net-worth individuals 
             seeking exceptional returns and premium experiences.
           </p>
         </div>
+      </section>
 
-        {/* Services Grid */}
+      <div className="container mx-auto px-4 py-12 space-y-12">
+
+        {/* Featured Services with Images */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          <Card className="overflow-hidden group hover:shadow-luxury transition-all duration-300">
+            <div className="aspect-video overflow-hidden">
+              <img 
+                src={luxuryInteriorModern} 
+                alt="Luxury Interior" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <CardContent className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center">
+                  <TrendingUp className="h-6 w-6 text-background" />
+                </div>
+                <div>
+                  <Badge className="bg-primary text-primary-foreground mb-2">Most Popular</Badge>
+                  <h3 className="text-xl font-semibold">Property Investment Flips</h3>
+                </div>
+              </div>
+              <p className="text-muted-foreground mb-4">
+                Join our profitable property flip investments with transparent ROI sharing and professional management.
+              </p>
+              <div className="flex items-center gap-4 mb-4 text-sm">
+                <span className="font-medium">Min. $100K investment</span>
+                <span className="text-muted-foreground">6-12 months</span>
+              </div>
+              <Button variant="luxury" className="w-full">
+                Explore Opportunities
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="overflow-hidden group hover:shadow-luxury transition-all duration-300">
+            <div className="aspect-video overflow-hidden">
+              <img 
+                src={dubaeMarinaLuxury} 
+                alt="HNWI Services" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <CardContent className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center">
+                  <Home className="h-6 w-6 text-background" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold">HNWI Concierge Renovations</h3>
+                </div>
+              </div>
+              <p className="text-muted-foreground mb-4">
+                Premium renovation services for high-net-worth individuals with dedicated project management.
+              </p>
+              <div className="flex items-center gap-4 mb-4 text-sm">
+                <span className="font-medium">Custom pricing</span>
+                <span className="text-muted-foreground">3-18 months</span>
+              </div>
+              <Button variant="outline" className="w-full">
+                Request Consultation
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* All Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service) => {
             const Icon = service.icon
             return (
-              <Card key={service.id} className={`relative ${service.highlight ? 'ring-2 ring-primary' : ''}`}>
+              <Card key={service.id} className={`relative hover:shadow-md transition-shadow ${service.highlight ? 'ring-2 ring-primary' : ''}`}>
                 {service.highlight && (
                   <div className="absolute -top-3 left-6">
                     <Badge className="bg-primary text-primary-foreground">Most Popular</Badge>
@@ -156,12 +237,15 @@ const Services = () => {
                 
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    {service.features.map((feature, index) => (
+                    {service.features.slice(0, 4).map((feature, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <CheckCircle className="h-4 w-4 text-success flex-shrink-0" />
                         <span className="text-sm">{feature}</span>
                       </div>
                     ))}
+                    {service.features.length > 4 && (
+                      <p className="text-xs text-muted-foreground">+{service.features.length - 4} more features</p>
+                    )}
                   </div>
                   
                   <Button 
