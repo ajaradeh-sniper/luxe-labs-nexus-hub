@@ -40,11 +40,13 @@ export function Navigation() {
     <nav className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <div className="flex items-center">
-          <img 
-            src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
-            alt="Luxury Labs Logo" 
-            className="h-32 w-auto"
-          />
+          <Link to="/">
+            <img 
+              src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+              alt="Luxury Labs Logo" 
+              className="h-32 w-auto cursor-pointer hover:opacity-80 transition-opacity"
+            />
+          </Link>
         </div>
         
         <div className="hidden md:flex items-center gap-8">
