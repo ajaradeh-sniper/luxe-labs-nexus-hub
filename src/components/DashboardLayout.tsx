@@ -24,12 +24,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex items-center justify-between h-full px-6">
               <div className="flex items-center gap-4">
                 <SidebarTrigger className="hover:bg-accent rounded-lg p-2" />
-                <Button asChild variant="ghost" size="sm" className="text-primary hover:text-primary">
-                  <Link to="/" className="flex items-center gap-2">
-                    <Home className="h-4 w-4" />
-                    <span className="hidden sm:inline">Home</span>
-                  </Link>
-                </Button>
+                <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                  <img 
+                    src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+                    alt="Luxury Labs Logo" 
+                    className="h-10 w-auto cursor-pointer"
+                  />
+                </Link>
                 <div className="flex items-center gap-2">
                   <div className="hidden md:block">
                     <h2 className="text-lg font-semibold text-foreground font-playfair">Luxury Labs Dashboard</h2>
