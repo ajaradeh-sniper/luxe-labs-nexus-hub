@@ -614,49 +614,6 @@ export default function Media() {
 
 
           {/* Downloads & Resources */}
-          <div>
-            <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Downloads & Resources</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Investment Brochure",
-                  description: "Comprehensive guide to our investment opportunities",
-                  type: "PDF",
-                  size: "2.5 MB"
-                },
-                {
-                  title: "Portfolio Overview",
-                  description: "Complete portfolio of our completed projects",
-                  type: "PDF", 
-                  size: "5.1 MB"
-                },
-                {
-                  title: "Process Guide",
-                  description: "Step-by-step guide to our transformation process",
-                  type: "PDF",
-                  size: "1.8 MB"
-                }
-              ].map((resource, index) => (
-                <Card key={index} className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-colors cursor-pointer">
-                  <CardContent className="p-0">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center flex-shrink-0">
-                        <FileText className="h-6 w-6 text-primary-foreground" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-bold text-foreground mb-2 font-playfair">{resource.title}</h3>
-                        <p className="text-muted-foreground text-sm mb-3 font-montserrat">{resource.description}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs text-muted-foreground font-montserrat">{resource.type} • {resource.size}</span>
-                          <Download className="h-4 w-4 text-primary" />
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
     </div>
