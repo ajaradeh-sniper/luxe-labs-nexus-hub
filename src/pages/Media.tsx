@@ -141,6 +141,21 @@ export default function Media() {
                   {/* Relationship with Luxury Labs */}
                   <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm mb-12">
                     <CardContent className="p-0">
+                      <div className="flex items-center justify-center gap-8 mb-6">
+                        <img 
+                          src="/lovable-uploads/d6d93f42-4152-430f-bb17-3221a60d919b.png" 
+                          alt="Flipping Dubai Logo" 
+                          className="h-16 object-contain"
+                        />
+                        <div className="flex items-center text-2xl font-bold text-muted-foreground">
+                          <span>&times;</span>
+                        </div>
+                        <img 
+                          src="/src/assets/luxury-labs-logo.png" 
+                          alt="Luxury Labs Logo" 
+                          className="h-16 object-contain"
+                        />
+                      </div>
                       <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair text-center">Partnership with Luxury Labs</h3>
                       <p className="text-muted-foreground font-montserrat text-center max-w-3xl mx-auto leading-relaxed">
                         Flipping Dubai is produced in collaboration with Luxury Labs, Dubai's premier property transformation company. 
