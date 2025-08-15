@@ -32,14 +32,15 @@ export default function Media() {
           <div className="mb-20">
             <Card className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative h-96 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer hover:scale-105 transition-transform">
-                      <Play className="h-8 w-8 text-primary-foreground ml-1" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-foreground mb-2 font-playfair">Featured: Downtown Transformation</h3>
-                    <p className="text-muted-foreground font-montserrat">Watch our latest luxury property transformation in Downtown Dubai</p>
-                  </div>
+                <div className="relative h-96 overflow-hidden rounded-lg">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/D2HrgCFYNv4"
+                    title="Featured: Downtown Transformation"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
                 </div>
               </CardContent>
             </Card>
