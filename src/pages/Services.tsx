@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { useState } from "react"
 import { 
   TrendingUp, 
   Home,
@@ -13,20 +14,24 @@ import {
   Settings,
   CheckCircle,
   ArrowRight,
-  Star
+  Star,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react"
 import renovationShowcase from "@/assets/renovation-showcase.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
 import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
 
 const Services = () => {
+  const [expandedService, setExpandedService] = useState<string | null>(null)
+
   const services = [
     {
-      id: 'investment-flips',
-      title: 'Property Investment Flips',
+      id: 'real-estate-investment',
+      title: 'Real Estate Investment (Flips & Fund)',
       description: 'Join our profitable property flip investments with transparent ROI sharing and professional management.',
       icon: TrendingUp,
-      price: 'Min. $100K investment',
+      price: 'Min. AED 500K investment',
       timeline: '6-12 months',
       features: [
         'Transparent ROI tracking',
@@ -37,61 +42,113 @@ const Services = () => {
         'Legal documentation included'
       ],
       cta: 'Explore Opportunities',
-      highlight: true
+      highlight: true,
+      expandedOptions: [
+        {
+          title: 'Diversified Fund',
+          returns: '25-30%',
+          investment: 'AED 500K',
+          description: 'Diversified across 10+ properties',
+          features: [
+            'Minimum investment: AED 500K',
+            'Diversified across 10+ properties',
+            'Professional management included',
+            'Quarterly performance reports',
+            'Exit flexibility after 12 months'
+          ]
+        },
+        {
+          title: 'Single Property',
+          returns: '30-35%',
+          investment: 'AED 1M',
+          description: 'Full transparency on single asset',
+          features: [
+            'Minimum investment: AED 1M',
+            'Full transparency on single asset',
+            'Direct involvement opportunities',
+            'Higher return potential',
+            '6-12 month typical timeline'
+          ],
+          popular: true
+        },
+        {
+          title: 'VIP Membership',
+          returns: '35%+',
+          investment: 'AED 5M',
+          description: 'First access to premium deals',
+          features: [
+            'Minimum investment: AED 5M',
+            'First access to premium deals',
+            'Personal relationship manager',
+            'Customized investment strategies',
+            'Exclusive networking events'
+          ]
+        }
+      ]
     },
     {
-      id: 'hnwi-renovations',
-      title: 'HNWI Concierge Renovations',
-      description: 'Premium renovation services for high-net-worth individuals with dedicated project management.',
+      id: 'luxury-consulting',
+      title: 'Luxury Real Estate Consulting',
+      description: 'Comprehensive consulting services including investment advisory, property transformation, sourcing, project management, and HNWI concierge services.',
       icon: Home,
       price: 'Custom pricing',
       timeline: '3-18 months',
       features: [
-        'Dedicated project manager',
-        'Premium material sourcing',
-        'Custom design consultation',
-        '24/7 concierge support',
-        'Quality assurance inspections',
-        'Post-completion maintenance'
+        'Investment advisory & strategy',
+        'Property transformation consulting',
+        'Premium property sourcing',
+        'End-to-end project management',
+        'HNWI Real Estate Concierge',
+        'Dubai relocation services (A-Z)'
       ],
       cta: 'Request Consultation',
-      highlight: false
-    },
-    {
-      id: 'investment-opportunities',
-      title: 'Investment Opportunities',
-      description: 'Curated luxury property investment opportunities with detailed analysis and projections.',
-      icon: DollarSign,
-      price: 'Various entry points',
-      timeline: 'Ongoing',
-      features: [
-        'Market analysis reports',
-        'Financial projections',
-        'Risk assessment',
-        'Due diligence support',
-        'Investment portfolio tracking',
-        'Exit strategy planning'
-      ],
-      cta: 'View Opportunities',
-      highlight: false
-    },
-    {
-      id: 'project-management',
-      title: 'Complete Project Management',
-      description: 'End-to-end project management from acquisition to completion with our proven 10-step process.',
-      icon: Settings,
-      price: 'Included in all services',
-      timeline: 'Project duration',
-      features: [
-        '10-step luxury process',
-        'Timeline management',
-        'Quality control',
-        'Vendor coordination',
-        'Progress reporting',
-        'Client communication'
-      ],
-      cta: 'Learn Process',
-      highlight: false
+      highlight: false,
+      expandedOptions: [
+        {
+          title: 'Investment Advisory',
+          description: 'Strategic investment guidance and market analysis',
+          features: [
+            'Market analysis & due diligence',
+            'Investment strategy development',
+            'Portfolio optimization',
+            'Risk assessment & mitigation',
+            'Exit strategy planning'
+          ]
+        },
+        {
+          title: 'Property Transformation',
+          description: 'Complete property renovation and enhancement services',
+          features: [
+            'Design & renovation consultation',
+            'Project management & oversight',
+            'Quality control & inspections',
+            'Vendor coordination',
+            'Timeline & budget management'
+          ]
+        },
+        {
+          title: 'Premium Sourcing',
+          description: 'Access to exclusive off-market opportunities',
+          features: [
+            'Off-market property access',
+            'Exclusive developer partnerships',
+            'Pre-launch opportunities',
+            'Negotiation & acquisition support',
+            'Legal documentation assistance'
+          ]
+        },
+        {
+          title: 'HNWI Concierge',
+          description: 'Complete Dubai relocation and property services',
+          features: [
+            'Dubai relocation consultation (A-Z)',
+            'Property purchase assistance',
+            'Home transformation services',
+            'Legal & documentation support',
+            'Ongoing concierge services'
+          ]
+        }
+      ]
     }
   ]
 
@@ -138,7 +195,7 @@ const Services = () => {
             <div className="aspect-video overflow-hidden">
               <img 
                 src={luxuryInteriorModern} 
-                alt="Luxury Interior" 
+                alt="Real Estate Investment" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -149,14 +206,14 @@ const Services = () => {
                 </div>
                 <div>
                   <Badge className="bg-primary text-primary-foreground mb-2">Most Popular</Badge>
-                  <h3 className="text-xl font-semibold">Property Investment Flips</h3>
+                  <h3 className="text-xl font-semibold">Real Estate Investment (Flips & Fund)</h3>
                 </div>
               </div>
               <p className="text-muted-foreground mb-4">
                 Join our profitable property flip investments with transparent ROI sharing and professional management.
               </p>
               <div className="flex items-center gap-4 mb-4 text-sm">
-                <span className="font-medium">Min. $100K investment</span>
+                <span className="font-medium">Min. AED 500K investment</span>
                 <span className="text-muted-foreground">6-12 months</span>
               </div>
               <Button variant="luxury" className="w-full">
@@ -170,7 +227,7 @@ const Services = () => {
             <div className="aspect-video overflow-hidden">
               <img 
                 src={dubaeMarinaLuxury} 
-                alt="HNWI Services" 
+                alt="Luxury Real Estate Consulting" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -180,11 +237,11 @@ const Services = () => {
                   <Home className="h-6 w-6 text-background" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">HNWI Concierge Renovations</h3>
+                  <h3 className="text-xl font-semibold">Luxury Real Estate Consulting</h3>
                 </div>
               </div>
               <p className="text-muted-foreground mb-4">
-                Premium renovation services for high-net-worth individuals with dedicated project management.
+                Comprehensive consulting including investment advisory, transformation, sourcing, project management, and HNWI concierge services.
               </p>
               <div className="flex items-center gap-4 mb-4 text-sm">
                 <span className="font-medium">Custom pricing</span>
@@ -199,9 +256,11 @@ const Services = () => {
         </div>
 
         {/* All Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-8">
           {services.map((service) => {
             const Icon = service.icon
+            const isExpanded = expandedService === service.id
+            
             return (
               <Card key={service.id} className={`relative hover:shadow-md transition-shadow ${service.highlight ? 'ring-2 ring-primary' : ''}`}>
                 {service.highlight && (
@@ -212,15 +271,23 @@ const Services = () => {
                 
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 flex-1">
                       <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center">
                         <Icon className="h-6 w-6 text-background" />
                       </div>
-                      <div>
-                        <CardTitle className="text-lg">{service.title}</CardTitle>
+                      <div className="flex-1">
+                        <CardTitle className="text-xl">{service.title}</CardTitle>
                         <p className="text-sm text-muted-foreground mt-1">{service.description}</p>
                       </div>
                     </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setExpandedService(isExpanded ? null : service.id)}
+                      className="ml-4"
+                    >
+                      {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                    </Button>
                   </div>
                   
                   <div className="flex items-center gap-4 mt-4">
@@ -247,6 +314,50 @@ const Services = () => {
                       <p className="text-xs text-muted-foreground">+{service.features.length - 4} more features</p>
                     )}
                   </div>
+
+                  {/* Expanded Options */}
+                  {isExpanded && service.expandedOptions && (
+                    <div className="mt-6 pt-6 border-t">
+                      <h4 className="text-lg font-semibold mb-4">Available Options:</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {service.expandedOptions.map((option, index) => (
+                          <Card key={index} className={`p-4 ${option.popular ? 'ring-2 ring-primary' : 'border'}`}>
+                            {option.popular && (
+                              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                                <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
+                              </div>
+                            )}
+                            <div className="text-center mb-4">
+                              <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
+                              {option.returns && (
+                                <div className="text-2xl font-bold text-primary mb-1">{option.returns}</div>
+                              )}
+                              {option.investment && (
+                                <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
+                              )}
+                              <p className="text-sm text-muted-foreground">{option.description}</p>
+                            </div>
+                            <ul className="space-y-2 mb-4">
+                              {option.features.map((feature, featureIndex) => (
+                                <li key={featureIndex} className="flex items-start gap-2">
+                                  <CheckCircle className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
+                                  <span className="text-sm">{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <Button 
+                              variant={option.popular ? "default" : "outline"} 
+                              size="sm" 
+                              className="w-full"
+                              onClick={() => window.location.href = '/contact'}
+                            >
+                              Learn More
+                            </Button>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   
                   <Button 
                     variant={service.highlight ? "luxury" : "outline"} 
