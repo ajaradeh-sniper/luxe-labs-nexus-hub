@@ -183,6 +183,7 @@ const Services = () => {
           {services.map((service) => {
             const Icon = service.icon
             const isExpanded = expandedService === service.id
+            const serviceImage = service.id === 'real-estate-investment' ? luxuryInteriorModern : dubaeMarinaLuxury
             
             return (
               <Card key={service.id} className={`relative hover:shadow-md transition-shadow ${service.highlight ? 'ring-2 ring-primary' : ''}`}>
@@ -192,38 +193,60 @@ const Services = () => {
                   </div>
                 )}
                 
-                <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3 flex-1">
-                      <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center">
-                        <Icon className="h-6 w-6 text-background" />
+                <div className="flex flex-col lg:flex-row">
+                  <div className="flex-1">
+                    <CardHeader className="pb-4">
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-center gap-3 flex-1">
+                          <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center">
+                            <Icon className="h-6 w-6 text-background" />
+                          </div>
+                          <div className="flex-1">
+                            <CardTitle className="text-xl">{service.title}</CardTitle>
+                            <p className="text-sm text-muted-foreground mt-1">{service.description}</p>
+                          </div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setExpandedService(isExpanded ? null : service.id)}
+                          className="ml-4"
+                        >
+                          {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                        </Button>
                       </div>
-                      <div className="flex-1">
-                        <CardTitle className="text-xl">{service.title}</CardTitle>
-                        <p className="text-sm text-muted-foreground mt-1">{service.description}</p>
+                      
+                      <div className="flex items-center gap-4 mt-4">
+                        <div className="flex items-center gap-1 text-sm">
+                          <DollarSign className="h-4 w-4 text-success" />
+                          <span className="font-medium">{service.price}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-sm">
+                          <Clock className="h-4 w-4 text-muted-foreground" />
+                          <span>{service.timeline}</span>
+                        </div>
                       </div>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setExpandedService(isExpanded ? null : service.id)}
-                      className="ml-4"
-                    >
-                      {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                    </Button>
+                    </CardHeader>
                   </div>
                   
-                  <div className="flex items-center gap-4 mt-4">
-                    <div className="flex items-center gap-1 text-sm">
-                      <DollarSign className="h-4 w-4 text-success" />
-                      <span className="font-medium">{service.price}</span>
+                  <div className="w-full lg:w-80 p-6">
+                    <div className="aspect-video lg:aspect-square overflow-hidden rounded-lg mb-4">
+                      <img 
+                        src={serviceImage} 
+                        alt={service.title} 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <div className="flex items-center gap-1 text-sm">
-                      <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span>{service.timeline}</span>
-                    </div>
+                    <Button 
+                      variant={service.highlight ? "luxury" : "outline"} 
+                      className="w-full"
+                      onClick={() => window.location.href = '/contact'}
+                    >
+                      {service.cta}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
                   </div>
-                </CardHeader>
+                </div>
                 
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
@@ -281,15 +304,6 @@ const Services = () => {
                       </div>
                     </div>
                   )}
-                  
-                  <Button 
-                    variant={service.highlight ? "luxury" : "outline"} 
-                    className="w-full mt-4"
-                    onClick={() => window.location.href = '/contact'}
-                  >
-                    {service.cta}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
                 </CardContent>
               </Card>
             )
