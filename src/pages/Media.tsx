@@ -39,7 +39,7 @@ export default function Media() {
                   <img 
                     src="https://img.youtube.com/vi/D2HrgCFYNv4/maxresdefault.jpg"
                     alt="Downtown Transformation Video Thumbnail"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-contain"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
                   <div className="relative z-10 text-center">
