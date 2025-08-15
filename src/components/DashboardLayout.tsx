@@ -4,6 +4,8 @@ import { useAuth } from "@/contexts/AuthContext"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Bell, MessageSquare } from "lucide-react"
+import { Link } from "react-router-dom"
+import luxuryLabsLogo from "@/assets/luxury-labs-logo.png"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -22,7 +24,9 @@ export function DashboardLayout({ children, viewingRole }: DashboardLayoutProps)
           {/* Top Navigation Header */}
           <header className="h-16 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-center justify-between px-6">
             <div className="flex items-center gap-4">
-              <h1 className="text-xl font-semibold">Dashboard</h1>
+              <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <img src={luxuryLabsLogo} alt="Luxury Labs" className="h-8 w-auto" />
+              </Link>
             </div>
             <div className="flex items-center gap-4">
               <Button variant="ghost" size="icon">

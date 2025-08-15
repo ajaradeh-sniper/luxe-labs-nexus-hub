@@ -244,20 +244,6 @@ export function UnifiedDashboard({ viewingRole: propViewingRole, onRoleChange }:
             )}
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <Button asChild variant="outline">
-            <a href="/notifications">
-              <Bell className="h-4 w-4 mr-2" />
-              Notifications
-            </a>
-          </Button>
-          <Button asChild variant="outline">
-            <a href="/messages">
-              <MessageSquare className="h-4 w-4 mr-2" />
-              Messages
-            </a>
-          </Button>
-        </div>
       </div>
 
       {/* Key Metrics */}
