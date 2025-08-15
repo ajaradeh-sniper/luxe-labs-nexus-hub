@@ -207,12 +207,13 @@ const Services = () => {
                           </div>
                         </div>
                         <Button
-                          variant="ghost"
+                          variant="outline"
                           size="sm"
                           onClick={() => setExpandedService(isExpanded ? null : service.id)}
-                          className="ml-4"
+                          className="ml-4 bg-primary/10 border-primary/30 hover:bg-primary/20 text-primary font-medium"
                         >
                           {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                          <span className="ml-1 text-xs">{isExpanded ? 'Less' : 'More'}</span>
                         </Button>
                       </div>
                       
