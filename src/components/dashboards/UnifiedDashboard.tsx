@@ -29,9 +29,66 @@ import {
   PieChart
 } from "lucide-react"
 
-export function UnifiedDashboard() {
+// Role-based quick actions
+const getQuickActionsForRole = (role: string) => {
+  const commonActions = [
+    { icon: Calendar, label: "Schedule", color: "bg-cyan-500" },
+    { icon: MessageSquare, label: "Messages", color: "bg-pink-500" }
+  ];
+
+  const roleSpecificActions = {
+    administrator: [
+      { icon: Building2, label: "New Project", color: "bg-blue-500" },
+      { icon: Users, label: "Team Meeting", color: "bg-green-500" },
+      { icon: FileText, label: "Reports", color: "bg-purple-500" },
+      { icon: Download, label: "Export Data", color: "bg-orange-500" },
+      ...commonActions
+    ],
+    project_manager: [
+      { icon: Building2, label: "New Project", color: "bg-blue-500" },
+      { icon: Users, label: "Team Meeting", color: "bg-green-500" },
+      { icon: CheckCircle, label: "QA Check", color: "bg-green-500" },
+      ...commonActions
+    ],
+    investor: [
+      { icon: TrendingUp, label: "Portfolio", color: "bg-green-500" },
+      { icon: FileText, label: "Reports", color: "bg-purple-500" },
+      { icon: Download, label: "Export Data", color: "bg-orange-500" },
+      ...commonActions
+    ],
+    real_estate_director: [
+      { icon: Building2, label: "Properties", color: "bg-blue-500" },
+      { icon: Target, label: "Opportunities", color: "bg-orange-500" },
+      { icon: BarChart3, label: "Analytics", color: "bg-purple-500" },
+      ...commonActions
+    ],
+    client: [
+      { icon: Eye, label: "Progress", color: "bg-blue-500" },
+      { icon: FileText, label: "Documents", color: "bg-purple-500" },
+      ...commonActions
+    ],
+    real_estate_agent: [
+      { icon: Building2, label: "Listings", color: "bg-blue-500" },
+      { icon: Users, label: "Clients", color: "bg-green-500" },
+      { icon: Target, label: "Opportunities", color: "bg-orange-500" },
+      ...commonActions
+    ]
+  };
+
+  return roleSpecificActions[role as keyof typeof roleSpecificActions] || commonActions;
+};
+
+interface UnifiedDashboardProps {
+  viewingRole?: string
+  onRoleChange?: (role: string) => void
+}
+
+export function UnifiedDashboard({ viewingRole: propViewingRole, onRoleChange }: UnifiedDashboardProps = {}) {
   const { user } = useAuth()
-  const [viewingRole, setViewingRole] = useState<string>(user?.role || 'administrator')
+  const [internalViewingRole, setInternalViewingRole] = useState<string>(user?.role || 'administrator')
+  
+  const viewingRole = propViewingRole || internalViewingRole
+  const setViewingRole = onRoleChange || setInternalViewingRole
   
   // Comprehensive data for all role types
   const dashboardData = {
@@ -251,8 +308,12 @@ export function UnifiedDashboard() {
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="performance">Performance</TabsTrigger>
-          <TabsTrigger value="analytics">Analytics</TabsTrigger>
+          {(viewingRole === 'administrator' || viewingRole === 'project_manager' || viewingRole === 'real_estate_director') && (
+            <TabsTrigger value="performance">Performance</TabsTrigger>
+          )}
+          {(viewingRole === 'administrator' || viewingRole === 'investor' || viewingRole === 'real_estate_director') && (
+            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+          )}
           <TabsTrigger value="actions">Quick Actions</TabsTrigger>
         </TabsList>
 
@@ -302,54 +363,58 @@ export function UnifiedDashboard() {
           </div>
         </TabsContent>
 
-        <TabsContent value="performance" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Performance Metrics</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-64 bg-muted/20 rounded-lg flex items-center justify-center border border-dashed border-border">
-                <div className="text-center">
-                  <BarChart3 className="h-12 w-12 mx-auto mb-3 text-muted-foreground/50" />
-                  <p className="text-muted-foreground">Performance Charts</p>
-                  <p className="text-sm text-muted-foreground/70">Interactive analytics would display here</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="analytics" className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {(viewingRole === 'administrator' || viewingRole === 'project_manager' || viewingRole === 'real_estate_director') && (
+          <TabsContent value="performance" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Trend Analysis</CardTitle>
+                <CardTitle>Performance Metrics</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-48 bg-muted/20 rounded-lg flex items-center justify-center border border-dashed border-border">
+                <div className="h-64 bg-muted/20 rounded-lg flex items-center justify-center border border-dashed border-border">
                   <div className="text-center">
-                    <TrendingUp className="h-12 w-12 mx-auto mb-3 text-muted-foreground/50" />
-                    <p className="text-muted-foreground">Trend Charts</p>
+                    <BarChart3 className="h-12 w-12 mx-auto mb-3 text-muted-foreground/50" />
+                    <p className="text-muted-foreground">Performance Charts</p>
+                    <p className="text-sm text-muted-foreground/70">Interactive analytics would display here</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
+          </TabsContent>
+        )}
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Distribution Analysis</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="h-48 bg-muted/20 rounded-lg flex items-center justify-center border border-dashed border-border">
-                  <div className="text-center">
-                    <PieChart className="h-12 w-12 mx-auto mb-3 text-muted-foreground/50" />
-                    <p className="text-muted-foreground">Distribution Charts</p>
+        {(viewingRole === 'administrator' || viewingRole === 'investor' || viewingRole === 'real_estate_director') && (
+          <TabsContent value="analytics" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Trend Analysis</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="h-48 bg-muted/20 rounded-lg flex items-center justify-center border border-dashed border-border">
+                    <div className="text-center">
+                      <TrendingUp className="h-12 w-12 mx-auto mb-3 text-muted-foreground/50" />
+                      <p className="text-muted-foreground">Trend Charts</p>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Distribution Analysis</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="h-48 bg-muted/20 rounded-lg flex items-center justify-center border border-dashed border-border">
+                    <div className="text-center">
+                      <PieChart className="h-12 w-12 mx-auto mb-3 text-muted-foreground/50" />
+                      <p className="text-muted-foreground">Distribution Charts</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+        )}
 
         <TabsContent value="actions" className="space-y-6">
           <Card>
@@ -358,14 +423,7 @@ export function UnifiedDashboard() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                {[
-                  { icon: Building2, label: "New Project", color: "bg-blue-500" },
-                  { icon: Users, label: "Team Meeting", color: "bg-green-500" },
-                  { icon: FileText, label: "Reports", color: "bg-purple-500" },
-                  { icon: Download, label: "Export Data", color: "bg-orange-500" },
-                  { icon: Calendar, label: "Schedule", color: "bg-cyan-500" },
-                  { icon: MessageSquare, label: "Messages", color: "bg-pink-500" }
-                ].map((action, index) => (
+                {getQuickActionsForRole(viewingRole).map((action, index) => (
                   <Button
                     key={index}
                     variant="outline"

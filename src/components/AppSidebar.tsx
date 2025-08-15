@@ -50,19 +50,12 @@ import {
 } from "@/components/ui/sidebar"
 
 // Role-based navigation items
-const getNavigationItems = (userRole: string) => {
-  // Role-specific dashboard routing
-  const getDashboardUrl = (role: string) => {
-    switch(role) {
-      case 'project_manager': return '/pm-dashboard';
-      case 'investor': return '/investor-dashboard';
-      case 'client': return '/client-dashboard';
-      default: return '/dashboard';
-    }
-  };
+const getNavigationItems = (userRole: string, viewingRole?: string) => {
+  // Use viewing role if provided (for preview mode), otherwise use actual user role
+  const effectiveRole = viewingRole || userRole;
 
   const baseItems = [
-    { title: "Dashboard", url: getDashboardUrl(userRole), icon: LayoutDashboard, roles: ['all'] }
+    { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard, roles: ['all'] }
   ];
 
   const adminItems = [
@@ -103,19 +96,19 @@ const getNavigationItems = (userRole: string) => {
   
   return allItems.filter(item => 
     item.roles.includes('all') || 
-    item.roles.includes(userRole) || 
-    userRole === 'administrator'
+    item.roles.includes(effectiveRole) || 
+    effectiveRole === 'administrator'
   );
 };
 
-export function AppSidebar() {
+export function AppSidebar({ viewingRole }: { viewingRole?: string } = {}) {
   const { state } = useSidebar()
   const { user } = useAuth()
   const location = useLocation()
   const currentPath = location.pathname
   const collapsed = state === "collapsed"
 
-  const navigationItems = getNavigationItems(user?.role || 'administrator')
+  const navigationItems = getNavigationItems(user?.role || 'administrator', viewingRole)
 
   const isActive = (path: string) => currentPath === path
   const isExpanded = navigationItems.some((item) => isActive(item.url))
