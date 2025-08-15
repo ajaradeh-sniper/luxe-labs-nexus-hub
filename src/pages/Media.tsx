@@ -161,7 +161,7 @@ export default function Media() {
                   <Card className="lg:col-span-2 lg:row-span-2 overflow-hidden luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
                     <div className="aspect-video relative group cursor-pointer overflow-hidden">
                       <img 
-                        src={marinaTowerImage} 
+                        src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" 
                         alt="Marina Bay Penthouse Before"
                         className="w-full h-full object-cover"
                       />
@@ -169,7 +169,7 @@ export default function Media() {
                         <Button 
                           size="lg" 
                           variant="luxury"
-                          onClick={() => window.open('https://youtube.com/@luxurylabsdubai', '_blank')}
+                          onClick={() => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')}
                         >
                           <Play className="w-6 h-6 mr-2" />
                           Watch Latest Episode
@@ -191,28 +191,52 @@ export default function Media() {
                   
                   {/* Episode List */}
                   {[
-                    { title: "Property Selection Secrets", duration: "18 min", episode: 11, image: businessBayImage },
-                    { title: "Design Planning Process", duration: "22 min", episode: 10, image: downtownImage },
-                    { title: "Renovation Timeline", duration: "25 min", episode: 9, image: marinaTowerImage },
-                    { title: "Luxury Finishes Install", duration: "20 min", episode: 8, image: businessBayImage },
+                    { 
+                      title: "Property Selection Secrets", 
+                      duration: "18 min", 
+                      episode: 11, 
+                      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+                      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    },
+                    { 
+                      title: "Design Planning Process", 
+                      duration: "22 min", 
+                      episode: 10, 
+                      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+                      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    },
+                    { 
+                      title: "Renovation Timeline", 
+                      duration: "25 min", 
+                      episode: 9, 
+                      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+                      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    },
+                    { 
+                      title: "Luxury Finishes Install", 
+                      duration: "20 min", 
+                      episode: 8, 
+                      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+                      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    },
                   ].map((video, index) => (
                     <Card key={index} className="overflow-hidden luxury-border luxury-shadow bg-card/50 backdrop-blur-sm cursor-pointer group">
-                      <div 
-                        className="aspect-video relative overflow-hidden"
-                        onClick={() => window.open('https://youtube.com/@luxurylabsdubai', '_blank')}
-                      >
-                        <img 
-                          src={video.image} 
-                          alt={video.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <Button variant="outline" className="bg-background/90 border-border">
-                            <Play className="w-4 h-4 mr-2" />
-                            Play
-                          </Button>
-                        </div>
-                      </div>
+                       <div 
+                         className="aspect-video relative overflow-hidden"
+                         onClick={() => window.open(video.url, '_blank')}
+                       >
+                         <img 
+                           src={video.thumbnail} 
+                           alt={video.title}
+                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                         />
+                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                           <Button variant="outline" className="bg-background/90 border-border">
+                             <Play className="w-4 h-4 mr-2" />
+                             Play
+                           </Button>
+                         </div>
+                       </div>
                       <CardContent className="p-4">
                         <h4 className="font-bold text-foreground mb-2 font-playfair">{video.title}</h4>
                         <div className="flex items-center justify-end text-sm text-muted-foreground">
