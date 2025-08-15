@@ -553,41 +553,6 @@ export default function Media() {
             </div>
           </div>
 
-          {/* Virtual Tours */}
-          <div className="mb-20">
-            <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Virtual Tours</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
-                <CardContent className="p-0 text-center">
-                  <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                    <ImageIcon className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair">360° Property Tours</h3>
-                  <p className="text-muted-foreground mb-6 font-montserrat">
-                    Immersive virtual tours of our completed projects and current properties
-                  </p>
-                  <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                    Explore Tours
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
-                <CardContent className="p-0 text-center">
-                  <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Play className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair">Video Walkthroughs</h3>
-                  <p className="text-muted-foreground mb-6 font-montserrat">
-                    Professional video tours showcasing the transformation process and final results
-                  </p>
-                  <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                    Watch Videos
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
 
           {/* Downloads & Resources */}
           <div>
