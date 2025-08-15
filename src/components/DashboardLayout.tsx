@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Bell, MessageSquare } from "lucide-react"
 import { Link } from "react-router-dom"
-import luxuryLabsLogo from "@/assets/luxury-labs-logo.png"
+import luxuryLabsLogo from "/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -25,7 +25,7 @@ export function DashboardLayout({ children, viewingRole }: DashboardLayoutProps)
           <header className="h-16 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-center justify-between px-6">
             <div className="flex items-center gap-4">
               <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                <img src={luxuryLabsLogo} alt="Luxury Labs" className="h-8 w-auto" />
+                <img src={luxuryLabsLogo} alt="Luxury Labs" className="h-12 w-auto" />
               </Link>
             </div>
             <div className="flex items-center gap-4">
