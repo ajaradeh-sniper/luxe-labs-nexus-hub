@@ -127,17 +127,6 @@ const Services = () => {
           ]
         },
         {
-          title: 'Premium Sourcing',
-          description: 'Access to exclusive off-market opportunities',
-          features: [
-            'Off-market property access',
-            'Exclusive developer partnerships',
-            'Pre-launch opportunities',
-            'Negotiation & acquisition support',
-            'Legal documentation assistance'
-          ]
-        },
-        {
           title: 'HNWI Concierge',
           description: 'Complete Dubai relocation and property services',
           features: [
