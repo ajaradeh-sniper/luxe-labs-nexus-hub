@@ -1,4 +1,4 @@
-import { Play, Image as ImageIcon, FileText, Download, ExternalLink, Video, Users, Youtube, Instagram, Linkedin, Eye, MessageCircle, Calendar, BookOpen, PenTool } from "lucide-react"
+import { Play, Image as ImageIcon, FileText, Download, ExternalLink, Video, Users, Youtube, Instagram, Linkedin, Eye, MessageCircle, Calendar, BookOpen, PenTool, Edit } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -443,6 +443,32 @@ export default function Media() {
                         <span>Weekly Posts</span>
                         <Button size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                           Read
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  
+                  {/* Medium */}
+                  <Card className="overflow-hidden luxury-border luxury-shadow bg-card/50 backdrop-blur-sm cursor-pointer group" onClick={() => window.open('https://medium.com/@luxurylabsdubai', '_blank')}>
+                    <div className="aspect-square relative overflow-hidden">
+                      <img 
+                        src={marinaTowerImage} 
+                        alt="Medium"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                        <div className="bg-black p-4 rounded-full">
+                          <Edit className="w-8 h-8 text-white" />
+                        </div>
+                      </div>
+                    </div>
+                    <CardContent className="p-4">
+                      <h3 className="font-bold text-foreground mb-2 font-playfair">Luxury Labs Medium</h3>
+                      <p className="text-muted-foreground text-sm mb-3 font-montserrat">In-depth property investment articles and thought leadership</p>
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <span>1.8K Followers</span>
+                        <Button size="sm" variant="outline" className="border-black text-black hover:bg-black hover:text-white">
+                          Follow
                         </Button>
                       </div>
                     </CardContent>
