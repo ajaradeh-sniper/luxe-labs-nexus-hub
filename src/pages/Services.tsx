@@ -227,14 +227,72 @@ const Services = () => {
                         </div>
                       </div>
                     </CardHeader>
+
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        {service.features.slice(0, 4).map((feature, index) => (
+                          <div key={index} className="flex items-center gap-2">
+                            <CheckCircle className="h-4 w-4 text-success flex-shrink-0" />
+                            <span className="text-sm">{feature}</span>
+                          </div>
+                        ))}
+                        {service.features.length > 4 && (
+                          <p className="text-xs text-muted-foreground">+{service.features.length - 4} more features</p>
+                        )}
+                      </div>
+
+                      {/* Expanded Options */}
+                      {isExpanded && service.expandedOptions && (
+                        <div className="mt-6 pt-6 border-t">
+                          <h4 className="text-lg font-semibold mb-4">Available Options:</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {service.expandedOptions.map((option, index) => (
+                              <Card key={index} className={`p-4 ${option.popular ? 'ring-2 ring-primary' : 'border'}`}>
+                                {option.popular && (
+                                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                                    <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
+                                  </div>
+                                )}
+                                <div className="text-center mb-4">
+                                  <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
+                                  {option.returns && (
+                                    <div className="text-2xl font-bold text-primary mb-1">{option.returns}</div>
+                                  )}
+                                  {option.investment && (
+                                    <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
+                                  )}
+                                  <p className="text-sm text-muted-foreground">{option.description}</p>
+                                </div>
+                                <ul className="space-y-2 mb-4">
+                                  {option.features.map((feature, featureIndex) => (
+                                    <li key={featureIndex} className="flex items-start gap-2">
+                                      <CheckCircle className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
+                                      <span className="text-sm">{feature}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                                <Button 
+                                  variant={option.popular ? "default" : "outline"} 
+                                  size="sm" 
+                                  className="w-full"
+                                  onClick={() => window.location.href = '/contact'}
+                                >
+                                  Learn More
+                                </Button>
+                              </Card>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </CardContent>
                   </div>
                   
-                  <div className="w-full lg:w-80 p-6">
-                    <div className="aspect-video lg:aspect-square overflow-hidden rounded-lg mb-4">
+                  <div className="w-full lg:w-80 lg:flex lg:flex-col lg:justify-between p-6">
+                    <div className="aspect-video lg:aspect-[4/3] overflow-hidden rounded-lg mb-4 group">
                       <img 
                         src={serviceImage} 
                         alt={service.title} 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <Button 
@@ -247,64 +305,6 @@ const Services = () => {
                     </Button>
                   </div>
                 </div>
-                
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    {service.features.slice(0, 4).map((feature, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-success flex-shrink-0" />
-                        <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
-                    {service.features.length > 4 && (
-                      <p className="text-xs text-muted-foreground">+{service.features.length - 4} more features</p>
-                    )}
-                  </div>
-
-                  {/* Expanded Options */}
-                  {isExpanded && service.expandedOptions && (
-                    <div className="mt-6 pt-6 border-t">
-                      <h4 className="text-lg font-semibold mb-4">Available Options:</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {service.expandedOptions.map((option, index) => (
-                          <Card key={index} className={`p-4 ${option.popular ? 'ring-2 ring-primary' : 'border'}`}>
-                            {option.popular && (
-                              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                                <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
-                              </div>
-                            )}
-                            <div className="text-center mb-4">
-                              <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
-                              {option.returns && (
-                                <div className="text-2xl font-bold text-primary mb-1">{option.returns}</div>
-                              )}
-                              {option.investment && (
-                                <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
-                              )}
-                              <p className="text-sm text-muted-foreground">{option.description}</p>
-                            </div>
-                            <ul className="space-y-2 mb-4">
-                              {option.features.map((feature, featureIndex) => (
-                                <li key={featureIndex} className="flex items-start gap-2">
-                                  <CheckCircle className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
-                                  <span className="text-sm">{feature}</span>
-                                </li>
-                              ))}
-                            </ul>
-                            <Button 
-                              variant={option.popular ? "default" : "outline"} 
-                              size="sm" 
-                              className="w-full"
-                              onClick={() => window.location.href = '/contact'}
-                            >
-                              Learn More
-                            </Button>
-                          </Card>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
               </Card>
             )
           })}
