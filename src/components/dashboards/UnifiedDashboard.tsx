@@ -226,25 +226,6 @@ export function UnifiedDashboard({ viewingRole: propViewingRole, onRoleChange }:
         <RoleViewSwitcher currentRole={viewingRole} onRoleChange={setViewingRole} />
       )}
 
-      {/* Welcome Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold font-playfair">
-            {getWelcomeMessage()}, {user?.name}
-          </h1>
-          <p className="text-muted-foreground font-montserrat">
-            {currentData.subtitle}
-          </p>
-          <div className="flex items-center gap-2 mt-2">
-            <Badge variant="outline" className="capitalize">
-              {viewingRole.replace('_', ' ')}
-            </Badge>
-            {viewingRole !== user?.role && (
-              <Badge variant="secondary">Preview Mode</Badge>
-            )}
-          </div>
-        </div>
-      </div>
 
       {/* Key Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
