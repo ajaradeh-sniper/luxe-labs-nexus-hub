@@ -178,73 +178,7 @@ const Services = () => {
 
       <div className="container mx-auto px-4 py-12 space-y-12">
 
-        {/* Featured Services with Images */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          <Card className="overflow-hidden group hover:shadow-luxury transition-all duration-300">
-            <div className="aspect-video overflow-hidden">
-              <img 
-                src={luxuryInteriorModern} 
-                alt="Real Estate Investment" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center">
-                  <TrendingUp className="h-6 w-6 text-background" />
-                </div>
-                <div>
-                  <Badge className="bg-primary text-primary-foreground mb-2">Most Popular</Badge>
-                  <h3 className="text-xl font-semibold">Real Estate Investment (Flips & Fund)</h3>
-                </div>
-              </div>
-              <p className="text-muted-foreground mb-4">
-                Join our profitable property flip investments with transparent ROI sharing and professional management.
-              </p>
-              <div className="flex items-center gap-4 mb-4 text-sm">
-                <span className="font-medium">Min. AED 500K investment</span>
-                <span className="text-muted-foreground">6-12 months</span>
-              </div>
-              <Button variant="luxury" className="w-full">
-                Explore Opportunities
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="overflow-hidden group hover:shadow-luxury transition-all duration-300">
-            <div className="aspect-video overflow-hidden">
-              <img 
-                src={dubaeMarinaLuxury} 
-                alt="Luxury Real Estate Consulting" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center">
-                  <Home className="h-6 w-6 text-background" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold">Luxury Real Estate Consulting</h3>
-                </div>
-              </div>
-              <p className="text-muted-foreground mb-4">
-                Comprehensive consulting including investment advisory, transformation, sourcing, project management, and HNWI concierge services.
-              </p>
-              <div className="flex items-center gap-4 mb-4 text-sm">
-                <span className="font-medium">Custom pricing</span>
-                <span className="text-muted-foreground">3-18 months</span>
-              </div>
-              <Button variant="outline" className="w-full">
-                Request Consultation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* All Services Grid */}
+        {/* Our Services */}
         <div className="grid grid-cols-1 gap-8">
           {services.map((service) => {
             const Icon = service.icon
