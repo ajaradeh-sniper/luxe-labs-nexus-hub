@@ -46,8 +46,8 @@ export default function Media() {
                     <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
                       <Play className="h-8 w-8 text-primary-foreground ml-1" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-2 font-playfair">Featured: Downtown Transformation</h3>
-                    <p className="text-white/90 font-montserrat">Watch our latest luxury property transformation in Downtown Dubai</p>
+                    <h3 className="text-2xl font-bold text-white mb-2 font-playfair drop-shadow-lg">Featured: JW Marriot, Marina, Dubai</h3>
+                    <p className="text-white font-montserrat drop-shadow-md">Watch our latest luxury property transformation at JW Marriot Marina</p>
                   </div>
                 </div>
               </CardContent>
