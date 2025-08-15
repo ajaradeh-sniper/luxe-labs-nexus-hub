@@ -192,7 +192,7 @@ export default function Media() {
                       <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid md:grid-cols-3 gap-6">
                     {[
                       {
                         title: "The Ultimate Guide to Dubai Property Investment in 2024",
@@ -220,8 +220,8 @@ export default function Media() {
                         image: marinaTowerImage
                       }
                     ].map((post, index) => (
-                      <Card key={index} className={`overflow-hidden luxury-border luxury-shadow bg-card/50 backdrop-blur-sm cursor-pointer group ${post.featured ? 'lg:col-span-2' : ''}`}>
-                        <div className={`${post.featured ? 'aspect-[2/1]' : 'aspect-video'} relative overflow-hidden`}>
+                      <Card key={index} className="overflow-hidden luxury-border luxury-shadow bg-card/50 backdrop-blur-sm cursor-pointer group">
+                        <div className="aspect-video relative overflow-hidden">
                           <img 
                             src={post.image} 
                             alt={post.title}
@@ -233,7 +233,7 @@ export default function Media() {
                         </div>
                         <CardContent className="p-6">
                           <Badge variant="outline" className="mb-3 text-primary border-primary/30">{post.category}</Badge>
-                          <h3 className={`font-bold text-foreground mb-2 font-playfair ${post.featured ? 'text-xl' : 'text-lg'}`}>{post.title}</h3>
+                          <h3 className="font-bold text-foreground mb-2 font-playfair text-lg">{post.title}</h3>
                           <p className="text-muted-foreground mb-4 text-sm font-montserrat">{post.excerpt}</p>
                           <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
                             <span className="flex items-center">
