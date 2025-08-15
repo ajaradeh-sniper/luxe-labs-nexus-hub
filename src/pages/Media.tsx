@@ -84,13 +84,78 @@ export default function Media() {
 
               {/* Flipping Dubai Tab */}
               <TabsContent value="flipping-dubai" className="space-y-8">
+                {/* About Flipping Dubai */}
                 <div className="text-center mb-16">
-                  <h2 className="text-4xl font-bold text-foreground mb-4 font-playfair uppercase tracking-wide">Flipping Dubai Video Series</h2>
-                  <p className="text-muted-foreground max-w-2xl mx-auto font-montserrat">
-                    Follow our luxury property transformation journey with exclusive behind-the-scenes content, 
-                    expert insights, and stunning before-and-after reveals.
+                  <div className="flex justify-center mb-6">
+                    <img 
+                      src="/lovable-uploads/d6d93f42-4152-430f-bb17-3221a60d919b.png" 
+                      alt="Flipping Dubai Logo"
+                      className="h-16 object-contain"
+                    />
+                  </div>
+                  <h2 className="text-4xl font-bold text-foreground mb-6 font-playfair uppercase tracking-wide">About Flipping Dubai</h2>
+                  <p className="text-muted-foreground max-w-4xl mx-auto font-montserrat text-lg leading-relaxed mb-8">
+                    Flipping Dubai is our flagship video series and educational platform that takes you behind the scenes of luxury property transformation in Dubai. 
+                    Created in partnership with Luxury Labs, this comprehensive series documents our complete process from property acquisition to profitable sale.
                   </p>
+                  
+                  {/* Services Grid */}
+                  <div className="grid md:grid-cols-3 gap-8 mb-12">
+                    <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
+                      <CardContent className="p-0 text-center">
+                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Video className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="text-xl font-bold text-foreground mb-3 font-playfair">Video Series</h3>
+                        <p className="text-muted-foreground font-montserrat">
+                          Complete property transformation journeys documented from start to finish with professional production quality.
+                        </p>
+                      </CardContent>
+                    </Card>
+                    
+                    <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
+                      <CardContent className="p-0 text-center">
+                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <BookOpen className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="text-xl font-bold text-foreground mb-3 font-playfair">Educational Content</h3>
+                        <p className="text-muted-foreground font-montserrat">
+                          Learn property investment strategies, market analysis, renovation techniques, and selling tactics from industry experts.
+                        </p>
+                      </CardContent>
+                    </Card>
+                    
+                    <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
+                      <CardContent className="p-0 text-center">
+                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Users className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="text-xl font-bold text-foreground mb-3 font-playfair">Community Access</h3>
+                        <p className="text-muted-foreground font-montserrat">
+                          Join our growing community of property investors and gain access to exclusive insights and networking opportunities.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  
+                  {/* Relationship with Luxury Labs */}
+                  <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm mb-12">
+                    <CardContent className="p-0">
+                      <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair text-center">Partnership with Luxury Labs</h3>
+                      <p className="text-muted-foreground font-montserrat text-center max-w-3xl mx-auto leading-relaxed">
+                        Flipping Dubai is produced in collaboration with Luxury Labs, Dubai's premier property transformation company. 
+                        This unique partnership gives viewers unprecedented access to real deals, actual renovation processes, 
+                        and genuine market insights from one of the most successful property investment firms in the UAE. 
+                        Every episode features real properties from Luxury Labs' portfolio, providing authentic case studies 
+                        and practical knowledge that can't be found anywhere else.
+                      </p>
+                    </CardContent>
+                  </Card>
                 </div>
+                
+                {/* Video Series Section */}
+                <div className="mb-16">
+                  <h2 className="text-3xl font-bold text-foreground text-center mb-12 font-playfair">Latest Episodes</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {/* Featured Video */}
                   <Card className="lg:col-span-2 lg:row-span-2 overflow-hidden luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
@@ -156,6 +221,7 @@ export default function Media() {
                       </CardContent>
                     </Card>
                   ))}
+                </div>
                 </div>
                 <div className="text-center pt-8">
                   <Button 
