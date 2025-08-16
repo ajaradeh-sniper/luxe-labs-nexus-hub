@@ -84,35 +84,6 @@ export default function Partners() {
             </Card>
           </div>
 
-          {/* Featured Partners */}
-          <div className="mb-20">
-            <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Featured Partners</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { name: "Elite Properties Dubai", category: "Real Estate" },
-                { name: "Luxury Design Studio", category: "Interior Design" },
-                { name: "Premium Construction", category: "Contractors" },
-                { name: "Dubai Investment Group", category: "Financial" },
-                { name: "High-End Furnishings", category: "Suppliers" },
-                { name: "Marble & Stone Co.", category: "Materials" },
-                { name: "Smart Home Solutions", category: "Technology" },
-                { name: "Landscape Architects", category: "Outdoor Design" }
-              ].map((partner, index) => (
-                <Card key={index} className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-colors">
-                  <CardContent className="p-0 text-center">
-                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Star className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                    <h4 className="font-bold text-foreground mb-2 font-playfair">{partner.name}</h4>
-                    <Badge variant="outline" className="text-primary border-primary/30 bg-primary/5">
-                      {partner.category}
-                    </Badge>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
           {/* Partnership Benefits */}
           <div className="mb-20">
             <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Partnership Benefits</h2>
@@ -166,6 +137,35 @@ export default function Partners() {
                   </ul>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+
+          {/* Featured Partners */}
+          <div className="mb-20">
+            <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Featured Partners</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { name: "Elite Properties Dubai", category: "Real Estate" },
+                { name: "Luxury Design Studio", category: "Interior Design" },
+                { name: "Premium Construction", category: "Contractors" },
+                { name: "Dubai Investment Group", category: "Financial" },
+                { name: "High-End Furnishings", category: "Suppliers" },
+                { name: "Marble & Stone Co.", category: "Materials" },
+                { name: "Smart Home Solutions", category: "Technology" },
+                { name: "Landscape Architects", category: "Outdoor Design" }
+              ].map((partner, index) => (
+                <Card key={index} className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-colors">
+                  <CardContent className="p-0 text-center">
+                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Star className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <h4 className="font-bold text-foreground mb-2 font-playfair">{partner.name}</h4>
+                    <Badge variant="outline" className="text-primary border-primary/30 bg-primary/5">
+                      {partner.category}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
 
