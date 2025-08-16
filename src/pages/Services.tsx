@@ -100,7 +100,7 @@ const Services = () => {
     },
     {
       id: 'luxury-consulting',
-      title: 'Luxury Real Estate Consulting',
+      title: 'Luxury Real Estate Advisory (Transformation, Design & Investment)',
       description: 'Comprehensive consulting services including investment advisory, property transformation, sourcing, project management, and HNWI concierge services.',
       icon: Home,
       price: 'Custom pricing',
