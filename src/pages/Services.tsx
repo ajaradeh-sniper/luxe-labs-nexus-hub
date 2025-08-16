@@ -456,7 +456,7 @@ const Services = () => {
                 {/* Main ROI */}
                 <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl p-6 mb-4 border border-primary/20">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">12-25%</div>
+                    <div className="text-4xl font-bold text-primary mb-2">10%-30%</div>
                     <div className="text-lg font-semibold mb-1">ROI Range</div>
                     <div className="text-sm text-muted-foreground">In 8-10 months average</div>
                   </div>
