@@ -360,7 +360,7 @@ const Services = () => {
                     <div className="text-sm text-muted-foreground">Month Timeline</div>
                   </div>
                   <div className="text-center p-4 bg-background/50 rounded-lg border">
-                    <div className="text-2xl font-bold text-primary mb-1">8+</div>
+                    <div className="text-2xl font-bold text-primary mb-1">5+</div>
                     <div className="text-sm text-muted-foreground">Projects Completed</div>
                   </div>
                 </div>
