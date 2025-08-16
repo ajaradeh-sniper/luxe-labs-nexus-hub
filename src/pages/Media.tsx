@@ -176,7 +176,7 @@ export default function Media() {
                   <Card className="lg:col-span-2 lg:row-span-2 overflow-hidden luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
                     <div className="aspect-video relative group cursor-pointer overflow-hidden">
                       <img 
-                        src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" 
+                        src="https://img.youtube.com/vi/zeAHlZpsKFo/maxresdefault.jpg" 
                         alt="Marina Bay Penthouse Before"
                         className="w-full h-full object-cover"
                       />
@@ -184,7 +184,7 @@ export default function Media() {
                         <Button 
                           size="lg" 
                           variant="luxury"
-                          onClick={() => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')}
+                          onClick={() => window.open('https://www.youtube.com/watch?v=zeAHlZpsKFo', '_blank')}
                         >
                           <Play className="w-6 h-6 mr-2" />
                           Watch Latest Episode
