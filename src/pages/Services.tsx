@@ -332,102 +332,142 @@ const Services = () => {
               Our proven methodology combines data-driven market analysis, premium design expertise, and strategic investment planning to deliver exceptional results.
             </p>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
-                <div className="w-16 h-16 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BarChart3 className="h-8 w-8 text-background" />
+          <CardContent className="p-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary/70 z-10"></div>
+                <img 
+                  src="/src/assets/luxury-office.jpg" 
+                  alt="Data-driven analysis workspace"
+                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <BarChart3 className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl font-bold mb-3">Data-Driven Analysis</h4>
+                    <p className="text-white/90 mb-4 leading-relaxed">
+                      Comprehensive market intelligence and real-time analytics to identify the highest-potential investment opportunities in Dubai's luxury market.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Real-time market analysis & trends
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        ROI prediction modeling & forecasting
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Comparative property valuation studies
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h4 className="font-semibold text-lg mb-3">Data-Driven Analysis</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  We utilize comprehensive market data, neighborhood trends, and comparative property analysis to identify the highest-potential investment opportunities.
-                </p>
-                <ul className="text-xs space-y-2 text-left">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Real-time market analysis
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Comparative property studies
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    ROI prediction modeling
-                  </li>
-                </ul>
               </div>
-              
-              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
-                <div className="w-16 h-16 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-8 w-8 text-background" />
+
+              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/90 to-secondary/70 z-10"></div>
+                <img 
+                  src="/src/assets/luxury-interior-modern.jpg" 
+                  alt="Premium transformation showcase"
+                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <Award className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl font-bold mb-3">Premium Transformation</h4>
+                    <p className="text-white/90 mb-4 leading-relaxed">
+                      Luxury design expertise creating exceptional living spaces that command premium prices and attract discerning buyers worldwide.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Luxury interior design & architecture
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Premium materials & finishes selection
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Professional project management
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h4 className="font-semibold text-lg mb-3">Premium Transformation</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Our design and renovation team creates luxury living spaces that command premium prices and attract discerning buyers and tenants.
-                </p>
-                <ul className="text-xs space-y-2 text-left">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Luxury interior design
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    High-end material selection
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Professional project management
-                  </li>
-                </ul>
               </div>
-              
-              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
-                <div className="w-16 h-16 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-8 w-8 text-background" />
+
+              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/90 to-accent/70 z-10"></div>
+                <img 
+                  src="/src/assets/roi-investment.jpg" 
+                  alt="Strategic investment planning"
+                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <TrendingUp className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl font-bold mb-3">Strategic Investment</h4>
+                    <p className="text-white/90 mb-4 leading-relaxed">
+                      Every decision backed by thorough financial analysis, risk assessment, and strategic planning to maximize returns and minimize exposure.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Portfolio optimization & diversification
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Advanced risk mitigation strategies
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Strategic exit planning & timing
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h4 className="font-semibold text-lg mb-3">Strategic Investment</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Every investment decision is backed by thorough financial analysis, risk assessment, and strategic planning to maximize returns.
-                </p>
-                <ul className="text-xs space-y-2 text-left">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Portfolio optimization
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Risk mitigation strategies
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Exit strategy planning
-                  </li>
-                </ul>
               </div>
-              
-              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
-                <div className="w-16 h-16 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Zap className="h-8 w-8 text-background" />
+
+              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-accent/70 z-10"></div>
+                <img 
+                  src="/src/assets/professional-team.jpg" 
+                  alt="Accelerated results team"
+                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <Zap className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl font-bold mb-3">Accelerated Results</h4>
+                    <p className="text-white/90 mb-4 leading-relaxed">
+                      Streamlined processes and established networks ensure faster project completion and accelerated time to market for maximum efficiency.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Fast-track renovation processes
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Established premium vendor network
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
+                        Rapid market positioning & sales
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h4 className="font-semibold text-lg mb-3">Accelerated Results</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Our streamlined processes and established vendor networks ensure faster project completion and quicker time to market.
-                </p>
-                <ul className="text-xs space-y-2 text-left">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Fast-track renovations
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Established vendor network
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Rapid market positioning
-                  </li>
-                </ul>
               </div>
             </div>
             
