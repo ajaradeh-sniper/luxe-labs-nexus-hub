@@ -198,7 +198,7 @@ export default function Investors() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "High Net Worth Individuals",
+                title: "Investors and HNWI",
                 icon: User,
                 description: "Sophisticated investors seeking portfolio diversification through luxury real estate investments in Dubai's premier locations.",
                 characteristics: ["Portfolio diversification", "Luxury lifestyle investment", "Capital preservation"]
