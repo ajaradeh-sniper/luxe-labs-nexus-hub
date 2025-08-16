@@ -128,15 +128,26 @@ const Projects = () => {
   return (
     <>
       <Navigation />
-      <div className="container mx-auto px-4 py-8 space-y-16">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-foreground">Our Projects</h1>
-          <p className="text-xl text-accent max-w-3xl mx-auto">
+      
+      {/* Hero Section */}
+      <section className="relative h-96 flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaiMarinaImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+        </div>
+        
+        <div className="relative container mx-auto px-4 text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Our Projects</h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
             Transforming spaces through innovative design, premium construction, and strategic development 
             to create exceptional real estate experiences.
           </p>
         </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12 space-y-12">
 
         {/* Sample Projects Section */}
         <section className="space-y-8">
