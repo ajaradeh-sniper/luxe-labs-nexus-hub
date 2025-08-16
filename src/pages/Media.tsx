@@ -140,7 +140,7 @@ export default function Media() {
                   </div>
                   
                   {/* Relationship with Luxury Labs */}
-                  <Card className="p-8 luxury-border luxury-shadow bg-background backdrop-blur-sm mb-12">
+                  <Card className="p-8 luxury-border luxury-shadow backdrop-blur-sm mb-12" style={{ backgroundColor: '#D9D9D9' }}>
                     <CardContent className="p-0">
                       <div className="flex items-center justify-center gap-8 mb-6">
                         <img 
@@ -148,17 +148,17 @@ export default function Media() {
                           alt="Flipping Dubai Logo" 
                           className="h-16 object-contain"
                         />
-                        <div className="flex items-center text-2xl font-bold text-muted-foreground">
+                        <div className="flex items-center text-2xl font-bold text-gray-600">
                           <span>&times;</span>
                         </div>
                         <img 
-                          src="/lovable-uploads/19d46fab-ef27-4282-8994-d08015a53fe0.png" 
+                          src="/lovable-uploads/b2b9ab2c-7e3d-4eab-b79f-a0b91cd6ba50.png" 
                           alt="Luxury Labs Logo" 
                           className="h-16 object-contain"
                         />
                       </div>
-                      <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair text-center">Partnership with Luxury Labs</h3>
-                      <p className="text-muted-foreground font-montserrat text-center max-w-3xl mx-auto leading-relaxed">
+                      <h3 className="text-2xl font-bold text-gray-800 mb-4 font-playfair text-center">Partnership with Luxury Labs</h3>
+                      <p className="text-gray-700 font-montserrat text-center max-w-3xl mx-auto leading-relaxed">
                         Flipping Dubai is produced in collaboration with Luxury Labs, Dubai's premier property transformation company. 
                         This unique partnership gives viewers unprecedented access to real deals, actual renovation processes, 
                         and genuine market insights from one of the most successful property investment firms in the UAE. 
