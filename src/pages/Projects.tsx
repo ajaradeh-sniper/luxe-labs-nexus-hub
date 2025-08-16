@@ -196,7 +196,7 @@ const Projects = () => {
                     <img src={luxuryTransformationImage} alt="Luxury Transformation Process" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-2xl font-playfair font-bold">Luxury Labs Transformation</h3>
+                      <h3 className="text-2xl font-playfair font-bold">LUXURY LABS TRANSFORMATION</h3>
                     </div>
                   </div>
                 </div>
