@@ -462,8 +462,8 @@ export default function Media() {
                   <Card className="overflow-hidden luxury-border luxury-shadow bg-card/50 backdrop-blur-sm cursor-pointer group lg:col-span-2" onClick={() => window.open('https://youtube.com/@luxurylabsdubai', '_blank')}>
                     <div className="aspect-[2/1] relative overflow-hidden">
                       <img 
-                        src="https://img.youtube.com/vi/zeAHlZpsKFo/maxresdefault.jpg" 
-                        alt="YouTube Channel"
+                        src="https://yt3.googleusercontent.com/ytc/AIdro_n4g4JmrIGP6nJJ9vxuQjJJY8AX8Kw3XKbhKuKJAg=s800-c-k-c0x00ffffff-no-rj" 
+                        alt="Luxury Labs Dubai YouTube Channel"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute inset-0 bg-red-600/20 flex items-center justify-center">
