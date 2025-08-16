@@ -24,7 +24,7 @@ export default function Investors() {
         </div>
         
         <div className="relative container mx-auto px-4 text-white">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Investment Opportunities</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Investors Community</h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
             Join sophisticated investors in Dubai's luxury property transformation market. 
             Access curated opportunities with projected returns of 25-35% through our expert-managed portfolio.
