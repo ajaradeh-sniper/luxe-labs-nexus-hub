@@ -344,7 +344,7 @@ export default function Investors() {
           {/* Why Choose Luxury Labs */}
           <div className="mb-20">
             <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Why Choose Luxury Labs</h2>
-            <div className="grid md:grid-cols-2 gap-12">
+            <div className="grid md:grid-cols-3 gap-8">
               <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
                 <CardContent className="p-0">
                   <div className="flex items-center gap-4 mb-6">
@@ -389,6 +389,33 @@ export default function Investors() {
                       "20+ years combined experience",
                       "Licensed professionals only",
                       "Comprehensive project oversight"
+                    ].map((point, index) => (
+                      <li key={index} className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-primary" />
+                        <span className="text-muted-foreground font-montserrat">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
+                <CardContent className="p-0">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center">
+                      <Users className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground font-playfair">Luxury Network</h3>
+                  </div>
+                  <p className="text-muted-foreground mb-4 font-montserrat">
+                    Our extensive network of elite real estate developers, premium agencies, certified contractors, 
+                    luxury suppliers, and specialized factories ensuring superior quality and craftsmanship.
+                  </p>
+                  <ul className="space-y-2">
+                    {[
+                      "Elite real estate developers & agencies",
+                      "Certified luxury contractors",
+                      "Premium suppliers & material factories"
                     ].map((point, index) => (
                       <li key={index} className="flex items-center gap-2">
                         <CheckCircle className="h-4 w-4 text-primary" />
