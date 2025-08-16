@@ -16,7 +16,11 @@ import {
   ArrowRight,
   Star,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Target,
+  Award,
+  BarChart3,
+  Zap
 } from "lucide-react"
 import renovationShowcase from "@/assets/renovation-showcase.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
@@ -564,6 +568,141 @@ const Services = () => {
                       The Walk entertainment district
                     </li>
                   </ul>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Luxury Labs Approach */}
+        <Card className="luxury-border luxury-shadow bg-background backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Target className="h-5 w-5" />
+              The Luxury Labs Approach
+            </CardTitle>
+            <p className="text-muted-foreground">
+              Our proven methodology combines data-driven market analysis, premium design expertise, and strategic investment planning to deliver exceptional results.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
+                <div className="w-16 h-16 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
+                  <BarChart3 className="h-8 w-8 text-background" />
+                </div>
+                <h4 className="font-semibold text-lg mb-3">Data-Driven Analysis</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  We utilize comprehensive market data, neighborhood trends, and comparative property analysis to identify the highest-potential investment opportunities.
+                </p>
+                <ul className="text-xs space-y-2 text-left">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Real-time market analysis
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Comparative property studies
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    ROI prediction modeling
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
+                <div className="w-16 h-16 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="h-8 w-8 text-background" />
+                </div>
+                <h4 className="font-semibold text-lg mb-3">Premium Transformation</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Our design and renovation team creates luxury living spaces that command premium prices and attract discerning buyers and tenants.
+                </p>
+                <ul className="text-xs space-y-2 text-left">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Luxury interior design
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    High-end material selection
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Professional project management
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
+                <div className="w-16 h-16 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="h-8 w-8 text-background" />
+                </div>
+                <h4 className="font-semibold text-lg mb-3">Strategic Investment</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Every investment decision is backed by thorough financial analysis, risk assessment, and strategic planning to maximize returns.
+                </p>
+                <ul className="text-xs space-y-2 text-left">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Portfolio optimization
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Risk mitigation strategies
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Exit strategy planning
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
+                <div className="w-16 h-16 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Zap className="h-8 w-8 text-background" />
+                </div>
+                <h4 className="font-semibold text-lg mb-3">Accelerated Results</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Our streamlined processes and established vendor networks ensure faster project completion and quicker time to market.
+                </p>
+                <ul className="text-xs space-y-2 text-left">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Fast-track renovations
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Established vendor network
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Rapid market positioning
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Key Results Section */}
+            <div className="mt-12 pt-8 border-t">
+              <h4 className="text-xl font-semibold text-center mb-8">Proven Track Record</h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">250+</div>
+                  <div className="text-sm text-muted-foreground">Properties Transformed</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">25%</div>
+                  <div className="text-sm text-muted-foreground">Average ROI</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">6-12</div>
+                  <div className="text-sm text-muted-foreground">Months Timeline</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">100%</div>
+                  <div className="text-sm text-muted-foreground">Client Satisfaction</div>
                 </div>
               </div>
             </div>
