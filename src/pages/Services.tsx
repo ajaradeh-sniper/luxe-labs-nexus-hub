@@ -543,7 +543,7 @@ const Services = () => {
             <div>
               <h4 className="text-lg font-semibold text-center mb-6">Complete 10-Step Process</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                {process.map((step) => (
+                {process.slice(3).map((step) => (
                   <div key={step.step} className="relative">
                     <div className="flex flex-col items-center text-center p-4 border rounded-lg">
                       <div className="w-8 h-8 bg-gradient-luxury rounded-full flex items-center justify-center text-background font-bold text-sm mb-3">
