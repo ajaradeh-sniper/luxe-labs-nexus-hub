@@ -36,6 +36,7 @@ import premiumVillaSelectionImage from "@/assets/premium-villa-selection.jpg";
 import beforeAfterTransformationImage from "@/assets/before-after-transformation.jpg";
 export default function Landing() {
   const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
+  const [showConsultingDropdown, setShowConsultingDropdown] = useState(false);
 
   const investmentOptions = [
     {
@@ -76,6 +77,42 @@ export default function Landing() {
         'Personal relationship manager',
         'Customized investment strategies',
         'Exclusive networking events'
+      ]
+    }
+  ];
+
+  const consultingOptions = [
+    {
+      title: 'Investment Advisory',
+      description: 'Strategic investment guidance and market analysis',
+      features: [
+        'Market analysis & due diligence',
+        'Investment strategy development',
+        'Portfolio optimization',
+        'Risk assessment & mitigation',
+        'Exit strategy planning'
+      ]
+    },
+    {
+      title: 'Property Transformation',
+      description: 'Complete property renovation and enhancement services',
+      features: [
+        'Design & renovation consultation',
+        'Project management & oversight',
+        'Quality control & inspections',
+        'Vendor coordination',
+        'Timeline & budget management'
+      ]
+    },
+    {
+      title: 'HNWI Concierge',
+      description: 'Complete Dubai relocation and property services',
+      features: [
+        'Dubai relocation consultation (A-Z)',
+        'Property purchase assistance',
+        'Home transformation services',
+        'Legal & documentation support',
+        'Ongoing concierge services'
       ]
     }
   ];
@@ -169,13 +206,56 @@ export default function Landing() {
                   <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold border-white/30 text-white hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300 backdrop-blur-sm group">
-                <Link to="/auth">
+              
+              {/* Consulting Button with Dropdown */}
+              <div className="relative w-full sm:w-auto">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold border-white/30 text-white hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300 backdrop-blur-sm group"
+                  onClick={() => setShowConsultingDropdown(!showConsultingDropdown)}
+                >
                   <LayoutDashboard className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform duration-300" />
                   Luxury Transformation Advisory LL
-                  <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform duration-300" />
-                </Link>
-              </Button>
+                  {showConsultingDropdown ? 
+                    <ChevronUp className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" /> : 
+                    <ChevronDown className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" />
+                  }
+                </Button>
+                
+                {/* Consulting Options Dropdown */}
+                {showConsultingDropdown && (
+                  <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 p-4 min-w-[800px] max-w-4xl">
+                    <h4 className="text-lg font-semibold mb-4 text-foreground">Consulting Services:</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {consultingOptions.map((option, index) => (
+                        <Card key={index} className="p-4 hover:shadow-lg transition-shadow border">
+                          <div className="text-center mb-4">
+                            <h5 className="font-semibold text-lg mb-2 text-foreground">{option.title}</h5>
+                            <p className="text-sm text-muted-foreground">{option.description}</p>
+                          </div>
+                          <ul className="space-y-2 mb-4">
+                            {option.features.map((feature, featureIndex) => (
+                              <li key={featureIndex} className="flex items-start gap-2">
+                                <CheckCircle className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
+                                <span className="text-sm text-foreground">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <Button 
+                            variant="outline"
+                            size="sm" 
+                            className="w-full"
+                            onClick={() => window.location.href = '/contact'}
+                          >
+                            Learn More
+                          </Button>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Trust indicators */}
