@@ -210,8 +210,8 @@ export default function Media() {
                       title: "Property Selection Secrets", 
                       duration: "18 min", 
                       episode: 11, 
-                      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-                      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                      thumbnail: "https://img.youtube.com/vi/hToV8FrnbFU/maxresdefault.jpg",
+                      url: "https://www.youtube.com/watch?v=hToV8FrnbFU&t=103s"
                     },
                     { 
                       title: "Design Planning Process", 
