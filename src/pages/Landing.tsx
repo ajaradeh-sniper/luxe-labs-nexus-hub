@@ -4,24 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Building2, 
-  LayoutDashboard, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Users, 
-  Award, 
-  TrendingUp, 
-  Star, 
-  CheckCircle, 
-  ArrowRight, 
-  Handshake, 
-  Globe, 
-  Palette,
-  ChevronDown,
-  ChevronUp
-} from "lucide-react";
+import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp } from "lucide-react";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
 import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
 import flippingDubaiLogo from "/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png";
@@ -41,111 +24,48 @@ export default function Landing() {
   const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
   const [showConsultingDropdown, setShowConsultingDropdown] = useState(false);
   const [showTransformDropdown, setShowTransformDropdown] = useState(false);
-
-  const investmentOptions = [
-    {
-      title: 'Diversified Fund',
-      returns: '25-30%',
-      investment: 'AED 500K',
-      description: 'Diversified across 10+ properties',
-      features: [
-        'Minimum investment: AED 500K',
-        'Diversified across 10+ properties',
-        'Professional management included',
-        'Quarterly performance reports',
-        'Exit flexibility after 12 months'
-      ]
-    },
-    {
-      title: 'Single Property',
-      returns: '10% to 30%',
-      investment: 'AED 1M',
-      description: 'Full transparency on single asset',
-      features: [
-        'Minimum investment: AED 1M',
-        'Full transparency on single asset',
-        'Direct involvement opportunities',
-        'Higher return potential',
-        '6-12 month typical timeline'
-      ],
-      popular: true
-    },
-    {
-      title: 'VIP Membership',
-      returns: '30%-30%',
-      investment: 'AED 5M',
-      description: 'First access to premium deals',
-      features: [
-        'Minimum investment: AED 5M',
-        'First access to premium deals',
-        'Personal relationship manager',
-        'Customized investment strategies',
-        'Exclusive networking events'
-      ]
-    }
-  ];
-
-  const transformOptions = [
-    {
-      title: 'Property Transformation',
-      description: 'Complete property renovation and enhancement services',
-      features: [
-        'Design & renovation consultation',
-        'Project management & oversight',
-        'Quality control & inspections',
-        'Vendor coordination',
-        'Timeline & budget management'
-      ]
-    },
-    {
-      title: 'HNWI Concierge',
-      description: 'Complete Dubai relocation and property services',
-      features: [
-        'Dubai relocation consultation (A-Z)',
-        'Property purchase assistance',
-        'Home transformation services',
-        'Legal & documentation support',
-        'Ongoing concierge services'
-      ]
-    }
-  ];
-
-  const consultingOptions = [
-    {
-      title: 'Investment Advisory',
-      description: 'Strategic investment guidance and market analysis',
-      features: [
-        'Market analysis & due diligence',
-        'Investment strategy development',
-        'Portfolio optimization',
-        'Risk assessment & mitigation',
-        'Exit strategy planning'
-      ]
-    },
-    {
-      title: 'Property Transformation',
-      description: 'Complete property renovation and enhancement services',
-      features: [
-        'Design & renovation consultation',
-        'Project management & oversight',
-        'Quality control & inspections',
-        'Vendor coordination',
-        'Timeline & budget management'
-      ]
-    },
-    {
-      title: 'HNWI Concierge',
-      description: 'Complete Dubai relocation and property services',
-      features: [
-        'Dubai relocation consultation (A-Z)',
-        'Property purchase assistance',
-        'Home transformation services',
-        'Legal & documentation support',
-        'Ongoing concierge services'
-      ]
-    }
-  ];
-
+  const investmentOptions = [{
+    title: 'Diversified Fund',
+    returns: '25-30%',
+    investment: 'AED 500K',
+    description: 'Diversified across 10+ properties',
+    features: ['Minimum investment: AED 500K', 'Diversified across 10+ properties', 'Professional management included', 'Quarterly performance reports', 'Exit flexibility after 12 months']
+  }, {
+    title: 'Single Property',
+    returns: '10% to 30%',
+    investment: 'AED 1M',
+    description: 'Full transparency on single asset',
+    features: ['Minimum investment: AED 1M', 'Full transparency on single asset', 'Direct involvement opportunities', 'Higher return potential', '6-12 month typical timeline'],
+    popular: true
+  }, {
+    title: 'VIP Membership',
+    returns: '30%-30%',
+    investment: 'AED 5M',
+    description: 'First access to premium deals',
+    features: ['Minimum investment: AED 5M', 'First access to premium deals', 'Personal relationship manager', 'Customized investment strategies', 'Exclusive networking events']
+  }];
+  const transformOptions = [{
+    title: 'Property Transformation',
+    description: 'Complete property renovation and enhancement services',
+    features: ['Design & renovation consultation', 'Project management & oversight', 'Quality control & inspections', 'Vendor coordination', 'Timeline & budget management']
+  }, {
+    title: 'HNWI Concierge',
+    description: 'Complete Dubai relocation and property services',
+    features: ['Dubai relocation consultation (A-Z)', 'Property purchase assistance', 'Home transformation services', 'Legal & documentation support', 'Ongoing concierge services']
+  }];
+  const consultingOptions = [{
+    title: 'Investment Advisory',
+    description: 'Strategic investment guidance and market analysis',
+    features: ['Market analysis & due diligence', 'Investment strategy development', 'Portfolio optimization', 'Risk assessment & mitigation', 'Exit strategy planning']
+  }, {
+    title: 'Property Transformation',
+    description: 'Complete property renovation and enhancement services',
+    features: ['Design & renovation consultation', 'Project management & oversight', 'Quality control & inspections', 'Vendor coordination', 'Timeline & budget management']
+  }, {
+    title: 'HNWI Concierge',
+    description: 'Complete Dubai relocation and property services',
+    features: ['Dubai relocation consultation (A-Z)', 'Property purchase assistance', 'Home transformation services', 'Legal & documentation support', 'Ongoing concierge services']
+  }];
   return <div className="min-h-screen bg-background">
       <Navigation />
 
@@ -161,11 +81,7 @@ export default function Landing() {
         <div className="container mx-auto text-center relative z-10 max-w-7xl">
           {/* Logo */}
           <div className="mb-8 sm:mb-12 lg:mb-16">
-            <img 
-              src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
-              alt="Luxury Labs Logo" 
-              className="h-48 sm:h-64 lg:h-96 w-auto mx-auto drop-shadow-2xl animate-scale-in" 
-            />
+            <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-48 sm:h-64 lg:h-96 w-auto mx-auto drop-shadow-2xl animate-scale-in" />
           </div>
           
           <div className="animate-fade-in">
@@ -176,18 +92,14 @@ export default function Landing() {
               {/* Investment Card */}
               <Card className="glass-card group hover:scale-105 transition-all duration-500 overflow-hidden">
                 <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={investmentPartnershipImage} 
-                    alt="Investment Partnership" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  <img src={investmentPartnershipImage} alt="Investment Partnership" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="flex items-center gap-3 mb-2">
                       <TrendingUp className="h-6 w-6 text-primary" />
-                      <span className="text-lg font-bold font-playfair text-foreground">Flip or Invest in Flipping Projects with LL: Invest in Real Estate Transformation (Flipping) Projects /Fund with Luxury Labs</span>
+                      <span className="text-lg font-bold font-playfair text-foreground">Invest in Flipping Projects </span>
                     </div>
-                    <p className="text-sm text-muted-foreground font-montserrat">Join our exclusive investment opportunities with guaranteed returns</p>
+                    <p className="text-sm text-muted-foreground font-montserrat">Start a Project or join (Invest) in Real Estate Transformation (Flipping) Projects /Fund with Luxury Labs</p>
                   </div>
                 </div>
                 <CardContent className="p-6">
@@ -205,10 +117,7 @@ export default function Landing() {
                       Full transparency & reporting
                     </div>
                   </div>
-                  <Button 
-                    className="w-full mt-4 luxury-gradient hover:luxury-glow font-montserrat font-semibold"
-                    onClick={() => window.location.href = '/investors'}
-                  >
+                  <Button className="w-full mt-4 luxury-gradient hover:luxury-glow font-montserrat font-semibold" onClick={() => window.location.href = '/investors'}>
                     Start Investing
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -218,18 +127,16 @@ export default function Landing() {
               {/* Transform Card */}
               <Card className="glass-card group hover:scale-105 transition-all duration-500 overflow-hidden">
                 <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={luxuryFinishesImage} 
-                    alt="Luxury Property Transformation" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  <img src={luxuryFinishesImage} alt="Luxury Property Transformation" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="flex items-center gap-3 mb-2">
                       <Building2 className="h-6 w-6 text-primary" />
                       <span className="text-lg font-bold font-playfair text-foreground">Transform a Property with LL</span>
                     </div>
-                    <p className="text-sm text-muted-foreground font-montserrat">Premium renovation services that maximize property value</p>
+                    <p className="text-sm text-muted-foreground font-montserrat">
+
+Start a Transformation (Flip)/Project or Transform your Luxury Property with Luxury Labs</p>
                   </div>
                 </div>
                 <CardContent className="p-6">
@@ -247,11 +154,7 @@ export default function Landing() {
                       Value increase guarantee
                     </div>
                   </div>
-                  <Button 
-                    variant="outline"
-                    className="w-full mt-4 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat font-semibold"
-                    onClick={() => window.location.href = '/services'}
-                  >
+                  <Button variant="outline" className="w-full mt-4 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat font-semibold" onClick={() => window.location.href = '/services'}>
                     Transform Property
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -261,18 +164,14 @@ export default function Landing() {
               {/* Advisory Card */}
               <Card className="glass-card group hover:scale-105 transition-all duration-500 overflow-hidden">
                 <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={professionalTeamImage} 
-                    alt="Professional Advisory Services" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  <img src={professionalTeamImage} alt="Professional Advisory Services" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="flex items-center gap-3 mb-2">
                       <Users className="h-6 w-6 text-primary" />
                       <span className="text-lg font-bold font-playfair text-foreground">Get Advisory from LL</span>
                     </div>
-                    <p className="text-sm text-muted-foreground font-montserrat">Expert guidance for your Dubai real estate journey</p>
+                    <p className="text-sm text-muted-foreground font-montserrat">Property tranformation design, material/product sourcing, investment and finacnial advisory  with Luxury Labs</p>
                   </div>
                 </div>
                 <CardContent className="p-6">
@@ -290,11 +189,7 @@ export default function Landing() {
                       HNWI concierge services
                     </div>
                   </div>
-                  <Button 
-                    variant="outline"
-                    className="w-full mt-4 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat font-semibold"
-                    onClick={() => window.location.href = '/contact'}
-                  >
+                  <Button variant="outline" className="w-full mt-4 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat font-semibold" onClick={() => window.location.href = '/contact'}>
                     Get Advisory
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -304,11 +199,7 @@ export default function Landing() {
 
             {/* Main CTA */}
             <div className="text-center">
-              <Button 
-                variant="ghost"
-                className="text-muted-foreground hover:text-foreground font-montserrat transition-colors duration-300"
-                onClick={() => window.location.href = '/about'}
-              >
+              <Button variant="ghost" className="text-muted-foreground hover:text-foreground font-montserrat transition-colors duration-300" onClick={() => window.location.href = '/about'}>
                 Learn More About Luxury Labs
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -802,11 +693,7 @@ export default function Landing() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <img 
-                  src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
-                  alt="Luxury Labs Logo" 
-                  className="h-16 w-auto" 
-                />
+                <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-16 w-auto" />
               </div>
               <p className="text-secondary-foreground/80 font-montserrat text-sm">
                 Dubai's premier property investment and transformation platform.
