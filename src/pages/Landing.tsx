@@ -70,139 +70,224 @@ export default function Landing() {
       <Navigation />
 
       {/* HOME - Hero Section */}
-      <section id="home" className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden min-h-screen flex items-center" style={{
-      backgroundImage: `url(${heroImage})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    }}>
-        <div className="absolute inset-0 hero-overlay"></div>
-        
-        <div className="container mx-auto text-center relative z-10 max-w-7xl">
-          {/* Logo */}
-          <div className="mb-8 sm:mb-12 lg:mb-16">
-            <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-48 sm:h-64 lg:h-96 w-auto mx-auto drop-shadow-2xl animate-scale-in" />
-          </div>
-          
-          <div className="animate-fade-in">
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Dynamic Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/20"></div>
+          <div 
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: `url(${heroImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/60"></div>
+        </div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-7xl mx-auto">
             
-            {/* Three Visual Service Cards */}
-            <div className="grid md:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
+            {/* Header with Logo */}
+            <div className="text-center mb-16">
+              <div className="inline-block relative">
+                <img 
+                  src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+                  alt="Luxury Labs Logo" 
+                  className="h-32 sm:h-40 lg:h-48 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500" 
+                />
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-xl opacity-50 animate-pulse"></div>
+              </div>
+              
+              <div className="mt-8 space-y-4">
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-playfair font-bold text-foreground leading-tight">
+                  Transform <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Dubai's Luxury</span> Real Estate
+                </h1>
+                <p className="text-lg sm:text-xl text-muted-foreground font-montserrat max-w-3xl mx-auto leading-relaxed">
+                  Partner with Luxury Labs for premium property transformations, strategic investments, and expert advisory services in Dubai's elite real estate market
+                </p>
+              </div>
+            </div>
+
+            {/* Modern Service Cards Grid */}
+            <div className="grid lg:grid-cols-3 gap-8 mb-16">
               
               {/* Investment Card */}
-              <Card className="glass-card group hover:scale-105 transition-all duration-500 overflow-hidden">
-                <div className="relative h-48 overflow-hidden">
-                  <img src={investmentPartnershipImage} alt="Investment Partnership" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <TrendingUp className="h-6 w-6 text-primary" />
-                      <span className="text-lg font-bold font-playfair text-foreground">Invest in Flipping Projects </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground font-montserrat">Start a Project or join (Invest) in Real Estate Transformation (Flipping) Projects /Fund with Luxury Labs</p>
+              <Card className="group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={investmentPartnershipImage} 
+                    alt="Investment Partnership" 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+                  
+                  {/* Floating Icon */}
+                  <div className="absolute top-6 left-6 w-12 h-12 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <TrendingUp className="h-6 w-6 text-white" />
+                  </div>
+                  
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-2xl font-bold font-playfair text-white mb-2">
+                      Invest in Flipping Projects
+                    </h3>
+                    <p className="text-sm text-white/90 font-montserrat leading-relaxed">
+                      Start a Project or join (Invest) in Real Estate Transformation (Flipping) Projects /Fund with Luxury Labs
+                    </p>
                   </div>
                 </div>
-                <CardContent className="p-6">
-                  <div className="space-y-3">
-                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      25-30% ROI target
+                
+                <CardContent className="p-6 relative z-10">
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm font-montserrat text-foreground">25-30% ROI target</span>
                     </div>
-                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      Minimum AED 500K investment
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm font-montserrat text-foreground">Minimum AED 500K investment</span>
                     </div>
-                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      Full transparency & reporting
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm font-montserrat text-foreground">Full transparency & reporting</span>
                     </div>
                   </div>
-                  <Button className="w-full mt-4 luxury-gradient hover:luxury-glow font-montserrat font-semibold" onClick={() => window.location.href = '/investors'}>
+                  
+                  <Button 
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" 
+                    onClick={() => window.location.href = '/investors'}
+                  >
                     Start Investing
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
               </Card>
 
               {/* Transform Card */}
-              <Card className="glass-card group hover:scale-105 transition-all duration-500 overflow-hidden">
-                <div className="relative h-48 overflow-hidden">
-                  <img src={luxuryFinishesImage} alt="Luxury Property Transformation" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <Building2 className="h-6 w-6 text-primary" />
-                      <span className="text-lg font-bold font-playfair text-foreground">Transform a Property with LL</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground font-montserrat">
-
-Start a Transformation (Flip)/Project or Transform your Luxury Property with Luxury Labs</p>
+              <Card className="group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={luxuryFinishesImage} 
+                    alt="Luxury Property Transformation" 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+                  
+                  {/* Floating Icon */}
+                  <div className="absolute top-6 left-6 w-12 h-12 bg-accent/90 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Building2 className="h-6 w-6 text-white" />
+                  </div>
+                  
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-2xl font-bold font-playfair text-white mb-2">
+                      Transform a Property with LL
+                    </h3>
+                    <p className="text-sm text-white/90 font-montserrat leading-relaxed">
+                      Start a Transformation (Flip)/Project or Transform your Luxury Property with Luxury Labs
+                    </p>
                   </div>
                 </div>
-                <CardContent className="p-6">
-                  <div className="space-y-3">
-                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      Luxury design & finishes
+                
+                <CardContent className="p-6 relative z-10">
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-accent rounded-full"></div>
+                      <span className="text-sm font-montserrat text-foreground">Luxury design & finishes</span>
                     </div>
-                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      Project management included
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-accent rounded-full"></div>
+                      <span className="text-sm font-montserrat text-foreground">Project management included</span>
                     </div>
-                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      Value increase guarantee
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-accent rounded-full"></div>
+                      <span className="text-sm font-montserrat text-foreground">Value increase guarantee</span>
                     </div>
                   </div>
-                  <Button variant="outline" className="w-full mt-4 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat font-semibold" onClick={() => window.location.href = '/services'}>
+                  
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-2 border-accent text-accent hover:bg-accent hover:text-white font-semibold font-montserrat group/btn transition-all duration-300" 
+                    onClick={() => window.location.href = '/services'}
+                  >
                     Transform Property
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
               </Card>
 
               {/* Advisory Card */}
-              <Card className="glass-card group hover:scale-105 transition-all duration-500 overflow-hidden">
-                <div className="relative h-48 overflow-hidden">
-                  <img src={professionalTeamImage} alt="Professional Advisory Services" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <Users className="h-6 w-6 text-primary" />
-                      <span className="text-lg font-bold font-playfair text-foreground">Get Advisory from LL</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground font-montserrat">Property tranformation design, material/product sourcing, investment and finacnial advisory  with Luxury Labs</p>
+              <Card className="group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={professionalTeamImage} 
+                    alt="Professional Advisory Services" 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+                  
+                  {/* Floating Icon */}
+                  <div className="absolute top-6 left-6 w-12 h-12 bg-secondary/90 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Users className="h-6 w-6 text-white" />
+                  </div>
+                  
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-2xl font-bold font-playfair text-white mb-2">
+                      Get Advisory from LL
+                    </h3>
+                    <p className="text-sm text-white/90 font-montserrat leading-relaxed">
+                      Property transformation design, material/product sourcing, investment and financial advisory with Luxury Labs
+                    </p>
                   </div>
                 </div>
-                <CardContent className="p-6">
-                  <div className="space-y-3">
-                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      Luxury Real Estate Design
+                
+                <CardContent className="p-6 relative z-10">
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-secondary rounded-full"></div>
+                      <span className="text-sm font-montserrat text-foreground">Luxury Real Estate Design</span>
                     </div>
-                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      Investment strategy planning
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-secondary rounded-full"></div>
+                      <span className="text-sm font-montserrat text-foreground">Investment strategy planning</span>
                     </div>
-                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      HNWI concierge services
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-secondary rounded-full"></div>
+                      <span className="text-sm font-montserrat text-foreground">HNWI concierge services</span>
                     </div>
                   </div>
-                  <Button variant="outline" className="w-full mt-4 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat font-semibold" onClick={() => window.location.href = '/contact'}>
+                  
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-semibold font-montserrat group/btn transition-all duration-300" 
+                    onClick={() => window.location.href = '/contact'}
+                  >
                     Get Advisory
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
               </Card>
             </div>
 
-            {/* Main CTA */}
+            {/* Enhanced CTA Section */}
             <div className="text-center">
-              <Button variant="ghost" className="text-muted-foreground hover:text-foreground font-montserrat transition-colors duration-300" onClick={() => window.location.href = '/about'}>
-                Learn More About Luxury Labs
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <div className="inline-flex items-center gap-4 p-4 rounded-2xl bg-card/30 backdrop-blur-sm border border-border/50 hover:bg-card/50 transition-all duration-300 group cursor-pointer"
+                   onClick={() => window.location.href = '/about'}>
+                <div className="flex items-center gap-3 text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                  <span className="font-montserrat font-medium">Learn More About Luxury Labs</span>
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
