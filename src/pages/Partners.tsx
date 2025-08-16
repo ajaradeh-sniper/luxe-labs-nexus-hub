@@ -1,4 +1,4 @@
-import { Building2, Users, Handshake, Award, CheckCircle, ArrowRight, Star } from "lucide-react"
+import { Building2, Users, Handshake, Award, CheckCircle, ArrowRight, Star, Package } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -34,7 +34,7 @@ export default function Partners() {
         <div className="container mx-auto px-4">
 
           {/* Partnership Types */}
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
               <CardContent className="p-0">
                 <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
@@ -67,6 +67,18 @@ export default function Partners() {
                 <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair">Investment Partners</h3>
                 <p className="text-muted-foreground font-montserrat">
                   Financial institutions and private investors supporting our luxury property transformation projects
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
+              <CardContent className="p-0">
+                <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Package className="h-8 w-8 text-primary-foreground" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair">Luxury Suppliers</h3>
+                <p className="text-muted-foreground font-montserrat">
+                  Premium material, furniture, hardware and equipment suppliers providing the finest luxury finishes and installations
                 </p>
               </CardContent>
             </Card>
