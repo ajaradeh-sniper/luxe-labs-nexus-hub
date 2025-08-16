@@ -35,32 +35,105 @@ export default function Investors() {
       {/* Investors Dashboard Portal Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm rounded-lg p-8">
-              <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                <User className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <h2 className="text-3xl font-bold text-foreground mb-4 font-playfair">
-                Investors Dashboard Portal
-              </h2>
-              <p className="text-muted-foreground mb-8 leading-relaxed font-montserrat">
-                Access your personalized investment portfolio, track performance, and discover new opportunities. 
-                Exclusive access for accredited investors only.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-                <Button className="luxury-gradient text-primary-foreground font-montserrat px-8 py-3">
-                  <User className="w-5 h-5 mr-2" />
-                  Sign In
-                </Button>
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat px-8 py-3">
-                  Sign Up
-                </Button>
-              </div>
-              <div className="pt-6 border-t border-border">
-                <p className="text-sm text-muted-foreground font-montserrat">
-                  New to Luxury Labs? <br />
-                  Contact our investor relations team for access.
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Investor Portal */}
+            <div className="space-y-6">
+              <div className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm rounded-lg p-8">
+                <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+                  <User className="w-8 h-8 text-primary-foreground" />
+                </div>
+                <h2 className="text-3xl font-bold text-foreground mb-4 font-playfair text-center">
+                  Investors Dashboard Portal
+                </h2>
+                <p className="text-muted-foreground mb-8 leading-relaxed font-montserrat text-center">
+                  Access your personalized investment portfolio, track performance, and discover new opportunities. 
+                  Exclusive access for accredited investors only.
                 </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                  <Button className="luxury-gradient text-primary-foreground font-montserrat px-8 py-3">
+                    <User className="w-5 h-5 mr-2" />
+                    Sign In
+                  </Button>
+                  <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat px-8 py-3">
+                    Sign Up
+                  </Button>
+                </div>
+                <div className="pt-6 border-t border-border">
+                  <p className="text-sm text-muted-foreground font-montserrat text-center">
+                    New to Luxury Labs? <br />
+                    Contact our investor relations team for access.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Sample Dashboard */}
+            <div className="space-y-6">
+              <div className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm rounded-lg p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-6 font-playfair">Dashboard Preview</h3>
+                
+                {/* Portfolio Overview */}
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  <div className="text-center p-4 bg-background rounded-lg border border-border">
+                    <PiggyBank className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <p className="text-lg font-bold text-foreground">AED 2.4M</p>
+                    <p className="text-sm text-muted-foreground">Total Invested</p>
+                  </div>
+                  <div className="text-center p-4 bg-background rounded-lg border border-border">
+                    <TrendingUp className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <p className="text-lg font-bold text-foreground">+18.5%</p>
+                    <p className="text-sm text-muted-foreground">Portfolio ROI</p>
+                  </div>
+                  <div className="text-center p-4 bg-background rounded-lg border border-border">
+                    <Building2 className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <p className="text-lg font-bold text-foreground">5</p>
+                    <p className="text-sm text-muted-foreground">Active Projects</p>
+                  </div>
+                </div>
+
+                {/* Recent Investments */}
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-foreground mb-3">Recent Investments</h4>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center p-3 bg-background rounded-lg border border-border">
+                      <div>
+                        <p className="font-medium text-foreground">Palm Jumeirah Villa</p>
+                        <p className="text-sm text-muted-foreground">AED 800K invested</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-success">+24%</p>
+                        <p className="text-sm text-muted-foreground">8 months</p>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-background rounded-lg border border-border">
+                      <div>
+                        <p className="font-medium text-foreground">Marina Penthouse</p>
+                        <p className="text-sm text-muted-foreground">AED 1.2M invested</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-primary">+12%</p>
+                        <p className="text-sm text-muted-foreground">4 months</p>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-background rounded-lg border border-border">
+                      <div>
+                        <p className="font-medium text-foreground">Downtown Apartment</p>
+                        <p className="text-sm text-muted-foreground">AED 400K invested</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-warning">+8%</p>
+                        <p className="text-sm text-muted-foreground">2 months</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-border">
+                  <Button variant="outline" className="w-full">
+                    View Full Dashboard
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
