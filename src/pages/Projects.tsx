@@ -138,6 +138,132 @@ const Projects = () => {
           </p>
         </div>
 
+        {/* Sample Projects Section */}
+        <section className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold text-foreground">Sample Projects</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Explore our portfolio of successful developments that showcase our commitment to excellence 
+              and innovation in real estate transformation.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {[
+              {
+                id: '1',
+                name: 'Marina Bay Luxury Towers',
+                location: 'Dubai Marina',
+                type: 'Residential',
+                status: 'completed',
+                budget: '$120M',
+                duration: '36 months',
+                units: 280,
+                image: dubaiMarinaImage,
+                features: ['Premium finishes', 'Smart home systems', 'Infinity pool', 'Sky gardens']
+              },
+              {
+                id: '2',
+                name: 'Downtown Business Hub',
+                location: 'DIFC',
+                type: 'Commercial',
+                status: 'active',
+                budget: '$85M',
+                duration: '24 months',
+                units: 150,
+                image: downtownImage,
+                features: ['Grade A offices', 'Conference facilities', 'Retail spaces', 'Parking complex']
+              },
+              {
+                id: '3',
+                name: 'Palm Residence Villas',
+                location: 'Palm Jumeirah',
+                type: 'Villa',
+                status: 'planning',
+                budget: '$200M',
+                duration: '42 months',
+                units: 45,
+                image: luxuryVillaImage,
+                features: ['Private beaches', 'Custom architecture', 'Smart automation', 'Wellness centers']
+              }
+            ].map((project) => {
+              const getStatusColor = (status: string) => {
+                switch (status) {
+                  case 'completed': return 'bg-success/10 text-success border-success/20'
+                  case 'active': return 'bg-primary/10 text-primary border-primary/20'
+                  case 'planning': return 'bg-blue-500/10 text-blue-500 border-blue-500/20'
+                  default: return 'bg-muted text-muted-foreground'
+                }
+              }
+              
+              return (
+                <Card key={project.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 right-4">
+                      <Badge className={getStatusColor(project.status)}>
+                        {project.status}
+                      </Badge>
+                    </div>
+                  </div>
+                  <CardHeader>
+                    <div>
+                      <CardTitle className="text-lg mb-2">{project.name}</CardTitle>
+                      <div className="flex items-center gap-1 text-muted-foreground mb-2">
+                        <MapPin className="h-4 w-4" />
+                        <span className="text-sm">{project.location}</span>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="text-muted-foreground">Type:</span>
+                        <p className="font-medium">{project.type}</p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Budget:</span>
+                        <p className="font-medium">{project.budget}</p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Duration:</span>
+                        <p className="font-medium">{project.duration}</p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Units:</span>
+                        <p className="font-medium">{project.units}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <h4 className="font-medium text-sm">Key Features:</h4>
+                      <div className="grid grid-cols-2 gap-1">
+                        {project.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-center gap-1">
+                            <CheckCircle className="h-3 w-3 text-success" />
+                            <span className="text-xs">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      variant="outline" 
+                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      onClick={() => window.location.href = `/project/${project.id}`}
+                    >
+                      View Details
+                    </Button>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </section>
 
         {/* Areas of Focus Section */}
         <section className="space-y-8">
