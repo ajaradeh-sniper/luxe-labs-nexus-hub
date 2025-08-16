@@ -28,6 +28,9 @@ import downtownLuxury from "@/assets/downtown-luxury.jpg"
 import marinaTower from "@/assets/marina-tower.jpg"
 import premiumTower from "@/assets/premium-tower.jpg"
 import premiumVillaSelection from "@/assets/premium-villa-selection.jpg"
+import premiumSelectionImage from "@/assets/premium-selection.jpg"
+import luxuryTransformationImage from "@/assets/luxury-transformation.jpg"
+import exceptionalReturnsImage from "@/assets/exceptional-returns.jpg"
 
 const Projects = () => {
   const areasOfFocus = [
@@ -148,6 +151,83 @@ const Projects = () => {
       </section>
 
       <div className="container mx-auto px-4 py-12 space-y-12">
+
+        {/* Process Section */}
+        <section className="py-24 px-4 bg-background">
+          <div className="container mx-auto">
+            <div className="text-center mb-16 animate-fade-in">
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
+                Our <span className="luxury-text">Process</span>
+              </h2>
+              <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
+                Three strategic steps to transform premium properties into exceptional investment returns
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-12">
+              {/* Step 1: Premium Selection */}
+              <div className="text-center group animate-fade-in">
+                <div className="relative mb-8">
+                  <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
+                    <span className="text-primary-foreground font-bold text-2xl font-playfair">1</span>
+                  </div>
+                  <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
+                    <img src={premiumSelectionImage} alt="Premium Selection Process" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-2xl font-playfair font-bold">PREMIUM SELECTION</h3>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  Curating Dubai's rarest addresses through expert market analysis and exclusive access to premium properties in prime locations.
+                </p>
+              </div>
+
+              {/* Step 2: Luxury Transformation */}
+              <div className="text-center group animate-fade-in" style={{
+              animationDelay: '0.2s'
+            }}>
+                <div className="relative mb-8">
+                  <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
+                    <span className="text-primary-foreground font-bold text-2xl font-playfair">2</span>
+                  </div>
+                  <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
+                    <img src={luxuryTransformationImage} alt="Luxury Transformation Process" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-2xl font-playfair font-bold">LUXURY TRANSFORMATION</h3>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  Our signature renovation process elevates properties to luxury standards with bespoke design and premium materials.
+                </p>
+              </div>
+
+              {/* Step 3: Exceptional Returns */}
+              <div className="text-center group animate-fade-in" style={{
+              animationDelay: '0.4s'
+            }}>
+                <div className="relative mb-8">
+                  <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
+                    <span className="text-primary-foreground font-bold text-2xl font-playfair">3</span>
+                  </div>
+                  <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
+                    <img src={exceptionalReturnsImage} alt="Exceptional Returns Process" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-2xl font-playfair font-bold">EXCEPTIONAL RETURNS</h3>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  Strategic market timing and expert sales execution deliver superior ROI, targeting 30%+ returns for our investors.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Sample Projects Section */}
         <section className="space-y-8">
