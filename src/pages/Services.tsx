@@ -513,23 +513,53 @@ const Services = () => {
             </p>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-              {process.map((step) => (
-                <div key={step.step} className="relative">
-                  <div className="flex flex-col items-center text-center p-4 border rounded-lg">
-                    <div className="w-8 h-8 bg-gradient-luxury rounded-full flex items-center justify-center text-background font-bold text-sm mb-3">
-                      {step.step}
+            {/* New Client Steps Highlight */}
+            <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
+              <div className="text-center mb-6">
+                <h4 className="text-lg font-semibold text-primary mb-2">For New Clients</h4>
+                <p className="text-sm text-muted-foreground">Start your investment journey with these essential first steps</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {process.slice(0, 3).map((step) => (
+                  <div key={step.step} className="relative">
+                    <div className="flex flex-col items-center text-center p-6 bg-primary/10 border-2 border-primary/30 rounded-lg hover:shadow-lg transition-shadow">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4 shadow-lg">
+                        {step.step}
+                      </div>
+                      <h4 className="font-semibold text-base mb-3 text-primary">{step.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
                     </div>
-                    <h4 className="font-semibold text-sm mb-2">{step.title}</h4>
-                    <p className="text-xs text-muted-foreground">{step.description}</p>
+                    {step.step < 3 && (
+                      <div className="hidden md:block absolute top-1/2 -right-2 transform -translate-y-1/2 z-10">
+                        <ArrowRight className="h-6 w-6 text-primary" />
+                      </div>
+                    )}
                   </div>
-                  {step.step < 10 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2">
-                      <ArrowRight className="h-4 w-4 text-muted-foreground" />
+                ))}
+              </div>
+            </div>
+
+            {/* Complete Process */}
+            <div>
+              <h4 className="text-lg font-semibold text-center mb-6">Complete 10-Step Process</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                {process.map((step) => (
+                  <div key={step.step} className="relative">
+                    <div className="flex flex-col items-center text-center p-4 border rounded-lg">
+                      <div className="w-8 h-8 bg-gradient-luxury rounded-full flex items-center justify-center text-background font-bold text-sm mb-3">
+                        {step.step}
+                      </div>
+                      <h4 className="font-semibold text-sm mb-2">{step.title}</h4>
+                      <p className="text-xs text-muted-foreground">{step.description}</p>
                     </div>
-                  )}
-                </div>
-              ))}
+                    {step.step < 10 && (
+                      <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2">
+                        <ArrowRight className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </CardContent>
         </Card>
