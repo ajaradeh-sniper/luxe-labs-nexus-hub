@@ -18,6 +18,9 @@ import {
 import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
 import downtownImage from "@/assets/downtown-luxury.jpg"
 import luxuryVillaImage from "@/assets/premium-villa-selection.jpg"
+import luxuryPenthouseImage from "@/assets/luxury-penthouse.jpg"
+import luxuryOfficeImage from "@/assets/luxury-office.jpg"
+import villaGolfCourseImage from "@/assets/villa-golf-course.jpg"
 
 const Projects = () => {
   const areasOfFocus = [
@@ -25,19 +28,22 @@ const Projects = () => {
       icon: Building,
       title: "Luxury Residential",
       description: "High-end apartment complexes, penthouses, and premium residential developments with focus on modern amenities and lifestyle enhancement.",
-      features: ["Premium finishes", "Smart home integration", "Luxury amenities", "Concierge services"]
+      features: ["Premium finishes", "Smart home integration", "Luxury amenities", "Concierge services"],
+      image: luxuryPenthouseImage
     },
     {
       icon: Briefcase,
       title: "Commercial Spaces",
       description: "Office buildings, retail spaces, and mixed-use developments designed for maximum functionality and aesthetic appeal.",
-      features: ["Modern workspaces", "Retail optimization", "Mixed-use design", "Technology integration"]
+      features: ["Modern workspaces", "Retail optimization", "Mixed-use design", "Technology integration"],
+      image: luxuryOfficeImage
     },
     {
       icon: Home,
       title: "Villa & Estate",
       description: "Exclusive villas and private estates with custom designs, premium materials, and personalized luxury features.",
-      features: ["Custom architecture", "Landscape design", "Private amenities", "Sustainable solutions"]
+      features: ["Custom architecture", "Landscape design", "Private amenities", "Sustainable solutions"],
+      image: villaGolfCourseImage
     }
   ]
 
@@ -125,40 +131,6 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Areas of Focus Section */}
-        <section className="space-y-8">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold text-foreground">Areas of Focus</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We specialize in diverse property types, each tailored to meet specific market demands and lifestyle requirements.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {areasOfFocus.map((area, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300">
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                    <area.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{area.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground">{area.description}</p>
-                  <div className="space-y-2">
-                    {area.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-success" />
-                        <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
         {/* Our Approach Section */}
         <section className="space-y-8">
           <div className="text-center space-y-4">
@@ -178,6 +150,50 @@ const Projects = () => {
                   </div>
                   <h3 className="text-lg font-semibold">{approach.title}</h3>
                   <p className="text-sm text-muted-foreground">{approach.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Areas of Focus Section */}
+        <section className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold text-foreground">Areas of Focus</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              We specialize in diverse property types, each tailored to meet specific market demands and lifestyle requirements.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {areasOfFocus.map((area, index) => (
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={area.image} 
+                    alt={area.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <div className="w-12 h-12 bg-white/90 rounded-lg flex items-center justify-center">
+                      <area.icon className="h-6 w-6 text-primary" />
+                    </div>
+                  </div>
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-xl">{area.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-muted-foreground">{area.description}</p>
+                  <div className="space-y-2">
+                    {area.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-success" />
+                        <span className="text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             ))}
