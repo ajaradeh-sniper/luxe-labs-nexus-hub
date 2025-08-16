@@ -494,7 +494,7 @@ const Services = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Star className="h-5 w-5" />
-              Prime Dubai Investment Locations
+              Prime Locations Luxury Labs Focus on
             </CardTitle>
             <p className="text-muted-foreground">
               Strategic locations with exceptional growth potential and luxury living experiences in Dubai's most sought-after areas.
