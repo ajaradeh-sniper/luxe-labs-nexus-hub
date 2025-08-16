@@ -73,7 +73,7 @@ const Services = () => {
         },
         {
           title: 'VIP Membership',
-          returns: '20% -30%+',
+          returns: '30%-30%',
           investment: 'AED 5M',
           description: 'First access to premium deals',
           features: [
