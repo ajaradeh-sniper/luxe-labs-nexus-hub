@@ -40,7 +40,7 @@ const Services = () => {
   const services = [
     {
       id: 'real-estate-investment',
-      title: 'Real Estate Investment (Flips & Fund)',
+      title: 'Luxury Real Estate Transformation Investment (Flips & Fund)',
       description: 'Join our profitable property flip investments with transparent ROI sharing and professional management.',
       icon: TrendingUp,
       price: 'Min. AED 500K investment',
