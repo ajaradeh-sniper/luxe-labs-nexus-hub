@@ -4,6 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp } from "lucide-react";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
 import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
@@ -24,48 +25,122 @@ export default function Landing() {
   const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
   const [showConsultingDropdown, setShowConsultingDropdown] = useState(false);
   const [showTransformDropdown, setShowTransformDropdown] = useState(false);
-  const investmentOptions = [{
-    title: 'Diversified Fund',
-    returns: '25-30%',
-    investment: 'AED 500K',
-    description: 'Diversified across 10+ properties',
-    features: ['Minimum investment: AED 500K', 'Diversified across 10+ properties', 'Professional management included', 'Quarterly performance reports', 'Exit flexibility after 12 months']
-  }, {
-    title: 'Single Property',
-    returns: '10% to 30%',
-    investment: 'AED 1M',
-    description: 'Full transparency on single asset',
-    features: ['Minimum investment: AED 1M', 'Full transparency on single asset', 'Direct involvement opportunities', 'Higher return potential', '6-12 month typical timeline'],
-    popular: true
-  }, {
-    title: 'VIP Membership',
-    returns: '30%-30%',
-    investment: 'AED 5M',
-    description: 'First access to premium deals',
-    features: ['Minimum investment: AED 5M', 'First access to premium deals', 'Personal relationship manager', 'Customized investment strategies', 'Exclusive networking events']
-  }];
-  const transformOptions = [{
-    title: 'Property Transformation',
-    description: 'Complete property renovation and enhancement services',
-    features: ['Design & renovation consultation', 'Project management & oversight', 'Quality control & inspections', 'Vendor coordination', 'Timeline & budget management']
-  }, {
-    title: 'HNWI Concierge',
-    description: 'Complete Dubai relocation and property services',
-    features: ['Dubai relocation consultation (A-Z)', 'Property purchase assistance', 'Home transformation services', 'Legal & documentation support', 'Ongoing concierge services']
-  }];
-  const consultingOptions = [{
-    title: 'Investment Advisory',
-    description: 'Strategic investment guidance and market analysis',
-    features: ['Market analysis & due diligence', 'Investment strategy development', 'Portfolio optimization', 'Risk assessment & mitigation', 'Exit strategy planning']
-  }, {
-    title: 'Property Transformation',
-    description: 'Complete property renovation and enhancement services',
-    features: ['Design & renovation consultation', 'Project management & oversight', 'Quality control & inspections', 'Vendor coordination', 'Timeline & budget management']
-  }, {
-    title: 'HNWI Concierge',
-    description: 'Complete Dubai relocation and property services',
-    features: ['Dubai relocation consultation (A-Z)', 'Property purchase assistance', 'Home transformation services', 'Legal & documentation support', 'Ongoing concierge services']
-  }];
+
+  // Service data from Services page
+  const investmentOptions = [
+    {
+      title: 'Diversified Fund',
+      returns: '25-30%',
+      investment: 'AED 500K',
+      description: 'Diversified across 10+ properties',
+      features: [
+        'Minimum investment: AED 500K',
+        'Diversified across 10+ properties',
+        'Professional management included',
+        'Quarterly performance reports',
+        'Exit flexibility after 12 months'
+      ]
+    },
+    {
+      title: 'Single Property',
+      returns: '10% to 30%',
+      investment: 'AED 1M',
+      description: 'Full transparency on single asset',
+      features: [
+        'Minimum investment: AED 1M',
+        'Full transparency on single asset',
+        'Direct involvement opportunities',
+        'Higher return potential',
+        '6-12 month typical timeline'
+      ],
+      popular: true
+    },
+    {
+      title: 'VIP Membership',
+      returns: '30%-30%',
+      investment: 'AED 5M',
+      description: 'First access to premium deals',
+      features: [
+        'Minimum investment: AED 5M',
+        'First access to premium deals',
+        'Personal relationship manager',
+        'Customized investment strategies',
+        'Exclusive networking events'
+      ]
+    }
+  ];
+
+  const transformationOptions = [
+    {
+      title: 'Property Luxury Transformation services',
+      description: 'Premium design, project management, material sourcing, furniture and staging',
+      features: [
+        'Premium design services',
+        'Project management & oversight',
+        'Material & product sourcing',
+        'Furniture selection & staging',
+        'Quality control & inspections'
+      ]
+    },
+    {
+      title: 'Property Transformation',
+      description: 'Complete property renovation and enhancement services',
+      features: [
+        'Design & renovation consultation',
+        'Project management & oversight',
+        'Quality control & inspections',
+        'Vendor coordination',
+        'Timeline & budget management'
+      ]
+    },
+    {
+      title: 'HNWI Concierge',
+      description: 'Complete Dubai relocation and property services',
+      features: [
+        'Dubai relocation consultation (A-Z)',
+        'Property purchase assistance',
+        'Home transformation services',
+        'Legal & documentation support',
+        'Ongoing concierge services'
+      ]
+    }
+  ];
+
+  const advisoryOptions = [
+    {
+      title: 'Luxury Transformation services',
+      description: 'Strategic investment guidance and market analysis',
+      features: [
+        'Market analysis & due diligence',
+        'Investment strategy development',
+        'Portfolio optimization',
+        'Risk assessment & mitigation',
+        'Exit strategy planning'
+      ]
+    },
+    {
+      title: 'Property Transformation',
+      description: 'Complete property renovation and enhancement services',
+      features: [
+        'Design & renovation consultation',
+        'Project management & oversight',
+        'Quality control & inspections',
+        'Vendor coordination',
+        'Timeline & budget management'
+      ]
+    },
+    {
+      title: 'HNWI Concierge',
+      description: 'Complete Dubai relocation and property services',
+      features: [
+        'Dubai relocation consultation (A-Z)',
+        'Property purchase assistance',
+        'Home transformation services',
+        'Legal & documentation support',
+        'Ongoing concierge services'
+      ]
+    }
+  ];
   return <div className="min-h-screen bg-background">
       <Navigation />
 
@@ -160,13 +235,56 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button 
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" 
-                    onClick={() => window.location.href = '/investors'}
-                  >
-                    Start Investing
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn">
+                        View Details
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background border border-border z-50">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-playfair">Investment Options</DialogTitle>
+                      </DialogHeader>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                        {investmentOptions.map((option, index) => (
+                          <Card key={index} className={`p-4 ${option.popular ? 'ring-2 ring-primary' : 'border'}`}>
+                            {option.popular && (
+                              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                                <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
+                              </div>
+                            )}
+                            <div className="text-center mb-4">
+                              <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
+                              {option.returns && (
+                                <div className="text-2xl font-bold text-primary mb-1">{option.returns}</div>
+                              )}
+                              {option.investment && (
+                                <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
+                              )}
+                              <p className="text-sm text-muted-foreground">{option.description}</p>
+                            </div>
+                            <ul className="space-y-2 mb-4">
+                              {option.features.map((feature, featureIndex) => (
+                                <li key={featureIndex} className="flex items-start gap-2">
+                                  <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                  <span className="text-sm">{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <Button 
+                              variant={option.popular ? "default" : "outline"} 
+                              size="sm" 
+                              className="w-full"
+                              onClick={() => window.location.href = '/investors'}
+                            >
+                              Learn More
+                            </Button>
+                          </Card>
+                        ))}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </CardContent>
               </Card>
 
@@ -213,14 +331,45 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-2 border-accent text-accent hover:bg-accent hover:text-white font-semibold font-montserrat group/btn transition-all duration-300" 
-                    onClick={() => window.location.href = '/services'}
-                  >
-                    Transform Property
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn">
+                        View Details
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background border border-border z-50">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-playfair">Transformation Services</DialogTitle>
+                      </DialogHeader>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                        {transformationOptions.map((option, index) => (
+                          <Card key={index} className="p-4 border">
+                            <div className="text-center mb-4">
+                              <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
+                              <p className="text-sm text-muted-foreground">{option.description}</p>
+                            </div>
+                            <ul className="space-y-2 mb-4">
+                              {option.features.map((feature, featureIndex) => (
+                                <li key={featureIndex} className="flex items-start gap-2">
+                                  <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                  <span className="text-sm">{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="w-full"
+                              onClick={() => window.location.href = '/services'}
+                            >
+                              Learn More
+                            </Button>
+                          </Card>
+                        ))}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </CardContent>
               </Card>
 
@@ -267,14 +416,45 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-semibold font-montserrat group/btn transition-all duration-300" 
-                    onClick={() => window.location.href = '/contact'}
-                  >
-                    Get Advisory
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn">
+                        View Details
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background border border-border z-50">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-playfair">Advisory Services</DialogTitle>
+                      </DialogHeader>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                        {advisoryOptions.map((option, index) => (
+                          <Card key={index} className="p-4 border">
+                            <div className="text-center mb-4">
+                              <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
+                              <p className="text-sm text-muted-foreground">{option.description}</p>
+                            </div>
+                            <ul className="space-y-2 mb-4">
+                              {option.features.map((feature, featureIndex) => (
+                                <li key={featureIndex} className="flex items-start gap-2">
+                                  <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                  <span className="text-sm">{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="w-full"
+                              onClick={() => window.location.href = '/contact'}
+                            >
+                              Learn More
+                            </Button>
+                          </Card>
+                        ))}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </CardContent>
               </Card>
             </div>
