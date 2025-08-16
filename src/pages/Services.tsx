@@ -150,6 +150,59 @@ const Services = () => {
           ]
         }
       ]
+    },
+    {
+      id: 'luxury-transformation',
+      title: 'Luxury Real Estate Transformation (Renovate or Flip)',
+      description: 'Comprehensive consulting services including investment advisory, property transformation, sourcing, project management, and HNWI concierge services.',
+      icon: Hammer,
+      price: 'Custom pricing',
+      timeline: '3-18 months',
+      features: [
+        'Property Luxury Transformation services',
+        'Property transformation consulting',
+        'Premium property sourcing',
+        'End-to-end project management',
+        'HNWI Real Estate Concierge',
+        'Dubai relocation services (A-Z)'
+      ],
+      cta: 'Request Consultation',
+      highlight: false,
+      expandedOptions: [
+        {
+          title: 'Property Luxury Transformation services',
+          description: 'Premium design, project management, material sourcing, furniture and staging',
+          features: [
+            'Premium design services',
+            'Project management & oversight',
+            'Material & product sourcing',
+            'Furniture selection & staging',
+            'Quality control & inspections'
+          ]
+        },
+        {
+          title: 'Property Transformation',
+          description: 'Complete property renovation and enhancement services',
+          features: [
+            'Design & renovation consultation',
+            'Project management & oversight',
+            'Quality control & inspections',
+            'Vendor coordination',
+            'Timeline & budget management'
+          ]
+        },
+        {
+          title: 'HNWI Concierge',
+          description: 'Complete Dubai relocation and property services',
+          features: [
+            'Dubai relocation consultation (A-Z)',
+            'Property purchase assistance',
+            'Home transformation services',
+            'Legal & documentation support',
+            'Ongoing concierge services'
+          ]
+        }
+      ]
     }
   ]
 
