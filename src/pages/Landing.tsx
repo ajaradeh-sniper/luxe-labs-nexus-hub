@@ -185,7 +185,7 @@ export default function Landing() {
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="flex items-center gap-3 mb-2">
                       <TrendingUp className="h-6 w-6 text-primary" />
-                      <span className="text-lg font-bold font-playfair text-foreground">Invest in a Transformation with LL</span>
+                      <span className="text-lg font-bold font-playfair text-foreground">Flip or Invest in Flipping Projects with LL: Invest in Real Estate Transformation (Flipping) Projects /Fund with Luxury Labs</span>
                     </div>
                     <p className="text-sm text-muted-foreground font-montserrat">Join our exclusive investment opportunities with guaranteed returns</p>
                   </div>
