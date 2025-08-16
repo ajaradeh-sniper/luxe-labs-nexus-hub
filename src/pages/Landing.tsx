@@ -198,7 +198,7 @@ export default function Landing() {
                 
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={investmentPartnershipImage} 
+                    src={exceptionalReturnsImage} 
                     alt="Investment Partnership" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   />
@@ -294,7 +294,7 @@ export default function Landing() {
                 
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={luxuryFinishesImage} 
+                    src={luxuryTransformationImage} 
                     alt="Luxury Property Transformation" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   />
@@ -379,7 +379,7 @@ export default function Landing() {
                 
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={professionalTeamImage} 
+                    src={premiumVillaSelectionImage} 
                     alt="Professional Advisory Services" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   />
