@@ -339,11 +339,11 @@ export default function Landing() {
           }}>
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
-                  <TrendingUp className="h-8 w-8 text-primary-foreground" />
+                  <Users className="h-8 w-8 text-primary-foreground" />
                 </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Exceptional Returns</h3>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Luxury Network and Premium Selection</h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Target 30%+ ROI through strategic property selection, luxury transformations, and expert market timing.
+                  Exclusively serving high-net-worth individuals with personalized investment strategies and white-glove service.
                 </p>
               </CardContent>
             </Card>
@@ -353,11 +353,11 @@ export default function Landing() {
           }}>
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
-                  <Users className="h-8 w-8 text-primary-foreground" />
+                  <TrendingUp className="h-8 w-8 text-primary-foreground" />
                 </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">HNWI Focus</h3>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Exceptional Returns</h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Exclusively serving high-net-worth individuals with personalized investment strategies and white-glove service.
+                  Target 30%+ ROI through strategic property selection, luxury transformations, and expert market timing.
                 </p>
               </CardContent>
             </Card>
