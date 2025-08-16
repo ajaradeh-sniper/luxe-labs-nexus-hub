@@ -34,6 +34,9 @@ import exceptionalReturnsImage from "@/assets/exceptional-returns.jpg";
 import roiInvestmentImage from "@/assets/roi-investment.jpg";
 import premiumVillaSelectionImage from "@/assets/premium-villa-selection.jpg";
 import beforeAfterTransformationImage from "@/assets/before-after-transformation.jpg";
+import investmentPartnershipImage from "@/assets/investment-partnership-handshake.jpg";
+import luxuryFinishesImage from "@/assets/luxury-finishes-install-thumbnail.jpg";
+import professionalTeamImage from "@/assets/professional-team.jpg";
 export default function Landing() {
   const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
   const [showConsultingDropdown, setShowConsultingDropdown] = useState(false);
@@ -167,160 +170,140 @@ export default function Landing() {
           
           <div className="animate-fade-in">
             
-            {/* Three Service Dropdowns */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-6xl mx-auto">
+            {/* Three Visual Service Cards */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
               
-              {/* Investment Options */}
-              <div className="relative">
-                <Button 
-                  variant="outline"
-                  className="w-full p-6 h-auto bg-background/80 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 hover:bg-background/90 transition-all duration-300"
-                  onClick={() => setShowInvestmentDropdown(!showInvestmentDropdown)}
-                >
-                  <div className="flex items-center justify-between w-full">
-                    <div className="text-left">
-                      <div className="flex items-center gap-3 mb-2">
-                        <TrendingUp className="h-6 w-6 text-primary" />
-                        <span className="text-lg font-bold font-playfair text-foreground">Investment Options</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground font-montserrat">Discover our investment packages</p>
+              {/* Investment Card */}
+              <Card className="glass-card group hover:scale-105 transition-all duration-500 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={investmentPartnershipImage} 
+                    alt="Investment Partnership" 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <TrendingUp className="h-6 w-6 text-primary" />
+                      <span className="text-lg font-bold font-playfair text-foreground">Invest in a Transformation with LL</span>
                     </div>
-                    {showInvestmentDropdown ? <ChevronUp className="h-5 w-5 text-primary" /> : <ChevronDown className="h-5 w-5 text-primary" />}
+                    <p className="text-sm text-muted-foreground font-montserrat">Join our exclusive investment opportunities with guaranteed returns</p>
                   </div>
-                </Button>
-                
-                {showInvestmentDropdown && (
-                  <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-xl z-50 overflow-hidden">
-                    {investmentOptions.map((option, index) => (
-                      <div key={index} className="p-4 border-b border-border last:border-b-0 hover:bg-muted/50 transition-colors">
-                        <div className="flex items-start justify-between mb-3">
-                          <div>
-                            <h4 className="font-bold text-foreground font-playfair">{option.title}</h4>
-                            {option.popular && <Badge className="luxury-gradient text-primary-foreground font-montserrat text-xs mt-1">POPULAR</Badge>}
-                          </div>
-                          <div className="text-right">
-                            <div className="text-lg font-bold text-primary font-montserrat">{option.returns}</div>
-                            <div className="text-sm text-muted-foreground font-montserrat">{option.investment}</div>
-                          </div>
-                        </div>
-                        <p className="text-sm text-muted-foreground mb-3 font-montserrat">{option.description}</p>
-                        <ul className="space-y-1">
-                          {option.features.map((feature, fIndex) => (
-                            <li key={fIndex} className="flex items-center text-xs text-muted-foreground font-montserrat">
-                              <CheckCircle className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+                </div>
+                <CardContent className="p-6">
+                  <div className="space-y-3">
+                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
+                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
+                      25-30% ROI target
+                    </div>
+                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
+                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
+                      Minimum AED 500K investment
+                    </div>
+                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
+                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
+                      Full transparency & reporting
+                    </div>
                   </div>
-                )}
-              </div>
+                  <Button 
+                    className="w-full mt-4 luxury-gradient hover:luxury-glow font-montserrat font-semibold"
+                    onClick={() => window.location.href = '/investors'}
+                  >
+                    Start Investing
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
 
-              {/* Consulting Options */}
-              <div className="relative">
-                <Button 
-                  variant="outline"
-                  className="w-full p-6 h-auto bg-background/80 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 hover:bg-background/90 transition-all duration-300"
-                  onClick={() => setShowConsultingDropdown(!showConsultingDropdown)}
-                >
-                  <div className="flex items-center justify-between w-full">
-                    <div className="text-left">
-                      <div className="flex items-center gap-3 mb-2">
-                        <Users className="h-6 w-6 text-primary" />
-                        <span className="text-lg font-bold font-playfair text-foreground">Consulting Services</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground font-montserrat">Professional advisory services</p>
+              {/* Transform Card */}
+              <Card className="glass-card group hover:scale-105 transition-all duration-500 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={luxuryFinishesImage} 
+                    alt="Luxury Property Transformation" 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Building2 className="h-6 w-6 text-primary" />
+                      <span className="text-lg font-bold font-playfair text-foreground">Transform a Property with LL</span>
                     </div>
-                    {showConsultingDropdown ? <ChevronUp className="h-5 w-5 text-primary" /> : <ChevronDown className="h-5 w-5 text-primary" />}
+                    <p className="text-sm text-muted-foreground font-montserrat">Premium renovation services that maximize property value</p>
                   </div>
-                </Button>
-                
-                {showConsultingDropdown && (
-                  <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-xl z-50 overflow-hidden">
-                    {consultingOptions.map((option, index) => (
-                      <div key={index} className="p-4 border-b border-border last:border-b-0 hover:bg-muted/50 transition-colors">
-                        <h4 className="font-bold text-foreground mb-2 font-playfair">{option.title}</h4>
-                        <p className="text-sm text-muted-foreground mb-3 font-montserrat">{option.description}</p>
-                        <ul className="space-y-1">
-                          {option.features.map((feature, fIndex) => (
-                            <li key={fIndex} className="flex items-center text-xs text-muted-foreground font-montserrat">
-                              <CheckCircle className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+                </div>
+                <CardContent className="p-6">
+                  <div className="space-y-3">
+                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
+                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
+                      Luxury design & finishes
+                    </div>
+                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
+                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
+                      Project management included
+                    </div>
+                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
+                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
+                      Value increase guarantee
+                    </div>
                   </div>
-                )}
-              </div>
+                  <Button 
+                    variant="outline"
+                    className="w-full mt-4 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat font-semibold"
+                    onClick={() => window.location.href = '/services'}
+                  >
+                    Transform Property
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
 
-              {/* Transform Options */}
-              <div className="relative">
-                <Button 
-                  variant="outline"
-                  className="w-full p-6 h-auto bg-background/80 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 hover:bg-background/90 transition-all duration-300"
-                  onClick={() => setShowTransformDropdown(!showTransformDropdown)}
-                >
-                  <div className="flex items-center justify-between w-full">
-                    <div className="text-left">
-                      <div className="flex items-center gap-3 mb-2">
-                        <Palette className="h-6 w-6 text-primary" />
-                        <span className="text-lg font-bold font-playfair text-foreground">Transform Services</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground font-montserrat">Property transformation solutions</p>
+              {/* Advisory Card */}
+              <Card className="glass-card group hover:scale-105 transition-all duration-500 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={professionalTeamImage} 
+                    alt="Professional Advisory Services" 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Users className="h-6 w-6 text-primary" />
+                      <span className="text-lg font-bold font-playfair text-foreground">Get Advisory from LL</span>
                     </div>
-                    {showTransformDropdown ? <ChevronUp className="h-5 w-5 text-primary" /> : <ChevronDown className="h-5 w-5 text-primary" />}
+                    <p className="text-sm text-muted-foreground font-montserrat">Expert guidance for your Dubai real estate journey</p>
                   </div>
-                </Button>
-                
-                {showTransformDropdown && (
-                  <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-xl z-50 overflow-hidden">
-                    {transformOptions.map((option, index) => (
-                      <div key={index} className="p-4 border-b border-border last:border-b-0 hover:bg-muted/50 transition-colors">
-                        <h4 className="font-bold text-foreground mb-2 font-playfair">{option.title}</h4>
-                        <p className="text-sm text-muted-foreground mb-3 font-montserrat">{option.description}</p>
-                        <ul className="space-y-1">
-                          {option.features.map((feature, fIndex) => (
-                            <li key={fIndex} className="flex items-center text-xs text-muted-foreground font-montserrat">
-                              <CheckCircle className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+                </div>
+                <CardContent className="p-6">
+                  <div className="space-y-3">
+                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
+                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
+                      Market analysis & insights
+                    </div>
+                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
+                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
+                      Investment strategy planning
+                    </div>
+                    <div className="flex items-center text-sm text-muted-foreground font-montserrat">
+                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
+                      HNWI concierge services
+                    </div>
                   </div>
-                )}
-              </div>
+                  <Button 
+                    variant="outline"
+                    className="w-full mt-4 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat font-semibold"
+                    onClick={() => window.location.href = '/contact'}
+                  >
+                    Get Advisory
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
 
-            {/* Simplified CTAs */}
-            <div className="flex flex-col gap-4 justify-center items-center max-w-lg mx-auto px-4">
-              {/* Primary CTA - Investment */}
-              <Button 
-                size="lg" 
-                className="w-full text-lg px-8 py-6 font-montserrat font-semibold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
-                onClick={() => window.location.href = '/investors'}
-              >
-                <TrendingUp className="mr-3 h-5 w-5" />
-                Start Investing
-              </Button>
-              
-              {/* Secondary CTA - Transform */}
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="w-full text-lg px-8 py-6 font-montserrat font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-xl transition-all duration-300 hover:scale-[1.02]"
-                onClick={() => window.location.href = '/services'}
-              >
-                <Building2 className="mr-3 h-5 w-5" />
-                Transform Property
-              </Button>
-              
-              {/* Tertiary CTA - Learn More */}
+            {/* Main CTA */}
+            <div className="text-center">
               <Button 
                 variant="ghost"
                 className="text-muted-foreground hover:text-foreground font-montserrat transition-colors duration-300"
