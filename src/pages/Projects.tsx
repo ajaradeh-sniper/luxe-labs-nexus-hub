@@ -268,7 +268,7 @@ const Projects = () => {
         {/* Areas of Focus Section */}
         <section className="space-y-8">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold text-foreground">Areas of Focus</h2>
+            <h2 className="text-3xl font-bold text-foreground">Types of Real Estate Luxury Labs Focus On</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               We specialize in diverse property types, each tailored to meet specific market demands and lifestyle requirements.
             </p>
