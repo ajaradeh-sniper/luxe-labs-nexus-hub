@@ -21,6 +21,12 @@ import {
 import renovationShowcase from "@/assets/renovation-showcase.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
 import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
+import businessBay from "@/assets/business-bay.jpg"
+import downtownLuxury from "@/assets/downtown-luxury.jpg"
+import marinaTower from "@/assets/marina-tower.jpg"
+import premiumTower from "@/assets/premium-tower.jpg"
+import premiumVillaSelection from "@/assets/premium-villa-selection.jpg"
+import modernArchitecture from "@/assets/modern-architecture.jpg"
 
 const Services = () => {
   const [expandedService, setExpandedService] = useState<string | null>(null)
@@ -394,7 +400,7 @@ const Services = () => {
               <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
                 <div className="aspect-video overflow-hidden">
                   <img 
-                    src="/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png" 
+                    src={downtownLuxury} 
                     alt="Downtown Dubai" 
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
@@ -428,7 +434,7 @@ const Services = () => {
               <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
                 <div className="aspect-video overflow-hidden">
                   <img 
-                    src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+                    src={businessBay} 
                     alt="Business Bay" 
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
@@ -462,7 +468,7 @@ const Services = () => {
               <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
                 <div className="aspect-video overflow-hidden">
                   <img 
-                    src="/lovable-uploads/4a28db7f-c64a-4b5a-9ec6-71ad24f468f6.png" 
+                    src={marinaTower} 
                     alt="Palm Jumeirah" 
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
@@ -496,7 +502,7 @@ const Services = () => {
               <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
                 <div className="aspect-video overflow-hidden">
                   <img 
-                    src="/lovable-uploads/9bdf3759-8541-414d-a494-7d6f9d38185c.png" 
+                    src={premiumVillaSelection} 
                     alt="Dubai Hills Estate" 
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
@@ -530,7 +536,7 @@ const Services = () => {
               <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
                 <div className="aspect-video overflow-hidden">
                   <img 
-                    src="/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png" 
+                    src={premiumTower} 
                     alt="JBR - Jumeirah Beach Residence" 
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
