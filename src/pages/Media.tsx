@@ -231,7 +231,7 @@ export default function Media() {
                       title: "Luxury Finishes Install", 
                       duration: "20 min", 
                       episode: 8, 
-                      thumbnail: "https://img.youtube.com/vi/P0r9TdIENko/maxresdefault.jpg",
+                      thumbnail: "https://img.youtube.com/vi/P0r9TdIENko/hqdefault.jpg",
                       url: "https://www.youtube.com/watch?v=P0r9TdIENko&t=8s"
                     },
                   ].map((video, index) => (
