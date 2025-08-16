@@ -167,179 +167,38 @@ export default function Landing() {
           
           <div className="animate-fade-in">
             
-            {/* Enhanced CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center animate-scale-in px-4">
-              {/* Investment Button with Dropdown */}
-              <div className="relative w-full sm:w-auto">
-                <Button 
-                  size="lg" 
-                  className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 group"
-                  onClick={() => setShowInvestmentDropdown(!showInvestmentDropdown)}
-                >
-                  <TrendingUp className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform duration-300" />
-                  Invest In a Luxury Transformation with LL
-                  {showInvestmentDropdown ? 
-                    <ChevronUp className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" /> : 
-                    <ChevronDown className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" />
-                  }
-                </Button>
-                
-                {/* Investment Options Dropdown */}
-                {showInvestmentDropdown && (
-                  <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 p-4 min-w-[800px] max-w-4xl">
-                    <h4 className="text-lg font-semibold mb-4 text-foreground">Investment Options:</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {investmentOptions.map((option, index) => (
-                        <Card key={index} className={`p-4 hover:shadow-lg transition-shadow ${option.popular ? 'ring-2 ring-primary' : 'border'}`}>
-                          {option.popular && (
-                            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                              <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
-                            </div>
-                          )}
-                          <div className="text-center mb-4">
-                            <h5 className="font-semibold text-lg mb-1 text-foreground">{option.title}</h5>
-                            <div className="text-2xl font-bold text-primary mb-1">{option.returns}</div>
-                            <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
-                            <p className="text-sm text-muted-foreground">{option.description}</p>
-                          </div>
-                          <ul className="space-y-2 mb-4">
-                            {option.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-start gap-2">
-                                <CheckCircle className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
-                                <span className="text-sm text-foreground">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <Button 
-                            variant={option.popular ? "default" : "outline"} 
-                            size="sm" 
-                            className="w-full"
-                            onClick={() => window.location.href = '/contact'}
-                          >
-                            Learn More
-                          </Button>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+            {/* Simplified CTAs */}
+            <div className="flex flex-col gap-4 justify-center items-center max-w-lg mx-auto px-4">
+              {/* Primary CTA - Investment */}
+              <Button 
+                size="lg" 
+                className="w-full text-lg px-8 py-6 font-montserrat font-semibold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                onClick={() => window.location.href = '/investors'}
+              >
+                <TrendingUp className="mr-3 h-5 w-5" />
+                Start Investing
+              </Button>
               
+              {/* Secondary CTA - Transform */}
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="w-full text-lg px-8 py-6 font-montserrat font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-xl transition-all duration-300 hover:scale-[1.02]"
+                onClick={() => window.location.href = '/services'}
+              >
+                <Building2 className="mr-3 h-5 w-5" />
+                Transform Property
+              </Button>
               
-              {/* Transform Button with Dropdown */}
-              <div className="relative w-full sm:w-auto">
-                <Button 
-                  size="lg" 
-                  className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 group"
-                  onClick={() => setShowTransformDropdown(!showTransformDropdown)}
-                >
-                  <Building2 className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform duration-300" />
-                  Transform a Real Estate with LL
-                  {showTransformDropdown ? 
-                    <ChevronUp className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" /> : 
-                    <ChevronDown className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" />
-                  }
-                </Button>
-                
-                {/* Transform Options Dropdown */}
-                {showTransformDropdown && (
-                  <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 p-4 min-w-[700px] max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-4 text-foreground">Transformation Services:</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {transformOptions.map((option, index) => (
-                        <Card key={index} className="p-4 hover:shadow-lg transition-shadow border">
-                          <div className="text-center mb-4">
-                            <h5 className="font-semibold text-lg mb-2 text-foreground">{option.title}</h5>
-                            <p className="text-sm text-muted-foreground">{option.description}</p>
-                          </div>
-                          <ul className="space-y-2 mb-4">
-                            {option.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-start gap-2">
-                                <CheckCircle className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
-                                <span className="text-sm text-foreground">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <Button 
-                            variant="outline"
-                            size="sm" 
-                            className="w-full"
-                            onClick={() => window.location.href = '/contact'}
-                          >
-                            Learn More
-                          </Button>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-              
-              {/* Consulting Button with Dropdown */}
-              <div className="relative w-full sm:w-auto">
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold border-white/30 text-white hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300 backdrop-blur-sm group"
-                  onClick={() => setShowConsultingDropdown(!showConsultingDropdown)}
-                >
-                  <LayoutDashboard className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform duration-300" />
-                  Luxury Transformation Advisory LL
-                  {showConsultingDropdown ? 
-                    <ChevronUp className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" /> : 
-                    <ChevronDown className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" />
-                  }
-                </Button>
-                
-                {/* Consulting Options Dropdown */}
-                {showConsultingDropdown && (
-                  <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 p-4 min-w-[800px] max-w-4xl">
-                    <h4 className="text-lg font-semibold mb-4 text-foreground">Consulting Services:</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {consultingOptions.map((option, index) => (
-                        <Card key={index} className="p-4 hover:shadow-lg transition-shadow border">
-                          <div className="text-center mb-4">
-                            <h5 className="font-semibold text-lg mb-2 text-foreground">{option.title}</h5>
-                            <p className="text-sm text-muted-foreground">{option.description}</p>
-                          </div>
-                          <ul className="space-y-2 mb-4">
-                            {option.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-start gap-2">
-                                <CheckCircle className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
-                                <span className="text-sm text-foreground">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <Button 
-                            variant="outline"
-                            size="sm" 
-                            className="w-full"
-                            onClick={() => window.location.href = '/contact'}
-                          >
-                            Learn More
-                          </Button>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Trust indicators */}
-            <div className="mt-8 sm:mt-12 lg:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-white/80 animate-fade-in">
-              <div className="flex items-center gap-2">
-                <Star className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400 fill-current" />
-                <span className="text-sm sm:text-base font-montserrat">Premium Properties</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 fill-current" />
-                <span className="text-sm sm:text-base font-montserrat">Verified Returns</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Award className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" />
-                <span className="text-sm sm:text-base font-montserrat">Expert Team</span>
-              </div>
+              {/* Tertiary CTA - Learn More */}
+              <Button 
+                variant="ghost"
+                className="text-muted-foreground hover:text-foreground font-montserrat transition-colors duration-300"
+                onClick={() => window.location.href = '/about'}
+              >
+                Learn More About Luxury Labs
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>
