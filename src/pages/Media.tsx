@@ -241,11 +241,19 @@ export default function Media() {
                          className="aspect-video relative overflow-hidden"
                          onClick={() => window.open(video.url, '_blank')}
                        >
-                         <img 
-                           src={video.thumbnail} 
-                           alt={video.title}
-                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                         />
+                          <img 
+                            src={video.thumbnail} 
+                            alt={video.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onLoad={() => console.log(`Thumbnail loaded for ${video.title}:`, video.thumbnail)}
+                            onError={(e) => {
+                              console.error(`Thumbnail failed to load for ${video.title}:`, video.thumbnail, e);
+                              // Fallback to YouTube thumbnail if local image fails
+                              if (video.title === "Luxury Finishes Install") {
+                                e.currentTarget.src = "https://img.youtube.com/vi/P0r9TdIENko/hqdefault.jpg";
+                              }
+                            }}
+                          />
                          <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                            <Button variant="outline" className="bg-background/90 border-border">
                              <Play className="w-4 h-4 mr-2" />
