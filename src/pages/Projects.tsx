@@ -15,6 +15,9 @@ import {
   Home,
   Briefcase
 } from "lucide-react"
+import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
+import downtownImage from "@/assets/downtown-luxury.jpg"
+import luxuryVillaImage from "@/assets/premium-villa-selection.jpg"
 
 const Projects = () => {
   const areasOfFocus = [
@@ -71,6 +74,7 @@ const Projects = () => {
       budget: '$120M',
       duration: '36 months',
       units: 280,
+      image: dubaiMarinaImage,
       features: ['Premium finishes', 'Smart home systems', 'Infinity pool', 'Sky gardens']
     },
     {
@@ -82,6 +86,7 @@ const Projects = () => {
       budget: '$85M',
       duration: '24 months',
       units: 150,
+      image: downtownImage,
       features: ['Grade A offices', 'Conference facilities', 'Retail spaces', 'Parking complex']
     },
     {
@@ -93,6 +98,7 @@ const Projects = () => {
       budget: '$200M',
       duration: '42 months',
       units: 45,
+      image: luxuryVillaImage,
       features: ['Private beaches', 'Custom architecture', 'Smart automation', 'Wellness centers']
     }
   ]
@@ -190,19 +196,26 @@ const Projects = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {sampleProjects.map((project) => (
-              <Card key={project.id} className="group hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <CardTitle className="text-lg mb-2">{project.name}</CardTitle>
-                      <div className="flex items-center gap-1 text-muted-foreground mb-2">
-                        <MapPin className="h-4 w-4" />
-                        <span className="text-sm">{project.location}</span>
-                      </div>
-                    </div>
+              <Card key={project.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 right-4">
                     <Badge className={getStatusColor(project.status)}>
                       {project.status}
                     </Badge>
+                  </div>
+                </div>
+                <CardHeader>
+                  <div>
+                    <CardTitle className="text-lg mb-2">{project.name}</CardTitle>
+                    <div className="flex items-center gap-1 text-muted-foreground mb-2">
+                      <MapPin className="h-4 w-4" />
+                      <span className="text-sm">{project.location}</span>
+                    </div>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
