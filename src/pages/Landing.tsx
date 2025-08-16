@@ -44,47 +44,6 @@ export default function Landing() {
               Transform Strategic Premium Properties • Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets
             </h1>
             
-            {/* Three Feature Sections */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 animate-scale-in">
-              <div className="group">
-                <div className="relative h-32 sm:h-40 lg:h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-all duration-500 hover:shadow-glow">
-                  <img src={premiumVillaSelectionImage} alt="Premium Villa Selection" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-primary/20 backdrop-blur-sm rounded-full p-1.5 sm:p-2">
-                    <MapPin className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
-                  </div>
-                  <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 text-white">
-                    <h3 className="text-sm sm:text-lg lg:text-xl font-playfair font-bold">PREMIUM SELECTION</h3>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="group">
-                <div className="relative h-32 sm:h-40 lg:h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-all duration-500 hover:shadow-glow">
-                  <img src={beforeAfterTransformationImage} alt="Before After Transformation" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-primary/20 backdrop-blur-sm rounded-full p-1.5 sm:p-2">
-                    <Palette className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
-                  </div>
-                  <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 text-white">
-                    <h3 className="text-sm sm:text-lg lg:text-xl font-playfair font-bold">LUXURY TRANSFORMATION</h3>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="group sm:col-span-2 lg:col-span-1">
-                <div className="relative h-32 sm:h-40 lg:h-48 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-all duration-500 hover:shadow-glow">
-                  <img src={roiInvestmentImage} alt="ROI Investment Returns" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 text-white">
-                    <h3 className="text-sm sm:text-lg lg:text-xl font-playfair font-bold">ROI UP TO 30%</h3>
-                  </div>
-                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 text-white">
-                    <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-green-400" />
-                  </div>
-                </div>
-              </div>
-            </div>
             
             {/* Enhanced CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center animate-scale-in px-4">
