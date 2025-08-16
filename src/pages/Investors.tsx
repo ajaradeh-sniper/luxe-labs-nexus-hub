@@ -1,4 +1,4 @@
-import { TrendingUp, Shield, Users, DollarSign, BarChart3, Award, ArrowRight, CheckCircle } from "lucide-react"
+import { TrendingUp, Shield, Users, DollarSign, BarChart3, Award, ArrowRight, CheckCircle, User, Building2, Globe, Briefcase, PiggyBank, MapPin, Calendar, Target } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -32,10 +32,122 @@ export default function Investors() {
         </div>
       </section>
 
+      {/* Investors Dashboard Portal Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm rounded-lg p-8">
+              <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+                <User className="w-8 h-8 text-primary-foreground" />
+              </div>
+              <h2 className="text-3xl font-bold text-foreground mb-4 font-playfair">
+                Investors Dashboard Portal
+              </h2>
+              <p className="text-muted-foreground mb-8 leading-relaxed font-montserrat">
+                Access your personalized investment portfolio, track performance, and discover new opportunities. 
+                Exclusive access for accredited investors only.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                <Button className="luxury-gradient text-primary-foreground font-montserrat px-8 py-3">
+                  <User className="w-5 h-5 mr-2" />
+                  Sign In
+                </Button>
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat px-8 py-3">
+                  Sign Up
+                </Button>
+              </div>
+              <div className="pt-6 border-t border-border">
+                <p className="text-sm text-muted-foreground font-montserrat">
+                  New to Luxury Labs? <br />
+                  Contact our investor relations team for access.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Investors Community Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-foreground mb-6 font-playfair">Our Investors Community</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-montserrat">
+              Join a diverse ecosystem of sophisticated investors who trust Luxury Labs for exceptional returns in Dubai's luxury property market.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "High Net Worth Individuals",
+                icon: User,
+                description: "Sophisticated investors seeking portfolio diversification through luxury real estate investments in Dubai's premier locations.",
+                characteristics: ["Portfolio diversification", "Luxury lifestyle investment", "Capital preservation"]
+              },
+              {
+                title: "Wealth Managers",
+                icon: TrendingUp,
+                description: "Professional investment advisors managing client portfolios with focus on alternative asset classes and real estate opportunities.",
+                characteristics: ["Client portfolio management", "Risk assessment", "Performance tracking"]
+              },
+              {
+                title: "Family Offices",
+                icon: Building2,
+                description: "Multi-generational wealth preservation through strategic real estate investments in stable, high-growth markets.",
+                characteristics: ["Legacy planning", "Wealth preservation", "Generational assets"]
+              },
+              {
+                title: "Dubai Relocators",
+                icon: Globe,
+                description: "International professionals and entrepreneurs establishing their presence in Dubai's dynamic business ecosystem.",
+                characteristics: ["Market entry strategy", "Local expertise", "Regulatory guidance"]
+              },
+              {
+                title: "Venture Capital",
+                icon: Users,
+                description: "Forward-thinking investors seeking innovative real estate transformation opportunities with scalable returns.",
+                characteristics: ["Innovation focus", "Scalable returns", "Market disruption"]
+              },
+              {
+                title: "Private Equity",
+                icon: Briefcase,
+                description: "Institutional investors focused on large-scale property development and transformation projects.",
+                characteristics: ["Large-scale projects", "Operational improvement", "Value creation"]
+              }
+            ].map((type, index) => {
+              const IconComponent = type.icon;
+              return (
+                <Card key={index} className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm h-full">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center mb-4">
+                      <IconComponent className="w-6 w-6 text-primary-foreground" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-3 font-playfair">
+                      {type.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 leading-relaxed font-montserrat">
+                      {type.description}
+                    </p>
+                    <div className="space-y-2">
+                      {type.characteristics.map((char, charIndex) => (
+                        <div key={charIndex} className="flex items-center gap-2">
+                          <Target className="w-4 h-4 text-primary flex-shrink-0" />
+                          <span className="text-sm text-muted-foreground font-montserrat">{char}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Investors Section */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-
           {/* Key Metrics */}
           <div className="grid md:grid-cols-4 gap-6 mb-20">
             <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
