@@ -465,7 +465,7 @@ const Services = () => {
                 {/* Additional Stats */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-4 bg-background/50 rounded-lg border">
-                    <div className="text-2xl font-bold text-primary mb-1">5-9</div>
+                    <div className="text-2xl font-bold text-primary mb-1">6-12</div>
                     <div className="text-sm text-muted-foreground">Month Timeline</div>
                   </div>
                   <div className="text-center p-4 bg-background/50 rounded-lg border">
