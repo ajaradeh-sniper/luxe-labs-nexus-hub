@@ -22,6 +22,7 @@ import {
   Users,
   TrendingUp
 } from "lucide-react"
+import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -85,15 +86,26 @@ const Contact = () => {
   return (
     <>
       <Navigation />
-      <div className="container mx-auto px-4 py-8 space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-foreground">Contact Us</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+      
+      {/* Hero Section */}
+      <section className="relative h-96 flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaiMarinaImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+        </div>
+        
+        <div className="relative container mx-auto px-4 text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Contact Us</h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
             Ready to start your luxury property journey? Get in touch with our expert team 
             for personalized consultation and investment opportunities.
           </p>
         </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12 space-y-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Contact Form */}

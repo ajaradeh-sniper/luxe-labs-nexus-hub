@@ -7,27 +7,34 @@ import { Navigation } from "@/components/Navigation"
 import businessBayImage from "@/assets/business-bay.jpg"
 import downtownImage from "@/assets/downtown-luxury.jpg"
 import marinaTowerImage from "@/assets/marina-tower.jpg"
+import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
 
 export default function Investors() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      
+      {/* Hero Section */}
+      <section className="relative h-96 flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaiMarinaImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+        </div>
+        
+        <div className="relative container mx-auto px-4 text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Investment Opportunities</h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
+            Join sophisticated investors in Dubai's luxury property transformation market. 
+            Access curated opportunities with projected returns of 25-35% through our expert-managed portfolio.
+          </p>
+        </div>
+      </section>
 
       {/* Investors Section */}
-      <section className="py-24 bg-background">
+      <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <Badge variant="outline" className="mb-6 px-6 py-2 text-primary border-primary/30 bg-primary/5 font-montserrat">
-              Investment Opportunities
-            </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 font-playfair leading-tight">
-              Generate <span className="luxury-text">Exceptional Returns</span>
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed font-montserrat max-w-3xl mx-auto">
-              Join sophisticated investors in Dubai's luxury property transformation market. 
-              Access curated opportunities with projected returns of 25-35% through our expert-managed portfolio.
-            </p>
-          </div>
 
           {/* Key Metrics */}
           <div className="grid md:grid-cols-4 gap-6 mb-20">

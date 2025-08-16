@@ -4,27 +4,34 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Link } from "react-router-dom"
 import { Navigation } from "@/components/Navigation"
+import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
 
 export default function Partners() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      
+      {/* Hero Section */}
+      <section className="relative h-96 flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaiMarinaImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+        </div>
+        
+        <div className="relative container mx-auto px-4 text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Strategic Partnerships</h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
+            Building success through trusted partnerships with leading real estate professionals, 
+            design experts, and luxury service providers across Dubai's premium market.
+          </p>
+        </div>
+      </section>
 
       {/* Partners Section */}
-      <section className="py-24 bg-background">
+      <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <Badge variant="outline" className="mb-6 px-6 py-2 text-primary border-primary/30 bg-primary/5 font-montserrat">
-              Our Network
-            </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 font-playfair leading-tight">
-              Strategic <span className="luxury-text">Partnerships</span>
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed font-montserrat max-w-3xl mx-auto">
-              Building success through trusted partnerships with leading real estate professionals, 
-              design experts, and luxury service providers across Dubai's premium market.
-            </p>
-          </div>
 
           {/* Partnership Types */}
           <div className="grid md:grid-cols-3 gap-8 mb-20">

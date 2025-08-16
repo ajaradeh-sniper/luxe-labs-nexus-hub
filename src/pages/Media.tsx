@@ -8,27 +8,34 @@ import businessBayImage from "@/assets/business-bay.jpg"
 import downtownImage from "@/assets/downtown-luxury.jpg" 
 import marinaTowerImage from "@/assets/marina-tower.jpg"
 import luxuryFinishesInstallThumbnail from "@/assets/luxury-finishes-install-thumbnail.jpg"
+import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
 
 export default function Media() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      
+      {/* Hero Section */}
+      <section className="relative h-96 flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaiMarinaImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+        </div>
+        
+        <div className="relative container mx-auto px-4 text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Media Gallery</h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
+            Discover the visual journey of our luxury property transformations through high-quality imagery, 
+            virtual tours, and detailed project documentation.
+          </p>
+        </div>
+      </section>
 
       {/* Media Section */}
-      <section className="py-24 bg-background">
+      <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <Badge variant="outline" className="mb-6 px-6 py-2 text-primary border-primary/30 bg-primary/5 font-montserrat">
-              Media Gallery
-            </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 font-playfair leading-tight">
-              Explore Our <span className="luxury-text">Transformation Stories</span>
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed font-montserrat max-w-3xl mx-auto">
-              Discover the visual journey of our luxury property transformations through high-quality imagery, 
-              virtual tours, and detailed project documentation.
-            </p>
-          </div>
 
           {/* Featured Video */}
           <div className="mb-20">
