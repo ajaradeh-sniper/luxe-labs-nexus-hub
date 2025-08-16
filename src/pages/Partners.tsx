@@ -12,6 +12,9 @@ import luxuryOutdoorVase from "@/assets/luxury-outdoor-vase.jpg"
 import luxurySpeaker from "@/assets/luxury-speaker.jpg"
 import luxuryArt from "@/assets/luxury-art.jpg"
 import luxuryMarbleStone from "@/assets/luxury-marble-stone.jpg"
+import architectDesigning from "@/assets/architect-designing.jpg"
+import contractorDrilling from "@/assets/contractor-drilling.jpg"
+import projectManagerTimeline from "@/assets/project-manager-timeline.jpg"
 
 export default function Partners() {
   return (
@@ -86,42 +89,55 @@ export default function Partners() {
 
             <Card className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative h-48">
-                  <img 
-                    src="/lovable-uploads/professional-team.jpg" 
-                    alt="Professional service providers and contractors"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4">
-                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mb-3">
+                <div className="p-6 mb-4">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center">
                       <Users className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <h3 className="text-xl font-bold text-white font-playfair">Service Providers</h3>
+                    <h3 className="text-xl font-bold text-foreground font-playfair">Service Providers</h3>
                   </div>
-                </div>
-                <div className="p-6">
                   <p className="text-muted-foreground font-montserrat mb-4 leading-relaxed">
                     Elite contractors, interior designers, architects, and luxury specialists delivering world-class transformation services with meticulous attention to detail and uncompromising quality standards.
                   </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground font-montserrat">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Licensed luxury contractors</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Award-winning interior designers</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Certified project managers</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Smart home technology experts</span>
-                    </li>
-                  </ul>
+                </div>
+                
+                {/* Grid of service provider types */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4">
+                  <div className="relative h-32 rounded-lg overflow-hidden">
+                    <img 
+                      src={architectDesigning} 
+                      alt="Professional architect designing luxury building plans"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-2 left-2">
+                      <span className="text-white text-sm font-medium">Architect Designing</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-32 rounded-lg overflow-hidden">
+                    <img 
+                      src={contractorDrilling} 
+                      alt="Construction contractor drilling on luxury building site"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-2 left-2">
+                      <span className="text-white text-sm font-medium">Contractor On Site</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-32 rounded-lg overflow-hidden">
+                    <img 
+                      src={projectManagerTimeline} 
+                      alt="Project manager reviewing timeline charts and planning schedules"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-2 left-2">
+                      <span className="text-white text-sm font-medium">Project Timeline</span>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
