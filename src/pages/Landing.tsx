@@ -30,17 +30,16 @@ export default function Landing() {
         <div className="absolute inset-0 hero-overlay"></div>
         
         <div className="container mx-auto text-center relative z-10 max-w-7xl">
+          {/* Logo */}
+          <div className="mb-8 sm:mb-12 lg:mb-16">
+            <img 
+              src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+              alt="Luxury Labs Logo" 
+              className="h-48 sm:h-64 lg:h-96 w-auto mx-auto drop-shadow-2xl animate-scale-in" 
+            />
+          </div>
+          
           <div className="animate-fade-in">
-            {/* Logo */}
-            <div className="mb-8 sm:mb-12 lg:mb-16">
-              <img 
-                src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
-                alt="Luxury Labs Logo" 
-                className="h-48 sm:h-64 lg:h-96 w-auto mx-auto drop-shadow-2xl animate-scale-in" 
-              />
-            </div>
-            
-            
             
             {/* Enhanced CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center animate-scale-in px-4">
