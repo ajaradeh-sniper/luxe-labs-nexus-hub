@@ -40,9 +40,6 @@ export default function Landing() {
               />
             </div>
             
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair mb-8 sm:mb-12 lg:mb-16 drop-shadow-2xl leading-tight text-yellow-500 font-bold px-4 animate-fade-in">
-              Transform Strategic Premium Properties • Generate Exceptional Returns • Build Lasting Wealth & Luxury Assets
-            </h1>
             
             
             {/* Enhanced CTAs */}
