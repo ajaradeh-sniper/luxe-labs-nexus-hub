@@ -15,6 +15,9 @@ import luxuryMarbleStone from "@/assets/luxury-marble-stone.jpg"
 import architectDesigning from "@/assets/architect-designing.jpg"
 import contractorDrilling from "@/assets/contractor-drilling.jpg"
 import projectManagerTimeline from "@/assets/project-manager-timeline.jpg"
+import palmVillaForSale from "@/assets/palm-villa-for-sale.jpg"
+import emaarConstructionSite from "@/assets/emaar-construction-site.jpg"
+import securityGuardGolfHouse from "@/assets/security-guard-golf-house.jpg"
 
 export default function Partners() {
   return (
@@ -47,42 +50,55 @@ export default function Partners() {
           <div className="grid md:grid-cols-2 gap-8 mb-20">
             <Card className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative h-48">
-                  <img 
-                    src={dubaiMarinaImage} 
-                    alt="Luxury real estate properties in Dubai"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4">
-                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mb-3">
+                <div className="p-6 mb-4">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center">
                       <Building2 className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <h3 className="text-xl font-bold text-white font-playfair">Real Estate Partners</h3>
+                    <h3 className="text-xl font-bold text-foreground font-playfair">Real Estate Partners</h3>
                   </div>
-                </div>
-                <div className="p-6">
                   <p className="text-muted-foreground font-montserrat mb-4 leading-relaxed">
                     Premier real estate agencies and property developers providing exclusive access to off-market luxury properties across Dubai's most prestigious locations including Downtown, Palm Jumeirah, and Dubai Marina.
                   </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground font-montserrat">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Exclusive off-market property access</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Pre-construction investment opportunities</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Premium location portfolio</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Market analysis and insights</span>
-                    </li>
-                  </ul>
+                </div>
+                
+                {/* Grid of real estate images */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4">
+                  <div className="relative h-32 rounded-lg overflow-hidden">
+                    <img 
+                      src={palmVillaForSale} 
+                      alt="Luxury palm villa with FOR SALE board sign"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-2 left-2">
+                      <span className="text-white text-sm font-medium">Palm Villa For Sale</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-32 rounded-lg overflow-hidden">
+                    <img 
+                      src={emaarConstructionSite} 
+                      alt="EMAAR construction site with logo"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-2 left-2">
+                      <span className="text-white text-sm font-medium">EMAAR Development</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-32 rounded-lg overflow-hidden">
+                    <img 
+                      src={securityGuardGolfHouse} 
+                      alt="Security guard by golf course luxury house"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-2 left-2">
+                      <span className="text-white text-sm font-medium">Golf Course Property</span>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
