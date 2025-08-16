@@ -167,6 +167,136 @@ export default function Landing() {
           
           <div className="animate-fade-in">
             
+            {/* Three Service Dropdowns */}
+            <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-6xl mx-auto">
+              
+              {/* Investment Options */}
+              <div className="relative">
+                <Button 
+                  variant="outline"
+                  className="w-full p-6 h-auto bg-background/80 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 hover:bg-background/90 transition-all duration-300"
+                  onClick={() => setShowInvestmentDropdown(!showInvestmentDropdown)}
+                >
+                  <div className="flex items-center justify-between w-full">
+                    <div className="text-left">
+                      <div className="flex items-center gap-3 mb-2">
+                        <TrendingUp className="h-6 w-6 text-primary" />
+                        <span className="text-lg font-bold font-playfair text-foreground">Investment Options</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground font-montserrat">Discover our investment packages</p>
+                    </div>
+                    {showInvestmentDropdown ? <ChevronUp className="h-5 w-5 text-primary" /> : <ChevronDown className="h-5 w-5 text-primary" />}
+                  </div>
+                </Button>
+                
+                {showInvestmentDropdown && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-xl z-50 overflow-hidden">
+                    {investmentOptions.map((option, index) => (
+                      <div key={index} className="p-4 border-b border-border last:border-b-0 hover:bg-muted/50 transition-colors">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <h4 className="font-bold text-foreground font-playfair">{option.title}</h4>
+                            {option.popular && <Badge className="luxury-gradient text-primary-foreground font-montserrat text-xs mt-1">POPULAR</Badge>}
+                          </div>
+                          <div className="text-right">
+                            <div className="text-lg font-bold text-primary font-montserrat">{option.returns}</div>
+                            <div className="text-sm text-muted-foreground font-montserrat">{option.investment}</div>
+                          </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground mb-3 font-montserrat">{option.description}</p>
+                        <ul className="space-y-1">
+                          {option.features.map((feature, fIndex) => (
+                            <li key={fIndex} className="flex items-center text-xs text-muted-foreground font-montserrat">
+                              <CheckCircle className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Consulting Options */}
+              <div className="relative">
+                <Button 
+                  variant="outline"
+                  className="w-full p-6 h-auto bg-background/80 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 hover:bg-background/90 transition-all duration-300"
+                  onClick={() => setShowConsultingDropdown(!showConsultingDropdown)}
+                >
+                  <div className="flex items-center justify-between w-full">
+                    <div className="text-left">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Users className="h-6 w-6 text-primary" />
+                        <span className="text-lg font-bold font-playfair text-foreground">Consulting Services</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground font-montserrat">Professional advisory services</p>
+                    </div>
+                    {showConsultingDropdown ? <ChevronUp className="h-5 w-5 text-primary" /> : <ChevronDown className="h-5 w-5 text-primary" />}
+                  </div>
+                </Button>
+                
+                {showConsultingDropdown && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-xl z-50 overflow-hidden">
+                    {consultingOptions.map((option, index) => (
+                      <div key={index} className="p-4 border-b border-border last:border-b-0 hover:bg-muted/50 transition-colors">
+                        <h4 className="font-bold text-foreground mb-2 font-playfair">{option.title}</h4>
+                        <p className="text-sm text-muted-foreground mb-3 font-montserrat">{option.description}</p>
+                        <ul className="space-y-1">
+                          {option.features.map((feature, fIndex) => (
+                            <li key={fIndex} className="flex items-center text-xs text-muted-foreground font-montserrat">
+                              <CheckCircle className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Transform Options */}
+              <div className="relative">
+                <Button 
+                  variant="outline"
+                  className="w-full p-6 h-auto bg-background/80 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 hover:bg-background/90 transition-all duration-300"
+                  onClick={() => setShowTransformDropdown(!showTransformDropdown)}
+                >
+                  <div className="flex items-center justify-between w-full">
+                    <div className="text-left">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Palette className="h-6 w-6 text-primary" />
+                        <span className="text-lg font-bold font-playfair text-foreground">Transform Services</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground font-montserrat">Property transformation solutions</p>
+                    </div>
+                    {showTransformDropdown ? <ChevronUp className="h-5 w-5 text-primary" /> : <ChevronDown className="h-5 w-5 text-primary" />}
+                  </div>
+                </Button>
+                
+                {showTransformDropdown && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-xl z-50 overflow-hidden">
+                    {transformOptions.map((option, index) => (
+                      <div key={index} className="p-4 border-b border-border last:border-b-0 hover:bg-muted/50 transition-colors">
+                        <h4 className="font-bold text-foreground mb-2 font-playfair">{option.title}</h4>
+                        <p className="text-sm text-muted-foreground mb-3 font-montserrat">{option.description}</p>
+                        <ul className="space-y-1">
+                          {option.features.map((feature, fIndex) => (
+                            <li key={fIndex} className="flex items-center text-xs text-muted-foreground font-montserrat">
+                              <CheckCircle className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
             {/* Simplified CTAs */}
             <div className="flex flex-col gap-4 justify-center items-center max-w-lg mx-auto px-4">
               {/* Primary CTA - Investment */}
