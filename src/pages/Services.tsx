@@ -344,6 +344,94 @@ const Services = () => {
           </CardContent>
         </Card>
 
+        {/* Area of Focus */}
+        <Card className="luxury-border luxury-shadow bg-background backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Star className="h-5 w-5" />
+              Area of Focus
+            </CardTitle>
+            <p className="text-muted-foreground">
+              Our specialized expertise areas that drive exceptional results in Dubai's luxury property market.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="h-6 w-6 text-background" />
+                </div>
+                <h4 className="font-semibold text-lg mb-3">Investment Strategy</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Data-driven investment strategies focused on high-ROI opportunities in prime Dubai locations with proven track records.
+                </p>
+                <ul className="text-xs space-y-1 text-left">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Market analysis & trend forecasting
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Portfolio diversification strategies
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Risk assessment & mitigation
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Home className="h-6 w-6 text-background" />
+                </div>
+                <h4 className="font-semibold text-lg mb-3">Luxury Renovations</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Premium transformation services that maximize property value through sophisticated design and quality craftsmanship.
+                </p>
+                <ul className="text-xs space-y-1 text-left">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    High-end interior design
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Premium material selection
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Quality control & project management
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-6 w-6 text-background" />
+                </div>
+                <h4 className="font-semibold text-lg mb-3">Client Relations</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Personalized service and ongoing support for high-net-worth individuals seeking exceptional property experiences.
+                </p>
+                <ul className="text-xs space-y-1 text-left">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Dedicated relationship management
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    24/7 concierge support
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                    Transparent communication
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* CTA Section */}
         <Card className="bg-gradient-luxury text-background">
           <CardContent className="p-8 text-center">
