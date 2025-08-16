@@ -477,24 +477,54 @@ const Services = () => {
             </div>
             
             {/* Key Results Section */}
-            <div className="mt-12 pt-8 border-t">
-              <h4 className="text-xl font-semibold text-center mb-8">Proven Track Record</h4>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div>
-                  <div className="text-3xl font-bold text-primary mb-2">250+</div>
-                  <div className="text-sm text-muted-foreground">Properties Transformed</div>
+            <div className="mt-16 pt-12 border-t border-primary/20">
+              <div className="text-center mb-12">
+                <h4 className="text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Proven Track Record
+                </h4>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  Our exceptional results speak for themselves - delivering consistent returns and satisfaction across hundreds of luxury property transformations.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="group relative overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Home className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="text-center pt-4">
+                    <div className="text-4xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform duration-300">250+</div>
+                    <div className="text-sm font-medium text-foreground/80">Properties Transformed</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-primary mb-2">25%</div>
-                  <div className="text-sm text-muted-foreground">Average ROI</div>
+                
+                <div className="group relative overflow-hidden bg-gradient-to-br from-accent/10 to-accent/5 backdrop-blur-sm rounded-2xl p-8 border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:scale-105">
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <TrendingUp className="h-6 w-6 text-accent" />
+                  </div>
+                  <div className="text-center pt-4">
+                    <div className="text-4xl font-bold text-accent mb-3 group-hover:scale-110 transition-transform duration-300">25%</div>
+                    <div className="text-sm font-medium text-foreground/80">Average ROI</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-primary mb-2">6-12</div>
-                  <div className="text-sm text-muted-foreground">Months Timeline</div>
+                
+                <div className="group relative overflow-hidden bg-gradient-to-br from-secondary/10 to-secondary/5 backdrop-blur-sm rounded-2xl p-8 border border-secondary/20 hover:border-secondary/40 transition-all duration-300 hover:scale-105">
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Clock className="h-6 w-6 text-secondary" />
+                  </div>
+                  <div className="text-center pt-4">
+                    <div className="text-4xl font-bold text-secondary mb-3 group-hover:scale-110 transition-transform duration-300">6-12</div>
+                    <div className="text-sm font-medium text-foreground/80">Months Timeline</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-primary mb-2">100%</div>
-                  <div className="text-sm text-muted-foreground">Client Satisfaction</div>
+                
+                <div className="group relative overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Award className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="text-center pt-4">
+                    <div className="text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">100%</div>
+                    <div className="text-sm font-medium text-foreground/80">Client Satisfaction</div>
+                  </div>
                 </div>
               </div>
             </div>
