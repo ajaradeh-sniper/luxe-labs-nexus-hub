@@ -1,9 +1,27 @@
-import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { 
+  Building2, 
+  LayoutDashboard, 
+  Phone, 
+  Mail, 
+  MapPin, 
+  Users, 
+  Award, 
+  TrendingUp, 
+  Star, 
+  CheckCircle, 
+  ArrowRight, 
+  Handshake, 
+  Globe, 
+  Palette,
+  ChevronDown,
+  ChevronUp
+} from "lucide-react";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
 import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
 import flippingDubaiLogo from "/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png";
@@ -17,6 +35,51 @@ import roiInvestmentImage from "@/assets/roi-investment.jpg";
 import premiumVillaSelectionImage from "@/assets/premium-villa-selection.jpg";
 import beforeAfterTransformationImage from "@/assets/before-after-transformation.jpg";
 export default function Landing() {
+  const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
+
+  const investmentOptions = [
+    {
+      title: 'Diversified Fund',
+      returns: '25-30%',
+      investment: 'AED 500K',
+      description: 'Diversified across 10+ properties',
+      features: [
+        'Minimum investment: AED 500K',
+        'Diversified across 10+ properties',
+        'Professional management included',
+        'Quarterly performance reports',
+        'Exit flexibility after 12 months'
+      ]
+    },
+    {
+      title: 'Single Property',
+      returns: '10% to 30%',
+      investment: 'AED 1M',
+      description: 'Full transparency on single asset',
+      features: [
+        'Minimum investment: AED 1M',
+        'Full transparency on single asset',
+        'Direct involvement opportunities',
+        'Higher return potential',
+        '6-12 month typical timeline'
+      ],
+      popular: true
+    },
+    {
+      title: 'VIP Membership',
+      returns: '30%-30%',
+      investment: 'AED 5M',
+      description: 'First access to premium deals',
+      features: [
+        'Minimum investment: AED 5M',
+        'First access to premium deals',
+        'Personal relationship manager',
+        'Customized investment strategies',
+        'Exclusive networking events'
+      ]
+    }
+  ];
+
   return <div className="min-h-screen bg-background">
       <Navigation />
 
@@ -43,13 +106,62 @@ export default function Landing() {
             
             {/* Enhanced CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center animate-scale-in px-4">
-              <Button asChild size="lg" className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 group">
-                <Link to="/contact">
+              {/* Investment Button with Dropdown */}
+              <div className="relative w-full sm:w-auto">
+                <Button 
+                  size="lg" 
+                  className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 group"
+                  onClick={() => setShowInvestmentDropdown(!showInvestmentDropdown)}
+                >
                   <TrendingUp className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform duration-300" />
                   Invest In a Luxury Transformation with LL
-                  <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform duration-300" />
-                </Link>
-              </Button>
+                  {showInvestmentDropdown ? 
+                    <ChevronUp className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" /> : 
+                    <ChevronDown className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" />
+                  }
+                </Button>
+                
+                {/* Investment Options Dropdown */}
+                {showInvestmentDropdown && (
+                  <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 p-4 min-w-[800px] max-w-4xl">
+                    <h4 className="text-lg font-semibold mb-4 text-foreground">Investment Options:</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {investmentOptions.map((option, index) => (
+                        <Card key={index} className={`p-4 hover:shadow-lg transition-shadow ${option.popular ? 'ring-2 ring-primary' : 'border'}`}>
+                          {option.popular && (
+                            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                              <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
+                            </div>
+                          )}
+                          <div className="text-center mb-4">
+                            <h5 className="font-semibold text-lg mb-1 text-foreground">{option.title}</h5>
+                            <div className="text-2xl font-bold text-primary mb-1">{option.returns}</div>
+                            <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
+                            <p className="text-sm text-muted-foreground">{option.description}</p>
+                          </div>
+                          <ul className="space-y-2 mb-4">
+                            {option.features.map((feature, featureIndex) => (
+                              <li key={featureIndex} className="flex items-start gap-2">
+                                <CheckCircle className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
+                                <span className="text-sm text-foreground">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <Button 
+                            variant={option.popular ? "default" : "outline"} 
+                            size="sm" 
+                            className="w-full"
+                            onClick={() => window.location.href = '/contact'}
+                          >
+                            Learn More
+                          </Button>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              
               <Button asChild size="lg" className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 font-montserrat font-semibold luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 group">
                 <Link to="/contact">
                   <Building2 className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform duration-300" />
