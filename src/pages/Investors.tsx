@@ -164,7 +164,17 @@ export default function Investors() {
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-border">
-                  <Button variant="outline" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => {
+                      if (user) {
+                        window.location.href = '/dashboard';
+                      } else {
+                        window.location.href = '/auth';
+                      }
+                    }}
+                  >
                     View Full Dashboard
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
