@@ -6,6 +6,12 @@ import { Link } from "react-router-dom"
 import { Navigation } from "@/components/Navigation"
 import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
 import investmentPartnershipImage from "@/assets/investment-partnership-handshake.jpg"
+import luxuryGlassWork from "@/assets/luxury-glass-work.jpg"
+import luxuryWoodwork from "@/assets/luxury-woodwork.jpg"
+import luxuryOutdoorVase from "@/assets/luxury-outdoor-vase.jpg"
+import luxurySpeaker from "@/assets/luxury-speaker.jpg"
+import luxuryArt from "@/assets/luxury-art.jpg"
+import luxuryMarbleStone from "@/assets/luxury-marble-stone.jpg"
 
 export default function Partners() {
   return (
@@ -164,42 +170,91 @@ export default function Partners() {
 
             <Card className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative h-48">
-                  <img 
-                    src="/lovable-uploads/luxury-finishes-install-thumbnail.jpg" 
-                    alt="Luxury materials and premium finishes"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4">
-                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mb-3">
+                <div className="p-6 mb-4">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center">
                       <Package className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <h3 className="text-xl font-bold text-white font-playfair">Luxury Suppliers</h3>
+                    <h3 className="text-xl font-bold text-foreground font-playfair">Luxury Suppliers</h3>
                   </div>
-                </div>
-                <div className="p-6">
                   <p className="text-muted-foreground font-montserrat mb-4 leading-relaxed">
                     Premium suppliers of luxury materials, bespoke furniture, high-end hardware, and state-of-the-art equipment sourced from renowned international brands and master craftsmen worldwide.
                   </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground font-montserrat">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Italian marble & premium stone</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Bespoke furniture collections</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Smart home automation systems</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Luxury appliance partnerships</span>
-                    </li>
-                  </ul>
+                </div>
+                
+                {/* Grid of luxury items */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 p-4">
+                  <div className="relative h-24 rounded-lg overflow-hidden">
+                    <img 
+                      src={luxuryGlassWork} 
+                      alt="Premium luxury glass work"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-1 left-1">
+                      <span className="text-white text-xs font-medium">Glass Work</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-24 rounded-lg overflow-hidden">
+                    <img 
+                      src={luxuryWoodwork} 
+                      alt="Luxury woodwork craftsmanship"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-1 left-1">
+                      <span className="text-white text-xs font-medium">Woodwork</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-24 rounded-lg overflow-hidden">
+                    <img 
+                      src={luxuryOutdoorVase} 
+                      alt="Expensive outdoor luxury vase"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-1 left-1">
+                      <span className="text-white text-xs font-medium">Outdoor Vase</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-24 rounded-lg overflow-hidden">
+                    <img 
+                      src={luxurySpeaker} 
+                      alt="High-end luxury speaker system"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-1 left-1">
+                      <span className="text-white text-xs font-medium">Audio System</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-24 rounded-lg overflow-hidden">
+                    <img 
+                      src={luxuryArt} 
+                      alt="Expensive luxury art collection"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-1 left-1">
+                      <span className="text-white text-xs font-medium">Art Collection</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-24 rounded-lg overflow-hidden">
+                    <img 
+                      src={luxuryMarbleStone} 
+                      alt="Luxury marble and stone work"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-1 left-1">
+                      <span className="text-white text-xs font-medium">Marble & Stone</span>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
