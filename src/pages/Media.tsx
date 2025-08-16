@@ -217,8 +217,8 @@ export default function Media() {
                       title: "Design Planning Process", 
                       duration: "22 min", 
                       episode: 10, 
-                      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-                      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                      thumbnail: "https://img.youtube.com/vi/ZkT7X8pZyBE/maxresdefault.jpg",
+                      url: "https://www.youtube.com/watch?v=ZkT7X8pZyBE"
                     },
                     { 
                       title: "Renovation Timeline", 
