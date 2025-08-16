@@ -344,89 +344,221 @@ const Services = () => {
           </CardContent>
         </Card>
 
-        {/* Area of Focus */}
+        {/* Prime Dubai Locations */}
         <Card className="luxury-border luxury-shadow bg-background backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Star className="h-5 w-5" />
-              Area of Focus
+              Prime Dubai Investment Locations
             </CardTitle>
             <p className="text-muted-foreground">
-              Our specialized expertise areas that drive exceptional results in Dubai's luxury property market.
+              Strategic locations with exceptional growth potential and luxury living experiences in Dubai's most sought-after areas.
             </p>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-6 w-6 text-background" />
+              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src={dubaeMarinaLuxury} 
+                    alt="Dubai Marina" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <h4 className="font-semibold text-lg mb-3">Investment Strategy</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Data-driven investment strategies focused on high-ROI opportunities in prime Dubai locations with proven track records.
-                </p>
-                <ul className="text-xs space-y-1 text-left">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Market analysis & trend forecasting
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Portfolio diversification strategies
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Risk assessment & mitigation
-                  </li>
-                </ul>
+                <div className="p-6">
+                  <h4 className="font-semibold text-lg mb-3">Dubai Marina</h4>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Waterfront lifestyle with stunning marina views, premium amenities, and strong rental yields in one of Dubai's most vibrant communities.
+                  </p>
+                  <ul className="text-xs space-y-1">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      High rental yield potential (6-8%)
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Waterfront luxury living
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Strong resale value
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      World-class dining & entertainment
+                    </li>
+                  </ul>
+                </div>
               </div>
               
-              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Home className="h-6 w-6 text-background" />
+              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src="/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png" 
+                    alt="Downtown Dubai" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <h4 className="font-semibold text-lg mb-3">Luxury Renovations</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Premium transformation services that maximize property value through sophisticated design and quality craftsmanship.
-                </p>
-                <ul className="text-xs space-y-1 text-left">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    High-end interior design
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Premium material selection
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Quality control & project management
-                  </li>
-                </ul>
+                <div className="p-6">
+                  <h4 className="font-semibold text-lg mb-3">Downtown Dubai</h4>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    The heart of modern Dubai featuring iconic landmarks, luxury shopping, and premium residential developments with unmatched prestige.
+                  </p>
+                  <ul className="text-xs space-y-1">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Iconic Burj Khalifa vicinity
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Premium location prestige
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Excellent connectivity
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Dubai Mall & Opera nearby
+                    </li>
+                  </ul>
+                </div>
               </div>
               
-              <div className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-6 w-6 text-background" />
+              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
+                    alt="Business Bay" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <h4 className="font-semibold text-lg mb-3">Client Relations</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Personalized service and ongoing support for high-net-worth individuals seeking exceptional property experiences.
-                </p>
-                <ul className="text-xs space-y-1 text-left">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Dedicated relationship management
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    24/7 concierge support
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                    Transparent communication
-                  </li>
-                </ul>
+                <div className="p-6">
+                  <h4 className="font-semibold text-lg mb-3">Business Bay</h4>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Dubai's central business district offering modern luxury towers, canal views, and excellent investment returns in a thriving commercial hub.
+                  </p>
+                  <ul className="text-xs space-y-1">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Central business district location
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Dubai Canal waterfront
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      High appreciation potential
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Modern luxury developments
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src="/lovable-uploads/4a28db7f-c64a-4b5a-9ec6-71ad24f468f6.png" 
+                    alt="Palm Jumeirah" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="font-semibold text-lg mb-3">Palm Jumeirah</h4>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    World-famous man-made island offering exclusive beachfront properties, luxury resorts, and unparalleled prestige in Dubai's real estate market.
+                  </p>
+                  <ul className="text-xs space-y-1">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Exclusive beachfront living
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      World-renowned landmark
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Ultra-luxury properties
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Premium resort amenities
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src="/lovable-uploads/9bdf3759-8541-414d-a494-7d6f9d38185c.png" 
+                    alt="Dubai Hills Estate" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="font-semibold text-lg mb-3">Dubai Hills Estate</h4>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Master-planned community featuring golf course views, family-friendly amenities, and modern villas with excellent growth potential.
+                  </p>
+                  <ul className="text-xs space-y-1">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Championship golf course
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Family-oriented community
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Modern villa developments
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Strong capital appreciation
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src="/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png" 
+                    alt="JBR - Jumeirah Beach Residence" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="font-semibold text-lg mb-3">JBR - Jumeirah Beach Residence</h4>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Beachfront towers with direct beach access, vibrant nightlife, and premium rental opportunities in Dubai's most popular coastal destination.
+                  </p>
+                  <ul className="text-xs space-y-1">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Direct beach access
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Vibrant beachfront lifestyle
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      Strong tourism demand
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
+                      The Walk entertainment district
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </CardContent>
