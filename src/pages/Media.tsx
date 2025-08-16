@@ -7,6 +7,7 @@ import { Navigation } from "@/components/Navigation"
 import businessBayImage from "@/assets/business-bay.jpg"
 import downtownImage from "@/assets/downtown-luxury.jpg" 
 import marinaTowerImage from "@/assets/marina-tower.jpg"
+import luxuryFinishesInstallThumbnail from "@/assets/luxury-finishes-install-thumbnail.jpg"
 
 export default function Media() {
   return (
@@ -231,7 +232,7 @@ export default function Media() {
                       title: "Luxury Finishes Install", 
                       duration: "20 min", 
                       episode: 8, 
-                      thumbnail: "https://img.youtube.com/vi/P0r9TdIENko/hqdefault.jpg",
+                      thumbnail: luxuryFinishesInstallThumbnail,
                       url: "https://www.youtube.com/watch?v=P0r9TdIENko&t=8s"
                     },
                   ].map((video, index) => (
