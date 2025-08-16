@@ -91,138 +91,6 @@ export default function Landing() {
 
       
       {/* PROCESS Section */}
-      <section id="process" className="py-24 px-4 bg-background">
-        <div className="container mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              Our <span className="luxury-text">Process</span>
-            </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
-              Three strategic steps to transform premium properties into exceptional investment returns
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-12">
-            {/* Step 1: Premium Selection */}
-            <div className="text-center group animate-fade-in">
-              <div className="relative mb-8">
-                <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
-                  <span className="text-primary-foreground font-bold text-2xl font-playfair">1</span>
-                </div>
-                <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img src={premiumSelectionImage} alt="Premium Selection Process" className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-2xl font-playfair font-bold">PREMIUM SELECTION</h3>
-                  </div>
-                </div>
-              </div>
-              <p className="text-muted-foreground font-montserrat leading-relaxed">
-                Curating Dubai's rarest addresses through expert market analysis and exclusive access to premium properties in prime locations.
-              </p>
-            </div>
-
-            {/* Step 2: Luxury Transformation */}
-            <div className="text-center group animate-fade-in" style={{
-            animationDelay: '0.2s'
-          }}>
-              <div className="relative mb-8">
-                <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
-                  <span className="text-primary-foreground font-bold text-2xl font-playfair">2</span>
-                </div>
-                <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img src={luxuryTransformationImage} alt="Luxury Transformation Process" className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-2xl font-playfair font-bold">LUXURY TRANSFORMATION</h3>
-                  </div>
-                </div>
-              </div>
-              <p className="text-muted-foreground font-montserrat leading-relaxed">
-                Our signature renovation process elevates properties to luxury standards with bespoke design and premium materials.
-              </p>
-            </div>
-
-            {/* Step 3: Exceptional Returns */}
-            <div className="text-center group animate-fade-in" style={{
-            animationDelay: '0.4s'
-          }}>
-              <div className="relative mb-8">
-                <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
-                  <span className="text-primary-foreground font-bold text-2xl font-playfair">3</span>
-                </div>
-                <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
-                  <img src={exceptionalReturnsImage} alt="Exceptional Returns Process" className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-2xl font-playfair font-bold">EXCEPTIONAL RETURNS</h3>
-                  </div>
-                </div>
-              </div>
-              <p className="text-muted-foreground font-montserrat leading-relaxed">
-                Strategic market timing and expert sales execution deliver superior ROI, targeting 30%+ returns for our investors.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ABOUT Section */}
-      <section id="about" className="py-24 px-4 bg-gradient-elegant">
-        <div className="container mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              About <span className="luxury-text">Luxury Labs</span>
-            </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Luxury Labs is Dubai's premier property investment and transformation platform, specializing in strategic premium properties that deliver exceptional returns. Our expertise combines luxury real estate knowledge with innovative transformation processes.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
-                  <Award className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Premium Expertise</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Years of experience in Dubai's luxury real estate market with a proven track record of successful transformations.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{
-            animationDelay: '0.1s'
-          }}>
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
-                  <TrendingUp className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Exceptional Returns</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Target 30%+ ROI through strategic property selection, luxury transformations, and expert market timing.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{
-            animationDelay: '0.2s'
-          }}>
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
-                  <Users className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">HNWI Focus</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Exclusively serving high-net-worth individuals with personalized investment strategies and white-glove service.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* SERVICES Section */}
       <section id="services" className="py-24 px-4 bg-gradient-elegant">
         <div className="container mx-auto">
@@ -322,6 +190,139 @@ export default function Landing() {
                 </ul>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT Section */}
+      <section id="about" className="py-24 px-4 bg-gradient-elegant">
+        <div className="container mx-auto">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
+              About <span className="luxury-text">Luxury Labs</span>
+            </h2>
+            <p className="text-xl font-montserrat text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              Luxury Labs is Dubai's premier property investment and transformation platform, specializing in strategic premium properties that deliver exceptional returns. Our expertise combines luxury real estate knowledge with innovative transformation processes.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
+                  <Award className="h-8 w-8 text-primary-foreground" />
+                </div>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Premium Expertise</h3>
+                <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  Years of experience in Dubai's luxury real estate market with a proven track record of successful transformations.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{
+            animationDelay: '0.1s'
+          }}>
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
+                  <TrendingUp className="h-8 w-8 text-primary-foreground" />
+                </div>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Exceptional Returns</h3>
+                <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  Target 30%+ ROI through strategic property selection, luxury transformations, and expert market timing.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{
+            animationDelay: '0.2s'
+          }}>
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
+                  <Users className="h-8 w-8 text-primary-foreground" />
+                </div>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">HNWI Focus</h3>
+                <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  Exclusively serving high-net-worth individuals with personalized investment strategies and white-glove service.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS Section */}
+      <section id="process" className="py-24 px-4 bg-background">
+        <div className="container mx-auto">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
+              Our <span className="luxury-text">Process</span>
+            </h2>
+            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
+              Three strategic steps to transform premium properties into exceptional investment returns
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-12">
+            {/* Step 1: Premium Selection */}
+            <div className="text-center group animate-fade-in">
+              <div className="relative mb-8">
+                <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
+                  <span className="text-primary-foreground font-bold text-2xl font-playfair">1</span>
+                </div>
+                <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
+                  <img src={premiumSelectionImage} alt="Premium Selection Process" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-2xl font-playfair font-bold">PREMIUM SELECTION</h3>
+                  </div>
+                </div>
+              </div>
+              <p className="text-muted-foreground font-montserrat leading-relaxed">
+                Curating Dubai's rarest addresses through expert market analysis and exclusive access to premium properties in prime locations.
+              </p>
+            </div>
+
+            {/* Step 2: Luxury Transformation */}
+            <div className="text-center group animate-fade-in" style={{
+            animationDelay: '0.2s'
+          }}>
+              <div className="relative mb-8">
+                <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
+                  <span className="text-primary-foreground font-bold text-2xl font-playfair">2</span>
+                </div>
+                <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
+                  <img src={luxuryTransformationImage} alt="Luxury Transformation Process" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-2xl font-playfair font-bold">LUXURY TRANSFORMATION</h3>
+                  </div>
+                </div>
+              </div>
+              <p className="text-muted-foreground font-montserrat leading-relaxed">
+                Our signature renovation process elevates properties to luxury standards with bespoke design and premium materials.
+              </p>
+            </div>
+
+            {/* Step 3: Exceptional Returns */}
+            <div className="text-center group animate-fade-in" style={{
+            animationDelay: '0.4s'
+          }}>
+              <div className="relative mb-8">
+                <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
+                  <span className="text-primary-foreground font-bold text-2xl font-playfair">3</span>
+                </div>
+                <div className="relative h-64 rounded-xl overflow-hidden shadow-elegant group-hover:scale-105 transition-transform duration-300">
+                  <img src={exceptionalReturnsImage} alt="Exceptional Returns Process" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-2xl font-playfair font-bold">EXCEPTIONAL RETURNS</h3>
+                  </div>
+                </div>
+              </div>
+              <p className="text-muted-foreground font-montserrat leading-relaxed">
+                Strategic market timing and expert sales execution deliver superior ROI, targeting 30%+ returns for our investors.
+              </p>
+            </div>
           </div>
         </div>
       </section>
