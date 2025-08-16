@@ -311,16 +311,13 @@ const Projects = () => {
 
         {/* Prime Dubai Investment Locations */}
         <section className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold text-foreground">Prime Locations Luxury Labs Focus on</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Strategic locations with exceptional growth potential and luxury living experiences in Dubai's most sought-after areas.
+            </p>
+          </div>
           <Card className="luxury-border luxury-shadow bg-background backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Star className="h-5 w-5" />
-                Prime Locations Luxury Labs Focus on
-              </CardTitle>
-              <p className="text-muted-foreground">
-                Strategic locations with exceptional growth potential and luxury living experiences in Dubai's most sought-after areas.
-              </p>
-            </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
