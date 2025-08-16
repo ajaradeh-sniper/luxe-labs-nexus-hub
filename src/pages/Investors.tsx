@@ -221,50 +221,6 @@ export default function Investors() {
       {/* Investors Section */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          {/* Key Metrics */}
-          <div className="grid md:grid-cols-4 gap-6 mb-20">
-            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">30%</div>
-                <p className="text-sm text-muted-foreground font-montserrat">Average ROI</p>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BarChart3 className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">50+</div>
-                <p className="text-sm text-muted-foreground font-montserrat">Completed Projects</p>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <DollarSign className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">500M</div>
-                <p className="text-sm text-muted-foreground font-montserrat">AED Managed</p>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">200+</div>
-                <p className="text-sm text-muted-foreground font-montserrat">Active Investors</p>
-              </CardContent>
-            </Card>
-          </div>
-
-
           {/* Current Opportunities */}
           <div className="mb-20">
             <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Current Opportunities</h2>
@@ -398,6 +354,49 @@ export default function Investors() {
                 </CardContent>
               </Card>
             </div>
+          </div>
+
+          {/* Key Metrics */}
+          <div className="grid md:grid-cols-4 gap-6 mb-20">
+            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
+              <CardContent className="p-0">
+                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">30%</div>
+                <p className="text-sm text-muted-foreground font-montserrat">Average ROI</p>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
+              <CardContent className="p-0">
+                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                  <BarChart3 className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">50+</div>
+                <p className="text-sm text-muted-foreground font-montserrat">Completed Projects</p>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
+              <CardContent className="p-0">
+                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                  <DollarSign className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">500M</div>
+                <p className="text-sm text-muted-foreground font-montserrat">AED Managed</p>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
+              <CardContent className="p-0">
+                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">200+</div>
+                <p className="text-sm text-muted-foreground font-montserrat">Active Investors</p>
+              </CardContent>
+            </Card>
           </div>
 
           {/* CTA Section */}
