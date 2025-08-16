@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Link } from "react-router-dom"
 import { Navigation } from "@/components/Navigation"
 import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
+import investmentPartnershipImage from "@/assets/investment-partnership-handshake.jpg"
 
 export default function Partners() {
   return (
@@ -123,8 +124,8 @@ export default function Partners() {
               <CardContent className="p-0">
                 <div className="relative h-48">
                   <img 
-                    src="/lovable-uploads/roi-investment.jpg" 
-                    alt="Investment partners and financial institutions"
+                    src={investmentPartnershipImage} 
+                    alt="Investment partnership handshake with cash background and high ROI charts"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
