@@ -59,7 +59,7 @@ const Services = () => {
         },
         {
           title: 'Single Property',
-          returns: '30-35%',
+          returns: '10% to 30%',
           investment: 'AED 1M',
           description: 'Full transparency on single asset',
           features: [
