@@ -20,7 +20,9 @@ import {
   Target,
   Award,
   BarChart3,
-  Zap
+  Zap,
+  Search,
+  Hammer
 } from "lucide-react"
 import renovationShowcase from "@/assets/renovation-showcase.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
@@ -333,37 +335,24 @@ const Services = () => {
             </p>
           </CardHeader>
           <CardContent className="p-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+            {/* Main Three Pillars */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
               <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary/70 z-10"></div>
                 <img 
-                  src="/src/assets/luxury-office.jpg" 
-                  alt="Data-driven analysis workspace"
+                  src="/src/assets/premium-selection.jpg" 
+                  alt="Property selection and analysis"
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
                   <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <BarChart3 className="h-8 w-8 text-white" />
+                    <Search className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-2xl font-bold mb-3">Data-Driven Analysis</h4>
-                    <p className="text-white/90 mb-4 leading-relaxed">
-                      Comprehensive market intelligence and real-time analytics to identify the highest-potential investment opportunities in Dubai's luxury market.
+                    <h4 className="text-2xl font-bold mb-3">PROPERTY SELECTION</h4>
+                    <p className="text-white/90 leading-relaxed">
+                      Strategic acquisition of high-potential properties in prime Dubai locations with detailed market analysis and unique value propositions.
                     </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Real-time market analysis & trends
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        ROI prediction modeling & forecasting
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Comparative property valuation studies
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -371,33 +360,19 @@ const Services = () => {
               <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary/90 to-secondary/70 z-10"></div>
                 <img 
-                  src="/src/assets/luxury-interior-modern.jpg" 
-                  alt="Premium transformation showcase"
+                  src="/src/assets/luxury-transformation.jpg" 
+                  alt="Luxury renovation showcase"
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
                   <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <Award className="h-8 w-8 text-white" />
+                    <Hammer className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-2xl font-bold mb-3">Premium Transformation</h4>
-                    <p className="text-white/90 mb-4 leading-relaxed">
-                      Luxury design expertise creating exceptional living spaces that command premium prices and attract discerning buyers worldwide.
+                    <h4 className="text-2xl font-bold mb-3">LUXURY RENOVATION</h4>
+                    <p className="text-white/90 leading-relaxed">
+                      Complete transformation with premium finishes, modern design, and meticulous attention to detail creating exceptional living spaces.
                     </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Luxury interior design & architecture
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Premium materials & finishes selection
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Professional project management
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -405,8 +380,8 @@ const Services = () => {
               <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/90 to-accent/70 z-10"></div>
                 <img 
-                  src="/src/assets/roi-investment.jpg" 
-                  alt="Strategic investment planning"
+                  src="/src/assets/exceptional-returns.jpg" 
+                  alt="Profitable sale and returns"
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
@@ -414,58 +389,88 @@ const Services = () => {
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-2xl font-bold mb-3">Strategic Investment</h4>
-                    <p className="text-white/90 mb-4 leading-relaxed">
-                      Every decision backed by thorough financial analysis, risk assessment, and strategic planning to maximize returns and minimize exposure.
+                    <h4 className="text-2xl font-bold mb-3">PROFITABLE SALE</h4>
+                    <p className="text-white/90 leading-relaxed">
+                      Strategic marketing and sale optimization to maximize investor returns and portfolio growth through premium positioning.
                     </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Portfolio optimization & diversification
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Investment Timeline and Expected Returns */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 pt-0">
+              {/* Investment Timeline */}
+              <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                    <Clock className="h-5 w-5 text-primary" />
+                  </div>
+                  <h4 className="text-xl font-semibold">Investment Timeline</h4>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg border">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="w-3 h-3 bg-primary rounded-full"></div>
+                        <span className="font-medium">Property Purchase & Analysis</span>
                       </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Advanced risk mitigation strategies
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Strategic exit planning & timing
-                      </div>
+                      <p className="text-sm text-muted-foreground">Due diligence and acquisition</p>
                     </div>
+                    <span className="text-sm font-semibold text-primary">Month 1</span>
+                  </div>
+                  
+                  <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg border">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="w-3 h-3 bg-primary rounded-full"></div>
+                        <span className="font-medium">Design & Renovation Phase</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">Complete luxury transformation</p>
+                    </div>
+                    <span className="text-sm font-semibold text-primary">Months 2-4</span>
+                  </div>
+                  
+                  <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg border">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="w-3 h-3 bg-primary rounded-full"></div>
+                        <span className="font-medium">Marketing & Sale</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">Premium market positioning</p>
+                    </div>
+                    <span className="text-sm font-semibold text-primary">Month 5</span>
                   </div>
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-accent/70 z-10"></div>
-                <img 
-                  src="/src/assets/professional-team.jpg" 
-                  alt="Accelerated results team"
-                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <Zap className="h-8 w-8 text-white" />
+              {/* Expected Returns */}
+              <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                    <DollarSign className="h-5 w-5 text-primary" />
                   </div>
-                  <div>
-                    <h4 className="text-2xl font-bold mb-3">Accelerated Results</h4>
-                    <p className="text-white/90 mb-4 leading-relaxed">
-                      Streamlined processes and established networks ensure faster project completion and accelerated time to market for maximum efficiency.
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Fast-track renovation processes
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Established premium vendor network
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-white flex-shrink-0" />
-                        Rapid market positioning & sales
-                      </div>
-                    </div>
+                  <h4 className="text-xl font-semibold">Expected Returns</h4>
+                </div>
+                
+                {/* Main ROI */}
+                <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl p-6 mb-4 border border-primary/20">
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-primary mb-2">12-25%</div>
+                    <div className="text-lg font-semibold mb-1">ROI Range</div>
+                    <div className="text-sm text-muted-foreground">In 8-10 months average</div>
+                  </div>
+                </div>
+                
+                {/* Additional Stats */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center p-4 bg-background/50 rounded-lg border">
+                    <div className="text-2xl font-bold text-primary mb-1">5-9</div>
+                    <div className="text-sm text-muted-foreground">Month Timeline</div>
+                  </div>
+                  <div className="text-center p-4 bg-background/50 rounded-lg border">
+                    <div className="text-2xl font-bold text-primary mb-1">200+</div>
+                    <div className="text-sm text-muted-foreground">Projects Completed</div>
                   </div>
                 </div>
               </div>
