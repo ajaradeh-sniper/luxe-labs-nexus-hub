@@ -34,52 +34,172 @@ export default function Partners() {
         <div className="container mx-auto px-4">
 
           {/* Partnership Types */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
+          <div className="grid md:grid-cols-2 gap-8 mb-20">
+            <Card className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-0">
-                <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Building2 className="h-8 w-8 text-primary-foreground" />
+                <div className="relative h-48">
+                  <img 
+                    src={dubaiMarinaImage} 
+                    alt="Luxury real estate properties in Dubai"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mb-3">
+                      <Building2 className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white font-playfair">Real Estate Partners</h3>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair">Real Estate Partners</h3>
-                <p className="text-muted-foreground font-montserrat">
-                  Premium real estate agencies and property developers providing exclusive access to luxury properties
-                </p>
+                <div className="p-6">
+                  <p className="text-muted-foreground font-montserrat mb-4 leading-relaxed">
+                    Premier real estate agencies and property developers providing exclusive access to off-market luxury properties across Dubai's most prestigious locations including Downtown, Palm Jumeirah, and Dubai Marina.
+                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground font-montserrat">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Exclusive off-market property access</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Pre-construction investment opportunities</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Premium location portfolio</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Market analysis and insights</span>
+                    </li>
+                  </ul>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
+            <Card className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-0">
-                <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="h-8 w-8 text-primary-foreground" />
+                <div className="relative h-48">
+                  <img 
+                    src="/lovable-uploads/professional-team.jpg" 
+                    alt="Professional service providers and contractors"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mb-3">
+                      <Users className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white font-playfair">Service Providers</h3>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair">Service Providers</h3>
-                <p className="text-muted-foreground font-montserrat">
-                  Elite contractors, designers, and specialists delivering exceptional luxury transformation services
-                </p>
+                <div className="p-6">
+                  <p className="text-muted-foreground font-montserrat mb-4 leading-relaxed">
+                    Elite contractors, interior designers, architects, and luxury specialists delivering world-class transformation services with meticulous attention to detail and uncompromising quality standards.
+                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground font-montserrat">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Licensed luxury contractors</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Award-winning interior designers</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Certified project managers</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Smart home technology experts</span>
+                    </li>
+                  </ul>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
+            <Card className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-0">
-                <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Handshake className="h-8 w-8 text-primary-foreground" />
+                <div className="relative h-48">
+                  <img 
+                    src="/lovable-uploads/roi-investment.jpg" 
+                    alt="Investment partners and financial institutions"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mb-3">
+                      <Handshake className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white font-playfair">Investment Partners</h3>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair">Investment Partners</h3>
-                <p className="text-muted-foreground font-montserrat">
-                  Financial institutions and private investors supporting our luxury property transformation projects
-                </p>
+                <div className="p-6">
+                  <p className="text-muted-foreground font-montserrat mb-4 leading-relaxed">
+                    Strategic financial partners including private equity firms, family offices, and institutional investors who provide capital and expertise for large-scale luxury property transformation projects.
+                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground font-montserrat">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Private equity partnerships</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Family office collaborations</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Joint venture opportunities</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Structured financing solutions</span>
+                    </li>
+                  </ul>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
+            <Card className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-0">
-                <div className="w-16 h-16 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Package className="h-8 w-8 text-primary-foreground" />
+                <div className="relative h-48">
+                  <img 
+                    src="/lovable-uploads/luxury-finishes-install-thumbnail.jpg" 
+                    alt="Luxury materials and premium finishes"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mb-3">
+                      <Package className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white font-playfair">Luxury Suppliers</h3>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 font-playfair">Luxury Suppliers</h3>
-                <p className="text-muted-foreground font-montserrat">
-                  Premium material, furniture, hardware and equipment suppliers providing the finest luxury finishes and installations
-                </p>
+                <div className="p-6">
+                  <p className="text-muted-foreground font-montserrat mb-4 leading-relaxed">
+                    Premium suppliers of luxury materials, bespoke furniture, high-end hardware, and state-of-the-art equipment sourced from renowned international brands and master craftsmen worldwide.
+                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground font-montserrat">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Italian marble & premium stone</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Bespoke furniture collections</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Smart home automation systems</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span>Luxury appliance partnerships</span>
+                    </li>
+                  </ul>
+                </div>
               </CardContent>
             </Card>
           </div>
