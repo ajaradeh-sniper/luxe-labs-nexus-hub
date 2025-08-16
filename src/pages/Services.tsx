@@ -163,7 +163,7 @@ const Services = () => {
     { step: 7, title: 'Renovation Initiation', description: 'Timeline, status reports, site visits' },
     { step: 8, title: 'Project Completion', description: 'Final inspection, handover, certification' },
     { step: 9, title: 'Sale or Rental', description: 'Marketing, listing, buyer negotiations' },
-    { step: 10, title: 'Follow-up & Aftercare', description: 'Maintenance, feedback, future opportunities' }
+    { step: 10, title: 'Profit Distribution & Next Opportunity', description: 'ROI payout, reinvestment options, new deals' }
   ]
 
   return (
