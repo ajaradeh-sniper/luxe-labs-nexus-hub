@@ -4,12 +4,40 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Link } from "react-router-dom"
 import { Navigation } from "@/components/Navigation"
+import { useAuth } from "@/contexts/AuthContext"
+import { useToast } from "@/hooks/use-toast"
 import businessBayImage from "@/assets/business-bay.jpg"
 import downtownImage from "@/assets/downtown-luxury.jpg"
 import marinaTowerImage from "@/assets/marina-tower.jpg"
 import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
 
 export default function Investors() {
+  const { user } = useAuth();
+  const { toast } = useToast();
+
+  const handleAuthButtonClick = () => {
+    if (user) {
+      toast({
+        title: "Already Signed In",
+        description: (
+          <div className="flex flex-col gap-2">
+            <span>You are already signed in!</span>
+            <Link 
+              to="/dashboard" 
+              className="text-primary hover:underline font-medium"
+            >
+              Want to access your dashboard? Click here →
+            </Link>
+          </div>
+        ),
+        duration: 5000,
+      });
+    } else {
+      // Handle navigation to auth page when not signed in
+      window.location.href = '/auth';
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -50,11 +78,18 @@ export default function Investors() {
                   Exclusive access for accredited investors only.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-                  <Button className="luxury-gradient text-primary-foreground font-montserrat px-8 py-3">
+                  <Button 
+                    onClick={handleAuthButtonClick}
+                    className="luxury-gradient text-primary-foreground font-montserrat px-8 py-3"
+                  >
                     <User className="w-5 h-5 mr-2" />
                     Sign In
                   </Button>
-                  <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat px-8 py-3">
+                  <Button 
+                    onClick={handleAuthButtonClick}
+                    variant="outline" 
+                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat px-8 py-3"
+                  >
                     Sign Up
                   </Button>
                 </div>
