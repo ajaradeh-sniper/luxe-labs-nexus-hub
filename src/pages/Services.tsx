@@ -99,14 +99,14 @@ const Services = () => {
       ]
     },
     {
-      id: 'luxury-consulting',
-      title: 'Luxury Real Estate Advisory (Transformation, Design & Investment)',
+      id: 'luxury-transformation',
+      title: 'Luxury Real Estate Transformation (Renovate or Flip)',
       description: 'Comprehensive consulting services including investment advisory, property transformation, sourcing, project management, and HNWI concierge services.',
-      icon: Home,
+      icon: Hammer,
       price: 'Custom pricing',
       timeline: '3-18 months',
       features: [
-        'Investment advisory & strategy',
+        'Property Luxury Transformation services',
         'Property transformation consulting',
         'Premium property sourcing',
         'End-to-end project management',
@@ -117,14 +117,14 @@ const Services = () => {
       highlight: false,
       expandedOptions: [
         {
-          title: 'Luxury Transformation services',
-          description: 'Strategic investment guidance and market analysis',
+          title: 'Property Luxury Transformation services',
+          description: 'Premium design, project management, material sourcing, furniture and staging',
           features: [
-            'Market analysis & due diligence',
-            'Investment strategy development',
-            'Portfolio optimization',
-            'Risk assessment & mitigation',
-            'Exit strategy planning'
+            'Premium design services',
+            'Project management & oversight',
+            'Material & product sourcing',
+            'Furniture selection & staging',
+            'Quality control & inspections'
           ]
         },
         {
@@ -152,14 +152,14 @@ const Services = () => {
       ]
     },
     {
-      id: 'luxury-transformation',
-      title: 'Luxury Real Estate Transformation (Renovate or Flip)',
+      id: 'luxury-consulting',
+      title: 'Luxury Real Estate Advisory (Transformation, Design & Investment)',
       description: 'Comprehensive consulting services including investment advisory, property transformation, sourcing, project management, and HNWI concierge services.',
-      icon: Hammer,
+      icon: Home,
       price: 'Custom pricing',
       timeline: '3-18 months',
       features: [
-        'Property Luxury Transformation services',
+        'Investment advisory & strategy',
         'Property transformation consulting',
         'Premium property sourcing',
         'End-to-end project management',
@@ -170,14 +170,14 @@ const Services = () => {
       highlight: false,
       expandedOptions: [
         {
-          title: 'Property Luxury Transformation services',
-          description: 'Premium design, project management, material sourcing, furniture and staging',
+          title: 'Luxury Transformation services',
+          description: 'Strategic investment guidance and market analysis',
           features: [
-            'Premium design services',
-            'Project management & oversight',
-            'Material & product sourcing',
-            'Furniture selection & staging',
-            'Quality control & inspections'
+            'Market analysis & due diligence',
+            'Investment strategy development',
+            'Portfolio optimization',
+            'Risk assessment & mitigation',
+            'Exit strategy planning'
           ]
         },
         {
