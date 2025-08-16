@@ -231,8 +231,8 @@ export default function Media() {
                       title: "Luxury Finishes Install", 
                       duration: "20 min", 
                       episode: 8, 
-                      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-                      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                      thumbnail: "https://img.youtube.com/vi/P0r9TdIENko/maxresdefault.jpg",
+                      url: "https://www.youtube.com/watch?v=P0r9TdIENko&t=8s"
                     },
                   ].map((video, index) => (
                     <Card key={index} className="overflow-hidden luxury-border luxury-shadow bg-card/50 backdrop-blur-sm cursor-pointer group">
