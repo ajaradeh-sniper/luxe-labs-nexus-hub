@@ -138,30 +138,6 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Our Approach Section */}
-        <section className="space-y-8">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold text-foreground">Our Approach</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our methodology combines strategic planning, quality assurance, and innovative solutions 
-              to deliver exceptional results that exceed expectations.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {approaches.map((approach, index) => (
-              <Card key={index} className="text-center group hover:shadow-lg transition-all duration-300">
-                <CardContent className="p-6 space-y-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto group-hover:bg-primary/20 transition-colors">
-                    <approach.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold">{approach.title}</h3>
-                  <p className="text-sm text-muted-foreground">{approach.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
 
         {/* Areas of Focus Section */}
         <section className="space-y-8">
@@ -506,7 +482,30 @@ const Projects = () => {
           </div>
         </section>
 
-        {/* Call to Action */}
+        {/* Our Approach Section */}
+        <section className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold text-foreground">Our Approach</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our methodology combines strategic planning, quality assurance, and innovative solutions 
+              to deliver exceptional results that exceed expectations.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {approaches.map((approach, index) => (
+              <Card key={index} className="text-center group hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 space-y-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto group-hover:bg-primary/20 transition-colors">
+                    <approach.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold">{approach.title}</h3>
+                  <p className="text-sm text-muted-foreground">{approach.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
         <section className="text-center space-y-6 bg-muted/50 rounded-lg p-8">
           <h2 className="text-2xl font-bold text-foreground">Ready to Start Your Project?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
