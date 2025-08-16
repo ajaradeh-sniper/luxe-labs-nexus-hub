@@ -224,8 +224,8 @@ export default function Media() {
                       title: "Renovation Timeline", 
                       duration: "25 min", 
                       episode: 9, 
-                      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-                      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                      thumbnail: "https://img.youtube.com/vi/D2HrgCFYNv4/maxresdefault.jpg",
+                      url: "https://www.youtube.com/watch?v=D2HrgCFYNv4&t=2s"
                     },
                     { 
                       title: "Luxury Finishes Install", 
