@@ -132,7 +132,7 @@ const Projects = () => {
         {/* Header */}
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold text-foreground">Our Projects</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-accent max-w-3xl mx-auto">
             Transforming spaces through innovative design, premium construction, and strategic development 
             to create exceptional real estate experiences.
           </p>
