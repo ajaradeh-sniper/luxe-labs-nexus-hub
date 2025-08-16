@@ -178,7 +178,7 @@ Start a Transformation (Flip)/Project or Transform your Luxury Property with Lux
                   <div className="space-y-3">
                     <div className="flex items-center text-sm text-muted-foreground font-montserrat">
                       <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      Market analysis & insights
+                      Luxury Real Estate Design
                     </div>
                     <div className="flex items-center text-sm text-muted-foreground font-montserrat">
                       <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
