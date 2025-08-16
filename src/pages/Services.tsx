@@ -117,7 +117,7 @@ const Services = () => {
       highlight: false,
       expandedOptions: [
         {
-          title: 'Investment Advisory',
+          title: 'Luxury Transformation services',
           description: 'Strategic investment guidance and market analysis',
           features: [
             'Market analysis & due diligence',
