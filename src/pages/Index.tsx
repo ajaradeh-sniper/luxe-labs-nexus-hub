@@ -2,7 +2,7 @@ import { Navigation } from "@/components/Navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { TrendingUp, Calendar, Users, FileText, ArrowRight, Star, Building, Target } from "lucide-react"
+import { TrendingUp, Calendar, Users, FileText, ArrowRight, Star, Building, Target, CheckCircle } from "lucide-react"
 import luxuryDubaiSkyline from "@/assets/luxury-dubai-skyline.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
 import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
@@ -120,6 +120,115 @@ const Index = () => {
                       <div className="text-muted-foreground">Invested</div>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Investment Options Section */}
+        <section className="py-20 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4 font-playfair">Investment Options</h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Choose the investment strategy that aligns with your financial goals and risk profile
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
+                <CardContent className="p-0">
+                  <div className="text-center mb-6">
+                    <Badge variant="outline" className="mb-4 text-primary border-primary/30 bg-primary/5">
+                      Portfolio Investment
+                    </Badge>
+                    <h3 className="text-2xl font-bold text-foreground mb-2 font-playfair">Diversified Fund</h3>
+                    <div className="text-4xl font-bold luxury-text mb-2 font-playfair">25-30%</div>
+                    <p className="text-muted-foreground font-montserrat">Projected Annual Return</p>
+                  </div>
+                  <ul className="space-y-3 mb-8">
+                    {[
+                      "Minimum investment: AED 500K",
+                      "Diversified across 10+ properties",
+                      "Professional management included",
+                      "Quarterly performance reports",
+                      "Exit flexibility after 12 months"
+                    ].map((feature, index) => (
+                      <li key={index} className="flex items-center gap-3">
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground font-montserrat">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="w-full luxury-gradient text-primary-foreground font-montserrat">
+                    Learn More
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm relative">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <Badge className="luxury-gradient text-primary-foreground px-4 py-1">
+                    Most Popular
+                  </Badge>
+                </div>
+                <CardContent className="p-0">
+                  <div className="text-center mb-6">
+                    <Badge variant="outline" className="mb-4 text-primary border-primary/30 bg-primary/5">
+                      Individual Project
+                    </Badge>
+                    <h3 className="text-2xl font-bold text-foreground mb-2 font-playfair">Single Property</h3>
+                    <div className="text-4xl font-bold luxury-text mb-2 font-playfair">30-35%</div>
+                    <p className="text-muted-foreground font-montserrat">Projected Return</p>
+                  </div>
+                  <ul className="space-y-3 mb-8">
+                    {[
+                      "Minimum investment: AED 1M",
+                      "Full transparency on single asset",
+                      "Direct involvement opportunities",
+                      "Higher return potential",
+                      "6-12 month typical timeline"
+                    ].map((feature, index) => (
+                      <li key={index} className="flex items-center gap-3">
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground font-montserrat">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="w-full luxury-gradient text-primary-foreground font-montserrat">
+                    View Projects
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
+                <CardContent className="p-0">
+                  <div className="text-center mb-6">
+                    <Badge variant="outline" className="mb-4 text-primary border-primary/30 bg-primary/5">
+                      Premium Access
+                    </Badge>
+                    <h3 className="text-2xl font-bold text-foreground mb-2 font-playfair">VIP Membership</h3>
+                    <div className="text-4xl font-bold luxury-text mb-2 font-playfair">35%+</div>
+                    <p className="text-muted-foreground font-montserrat">Target Returns</p>
+                  </div>
+                  <ul className="space-y-3 mb-8">
+                    {[
+                      "Minimum investment: AED 5M",
+                      "First access to premium deals",
+                      "Personal relationship manager",
+                      "Customized investment strategies",
+                      "Exclusive networking events"
+                    ].map((feature, index) => (
+                      <li key={index} className="flex items-center gap-3">
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground font-montserrat">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="w-full luxury-gradient text-primary-foreground font-montserrat">
+                    Apply Now
+                  </Button>
                 </CardContent>
               </Card>
             </div>
