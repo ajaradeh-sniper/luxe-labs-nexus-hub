@@ -139,7 +139,7 @@ export default function Media() {
                   </div>
                   
                   {/* Relationship with Luxury Labs */}
-                  <Card className="p-8 luxury-border luxury-shadow bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/50 dark:to-amber-950/50 backdrop-blur-sm mb-12">
+                  <Card className="p-8 luxury-border luxury-shadow bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 backdrop-blur-sm mb-12">
                     <CardContent className="p-0">
                       <div className="flex items-center justify-center gap-8 mb-6">
                         <img 
