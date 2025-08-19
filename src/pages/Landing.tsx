@@ -260,7 +260,7 @@ export default function Landing() {
                                   <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
                                 </div>
                               )}
-                               <div className="flex flex-col gap-4">
+                               <div className="flex gap-4">
                                 <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                   <img 
                                     src={index === 0 ? exceptionalReturnsImage : index === 1 ? roiInvestmentImage : investmentPartnershipImage} 
