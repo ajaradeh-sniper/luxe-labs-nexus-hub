@@ -184,7 +184,7 @@ export default function Landing() {
               
               <div className="mt-8 space-y-4">
                 <h1 className="text-3xl sm:text-4xl lg:text-6xl font-playfair font-bold text-foreground leading-tight">
-                  Transform <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Dubai's Luxury</span> Real Estate
+                  Transform <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Luxury</span> Real Estate with exceptional returns and class
                 </h1>
                 <p className="text-lg sm:text-xl text-muted-foreground font-montserrat max-w-3xl mx-auto leading-relaxed">
                   Partner with Luxury Labs for premium property transformations, strategic investments, and expert advisory services in Dubai's elite real estate market
