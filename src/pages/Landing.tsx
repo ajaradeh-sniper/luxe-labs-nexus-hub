@@ -427,7 +427,7 @@ export default function Landing() {
                       <div className="flex gap-4">
                         <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
                           <img 
-                            src={index === 0 ? luxuryTransformationImage : index === 1 ? beforeAfterTransformationImage : luxuryFinishesImage} 
+                            src={index === 0 ? investmentPartnershipImage : index === 1 ? beforeAfterTransformationImage : luxuryFinishesImage} 
                             alt={option.title} 
                             className="w-full h-full object-cover" 
                           />
