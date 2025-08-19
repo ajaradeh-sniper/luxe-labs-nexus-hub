@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp } from "lucide-react";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
 import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
@@ -23,6 +24,8 @@ import luxuryFinishesImage from "@/assets/luxury-finishes-install-thumbnail.jpg"
 import professionalTeamImage from "@/assets/professional-team.jpg";
 export default function Landing() {
   const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
+  const [showTransformationDropdown, setShowTransformationDropdown] = useState(false);
+  const [showAdvisoryDropdown, setShowAdvisoryDropdown] = useState(false);
   const [showConsultingDropdown, setShowConsultingDropdown] = useState(false);
   const [showTransformDropdown, setShowTransformDropdown] = useState(false);
 
@@ -235,56 +238,71 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Dialog>
-                    <DialogTrigger asChild>
+                  <Collapsible open={showInvestmentDropdown} onOpenChange={setShowInvestmentDropdown}>
+                    <CollapsibleTrigger asChild>
                       <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn">
                         View Details
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                        {showInvestmentDropdown ? (
+                          <ChevronUp className="ml-2 h-4 w-4 transition-transform" />
+                        ) : (
+                          <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
+                        )}
                       </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background border border-border z-50">
-                      <DialogHeader>
-                        <DialogTitle className="text-2xl font-playfair">Investment Options</DialogTitle>
-                      </DialogHeader>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                        {investmentOptions.map((option, index) => (
-                          <Card key={index} className={`p-4 ${option.popular ? 'ring-2 ring-primary' : 'border'}`}>
-                            {option.popular && (
-                              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                                <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="mt-4 animate-accordion-down">
+                      <div className="bg-card/30 backdrop-blur-sm rounded-lg p-4 border border-border/50 space-y-4">
+                        <h4 className="text-lg font-playfair font-semibold text-foreground mb-4">Investment Options</h4>
+                        <div className="grid grid-cols-1 gap-4">
+                          {investmentOptions.map((option, index) => (
+                            <div key={index} className={`p-4 rounded-lg border ${option.popular ? 'border-primary bg-primary/5' : 'border-border bg-card/50'} relative`}>
+                              {option.popular && (
+                                <div className="absolute -top-2 left-4">
+                                  <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
+                                </div>
+                              )}
+                              <div className="flex gap-4">
+                                <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                                  <img 
+                                    src={index === 0 ? exceptionalReturnsImage : index === 1 ? roiInvestmentImage : investmentPartnershipImage} 
+                                    alt={option.title} 
+                                    className="w-full h-full object-cover" 
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="mb-2">
+                                    <h5 className="font-semibold text-base mb-1">{option.title}</h5>
+                                    {option.returns && (
+                                      <div className="text-lg font-bold text-primary mb-1">{option.returns}</div>
+                                    )}
+                                    {option.investment && (
+                                      <p className="text-xs text-muted-foreground mb-1">Min. {option.investment}</p>
+                                    )}
+                                    <p className="text-xs text-muted-foreground">{option.description}</p>
+                                  </div>
+                                  <ul className="space-y-1 mb-3">
+                                    {option.features.slice(0, 2).map((feature, featureIndex) => (
+                                      <li key={featureIndex} className="flex items-start gap-2">
+                                        <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
+                                        <span className="text-xs">{feature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                  <Button 
+                                    variant={option.popular ? "default" : "outline"} 
+                                    size="sm" 
+                                    className="w-full text-xs"
+                                    onClick={() => window.location.href = '/investors'}
+                                  >
+                                    Learn More
+                                  </Button>
+                                </div>
                               </div>
-                            )}
-                            <div className="text-center mb-4">
-                              <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
-                              {option.returns && (
-                                <div className="text-2xl font-bold text-primary mb-1">{option.returns}</div>
-                              )}
-                              {option.investment && (
-                                <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
-                              )}
-                              <p className="text-sm text-muted-foreground">{option.description}</p>
                             </div>
-                            <ul className="space-y-2 mb-4">
-                              {option.features.map((feature, featureIndex) => (
-                                <li key={featureIndex} className="flex items-start gap-2">
-                                  <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                  <span className="text-sm">{feature}</span>
-                                </li>
-                              ))}
-                            </ul>
-                            <Button 
-                              variant={option.popular ? "default" : "outline"} 
-                              size="sm" 
-                              className="w-full"
-                              onClick={() => window.location.href = '/investors'}
-                            >
-                              Learn More
-                            </Button>
-                          </Card>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </DialogContent>
-                  </Dialog>
+                    </CollapsibleContent>
+                  </Collapsible>
                 </CardContent>
               </Card>
 
@@ -331,45 +349,60 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Dialog>
-                    <DialogTrigger asChild>
+                  <Collapsible open={showTransformationDropdown} onOpenChange={setShowTransformationDropdown}>
+                    <CollapsibleTrigger asChild>
                       <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn">
                         View Details
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                        {showTransformationDropdown ? (
+                          <ChevronUp className="ml-2 h-4 w-4 transition-transform" />
+                        ) : (
+                          <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
+                        )}
                       </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background border border-border z-50">
-                      <DialogHeader>
-                        <DialogTitle className="text-2xl font-playfair">Transformation Services</DialogTitle>
-                      </DialogHeader>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                        {transformationOptions.map((option, index) => (
-                          <Card key={index} className="p-4 border">
-                            <div className="text-center mb-4">
-                              <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
-                              <p className="text-sm text-muted-foreground">{option.description}</p>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="mt-4 animate-accordion-down">
+                      <div className="bg-card/30 backdrop-blur-sm rounded-lg p-4 border border-border/50 space-y-4">
+                        <h4 className="text-lg font-playfair font-semibold text-foreground mb-4">Transformation Services</h4>
+                        <div className="grid grid-cols-1 gap-4">
+                          {transformationOptions.map((option, index) => (
+                            <div key={index} className="p-4 rounded-lg border border-border bg-card/50">
+                              <div className="flex gap-4">
+                                <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                                  <img 
+                                    src={index === 0 ? luxuryTransformationImage : index === 1 ? beforeAfterTransformationImage : luxuryFinishesImage} 
+                                    alt={option.title} 
+                                    className="w-full h-full object-cover" 
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="mb-2">
+                                    <h5 className="font-semibold text-base mb-1">{option.title}</h5>
+                                    <p className="text-xs text-muted-foreground">{option.description}</p>
+                                  </div>
+                                  <ul className="space-y-1 mb-3">
+                                    {option.features.slice(0, 2).map((feature, featureIndex) => (
+                                      <li key={featureIndex} className="flex items-start gap-2">
+                                        <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
+                                        <span className="text-xs">{feature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                  <Button 
+                                    variant="outline" 
+                                    size="sm" 
+                                    className="w-full text-xs"
+                                    onClick={() => window.location.href = '/services'}
+                                  >
+                                    Learn More
+                                  </Button>
+                                </div>
+                              </div>
                             </div>
-                            <ul className="space-y-2 mb-4">
-                              {option.features.map((feature, featureIndex) => (
-                                <li key={featureIndex} className="flex items-start gap-2">
-                                  <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                  <span className="text-sm">{feature}</span>
-                                </li>
-                              ))}
-                            </ul>
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              className="w-full"
-                              onClick={() => window.location.href = '/services'}
-                            >
-                              Learn More
-                            </Button>
-                          </Card>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </DialogContent>
-                  </Dialog>
+                    </CollapsibleContent>
+                  </Collapsible>
                 </CardContent>
               </Card>
 
@@ -416,45 +449,60 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Dialog>
-                    <DialogTrigger asChild>
+                  <Collapsible open={showAdvisoryDropdown} onOpenChange={setShowAdvisoryDropdown}>
+                    <CollapsibleTrigger asChild>
                       <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn">
                         View Details
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                        {showAdvisoryDropdown ? (
+                          <ChevronUp className="ml-2 h-4 w-4 transition-transform" />
+                        ) : (
+                          <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
+                        )}
                       </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background border border-border z-50">
-                      <DialogHeader>
-                        <DialogTitle className="text-2xl font-playfair">Advisory Services</DialogTitle>
-                      </DialogHeader>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                        {advisoryOptions.map((option, index) => (
-                          <Card key={index} className="p-4 border">
-                            <div className="text-center mb-4">
-                              <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
-                              <p className="text-sm text-muted-foreground">{option.description}</p>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="mt-4 animate-accordion-down">
+                      <div className="bg-card/30 backdrop-blur-sm rounded-lg p-4 border border-border/50 space-y-4">
+                        <h4 className="text-lg font-playfair font-semibold text-foreground mb-4">Advisory Services</h4>
+                        <div className="grid grid-cols-1 gap-4">
+                          {advisoryOptions.map((option, index) => (
+                            <div key={index} className="p-4 rounded-lg border border-border bg-card/50">
+                              <div className="flex gap-4">
+                                <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                                  <img 
+                                    src={index === 0 ? premiumVillaSelectionImage : index === 1 ? professionalTeamImage : premiumSelectionImage} 
+                                    alt={option.title} 
+                                    className="w-full h-full object-cover" 
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="mb-2">
+                                    <h5 className="font-semibold text-base mb-1">{option.title}</h5>
+                                    <p className="text-xs text-muted-foreground">{option.description}</p>
+                                  </div>
+                                  <ul className="space-y-1 mb-3">
+                                    {option.features.slice(0, 2).map((feature, featureIndex) => (
+                                      <li key={featureIndex} className="flex items-start gap-2">
+                                        <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
+                                        <span className="text-xs">{feature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                  <Button 
+                                    variant="outline" 
+                                    size="sm" 
+                                    className="w-full text-xs"
+                                    onClick={() => window.location.href = '/contact'}
+                                  >
+                                    Learn More
+                                  </Button>
+                                </div>
+                              </div>
                             </div>
-                            <ul className="space-y-2 mb-4">
-                              {option.features.map((feature, featureIndex) => (
-                                <li key={featureIndex} className="flex items-start gap-2">
-                                  <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                  <span className="text-sm">{feature}</span>
-                                </li>
-                              ))}
-                            </ul>
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              className="w-full"
-                              onClick={() => window.location.href = '/contact'}
-                            >
-                              Learn More
-                            </Button>
-                          </Card>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </DialogContent>
-                  </Dialog>
+                    </CollapsibleContent>
+                  </Collapsible>
                 </CardContent>
               </Card>
             </div>
