@@ -461,13 +461,6 @@ export default function Landing() {
 
             {/* Enhanced CTA Section */}
             <div className="text-center">
-              <div className="inline-flex items-center gap-4 p-4 rounded-2xl bg-card/30 backdrop-blur-sm border border-border/50 hover:bg-card/50 transition-all duration-300 group cursor-pointer"
-                   onClick={() => window.location.href = '/about'}>
-                <div className="flex items-center gap-3 text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                  <span className="font-montserrat font-medium">Learn More About Luxury Labs</span>
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </div>
-              </div>
             </div>
           </div>
         </div>
