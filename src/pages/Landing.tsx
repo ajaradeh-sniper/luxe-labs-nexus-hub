@@ -238,71 +238,13 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Collapsible open={showInvestmentDropdown} onOpenChange={setShowInvestmentDropdown}>
-                    <CollapsibleTrigger asChild>
-                      <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn">
-                        View Details
-                        {showInvestmentDropdown ? (
-                          <ChevronUp className="ml-2 h-4 w-4 transition-transform" />
-                        ) : (
-                          <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
-                        )}
-                      </Button>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="mt-4 animate-accordion-down">
-                      <div className="bg-card/30 backdrop-blur-sm rounded-lg p-4 border border-border/50 space-y-4">
-                        <h4 className="text-lg font-playfair font-semibold text-foreground mb-4">Investment Options</h4>
-                        <div className="grid grid-cols-1 gap-4">
-                          {investmentOptions.map((option, index) => (
-                            <div key={index} className={`p-4 rounded-lg border ${option.popular ? 'border-primary bg-primary/5' : 'border-border bg-card/50'} relative`}>
-                              {option.popular && (
-                                <div className="absolute -top-2 left-4">
-                                  <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
-                                </div>
-                              )}
-                               <div className="flex gap-4">
-                                <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                                  <img 
-                                    src={index === 0 ? exceptionalReturnsImage : index === 1 ? roiInvestmentImage : investmentPartnershipImage} 
-                                    alt={option.title} 
-                                    className="w-full h-full object-cover" 
-                                  />
-                                </div>
-                                <div className="flex-1">
-                                  <div className="mb-2">
-                                    <h5 className="font-semibold text-base mb-1">{option.title}</h5>
-                                    {option.returns && (
-                                      <div className="text-lg font-bold text-primary mb-1">{option.returns}</div>
-                                    )}
-                                    {option.investment && (
-                                      <p className="text-xs text-muted-foreground mb-1">Min. {option.investment}</p>
-                                    )}
-                                    <p className="text-xs text-muted-foreground">{option.description}</p>
-                                  </div>
-                                  <ul className="space-y-1 mb-3">
-                                    {option.features.slice(0, 2).map((feature, featureIndex) => (
-                                      <li key={featureIndex} className="flex items-start gap-2">
-                                        <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-xs">{feature}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                  <Button 
-                                    variant={option.popular ? "default" : "outline"} 
-                                    size="sm" 
-                                    className="w-full text-xs"
-                                    onClick={() => window.location.href = '/investors'}
-                                  >
-                                    Learn More
-                                  </Button>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
+                  <Button 
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
+                    onClick={() => window.location.href = '/investors'}
+                  >
+                    View Details
+                    <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
+                  </Button>
                 </CardContent>
               </Card>
 
@@ -349,60 +291,13 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Collapsible open={showTransformationDropdown} onOpenChange={setShowTransformationDropdown}>
-                    <CollapsibleTrigger asChild>
-                      <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn">
-                        View Details
-                        {showTransformationDropdown ? (
-                          <ChevronUp className="ml-2 h-4 w-4 transition-transform" />
-                        ) : (
-                          <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
-                        )}
-                      </Button>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="mt-4 animate-accordion-down">
-                      <div className="bg-card/30 backdrop-blur-sm rounded-lg p-4 border border-border/50 space-y-4">
-                        <h4 className="text-lg font-playfair font-semibold text-foreground mb-4">Transformation Services</h4>
-                        <div className="grid grid-cols-1 gap-4">
-                          {transformationOptions.map((option, index) => (
-                            <div key={index} className="p-4 rounded-lg border border-border bg-card/50">
-                              <div className="flex gap-4">
-                                <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                                  <img 
-                                    src={index === 0 ? luxuryTransformationImage : index === 1 ? beforeAfterTransformationImage : luxuryFinishesImage} 
-                                    alt={option.title} 
-                                    className="w-full h-full object-cover" 
-                                  />
-                                </div>
-                                <div className="flex-1">
-                                  <div className="mb-2">
-                                    <h5 className="font-semibold text-base mb-1">{option.title}</h5>
-                                    <p className="text-xs text-muted-foreground">{option.description}</p>
-                                  </div>
-                                  <ul className="space-y-1 mb-3">
-                                    {option.features.slice(0, 2).map((feature, featureIndex) => (
-                                      <li key={featureIndex} className="flex items-start gap-2">
-                                        <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-xs">{feature}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                  <Button 
-                                    variant="outline" 
-                                    size="sm" 
-                                    className="w-full text-xs"
-                                    onClick={() => window.location.href = '/services'}
-                                  >
-                                    Learn More
-                                  </Button>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
+                  <Button 
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
+                    onClick={() => window.location.href = '/services'}
+                  >
+                    View Details
+                    <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
+                  </Button>
                 </CardContent>
               </Card>
 
@@ -449,62 +344,161 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Collapsible open={showAdvisoryDropdown} onOpenChange={setShowAdvisoryDropdown}>
-                    <CollapsibleTrigger asChild>
-                      <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn">
-                        View Details
-                        {showAdvisoryDropdown ? (
-                          <ChevronUp className="ml-2 h-4 w-4 transition-transform" />
-                        ) : (
-                          <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
-                        )}
-                      </Button>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="mt-4 animate-accordion-down">
-                      <div className="bg-card/30 backdrop-blur-sm rounded-lg p-4 border border-border/50 space-y-4">
-                        <h4 className="text-lg font-playfair font-semibold text-foreground mb-4">Advisory Services</h4>
-                        <div className="grid grid-cols-1 gap-4">
-                          {advisoryOptions.map((option, index) => (
-                            <div key={index} className="p-4 rounded-lg border border-border bg-card/50">
-                              <div className="flex gap-4">
-                                <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                                  <img 
-                                    src={index === 0 ? premiumVillaSelectionImage : index === 1 ? professionalTeamImage : premiumSelectionImage} 
-                                    alt={option.title} 
-                                    className="w-full h-full object-cover" 
-                                  />
-                                </div>
-                                <div className="flex-1">
-                                  <div className="mb-2">
-                                    <h5 className="font-semibold text-base mb-1">{option.title}</h5>
-                                    <p className="text-xs text-muted-foreground">{option.description}</p>
-                                  </div>
-                                  <ul className="space-y-1 mb-3">
-                                    {option.features.slice(0, 2).map((feature, featureIndex) => (
-                                      <li key={featureIndex} className="flex items-start gap-2">
-                                        <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-xs">{feature}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                  <Button 
-                                    variant="outline" 
-                                    size="sm" 
-                                    className="w-full text-xs"
-                                    onClick={() => window.location.href = '/contact'}
-                                  >
-                                    Learn More
-                                  </Button>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
+                  <Button 
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
+                    onClick={() => window.location.href = '/contact'}
+                  >
+                    View Details
+                    <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
+                  </Button>
                 </CardContent>
               </Card>
+            </div>
+
+            {/* Service Details Section */}
+            <div className="mt-24 mb-16">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
+                  Service <span className="luxury-text">Details</span>
+                </h2>
+                <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
+                  Explore our comprehensive investment and transformation options
+                </p>
+              </div>
+
+              {/* Investment Options */}
+              <div className="mb-16">
+                <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Investment Options</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {investmentOptions.map((option, index) => (
+                    <Card key={index} className={`p-6 border ${option.popular ? 'border-primary bg-primary/5' : 'border-border bg-card/50'} relative hover:shadow-lg transition-shadow duration-300`}>
+                      {option.popular && (
+                        <div className="absolute -top-2 left-4">
+                          <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
+                        </div>
+                      )}
+                      <div className="flex gap-4">
+                        <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                          <img 
+                            src={index === 0 ? exceptionalReturnsImage : index === 1 ? roiInvestmentImage : investmentPartnershipImage} 
+                            alt={option.title} 
+                            className="w-full h-full object-cover" 
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <div className="mb-3">
+                            <h4 className="font-semibold text-lg mb-2">{option.title}</h4>
+                            {option.returns && (
+                              <div className="text-xl font-bold text-primary mb-2">{option.returns}</div>
+                            )}
+                            {option.investment && (
+                              <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
+                            )}
+                            <p className="text-sm text-muted-foreground">{option.description}</p>
+                          </div>
+                          <ul className="space-y-2 mb-4">
+                            {option.features.map((feature, featureIndex) => (
+                              <li key={featureIndex} className="flex items-start gap-2">
+                                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                <span className="text-sm">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <Button 
+                            variant={option.popular ? "default" : "outline"} 
+                            className="w-full"
+                            onClick={() => window.location.href = '/investors'}
+                          >
+                            Learn More
+                          </Button>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+
+              {/* Transformation Services */}
+              <div className="mb-16">
+                <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Transformation Services</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {transformationOptions.map((option, index) => (
+                    <Card key={index} className="p-6 border border-border bg-card/50 hover:shadow-lg transition-shadow duration-300">
+                      <div className="flex gap-4">
+                        <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                          <img 
+                            src={index === 0 ? luxuryTransformationImage : index === 1 ? beforeAfterTransformationImage : luxuryFinishesImage} 
+                            alt={option.title} 
+                            className="w-full h-full object-cover" 
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <div className="mb-3">
+                            <h4 className="font-semibold text-lg mb-2">{option.title}</h4>
+                            <p className="text-sm text-muted-foreground">{option.description}</p>
+                          </div>
+                          <ul className="space-y-2 mb-4">
+                            {option.features.map((feature, featureIndex) => (
+                              <li key={featureIndex} className="flex items-start gap-2">
+                                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                <span className="text-sm">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <Button 
+                            variant="outline" 
+                            className="w-full"
+                            onClick={() => window.location.href = '/services'}
+                          >
+                            Learn More
+                          </Button>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+
+              {/* Advisory Services */}
+              <div className="mb-16">
+                <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Advisory Services</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {advisoryOptions.map((option, index) => (
+                    <Card key={index} className="p-6 border border-border bg-card/50 hover:shadow-lg transition-shadow duration-300">
+                      <div className="flex gap-4">
+                        <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                          <img 
+                            src={index === 0 ? premiumVillaSelectionImage : index === 1 ? professionalTeamImage : premiumSelectionImage} 
+                            alt={option.title} 
+                            className="w-full h-full object-cover" 
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <div className="mb-3">
+                            <h4 className="font-semibold text-lg mb-2">{option.title}</h4>
+                            <p className="text-sm text-muted-foreground">{option.description}</p>
+                          </div>
+                          <ul className="space-y-2 mb-4">
+                            {option.features.map((feature, featureIndex) => (
+                              <li key={featureIndex} className="flex items-start gap-2">
+                                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                <span className="text-sm">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <Button 
+                            variant="outline" 
+                            className="w-full"
+                            onClick={() => window.location.href = '/contact'}
+                          >
+                            Learn More
+                          </Button>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Enhanced CTA Section */}
