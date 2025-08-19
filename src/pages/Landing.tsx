@@ -596,7 +596,7 @@ export default function Landing() {
                 <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
                   <Award className="h-8 w-8 text-primary-foreground" />
                 </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Premium Expertise</h3>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Luxury Design & Real Estate Expertise</h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed">
                   Years of experience in Dubai's luxury real estate market with a proven track record of successful transformations.
                 </p>
