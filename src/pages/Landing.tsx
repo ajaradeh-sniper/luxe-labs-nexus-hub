@@ -434,7 +434,7 @@ export default function Landing() {
                         </div>
                         <div className="flex-1">
                           <div className="mb-3">
-                            <h4 className="font-semibold text-lg mb-2">{option.title}</h4>
+                            <h4 className="font-semibold text-lg mb-2">Full LL Property Transformation</h4>
                             <p className="text-sm text-muted-foreground">{option.description}</p>
                           </div>
                           <ul className="space-y-2 mb-4">
