@@ -242,7 +242,7 @@ export default function Landing() {
                     className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
                     onClick={() => window.location.href = '/investors'}
                   >
-                    View Details
+                    View Investors Details
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
                 </CardContent>
@@ -293,9 +293,9 @@ export default function Landing() {
                   
                   <Button 
                     className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
-                    onClick={() => window.location.href = '/services'}
+                    onClick={() => window.location.href = '/contact'}
                   >
-                    View Details
+                    Contact Us
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
                 </CardContent>
@@ -348,7 +348,7 @@ export default function Landing() {
                     className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
                     onClick={() => window.location.href = '/contact'}
                   >
-                    View Details
+                    Contact Us
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
                 </CardContent>
