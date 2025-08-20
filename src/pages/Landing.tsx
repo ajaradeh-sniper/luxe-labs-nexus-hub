@@ -559,7 +559,7 @@ export default function Landing() {
                   <div className="text-primary-foreground font-bold text-xl font-playfair">LL</div>
                 </div>
                 <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-                  The LL Signature Transformation
+                  LL Signature Transformation
                 </h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed mb-6">
                   Our signature renovation process elevates properties to luxury standards. From design to execution, we create bespoke living spaces that maximize value and appeal.
