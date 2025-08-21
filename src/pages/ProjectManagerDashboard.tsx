@@ -95,24 +95,6 @@ const ProjectManagerDashboard = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Project Manager Dashboard</h1>
-            <p className="text-muted-foreground">Welcome back, {user?.name}</p>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
-              <MessageCircle className="mr-2 h-4 w-4" />
-              Team Chat
-            </Button>
-            <Button variant="luxury">
-              <Calendar className="mr-2 h-4 w-4" />
-              Schedule Meeting
-            </Button>
-          </div>
-        </div>
-
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
           <Card>

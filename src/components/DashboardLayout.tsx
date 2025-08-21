@@ -6,7 +6,6 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Bell, MessageSquare } from "lucide-react"
 import { NotificationDrawer } from "@/components/NotificationDrawer"
 import { useNavigate } from "react-router-dom"
-import luxuryLabsLogo from "@/assets/luxury-labs-logo.png"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -34,7 +33,7 @@ export function DashboardLayout({ children, viewingRole }: DashboardLayoutProps)
                 onClick={() => navigate('/')}
               >
                 <img 
-                  src={luxuryLabsLogo} 
+                  src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png"
                   alt="Luxury Labs" 
                   className="h-8 w-auto" 
                 />

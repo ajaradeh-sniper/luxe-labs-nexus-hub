@@ -111,24 +111,6 @@ export default function ClientDashboard() {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">My Projects</h1>
-            <p className="text-muted-foreground">Welcome back, {user?.name}</p>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
-              <MessageSquare className="mr-2 h-4 w-4" />
-              Contact PM
-            </Button>
-            <Button onClick={() => open('upload-doc')} className="luxury-gradient text-primary-foreground">
-              <Camera className="mr-2 h-4 w-4" />
-              Share Feedback
-            </Button>
-          </div>
-        </div>
-
         {/* Main Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
           <TabsList className="grid w-full grid-cols-4">
