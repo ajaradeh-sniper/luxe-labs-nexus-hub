@@ -28,6 +28,7 @@ export default function Landing() {
   const [showAdvisoryDropdown, setShowAdvisoryDropdown] = useState(false);
   const [showConsultingDropdown, setShowConsultingDropdown] = useState(false);
   const [showTransformDropdown, setShowTransformDropdown] = useState(false);
+  const [showServiceDetails, setShowServiceDetails] = useState(false);
 
   // Service data from Services page
   const investmentOptions = [
@@ -357,147 +358,169 @@ export default function Landing() {
 
             {/* Service Details Section */}
             <div className="mt-24 mb-16">
-              <div className="text-center mb-16">
+              <div className="text-center mb-8">
                 <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
                   Service <span className="luxury-text">Details</span>
                 </h2>
-                <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
+                <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto mb-8">
                   Explore our comprehensive investment and transformation options
                 </p>
-              </div>
-
-              {/* Investment Options */}
-              <div className="mb-16">
-                <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Investment Options</h3>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {investmentOptions.map((option, index) => (
-                    <Card key={index} className={`p-6 border ${option.popular ? 'border-primary bg-primary/5' : 'border-border bg-card/50'} relative hover:shadow-lg transition-shadow duration-300`}>
-                      {option.popular && (
-                        <div className="absolute -top-2 left-4">
-                          <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
-                        </div>
+                
+                {/* Toggle Button */}
+                <Collapsible open={showServiceDetails} onOpenChange={setShowServiceDetails}>
+                  <CollapsibleTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      size="lg"
+                      className="group bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300"
+                    >
+                      {showServiceDetails ? 'Hide Details' : 'View All Service Details'}
+                      {showServiceDetails ? (
+                        <ChevronUp className="ml-2 h-5 w-5 transition-transform duration-300" />
+                      ) : (
+                        <ChevronDown className="ml-2 h-5 w-5 transition-transform duration-300" />
                       )}
-                      <div className="flex gap-4">
-                        <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
-                          <img 
-                            src={index === 0 ? exceptionalReturnsImage : index === 1 ? roiInvestmentImage : investmentPartnershipImage} 
-                            alt={option.title} 
-                            className="w-full h-full object-cover" 
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <div className="mb-3">
-                            <h4 className="font-semibold text-lg mb-2">{option.title}</h4>
-                            {option.returns && (
-                              <div className="text-xl font-bold text-primary mb-2">{option.returns}</div>
-                            )}
-                            {option.investment && (
-                              <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
-                            )}
-                            <p className="text-sm text-muted-foreground">{option.description}</p>
-                          </div>
-                          <ul className="space-y-2 mb-4">
-                            {option.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-start gap-2">
-                                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                <span className="text-sm">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <Button 
-                            variant={option.popular ? "default" : "outline"} 
-                            className="w-full"
-                            onClick={() => window.location.href = '/investors'}
-                          >
-                            Learn More
-                          </Button>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              </div>
+                    </Button>
+                  </CollapsibleTrigger>
 
-              {/* Transformation Services */}
-              <div className="mb-16">
-                <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Transformation Services</h3>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {transformationOptions.map((option, index) => (
-                    <Card key={index} className="p-6 border border-border bg-card/50 hover:shadow-lg transition-shadow duration-300">
-                      <div className="flex gap-4">
-                        <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
-                          <img 
-                            src={index === 0 ? investmentPartnershipImage : index === 1 ? beforeAfterTransformationImage : luxuryFinishesImage} 
-                            alt={option.title} 
-                            className="w-full h-full object-cover" 
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <div className="mb-3">
-                            <h4 className="font-semibold text-lg mb-2">Full LL Property Transformation</h4>
-                            <p className="text-sm text-muted-foreground">{option.description}</p>
-                          </div>
-                          <ul className="space-y-2 mb-4">
-                            {option.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-start gap-2">
-                                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                <span className="text-sm">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <Button 
-                            variant="outline" 
-                            className="w-full"
-                            onClick={() => window.location.href = '/services'}
-                          >
-                            Learn More
-                          </Button>
+                  <CollapsibleContent className="animate-accordion-down data-[state=closed]:animate-accordion-up">
+                    <div className="mt-12 space-y-16">
+                      {/* Investment Options */}
+                      <div className="animate-fade-in">
+                        <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Investment Options</h3>
+                        <div className="grid md:grid-cols-3 gap-6">
+                          {investmentOptions.map((option, index) => (
+                            <Card key={index} className={`p-6 border ${option.popular ? 'border-primary bg-primary/5' : 'border-border bg-card/50'} relative hover:shadow-lg transition-all duration-300 hover-scale`}>
+                              {option.popular && (
+                                <div className="absolute -top-2 left-4">
+                                  <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
+                                </div>
+                              )}
+                              <div className="flex gap-4">
+                                <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                                  <img 
+                                    src={index === 0 ? exceptionalReturnsImage : index === 1 ? roiInvestmentImage : investmentPartnershipImage} 
+                                    alt={option.title} 
+                                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" 
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="mb-3">
+                                    <h4 className="font-semibold text-lg mb-2">{option.title}</h4>
+                                    {option.returns && (
+                                      <div className="text-xl font-bold text-primary mb-2">{option.returns}</div>
+                                    )}
+                                    {option.investment && (
+                                      <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
+                                    )}
+                                    <p className="text-sm text-muted-foreground">{option.description}</p>
+                                  </div>
+                                  <ul className="space-y-2 mb-4">
+                                    {option.features.map((feature, featureIndex) => (
+                                      <li key={featureIndex} className="flex items-start gap-2">
+                                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm">{feature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                  <Button 
+                                    variant={option.popular ? "default" : "outline"} 
+                                    className="w-full transition-all duration-300 hover:scale-105"
+                                    onClick={() => window.location.href = '/investors'}
+                                  >
+                                    Learn More
+                                  </Button>
+                                </div>
+                              </div>
+                            </Card>
+                          ))}
                         </div>
                       </div>
-                    </Card>
-                  ))}
-                </div>
-              </div>
 
-              {/* Advisory Services */}
-              <div className="mb-16">
-                <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Advisory Services</h3>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {advisoryOptions.map((option, index) => (
-                    <Card key={index} className="p-6 border border-border bg-card/50 hover:shadow-lg transition-shadow duration-300">
-                      <div className="flex gap-4">
-                        <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
-                          <img 
-                            src={index === 0 ? premiumVillaSelectionImage : index === 1 ? professionalTeamImage : premiumSelectionImage} 
-                            alt={option.title} 
-                            className="w-full h-full object-cover" 
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <div className="mb-3">
-                            <h4 className="font-semibold text-lg mb-2">{option.title}</h4>
-                            <p className="text-sm text-muted-foreground">{option.description}</p>
-                          </div>
-                          <ul className="space-y-2 mb-4">
-                            {option.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-start gap-2">
-                                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                <span className="text-sm">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <Button 
-                            variant="outline" 
-                            className="w-full"
-                            onClick={() => window.location.href = '/contact'}
-                          >
-                            Learn More
-                          </Button>
+                      {/* Transformation Services */}
+                      <div className="animate-fade-in">
+                        <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Transformation Services</h3>
+                        <div className="grid md:grid-cols-3 gap-6">
+                          {transformationOptions.map((option, index) => (
+                            <Card key={index} className="p-6 border border-border bg-card/50 hover:shadow-lg transition-all duration-300 hover-scale">
+                              <div className="flex gap-4">
+                                <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                                  <img 
+                                    src={index === 0 ? investmentPartnershipImage : index === 1 ? beforeAfterTransformationImage : luxuryFinishesImage} 
+                                    alt={option.title} 
+                                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" 
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="mb-3">
+                                    <h4 className="font-semibold text-lg mb-2">Full LL Property Transformation</h4>
+                                    <p className="text-sm text-muted-foreground">{option.description}</p>
+                                  </div>
+                                  <ul className="space-y-2 mb-4">
+                                    {option.features.map((feature, featureIndex) => (
+                                      <li key={featureIndex} className="flex items-start gap-2">
+                                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm">{feature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                  <Button 
+                                    variant="outline" 
+                                    className="w-full transition-all duration-300 hover:scale-105"
+                                    onClick={() => window.location.href = '/services'}
+                                  >
+                                    Learn More
+                                  </Button>
+                                </div>
+                              </div>
+                            </Card>
+                          ))}
                         </div>
                       </div>
-                    </Card>
-                  ))}
-                </div>
+
+                      {/* Advisory Services */}
+                      <div className="animate-fade-in">
+                        <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Advisory Services</h3>
+                        <div className="grid md:grid-cols-3 gap-6">
+                          {advisoryOptions.map((option, index) => (
+                            <Card key={index} className="p-6 border border-border bg-card/50 hover:shadow-lg transition-all duration-300 hover-scale">
+                              <div className="flex gap-4">
+                                <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                                  <img 
+                                    src={index === 0 ? premiumVillaSelectionImage : index === 1 ? professionalTeamImage : premiumSelectionImage} 
+                                    alt={option.title} 
+                                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" 
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="mb-3">
+                                    <h4 className="font-semibold text-lg mb-2">{option.title}</h4>
+                                    <p className="text-sm text-muted-foreground">{option.description}</p>
+                                  </div>
+                                  <ul className="space-y-2 mb-4">
+                                    {option.features.map((feature, featureIndex) => (
+                                      <li key={featureIndex} className="flex items-start gap-2">
+                                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm">{feature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                  <Button 
+                                    variant="outline" 
+                                    className="w-full transition-all duration-300 hover:scale-105"
+                                    onClick={() => window.location.href = '/contact'}
+                                  >
+                                    Learn More
+                                  </Button>
+                                </div>
+                              </div>
+                            </Card>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
               </div>
             </div>
 
