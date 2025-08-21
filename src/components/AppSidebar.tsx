@@ -123,21 +123,7 @@ export function AppSidebar({ viewingRole }: { viewingRole?: string } = {}) {
       <SidebarContent className="bg-gradient-elegant">
         {/* Logo */}
         <div className="p-4 border-b border-border">
-          {!collapsed ? (
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">LL</span>
-              </div>
-              <div>
-                <h2 className="font-semibold text-sm">Luxury Labs</h2>
-                <p className="text-xs text-muted-foreground">Real Estate Platform</p>
-              </div>
-            </div>
-          ) : (
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mx-auto">
-              <span className="text-primary-foreground font-bold text-sm">LL</span>
-            </div>
-          )}
+          {/* Logo removed to prevent duplication - only shown in header */}
         </div>
 
         <SidebarGroup>

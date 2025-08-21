@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Bell, MessageSquare } from "lucide-react"
 import { NotificationDrawer } from "@/components/NotificationDrawer"
 import { useNavigate } from "react-router-dom"
+import luxuryLabsLogo from "@/assets/luxury-labs-logo.png"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -32,12 +33,11 @@ export function DashboardLayout({ children, viewingRole }: DashboardLayoutProps)
                 className="flex items-center gap-2 hover:bg-accent"
                 onClick={() => navigate('/')}
               >
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">LL</span>
-                </div>
-                <div className="hidden md:block">
-                  <h2 className="font-semibold text-sm">Luxury Labs</h2>
-                </div>
+                <img 
+                  src={luxuryLabsLogo} 
+                  alt="Luxury Labs" 
+                  className="h-8 w-auto" 
+                />
               </Button>
             </div>
             <div className="flex items-center gap-4">
