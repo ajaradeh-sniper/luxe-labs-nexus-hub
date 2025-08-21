@@ -179,10 +179,30 @@ export default {
 		function({ addUtilities }) {
 			const newUtilities = {
 				'.hover-scale': {
-					'@apply': 'transition-transform duration-200 hover:scale-105'
+					'transition': 'transform 200ms ease-in-out',
+					'&:hover': {
+						'transform': 'scale(1.05)'
+					}
 				},
 				'.story-link': {
-					'@apply': 'relative inline-block after:content-[\'\'] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left'
+					'position': 'relative',
+					'display': 'inline-block',
+					'&::after': {
+						'content': '""',
+						'position': 'absolute',
+						'width': '100%',
+						'height': '2px',
+						'bottom': '0',
+						'left': '0',
+						'background-color': 'hsl(var(--primary))',
+						'transform-origin': 'bottom right',
+						'transform': 'scaleX(0)',
+						'transition': 'transform 300ms ease-in-out'
+					},
+					'&:hover::after': {
+						'transform': 'scaleX(1)',
+						'transform-origin': 'bottom left'
+					}
 				}
 			}
 			addUtilities(newUtilities)
