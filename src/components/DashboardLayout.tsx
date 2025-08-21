@@ -5,8 +5,6 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Bell, MessageSquare } from "lucide-react"
 import { NotificationDrawer } from "@/components/NotificationDrawer"
-import { Link } from "react-router-dom"
-import luxuryLabsLogo from "/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -25,9 +23,7 @@ export function DashboardLayout({ children, viewingRole }: DashboardLayoutProps)
           {/* Top Navigation Header */}
           <header className="h-16 border-b bg-background flex items-center justify-between px-6 sticky top-0 z-10">
             <div className="flex items-center gap-4">
-              <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                <img src={luxuryLabsLogo} alt="Luxury Labs" className="h-12 w-auto" />
-              </Link>
+              {/* Logo removed - keeping only sidebar logo */}
             </div>
             <div className="flex items-center gap-4">
               <NotificationDrawer />
