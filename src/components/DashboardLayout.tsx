@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Bell, MessageSquare } from "lucide-react"
 import { NotificationDrawer } from "@/components/NotificationDrawer"
+import { useNavigate } from "react-router-dom"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -13,6 +14,7 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children, viewingRole }: DashboardLayoutProps) {
   const { user } = useAuth()
+  const navigate = useNavigate()
   const effectiveRole = viewingRole || user?.role
 
   return (
@@ -23,7 +25,20 @@ export function DashboardLayout({ children, viewingRole }: DashboardLayoutProps)
           {/* Top Navigation Header */}
           <header className="h-16 border-b bg-background flex items-center justify-between px-6 sticky top-0 z-10">
             <div className="flex items-center gap-4">
-              {/* Logo removed - keeping only sidebar logo */}
+              {/* Logo - Home Button */}
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="flex items-center gap-2 hover:bg-accent"
+                onClick={() => navigate('/')}
+              >
+                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                  <span className="text-primary-foreground font-bold text-sm">LL</span>
+                </div>
+                <div className="hidden md:block">
+                  <h2 className="font-semibold text-sm">Luxury Labs</h2>
+                </div>
+              </Button>
             </div>
             <div className="flex items-center gap-4">
               <NotificationDrawer />
