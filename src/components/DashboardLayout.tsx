@@ -4,6 +4,7 @@ import { useAuth } from "@/contexts/AuthContext"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Bell, MessageSquare } from "lucide-react"
+import { NotificationDrawer } from "@/components/NotificationDrawer"
 import { Link } from "react-router-dom"
 import luxuryLabsLogo from "/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png"
 
@@ -29,9 +30,7 @@ export function DashboardLayout({ children, viewingRole }: DashboardLayoutProps)
               </Link>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon">
-                <Bell className="h-4 w-4" />
-              </Button>
+              <NotificationDrawer />
               <Button variant="ghost" size="icon">
                 <MessageSquare className="h-4 w-4" />
               </Button>
