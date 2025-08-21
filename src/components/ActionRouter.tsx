@@ -15,7 +15,9 @@ export type ActionKey =
   | 'upload-doc'
   | 'reports'
   | 'export-data'
-  | 'team-meeting';
+  | 'team-meeting'
+  | 'refer-investor'
+  | 'join-investment';
 
 interface ActionContext {
   projectId?: string;
@@ -59,6 +61,14 @@ export function useActionRouter() {
       />
       <UploadDocumentModal 
         open={action === 'upload-doc'} 
+        onClose={close}
+      />
+      <ReferInvestorModal 
+        open={action === 'refer-investor'} 
+        onClose={close}
+      />
+      <JoinInvestmentModal 
+        open={action === 'join-investment'} 
         onClose={close}
       />
     </>
