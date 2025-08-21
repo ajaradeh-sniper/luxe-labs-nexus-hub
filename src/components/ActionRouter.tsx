@@ -4,6 +4,8 @@ import { InviteUserModal } from './modals/InviteUserModal';
 import { PromoteOpportunityModal } from './modals/PromoteOpportunityModal';
 import { StartProjectModal } from './modals/StartProjectModal';
 import { UploadDocumentModal } from './modals/UploadDocumentModal';
+import { ReferInvestorModal } from './modals/ReferInvestorModal';
+import { JoinInvestmentModal } from './modals/JoinInvestmentModal';
 
 export type ActionKey =
   | 'new-project'

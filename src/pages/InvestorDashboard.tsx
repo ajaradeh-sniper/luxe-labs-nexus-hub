@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useAuth } from "@/contexts/AuthContext"
+import { useActionRouter } from "@/components/ActionRouter"
 import { 
   TrendingUp,
   TrendingDown,
@@ -17,11 +18,16 @@ import {
   FileText,
   PieChart,
   BarChart3,
-  Star
+  Star,
+  UserPlus,
+  Target,
+  ArrowUpRight,
+  Briefcase
 } from "lucide-react"
 
 const InvestorDashboard = () => {
   const { user } = useAuth()
+  const { open, portal } = useActionRouter()
   const [activeTab, setActiveTab] = useState("portfolio")
 
   const portfolioStats = {
@@ -30,7 +36,8 @@ const InvestorDashboard = () => {
     totalROI: 21.4,
     monthlyIncome: "$24.5K",
     properties: 4,
-    avgROI: 18.2
+    avgROI: 18.2,
+    upcomingPayouts: "$95K"
   }
 
   const investments = [
@@ -43,7 +50,9 @@ const InvestorDashboard = () => {
       monthlyIncome: "$6.8K",
       status: "performing",
       purchaseDate: "2023-08-15",
-      type: "Luxury Apartment"
+      type: "Luxury Apartment",
+      nextPayout: "2025-02-01",
+      payoutAmount: "$18.5K"
     },
     {
       id: "2", 
@@ -54,7 +63,9 @@ const InvestorDashboard = () => {
       monthlyIncome: "$9.2K",
       status: "performing",
       purchaseDate: "2023-06-10",
-      type: "Residential Complex"
+      type: "Residential Complex",
+      nextPayout: "2025-01-28",
+      payoutAmount: "$22.8K"
     },
     {
       id: "3",
@@ -65,7 +76,9 @@ const InvestorDashboard = () => {
       monthlyIncome: "$4.8K",
       status: "stable",
       purchaseDate: "2024-01-20",
-      type: "Commercial Office"
+      type: "Commercial Office",
+      nextPayout: "2025-02-15",
+      payoutAmount: "$12.2K"
     },
     {
       id: "4",
@@ -76,40 +89,52 @@ const InvestorDashboard = () => {
       monthlyIncome: "$3.7K",
       status: "outstanding",
       purchaseDate: "2023-11-05",
-      type: "Luxury Villa"
+      type: "Luxury Villa",
+      nextPayout: "2025-01-25",
+      payoutAmount: "$41.5K"
     }
   ]
 
-  const roiReports = [
+  const newOpportunities = [
     {
-      period: "Q4 2024",
-      totalROI: 21.4,
-      bestPerformer: "Palm Residence Villa",
-      avgReturn: 18.2,
-      generated: "2024-12-01"
+      id: "5",
+      title: "Jumeirah Beach Penthouse",
+      location: "Jumeirah Beach Residence",
+      targetROI: "28-35%",
+      minInvestment: "$500K",
+      totalRequired: "$2.8M",
+      raised: "$1.4M",
+      daysLeft: 12,
+      riskLevel: "Medium"
     },
     {
-      period: "Q3 2024", 
-      totalROI: 19.8,
-      bestPerformer: "Marina Bay Tower",
-      avgReturn: 16.9,
-      generated: "2024-09-01"
-    },
-    {
-      period: "Q2 2024",
-      totalROI: 18.5,
-      bestPerformer: "Downtown Luxury",
-      avgReturn: 15.2,
-      generated: "2024-06-01"
+      id: "6",
+      title: "Dubai Hills Premium Villa",
+      location: "Dubai Hills Estate",
+      targetROI: "22-28%",
+      minInvestment: "$300K",
+      totalRequired: "$1.9M",
+      raised: "$950K",
+      daysLeft: 8,
+      riskLevel: "Low"
     }
   ]
 
-  const documents = [
-    { name: "Investment Portfolio Summary Q4 2024", type: "PDF", date: "2024-12-01", category: "Report" },
-    { name: "Marina Bay Purchase Agreement", type: "PDF", date: "2023-08-15", category: "Contract" },
-    { name: "ROI Analysis Report Q4", type: "Excel", date: "2024-11-30", category: "Analysis" },
-    { name: "Property Valuation Downtown", type: "PDF", date: "2024-10-15", category: "Valuation" },
-    { name: "Annual Tax Summary 2024", type: "PDF", date: "2024-11-01", category: "Tax" }
+  const marketInsights = [
+    {
+      title: "Q1 2025 Market Outlook",
+      summary: "Dubai luxury market shows strong momentum with 15% YoY growth",
+      author: "Real Estate Director",
+      date: "Jan 15, 2025",
+      category: "Market Analysis"
+    },
+    {
+      title: "Marina District Performance",
+      summary: "Marina properties outperforming with 18% average returns",
+      author: "Investment Team",
+      date: "Jan 12, 2025", 
+      category: "Area Focus"
+    }
   ]
 
   const getStatusColor = (status: string) => {
@@ -117,6 +142,15 @@ const InvestorDashboard = () => {
       case 'outstanding': return 'bg-success/10 text-success border-success/20'
       case 'performing': return 'bg-primary/10 text-primary border-primary/20'
       case 'stable': return 'bg-warning/10 text-warning border-warning/20'
+      default: return 'bg-muted text-muted-foreground'
+    }
+  }
+
+  const getRiskColor = (risk: string) => {
+    switch (risk) {
+      case 'Low': return 'bg-success/10 text-success'
+      case 'Medium': return 'bg-warning/10 text-warning'
+      case 'High': return 'bg-destructive/10 text-destructive'
       default: return 'bg-muted text-muted-foreground'
     }
   }
@@ -131,24 +165,24 @@ const InvestorDashboard = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Investor Dashboard</h1>
+            <h1 className="text-3xl font-bold text-foreground">Investment Portfolio</h1>
             <p className="text-muted-foreground">Welcome back, {user?.name}</p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline">
-              <Download className="mr-2 h-4 w-4" />
-              Download Report
+            <Button variant="outline" onClick={() => open('refer-investor')}>
+              <UserPlus className="mr-2 h-4 w-4" />
+              Refer Investor
             </Button>
-            <Button variant="luxury">
-              <Eye className="mr-2 h-4 w-4" />
-              View All Properties
+            <Button onClick={() => open('join-investment')} className="luxury-gradient text-primary-foreground">
+              <Target className="mr-2 h-4 w-4" />
+              New Opportunities
             </Button>
           </div>
         </div>
 
         {/* Portfolio Overview */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
-          <Card className="md:col-span-2">
+          <Card className="md:col-span-2 luxury-border">
             <CardContent className="p-6">
               <div className="text-center">
                 <p className="text-3xl font-bold text-foreground">{portfolioStats.totalInvestment}</p>
@@ -161,7 +195,7 @@ const InvestorDashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="luxury-border">
             <CardContent className="p-6">
               <div className="text-center">
                 <p className="text-2xl font-bold text-success">+{portfolioStats.totalROI}%</p>
@@ -170,7 +204,7 @@ const InvestorDashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="luxury-border">
             <CardContent className="p-6">
               <div className="text-center">
                 <p className="text-2xl font-bold text-foreground">{portfolioStats.monthlyIncome}</p>
@@ -179,7 +213,7 @@ const InvestorDashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="luxury-border">
             <CardContent className="p-6">
               <div className="text-center">
                 <p className="text-2xl font-bold text-primary">{portfolioStats.properties}</p>
@@ -188,11 +222,11 @@ const InvestorDashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="luxury-border">
             <CardContent className="p-6">
               <div className="text-center">
-                <p className="text-2xl font-bold text-foreground">{portfolioStats.avgROI}%</p>
-                <p className="text-sm text-muted-foreground">Avg ROI</p>
+                <p className="text-2xl font-bold text-warning">{portfolioStats.upcomingPayouts}</p>
+                <p className="text-sm text-muted-foreground">Next Payouts</p>
               </div>
             </CardContent>
           </Card>
@@ -201,120 +235,32 @@ const InvestorDashboard = () => {
         {/* Main Content Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="portfolio">Portfolio View</TabsTrigger>
-            <TabsTrigger value="roi">ROI Reports</TabsTrigger>
-            <TabsTrigger value="documents">Documents</TabsTrigger>
-            <TabsTrigger value="analytics">Market Analytics</TabsTrigger>
+            <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
+            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="opportunities">Opportunities</TabsTrigger>
+            <TabsTrigger value="referrals">Referrals</TabsTrigger>
           </TabsList>
 
           <TabsContent value="portfolio" className="space-y-6">
+            {/* ROI Heatmap */}
             <Card>
               <CardHeader>
-                <CardTitle>Investment Portfolio</CardTitle>
+                <CardTitle>Portfolio Performance Heatmap</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {investments.map((investment) => (
-                    <div key={investment.id} className="p-4 border border-border rounded-lg hover:bg-accent/30 transition-colors">
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <h3 className="font-semibold text-lg">{investment.property}</h3>
-                          <p className="text-sm text-muted-foreground">{investment.type}</p>
-                          <p className="text-xs text-muted-foreground">Purchased: {new Date(investment.purchaseDate).toLocaleDateString()}</p>
+                    <div key={investment.id} className={`p-4 rounded-lg border-2 ${getStatusColor(investment.status)}`}>
+                      <div className="text-center">
+                        <div className="flex items-center justify-center mb-2">
+                          {getROIIcon(investment.roi)}
+                          <span className="ml-1 font-bold text-lg">+{investment.roi}%</span>
                         </div>
-                        <Badge className={getStatusColor(investment.status)}>
-                          {investment.status}
-                        </Badge>
-                      </div>
-
-                      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                        <div>
-                          <p className="text-xs text-muted-foreground">Investment</p>
-                          <p className="font-semibold">{investment.investment}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Current Value</p>
-                          <p className="font-semibold text-success">{investment.currentValue}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">ROI</p>
-                          <div className="flex items-center gap-1">
-                            {getROIIcon(investment.roi)}
-                            <p className="font-semibold text-success">+{investment.roi}%</p>
-                          </div>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Monthly Income</p>
-                          <p className="font-semibold">{investment.monthlyIncome}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Performance</p>
-                          <Progress value={Math.min(investment.roi * 2, 100)} className="h-2" />
-                        </div>
-                      </div>
-
-                      <div className="flex gap-2 mt-4">
-                        <Button variant="outline" size="sm">
-                          <Eye className="mr-1 h-3 w-3" />
-                          View Details
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <FileText className="mr-1 h-3 w-3" />
-                          Documents
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="roi" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle>ROI Reports</CardTitle>
-                  <Button variant="luxury">
-                    <Download className="mr-2 h-4 w-4" />
-                    Generate New Report
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {roiReports.map((report, index) => (
-                    <div key={index} className="p-4 border border-border rounded-lg">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-lg">{report.period} Report</h3>
-                        <div className="flex gap-2">
-                          <Button variant="outline" size="sm">
-                            <Eye className="mr-1 h-3 w-3" />
-                            View
-                          </Button>
-                          <Button variant="outline" size="sm">
-                            <Download className="mr-1 h-3 w-3" />
-                            Download
-                          </Button>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div>
-                          <p className="text-xs text-muted-foreground">Total ROI</p>
-                          <p className="font-semibold text-success">+{report.totalROI}%</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Best Performer</p>
-                          <p className="font-semibold">{report.bestPerformer}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Average Return</p>
-                          <p className="font-semibold">{report.avgReturn}%</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Generated</p>
-                          <p className="font-semibold">{new Date(report.generated).toLocaleDateString()}</p>
+                        <p className="font-semibold text-sm">{investment.property}</p>
+                        <p className="text-xs text-muted-foreground">{investment.type}</p>
+                        <div className="mt-2">
+                          <p className="text-xs text-muted-foreground">Next Payout</p>
+                          <p className="font-medium text-sm">{investment.payoutAmount}</p>
                         </div>
                       </div>
                     </div>
@@ -322,33 +268,28 @@ const InvestorDashboard = () => {
                 </div>
               </CardContent>
             </Card>
-          </TabsContent>
 
-          <TabsContent value="documents" className="space-y-6">
+            {/* Upcoming Payouts */}
             <Card>
               <CardHeader>
-                <CardTitle>Investment Documents</CardTitle>
+                <CardTitle>Upcoming Payouts</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {documents.map((doc, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 border border-border rounded-lg">
+                  {investments.map((investment) => (
+                    <div key={investment.id} className="flex items-center justify-between p-4 border border-border rounded-lg">
                       <div className="flex items-center gap-3">
-                        <FileText className="h-5 w-5 text-muted-foreground" />
+                        <DollarSign className="h-8 w-8 text-success" />
                         <div>
-                          <p className="font-medium">{doc.name}</p>
+                          <p className="font-semibold">{investment.property}</p>
                           <p className="text-sm text-muted-foreground">
-                            {doc.category} • {doc.type} • {new Date(doc.date).toLocaleDateString()}
+                            Due: {new Date(investment.nextPayout).toLocaleDateString()}
                           </p>
                         </div>
                       </div>
-                      <div className="flex gap-2">
-                        <Button variant="ghost" size="sm">
-                          <Eye className="h-3 w-3" />
-                        </Button>
-                        <Button variant="ghost" size="sm">
-                          <Download className="h-3 w-3" />
-                        </Button>
+                      <div className="text-right">
+                        <p className="text-lg font-bold text-success">{investment.payoutAmount}</p>
+                        <Badge variant="outline">Confirmed</Badge>
                       </div>
                     </div>
                   ))}
@@ -368,7 +309,6 @@ const InvestorDashboard = () => {
                     <div className="text-center">
                       <BarChart3 className="h-12 w-12 mx-auto mb-3 text-muted-foreground/50" />
                       <p className="text-muted-foreground">Market Performance Chart</p>
-                      <p className="text-sm text-muted-foreground/70">Interactive chart would display here</p>
                     </div>
                   </div>
                 </CardContent>
@@ -382,16 +322,134 @@ const InvestorDashboard = () => {
                   <div className="h-64 bg-muted/20 rounded-lg flex items-center justify-center border border-dashed border-border">
                     <div className="text-center">
                       <PieChart className="h-12 w-12 mx-auto mb-3 text-muted-foreground/50" />
-                      <p className="text-muted-foreground">Portfolio Distribution</p>
-                      <p className="text-sm text-muted-foreground/70">Asset allocation chart would display here</p>
+                      <p className="text-muted-foreground">Asset Allocation</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </div>
+
+            {/* Market Insights */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Market Insights from Real Estate Director</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {marketInsights.map((insight, index) => (
+                    <div key={index} className="p-4 border border-border rounded-lg">
+                      <div className="flex items-start justify-between mb-2">
+                        <div>
+                          <h3 className="font-semibold">{insight.title}</h3>
+                          <p className="text-sm text-muted-foreground">By {insight.author} • {insight.date}</p>
+                        </div>
+                        <Badge variant="outline">{insight.category}</Badge>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-3">{insight.summary}</p>
+                      <Button variant="link" size="sm" className="p-0">
+                        Read Full Report <ArrowUpRight className="h-3 w-3 ml-1" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="opportunities" className="space-y-6">
+            <div className="grid gap-6">
+              {newOpportunities.map((opportunity) => (
+                <Card key={opportunity.id} className="luxury-border">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-bold">{opportunity.title}</h3>
+                        <p className="text-muted-foreground">{opportunity.location}</p>
+                      </div>
+                      <Badge className={getRiskColor(opportunity.riskLevel)}>
+                        {opportunity.riskLevel} Risk
+                      </Badge>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Target ROI</p>
+                        <p className="font-bold text-lg text-success">{opportunity.targetROI}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Min Investment</p>
+                        <p className="font-bold">{opportunity.minInvestment}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Funding Progress</p>
+                        <p className="font-bold">{opportunity.raised} / {opportunity.totalRequired}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Days Left</p>
+                        <p className="font-bold text-warning">{opportunity.daysLeft} days</p>
+                      </div>
+                    </div>
+
+                    <Progress 
+                      value={(parseInt(opportunity.raised.replace(/[$MK]/g, '')) / parseInt(opportunity.totalRequired.replace(/[$MK]/g, ''))) * 100} 
+                      className="mb-4" 
+                    />
+
+                    <div className="flex gap-2">
+                      <Button onClick={() => open('join-investment')} className="luxury-gradient text-primary-foreground">
+                        <Briefcase className="h-4 w-4 mr-2" />
+                        View Pitch Deck
+                      </Button>
+                      <Button variant="outline">
+                        <FileText className="h-4 w-4 mr-2" />
+                        Documents
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="referrals" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle>Investor Referral Program</CardTitle>
+                  <Button onClick={() => open('refer-investor')} className="luxury-gradient text-primary-foreground">
+                    <UserPlus className="mr-2 h-4 w-4" />
+                    Refer New Investor
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <UserPlus className="h-16 w-16 mx-auto mb-4 text-primary" />
+                  <h3 className="text-xl font-bold mb-2">Earn 2% of First Investment</h3>
+                  <p className="text-muted-foreground mb-6">
+                    Refer qualified investors and earn 2% commission on their first investment with us.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div className="p-4 border rounded-lg">
+                      <p className="text-2xl font-bold text-primary">5</p>
+                      <p className="text-sm text-muted-foreground">Referrals Sent</p>
+                    </div>
+                    <div className="p-4 border rounded-lg">
+                      <p className="text-2xl font-bold text-success">3</p>
+                      <p className="text-sm text-muted-foreground">Approved</p>
+                    </div>
+                    <div className="p-4 border rounded-lg">
+                      <p className="text-2xl font-bold text-warning">$24K</p>
+                      <p className="text-sm text-muted-foreground">Earned</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>
+      {portal}
     </DashboardLayout>
   )
 }
