@@ -117,36 +117,42 @@ const Services = () => {
       highlight: false,
       expandedOptions: [
         {
-          title: 'Services',
-          description: 'Premium design, project management, material sourcing, furniture and staging',
+          title: 'Shared Stake in Single Property',
+          returns: '10%-30%',
+          investment: 'AED 1M',
+          description: 'Full transparency on single asset',
           features: [
-            'Premium design services',
-            'Project management & oversight',
-            'Material & product sourcing',
-            'Furniture selection & staging',
-            'Investment Strategy and market analysis'
+            'Minimum investment: AED 1M',
+            'Full transparency on single asset',
+            'Direct involvement opportunities',
+            'Higher return potential',
+            '6-12 month typical timeline'
           ]
         },
         {
-          title: 'Renovation / Transformation',
-          description: 'Complete property renovation and enhancement services',
+          title: 'Single Property',
+          returns: '15%-30%',
+          investment: 'AED 5M',
+          description: 'First access to premium deals',
           features: [
-            'Design & renovation consultation',
-            'Project management & oversight',
-            'Investment Strategy and market analysis',
-            'Vendor coordination',
-            'Timeline & budget management'
+            'Minimum investment: AED 5M',
+            'First access to premium deals',
+            'Personal relationship manager',
+            'Customized investment strategies',
+            'Exclusive networking events'
           ]
         },
         {
-          title: 'HNWI Concierge',
-          description: 'Complete Dubai relocation and property services',
+          title: 'Diversified Fund (3-7 years)',
+          returns: '2x-4x',
+          investment: 'AED 500K',
+          description: 'Diversified across 10+ properties',
           features: [
-            'Dubai relocation consultation (A-Z)',
-            'Property purchase assistance',
-            'Home transformation services',
-            'Legal & documentation support',
-            'Ongoing concierge services'
+            'Minimum investment: AED 500K',
+            'Diversified across 10+ properties',
+            'Professional management included',
+            'Quarterly performance reports',
+            'Exit flexibility after 12 months'
           ]
         }
       ]
