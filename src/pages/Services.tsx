@@ -100,7 +100,7 @@ const Services = () => {
     },
     {
       id: 'luxury-transformation',
-      title: 'Luxury Real Estate Transformation (Renovate or Flip)',
+      title: 'Luxury Real Estate Transformation (Renovate or Move to Dubai)',
       description: 'Comprehensive consulting services including investment advisory, property transformation, sourcing, project management, and HNWI concierge services.',
       icon: Hammer,
       price: 'Custom pricing',
