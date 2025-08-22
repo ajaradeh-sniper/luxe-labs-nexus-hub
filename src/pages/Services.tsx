@@ -106,7 +106,7 @@ const Services = () => {
       price: 'Custom pricing',
       timeline: '3-18 months',
       features: [
-        'Property Luxury Transformation services',
+        'Services',
         'Property transformation consulting',
         'Premium property sourcing',
         'End-to-end project management',
@@ -117,7 +117,7 @@ const Services = () => {
       highlight: false,
       expandedOptions: [
         {
-          title: 'Property Luxury Transformation services',
+          title: 'Services',
           description: 'Premium design, project management, material sourcing, furniture and staging',
           features: [
             'Premium design services',
