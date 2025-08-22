@@ -124,7 +124,7 @@ const Services = () => {
             'Project management & oversight',
             'Material & product sourcing',
             'Furniture selection & staging',
-            'Quality control & inspections'
+            'Investment Strategy and market analysis'
           ]
         },
         {
@@ -133,7 +133,7 @@ const Services = () => {
           features: [
             'Design & renovation consultation',
             'Project management & oversight',
-            'Quality control & inspections',
+            'Investment Strategy and market analysis',
             'Vendor coordination',
             'Timeline & budget management'
           ]
