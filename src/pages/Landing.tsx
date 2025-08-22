@@ -1010,12 +1010,8 @@ export default function Landing() {
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="elegant-card">
               <CardContent className="p-8 text-center">
-                <div className="w-24 h-24 rounded-xl flex items-center justify-center mb-6 mx-auto bg-white/10 backdrop-blur-sm">
-                  <img 
-                    src={barovieToso} 
-                    alt="Barovie Toso logo" 
-                    className="max-w-20 max-h-20 object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300"
-                  />
+                <div className="w-24 h-24 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
+                  <Handshake className="h-12 w-12 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Design Partners</h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed">
@@ -1026,12 +1022,8 @@ export default function Landing() {
 
             <Card className="elegant-card">
               <CardContent className="p-8 text-center">
-                <div className="w-24 h-24 rounded-xl flex items-center justify-center mb-6 mx-auto bg-white/10 backdrop-blur-sm">
-                  <img 
-                    src={venetacucineLogo} 
-                    alt="Venetacucine logo" 
-                    className="max-w-20 max-h-20 object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300"
-                  />
+                <div className="w-24 h-24 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
+                  <Building2 className="h-12 w-12 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Construction Partners</h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed">
@@ -1042,12 +1034,8 @@ export default function Landing() {
 
             <Card className="elegant-card">
               <CardContent className="p-8 text-center">
-                <div className="w-24 h-24 rounded-xl flex items-center justify-center mb-6 mx-auto bg-white/10 backdrop-blur-sm">
-                  <img 
-                    src={boseLogo} 
-                    alt="Bose logo" 
-                    className="max-w-20 max-h-20 object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300"
-                  />
+                <div className="w-24 h-24 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
+                  <Globe className="h-12 w-12 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Global Suppliers</h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed">
