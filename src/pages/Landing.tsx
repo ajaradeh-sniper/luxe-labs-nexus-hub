@@ -873,24 +873,60 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start mb-12">
-            {/* Ready to Invest Box */}
-            <div className="text-center">
-              <div className="elegant-card p-8">
-                <h3 className="text-3xl font-playfair font-bold text-foreground mb-4">Ready to Invest?</h3>
-                <p className="text-muted-foreground font-montserrat mb-6">
-                  Access our investor dashboard to explore current opportunities and track your portfolio performance.
-                </p>
-                <Button asChild size="lg" className="w-full luxury-gradient hover:luxury-glow font-montserrat">
-                  <Link to="/investors">
-                    <TrendingUp className="mr-2 h-5 w-5" />
-                    Access Investor Portal
-                  </Link>
-                </Button>
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Left Column - Ready to Invest + Features */}
+            <div className="space-y-8">
+              {/* Ready to Invest Box */}
+              <div className="text-center">
+                <div className="elegant-card p-8">
+                  <h3 className="text-3xl font-playfair font-bold text-foreground mb-4">Ready to Invest?</h3>
+                  <p className="text-muted-foreground font-montserrat mb-6">
+                    Access our investor dashboard to explore current opportunities and track your portfolio performance.
+                  </p>
+                  <Button asChild size="lg" className="w-full luxury-gradient hover:luxury-glow font-montserrat">
+                    <Link to="/investors">
+                      <TrendingUp className="mr-2 h-5 w-5" />
+                      Access Investor Portal
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Features Section */}
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
+                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Exclusive Access</h3>
+                    <p className="text-muted-foreground font-montserrat">First access to our premium property investment opportunities.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
+                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Transparent Reporting</h3>
+                    <p className="text-muted-foreground font-montserrat">Real-time project updates and detailed financial reporting.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
+                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Guaranteed Returns</h3>
+                    <p className="text-muted-foreground font-montserrat">Structured investments with minimum return guarantees.</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Dashboard Preview */}
+            {/* Right Column - Dashboard Preview */}
             <div>
               <div className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm rounded-lg p-8">
                 <h3 className="text-2xl font-bold text-foreground mb-6 font-playfair text-center">Dashboard Preview</h3>
@@ -964,41 +1000,6 @@ export default function Landing() {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Features Section - Now under Ready to Invest */}
-          <div className="md:w-1/2">
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
-                  <CheckCircle className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Exclusive Access</h3>
-                  <p className="text-muted-foreground font-montserrat">First access to our premium property investment opportunities.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
-                  <CheckCircle className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Transparent Reporting</h3>
-                  <p className="text-muted-foreground font-montserrat">Real-time project updates and detailed financial reporting.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
-                  <CheckCircle className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Guaranteed Returns</h3>
-                  <p className="text-muted-foreground font-montserrat">Structured investments with minimum return guarantees.</p>
                 </div>
               </div>
             </div>
