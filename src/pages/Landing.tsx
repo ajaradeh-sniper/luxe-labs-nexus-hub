@@ -197,7 +197,7 @@ export default function Landing() {
                   Transform <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Luxury</span> Real Estate with Exceptional Quality and Returns
                 </h1>
                 <p className="text-lg sm:text-xl text-muted-foreground font-montserrat max-w-3xl mx-auto leading-relaxed">
-                  Partner with Luxury Labs for premium property transformations, strategic investments, and expert advisory services in Dubai's elite real estate market
+                  Partner with Luxury Labs for premium property transformations, strategic investments, and expert transformation and advisory services in Dubai's elite real estate market
                 </p>
               </div>
             </div>
@@ -440,50 +440,10 @@ export default function Landing() {
                         </div>
                       </div>
 
-                      {/* Transformation Services */}
-                      <div className="animate-fade-in">
-                        <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Transformation Services</h3>
-                        <div className="grid md:grid-cols-3 gap-6">
-                          {transformationOptions.map((option, index) => (
-                            <Card key={index} className="p-6 border border-border bg-card/50 hover:shadow-lg transition-all duration-300 hover-scale">
-                              <div className="flex gap-4">
-                                <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
-                                  <img 
-                                    src={index === 0 ? investmentPartnershipImage : index === 1 ? beforeAfterTransformationImage : luxuryFinishesImage} 
-                                    alt={option.title} 
-                                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" 
-                                  />
-                                </div>
-                                <div className="flex-1">
-                                  <div className="mb-3">
-                                    <h4 className="font-semibold text-lg mb-2">Full LL Property Transformation</h4>
-                                    <p className="text-sm text-muted-foreground">{option.description}</p>
-                                  </div>
-                                  <ul className="space-y-2 mb-4">
-                                    {option.features.map((feature, featureIndex) => (
-                                      <li key={featureIndex} className="flex items-start gap-2">
-                                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-sm">{feature}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                  <Button 
-                                    variant="outline" 
-                                    className="w-full transition-all duration-300 hover:scale-105"
-                                    onClick={() => window.location.href = '/services'}
-                                  >
-                                    Learn More
-                                  </Button>
-                                </div>
-                              </div>
-                            </Card>
-                          ))}
-                        </div>
-                      </div>
 
                       {/* Advisory Services */}
                       <div className="animate-fade-in">
-                        <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Advisory Services</h3>
+                        <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Transformation and Advisory Services</h3>
                         <div className="grid md:grid-cols-3 gap-6">
                           {advisoryOptions.map((option, index) => (
                             <Card key={index} className="p-6 border border-border bg-card/50 hover:shadow-lg transition-all duration-300 hover-scale">
