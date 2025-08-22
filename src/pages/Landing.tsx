@@ -614,7 +614,7 @@ export default function Landing() {
                   <div className="text-white font-bold text-2xl font-playfair">%</div>
                 </div>
                 <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-                  Exceptional Returns
+                  Exceptional Returns on Investment
                 </h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed mb-6">
                   Where investments reach new heights. Our strategic approach delivers superior ROI through careful market timing, premium transformations, and expert sales execution.
