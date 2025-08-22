@@ -128,7 +128,7 @@ const Services = () => {
           ]
         },
         {
-          title: 'renovation /transformation',
+          title: 'Renovation / Transformation',
           description: 'Complete property renovation and enhancement services',
           features: [
             'Design & renovation consultation',
@@ -181,7 +181,7 @@ const Services = () => {
           ]
         },
         {
-          title: 'renovation /transformation',
+          title: 'Renovation / Transformation',
           description: 'Complete property renovation and enhancement services',
           features: [
             'Design & renovation consultation',
