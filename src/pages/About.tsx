@@ -175,12 +175,45 @@ const About = () => {
         {/* Team Section with Hero Image */}
         <Card className="overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="aspect-video lg:aspect-auto">
-              <img 
-                src={professionalTeam} 
-                alt="Professional Team" 
-                className="w-full h-full object-cover"
-              />
+            <div className="p-8 bg-gradient-to-br from-primary/5 to-accent/5">
+              <CardHeader className="p-0 mb-6">
+                <CardTitle className="flex items-center gap-2 text-2xl">
+                  <TrendingUp className="h-6 w-6" />
+                  Our Approach
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Strategic methodology that delivers exceptional results
+                </p>
+              </CardHeader>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-gradient-luxury rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-background font-bold">1</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">Market Analysis</h4>
+                    <p className="text-sm text-muted-foreground">Comprehensive research and property evaluation to identify high-potential investments.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-gradient-luxury rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-background font-bold">2</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">Strategic Planning</h4>
+                    <p className="text-sm text-muted-foreground">Detailed transformation plans with timeline, budget, and ROI projections.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-gradient-luxury rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-background font-bold">3</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">Execution Excellence</h4>
+                    <p className="text-sm text-muted-foreground">Premium materials, skilled craftsmen, and rigorous quality control throughout.</p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="p-8">
               <CardHeader className="p-0 mb-6">
