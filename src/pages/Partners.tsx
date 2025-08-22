@@ -160,42 +160,40 @@ export default function Partners() {
 
             <Card className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative h-48">
-                  <img 
-                    src={investmentPartnershipImage} 
-                    alt="Investment partnership handshake with cash background and high ROI charts"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4">
-                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mb-3">
+                <div className="p-6 mb-4">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center">
                       <Handshake className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <h3 className="text-xl font-bold text-white font-playfair">Investment Partners</h3>
+                    <h3 className="text-xl font-bold text-foreground font-playfair">Investment Partners</h3>
                   </div>
-                </div>
-                <div className="p-6">
                   <p className="text-muted-foreground font-montserrat mb-4 leading-relaxed">
-                    Strategic financial partners including private equity firms, family offices, and institutional investors who provide capital and expertise for large-scale luxury property transformation projects.
+                    Strategic financial partners including banks, private equity firms, family offices, and law firms who provide capital, expertise, and legal guidance for large-scale luxury property transformation projects.
                   </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground font-montserrat">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Private equity partnerships</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Family office collaborations</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Joint venture opportunities</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Structured financing solutions</span>
-                    </li>
-                  </ul>
+                </div>
+                
+                {/* Grid of investment partner types */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4">
+                  <div className="relative h-32 rounded-lg overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <Building2 className="h-8 w-8 mx-auto mb-2" />
+                      <span className="text-sm font-medium">International Banks</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-32 rounded-lg overflow-hidden bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <Users className="h-8 w-8 mx-auto mb-2" />
+                      <span className="text-sm font-medium">Private Equity</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-32 rounded-lg overflow-hidden bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <Award className="h-8 w-8 mx-auto mb-2" />
+                      <span className="text-sm font-medium">Law Firms</span>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
