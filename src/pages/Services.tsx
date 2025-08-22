@@ -275,14 +275,6 @@ const Services = () => {
                                     </li>
                                   ))}
                                 </ul>
-                                <Button 
-                                  variant={option.popular ? "default" : "outline"} 
-                                  size="sm" 
-                                  className="w-full"
-                                  onClick={() => window.location.href = '/contact'}
-                                >
-                                  Learn More
-                                </Button>
                               </Card>
                             ))}
                           </div>
