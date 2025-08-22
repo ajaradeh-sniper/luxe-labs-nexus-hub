@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "12.2.3 (519615d)"
@@ -76,6 +76,48 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      campaign_analytics: {
+        Row: {
+          campaign_id: string
+          clicks: number | null
+          conversions: number | null
+          cpc: number | null
+          created_at: string | null
+          ctr: number | null
+          date: string
+          id: string
+          impressions: number | null
+          recorded_at: string | null
+          spend: number | null
+        }
+        Insert: {
+          campaign_id: string
+          clicks?: number | null
+          conversions?: number | null
+          cpc?: number | null
+          created_at?: string | null
+          ctr?: number | null
+          date: string
+          id?: string
+          impressions?: number | null
+          recorded_at?: string | null
+          spend?: number | null
+        }
+        Update: {
+          campaign_id?: string
+          clicks?: number | null
+          conversions?: number | null
+          cpc?: number | null
+          created_at?: string | null
+          ctr?: number | null
+          date?: string
+          id?: string
+          impressions?: number | null
+          recorded_at?: string | null
+          spend?: number | null
+        }
+        Relationships: []
       }
       contact_interactions: {
         Row: {
@@ -166,6 +208,39 @@ export type Database = {
         }
         Relationships: []
       }
+      conversion_analytics: {
+        Row: {
+          conversion_type: string
+          count: number | null
+          created_at: string | null
+          date: string
+          id: string
+          recorded_at: string | null
+          source: string | null
+          value: number | null
+        }
+        Insert: {
+          conversion_type: string
+          count?: number | null
+          created_at?: string | null
+          date: string
+          id?: string
+          recorded_at?: string | null
+          source?: string | null
+          value?: number | null
+        }
+        Update: {
+          conversion_type?: string
+          count?: number | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          recorded_at?: string | null
+          source?: string | null
+          value?: number | null
+        }
+        Relationships: []
+      }
       financial_reports: {
         Row: {
           created_at: string
@@ -202,6 +277,51 @@ export type Database = {
           status?: string
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      marketing_analytics: {
+        Row: {
+          campaign_name: string | null
+          channel: string
+          clicks: number | null
+          conversions: number | null
+          cost: number | null
+          created_at: string | null
+          date: string
+          id: string
+          impressions: number | null
+          recorded_at: string | null
+          revenue: number | null
+          roas: number | null
+        }
+        Insert: {
+          campaign_name?: string | null
+          channel: string
+          clicks?: number | null
+          conversions?: number | null
+          cost?: number | null
+          created_at?: string | null
+          date: string
+          id?: string
+          impressions?: number | null
+          recorded_at?: string | null
+          revenue?: number | null
+          roas?: number | null
+        }
+        Update: {
+          campaign_name?: string | null
+          channel?: string
+          clicks?: number | null
+          conversions?: number | null
+          cost?: number | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          impressions?: number | null
+          recorded_at?: string | null
+          revenue?: number | null
+          roas?: number | null
         }
         Relationships: []
       }
@@ -709,6 +829,93 @@ export type Database = {
           metric_type?: string
           metric_value?: number
           recorded_at?: string
+        }
+        Relationships: []
+      }
+      traffic_analytics: {
+        Row: {
+          avg_session_duration: number | null
+          bounce_rate: number | null
+          campaign: string | null
+          created_at: string | null
+          date: string
+          id: string
+          medium: string | null
+          new_users: number | null
+          pages_per_session: number | null
+          recorded_at: string | null
+          sessions: number | null
+          sessions_per_user: number | null
+          source: string
+          users: number | null
+        }
+        Insert: {
+          avg_session_duration?: number | null
+          bounce_rate?: number | null
+          campaign?: string | null
+          created_at?: string | null
+          date: string
+          id?: string
+          medium?: string | null
+          new_users?: number | null
+          pages_per_session?: number | null
+          recorded_at?: string | null
+          sessions?: number | null
+          sessions_per_user?: number | null
+          source: string
+          users?: number | null
+        }
+        Update: {
+          avg_session_duration?: number | null
+          bounce_rate?: number | null
+          campaign?: string | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          medium?: string | null
+          new_users?: number | null
+          pages_per_session?: number | null
+          recorded_at?: string | null
+          sessions?: number | null
+          sessions_per_user?: number | null
+          source?: string
+          users?: number | null
+        }
+        Relationships: []
+      }
+      website_analytics: {
+        Row: {
+          bounce_rate: number | null
+          created_at: string | null
+          date: string
+          id: string
+          page_views: number
+          recorded_at: string | null
+          session_duration: number | null
+          unique_visitors: number
+          visitors: number
+        }
+        Insert: {
+          bounce_rate?: number | null
+          created_at?: string | null
+          date: string
+          id?: string
+          page_views?: number
+          recorded_at?: string | null
+          session_duration?: number | null
+          unique_visitors?: number
+          visitors?: number
+        }
+        Update: {
+          bounce_rate?: number | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          page_views?: number
+          recorded_at?: string | null
+          session_duration?: number | null
+          unique_visitors?: number
+          visitors?: number
         }
         Relationships: []
       }
