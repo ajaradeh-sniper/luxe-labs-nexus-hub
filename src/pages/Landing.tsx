@@ -590,7 +590,7 @@ export default function Landing() {
                 <ul className="space-y-3">
                   <li className="flex items-center text-sm text-muted-foreground font-montserrat">
                     <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Bespoke interior design
+                    Bespoke interior design, Landscaping and curb appeal
                   </li>
                   <li className="flex items-center text-sm text-muted-foreground font-montserrat">
                     <CheckCircle className="w-4 h-4 text-primary mr-3" />
