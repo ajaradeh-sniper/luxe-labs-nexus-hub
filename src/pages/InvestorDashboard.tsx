@@ -162,23 +162,6 @@ const InvestorDashboard = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Investment Portfolio</h1>
-            <p className="text-muted-foreground">Welcome back, {user?.name}</p>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={() => open('refer-investor')}>
-              <UserPlus className="mr-2 h-4 w-4" />
-              Refer Investor
-            </Button>
-            <Button onClick={() => open('join-investment')} className="luxury-gradient text-primary-foreground">
-              <Target className="mr-2 h-4 w-4" />
-              New Opportunities
-            </Button>
-          </div>
-        </div>
 
         {/* Portfolio Overview */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6">

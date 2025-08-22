@@ -49,23 +49,6 @@ const Analytics = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Analytics Dashboard</h1>
-            <p className="text-muted-foreground">Comprehensive insights into your property investments</p>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="lg">
-              <Filter className="mr-2 h-4 w-4" />
-              Filter Data
-            </Button>
-            <Button variant="luxury" size="lg">
-              <Download className="mr-2 h-4 w-4" />
-              Export Report
-            </Button>
-          </div>
-        </div>
 
         {/* Key Performance Indicators */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

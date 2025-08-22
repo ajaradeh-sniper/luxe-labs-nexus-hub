@@ -90,23 +90,6 @@ const Financial = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Financial Dashboard</h1>
-            <p className="text-muted-foreground">Track your investment performance and financial metrics</p>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="lg">
-              <Download className="mr-2 h-4 w-4" />
-              Export Report
-            </Button>
-            <Button variant="luxury" size="lg" onClick={() => setReportGeneratorOpen(true)}>
-              <BarChart3 className="mr-2 h-4 w-4" />
-              Generate Analysis
-            </Button>
-          </div>
-        </div>
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

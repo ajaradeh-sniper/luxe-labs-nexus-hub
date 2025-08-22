@@ -79,22 +79,6 @@ export default function Marketing() {
   return (
     <DashboardLayout>
       <div className="container mx-auto p-6 space-y-6">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold">Marketing Dashboard</h1>
-            <p className="text-muted-foreground">Manage campaigns, content, and analytics</p>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
-              <FileText className="w-4 h-4 mr-2" />
-              Export Report
-            </Button>
-            <Button>
-              <Plus className="w-4 h-4 mr-2" />
-              New Campaign
-            </Button>
-          </div>
-        </div>
 
         {/* Marketing KPIs */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
