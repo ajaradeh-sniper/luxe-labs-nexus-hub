@@ -236,7 +236,7 @@ const Services = () => {
           <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Our Services</h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
             Comprehensive luxury property services designed for investors and high-net-worth individuals 
-            seeking exceptional returns and premium experiences.
+            seeking services and premium experiences.
           </p>
         </div>
       </section>
