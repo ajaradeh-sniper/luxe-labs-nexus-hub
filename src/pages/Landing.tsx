@@ -706,6 +706,152 @@ export default function Landing() {
 
       {/* PROCESS Section */}
 
+      {/* INVESTORS Section */}
+      <section id="investors" className="py-24 px-4 bg-gradient-elegant">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
+              Investor <span className="luxury-text">Portal</span>
+            </h2>
+            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
+              Join our exclusive network of high-net-worth investors and access premium property investment opportunities
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Left Column - Ready to Invest + Features */}
+            <div className="space-y-8">
+              {/* Ready to Invest Box */}
+              <div className="text-center">
+                <div className="elegant-card p-8">
+                  <h3 className="text-3xl font-playfair font-bold text-foreground mb-4">Ready to Invest?</h3>
+                  <p className="text-muted-foreground font-montserrat mb-6">
+                    Access our investor dashboard to explore current opportunities and track your portfolio performance.
+                  </p>
+                  <Button asChild size="lg" className="w-full luxury-gradient hover:luxury-glow font-montserrat">
+                    <Link to="/investors">
+                      <TrendingUp className="mr-2 h-5 w-5" />
+                      Access Investor Portal
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Features Section */}
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
+                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Exclusive Access</h3>
+                    <p className="text-muted-foreground font-montserrat">First access to our premium property investment opportunities.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
+                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Transparent Reporting</h3>
+                    <p className="text-muted-foreground font-montserrat">Real-time project updates and detailed financial reporting.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
+                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Guaranteed Returns</h3>
+                    <p className="text-muted-foreground font-montserrat">Structured investments with minimum return guarantees.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Dashboard Preview */}
+            <div>
+              <div className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm rounded-lg p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-6 font-playfair text-center">Dashboard Preview</h3>
+                
+                {/* Portfolio Overview */}
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  <div className="text-center p-4 bg-background rounded-lg border border-border">
+                    <PiggyBank className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <p className="text-lg font-bold text-foreground">AED 2.4M</p>
+                    <p className="text-sm text-muted-foreground">Total Invested</p>
+                  </div>
+                  <div className="text-center p-4 bg-background rounded-lg border border-border">
+                    <TrendingUp className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <p className="text-lg font-bold text-foreground">+18.5%</p>
+                    <p className="text-sm text-muted-foreground">Portfolio ROI</p>
+                  </div>
+                  <div className="text-center p-4 bg-background rounded-lg border border-border">
+                    <Building2 className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <p className="text-lg font-bold text-foreground">5</p>
+                    <p className="text-sm text-muted-foreground">Active Projects</p>
+                  </div>
+                </div>
+
+                {/* Recent Investments */}
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-foreground mb-3">Recent Investments</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
+                      <img 
+                        src="src/assets/palm-villa-for-sale.jpg" 
+                        alt="Palm Jumeirah Villa" 
+                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
+                      />
+                      <div className="flex-grow">
+                        <p className="font-medium text-foreground">Palm Jumeirah Villa</p>
+                        <p className="text-sm text-muted-foreground">AED 800K invested</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-success">+24%</p>
+                        <p className="text-sm text-muted-foreground">8 months</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
+                      <img 
+                        src="src/assets/luxury-penthouse.jpg" 
+                        alt="Marina Penthouse" 
+                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
+                      />
+                      <div className="flex-grow">
+                        <p className="font-medium text-foreground">Marina Penthouse</p>
+                        <p className="text-sm text-muted-foreground">AED 1.2M invested</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-primary">+12%</p>
+                        <p className="text-sm text-muted-foreground">4 months</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
+                      <img 
+                        src="src/assets/downtown-luxury.jpg" 
+                        alt="Downtown Apartment" 
+                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
+                      />
+                      <div className="flex-grow">
+                        <p className="font-medium text-foreground">Downtown Apartment</p>
+                        <p className="text-sm text-muted-foreground">AED 400K invested</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-warning">+8%</p>
+                        <p className="text-sm text-muted-foreground">2 months</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PROJECTS Section */}
       <section id="projects" className="py-24 px-4 bg-background">
         <div className="container mx-auto">
@@ -922,151 +1068,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* INVESTORS Section */}
-      <section id="investors" className="py-24 px-4 bg-gradient-elegant">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              Investor <span className="luxury-text">Portal</span>
-            </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
-              Join our exclusive network of high-net-worth investors and access premium property investment opportunities
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Left Column - Ready to Invest + Features */}
-            <div className="space-y-8">
-              {/* Ready to Invest Box */}
-              <div className="text-center">
-                <div className="elegant-card p-8">
-                  <h3 className="text-3xl font-playfair font-bold text-foreground mb-4">Ready to Invest?</h3>
-                  <p className="text-muted-foreground font-montserrat mb-6">
-                    Access our investor dashboard to explore current opportunities and track your portfolio performance.
-                  </p>
-                  <Button asChild size="lg" className="w-full luxury-gradient hover:luxury-glow font-montserrat">
-                    <Link to="/investors">
-                      <TrendingUp className="mr-2 h-5 w-5" />
-                      Access Investor Portal
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-
-              {/* Features Section */}
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
-                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Exclusive Access</h3>
-                    <p className="text-muted-foreground font-montserrat">First access to our premium property investment opportunities.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
-                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Transparent Reporting</h3>
-                    <p className="text-muted-foreground font-montserrat">Real-time project updates and detailed financial reporting.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
-                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Guaranteed Returns</h3>
-                    <p className="text-muted-foreground font-montserrat">Structured investments with minimum return guarantees.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Dashboard Preview */}
-            <div>
-              <div className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm rounded-lg p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-6 font-playfair text-center">Dashboard Preview</h3>
-                
-                {/* Portfolio Overview */}
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                  <div className="text-center p-4 bg-background rounded-lg border border-border">
-                    <PiggyBank className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <p className="text-lg font-bold text-foreground">AED 2.4M</p>
-                    <p className="text-sm text-muted-foreground">Total Invested</p>
-                  </div>
-                  <div className="text-center p-4 bg-background rounded-lg border border-border">
-                    <TrendingUp className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <p className="text-lg font-bold text-foreground">+18.5%</p>
-                    <p className="text-sm text-muted-foreground">Portfolio ROI</p>
-                  </div>
-                  <div className="text-center p-4 bg-background rounded-lg border border-border">
-                    <Building2 className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <p className="text-lg font-bold text-foreground">5</p>
-                    <p className="text-sm text-muted-foreground">Active Projects</p>
-                  </div>
-                </div>
-
-                {/* Recent Investments */}
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-foreground mb-3">Recent Investments</h4>
-                  <div className="space-y-2">
-                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="src/assets/palm-villa-for-sale.jpg" 
-                        alt="Palm Jumeirah Villa" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
-                      <div className="flex-grow">
-                        <p className="font-medium text-foreground">Palm Jumeirah Villa</p>
-                        <p className="text-sm text-muted-foreground">AED 800K invested</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-bold text-success">+24%</p>
-                        <p className="text-sm text-muted-foreground">8 months</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="src/assets/luxury-penthouse.jpg" 
-                        alt="Marina Penthouse" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
-                      <div className="flex-grow">
-                        <p className="font-medium text-foreground">Marina Penthouse</p>
-                        <p className="text-sm text-muted-foreground">AED 1.2M invested</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-bold text-primary">+12%</p>
-                        <p className="text-sm text-muted-foreground">4 months</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="src/assets/downtown-luxury.jpg" 
-                        alt="Downtown Apartment" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
-                      <div className="flex-grow">
-                        <p className="font-medium text-foreground">Downtown Apartment</p>
-                        <p className="text-sm text-muted-foreground">AED 400K invested</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-bold text-warning">+8%</p>
-                        <p className="text-sm text-muted-foreground">2 months</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CONTACT Section */}
       <section id="contact" className="py-24 px-4 bg-background">
