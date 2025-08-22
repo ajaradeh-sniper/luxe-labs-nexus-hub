@@ -43,8 +43,7 @@ export default function Landing() {
         'Direct involvement opportunities',
         'Higher return potential',
         '6-12 month typical timeline'
-      ],
-      popular: true
+      ]
     },
     {
       title: 'Single Property',
@@ -390,12 +389,7 @@ export default function Landing() {
                         <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Investment Options</h3>
                         <div className="grid md:grid-cols-3 gap-6">
                           {investmentOptions.map((option, index) => (
-                            <Card key={index} className={`p-6 border ${option.popular ? 'border-primary bg-primary/5' : 'border-border bg-card/50'} relative hover:shadow-lg transition-all duration-300 hover-scale`}>
-                              {option.popular && (
-                                <div className="absolute -top-2 left-4">
-                                  <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
-                                </div>
-                              )}
+                            <Card key={index} className="p-6 border border-border bg-card/50 relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-yellow-50/10 active:bg-yellow-100/20 active:border-yellow-600">
                               <div className="flex gap-4">
                                 <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
                                   <img 
@@ -424,7 +418,7 @@ export default function Landing() {
                                     ))}
                                   </ul>
                                   <Button 
-                                    variant={option.popular ? "default" : "outline"} 
+                                    variant="outline" 
                                     className="w-full transition-all duration-300 hover:scale-105"
                                     onClick={() => window.location.href = '/investors'}
                                   >
