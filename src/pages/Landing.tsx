@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp, PiggyBank } from "lucide-react";
+import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp, PiggyBank, Eye } from "lucide-react";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
 import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
 import flippingDubaiLogo from "/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png";
@@ -548,7 +548,7 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             {/* Unique Properties Selection */}
             <Card className="elegant-card group">
               <CardContent className="p-8">
@@ -631,6 +631,35 @@ export default function Landing() {
                   <li className="flex items-center text-sm text-muted-foreground font-montserrat">
                     <CheckCircle className="w-4 h-4 text-primary mr-3" />
                     Premium sales execution
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* Transparent Progress Monitoring */}
+            <Card className="elegant-card group">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6">
+                  <Eye className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
+                  Transparent & Live Progress Monitoring
+                </h3>
+                <p className="text-muted-foreground font-montserrat leading-relaxed mb-6">
+                  Complete visibility into your investment journey. Real-time updates, milestone tracking, and transparent reporting keep you informed every step of the way.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
+                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
+                    Real-time project updates
+                  </li>
+                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
+                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
+                    Milestone tracking dashboard
+                  </li>
+                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
+                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
+                    Transparent financial reporting
                   </li>
                 </ul>
               </CardContent>
