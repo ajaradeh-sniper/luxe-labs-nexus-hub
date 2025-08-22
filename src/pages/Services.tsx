@@ -110,8 +110,8 @@ const Services = () => {
         'Property transformation consulting',
         'Premium property sourcing',
         'End-to-end project management',
-        'HNWI Real Estate Concierge',
-        'Dubai relocation services (A-Z)'
+        'Market analysis & due diligence',
+        'Investment strategy development'
       ],
       cta: 'Request Consultation',
       highlight: false,
@@ -163,8 +163,8 @@ const Services = () => {
         'Property transformation consulting',
         'Premium property sourcing',
         'End-to-end project management',
-        'HNWI Real Estate Concierge',
-        'Dubai relocation services (A-Z)'
+        'Market analysis & due diligence',
+        'Investment strategy development'
       ],
       cta: 'Request Consultation',
       highlight: false,
