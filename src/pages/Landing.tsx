@@ -60,7 +60,7 @@ export default function Landing() {
       popular: true
     },
     {
-      title: 'VIP Membership',
+      title: 'Single Property',
       returns: '30%-30%',
       investment: 'AED 5M',
       description: 'First access to premium deals',
