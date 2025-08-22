@@ -181,17 +181,17 @@ const About = () => {
         {/* Team Section with Hero Image */}
         <Card className="overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="p-6 bg-gradient-to-br from-primary/5 to-accent/5">
-              <CardHeader className="p-0 mb-8">
-                <CardTitle className="flex items-center gap-2 text-2xl">
-                  <TrendingUp className="h-6 w-6" />
+            <div className="p-4 bg-gradient-to-br from-primary/5 to-accent/5">
+              <CardHeader className="p-0 mb-4">
+                <CardTitle className="flex items-center gap-2 text-xl">
+                  <TrendingUp className="h-5 w-5" />
                   Our Approach
                 </CardTitle>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Strategic methodology that delivers exceptional results through sustainable luxury
                 </p>
               </CardHeader>
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-3">
                 <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
                   <div className="aspect-video relative">
                     <img 
