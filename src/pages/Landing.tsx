@@ -651,7 +651,7 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid md:grid-cols-4 gap-8 mb-16">
             <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
@@ -688,6 +688,20 @@ export default function Landing() {
                 <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Real Estate & Investment Expertise</h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed">
                   Target 30%+ ROI through strategic property selection, luxury transformations, and expert market timing.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{
+            animationDelay: '0.3s'
+          }}>
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
+                  <Users className="h-8 w-8 text-primary-foreground" />
+                </div>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Strategic Investors Community</h3>
+                <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  Exclusive network of sophisticated investors collaborating on premium Dubai real estate opportunities.
                 </p>
               </CardContent>
             </Card>
