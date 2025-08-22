@@ -393,15 +393,15 @@ export default function Landing() {
                   </CollapsibleTrigger>
 
                   <CollapsibleContent className="animate-accordion-down data-[state=closed]:animate-accordion-up">
-                    <div className="mt-12 space-y-16">
+                    <div className="mt-12 grid lg:grid-cols-2 gap-12">
                       {/* Investment Options */}
                       <div className="animate-fade-in">
-                        <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Investment Options</h3>
-                        <div className="grid md:grid-cols-3 gap-6">
+                        <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Investment Options</h3>
+                        <div className="space-y-4">
                           {investmentOptions.map((option, index) => (
-                            <Card key={index} className="p-6 border border-border bg-card/50 relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-yellow-50/10 active:bg-yellow-100/20 active:border-yellow-600">
-                              <div className="flex gap-4">
-                                <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                            <Card key={index} className="p-4 border border-border bg-card/50 relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-yellow-50/10 active:bg-yellow-100/20 active:border-yellow-600">
+                              <div className="flex gap-3">
+                                <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                   <img 
                                     src={index === 0 ? exceptionalReturnsImage : index === 1 ? roiInvestmentImage : investmentPartnershipImage} 
                                     alt={option.title} 
@@ -409,25 +409,26 @@ export default function Landing() {
                                   />
                                 </div>
                                 <div className="flex-1">
-                                  <div className="mb-3">
-                                    <h4 className="font-semibold text-lg mb-2">{option.title}</h4>
+                                  <div className="mb-2">
+                                    <h4 className="font-semibold text-base mb-1">{option.title}</h4>
                                     {option.returns && (
-                                      <div className="text-xl font-bold text-primary mb-2">{option.returns}</div>
+                                      <div className="text-lg font-bold text-primary mb-1">{option.returns}</div>
                                     )}
                                     {option.investment && (
-                                      <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
+                                      <p className="text-xs text-muted-foreground mb-1">Min. {option.investment}</p>
                                     )}
-                                    <p className="text-sm text-muted-foreground">{option.description}</p>
+                                    <p className="text-xs text-muted-foreground">{option.description}</p>
                                   </div>
-                                  <ul className="space-y-2 mb-4">
-                                    {option.features.map((feature, featureIndex) => (
+                                  <ul className="space-y-1 mb-3">
+                                    {option.features.slice(0, 3).map((feature, featureIndex) => (
                                       <li key={featureIndex} className="flex items-start gap-2">
-                                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-sm">{feature}</span>
+                                        <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
+                                        <span className="text-xs">{feature}</span>
                                       </li>
                                     ))}
                                   </ul>
                                   <Button 
+                                    size="sm"
                                     className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105"
                                     onClick={() => window.location.href = '/investors'}
                                   >
@@ -440,15 +441,14 @@ export default function Landing() {
                         </div>
                       </div>
 
-
                       {/* Advisory Services */}
                       <div className="animate-fade-in">
-                        <h3 className="text-3xl font-playfair font-bold text-foreground mb-8 text-center">Transformation and Advisory Services</h3>
-                        <div className="grid md:grid-cols-3 gap-6">
+                        <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Transformation Services</h3>
+                        <div className="space-y-4">
                           {advisoryOptions.map((option, index) => (
-                            <Card key={index} className="p-6 border border-border bg-card/50 hover:shadow-lg transition-all duration-300 hover-scale">
-                              <div className="flex gap-4">
-                                <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                            <Card key={index} className="p-4 border border-border bg-card/50 hover:shadow-lg transition-all duration-300 hover-scale">
+                              <div className="flex gap-3">
+                                <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                   <img 
                                     src={index === 0 ? premiumVillaSelectionImage : index === 1 ? professionalTeamImage : premiumSelectionImage} 
                                     alt={option.title} 
@@ -456,20 +456,21 @@ export default function Landing() {
                                   />
                                 </div>
                                 <div className="flex-1">
-                                  <div className="mb-3">
-                                    <h4 className="font-semibold text-lg mb-2">{option.title}</h4>
-                                    <p className="text-sm text-muted-foreground">{option.description}</p>
+                                  <div className="mb-2">
+                                    <h4 className="font-semibold text-base mb-1">{option.title}</h4>
+                                    <p className="text-xs text-muted-foreground">{option.description}</p>
                                   </div>
-                                  <ul className="space-y-2 mb-4">
-                                    {option.features.map((feature, featureIndex) => (
+                                  <ul className="space-y-1 mb-3">
+                                    {option.features.slice(0, 3).map((feature, featureIndex) => (
                                       <li key={featureIndex} className="flex items-start gap-2">
-                                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-sm">{feature}</span>
+                                        <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
+                                        <span className="text-xs">{feature}</span>
                                       </li>
                                     ))}
                                   </ul>
                                   <Button 
                                     variant="outline" 
+                                    size="sm"
                                     className="w-full transition-all duration-300 hover:scale-105"
                                     onClick={() => window.location.href = '/contact'}
                                   >
