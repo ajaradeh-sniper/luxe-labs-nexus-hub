@@ -55,7 +55,7 @@ const Projects = () => {
       title: "Villa & Estate",
       description: "Exclusive villas and private estates with custom designs, premium materials, and personalized luxury features.",
       features: ["Custom architecture", "Landscape design", "Private amenities", "Sustainable solutions"],
-      image: villaGolfCourseImage
+      image: premiumVillaSelection
     }
   ]
 
