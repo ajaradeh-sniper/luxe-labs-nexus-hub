@@ -12,7 +12,9 @@ import {
   Heart,
   Lightbulb,
   ArrowRight,
-  Star
+  Star,
+  Search,
+  Leaf
 } from "lucide-react"
 import professionalTeam from "@/assets/professional-team.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
@@ -176,41 +178,50 @@ const About = () => {
         <Card className="overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-8 bg-gradient-to-br from-primary/5 to-accent/5">
-              <CardHeader className="p-0 mb-6">
+              <CardHeader className="p-0 mb-8">
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <TrendingUp className="h-6 w-6" />
                   Our Approach
                 </CardTitle>
                 <p className="text-muted-foreground">
-                  Strategic methodology that delivers exceptional results
+                  Strategic methodology that delivers exceptional results through sustainable luxury
                 </p>
               </CardHeader>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-gradient-luxury rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-background font-bold">1</span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex items-start gap-4 p-4 rounded-lg bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300">
+                  <div className="w-12 h-12 bg-gradient-luxury rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Search className="h-6 w-6 text-background" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Market Analysis</h4>
-                    <p className="text-sm text-muted-foreground">Comprehensive research and property evaluation to identify high-potential investments.</p>
+                    <p className="text-sm text-muted-foreground">Comprehensive research and property evaluation to identify high-potential investments with future-proof value.</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-gradient-luxury rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-background font-bold">2</span>
+                <div className="flex items-start gap-4 p-4 rounded-lg bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300">
+                  <div className="w-12 h-12 bg-gradient-luxury rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Target className="h-6 w-6 text-background" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Strategic Planning</h4>
-                    <p className="text-sm text-muted-foreground">Detailed transformation plans with timeline, budget, and ROI projections.</p>
+                    <p className="text-sm text-muted-foreground">Detailed transformation plans with timeline, budget, and ROI projections that maximize long-term value.</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-gradient-luxury rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-background font-bold">3</span>
+                <div className="flex items-start gap-4 p-4 rounded-lg bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300">
+                  <div className="w-12 h-12 bg-gradient-luxury rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Leaf className="h-6 w-6 text-background" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">Sustainable Luxury</h4>
+                    <p className="text-sm text-muted-foreground">Eco-friendly materials and energy-efficient solutions that reduce environmental impact while maintaining premium quality.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-4 rounded-lg bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300">
+                  <div className="w-12 h-12 bg-gradient-luxury rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Award className="h-6 w-6 text-background" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Execution Excellence</h4>
-                    <p className="text-sm text-muted-foreground">Premium materials, skilled craftsmen, and rigorous quality control throughout.</p>
+                    <p className="text-sm text-muted-foreground">Premium materials, skilled craftsmen, and rigorous quality control throughout the transformation process.</p>
                   </div>
                 </div>
               </div>
