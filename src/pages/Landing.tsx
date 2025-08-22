@@ -418,8 +418,7 @@ export default function Landing() {
                                     ))}
                                   </ul>
                                   <Button 
-                                    variant="outline" 
-                                    className="w-full transition-all duration-300 hover:scale-105 border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white"
+                                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105"
                                     onClick={() => window.location.href = '/investors'}
                                   >
                                     Learn More
