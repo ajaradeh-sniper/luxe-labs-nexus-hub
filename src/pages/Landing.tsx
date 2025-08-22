@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp } from "lucide-react";
+import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp, PiggyBank } from "lucide-react";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
 import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
 import flippingDubaiLogo from "/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png";
@@ -903,6 +903,84 @@ export default function Landing() {
                   <div>
                     <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Guaranteed Returns</h3>
                     <p className="text-muted-foreground font-montserrat">Structured investments with minimum return guarantees.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Dashboard Preview */}
+            <div className="mb-8">
+              <div className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm rounded-lg p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-6 font-playfair text-center">Dashboard Preview</h3>
+                
+                {/* Portfolio Overview */}
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  <div className="text-center p-4 bg-background rounded-lg border border-border">
+                    <PiggyBank className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <p className="text-lg font-bold text-foreground">AED 2.4M</p>
+                    <p className="text-sm text-muted-foreground">Total Invested</p>
+                  </div>
+                  <div className="text-center p-4 bg-background rounded-lg border border-border">
+                    <TrendingUp className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <p className="text-lg font-bold text-foreground">+18.5%</p>
+                    <p className="text-sm text-muted-foreground">Portfolio ROI</p>
+                  </div>
+                  <div className="text-center p-4 bg-background rounded-lg border border-border">
+                    <Building2 className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <p className="text-lg font-bold text-foreground">5</p>
+                    <p className="text-sm text-muted-foreground">Active Projects</p>
+                  </div>
+                </div>
+
+                {/* Recent Investments */}
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-foreground mb-3">Recent Investments</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
+                      <img 
+                        src="src/assets/palm-villa-for-sale.jpg" 
+                        alt="Palm Jumeirah Villa" 
+                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
+                      />
+                      <div className="flex-grow">
+                        <p className="font-medium text-foreground">Palm Jumeirah Villa</p>
+                        <p className="text-sm text-muted-foreground">AED 800K invested</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-success">+24%</p>
+                        <p className="text-sm text-muted-foreground">8 months</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
+                      <img 
+                        src="src/assets/luxury-penthouse.jpg" 
+                        alt="Marina Penthouse" 
+                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
+                      />
+                      <div className="flex-grow">
+                        <p className="font-medium text-foreground">Marina Penthouse</p>
+                        <p className="text-sm text-muted-foreground">AED 1.2M invested</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-primary">+12%</p>
+                        <p className="text-sm text-muted-foreground">4 months</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
+                      <img 
+                        src="src/assets/downtown-luxury.jpg" 
+                        alt="Downtown Apartment" 
+                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
+                      />
+                      <div className="flex-grow">
+                        <p className="font-medium text-foreground">Downtown Apartment</p>
+                        <p className="text-sm text-muted-foreground">AED 400K invested</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-warning">+8%</p>
+                        <p className="text-sm text-muted-foreground">2 months</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
