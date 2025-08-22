@@ -491,8 +491,8 @@ const Services = () => {
                     <TrendingUp className="h-6 w-6 text-accent" />
                   </div>
                   <div className="text-center pt-4">
-                    <div className="text-4xl font-bold text-accent mb-3 group-hover:scale-110 transition-transform duration-300">25%</div>
-                    <div className="text-sm font-medium text-foreground/80">Average ROI</div>
+                    <div className="text-4xl font-bold text-accent mb-3 group-hover:scale-110 transition-transform duration-300 drop-shadow-sm">25%</div>
+                    <div className="text-sm font-semibold text-foreground">Average ROI</div>
                   </div>
                 </div>
                 
@@ -501,8 +501,8 @@ const Services = () => {
                     <Clock className="h-6 w-6 text-secondary" />
                   </div>
                   <div className="text-center pt-4">
-                    <div className="text-4xl font-bold text-secondary mb-3 group-hover:scale-110 transition-transform duration-300">6-12</div>
-                    <div className="text-sm font-medium text-foreground/80">Months Timeline</div>
+                    <div className="text-4xl font-bold text-secondary mb-3 group-hover:scale-110 transition-transform duration-300 drop-shadow-sm">6-12</div>
+                    <div className="text-sm font-semibold text-foreground">Months Timeline</div>
                   </div>
                 </div>
                 
