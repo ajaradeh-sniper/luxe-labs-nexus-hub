@@ -198,12 +198,7 @@ const Services = () => {
             const serviceImage = service.id === 'real-estate-investment' ? luxuryInteriorModern : dubaeMarinaLuxury
             
             return (
-              <Card key={service.id} className={`relative hover:shadow-md transition-shadow ${service.highlight ? 'ring-2 ring-primary' : ''}`}>
-                {service.highlight && (
-                  <div className="absolute -top-3 left-6">
-                    <Badge className="bg-primary text-primary-foreground">Most Popular</Badge>
-                  </div>
-                )}
+              <Card key={service.id} className="relative hover:shadow-lg hover:shadow-primary/20 hover:border-primary/50 active:scale-[0.98] transition-all duration-300 cursor-pointer">
                 
                 <div className="flex flex-col lg:flex-row">
                   <div className="flex-1">
@@ -260,12 +255,8 @@ const Services = () => {
                           <h4 className="text-lg font-semibold mb-4">Available Options:</h4>
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {service.expandedOptions.map((option, index) => (
-                              <Card key={index} className={`p-4 ${option.popular ? 'ring-2 ring-primary' : 'border'}`}>
-                                {option.popular && (
-                                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                                    <Badge className="bg-primary text-primary-foreground text-xs">Most Popular</Badge>
-                                  </div>
-                                )}
+                              <Card key={index} className="p-4 border hover:shadow-md hover:border-primary/50 active:scale-[0.98] transition-all duration-300 cursor-pointer relative">
+                                
                                 <div className="text-center mb-4">
                                   <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
                                   {option.returns && (
