@@ -334,7 +334,7 @@ const Projects = () => {
         {/* Prime Dubai Investment Locations */}
         <section className="space-y-8">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold text-foreground">Prime Locations Luxury Labs Focus on</h2>
+            <h2 className="text-3xl font-bold text-foreground">Location Focus</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Strategic locations with exceptional growth potential and luxury living experiences in Dubai's most sought-after areas.
             </p>
