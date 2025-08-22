@@ -59,7 +59,7 @@ export default function Landing() {
       ]
     },
     {
-      title: 'Diversified Fund',
+      title: 'Diversified Fund (3-7 years)',
       returns: '2x-4x',
       investment: 'AED 500K',
       description: 'Diversified across 10+ properties',
