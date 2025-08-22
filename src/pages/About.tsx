@@ -181,7 +181,7 @@ const About = () => {
         {/* Team Section with Hero Image */}
         <Card className="overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="p-8 bg-gradient-to-br from-primary/5 to-accent/5">
+            <div className="p-6 bg-gradient-to-br from-primary/5 to-accent/5">
               <CardHeader className="p-0 mb-8">
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <TrendingUp className="h-6 w-6" />
