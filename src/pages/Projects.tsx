@@ -341,18 +341,41 @@ const Projects = () => {
                         ))}
                       </div>
                     </div>
-                    
-                    <Button 
-                      variant="outline" 
-                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                      onClick={() => window.location.href = `/project/${project.id}`}
-                    >
-                      View Details
-                    </Button>
                   </CardContent>
                 </Card>
               )
             })}
+          </div>
+          
+          {/* Project Action Buttons */}
+          <div className="flex flex-col gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {[
+                { id: '1', name: 'Marina Bay Luxury Towers' },
+                { id: '2', name: 'Downtown Business Hub' },
+                { id: '3', name: 'Palm Residence Villas' }
+              ].map((project) => (
+                <Button 
+                  key={project.id}
+                  variant="outline" 
+                  className="w-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                  onClick={() => window.location.href = `/project/${project.id}`}
+                >
+                  View {project.name} Details
+                </Button>
+              ))}
+            </div>
+            
+            <div className="text-center">
+              <Button 
+                variant="default" 
+                size="lg"
+                className="bg-primary hover:bg-primary/90"
+                onClick={() => window.location.href = '/projects'}
+              >
+                View All Projects
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -630,13 +653,6 @@ const Projects = () => {
               onClick={() => window.location.href = '/contact'}
             >
               Start a Project
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              onClick={() => window.location.href = '/projects'}
-            >
-              View All Projects
             </Button>
           </div>
         </section>
