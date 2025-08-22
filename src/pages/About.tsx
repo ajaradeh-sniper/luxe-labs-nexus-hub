@@ -17,6 +17,10 @@ import {
   Leaf
 } from "lucide-react"
 import professionalTeam from "@/assets/professional-team.jpg"
+import marketAnalysis from "@/assets/market-analysis.jpg"
+import strategicPlanning from "@/assets/strategic-planning.jpg"
+import sustainableLuxury from "@/assets/sustainable-luxury.jpg"
+import executionExcellence from "@/assets/execution-excellence.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
 import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
 
@@ -187,41 +191,84 @@ const About = () => {
                   Strategic methodology that delivers exceptional results through sustainable luxury
                 </p>
               </CardHeader>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-luxury rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Search className="h-6 w-6 text-background" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Market Analysis</h4>
-                    <p className="text-sm text-muted-foreground">Comprehensive research and property evaluation to identify high-potential investments with future-proof value.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-luxury rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Target className="h-6 w-6 text-background" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Strategic Planning</h4>
-                    <p className="text-sm text-muted-foreground">Detailed transformation plans with timeline, budget, and ROI projections that maximize long-term value.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-luxury rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Leaf className="h-6 w-6 text-background" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Sustainable Luxury</h4>
-                    <p className="text-sm text-muted-foreground">Eco-friendly materials and energy-efficient solutions that reduce environmental impact while maintaining premium quality.</p>
+              <div className="grid grid-cols-1 gap-6">
+                <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
+                  <div className="aspect-video relative">
+                    <img 
+                      src={marketAnalysis} 
+                      alt="Market Analysis" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
+                          <Search className="h-5 w-5 text-background" />
+                        </div>
+                        <h4 className="font-semibold text-white text-lg">Market Analysis</h4>
+                      </div>
+                      <p className="text-sm text-white/90">Comprehensive research and property evaluation to identify high-potential investments.</p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-luxury rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Award className="h-6 w-6 text-background" />
+                
+                <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
+                  <div className="aspect-video relative">
+                    <img 
+                      src={strategicPlanning} 
+                      alt="Strategic Planning" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
+                          <Target className="h-5 w-5 text-background" />
+                        </div>
+                        <h4 className="font-semibold text-white text-lg">Strategic Planning</h4>
+                      </div>
+                      <p className="text-sm text-white/90">Detailed transformation plans with timeline, budget, and ROI projections.</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Execution Excellence</h4>
-                    <p className="text-sm text-muted-foreground">Premium materials, skilled craftsmen, and rigorous quality control throughout the transformation process.</p>
+                </div>
+                
+                <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
+                  <div className="aspect-video relative">
+                    <img 
+                      src={sustainableLuxury} 
+                      alt="Sustainable Luxury" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
+                          <Leaf className="h-5 w-5 text-background" />
+                        </div>
+                        <h4 className="font-semibold text-white text-lg">Sustainable Luxury</h4>
+                      </div>
+                      <p className="text-sm text-white/90">Eco-friendly materials and energy-efficient solutions that maintain premium quality.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
+                  <div className="aspect-video relative">
+                    <img 
+                      src={executionExcellence} 
+                      alt="Execution Excellence" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
+                          <Award className="h-5 w-5 text-background" />
+                        </div>
+                        <h4 className="font-semibold text-white text-lg">Execution Excellence</h4>
+                      </div>
+                      <p className="text-sm text-white/90">Premium materials, skilled craftsmen, and rigorous quality control throughout.</p>
+                    </div>
                   </div>
                 </div>
               </div>
