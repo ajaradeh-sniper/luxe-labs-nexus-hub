@@ -829,6 +829,19 @@ export default function Landing() {
               </Card>
             ))}
           </div>
+          
+          {/* Learn More Button */}
+          <div className="text-center mt-12">
+            <Link to="/media">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat px-8 py-3 text-lg"
+              >
+                Learn More
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
