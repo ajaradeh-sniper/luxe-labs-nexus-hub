@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { useAuth } from "@/contexts/AuthContext"
 import { 
   Target, 
   TrendingUp, 
@@ -33,6 +34,7 @@ import luxuryTransformationImage from "@/assets/luxury-transformation.jpg"
 import exceptionalReturnsImage from "@/assets/exceptional-returns.jpg"
 
 const Projects = () => {
+  const { user } = useAuth()
   const areasOfFocus = [
     {
       icon: Building,
@@ -371,7 +373,7 @@ const Projects = () => {
                 variant="default" 
                 size="lg"
                 className="bg-primary hover:bg-primary/90"
-                onClick={() => window.location.href = '/projects'}
+                onClick={() => window.location.href = user ? '/dashboard/projects' : '/auth'}
               >
                 View All Projects
               </Button>
