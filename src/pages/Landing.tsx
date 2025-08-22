@@ -28,6 +28,10 @@ import espaceLogo from "@/assets/espace-logo.png";
 import linealightLogo from "@/assets/linealight-logo.png";
 import prestigeLogo from "@/assets/prestige-logo.png";
 import venetacucineLogo from "@/assets/venetacucine-logo.png";
+import forbesLogo from "@/assets/forbes-logo.png";
+import arabianBusinessLogo from "@/assets/arabian-business-logo.png";
+import gulfNewsLogo from "@/assets/gulf-news-logo.png";
+import hgtvLogo from "@/assets/hgtv-logo.png";
 export default function Landing() {
   const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
   const [showTransformationDropdown, setShowTransformationDropdown] = useState(false);
@@ -955,22 +959,22 @@ export default function Landing() {
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { name: 'Bose', logo: boseLogo },
-              { name: 'Espace', logo: espaceLogo },
-              { name: 'Linealight', logo: linealightLogo },
-              { name: 'Prestige', logo: prestigeLogo }
-            ].map((partner, index) => (
+              { name: 'Forbes', logo: forbesLogo },
+              { name: 'Arabian Business', logo: arabianBusinessLogo },
+              { name: 'Gulf News', logo: gulfNewsLogo },
+              { name: 'HGTV', logo: hgtvLogo }
+            ].map((publication, index) => (
               <Card key={index} className="elegant-card">
                 <CardContent className="p-6 text-center">
                   <div className="w-20 h-20 rounded-lg flex items-center justify-center mb-4 mx-auto bg-white/10 backdrop-blur-sm">
                     <img 
-                      src={partner.logo} 
-                      alt={`${partner.name} logo`} 
+                      src={publication.logo} 
+                      alt={`${publication.name} logo`} 
                       className="max-w-16 max-h-16 object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300"
                     />
                   </div>
-                  <h3 className="font-playfair font-bold text-foreground mb-2">{partner.name}</h3>
-                  <p className="text-sm text-muted-foreground font-montserrat">Featured Partner</p>
+                  <h3 className="font-playfair font-bold text-foreground mb-2">{publication.name}</h3>
+                  <p className="text-sm text-muted-foreground font-montserrat">Featured Publication</p>
                 </CardContent>
               </Card>
             ))}
