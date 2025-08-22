@@ -71,7 +71,7 @@ const Services = () => {
         },
         {
           title: 'Single Property',
-          returns: '10% to 30%',
+          returns: '10%-30%',
           investment: 'AED 1M',
           description: 'Full transparency on single asset',
           features: [
@@ -85,7 +85,7 @@ const Services = () => {
         },
         {
           title: 'VIP Membership',
-          returns: '30%-30%',
+          returns: '30%+',
           investment: 'AED 5M',
           description: 'First access to premium deals',
           features: [
@@ -106,53 +106,53 @@ const Services = () => {
       price: 'Custom pricing',
       timeline: '3-18 months',
       features: [
-        'Services',
         'Property transformation consulting',
         'Premium property sourcing',
         'End-to-end project management',
         'Market analysis & due diligence',
-        'Investment strategy development'
+        'Investment strategy development',
+        'HNWI concierge services'
       ],
       cta: 'Request Consultation',
       highlight: false,
       expandedOptions: [
         {
-          title: 'Shared Stake in Single Property',
-          returns: '10%-30%',
-          investment: 'AED 1M',
-          description: 'Full transparency on single asset',
+          title: 'Investment Advisory',
+          price: 'AED 25,000',
+          description: 'Comprehensive market analysis and investment strategy',
           features: [
-            'Minimum investment: AED 1M',
-            'Full transparency on single asset',
-            'Direct involvement opportunities',
-            'Higher return potential',
-            '6-12 month typical timeline'
+            'Market research and analysis',
+            'Property valuation assessment',
+            'Investment strategy development',
+            'Risk assessment and mitigation',
+            'Legal and regulatory guidance',
+            'Portfolio optimization recommendations'
           ]
         },
         {
-          title: 'Single Property',
-          returns: '15%-30%',
-          investment: 'AED 5M',
-          description: 'First access to premium deals',
+          title: 'Property Transformation',
+          price: 'AED 150,000+',
+          description: 'Full-service renovation and design management',
           features: [
-            'Minimum investment: AED 5M',
-            'First access to premium deals',
-            'Personal relationship manager',
-            'Customized investment strategies',
-            'Exclusive networking events'
+            'Architectural design and planning',
+            'Premium material sourcing',
+            'Project management and coordination',
+            'Quality control and inspection',
+            'Timeline and budget management',
+            'Post-completion maintenance support'
           ]
         },
         {
-          title: 'Diversified Fund (3-7 years)',
-          returns: '2x-4x',
-          investment: 'AED 500K',
-          description: 'Diversified across 10+ properties',
+          title: 'HNWI Concierge Services',
+          price: 'Custom pricing',
+          description: 'Personalized luxury services and lifestyle management',
           features: [
-            'Minimum investment: AED 500K',
-            'Diversified across 10+ properties',
-            'Professional management included',
-            'Quarterly performance reports',
-            'Exit flexibility after 12 months'
+            'Personal property management',
+            'Exclusive property access and tours',
+            'Private banking coordination',
+            'Legal and tax advisory services',
+            'Relocation and visa assistance',
+            '24/7 dedicated support team'
           ]
         }
       ]
@@ -268,9 +268,12 @@ const Services = () => {
                                   {option.returns && (
                                     <div className="text-2xl font-bold text-primary mb-1">{option.returns}</div>
                                   )}
-                                  {option.investment && (
-                                    <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
-                                  )}
+                                   {option.investment && (
+                                     <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
+                                   )}
+                                   {option.price && (
+                                     <p className="text-sm text-muted-foreground mb-2">From {option.price}</p>
+                                   )}
                                   <p className="text-sm text-muted-foreground">{option.description}</p>
                                 </div>
                                 <ul className="space-y-2 mb-4">
