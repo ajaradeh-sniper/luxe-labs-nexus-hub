@@ -351,23 +351,6 @@ const Projects = () => {
           
           {/* Project Action Buttons */}
           <div className="flex flex-col gap-6">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              {[
-                { id: '1', name: 'Marina Bay Luxury Towers' },
-                { id: '2', name: 'Downtown Business Hub' },
-                { id: '3', name: 'Palm Residence Villas' }
-              ].map((project) => (
-                <Button 
-                  key={project.id}
-                  variant="outline" 
-                  className="w-full hover:bg-primary hover:text-primary-foreground transition-colors"
-                  onClick={() => window.location.href = `/project/${project.id}`}
-                >
-                  View {project.name} Details
-                </Button>
-              ))}
-            </div>
-            
             <div className="text-center">
               <Button 
                 variant="default" 
