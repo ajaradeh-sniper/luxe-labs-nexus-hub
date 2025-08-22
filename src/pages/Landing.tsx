@@ -46,7 +46,7 @@ export default function Landing() {
       ]
     },
     {
-      title: 'Single Property',
+      title: 'Shared Stake in Single Property',
       returns: '10% to 30%',
       investment: 'AED 1M',
       description: 'Full transparency on single asset',
