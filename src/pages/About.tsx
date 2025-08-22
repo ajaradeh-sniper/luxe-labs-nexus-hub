@@ -191,7 +191,7 @@ const About = () => {
                   Strategic methodology that delivers exceptional results through sustainable luxury
                 </p>
               </CardHeader>
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 gap-4">
                 <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
                   <div className="aspect-video relative">
                     <img 
