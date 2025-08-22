@@ -858,6 +858,19 @@ export default function Landing() {
               </CardContent>
             </Card>
           </div>
+          
+          {/* Learn More Button */}
+          <div className="text-center mt-12">
+            <Link to="/partners">
+              <Button 
+                size="lg" 
+                className="luxury-button font-montserrat px-8 py-3 text-lg"
+              >
+                Learn More
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
