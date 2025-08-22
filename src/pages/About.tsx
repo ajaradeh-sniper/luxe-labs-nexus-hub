@@ -178,134 +178,134 @@ const About = () => {
           </CardContent>
         </Card>
 
-        {/* Team Section with Hero Image */}
-        <Card className="overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="p-4 bg-gradient-to-br from-primary/5 to-accent/5">
-              <CardHeader className="p-0 mb-4">
-                <CardTitle className="flex items-center gap-2 text-xl">
-                  <TrendingUp className="h-5 w-5" />
-                  Our Approach
-                </CardTitle>
-                <p className="text-muted-foreground text-sm">
-                  Strategic methodology that delivers exceptional results through sustainable luxury
-                </p>
-              </CardHeader>
-              <div className="grid grid-cols-1 gap-3">
-                <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
-                  <div className="aspect-video relative">
-                    <img 
-                      src={marketAnalysis} 
-                      alt="Market Analysis" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
-                          <Search className="h-5 w-5 text-background" />
-                        </div>
-                        <h4 className="font-semibold text-white text-lg">Market Analysis</h4>
+        {/* Our Approach Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <TrendingUp className="h-5 w-5" />
+              Our Approach
+            </CardTitle>
+            <p className="text-muted-foreground">
+              Strategic methodology that delivers exceptional results through sustainable luxury
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
+                <div className="aspect-video relative">
+                  <img 
+                    src={marketAnalysis} 
+                    alt="Market Analysis" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
+                        <Search className="h-5 w-5 text-background" />
                       </div>
-                      <p className="text-sm text-white/90">Comprehensive research and property evaluation to identify high-potential investments.</p>
+                      <h4 className="font-semibold text-white text-lg">Market Analysis</h4>
                     </div>
+                    <p className="text-sm text-white/90">Comprehensive research and property evaluation to identify high-potential investments.</p>
                   </div>
                 </div>
-                
-                <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
-                  <div className="aspect-video relative">
-                    <img 
-                      src={strategicPlanning} 
-                      alt="Strategic Planning" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
-                          <Target className="h-5 w-5 text-background" />
-                        </div>
-                        <h4 className="font-semibold text-white text-lg">Strategic Planning</h4>
+              </div>
+              
+              <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
+                <div className="aspect-video relative">
+                  <img 
+                    src={strategicPlanning} 
+                    alt="Strategic Planning" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
+                        <Target className="h-5 w-5 text-background" />
                       </div>
-                      <p className="text-sm text-white/90">Detailed transformation plans with timeline, budget, and ROI projections.</p>
+                      <h4 className="font-semibold text-white text-lg">Strategic Planning</h4>
                     </div>
+                    <p className="text-sm text-white/90">Detailed transformation plans with timeline, budget, and ROI projections.</p>
                   </div>
                 </div>
-                
-                <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
-                  <div className="aspect-video relative">
-                    <img 
-                      src={sustainableLuxury} 
-                      alt="Sustainable Luxury" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
-                          <Leaf className="h-5 w-5 text-background" />
-                        </div>
-                        <h4 className="font-semibold text-white text-lg">Sustainable Luxury</h4>
+              </div>
+              
+              <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
+                <div className="aspect-video relative">
+                  <img 
+                    src={sustainableLuxury} 
+                    alt="Sustainable Luxury" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
+                        <Leaf className="h-5 w-5 text-background" />
                       </div>
-                      <p className="text-sm text-white/90">Eco-friendly materials and energy-efficient solutions that maintain premium quality.</p>
+                      <h4 className="font-semibold text-white text-lg">Sustainable Luxury</h4>
                     </div>
+                    <p className="text-sm text-white/90">Eco-friendly materials and energy-efficient solutions that maintain premium quality.</p>
                   </div>
                 </div>
-                
-                <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
-                  <div className="aspect-video relative">
-                    <img 
-                      src={executionExcellence} 
-                      alt="Execution Excellence" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
-                          <Award className="h-5 w-5 text-background" />
-                        </div>
-                        <h4 className="font-semibold text-white text-lg">Execution Excellence</h4>
+              </div>
+              
+              <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
+                <div className="aspect-video relative">
+                  <img 
+                    src={executionExcellence} 
+                    alt="Execution Excellence" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
+                        <Award className="h-5 w-5 text-background" />
                       </div>
-                      <p className="text-sm text-white/90">Premium materials, skilled craftsmen, and rigorous quality control throughout.</p>
+                      <h4 className="font-semibold text-white text-lg">Execution Excellence</h4>
                     </div>
+                    <p className="text-sm text-white/90">Premium materials, skilled craftsmen, and rigorous quality control throughout.</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="p-8">
-              <CardHeader className="p-0 mb-6">
-                <CardTitle className="flex items-center gap-2 text-2xl">
-                  <Users className="h-6 w-6" />
-                  Leadership Team
-                </CardTitle>
-                <p className="text-muted-foreground">
-                  Meet the experts behind Luxury Labs' exceptional success
-                </p>
-              </CardHeader>
-              <CardContent className="p-0">
-                <div className="space-y-6">
-                  {team.map((member, index) => (
-                    <div key={index} className="flex items-start gap-4 p-4 border rounded-lg hover:shadow-md transition-shadow">
-                      <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center flex-shrink-0">
-                        <Star className="h-6 w-6 text-background" />
+          </CardContent>
+        </Card>
+
+        {/* Leadership Team */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Users className="h-5 w-5" />
+              Leadership Team
+            </CardTitle>
+            <p className="text-muted-foreground">
+              Meet the experts behind Luxury Labs' exceptional success
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              {team.map((member, index) => (
+                <div key={index} className="flex items-start gap-4 p-4 border rounded-lg hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center flex-shrink-0">
+                    <Star className="h-6 w-6 text-background" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <h3 className="font-semibold text-foreground">{member.name}</h3>
+                        <p className="text-sm text-primary font-medium">{member.role}</p>
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-start justify-between mb-2">
-                          <div>
-                            <h3 className="font-semibold text-foreground">{member.name}</h3>
-                            <p className="text-sm text-primary font-medium">{member.role}</p>
-                          </div>
-                          <Badge variant="secondary">{member.experience}</Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{member.specialty}</p>
-                      </div>
+                      <Badge variant="secondary">{member.experience}</Badge>
                     </div>
-                  ))}
+                    <p className="text-sm text-muted-foreground">{member.specialty}</p>
+                  </div>
                 </div>
-              </CardContent>
+              ))}
             </div>
-          </div>
+          </CardContent>
         </Card>
 
         {/* Certifications */}
@@ -342,51 +342,6 @@ const About = () => {
           </CardContent>
         </Card>
 
-        {/* Our Approach Section */}
-        <section className="space-y-8">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold text-foreground">Our Approach</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our methodology combines strategic planning, quality assurance, and innovative solutions 
-              to deliver exceptional results that exceed expectations.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: Target,
-                title: "Strategic Planning",
-                description: "Comprehensive market analysis and strategic planning to ensure optimal project outcomes and maximum ROI."
-              },
-              {
-                icon: Shield,
-                title: "Quality Assurance",
-                description: "Rigorous quality control processes and premium material selection for lasting value and excellence."
-              },
-              {
-                icon: TrendingUp,
-                title: "Value Engineering",
-                description: "Optimizing design and construction methods to maximize value while maintaining luxury standards."
-              },
-              {
-                icon: Award,
-                title: "Excellence Standards",
-                description: "Commitment to award-winning design and construction that exceeds industry benchmarks."
-              }
-            ].map((approach, index) => (
-              <Card key={index} className="text-center group hover:shadow-lg transition-all duration-300">
-                <CardContent className="p-6 space-y-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto group-hover:bg-primary/20 transition-colors">
-                    <approach.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold">{approach.title}</h3>
-                  <p className="text-sm text-muted-foreground">{approach.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
 
         {/* CTA Section */}
         <Card className="bg-gradient-luxury text-background">
