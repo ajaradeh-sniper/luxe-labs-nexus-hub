@@ -150,59 +150,6 @@ const Services = () => {
           ]
         }
       ]
-    },
-    {
-      id: 'luxury-consulting',
-      title: 'Luxury Real Estate Advisory (Transformation, Design & Investment)',
-      description: 'Comprehensive consulting services including investment advisory, property transformation, sourcing, project management, and HNWI concierge services.',
-      icon: Home,
-      price: 'Custom pricing',
-      timeline: '3-18 months',
-      features: [
-        'Investment advisory & strategy',
-        'Property transformation consulting',
-        'Premium property sourcing',
-        'End-to-end project management',
-        'Market analysis & due diligence',
-        'Investment strategy development'
-      ],
-      cta: 'Request Consultation',
-      highlight: false,
-      expandedOptions: [
-        {
-          title: 'Luxury Transformation services',
-          description: 'Strategic investment guidance and market analysis',
-          features: [
-            'Market analysis & due diligence',
-            'Investment strategy development',
-            'Portfolio optimization',
-            'Risk assessment & mitigation',
-            'Exit strategy planning'
-          ]
-        },
-        {
-          title: 'Renovation / Transformation',
-          description: 'Complete property renovation and enhancement services',
-          features: [
-            'Design & renovation consultation',
-            'Project management & oversight',
-            'Quality control & inspections',
-            'Vendor coordination',
-            'Timeline & budget management'
-          ]
-        },
-        {
-          title: 'HNWI Concierge',
-          description: 'Complete Dubai relocation and property services',
-          features: [
-            'Dubai relocation consultation (A-Z)',
-            'Property purchase assistance',
-            'Home transformation services',
-            'Legal & documentation support',
-            'Ongoing concierge services'
-          ]
-        }
-      ]
     }
   ]
 
