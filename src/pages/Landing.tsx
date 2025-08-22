@@ -47,7 +47,7 @@ export default function Landing() {
     },
     {
       title: 'Single Property',
-      returns: '30%-30%',
+      returns: '15%-30%',
       investment: 'AED 5M',
       description: 'First access to premium deals',
       features: [
@@ -60,7 +60,7 @@ export default function Landing() {
     },
     {
       title: 'Diversified Fund',
-      returns: '25-30%',
+      returns: '2x-4x',
       investment: 'AED 500K',
       description: 'Diversified across 10+ properties',
       features: [
