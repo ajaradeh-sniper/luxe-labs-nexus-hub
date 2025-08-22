@@ -33,19 +33,6 @@ export default function Landing() {
   // Service data from Services page
   const investmentOptions = [
     {
-      title: 'Diversified Fund',
-      returns: '25-30%',
-      investment: 'AED 500K',
-      description: 'Diversified across 10+ properties',
-      features: [
-        'Minimum investment: AED 500K',
-        'Diversified across 10+ properties',
-        'Professional management included',
-        'Quarterly performance reports',
-        'Exit flexibility after 12 months'
-      ]
-    },
-    {
       title: 'Shared Stake in Single Property',
       returns: '10% to 30%',
       investment: 'AED 1M',
@@ -70,6 +57,19 @@ export default function Landing() {
         'Personal relationship manager',
         'Customized investment strategies',
         'Exclusive networking events'
+      ]
+    },
+    {
+      title: 'Diversified Fund',
+      returns: '25-30%',
+      investment: 'AED 500K',
+      description: 'Diversified across 10+ properties',
+      features: [
+        'Minimum investment: AED 500K',
+        'Diversified across 10+ properties',
+        'Professional management included',
+        'Quarterly performance reports',
+        'Exit flexibility after 12 months'
       ]
     }
   ];
