@@ -446,7 +446,7 @@ export default function Landing() {
                         <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Transformation Services</h3>
                         <div className="space-y-4">
                           {advisoryOptions.map((option, index) => (
-                            <Card key={index} className="p-4 border border-border bg-card/50 hover:shadow-lg transition-all duration-300 hover-scale">
+                            <Card key={index} className="p-4 border border-border bg-card/50 relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-yellow-50/10 active:bg-yellow-100/20 active:border-yellow-600">
                               <div className="flex gap-3">
                                 <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                   <img 
@@ -469,9 +469,8 @@ export default function Landing() {
                                     ))}
                                   </ul>
                                   <Button 
-                                    variant="outline" 
                                     size="sm"
-                                    className="w-full transition-all duration-300 hover:scale-105"
+                                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105"
                                     onClick={() => window.location.href = '/contact'}
                                   >
                                     Learn More
