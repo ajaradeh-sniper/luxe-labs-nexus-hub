@@ -57,20 +57,7 @@ const Services = () => {
       highlight: true,
       expandedOptions: [
         {
-          title: 'Diversified Fund',
-          returns: '25-30%',
-          investment: 'AED 500K',
-          description: 'Diversified across 10+ properties',
-          features: [
-            'Minimum investment: AED 500K',
-            'Diversified across 10+ properties',
-            'Professional management included',
-            'Quarterly performance reports',
-            'Exit flexibility after 12 months'
-          ]
-        },
-        {
-          title: 'Single Property',
+          title: 'Shared Stake in Single Property',
           returns: '10%-30%',
           investment: 'AED 1M',
           description: 'Full transparency on single asset',
@@ -80,12 +67,11 @@ const Services = () => {
             'Direct involvement opportunities',
             'Higher return potential',
             '6-12 month typical timeline'
-          ],
-          popular: true
+          ]
         },
         {
-          title: 'VIP Membership',
-          returns: '30%+',
+          title: 'Single Property',
+          returns: '15%-30%',
           investment: 'AED 5M',
           description: 'First access to premium deals',
           features: [
@@ -94,6 +80,19 @@ const Services = () => {
             'Personal relationship manager',
             'Customized investment strategies',
             'Exclusive networking events'
+          ]
+        },
+        {
+          title: 'Diversified Fund (3-7 years)',
+          returns: '2x-4x',
+          investment: 'AED 500K',
+          description: 'Diversified across 10+ properties',
+          features: [
+            'Minimum investment: AED 500K',
+            'Diversified across 10+ properties',
+            'Professional management included',
+            'Quarterly performance reports',
+            'Exit flexibility after 12 months'
           ]
         }
       ]
