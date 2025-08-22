@@ -25,6 +25,7 @@ import QualityAssurance from "./pages/QualityAssurance"
 import Analytics from "./pages/Analytics"
 import Marketing from "./pages/Marketing"
 import TrafficAnalytics from "./pages/TrafficAnalytics"
+import { WebsiteAnalytics } from "./components/analytics/WebsiteAnalytics"
 import Opportunities from "./pages/Opportunities"
 import ProjectAgreements from "./pages/ProjectAgreements"
 import ProjectManagement from "./pages/ProjectManagement"
@@ -235,6 +236,14 @@ function App() {
             <SmartProtectedRoute>
               <DashboardLayout>
                 <TrafficAnalytics />
+              </DashboardLayout>
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/website-analytics" element={
+            <SmartProtectedRoute>
+              <DashboardLayout>
+                <WebsiteAnalytics />
               </DashboardLayout>
             </SmartProtectedRoute>
           } />
