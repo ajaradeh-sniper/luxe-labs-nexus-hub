@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge"
 import { Link } from "react-router-dom"
 import { Navigation } from "@/components/Navigation"
 import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
+import businessBayImage from "@/assets/business-bay.jpg"
+import downtownLuxuryImage from "@/assets/downtown-luxury.jpg"
 import investmentPartnershipImage from "@/assets/investment-partnership-handshake.jpg"
 import luxuryGlassWork from "@/assets/luxury-glass-work.jpg"
 import luxuryWoodwork from "@/assets/luxury-woodwork.jpg"
@@ -174,24 +176,48 @@ export default function Partners() {
                 
                 {/* Grid of investment partner types */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4">
-                  <div className="relative h-32 rounded-lg overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <Building2 className="h-8 w-8 mx-auto mb-2" />
-                      <span className="text-sm font-medium">International Banks</span>
+                  <div className="relative h-32 rounded-lg overflow-hidden">
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: `url(${businessBayImage})` }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-blue-800/90" />
+                    </div>
+                    <div className="relative z-10 h-full flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <Building2 className="h-8 w-8 mx-auto mb-2" />
+                        <span className="text-sm font-medium">International Banks</span>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="relative h-32 rounded-lg overflow-hidden bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <Users className="h-8 w-8 mx-auto mb-2" />
-                      <span className="text-sm font-medium">Private Equity</span>
+                  <div className="relative h-32 rounded-lg overflow-hidden">
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: `url(${downtownLuxuryImage})` }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-green-600/80 to-green-800/90" />
+                    </div>
+                    <div className="relative z-10 h-full flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <Users className="h-8 w-8 mx-auto mb-2" />
+                        <span className="text-sm font-medium">Private Equity</span>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="relative h-32 rounded-lg overflow-hidden bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <Award className="h-8 w-8 mx-auto mb-2" />
-                      <span className="text-sm font-medium">Law Firms</span>
+                  <div className="relative h-32 rounded-lg overflow-hidden">
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: `url(${dubaiMarinaImage})` }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/80 to-purple-800/90" />
+                    </div>
+                    <div className="relative z-10 h-full flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <Award className="h-8 w-8 mx-auto mb-2" />
+                        <span className="text-sm font-medium">Law Firms</span>
+                      </div>
                     </div>
                   </div>
                 </div>
