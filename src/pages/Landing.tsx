@@ -668,7 +668,7 @@ export default function Landing() {
                 <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
                   <Users className="h-8 w-8 text-primary-foreground" />
                 </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Premium network of Italian Luxury suppliers</h3>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Premium Network of Luxury Suppliers</h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed">
                   Exclusively serving high-net-worth individuals with personalized investment strategies and white-glove service.
                 </p>
