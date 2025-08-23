@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ProjectRisk, MitigationAction } from '@/types/projectManagement';
 import { useToast } from '@/hooks/use-toast';
-import { AlertTriangle, Shield, Clock, User, Plus, Eye, Edit, TrendingUp, TrendingDown } from 'lucide-react';
+import { AlertTriangle, Shield, Clock, User, Plus, Eye, Edit, TrendingUp, TrendingDown, Building2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 
 // Mock data
@@ -107,27 +107,73 @@ const mockRisks: ProjectRisk[] = [
   }
 ];
 
+interface Project {
+  id: string;
+  name: string;
+  status: string;
+  description?: string;
+}
+
 interface RiskManagementProps {
   projectId?: string;
 }
 
-export function RiskManagement({ projectId }: RiskManagementProps = {}) {
+export function RiskManagement({ projectId: externalProjectId }: RiskManagementProps = {}) {
   const [risks, setRisks] = useState<any[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProjectId, setSelectedProjectId] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [selectedRisk, setSelectedRisk] = useState<ProjectRisk | null>(null);
   const { toast } = useToast();
 
+  // Use external projectId if provided, otherwise use internal selection
+  const effectiveProjectId = externalProjectId || selectedProjectId;
+
   useEffect(() => {
-    if (projectId) {
-      fetchProjectRisks();
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (effectiveProjectId) {
+      fetchProjectRisks(effectiveProjectId);
     } else {
-      setRisks(mockRisks);
+      setRisks([mockRisks[0]]);
       setLoading(false);
     }
-  }, [projectId]);
+  }, [effectiveProjectId]);
 
-  const fetchProjectRisks = async () => {
+  const fetchProjects = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('id, name, status, description')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setProjects(data || []);
+      
+      // Set default project if no external projectId and projects exist
+      if (!externalProjectId && data && data.length > 0) {
+        setSelectedProjectId(data[0].id);
+      }
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      // Fallback to mock data
+      const mockProjects = [
+        { id: 'proj-1', name: 'Luxury Villa Downtown', status: 'in_progress' },
+        { id: 'proj-2', name: 'Marina Tower Development', status: 'planning' },
+        { id: 'proj-3', name: 'Business Bay Renovation', status: 'completed' }
+      ];
+      setProjects(mockProjects);
+      if (!externalProjectId) {
+        setSelectedProjectId(mockProjects[0].id);
+      }
+    }
+  };
+
+  const fetchProjectRisks = async (projectId: string) => {
+    setLoading(true);
     try {
       const { data, error } = await supabase
         .from('project_risks')
@@ -135,7 +181,15 @@ export function RiskManagement({ projectId }: RiskManagementProps = {}) {
         .eq('project_id', projectId);
 
       if (error) throw error;
-      setRisks(data || []);
+      
+      // Create project-specific mock data if no real data
+      const mockRisksByProject = {
+        'proj-1': [mockRisks[0]],
+        'proj-2': [{ ...mockRisks[0], id: 'r2', title: 'Planning Delays', category: 'schedule' }],
+        'proj-3': [{ ...mockRisks[0], id: 'r3', title: 'Final Inspection', status: 'resolved' }]
+      };
+      
+      setRisks(data && data.length > 0 ? data : (mockRisksByProject[projectId as keyof typeof mockRisksByProject] || [mockRisks[0]]));
     } catch (error) {
       console.error('Error fetching project risks:', error);
       toast({
@@ -143,7 +197,7 @@ export function RiskManagement({ projectId }: RiskManagementProps = {}) {
         description: "Failed to load project risks. Using sample data.",
         variant: "destructive",
       });
-      setRisks(mockRisks);
+      setRisks([mockRisks[0]]);
     } finally {
       setLoading(false);
     }
@@ -255,9 +309,55 @@ export function RiskManagement({ projectId }: RiskManagementProps = {}) {
 
   return (
     <div className="space-y-6">
+      {/* Project Selection - only show if no external projectId provided */}
+      {!externalProjectId && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Building2 className="h-5 w-5" />
+              Select Project
+            </CardTitle>
+            <CardDescription>Choose a project to view its risk management and mitigation strategies</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-4">
+              <Select value={selectedProjectId} onValueChange={setSelectedProjectId}>
+                <SelectTrigger className="w-96">
+                  <SelectValue placeholder="Select a project to view risks" />
+                </SelectTrigger>
+                <SelectContent>
+                  {projects.map((project) => (
+                    <SelectItem key={project.id} value={project.id}>
+                      <div className="flex items-center gap-2">
+                        <span>{project.name}</span>
+                        <Badge variant="outline" className="text-xs">
+                          {project.status}
+                        </Badge>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {selectedProjectId && (
+                <div className="text-sm text-muted-foreground">
+                  {projects.find(p => p.id === selectedProjectId)?.description || 'No description available'}
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-xl font-semibold">Risk Management</h3>
+          <h3 className="text-xl font-semibold">
+            Risk Management
+            {effectiveProjectId && (
+              <span className="text-lg font-normal text-muted-foreground ml-2">
+                - {projects.find(p => p.id === effectiveProjectId)?.name || 'Selected Project'}
+              </span>
+            )}
+          </h3>
           <p className="text-muted-foreground">Identify, assess, and mitigate project risks</p>
         </div>
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>

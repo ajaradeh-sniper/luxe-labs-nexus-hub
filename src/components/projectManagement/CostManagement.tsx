@@ -4,8 +4,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ProjectCosts, CostCategory } from '@/types/projectManagement';
-import { DollarSign, TrendingUp, TrendingDown, AlertCircle, CheckCircle, Clock } from 'lucide-react';
+import { DollarSign, TrendingUp, TrendingDown, AlertCircle, CheckCircle, Clock, Building2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -117,25 +118,71 @@ const mockCosts: ProjectCosts = {
   updated_at: '2024-03-10T15:30:00Z'
 };
 
+interface Project {
+  id: string;
+  name: string;
+  status: string;
+  description?: string;
+}
+
 interface CostManagementProps {
   projectId?: string;
 }
 
-export function CostManagement({ projectId }: CostManagementProps = {}) {
+export function CostManagement({ projectId: externalProjectId }: CostManagementProps = {}) {
   const [costs, setCosts] = useState<any[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProjectId, setSelectedProjectId] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
+  // Use external projectId if provided, otherwise use internal selection
+  const effectiveProjectId = externalProjectId || selectedProjectId;
+
   useEffect(() => {
-    if (projectId) {
-      fetchProjectCosts();
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (effectiveProjectId) {
+      fetchProjectCosts(effectiveProjectId);
     } else {
       setCosts([mockCosts]);
       setLoading(false);
     }
-  }, [projectId]);
+  }, [effectiveProjectId]);
 
-  const fetchProjectCosts = async () => {
+  const fetchProjects = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('id, name, status, description')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setProjects(data || []);
+      
+      // Set default project if no external projectId and projects exist
+      if (!externalProjectId && data && data.length > 0) {
+        setSelectedProjectId(data[0].id);
+      }
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      // Fallback to mock data
+      const mockProjects = [
+        { id: 'proj-1', name: 'Luxury Villa Downtown', status: 'in_progress' },
+        { id: 'proj-2', name: 'Marina Tower Development', status: 'planning' },
+        { id: 'proj-3', name: 'Business Bay Renovation', status: 'completed' }
+      ];
+      setProjects(mockProjects);
+      if (!externalProjectId) {
+        setSelectedProjectId(mockProjects[0].id);
+      }
+    }
+  };
+
+  const fetchProjectCosts = async (projectId: string) => {
+    setLoading(true);
     try {
       const { data, error } = await supabase
         .from('project_costs')
@@ -143,7 +190,15 @@ export function CostManagement({ projectId }: CostManagementProps = {}) {
         .eq('project_id', projectId);
 
       if (error) throw error;
-      setCosts(data || []);
+      
+      // Create project-specific mock data if no real data
+      const mockCostsByProject = {
+        'proj-1': [{ ...mockCosts, project_id: 'proj-1', total_budget: 500000 }],
+        'proj-2': [{ ...mockCosts, project_id: 'proj-2', total_budget: 750000, spent_to_date: 125000 }],
+        'proj-3': [{ ...mockCosts, project_id: 'proj-3', total_budget: 300000, spent_to_date: 300000 }]
+      };
+      
+      setCosts(data && data.length > 0 ? data : (mockCostsByProject[projectId as keyof typeof mockCostsByProject] || [mockCosts]));
     } catch (error) {
       console.error('Error fetching project costs:', error);
       toast({
@@ -198,9 +253,55 @@ export function CostManagement({ projectId }: CostManagementProps = {}) {
 
   return (
     <div className="space-y-6">
+      {/* Project Selection - only show if no external projectId provided */}
+      {!externalProjectId && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Building2 className="h-5 w-5" />
+              Select Project
+            </CardTitle>
+            <CardDescription>Choose a project to view its cost management and budget tracking</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-4">
+              <Select value={selectedProjectId} onValueChange={setSelectedProjectId}>
+                <SelectTrigger className="w-96">
+                  <SelectValue placeholder="Select a project to view costs" />
+                </SelectTrigger>
+                <SelectContent>
+                  {projects.map((project) => (
+                    <SelectItem key={project.id} value={project.id}>
+                      <div className="flex items-center gap-2">
+                        <span>{project.name}</span>
+                        <Badge variant="outline" className="text-xs">
+                          {project.status}
+                        </Badge>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {selectedProjectId && (
+                <div className="text-sm text-muted-foreground">
+                  {projects.find(p => p.id === selectedProjectId)?.description || 'No description available'}
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-xl font-semibold">Cost Management</h3>
+          <h3 className="text-xl font-semibold">
+            Cost Management
+            {effectiveProjectId && (
+              <span className="text-lg font-normal text-muted-foreground ml-2">
+                - {projects.find(p => p.id === effectiveProjectId)?.name || 'Selected Project'}
+              </span>
+            )}
+          </h3>
           <p className="text-muted-foreground">Track project budget and expenses</p>
         </div>
         <Button>Export Report</Button>

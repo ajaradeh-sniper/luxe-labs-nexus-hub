@@ -26,7 +26,8 @@ import {
   Award,
   Clock,
   CheckCircle,
-  XCircle 
+  XCircle,
+  Building2 
 } from 'lucide-react';
 
 // Mock data
@@ -165,26 +166,90 @@ const mockTenders: ProjectTender[] = [
   }
 ];
 
+interface Project {
+  id: string;
+  name: string;
+  status: string;
+  description?: string;
+}
+
 interface TenderManagementProps {
   projectId?: string;
 }
 
-export function TenderManagement({ projectId }: TenderManagementProps = {}) {
+export function TenderManagement({ projectId: externalProjectId }: TenderManagementProps = {}) {
   const [tenders, setTenders] = useState<ProjectTender[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProjectId, setSelectedProjectId] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [selectedTender, setSelectedTender] = useState<ProjectTender | null>(null);
   const { toast } = useToast();
 
+  // Use external projectId if provided, otherwise use internal selection
+  const effectiveProjectId = externalProjectId || selectedProjectId;
+
   useEffect(() => {
-    if (projectId) {
-      // In a real implementation, fetch tenders from Supabase
-      setTenders(mockTenders);
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (effectiveProjectId) {
+      fetchProjectTenders(effectiveProjectId);
     } else {
       setTenders(mockTenders);
+      setLoading(false);
     }
-    setLoading(false);
-  }, [projectId]);
+  }, [effectiveProjectId]);
+
+  const fetchProjects = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('id, name, status, description')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setProjects(data || []);
+      
+      // Set default project if no external projectId and projects exist
+      if (!externalProjectId && data && data.length > 0) {
+        setSelectedProjectId(data[0].id);
+      }
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      // Fallback to mock data
+      const mockProjects = [
+        { id: 'proj-1', name: 'Luxury Villa Downtown', status: 'in_progress' },
+        { id: 'proj-2', name: 'Marina Tower Development', status: 'planning' },
+        { id: 'proj-3', name: 'Business Bay Renovation', status: 'completed' }
+      ];
+      setProjects(mockProjects);
+      if (!externalProjectId) {
+        setSelectedProjectId(mockProjects[0].id);
+      }
+    }
+  };
+
+  const fetchProjectTenders = async (projectId: string) => {
+    setLoading(true);
+    try {
+      // In a real implementation, fetch tenders from Supabase
+      // Create project-specific mock data
+      const mockTendersByProject = {
+        'proj-1': mockTenders,
+        'proj-2': [{ ...mockTenders[0], id: 't3', title: 'Planning Services', category: 'consulting' as const }],
+        'proj-3': [{ ...mockTenders[1], id: 't4', title: 'Final Inspection', status: 'awarded' as const }]
+      };
+      
+      setTenders(mockTendersByProject[projectId as keyof typeof mockTendersByProject] || [mockTenders[0]]);
+    } catch (error) {
+      console.error('Error fetching project tenders:', error);
+      setTenders(mockTenders);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -277,9 +342,55 @@ export function TenderManagement({ projectId }: TenderManagementProps = {}) {
 
   return (
     <div className="space-y-6">
+      {/* Project Selection - only show if no external projectId provided */}
+      {!externalProjectId && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Building2 className="h-5 w-5" />
+              Select Project
+            </CardTitle>
+            <CardDescription>Choose a project to view its tender management and vendor selection</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-4">
+              <Select value={selectedProjectId} onValueChange={setSelectedProjectId}>
+                <SelectTrigger className="w-96">
+                  <SelectValue placeholder="Select a project to view tenders" />
+                </SelectTrigger>
+                <SelectContent>
+                  {projects.map((project) => (
+                    <SelectItem key={project.id} value={project.id}>
+                      <div className="flex items-center gap-2">
+                        <span>{project.name}</span>
+                        <Badge variant="outline" className="text-xs">
+                          {project.status}
+                        </Badge>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {selectedProjectId && (
+                <div className="text-sm text-muted-foreground">
+                  {projects.find(p => p.id === selectedProjectId)?.description || 'No description available'}
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-xl font-semibold">Tender Management</h3>
+          <h3 className="text-xl font-semibold">
+            Tender Management
+            {effectiveProjectId && (
+              <span className="text-lg font-normal text-muted-foreground ml-2">
+                - {projects.find(p => p.id === effectiveProjectId)?.name || 'Selected Project'}
+              </span>
+            )}
+          </h3>
           <p className="text-muted-foreground">Manage project tenders and vendor selection</p>
         </div>
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
