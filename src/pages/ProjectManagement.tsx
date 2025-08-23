@@ -29,12 +29,6 @@ export default function ProjectManagement() {
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold">Project Management</h1>
-          <p className="text-muted-foreground">
-            Comprehensive project management tools for timeline, costs, risks, and tenders
-          </p>
-        </div>
 
         <Tabs defaultValue="timeline" className="space-y-6">
           <TabsList className="grid w-full grid-cols-5">

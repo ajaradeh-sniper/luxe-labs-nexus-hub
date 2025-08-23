@@ -187,17 +187,6 @@ const QualityAssurance = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Quality Assurance</h1>
-            <p className="text-muted-foreground">Monitor and manage quality control processes</p>
-          </div>
-          <Button variant="luxury" size="lg" className="gap-2">
-            <Plus className="h-4 w-4" />
-            New QA Item
-          </Button>
-        </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

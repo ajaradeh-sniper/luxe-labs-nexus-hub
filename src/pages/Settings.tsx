@@ -43,17 +43,6 @@ const Settings = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Settings</h1>
-            <p className="text-muted-foreground">Manage your account and application preferences</p>
-          </div>
-          <Button variant="luxury" size="lg">
-            <Save className="mr-2 h-4 w-4" />
-            Save Changes
-          </Button>
-        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Profile Settings */}

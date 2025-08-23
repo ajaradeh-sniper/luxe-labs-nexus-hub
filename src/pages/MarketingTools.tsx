@@ -238,50 +238,6 @@ export default function MarketingTools() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Marketing Tools</h1>
-          <p className="text-muted-foreground">Manage your marketing campaigns and analytics</p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={handleRefresh}>
-            <RefreshCw className="mr-2 h-4 w-4" />
-            Refresh
-          </Button>
-          <Button variant="outline" onClick={handleExport}>
-            <Download className="mr-2 h-4 w-4" />
-            Export
-          </Button>
-          <Button>
-            <Plus className="mr-2 h-4 w-4" />
-            New Campaign
-          </Button>
-          <div className="flex items-center gap-2 ml-4">
-            <Badge 
-              variant={timeRange === '7d' ? 'default' : 'outline'} 
-              className="cursor-pointer" 
-              onClick={() => setTimeRange('7d')}
-            >
-              7 Days
-            </Badge>
-            <Badge 
-              variant={timeRange === '30d' ? 'default' : 'outline'} 
-              className="cursor-pointer" 
-              onClick={() => setTimeRange('30d')}
-            >
-              30 Days
-            </Badge>
-            <Badge 
-              variant={timeRange === '90d' ? 'default' : 'outline'} 
-              className="cursor-pointer" 
-              onClick={() => setTimeRange('90d')}
-            >
-              90 Days
-            </Badge>
-          </div>
-        </div>
-      </div>
 
       {/* Marketing Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

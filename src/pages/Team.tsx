@@ -182,23 +182,6 @@ const Team = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Team & Partners</h1>
-            <p className="text-muted-foreground">Manage your team members and partner network</p>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="lg" onClick={() => setInviteOpen(true)}>
-              <UserPlus className="mr-2 h-4 w-4" />
-              Invite Member
-            </Button>
-            <Button variant="luxury" size="lg" className="gap-2">
-              <Plus className="h-4 w-4" />
-              Add Team Member
-            </Button>
-          </div>
-        </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

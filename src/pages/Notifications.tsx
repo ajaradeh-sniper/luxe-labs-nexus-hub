@@ -167,23 +167,6 @@ const Notifications = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Notifications</h1>
-            <p className="text-muted-foreground">Stay updated with important alerts and updates</p>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="lg">
-              <Archive className="mr-2 h-4 w-4" />
-              Archive All
-            </Button>
-            <Button variant="luxury" size="lg">
-              <Settings className="mr-2 h-4 w-4" />
-              Notification Settings
-            </Button>
-          </div>
-        </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
