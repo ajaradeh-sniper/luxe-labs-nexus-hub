@@ -71,14 +71,9 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
   ];
 
   const operationalItems = [
-    { title: "Financial", url: "/financial", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor', 'real_estate_agent', 'partner'] },
-    { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'lawyer', 'client', 'project_manager', 'real_estate_agent', 'partner'] },
-    { title: "Team", url: "/team", icon: Users, roles: ['administrator', 'project_manager', 'vendor_manager'] },
     { title: "QA", url: "/qa", icon: CheckCircle, roles: ['administrator', 'project_manager', 'head_of_design'] },
     { title: "Calendar", url: "/calendar", icon: Bell, roles: ['all'] },
-    { title: "Reports", url: "/reports", icon: BarChart3, roles: ['administrator', 'finance_lead', 'project_manager', 'real_estate_director'] },
-    { title: "Messaging", url: "/messaging", icon: MessageSquare, roles: ['all'] },
-    { title: "Notifications", url: "/notifications", icon: Bell, roles: ['all'] }
+    { title: "Reports", url: "/reports", icon: BarChart3, roles: ['administrator', 'finance_lead', 'project_manager', 'real_estate_director'] }
   ];
 
   const investorItems = [

@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { DashboardLayout } from "@/components/DashboardLayout"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { FinancialReportGenerator } from "@/components/FinancialReportGenerator"
+import { FinancialTracking } from "@/components/financial/FinancialTracking"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { 
@@ -14,7 +16,8 @@ import {
   Download,
   Calendar,
   Target,
-  Wallet
+  Wallet,
+  Receipt
 } from "lucide-react"
 
 const Financial = () => {
@@ -90,8 +93,28 @@ const Financial = () => {
   return (
     <DashboardLayout>
       <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold">Financial Management</h1>
+            <p className="text-muted-foreground">Portfolio tracking, financial analytics, and transaction management</p>
+          </div>
+        </div>
 
-        {/* Key Metrics */}
+        <Tabs defaultValue="portfolio" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="portfolio" className="flex items-center gap-2">
+              <Wallet className="h-4 w-4" />
+              Portfolio & Analytics
+            </TabsTrigger>
+            <TabsTrigger value="tracking" className="flex items-center gap-2">
+              <Receipt className="h-4 w-4" />
+              Financial Tracking
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="portfolio" className="space-y-6">
+            {/* Original Financial content */}
+            <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card className="col-span-1 md:col-span-2 lg:col-span-1">
             <CardHeader className="pb-3">
@@ -246,6 +269,13 @@ const Financial = () => {
             </div>
           </CardContent>
         </Card>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="tracking" className="space-y-6">
+            <FinancialTracking />
+          </TabsContent>
+        </Tabs>
 
         <FinancialReportGenerator open={reportGeneratorOpen} onOpenChange={setReportGeneratorOpen} />
       </div>
