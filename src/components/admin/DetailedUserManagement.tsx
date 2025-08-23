@@ -324,16 +324,6 @@ export function DetailedUserManagement() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-3xl font-bold text-foreground">Advanced User Management</h2>
-          <p className="text-muted-foreground">Complete user lifecycle management with detailed profiles</p>
-        </div>
-        <Button className="gap-2">
-          <UserPlus className="h-4 w-4" />
-          Add New User
-        </Button>
-      </div>
 
       {/* Enhanced Filters */}
       <Card>
