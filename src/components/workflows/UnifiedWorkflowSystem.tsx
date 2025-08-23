@@ -6,6 +6,9 @@ import { OpportunityPitchModal } from "@/components/modals/OpportunityPitchModal
 import { UserInviteModal } from "./UserInviteModal"
 import { MessagingCenter } from "./MessagingCenter"
 import { AnalyticsCenter } from "./AnalyticsCenter"
+import { DocumentWorkflows } from "@/components/documents/DocumentWorkflows"
+import { EmailSystem } from "@/components/notifications/EmailSystem"
+import { FinancialTracking } from "@/components/financial/FinancialTracking"
 import { 
   Plus, 
   Users, 
