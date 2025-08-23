@@ -124,10 +124,6 @@ export function DocumentManagement() {
     <RoleBasedRoute allowedRoles={['administrator', 'project_manager', 'real_estate_director', 'finance_lead']}>
       <div className="space-y-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div>
-            <h2 className="text-2xl font-bold">Document Management</h2>
-            <p className="text-muted-foreground">Organize and manage project documents</p>
-          </div>
           <div className="flex gap-2">
             <Button onClick={handleUpload} className="flex items-center gap-2">
               <Upload className="h-4 w-4" />

@@ -2,7 +2,7 @@ import { PropertyManagement } from "@/components/properties/PropertyManagement"
 
 const Properties = () => {
   return (
-    <div className="p-6">
+    <div>
       <PropertyManagement />
     </div>
   )
