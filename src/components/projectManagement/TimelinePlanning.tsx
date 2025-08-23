@@ -3,8 +3,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ProjectTimeline, Task, Milestone } from '@/types/projectManagement';
-import { Calendar, Clock, Users, CheckCircle, AlertTriangle, Zap } from 'lucide-react';
+import { Calendar, Clock, Users, CheckCircle, AlertTriangle, Zap, Building2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -92,24 +93,108 @@ const mockTimeline: ProjectTimeline = {
   updated_at: '2024-02-20T15:30:00Z'
 };
 
+interface Project {
+  id: string;
+  name: string;
+  status: string;
+  description?: string;
+}
+
 interface TimelinePlanningProps {
   projectId?: string;
 }
 
-export function TimelinePlanning({ projectId }: TimelinePlanningProps = {}) {
+export function TimelinePlanning({ projectId: externalProjectId }: TimelinePlanningProps = {}) {
   const [timeline, setTimeline] = useState<ProjectTimeline>(mockTimeline);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProjectId, setSelectedProjectId] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
+  // Use external projectId if provided, otherwise use internal selection
+  const effectiveProjectId = externalProjectId || selectedProjectId;
+
   useEffect(() => {
-    if (projectId) {
-      // In a real implementation, fetch timeline from Supabase
-      setTimeline(mockTimeline);
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (effectiveProjectId) {
+      fetchTimelineData(effectiveProjectId);
     } else {
       setTimeline(mockTimeline);
+      setLoading(false);
     }
-    setLoading(false);
-  }, [projectId]);
+  }, [effectiveProjectId]);
+
+  const fetchProjects = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('id, name, status, description')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setProjects(data || []);
+      
+      // Set default project if no external projectId and projects exist
+      if (!externalProjectId && data && data.length > 0) {
+        setSelectedProjectId(data[0].id);
+      }
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      // Fallback to mock data
+      const mockProjects = [
+        { id: 'proj-1', name: 'Luxury Villa Downtown', status: 'in_progress' },
+        { id: 'proj-2', name: 'Marina Tower Development', status: 'planning' },
+        { id: 'proj-3', name: 'Business Bay Renovation', status: 'completed' }
+      ];
+      setProjects(mockProjects);
+      if (!externalProjectId) {
+        setSelectedProjectId(mockProjects[0].id);
+      }
+    }
+  };
+
+  const fetchTimelineData = async (projectId: string) => {
+    setLoading(true);
+    try {
+      // In a real implementation, fetch timeline from Supabase based on projectId
+      // For now, use mock data with different content based on project
+      const mockTimelines = {
+        'proj-1': { ...mockTimeline, project_id: 'proj-1' },
+        'proj-2': { 
+          ...mockTimeline, 
+          project_id: 'proj-2',
+          phase: 'Planning',
+          tasks: [{
+            ...mockTimeline.tasks[0],
+            title: 'Site Analysis',
+            description: 'Comprehensive site analysis and planning',
+            status: 'in_progress' as const
+          }]
+        },
+        'proj-3': { 
+          ...mockTimeline, 
+          project_id: 'proj-3',
+          phase: 'Completed',
+          tasks: mockTimeline.tasks.map(task => ({ ...task, status: 'completed' as const }))
+        }
+      };
+      
+      setTimeline(mockTimelines[projectId as keyof typeof mockTimelines] || mockTimeline);
+    } catch (error) {
+      console.error('Error fetching timeline:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load timeline data. Using sample data.",
+        variant: "destructive",
+      });
+      setTimeline(mockTimeline);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -155,9 +240,55 @@ export function TimelinePlanning({ projectId }: TimelinePlanningProps = {}) {
 
   return (
     <div className="space-y-6">
+      {/* Project Selection - only show if no external projectId provided */}
+      {!externalProjectId && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Building2 className="h-5 w-5" />
+              Select Project
+            </CardTitle>
+            <CardDescription>Choose a project to view its timeline and progress</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-4">
+              <Select value={selectedProjectId} onValueChange={setSelectedProjectId}>
+                <SelectTrigger className="w-96">
+                  <SelectValue placeholder="Select a project to view timeline" />
+                </SelectTrigger>
+                <SelectContent>
+                  {projects.map((project) => (
+                    <SelectItem key={project.id} value={project.id}>
+                      <div className="flex items-center gap-2">
+                        <span>{project.name}</span>
+                        <Badge variant="outline" className="text-xs">
+                          {project.status}
+                        </Badge>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {selectedProjectId && (
+                <div className="text-sm text-muted-foreground">
+                  {projects.find(p => p.id === selectedProjectId)?.description || 'No description available'}
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-xl font-semibold">Project Timeline</h3>
+          <h3 className="text-xl font-semibold">
+            Project Timeline
+            {effectiveProjectId && (
+              <span className="text-lg font-normal text-muted-foreground ml-2">
+                - {projects.find(p => p.id === effectiveProjectId)?.name || 'Selected Project'}
+              </span>
+            )}
+          </h3>
           <p className="text-muted-foreground">Track progress and manage project schedules</p>
         </div>
       </div>
