@@ -95,9 +95,7 @@ function App() {
           {/* Protected Dashboard Routes */}
           <Route path="/dashboard" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Dashboard />
-              </DashboardLayout>
+              <Dashboard />
             </SmartProtectedRoute>
           } />
           
