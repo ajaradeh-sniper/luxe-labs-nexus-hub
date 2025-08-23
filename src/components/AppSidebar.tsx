@@ -60,6 +60,7 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
 
   const adminItems = [
     { title: "User Management", url: "/admin/detailed-users", icon: Users, roles: ['administrator'] },
+    { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client', 'real_estate_agent', 'partner'] },
     { title: "Investor Management", url: "/admin/investors", icon: TrendingUp, roles: ['administrator'] },
     { title: "Property Management", url: "/admin/properties", icon: Building, roles: ['administrator'] },
     { title: "System Settings", url: "/admin/system-settings", icon: Settings, roles: ['administrator'] },
@@ -68,13 +69,10 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
     { title: "Marketing", url: "/marketing", icon: Target, roles: ['administrator', 'marketing_lead'] },
     { title: "Traffic Analytics", url: "/traffic-analytics", icon: Globe, roles: ['administrator', 'marketing_lead'] },
     { title: "Opportunities", url: "/opportunities", icon: Target, roles: ['administrator', 'real_estate_director', 'real_estate_agent'] },
-    { title: "Agreements", url: "/agreements", icon: FileText, roles: ['administrator', 'project_manager', 'lawyer'] },
-    { title: "Project Management", url: "/project-management", icon: BarChart3, roles: ['administrator', 'project_manager'] }
+    { title: "Agreements", url: "/agreements", icon: FileText, roles: ['administrator', 'project_manager', 'lawyer'] }
   ];
 
   const operationalItems = [
-    { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client', 'real_estate_agent', 'partner'] },
-    { title: "Properties", url: "/properties", icon: Building, roles: ['administrator', 'real_estate_director', 'real_estate_agent', 'investor'] },
     { title: "Financial", url: "/financial", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor', 'real_estate_agent', 'partner'] },
     { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'lawyer', 'client', 'project_manager', 'real_estate_agent', 'partner'] },
     { title: "Team", url: "/team", icon: Users, roles: ['administrator', 'project_manager', 'vendor_manager'] },

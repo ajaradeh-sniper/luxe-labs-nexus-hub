@@ -6,8 +6,13 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useWorkflowModals } from "@/components/IntegratedWorkflows"
 import { useToast } from "@/hooks/use-toast"
+import { TimelinePlanning } from "@/components/projectManagement/TimelinePlanning"
+import { CostManagement } from "@/components/projectManagement/CostManagement"
+import { RiskManagement } from "@/components/projectManagement/RiskManagement"
+import { TenderManagement } from "@/components/projectManagement/TenderManagement"
 import { 
   Plus, 
   Search, 
@@ -20,7 +25,11 @@ import {
   MoreHorizontal,
   Eye,
   Edit,
-  Trash2
+  Trash2,
+  BarChart3,
+  AlertTriangle,
+  FileText,
+  Clock
 } from "lucide-react"
 import {
   DropdownMenu,
@@ -188,171 +197,224 @@ const DashboardProjects = () => {
   return (
     <DashboardLayout>
       <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
+            <p className="text-muted-foreground">Comprehensive project management and tracking</p>
+          </div>
+          <Button onClick={openProjectWizard}>
+            <Plus className="h-4 w-4 mr-2" />
+            New Project
+          </Button>
+        </div>
 
-        {/* Filters */}
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search projects, locations, or managers..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[140px]">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="planning">Planning</SelectItem>
-                  <SelectItem value="completed">Completed</SelectItem>
-                  <SelectItem value="on-hold">On Hold</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger className="w-[140px]">
-                  <SelectValue placeholder="Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
-                  <SelectItem value="residential">Residential</SelectItem>
-                  <SelectItem value="commercial">Commercial</SelectItem>
-                  <SelectItem value="villa">Villa</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </CardContent>
-        </Card>
+        <Tabs defaultValue="overview" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="overview" className="flex items-center gap-2">
+              <Building className="h-4 w-4" />
+              Overview
+            </TabsTrigger>
+            <TabsTrigger value="timeline" className="flex items-center gap-2">
+              <Calendar className="h-4 w-4" />
+              Timeline
+            </TabsTrigger>
+            <TabsTrigger value="costs" className="flex items-center gap-2">
+              <DollarSign className="h-4 w-4" />
+              Costs
+            </TabsTrigger>
+            <TabsTrigger value="risks" className="flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4" />
+              Risks
+            </TabsTrigger>
+            <TabsTrigger value="tenders" className="flex items-center gap-2">
+              <FileText className="h-4 w-4" />
+              Tenders
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-          {filteredProjects.map((project) => (
-            <Card key={project.id} className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-1">
-                    <CardTitle className="text-lg">{project.name}</CardTitle>
-                    <div className="flex items-center gap-1 text-muted-foreground">
-                      <MapPin className="h-4 w-4" />
-                      <span className="text-sm">{project.location}</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge className={getStatusColor(project.status)}>
-                      {project.status}
-                    </Badge>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="bg-card border border-border shadow-lg z-50">
-                        <DropdownMenuItem onClick={() => handleViewProject(project.id)} className="hover:bg-accent">
-                          <Eye className="h-4 w-4 mr-2" />
-                          View Details
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => handleEditProject(project.id)} className="hover:bg-accent">
-                          <Edit className="h-4 w-4 mr-2" />
-                          Edit Project
-                        </DropdownMenuItem>
-                        <DropdownMenuItem 
-                          className="text-destructive hover:bg-destructive/10"
-                          onClick={() => setDeleteProjectId(project.id)}
-                        >
-                          <Trash2 className="h-4 w-4 mr-2" />
-                          Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-                </div>
-              </CardHeader>
-              
-              <CardContent className="space-y-4">
-                {/* Progress Bar */}
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span>Progress</span>
-                    <span>{project.progress}%</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div 
-                      className={`h-2 rounded-full transition-all ${getProgressColor(project.progress)}`}
-                      style={{ width: `${project.progress}%` }}
+          <TabsContent value="overview" className="space-y-6">
+            {/* Filters */}
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="relative flex-1">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      placeholder="Search projects, locations, or managers..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10"
                     />
                   </div>
-                </div>
-
-                {/* Project Stats */}
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1 text-muted-foreground">
-                      <Building className="h-3 w-3" />
-                      <span>Type</span>
-                    </div>
-                    <p className="font-medium">{project.type}</p>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1 text-muted-foreground">
-                      <DollarSign className="h-3 w-3" />
-                      <span>Budget</span>
-                    </div>
-                    <p className="font-medium">{project.budget}</p>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1 text-muted-foreground">
-                      <Calendar className="h-3 w-3" />
-                      <span>Remaining</span>
-                    </div>
-                    <p className="font-medium">{project.remaining}</p>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1 text-muted-foreground">
-                      <Users className="h-3 w-3" />
-                      <span>Team</span>
-                    </div>
-                    <p className="font-medium">{project.team} members</p>
-                  </div>
-                </div>
-
-                {/* Manager */}
-                <div className="pt-2 border-t border-border">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-muted-foreground">Project Manager</p>
-                      <p className="font-medium">{project.manager}</p>
-                    </div>
-                    <Button variant="outline" size="sm" onClick={() => handleViewProject(project.id)}>
-                      View Project
-                    </Button>
-                  </div>
+                  <Select value={statusFilter} onValueChange={setStatusFilter}>
+                    <SelectTrigger className="w-[140px]">
+                      <SelectValue placeholder="Status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Status</SelectItem>
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="planning">Planning</SelectItem>
+                      <SelectItem value="completed">Completed</SelectItem>
+                      <SelectItem value="on-hold">On Hold</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Select value={typeFilter} onValueChange={setTypeFilter}>
+                    <SelectTrigger className="w-[140px]">
+                      <SelectValue placeholder="Type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Types</SelectItem>
+                      <SelectItem value="residential">Residential</SelectItem>
+                      <SelectItem value="commercial">Commercial</SelectItem>
+                      <SelectItem value="villa">Villa</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
 
-        {filteredProjects.length === 0 && (
-          <Card>
-            <CardContent className="text-center py-12">
-              <Building className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium mb-2">No projects found</h3>
-              <p className="text-muted-foreground mb-4">
-                Try adjusting your search terms or filters to find projects.
-              </p>
-              <Button onClick={openProjectWizard}>
-                <Plus className="h-4 w-4 mr-2" />
-                Create New Project
-              </Button>
-            </CardContent>
-          </Card>
-        )}
+            {/* Projects Grid */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+              {filteredProjects.map((project) => (
+                <Card key={project.id} className="hover:shadow-md transition-shadow">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-start justify-between">
+                      <div className="space-y-1">
+                        <CardTitle className="text-lg">{project.name}</CardTitle>
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <MapPin className="h-4 w-4" />
+                          <span className="text-sm">{project.location}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Badge className={getStatusColor(project.status)}>
+                          {project.status}
+                        </Badge>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="sm">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="bg-card border border-border shadow-lg z-50">
+                            <DropdownMenuItem onClick={() => handleViewProject(project.id)} className="hover:bg-accent">
+                              <Eye className="h-4 w-4 mr-2" />
+                              View Details
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleEditProject(project.id)} className="hover:bg-accent">
+                              <Edit className="h-4 w-4 mr-2" />
+                              Edit Project
+                            </DropdownMenuItem>
+                            <DropdownMenuItem 
+                              className="text-destructive hover:bg-destructive/10"
+                              onClick={() => setDeleteProjectId(project.id)}
+                            >
+                              <Trash2 className="h-4 w-4 mr-2" />
+                              Delete
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  
+                  <CardContent className="space-y-4">
+                    {/* Progress Bar */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span>Progress</span>
+                        <span>{project.progress}%</span>
+                      </div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <div 
+                          className={`h-2 rounded-full transition-all ${getProgressColor(project.progress)}`}
+                          style={{ width: `${project.progress}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Project Stats */}
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <Building className="h-3 w-3" />
+                          <span>Type</span>
+                        </div>
+                        <p className="font-medium">{project.type}</p>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <DollarSign className="h-3 w-3" />
+                          <span>Budget</span>
+                        </div>
+                        <p className="font-medium">{project.budget}</p>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <Calendar className="h-3 w-3" />
+                          <span>Remaining</span>
+                        </div>
+                        <p className="font-medium">{project.remaining}</p>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <Users className="h-3 w-3" />
+                          <span>Team</span>
+                        </div>
+                        <p className="font-medium">{project.team} members</p>
+                      </div>
+                    </div>
+
+                    {/* Manager */}
+                    <div className="pt-2 border-t border-border">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-muted-foreground">Project Manager</p>
+                          <p className="font-medium">{project.manager}</p>
+                        </div>
+                        <Button variant="outline" size="sm" onClick={() => handleViewProject(project.id)}>
+                          View Project
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {filteredProjects.length === 0 && (
+              <Card>
+                <CardContent className="text-center py-12">
+                  <Building className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                  <h3 className="text-lg font-medium mb-2">No projects found</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Try adjusting your search terms or filters to find projects.
+                  </p>
+                  <Button onClick={openProjectWizard}>
+                    <Plus className="h-4 w-4 mr-2" />
+                    Create New Project
+                  </Button>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+
+          <TabsContent value="timeline" className="space-y-6">
+            <TimelinePlanning />
+          </TabsContent>
+
+          <TabsContent value="costs" className="space-y-6">
+            <CostManagement />
+          </TabsContent>
+
+          <TabsContent value="risks" className="space-y-6">
+            <RiskManagement />
+          </TabsContent>
+
+          <TabsContent value="tenders" className="space-y-6">
+            <TenderManagement />
+          </TabsContent>
+        </Tabs>
 
         {/* Delete Confirmation Dialog */}
         <AlertDialog open={!!deleteProjectId} onOpenChange={() => setDeleteProjectId(null)}>
