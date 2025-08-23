@@ -280,6 +280,189 @@ export type Database = {
         }
         Relationships: []
       }
+      ll_leads: {
+        Row: {
+          area: string
+          asking_price: number | null
+          assigned_to: string | null
+          created_at: string | null
+          created_by: string | null
+          estimated_budget: number | null
+          id: string
+          property_type: Database["public"]["Enums"]["property_type"]
+          qualification_notes: string | null
+          size_sqm: number | null
+          source: string
+          status: Database["public"]["Enums"]["lead_status"] | null
+          updated_at: string | null
+        }
+        Insert: {
+          area: string
+          asking_price?: number | null
+          assigned_to?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          estimated_budget?: number | null
+          id?: string
+          property_type: Database["public"]["Enums"]["property_type"]
+          qualification_notes?: string | null
+          size_sqm?: number | null
+          source: string
+          status?: Database["public"]["Enums"]["lead_status"] | null
+          updated_at?: string | null
+        }
+        Update: {
+          area?: string
+          asking_price?: number | null
+          assigned_to?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          estimated_budget?: number | null
+          id?: string
+          property_type?: Database["public"]["Enums"]["property_type"]
+          qualification_notes?: string | null
+          size_sqm?: number | null
+          source?: string
+          status?: Database["public"]["Enums"]["lead_status"] | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      ll_projects: {
+        Row: {
+          actual_end_date: string | null
+          code: string
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          id: string
+          name: string
+          planned_end_date: string | null
+          property_id: string | null
+          spv_id: string | null
+          start_date: string | null
+          status: Database["public"]["Enums"]["project_status"] | null
+          tier: Database["public"]["Enums"]["project_tier"]
+          total_budget: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          actual_end_date?: string | null
+          code: string
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          planned_end_date?: string | null
+          property_id?: string | null
+          spv_id?: string | null
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["project_status"] | null
+          tier?: Database["public"]["Enums"]["project_tier"]
+          total_budget?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          actual_end_date?: string | null
+          code?: string
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          planned_end_date?: string | null
+          property_id?: string | null
+          spv_id?: string | null
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["project_status"] | null
+          tier?: Database["public"]["Enums"]["project_tier"]
+          total_budget?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ll_projects_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "ll_properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ll_projects_spv_id_fkey"
+            columns: ["spv_id"]
+            isOneToOne: false
+            referencedRelation: "ll_spvs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ll_properties: {
+        Row: {
+          address: string
+          area: string
+          building: string | null
+          constraints_notes: string | null
+          created_at: string | null
+          created_by: string | null
+          id: string
+          property_type: Database["public"]["Enums"]["property_type"]
+          size_sqm: number | null
+          updated_at: string | null
+          view_rating: number | null
+        }
+        Insert: {
+          address: string
+          area: string
+          building?: string | null
+          constraints_notes?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          property_type: Database["public"]["Enums"]["property_type"]
+          size_sqm?: number | null
+          updated_at?: string | null
+          view_rating?: number | null
+        }
+        Update: {
+          address?: string
+          area?: string
+          building?: string | null
+          constraints_notes?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          property_type?: Database["public"]["Enums"]["property_type"]
+          size_sqm?: number | null
+          updated_at?: string | null
+          view_rating?: number | null
+        }
+        Relationships: []
+      }
+      ll_spvs: {
+        Row: {
+          bank_account: string | null
+          created_at: string | null
+          id: string
+          jurisdiction: string
+          name: string
+        }
+        Insert: {
+          bank_account?: string | null
+          created_at?: string | null
+          id?: string
+          jurisdiction: string
+          name: string
+        }
+        Update: {
+          bank_account?: string | null
+          created_at?: string | null
+          id?: string
+          jurisdiction?: string
+          name?: string
+        }
+        Relationships: []
+      }
       marketing_analytics: {
         Row: {
           campaign_name: string | null
@@ -938,7 +1121,18 @@ export type Database = {
       }
     }
     Enums: {
-      [_ in never]: never
+      lead_status: "new" | "qualified" | "go_decision" | "no_go" | "converted"
+      project_status:
+        | "planning"
+        | "design"
+        | "procurement"
+        | "execution"
+        | "furnishing"
+        | "listing"
+        | "completed"
+        | "cancelled"
+      project_tier: "lite" | "standard" | "premium"
+      property_type: "apartment" | "villa" | "townhouse" | "commercial" | "land"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1065,6 +1259,20 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      lead_status: ["new", "qualified", "go_decision", "no_go", "converted"],
+      project_status: [
+        "planning",
+        "design",
+        "procurement",
+        "execution",
+        "furnishing",
+        "listing",
+        "completed",
+        "cancelled",
+      ],
+      project_tier: ["lite", "standard", "premium"],
+      property_type: ["apartment", "villa", "townhouse", "commercial", "land"],
+    },
   },
 } as const
