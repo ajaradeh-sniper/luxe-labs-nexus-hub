@@ -298,21 +298,21 @@ export function DetailedUserManagement() {
         setIsEditDialogOpen(true);
         break;
       case 'suspend':
-        // Handle suspend logic
+        setUsers(users.map(u => u.id === user.id ? { ...u, status: 'suspended' } : u));
         toast({
           title: "User Suspended",
           description: `${user.name} has been suspended successfully.`,
         });
         break;
       case 'activate':
-        // Handle activate logic
+        setUsers(users.map(u => u.id === user.id ? { ...u, status: 'active' } : u));
         toast({
           title: "User Activated", 
           description: `${user.name} has been activated successfully.`,
         });
         break;
       case 'delete':
-        // Handle delete logic
+        setUsers(users.filter(u => u.id !== user.id));
         toast({
           title: "User Deleted",
           description: `${user.name} has been deleted successfully.`,
@@ -322,19 +322,36 @@ export function DetailedUserManagement() {
     }
   };
 
+  const handleEditUser = (updatedUser: DetailedUser) => {
+    setUsers(users.map(u => u.id === updatedUser.id ? updatedUser : u));
+    setIsEditDialogOpen(false);
+    toast({
+      title: "User Updated",
+      description: `${updatedUser.name} has been updated successfully.`,
+    });
+  };
+
   return (
     <div className="space-y-6">
 
       {/* Enhanced Filters */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Shield className="h-5 w-5" />
-            User Directory
-          </CardTitle>
-          <CardDescription>
-            Advanced user management with comprehensive filtering and bulk actions
-          </CardDescription>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="flex items-center gap-2">
+                <Shield className="h-5 w-5" />
+                User Directory
+              </CardTitle>
+              <CardDescription>
+                Advanced user management with comprehensive filtering and bulk actions
+              </CardDescription>
+            </div>
+            <Button className="flex items-center gap-2">
+              <UserPlus className="h-4 w-4" />
+              Add New User
+            </Button>
+          </div>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap items-center gap-4 mb-6">
@@ -543,6 +560,96 @@ export function DetailedUserManagement() {
               </div>
             </div>
           )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit User Dialog */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Edit User</DialogTitle>
+            <DialogDescription>
+              Update user information for {selectedUser?.name}
+            </DialogDescription>
+          </DialogHeader>
+          {selectedUser && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium">Full Name</label>
+                  <Input 
+                    defaultValue={selectedUser.name}
+                    placeholder="Enter full name"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Email</label>
+                  <Input 
+                    defaultValue={selectedUser.email}
+                    placeholder="Enter email"
+                    type="email"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Phone</label>
+                  <Input 
+                    defaultValue={selectedUser.phone}
+                    placeholder="Enter phone number"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Department</label>
+                  <Input 
+                    defaultValue={selectedUser.department}
+                    placeholder="Enter department"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Role</label>
+                  <Select defaultValue={selectedUser.role}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Object.entries(roleLabels).map(([key, label]) => (
+                        <SelectItem key={key} value={key}>{label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Status</label>
+                  <Select defaultValue={selectedUser.status}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="inactive">Inactive</SelectItem>
+                      <SelectItem value="pending">Pending</SelectItem>
+                      <SelectItem value="suspended">Suspended</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium">Notes</label>
+                <Textarea 
+                  defaultValue={selectedUser.notes}
+                  placeholder="Enter user notes..."
+                  rows={3}
+                />
+              </div>
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={() => selectedUser && handleEditUser(selectedUser)}>
+              Save Changes
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
