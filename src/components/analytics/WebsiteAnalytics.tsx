@@ -220,12 +220,6 @@ export function WebsiteAnalytics() {
   if (hasError) {
     return (
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Website Analytics</h1>
-            <p className="text-muted-foreground">Comprehensive insights into your website performance</p>
-          </div>
-        </div>
         <Card>
           <CardContent className="p-6">
             <div className="text-center">
@@ -243,12 +237,9 @@ export function WebsiteAnalytics() {
 
   return (
     <div className="space-y-6">
+
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Website Analytics</h1>
-          <p className="text-muted-foreground">Comprehensive insights into your website performance</p>
-        </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={handleRefresh}>
             <RefreshCw className="mr-2 h-4 w-4" />

@@ -205,13 +205,7 @@ export default function TrafficAnalytics() {
   if (hasError) {
     return (
       <DashboardLayout>
-        <div className="container mx-auto p-6 space-y-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold">Traffic & Analytics</h1>
-              <p className="text-muted-foreground">Comprehensive website and user behavior analytics</p>
-            </div>
-          </div>
+        <div className="space-y-6">
           <Card>
             <CardContent className="p-6">
               <div className="text-center">
@@ -230,9 +224,7 @@ export default function TrafficAnalytics() {
 
   return (
     <DashboardLayout>
-      <div className="container mx-auto p-6 space-y-6">
-
-        {/* Key Metrics */}
+      <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
