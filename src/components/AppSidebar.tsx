@@ -61,14 +61,12 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
   const adminItems = [
     { title: "User Management", url: "/admin/detailed-users", icon: Users, roles: ['administrator'] },
     { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client', 'real_estate_agent', 'partner'] },
-    { title: "Property Management", url: "/admin/properties", icon: Building, roles: ['administrator'] },
+    { title: "Property Management", url: "/admin/properties", icon: Building, roles: ['administrator', 'investor'] },
     { title: "Opportunities", url: "/opportunities", icon: Target, roles: ['administrator', 'real_estate_director', 'real_estate_agent'] },
     { title: "Fund Management", url: "/fund-management", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor'] },
     { title: "System Settings", url: "/admin/system-settings", icon: Settings, roles: ['administrator'] },
-    { title: "System Overview", url: "/admin/system", icon: ShieldCheck, roles: ['administrator'] },
-    { title: "Analytics", url: "/analytics", icon: BarChart3, roles: ['administrator'] },
+    { title: "Analytics", url: "/analytics", icon: BarChart3, roles: ['administrator', 'marketing_lead', 'real_estate_director'] },
     { title: "Marketing", url: "/marketing", icon: Target, roles: ['administrator', 'marketing_lead'] },
-    { title: "Traffic Analytics", url: "/traffic-analytics", icon: Globe, roles: ['administrator', 'marketing_lead'] },
     { title: "Agreements", url: "/agreements", icon: FileText, roles: ['administrator', 'project_manager', 'lawyer'] }
   ];
 
@@ -78,15 +76,14 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
     { title: "Team", url: "/team", icon: Users, roles: ['administrator', 'project_manager', 'vendor_manager'] },
     { title: "QA", url: "/qa", icon: CheckCircle, roles: ['administrator', 'project_manager', 'head_of_design'] },
     { title: "Calendar", url: "/calendar", icon: Bell, roles: ['all'] },
-    { title: "CRM", url: "/crm", icon: Users, roles: ['administrator', 'real_estate_director', 'real_estate_agent'] },
     { title: "Reports", url: "/reports", icon: BarChart3, roles: ['administrator', 'finance_lead', 'project_manager', 'real_estate_director'] },
-    { title: "Marketing Tools", url: "/marketing-tools", icon: Target, roles: ['administrator', 'marketing_lead'] },
     { title: "Messaging", url: "/messaging", icon: MessageSquare, roles: ['all'] },
     { title: "Notifications", url: "/notifications", icon: Bell, roles: ['all'] }
   ];
 
   const investorItems = [
-    { title: "Portfolio", url: "/portfolio", icon: TrendingUp, roles: ['administrator', 'investor'] }
+    { title: "Financial", url: "/financial", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor', 'real_estate_agent', 'partner'] },
+    { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'lawyer', 'client', 'project_manager', 'real_estate_agent', 'partner'] }
   ];
 
   const allItems = [...baseItems, ...adminItems, ...operationalItems, ...investorItems];
