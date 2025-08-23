@@ -1,10 +1,10 @@
 import { DashboardLayout } from '@/components/DashboardLayout';
-import { OpportunityManagement } from '@/components/opportunities/OpportunityManagement';
+import { EnhancedOpportunityManagement } from '@/components/opportunities/EnhancedOpportunityManagement';
 
 export default function Opportunities() {
   return (
     <DashboardLayout>
-      <OpportunityManagement />
+      <EnhancedOpportunityManagement />
     </DashboardLayout>
   );
 }
