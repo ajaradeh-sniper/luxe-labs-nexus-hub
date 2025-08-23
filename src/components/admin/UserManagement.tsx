@@ -102,10 +102,6 @@ export function UserManagement() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-foreground">User Management</h2>
-          <p className="text-muted-foreground">Manage system users and their roles</p>
-        </div>
         <Button className="gap-2">
           <UserPlus className="h-4 w-4" />
           Add User

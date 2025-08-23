@@ -115,10 +115,6 @@ const statusColors = {
 export function SystemOverview() {
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold text-foreground">System Overview</h2>
-        <p className="text-muted-foreground">Monitor platform performance and key metrics</p>
-      </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
