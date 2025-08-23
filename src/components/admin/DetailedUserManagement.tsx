@@ -19,6 +19,7 @@ import {
   TableHeader, 
   TableRow 
 } from '@/components/ui/table';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Dialog,
   DialogContent,
@@ -279,21 +280,48 @@ export function DetailedUserManagement() {
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isOnboardingModalOpen, setIsOnboardingModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('all');
   const { toast } = useToast();
   const { user, hasPermission } = useAuth();
 
   // Check if user is administrator
   const isSystemAdmin = user && hasPermission('all', 'edit');
 
-  const filteredUsers = users.filter(user => {
-    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.department.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || user.status === statusFilter;
-    const matchesRole = roleFilter === 'all' || user.role === roleFilter;
+  const getUsersByCategory = (category: string) => {
+    let categoryUsers = users;
     
-    return matchesSearch && matchesStatus && matchesRole;
-  });
+    switch (category) {
+      case 'employees':
+        categoryUsers = users.filter(u => ['administrator', 'project_manager', 'real_estate_director', 'real_estate_agent', 'finance_lead', 'head_of_design', 'lawyer', 'marketing_lead', 'vendor_manager', 'automation_lead'].includes(u.role));
+        break;
+      case 'administrators':
+        categoryUsers = users.filter(u => u.role === 'administrator');
+        break;
+      case 'customers':
+        categoryUsers = users.filter(u => u.role === 'client');
+        break;
+      case 'investors':
+        categoryUsers = users.filter(u => u.role === 'investor');
+        break;
+      case 'partners':
+        categoryUsers = users.filter(u => u.role === 'partner');
+        break;
+      default:
+        categoryUsers = users;
+    }
+
+    return categoryUsers.filter(user => {
+      const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           user.department.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesStatus = statusFilter === 'all' || user.status === statusFilter;
+      const matchesRole = roleFilter === 'all' || user.role === roleFilter;
+      
+      return matchesSearch && matchesStatus && matchesRole;
+    });
+  };
+
+  const filteredUsers = getUsersByCategory(activeTab);
 
   const handleUserAction = (action: string, user: DetailedUser) => {
     setSelectedUser(user);
@@ -348,9 +376,20 @@ export function DetailedUserManagement() {
 
   return (
     <div className="space-y-6">
+      {/* User Category Tabs */}
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid w-full grid-cols-6">
+          <TabsTrigger value="all">All Users ({users.length})</TabsTrigger>
+          <TabsTrigger value="employees">Employees ({users.filter(u => ['administrator', 'project_manager', 'real_estate_director', 'real_estate_agent', 'finance_lead', 'head_of_design', 'lawyer', 'marketing_lead', 'vendor_manager', 'automation_lead'].includes(u.role)).length})</TabsTrigger>
+          <TabsTrigger value="administrators">Admins ({users.filter(u => u.role === 'administrator').length})</TabsTrigger>
+          <TabsTrigger value="customers">Customers ({users.filter(u => u.role === 'client').length})</TabsTrigger>
+          <TabsTrigger value="investors">Investors ({users.filter(u => u.role === 'investor').length})</TabsTrigger>
+          <TabsTrigger value="partners">Partners ({users.filter(u => u.role === 'partner').length})</TabsTrigger>
+        </TabsList>
 
-      {/* Enhanced Filters */}
-      <Card>
+        <TabsContent value={activeTab} className="space-y-6">
+          {/* Enhanced Filters */}
+          <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
@@ -429,12 +468,16 @@ export function DetailedUserManagement() {
               {filteredUsers.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-elegant rounded-full flex items-center justify-center">
-                        <span className="text-sm font-semibold text-primary-foreground">
-                          {user.name.charAt(0)}
-                        </span>
-                      </div>
+                     <div className="flex items-center gap-3">
+                       <div className="w-10 h-10 bg-gradient-elegant rounded-full flex items-center justify-center overflow-hidden">
+                         {user.avatar ? (
+                           <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                         ) : (
+                           <span className="text-sm font-semibold text-primary-foreground">
+                             {user.name.charAt(0)}
+                           </span>
+                         )}
+                       </div>
                       <div>
                         <div className="font-medium">{user.name}</div>
                         <div className="text-sm text-muted-foreground flex items-center gap-1">
@@ -531,6 +574,9 @@ export function DetailedUserManagement() {
           </Table>
         </CardContent>
       </Card>
+
+        </TabsContent>
+      </Tabs>
 
       {/* User Details Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>

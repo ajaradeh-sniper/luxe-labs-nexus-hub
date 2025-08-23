@@ -19,6 +19,7 @@ import {
   TableRow 
 } from '@/components/ui/table';
 import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Building, 
   Search, 
@@ -56,12 +57,15 @@ interface Property {
   lastUpdated: string;
   features: string[];
   photos: number;
+  images: string[];
+  thumbnailImage: string;
   documents: {
     title_deed: boolean;
     noc: boolean;
     floor_plans: boolean;
     valuation_report: boolean;
   };
+  sourceCategory: 'opportunities' | 'completed_projects' | 'in_progress_projects' | 'fund_acquired';
 }
 
 const mockProperties: Property[] = [
@@ -87,12 +91,15 @@ const mockProperties: Property[] = [
     lastUpdated: '2024-01-15',
     features: ['Private Beach', 'Swimming Pool', 'Maid Room', 'Garden'],
     photos: 24,
+    images: ['/lovable-uploads/d6d93f42-4152-430f-bb17-3221a60d919b.png', '/lovable-uploads/ffbd7441-0c73-425f-9415-a12a6068eaf8.png'],
+    thumbnailImage: '/lovable-uploads/d6d93f42-4152-430f-bb17-3221a60d919b.png',
     documents: {
       title_deed: true,
       noc: true,
       floor_plans: true,
       valuation_report: false
-    }
+    },
+    sourceCategory: 'in_progress_projects'
   },
   {
     id: '2',
@@ -114,12 +121,15 @@ const mockProperties: Property[] = [
     lastUpdated: '2024-01-14',
     features: ['Burj Khalifa View', 'Private Elevator', 'Terrace', 'Study Room'],
     photos: 18,
+    images: ['/lovable-uploads/4a28db7f-c64a-4b5a-9ec6-71ad24f468f6.png', '/lovable-uploads/9bdf3759-8541-414d-a494-7d6f9d38185c.png'],
+    thumbnailImage: '/lovable-uploads/4a28db7f-c64a-4b5a-9ec6-71ad24f468f6.png',
     documents: {
       title_deed: true,
       noc: false,
       floor_plans: true,
       valuation_report: true
-    }
+    },
+    sourceCategory: 'opportunities'
   },
   {
     id: '3',
@@ -143,12 +153,15 @@ const mockProperties: Property[] = [
     lastUpdated: '2024-01-10',
     features: ['Golf Course View', 'Private Garden', 'Garage', 'Community Pool'],
     photos: 15,
+    images: ['/lovable-uploads/b2b9ab2c-7e3d-4eab-b79f-a0b91cd6ba50.png', '/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png'],
+    thumbnailImage: '/lovable-uploads/b2b9ab2c-7e3d-4eab-b79f-a0b91cd6ba50.png',
     documents: {
       title_deed: true,
       noc: true,
       floor_plans: true,
       valuation_report: true
-    }
+    },
+    sourceCategory: 'completed_projects'
   }
 ];
 
@@ -180,17 +193,28 @@ export function PropertyManagement() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
   const [locationFilter, setLocationFilter] = useState('all');
+  const [activeTab, setActiveTab] = useState('all');
 
-  const filteredProperties = properties.filter(property => {
-    const matchesSearch = property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         property.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         property.assignedAgent.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || property.status === statusFilter;
-    const matchesType = typeFilter === 'all' || property.propertyType === typeFilter;
-    const matchesLocation = locationFilter === 'all' || property.location === locationFilter;
+  const getPropertiesByCategory = (category: string) => {
+    let categoryProperties = properties;
     
-    return matchesSearch && matchesStatus && matchesType && matchesLocation;
-  });
+    if (category !== 'all') {
+      categoryProperties = properties.filter(p => p.sourceCategory === category);
+    }
+    
+    return categoryProperties.filter(property => {
+      const matchesSearch = property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           property.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           property.assignedAgent.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesStatus = statusFilter === 'all' || property.status === statusFilter;
+      const matchesType = typeFilter === 'all' || property.propertyType === typeFilter;
+      const matchesLocation = locationFilter === 'all' || property.location === locationFilter;
+      
+      return matchesSearch && matchesStatus && matchesType && matchesLocation;
+    });
+  };
+
+  const filteredProperties = getPropertiesByCategory(activeTab);
 
   const totalListingValue = properties.reduce((sum, prop) => sum + prop.listingPrice, 0);
   const averageROI = properties.reduce((sum, prop) => sum + prop.estimatedROI, 0) / properties.length;
@@ -207,8 +231,18 @@ export function PropertyManagement() {
 
   return (
     <div className="space-y-6">
+      {/* Property Category Tabs */}
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid w-full grid-cols-5">
+          <TabsTrigger value="all">All Properties ({properties.length})</TabsTrigger>
+          <TabsTrigger value="opportunities">Opportunities ({properties.filter(p => p.sourceCategory === 'opportunities').length})</TabsTrigger>
+          <TabsTrigger value="in_progress_projects">In Progress ({properties.filter(p => p.sourceCategory === 'in_progress_projects').length})</TabsTrigger>
+          <TabsTrigger value="completed_projects">Completed ({properties.filter(p => p.sourceCategory === 'completed_projects').length})</TabsTrigger>
+          <TabsTrigger value="fund_acquired">Fund Acquired ({properties.filter(p => p.sourceCategory === 'fund_acquired').length})</TabsTrigger>
+        </TabsList>
 
-      {/* Property Overview Stats */}
+        <TabsContent value={activeTab} className="space-y-6">
+          {/* Property Overview Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card>
           <CardContent className="p-6">
@@ -341,8 +375,16 @@ export function PropertyManagement() {
                 return (
                   <TableRow key={property.id}>
                     <TableCell>
-                      <div className="space-y-2">
-                        <div className="font-medium">{property.title}</div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-16 h-16 rounded-lg overflow-hidden bg-muted">
+                          <img 
+                            src={property.thumbnailImage} 
+                            alt={property.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <div className="font-medium">{property.title}</div>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <MapPin className="h-3 w-3" />
                           {property.location}
@@ -354,6 +396,7 @@ export function PropertyManagement() {
                           <Badge className={propertyTypeColors[property.propertyType]}>
                             {property.propertyType}
                           </Badge>
+                        </div>
                         </div>
                       </div>
                     </TableCell>
@@ -435,6 +478,8 @@ export function PropertyManagement() {
           </Table>
         </CardContent>
       </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

@@ -54,6 +54,7 @@ import CRM from "./pages/CRM"
 import Reports from "./pages/Reports"
 import MarketingTools from "./pages/MarketingTools"
 import Messaging from "./pages/Messaging"
+import FundManagement from "./pages/FundManagement"
 
 // Import public pages
 import About from "./pages/About"
@@ -213,6 +214,12 @@ function App() {
           <Route path="/opportunities" element={
             <SmartProtectedRoute>
               <Opportunities />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/fund-management" element={
+            <SmartProtectedRoute requiredRoles={['administrator', 'finance_lead', 'investor']}>
+              <FundManagement />
             </SmartProtectedRoute>
           } />
           

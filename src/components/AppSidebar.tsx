@@ -61,9 +61,9 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
   const adminItems = [
     { title: "User Management", url: "/admin/detailed-users", icon: Users, roles: ['administrator'] },
     { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client', 'real_estate_agent', 'partner'] },
-    { title: "Investor Management", url: "/admin/investors", icon: TrendingUp, roles: ['administrator'] },
     { title: "Property Management", url: "/admin/properties", icon: Building, roles: ['administrator'] },
     { title: "Opportunities", url: "/opportunities", icon: Target, roles: ['administrator', 'real_estate_director', 'real_estate_agent'] },
+    { title: "Fund Management", url: "/fund-management", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor'] },
     { title: "System Settings", url: "/admin/system-settings", icon: Settings, roles: ['administrator'] },
     { title: "System Overview", url: "/admin/system", icon: ShieldCheck, roles: ['administrator'] },
     { title: "Analytics", url: "/analytics", icon: BarChart3, roles: ['administrator'] },
