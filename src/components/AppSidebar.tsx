@@ -84,7 +84,6 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
     { title: "Reports", url: "/reports", icon: BarChart3, roles: ['administrator', 'finance_lead', 'project_manager', 'real_estate_director'] },
     { title: "Marketing Tools", url: "/marketing-tools", icon: Target, roles: ['administrator', 'marketing_lead'] },
     { title: "Messaging", url: "/messaging", icon: MessageSquare, roles: ['all'] },
-    { title: "Messages", url: "/messages", icon: MessageSquare, roles: ['all'] },
     { title: "Notifications", url: "/notifications", icon: Bell, roles: ['all'] }
   ];
 
