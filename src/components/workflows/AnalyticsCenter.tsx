@@ -55,7 +55,6 @@ export function AnalyticsCenter({ open, onClose }: AnalyticsCenterProps) {
   const [selectedMetric, setSelectedMetric] = useState("website")
   const [loading, setLoading] = useState(false)
   const [newMetric, setNewMetric] = useState({
-    metric_name: "",
     metric_type: "",
     metric_value: 0,
     category: ""
@@ -110,24 +109,28 @@ export function AnalyticsCenter({ open, onClose }: AnalyticsCenterProps) {
         .order('recorded_at', { ascending: false })
 
       if (error) throw error
-      setMetrics(data || [])
+      const transformedData = (data || []).map(item => ({
+        ...item,
+        date: item.recorded_at.split('T')[0] // Convert timestamp to date
+      }))
+      setMetrics(transformedData)
     } catch (error) {
       console.error('Error loading metrics:', error)
     }
   }
 
   const addMetric = async () => {
-    if (!newMetric.metric_name || !newMetric.metric_type) return
+    if (!newMetric.metric_type) return
 
     try {
       const { error } = await supabase
         .from('system_analytics')
-        .insert([{
-          metric_name: newMetric.metric_name,
+        .insert({
+          metric_name: newMetric.metric_type,
           metric_type: newMetric.metric_type,
           metric_value: newMetric.metric_value,
           category: newMetric.category
-        }])
+        })
 
       if (error) throw error
 
@@ -136,7 +139,7 @@ export function AnalyticsCenter({ open, onClose }: AnalyticsCenterProps) {
         description: "New metric has been created successfully"
       })
 
-      setNewMetric({ metric_name: "", metric_type: "", metric_value: 0, category: "" })
+      setNewMetric({ metric_type: "", metric_value: 0, category: "" })
       loadMetrics()
     } catch (error) {
       console.error('Error adding metric:', error)
@@ -155,7 +158,6 @@ export function AnalyticsCenter({ open, onClose }: AnalyticsCenterProps) {
       const { error } = await supabase
         .from('system_analytics')
         .update({
-          metric_name: editingMetric.metric_name,
           metric_type: editingMetric.metric_type,
           metric_value: editingMetric.metric_value,
           category: editingMetric.category
@@ -369,13 +371,13 @@ export function AnalyticsCenter({ open, onClose }: AnalyticsCenterProps) {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="metric_name">Metric Name</Label>
+                      <Label htmlFor="metric_type">Type</Label>
                       <Input
-                        id="metric_name"
-                        value={editingMetric.metric_name || newMetric.metric_name}
+                        id="metric_type"
+                        value={editingMetric.metric_type || newMetric.metric_type}
                         onChange={(e) => editingMetric.id 
-                          ? setEditingMetric({...editingMetric, metric_name: e.target.value})
-                          : setNewMetric({...newMetric, metric_name: e.target.value})
+                          ? setEditingMetric({...editingMetric, metric_type: e.target.value})
+                          : setNewMetric({...newMetric, metric_type: e.target.value})
                         }
                       />
                     </div>
@@ -440,7 +442,7 @@ export function AnalyticsCenter({ open, onClose }: AnalyticsCenterProps) {
                 <Card key={metric.id}>
                   <CardContent className="flex items-center justify-between p-4">
                     <div>
-                      <h4 className="font-medium">{metric.metric_name}</h4>
+                      <h4 className="font-medium">{metric.metric_type}</h4>
                       <p className="text-sm text-muted-foreground">
                         {metric.metric_type} • {metric.category}
                       </p>

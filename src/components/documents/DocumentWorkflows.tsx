@@ -16,8 +16,8 @@ import {
   File,
   FileText,
   FileImage,
-  FilePdf,
-  FileSpreadsheet,
+  FileText as PdfIcon,
+  FileText as FileSpreadsheet,
   Clock,
   CheckCircle,
   AlertCircle,
@@ -127,7 +127,7 @@ export function DocumentWorkflows() {
   ]
 
   const getFileIcon = (type: string) => {
-    if (type.includes('pdf')) return <FilePdf className="h-5 w-5 text-red-500" />
+    if (type.includes('pdf')) return <PdfIcon className="h-5 w-5 text-red-500" />
     if (type.includes('image')) return <FileImage className="h-5 w-5 text-blue-500" />
     if (type.includes('sheet')) return <FileSpreadsheet className="h-5 w-5 text-green-500" />
     if (type.includes('text') || type.includes('doc')) return <FileText className="h-5 w-5 text-blue-600" />
@@ -156,14 +156,7 @@ export function DocumentWorkflows() {
         const filePath = `documents/${user.id}/${Date.now()}-${file.name}`
         const { data, error } = await supabase.storage
           .from('documents')
-          .upload(filePath, file, {
-            onUploadProgress: (progress) => {
-              setUploadProgress(prev => ({ 
-                ...prev, 
-                [fileId]: (progress.loaded / progress.total) * 100 
-              }))
-            }
-          })
+          .upload(filePath, file)
 
         if (error) throw error
 
@@ -178,7 +171,7 @@ export function DocumentWorkflows() {
           type: file.type,
           size: file.size,
           url: publicUrl,
-          status: newDocument.approval_required ? 'pending' : 'approved',
+          status: (newDocument.approval_required ? 'pending' : 'approved') as 'pending' | 'processing' | 'approved' | 'rejected',
           category: newDocument.category,
           tags: newDocument.tags,
           is_confidential: newDocument.is_confidential,
@@ -618,7 +611,7 @@ export function DocumentWorkflows() {
                             />
                             <Button
                               onClick={() => {
-                                const comments = (document.getElementById('rejection-comments') as HTMLTextAreaElement)?.value || ""
+                                const comments = (globalThis.document.getElementById('rejection-comments') as HTMLTextAreaElement)?.value || ""
                                 rejectDocument(document.id, request.id, comments)
                               }}
                               variant="destructive"

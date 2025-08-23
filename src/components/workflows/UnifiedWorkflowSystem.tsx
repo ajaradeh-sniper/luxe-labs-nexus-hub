@@ -9,6 +9,7 @@ import { AnalyticsCenter } from "./AnalyticsCenter"
 import { DocumentWorkflows } from "@/components/documents/DocumentWorkflows"
 import { EmailSystem } from "@/components/notifications/EmailSystem"
 import { FinancialTracking } from "@/components/financial/FinancialTracking"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { 
   Plus, 
   Users, 
@@ -18,7 +19,10 @@ import {
   BarChart3,
   Building,
   TrendingUp,
-  Send
+  Send,
+  FileText,
+  Mail,
+  DollarSign
 } from "lucide-react"
 
 export type WorkflowAction = 
@@ -39,6 +43,9 @@ interface UnifiedWorkflowSystemProps {
 
 export function UnifiedWorkflowSystem({ trigger, onActionComplete }: UnifiedWorkflowSystemProps) {
   const [activeModal, setActiveModal] = useState<WorkflowAction | null>(trigger || null)
+  const [documentsOpen, setDocumentsOpen] = useState(false)
+  const [emailOpen, setEmailOpen] = useState(false)
+  const [financialOpen, setFinancialOpen] = useState(false)
 
   const handleOpenModal = (action: WorkflowAction) => {
     setActiveModal(action)
@@ -120,6 +127,33 @@ export function UnifiedWorkflowSystem({ trigger, onActionComplete }: UnifiedWork
     }
   ]
 
+  const additionalWorkflows = [
+    {
+      id: 'documents',
+      title: 'Documents',
+      description: 'Manage document workflows',
+      icon: FileText,
+      color: 'bg-green-500',
+      action: () => setDocumentsOpen(true)
+    },
+    {
+      id: 'email',
+      title: 'Email System',
+      description: 'Send emails and campaigns',
+      icon: Mail,
+      color: 'bg-blue-500',
+      action: () => setEmailOpen(true)
+    },
+    {
+      id: 'financial',
+      title: 'Financial Tracking',
+      description: 'Track ROI and expenses',
+      icon: DollarSign,
+      color: 'bg-yellow-500',
+      action: () => setFinancialOpen(true)
+    }
+  ]
+
   // Keyboard shortcuts
   useState(() => {
     const handleKeydown = (e: KeyboardEvent) => {
@@ -186,7 +220,22 @@ export function UnifiedWorkflowSystem({ trigger, onActionComplete }: UnifiedWork
             </div>
           </Button>
         ))}
-      </div>
+        </div>
+        
+        {/* Additional Workflows */}
+        <div className="grid grid-cols-3 gap-4 p-4">
+          {additionalWorkflows.map((workflow) => (
+            <Button
+              key={workflow.id}
+              variant="outline"
+              className="h-24 flex flex-col gap-2"
+              onClick={workflow.action}
+            >
+              <workflow.icon className="h-6 w-6" />
+              <span className="text-sm">{workflow.title}</span>
+            </Button>
+          ))}
+        </div>
 
       {/* Modals */}
       <UnifiedProjectModal
@@ -224,6 +273,34 @@ export function UnifiedWorkflowSystem({ trigger, onActionComplete }: UnifiedWork
         open={activeModal === 'view-analytics'}
         onClose={handleCloseModal}
       />
+      
+      {/* Additional System Modals */}
+      <Dialog open={documentsOpen} onOpenChange={setDocumentsOpen}>
+        <DialogContent className="max-w-7xl max-h-[95vh] overflow-hidden">
+          <DialogHeader>
+            <DialogTitle>Document Management</DialogTitle>
+          </DialogHeader>
+          <DocumentWorkflows />
+        </DialogContent>
+      </Dialog>
+      
+      <Dialog open={emailOpen} onOpenChange={setEmailOpen}>
+        <DialogContent className="max-w-7xl max-h-[95vh] overflow-hidden">
+          <DialogHeader>
+            <DialogTitle>Email System</DialogTitle>
+          </DialogHeader>
+          <EmailSystem />
+        </DialogContent>
+      </Dialog>
+      
+      <Dialog open={financialOpen} onOpenChange={setFinancialOpen}>
+        <DialogContent className="max-w-7xl max-h-[95vh] overflow-hidden">
+          <DialogHeader>
+            <DialogTitle>Financial Tracking</DialogTitle>
+          </DialogHeader>
+          <FinancialTracking />
+        </DialogContent>
+      </Dialog>
     </>
   )
 }

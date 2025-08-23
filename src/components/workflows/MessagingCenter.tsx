@@ -79,31 +79,26 @@ export function MessagingCenter({ open, onClose }: MessagingCenterProps) {
 
   const loadConversations = async () => {
     try {
+      // Simplified query without complex joins for now
       const { data, error } = await supabase
         .from('messages')
-        .select(`
-          *,
-          sender:profiles!messages_sender_id_fkey(name, avatar_url),
-          recipient:profiles!messages_recipient_id_fkey(name, avatar_url)
-        `)
+        .select('*')
         .or(`sender_id.eq.${user?.id},recipient_id.eq.${user?.id}`)
         .order('created_at', { ascending: false })
 
       if (error) throw error
 
-      // Group messages by conversation partner
+      // Group messages by conversation partner with mock user data
       const conversationMap = new Map<string, Conversation>()
       
       data?.forEach(msg => {
         const partnerId = msg.sender_id === user?.id ? msg.recipient_id : msg.sender_id
-        const partnerName = msg.sender_id === user?.id ? msg.recipient?.name : msg.sender?.name
-        const partnerAvatar = msg.sender_id === user?.id ? msg.recipient?.avatar_url : msg.sender?.avatar_url
         
         if (!conversationMap.has(partnerId)) {
           conversationMap.set(partnerId, {
             user_id: partnerId,
-            user_name: partnerName || 'Unknown User',
-            avatar_url: partnerAvatar,
+            user_name: `User ${partnerId.slice(0, 8)}`, // Mock name
+            avatar_url: undefined,
             last_message: msg.content,
             last_message_time: msg.created_at,
             unread_count: 0
@@ -119,18 +114,23 @@ export function MessagingCenter({ open, onClose }: MessagingCenterProps) {
 
   const loadMessages = async (partnerId: string) => {
     try {
+      // Simplified query without joins
       const { data, error } = await supabase
         .from('messages')
-        .select(`
-          *,
-          sender:profiles!messages_sender_id_fkey(name, avatar_url),
-          recipient:profiles!messages_recipient_id_fkey(name, avatar_url)
-        `)
+        .select('*')
         .or(`and(sender_id.eq.${user?.id},recipient_id.eq.${partnerId}),and(sender_id.eq.${partnerId},recipient_id.eq.${user?.id})`)
         .order('created_at', { ascending: true })
 
       if (error) throw error
-      setMessages(data || [])
+      
+      // Transform data to match expected Message interface
+      const transformedMessages = (data || []).map(msg => ({
+        ...msg,
+        sender: { name: `User ${msg.sender_id.slice(0, 8)}`, avatar_url: undefined },
+        recipient: { name: `User ${msg.recipient_id.slice(0, 8)}`, avatar_url: undefined }
+      }))
+      
+      setMessages(transformedMessages)
 
       // Mark messages as read
       await supabase
