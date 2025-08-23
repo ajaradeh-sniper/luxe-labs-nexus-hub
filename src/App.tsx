@@ -102,252 +102,190 @@ function App() {
           {/* Role-Specific Dashboards */}
           <Route path="/pm-dashboard" element={
             <SmartProtectedRoute requiredRoles={['project_manager', 'administrator']}>
-              <DashboardLayout>
-                <ProjectManagerDashboard />
-              </DashboardLayout>
+              <ProjectManagerDashboard />
             </SmartProtectedRoute>
           } />
           
           <Route path="/investor-dashboard" element={
             <SmartProtectedRoute requiredRoles={['investor', 'administrator']}>
-              <DashboardLayout>
-                <InvestorDashboard />
-              </DashboardLayout>
+              <InvestorDashboard />
             </SmartProtectedRoute>
           } />
           
           <Route path="/client-dashboard" element={
             <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
-              <DashboardLayout>
-                <ClientDashboard />
-              </DashboardLayout>
+              <ClientDashboard />
             </SmartProtectedRoute>
           } />
           
           {/* Admin Routes */}
           <Route path="/admin/system" element={
             <SmartProtectedRoute requiredRoles={['administrator']}>
-              <DashboardLayout>
-                <SystemOverview />
-              </DashboardLayout>
+              <SystemOverview />
             </SmartProtectedRoute>
           } />
           
           <Route path="/admin/detailed-users" element={
             <SmartProtectedRoute requiredRoles={['administrator']}>
-              <DashboardLayout>
-                <DetailedUsers />
-              </DashboardLayout>
+              <DetailedUsers />
             </SmartProtectedRoute>
           } />
           
           <Route path="/admin/investors" element={
             <SmartProtectedRoute requiredRoles={['administrator']}>
-              <DashboardLayout>
-                <AdminInvestors />
-              </DashboardLayout>
+              <AdminInvestors />
             </SmartProtectedRoute>
           } />
           
           <Route path="/admin/properties" element={
             <SmartProtectedRoute requiredRoles={['administrator']}>
-              <DashboardLayout>
-                <AdminProperties />
-              </DashboardLayout>
+              <AdminProperties />
             </SmartProtectedRoute>
           } />
           
           <Route path="/admin/system-settings" element={
             <SmartProtectedRoute requiredRoles={['administrator']}>
-              <DashboardLayout>
-                <AdminSystemSettings />
-              </DashboardLayout>
+              <AdminSystemSettings />
             </SmartProtectedRoute>
           } />
           
           <Route path="/admin/system-health" element={
             <SmartProtectedRoute requiredRoles={['administrator']}>
-              <DashboardLayout>
-                <AdminSystemHealth />
-              </DashboardLayout>
+              <AdminSystemHealth />
             </SmartProtectedRoute>
           } />
           
           {/* Feature Routes */}
           <Route path="/properties" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Properties />
-              </DashboardLayout>
+              <Properties />
             </SmartProtectedRoute>
           } />
           
           <Route path="/financial" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Financial />
-              </DashboardLayout>
+              <Financial />
             </SmartProtectedRoute>
           } />
           
           <Route path="/documents" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Documents />
-              </DashboardLayout>
+              <Documents />
             </SmartProtectedRoute>
           } />
           
           <Route path="/team" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Team />
-              </DashboardLayout>
+              <Team />
             </SmartProtectedRoute>
           } />
           
           <Route path="/qa" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <QualityAssurance />
-              </DashboardLayout>
+              <QualityAssurance />
             </SmartProtectedRoute>
           } />
           
           <Route path="/analytics" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Analytics />
-              </DashboardLayout>
+              <Analytics />
             </SmartProtectedRoute>
           } />
           
           <Route path="/marketing" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Marketing />
-              </DashboardLayout>
+              <Marketing />
             </SmartProtectedRoute>
           } />
           
           <Route path="/traffic-analytics" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <TrafficAnalytics />
-              </DashboardLayout>
+              <TrafficAnalytics />
             </SmartProtectedRoute>
           } />
           
           <Route path="/website-analytics" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <WebsiteAnalytics />
-              </DashboardLayout>
+              <WebsiteAnalytics />
             </SmartProtectedRoute>
           } />
           
           <Route path="/opportunities" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Opportunities />
-              </DashboardLayout>
+              <Opportunities />
             </SmartProtectedRoute>
           } />
           
           <Route path="/agreements" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <ProjectAgreements />
-              </DashboardLayout>
+              <ProjectAgreements />
             </SmartProtectedRoute>
           } />
           
           <Route path="/project-management" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <ProjectManagement />
-              </DashboardLayout>
+              <ProjectManagement />
             </SmartProtectedRoute>
           } />
           
           <Route path="/dashboard/projects" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <DashboardProjects />
-              </DashboardLayout>
+              <DashboardProjects />
             </SmartProtectedRoute>
           } />
           
           <Route path="/messages" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Messages />
-              </DashboardLayout>
+              <Messages />
             </SmartProtectedRoute>
           } />
           
           <Route path="/notifications" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Notifications />
-              </DashboardLayout>
+              <Notifications />
             </SmartProtectedRoute>
           } />
           
           <Route path="/notification-settings" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Settings />
-              </DashboardLayout>
+              <Settings />
             </SmartProtectedRoute>
           } />
           
           {/* Missing Pages */}
           <Route path="/calendar" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Calendar />
-              </DashboardLayout>
+              <Calendar />
             </SmartProtectedRoute>
           } />
           
           <Route path="/portfolio" element={
             <SmartProtectedRoute requiredRoles={['investor', 'administrator']}>
-              <DashboardLayout>
-                <Portfolio />
-              </DashboardLayout>
+              <Portfolio />
             </SmartProtectedRoute>
           } />
           
           <Route path="/crm" element={
             <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_director', 'real_estate_agent']}>
-              <DashboardLayout>
-                <CRM />
-              </DashboardLayout>
+              <CRM />
             </SmartProtectedRoute>
           } />
           
           <Route path="/reports" element={
             <SmartProtectedRoute requiredRoles={['administrator', 'finance_lead', 'project_manager', 'real_estate_director']}>
-              <DashboardLayout>
-                <Reports />
-              </DashboardLayout>
+              <Reports />
             </SmartProtectedRoute>
           } />
           
           <Route path="/marketing-tools" element={
             <SmartProtectedRoute requiredRoles={['administrator', 'marketing_lead']}>
-              <DashboardLayout>
-                <MarketingTools />
-              </DashboardLayout>
+              <MarketingTools />
             </SmartProtectedRoute>
           } />
           
           <Route path="/messaging" element={
             <SmartProtectedRoute>
-              <DashboardLayout>
-                <Messaging />
-              </DashboardLayout>
+              <Messaging />
             </SmartProtectedRoute>
           } />
           
