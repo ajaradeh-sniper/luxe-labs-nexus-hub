@@ -115,17 +115,6 @@ export default function Messaging() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Messaging</h1>
-          <p className="text-muted-foreground">Communicate with clients and team members</p>
-        </div>
-        <Button variant="luxury">
-          <Plus className="mr-2 h-4 w-4" />
-          New Message
-        </Button>
-      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[700px]">
         {/* Conversations Sidebar */}

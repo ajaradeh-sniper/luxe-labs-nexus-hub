@@ -48,17 +48,6 @@ export default function Calendar() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Calendar</h1>
-          <p className="text-muted-foreground">Manage your schedule and appointments</p>
-        </div>
-        <Button variant="luxury">
-          <Plus className="mr-2 h-4 w-4" />
-          New Event
-        </Button>
-      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Calendar Widget */}

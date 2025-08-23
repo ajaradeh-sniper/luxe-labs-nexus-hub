@@ -83,23 +83,6 @@ export default function Portfolio() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Investment Portfolio</h1>
-          <p className="text-muted-foreground">Track your real estate investments and returns</p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline">
-            <Download className="mr-2 h-4 w-4" />
-            Export Report
-          </Button>
-          <Button variant="luxury">
-            <Eye className="mr-2 h-4 w-4" />
-            Detailed View
-          </Button>
-        </div>
-      </div>
 
       {/* Portfolio Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
