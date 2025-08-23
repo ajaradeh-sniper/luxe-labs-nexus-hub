@@ -44,6 +44,8 @@ import {
 } from 'lucide-react';
 import { UserRole } from '@/types/auth';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
+import { ComprehensiveUserOnboardingModal } from '@/components/modals/ComprehensiveUserOnboardingModal';
 
 interface DetailedUser {
   id: string;
@@ -276,7 +278,12 @@ export function DetailedUserManagement() {
   const [selectedUser, setSelectedUser] = useState<DetailedUser | null>(null);
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [isOnboardingModalOpen, setIsOnboardingModalOpen] = useState(false);
   const { toast } = useToast();
+  const { user, hasPermission } = useAuth();
+
+  // Check if user is administrator
+  const isSystemAdmin = user && hasPermission('all', 'edit');
 
   const filteredUsers = users.filter(user => {
     const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -331,6 +338,14 @@ export function DetailedUserManagement() {
     });
   };
 
+  const handleUserAdded = (newUser: DetailedUser) => {
+    setUsers(prev => [newUser, ...prev]);
+    toast({
+      title: "User Added Successfully",
+      description: `${newUser.name} has been added to the system.`,
+    });
+  };
+
   return (
     <div className="space-y-6">
 
@@ -347,7 +362,11 @@ export function DetailedUserManagement() {
                 Advanced user management with comprehensive filtering and bulk actions
               </CardDescription>
             </div>
-            <Button className="flex items-center gap-2">
+            <Button 
+              className="flex items-center gap-2"
+              onClick={() => setIsOnboardingModalOpen(true)}
+              disabled={!isSystemAdmin}
+            >
               <UserPlus className="h-4 w-4" />
               Add New User
             </Button>
@@ -652,6 +671,13 @@ export function DetailedUserManagement() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Comprehensive User Onboarding Modal */}
+      <ComprehensiveUserOnboardingModal
+        isOpen={isOnboardingModalOpen}
+        onClose={() => setIsOnboardingModalOpen(false)}
+        onUserAdded={handleUserAdded}
+      />
     </div>
   );
 }
