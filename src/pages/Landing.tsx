@@ -737,7 +737,7 @@ export default function Landing() {
                   <p className="text-muted-foreground font-montserrat mb-6">
                     Access our investor dashboard to explore current opportunities and track your portfolio performance.
                   </p>
-                  <Button asChild size="lg" className="w-full luxury-gradient hover:luxury-glow font-montserrat mb-4">
+                  <Button asChild size="lg" className="w-full bg-gradient-dark text-primary-glow border border-primary/20 hover:border-primary/40 hover:shadow-glow font-montserrat mb-4">
                     <Link to="/investors">
                       <TrendingUp className="mr-2 h-5 w-5" />
                       Access Investor Portal
