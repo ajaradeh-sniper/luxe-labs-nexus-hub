@@ -43,7 +43,7 @@ export default function Landing() {
   // Service data from Services page
   const investmentOptions = [
     {
-      title: 'Diversified Fund (Flip & Sell, Flip and Rent, Off-Plan)',
+      title: 'Shared Stake in Single Property Transformation Project (Flip)',
       returns: '10%-30%',
       investment: 'AED 1M (8-14 Months)',
       description: 'Full transparency on single asset',
