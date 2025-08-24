@@ -143,7 +143,7 @@ export default function Landing() {
       ]
     },
     {
-      title: 'HNWI Concierge',
+      title: 'Property Aquisition, Transformation & Move-in Services (HNWI Concierge)',
       description: 'Complete Dubai relocation and property services',
       features: [
         'Dubai relocation consultation (A-Z)',
