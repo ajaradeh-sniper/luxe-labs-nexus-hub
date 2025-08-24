@@ -132,7 +132,7 @@ export default function Landing() {
       ]
     },
     {
-      title: 'Personal Property Transformation (Renovation)',
+      title: 'Hire LL - Personal Property Transformation (Renovation)',
       description: 'Complete property renovation and enhancement services',
       features: [
         'Design & renovation consultation',
