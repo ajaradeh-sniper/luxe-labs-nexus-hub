@@ -85,7 +85,7 @@ export default function Landing() {
 
   const transformationOptions = [
     {
-      title: 'Property Luxury Transformation services',
+      title: 'Personal Property Transformation (Renovation)',
       description: 'Premium design, project management, material sourcing, furniture and staging',
       features: [
         'Premium design services',
