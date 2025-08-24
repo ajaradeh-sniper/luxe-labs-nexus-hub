@@ -121,18 +121,18 @@ export default function Landing() {
 
   const advisoryOptions = [
     {
-      title: 'Luxury Transformation services',
-      description: 'Strategic investment guidance and market analysis',
+      title: 'Personal Property Transformation (Renovation)',
+      description: 'Premium design, project management, material sourcing, furniture and staging',
       features: [
-        'Market analysis & due diligence',
-        'Investment strategy development',
-        'Portfolio optimization',
-        'Risk assessment & mitigation',
-        'Exit strategy planning'
+        'Premium design services',
+        'Project management & oversight',
+        'Material & product sourcing',
+        'Furniture selection & staging',
+        'Quality control & inspections'
       ]
     },
     {
-      title: 'Property Transformation',
+      title: 'Property Aquisition, Transformation and Move-in Ready Services (HNWI Concierge)',
       description: 'Complete property renovation and enhancement services',
       features: [
         'Design & renovation consultation',
