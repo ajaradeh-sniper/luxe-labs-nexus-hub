@@ -121,7 +121,7 @@ export default function Landing() {
 
   const advisoryOptions = [
     {
-      title: 'Luxury Real Estate & Property Transformation Advisory Services',
+      title: 'Consult LL - Luxury Real Estate & Property Transformation Advisory Services',
       description: 'Premium design, project management, material sourcing, furniture and staging',
       features: [
         'Premium design services',
