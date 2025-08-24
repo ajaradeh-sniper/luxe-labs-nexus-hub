@@ -942,7 +942,7 @@ export default function Landing() {
           <div className="text-center mt-12 animate-fade-in">
             <Button asChild size="lg" className="luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 font-montserrat">
               <Link to="/projects">
-                View All Projects
+                View Details
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
