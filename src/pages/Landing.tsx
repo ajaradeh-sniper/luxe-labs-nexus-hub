@@ -17,6 +17,7 @@ import premiumSelectionImage from "@/assets/premium-selection.jpg";
 import luxuryTransformationImage from "@/assets/luxury-transformation.jpg";
 import strategicPlanningImage from "@/assets/strategic-planning.jpg";
 import sustainableLuxuryImage from "@/assets/sustainable-luxury.jpg";
+import marketAnalysisImage from "@/assets/market-analysis.jpg";
 import exceptionalReturnsImage from "@/assets/exceptional-returns.jpg";
 import roiInvestmentImage from "@/assets/roi-investment.jpg";
 import premiumVillaSelectionImage from "@/assets/premium-villa-selection.jpg";
@@ -325,7 +326,7 @@ export default function Landing() {
                 
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={premiumVillaSelectionImage} 
+                    src={marketAnalysisImage} 
                     alt="Professional Advisory Services" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   />
