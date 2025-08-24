@@ -272,7 +272,7 @@ export default function Landing() {
                 
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={sustainableLuxuryImage} 
+                    src={premiumVillaSelectionImage} 
                     alt="Luxury Property Transformation" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   />
