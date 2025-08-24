@@ -218,7 +218,7 @@ export default function Landing() {
                 
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={exceptionalReturnsImage} 
+                    src={strategicPlanningImage} 
                     alt="Investment Partnership" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   />
