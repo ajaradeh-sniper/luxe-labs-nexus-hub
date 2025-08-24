@@ -45,7 +45,7 @@ export default function Landing() {
     {
       title: 'Shared Stake in Single Property Transformation Project (Flip)',
       returns: '10%-30%',
-      investment: 'AED 1M',
+      investment: 'AED 1M (8-14 Months)',
       description: 'Full transparency on single asset',
       features: [
         'Minimum investment: AED 1M',
