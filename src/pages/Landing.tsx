@@ -459,7 +459,7 @@ export default function Landing() {
                               <div className="flex gap-3">
                                 <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                   <img 
-                                    src={index === 0 ? realEstateConsultationAdvisory : index === 1 ? endToEndRenovation : hnwiConciergeAcquisition} 
+                                    src={index === 0 ? strategicPlanningImage : index === 1 ? endToEndRenovation : hnwiConciergeAcquisition} 
                                     alt={option.title} 
                                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" 
                                   />
