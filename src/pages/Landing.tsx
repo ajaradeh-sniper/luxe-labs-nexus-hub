@@ -43,7 +43,7 @@ export default function Landing() {
   // Service data from Services page
   const investmentOptions = [
     {
-      title: 'Shared Stake in Single Property Transformation Project',
+      title: 'Shared Stake in Single Property Transformation Project (Flip)',
       returns: '10%-30%',
       investment: 'AED 1M',
       description: 'Full transparency on single asset',
