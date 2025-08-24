@@ -996,7 +996,7 @@ export default function Landing() {
             <Link to="/media">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat px-8 py-3 text-lg"
+                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg"
               >
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
