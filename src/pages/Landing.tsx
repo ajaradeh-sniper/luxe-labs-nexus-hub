@@ -96,7 +96,7 @@ export default function Landing() {
       ]
     },
     {
-      title: 'Property Transformation',
+      title: 'Property Aquisition, Transformation and Move-in Ready Services (HNWI Concierge)',
       description: 'Complete property renovation and enhancement services',
       features: [
         'Design & renovation consultation',
