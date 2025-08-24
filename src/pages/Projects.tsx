@@ -318,16 +318,6 @@ const Projects = () => {
           
           {/* Project Action Buttons */}
           <div className="flex flex-col gap-6">
-            <div className="text-center">
-              <Button 
-                variant="default" 
-                size="lg"
-                className="bg-primary hover:bg-primary/90"
-                onClick={() => window.location.href = user ? '/dashboard/projects' : '/auth'}
-              >
-                View All Projects
-              </Button>
-            </div>
           </div>
         </section>
 
