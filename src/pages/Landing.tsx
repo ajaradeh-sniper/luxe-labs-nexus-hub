@@ -71,7 +71,7 @@ export default function Landing() {
     {
       title: 'Diversified Fund (Flip & Sell, Flip and Rent, Off-Plan -3-7 years)',
       returns: '2x-4x',
-      investment: 'AED 500K',
+      investment: 'AED 500K (3-7 Years Commitment)',
       description: 'Diversified across 10+ properties',
       features: [
         'Minimum investment: AED 500K',
