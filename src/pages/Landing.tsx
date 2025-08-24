@@ -69,7 +69,7 @@ export default function Landing() {
       ]
     },
     {
-      title: 'Diversified Fund (Flip & Sell, Flip and Rent, Off-Plan)',
+      title: 'Invest in Luxury Real Estate - Diversified Fund (Flip & Sell, Flip & Rent, Off-Plan)',
       returns: '2x-4x',
       investment: 'AED 500K (3-7 Years Commitment)',
       description: 'Diversified across 10+ properties',
