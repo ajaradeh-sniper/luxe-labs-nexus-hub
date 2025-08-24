@@ -56,7 +56,7 @@ export default function Landing() {
       ]
     },
     {
-      title: 'Single Property',
+      title: 'Single Property Transformation Project (Flip)',
       returns: '15%-30%',
       investment: 'AED 5M',
       description: 'First access to premium deals',
