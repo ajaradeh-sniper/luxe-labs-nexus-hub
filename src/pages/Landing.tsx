@@ -18,6 +18,7 @@ import luxuryTransformationImage from "@/assets/luxury-transformation.jpg";
 import strategicPlanningImage from "@/assets/strategic-planning.jpg";
 import sustainableLuxuryImage from "@/assets/sustainable-luxury.jpg";
 import marketAnalysisImage from "@/assets/market-analysis.jpg";
+import executionExcellenceImage from "@/assets/execution-excellence.jpg";
 import exceptionalReturnsImage from "@/assets/exceptional-returns.jpg";
 import roiInvestmentImage from "@/assets/roi-investment.jpg";
 import premiumVillaSelectionImage from "@/assets/premium-villa-selection.jpg";
@@ -459,7 +460,7 @@ export default function Landing() {
                               <div className="flex gap-3">
                                 <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                   <img 
-                                    src={index === 0 ? strategicPlanningImage : index === 1 ? endToEndRenovation : hnwiConciergeAcquisition} 
+                                    src={index === 0 ? executionExcellenceImage : index === 1 ? endToEndRenovation : hnwiConciergeAcquisition} 
                                     alt={option.title} 
                                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" 
                                   />
