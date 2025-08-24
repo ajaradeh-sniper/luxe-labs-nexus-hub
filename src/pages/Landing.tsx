@@ -745,7 +745,7 @@ export default function Landing() {
                   </Button>
                   <Button asChild size="lg" className="w-full luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 font-montserrat">
                     <Link to="/investors">
-                      View Details
+                      Learn More
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
