@@ -15,6 +15,7 @@ import luxuryBuildingImage from "@/assets/luxury-building.jpg";
 import premiumTowerImage from "@/assets/premium-tower.jpg";
 import premiumSelectionImage from "@/assets/premium-selection.jpg";
 import luxuryTransformationImage from "@/assets/luxury-transformation.jpg";
+import strategicPlanningImage from "@/assets/strategic-planning.jpg";
 import exceptionalReturnsImage from "@/assets/exceptional-returns.jpg";
 import roiInvestmentImage from "@/assets/roi-investment.jpg";
 import premiumVillaSelectionImage from "@/assets/premium-villa-selection.jpg";
@@ -270,7 +271,7 @@ export default function Landing() {
                 
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={luxuryTransformationImage} 
+                    src={strategicPlanningImage} 
                     alt="Luxury Property Transformation" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   />
