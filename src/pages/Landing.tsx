@@ -22,6 +22,12 @@ import beforeAfterTransformationImage from "@/assets/before-after-transformation
 import investmentPartnershipImage from "@/assets/investment-partnership-handshake.jpg";
 import luxuryFinishesImage from "@/assets/luxury-finishes-install-thumbnail.jpg";
 import professionalTeamImage from "@/assets/professional-team.jpg";
+import investmentPartnershipSharedStake from "@/assets/investment-partnership-shared-stake.jpg";
+import propertyFlippingTransformation from "@/assets/property-flipping-transformation.jpg";
+import diversifiedPortfolioFund from "@/assets/diversified-portfolio-fund.jpg";
+import realEstateConsultationAdvisory from "@/assets/real-estate-consultation-advisory.jpg";
+import endToEndRenovation from "@/assets/end-to-end-renovation.jpg";
+import hnwiConciergeAcquisition from "@/assets/hnwi-concierge-acquisition.jpg";
 import barovieToso from "@/assets/barovie-toso-logo.png";
 import boseLogo from "@/assets/bose-logo.png";
 import espaceLogo from "@/assets/espace-logo.png";
@@ -403,7 +409,7 @@ export default function Landing() {
                               <div className="flex gap-3">
                                 <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                   <img 
-                                    src={index === 0 ? exceptionalReturnsImage : index === 1 ? roiInvestmentImage : investmentPartnershipImage} 
+                                    src={index === 0 ? investmentPartnershipSharedStake : index === 1 ? propertyFlippingTransformation : diversifiedPortfolioFund} 
                                     alt={option.title} 
                                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" 
                                   />
@@ -450,7 +456,7 @@ export default function Landing() {
                               <div className="flex gap-3">
                                 <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                   <img 
-                                    src={index === 0 ? premiumVillaSelectionImage : index === 1 ? professionalTeamImage : premiumSelectionImage} 
+                                    src={index === 0 ? realEstateConsultationAdvisory : index === 1 ? endToEndRenovation : hnwiConciergeAcquisition} 
                                     alt={option.title} 
                                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" 
                                   />
