@@ -123,7 +123,7 @@ export default function Landing() {
             {/* Header with Logo */}
             <div className="text-center mb-16">
               <div className="inline-block relative">
-                <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-32 sm:h-40 lg:h-48 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500" />
+                <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-32 sm:h-40 lg:h-48 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500 brightness-0 dark:brightness-100" />
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-xl opacity-50 animate-pulse"></div>
               </div>
               
