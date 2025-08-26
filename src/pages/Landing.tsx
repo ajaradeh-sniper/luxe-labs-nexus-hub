@@ -741,7 +741,7 @@ export default function Landing() {
                 <img src="/lovable-uploads/b4338854-2117-4e56-9ce3-1da2b8248e5d.png" alt="Business Bay Luxury Apartment" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <div className="font-bold text-2xl font-playfair drop-shadow-lg">32% ROI</div>
+                  <div className="font-bold text-2xl font-playfair drop-shadow-lg text-black">10% ROI</div>
                 </div>
               </div>
               <CardContent className="p-6">
