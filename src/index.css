@@ -21,9 +21,9 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 8%;
 
-    --primary: 42 35% 55%; /* Primary Gold #B89B5E */
+    --primary: 38 30% 78%; /* Primary Color #d8ccb7 */
     --primary-foreground: 0 0% 98%;
-    --primary-glow: 42 45% 65%;
+    --primary-glow: 38 35% 85%;
 
     --secondary: 0 0% 15%; /* Darker charcoal */
     --secondary-foreground: 0 0% 98%;
@@ -45,20 +45,20 @@ All colors MUST be HSL.
 
     --border: 0 0% 88%;
     --input: 0 0% 96%;
-    --ring: 42 35% 55%;
+    --ring: 38 30% 78%;
 
     --radius: 0.75rem;
 
     /* Luxury Labs Brand Gradients */
-    --gradient-luxury: linear-gradient(135deg, hsl(42 35% 55%) 0%, hsl(42 45% 65%) 100%);
+    --gradient-luxury: linear-gradient(135deg, hsl(38 30% 78%) 0%, hsl(38 35% 85%) 100%);
     --gradient-elegant: linear-gradient(180deg, hsl(0 0% 98%) 0%, hsl(0 0% 94%) 100%);
     --gradient-dark: linear-gradient(135deg, hsl(0 0% 8%) 0%, hsl(0 0% 15%) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(0 0% 5% / 0.8) 0%, hsl(0 0% 15% / 0.6) 100%);
 
     /* Luxury Labs Brand Shadows */
-    --shadow-luxury: 0 25px 50px -12px hsl(42 35% 55% / 0.25);
+    --shadow-luxury: 0 25px 50px -12px hsl(38 30% 78% / 0.25);
     --shadow-elegant: 0 10px 30px -10px hsl(0 0% 0% / 0.1);
-    --shadow-glow: 0 0 40px hsl(42 45% 65% / 0.4);
+    --shadow-glow: 0 0 40px hsl(38 35% 85% / 0.4);
     --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.05);
 
     /* Animation variables */
@@ -67,12 +67,12 @@ All colors MUST be HSL.
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 8%;
-    --sidebar-primary: 42 35% 55%;
+    --sidebar-primary: 38 30% 78%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 0 0% 96%;
     --sidebar-accent-foreground: 0 0% 8%;
     --sidebar-border: 0 0% 88%;
-    --sidebar-ring: 42 35% 55%;
+    --sidebar-ring: 38 30% 78%;
   }
 
   .dark {
@@ -86,9 +86,9 @@ All colors MUST be HSL.
     --popover: 0 0% 12%;
     --popover-foreground: 0 0% 96%;
 
-    --primary: 42 35% 55%; /* Primary Gold #B89B5E */
+    --primary: 38 30% 78%; /* Primary Color #d8ccb7 */
     --primary-foreground: 0 0% 8%;
-    --primary-glow: 42 45% 65%;
+    --primary-glow: 38 35% 85%;
 
     --secondary: 0 0% 18%; /* Rich charcoal */
     --secondary-foreground: 0 0% 96%;
@@ -110,10 +110,10 @@ All colors MUST be HSL.
 
     --border: 0 0% 22%;
     --input: 0 0% 16%;
-    --ring: 42 35% 55%;
+    --ring: 38 30% 78%;
 
     /* Dark mode gradients */
-    --gradient-luxury: linear-gradient(135deg, hsl(42 35% 55%) 0%, hsl(42 45% 65%) 100%);
+    --gradient-luxury: linear-gradient(135deg, hsl(38 30% 78%) 0%, hsl(38 35% 85%) 100%);
     --gradient-elegant: linear-gradient(180deg, hsl(0 0% 8%) 0%, hsl(0 0% 16%) 100%);
     --gradient-dark: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 12%) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(0 0% 0% / 0.8) 0%, hsl(0 0% 10% / 0.6) 100%);
@@ -124,12 +124,12 @@ All colors MUST be HSL.
 
     --sidebar-background: 0 0% 10%;
     --sidebar-foreground: 0 0% 96%;
-    --sidebar-primary: 42 35% 55%;
+    --sidebar-primary: 38 30% 78%;
     --sidebar-primary-foreground: 0 0% 8%;
     --sidebar-accent: 0 0% 16%;
     --sidebar-accent-foreground: 0 0% 96%;
     --sidebar-border: 0 0% 22%;
-    --sidebar-ring: 42 35% 55%;
+    --sidebar-ring: 38 30% 78%;
   }
 }
 
