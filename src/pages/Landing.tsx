@@ -760,7 +760,7 @@ export default function Landing() {
             animationDelay: '0.1s'
           }}>
               <div className="relative h-64 overflow-hidden">
-                <img src={modernArchImage} alt="Downtown Dubai Penthouse" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <img src="/lovable-uploads/2906c3ad-3a7b-4524-ab75-fcaa61123d45.png" alt="Downtown Dubai Penthouse" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="font-bold text-2xl font-playfair drop-shadow-lg">45% ROI</div>
