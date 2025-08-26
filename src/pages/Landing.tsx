@@ -745,7 +745,7 @@ export default function Landing() {
                 </div>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Business Bay Luxury Apartment</h3>
+                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">JW Marriot Luxury one Bedroom</h3>
                 <p className="text-muted-foreground font-montserrat text-sm mb-4">
                   Complete transformation of a 2BR apartment with premium finishes and smart home integration.
                 </p>
