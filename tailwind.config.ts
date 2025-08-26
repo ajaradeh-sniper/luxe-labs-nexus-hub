@@ -20,7 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'montserrat': ['Montserrat', 'sans-serif'],
-				'playfair': ['Playfair Display', 'serif'],
+				'playfair': ['League Spartan', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
