@@ -335,7 +335,7 @@ export default function Landing() {
                               <div className="flex gap-3">
                                 <div className="flex-1">
                                   <div className="mb-2">
-                                    <h4 className="font-semibold text-base mb-1">{option.title}</h4>
+                                    <h4 className="font-semibold text-lg mb-1">{option.title}</h4>
                                     <div className="text-lg font-bold text-primary mb-1">Premium Service</div>
                                     <p className="text-xs text-muted-foreground mb-1">Professional Grade</p>
                                     <p className="text-xs text-muted-foreground">{option.description}</p>
