@@ -412,13 +412,6 @@ export default function Landing() {
                           {investmentOptions.map((option, index) => (
                             <Card key={index} className="p-4 border border-border bg-card/50 relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-yellow-50/10 active:bg-yellow-100/20 active:border-yellow-600">
                               <div className="flex gap-3">
-                                <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                                  <img 
-                                    src={index === 0 ? marketAnalysisImage : index === 1 ? propertyFlippingTransformation : diversifiedPortfolioFund} 
-                                    alt={option.title} 
-                                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" 
-                                  />
-                                </div>
                                 <div className="flex-1">
                                   <div className="mb-2">
                                     <h4 className="font-semibold text-base mb-1">{option.title}</h4>
