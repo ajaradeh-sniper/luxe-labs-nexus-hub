@@ -638,7 +638,7 @@ export default function Landing() {
                   </div>
                   <div>
                     <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Transparent Reporting</h3>
-                    <p className="text-muted-foreground font-montserrat">Real-time project updates and detailed financial reporting.</p>
+                    <p className="text-muted-foreground font-montserrat">JVC The Autograph Penthouse</p>
                   </div>
                 </div>
 
@@ -738,19 +738,19 @@ export default function Landing() {
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in">
               <div className="relative h-64 overflow-hidden">
-                <img src="/lovable-uploads/b4338854-2117-4e56-9ce3-1da2b8248e5d.png" alt="Business Bay Luxury Apartment" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <img src={luxuryBuildingImage} alt="Business Bay Luxury Apartment" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <div className="font-bold text-2xl font-playfair drop-shadow-lg text-black">10% ROI</div>
+                  <div className="font-bold text-2xl font-playfair drop-shadow-lg">32% ROI</div>
                 </div>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">JW Marriot Luxury one Bedroom</h3>
+                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Business Bay Luxury Apartment</h3>
                 <p className="text-muted-foreground font-montserrat text-sm mb-4">
-                  Complete transformation of a 1 Bedroom apartment in Dubai Marina with premium finishes and Eco-conscious upgrades.
+                  Complete transformation of a 2BR apartment with premium finishes and smart home integration.
                 </p>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-montserrat text-muted-foreground">4 months</span>
+                  <span className="text-sm font-montserrat text-muted-foreground">6 months</span>
                   <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
                 </div>
               </CardContent>
@@ -760,10 +760,10 @@ export default function Landing() {
             animationDelay: '0.1s'
           }}>
               <div className="relative h-64 overflow-hidden">
-                <img src="/lovable-uploads/2906c3ad-3a7b-4524-ab75-fcaa61123d45.png" alt="Downtown Dubai Penthouse" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <img src={modernArchImage} alt="Downtown Dubai Penthouse" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <div className="font-bold text-2xl font-playfair drop-shadow-lg text-black">15% ROI</div>
+                  <div className="font-bold text-2xl font-playfair drop-shadow-lg">45% ROI</div>
                 </div>
               </div>
               <CardContent className="p-6">
