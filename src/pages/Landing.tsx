@@ -767,7 +767,7 @@ export default function Landing() {
                 </div>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Downtown Dubai Penthouse</h3>
+                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">JVC Autograph Penthouse</h3>
                 <p className="text-muted-foreground font-montserrat text-sm mb-4">
                   Resale Flip - furnishing and staging of a one bedroom penthouse in JVC
                 </p>
