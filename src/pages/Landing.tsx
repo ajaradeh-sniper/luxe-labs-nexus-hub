@@ -769,7 +769,7 @@ export default function Landing() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-2">JVC Autograph Penthouse</h3>
                 <p className="text-muted-foreground font-montserrat text-sm mb-4">
-                  Resale Flip - furnishing and staging of a one bedroom penthouse in JVC
+                  resale flip - furnishing and staging in JVC Autograph duplex
                 </p>
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-montserrat text-muted-foreground">8 months</span>
