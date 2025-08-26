@@ -747,10 +747,10 @@ export default function Landing() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-2">JW Marriot Luxury one Bedroom</h3>
                 <p className="text-muted-foreground font-montserrat text-sm mb-4">
-                  Complete transformation of a 2BR apartment with premium finishes and smart home integration.
+                  Complete transformation of a 1 Bedroom apartment in marina with premium finishes and eco conscious upgrades.
                 </p>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-montserrat text-muted-foreground">6 months</span>
+                  <span className="text-sm font-montserrat text-muted-foreground">4 months</span>
                   <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
                 </div>
               </CardContent>
