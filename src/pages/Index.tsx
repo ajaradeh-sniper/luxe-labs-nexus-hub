@@ -27,8 +27,9 @@ const Index = () => {
                 Luxury Labs
                 <span className="block text-3xl md:text-4xl text-primary">Real Estate Excellence</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-white/90 font-montserrat">
-                Transform luxury real estate investments with precision and elegance in Dubai's premier market
+              <p className="text-xl md:text-2xl mb-8 text-white font-montserrat">
+                Transform Luxury Real Estate
+                <span className="block">with Exceptional Quality and Returns</span>
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button size="lg" variant="luxury" className="text-lg px-8 py-6">
