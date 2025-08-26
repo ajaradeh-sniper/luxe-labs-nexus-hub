@@ -51,119 +51,51 @@ export default function Landing() {
   const [showServiceDetails, setShowServiceDetails] = useState(false);
 
   // Service data from Services page
-  const investmentOptions = [
-    {
-      title: 'Join a Flip Investment Project - Shared Stake in Single Property Transformation Project (Flip)',
-      returns: '10%-30%',
-      investment: 'AED 1M (8-14 Months)',
-      description: 'Full transparency on single asset',
-      features: [
-        'Minimum investment: AED 1M',
-        'Full transparency on single asset',
-        'Direct involvement opportunities',
-        'Higher return potential',
-        '6-12 month typical timeline'
-      ]
-    },
-    {
-      title: 'Flip a Property with LL - Single Property Transformation Project (Flip)',
-      returns: '15%-30%',
-      investment: 'AED 5M (8-14 Months)',
-      description: 'First access to premium deals',
-      features: [
-        'Minimum investment: AED 5M',
-        'First access to premium deals',
-        'Personal relationship manager',
-        'Customized investment strategies',
-        'Exclusive networking events'
-      ]
-    },
-    {
-      title: 'Invest in Luxury Real Estate - Diversified Fund (Flip & Sell, Flip & Rent, Off-Plan)',
-      returns: '2x-4x',
-      investment: 'AED 500K (3-7 Years Commitment)',
-      description: 'Diversified across 10+ properties',
-      features: [
-        'Minimum investment: AED 500K',
-        'Diversified across 10+ properties',
-        'Professional management included',
-        'Quarterly performance reports',
-        'Exit flexibility after 12 months'
-      ]
-    }
-  ];
-
-  const transformationOptions = [
-    {
-      title: 'Personal Property Transformation (Renovation)',
-      description: 'Premium design, project management, material sourcing, furniture and staging',
-      features: [
-        'Premium design services',
-        'Project management & oversight',
-        'Material & product sourcing',
-        'Furniture selection & staging',
-        'Quality control & inspections'
-      ]
-    },
-    {
-      title: 'Property Aquisition, Transformation and Move-in Ready Services (HNWI Concierge)',
-      description: 'Complete property renovation and enhancement services',
-      features: [
-        'Design & renovation consultation',
-        'Project management & oversight',
-        'Quality control & inspections',
-        'Vendor coordination',
-        'Timeline & budget management'
-      ]
-    },
-    {
-      title: 'HNWI Concierge',
-      description: 'Complete Dubai relocation and property services',
-      features: [
-        'Dubai relocation consultation (A-Z)',
-        'Property purchase assistance',
-        'Home transformation services',
-        'Legal & documentation support',
-        'Ongoing concierge services'
-      ]
-    }
-  ];
-
-  const advisoryOptions = [
-    {
-      title: 'Consult LL - Luxury Real Estate & Property Transformation Advisory Services',
-      description: 'Premium design, project management, material sourcing, furniture and staging',
-      features: [
-        'Premium design services',
-        'Project management & oversight',
-        'Material & product sourcing',
-        'Furniture selection & staging',
-        'Quality control & inspections'
-      ]
-    },
-    {
-      title: 'Hire LL - End to End Personal Property Transformation (Renovation)',
-      description: 'Complete property renovation and enhancement services',
-      features: [
-        'Design & renovation consultation',
-        'Project management & oversight',
-        'Quality control & inspections',
-        'Vendor coordination',
-        'Timeline & budget management'
-      ]
-    },
-    {
-      title: 'Hire LL - End to End Property Aquisition, Transformation & Move-in Services (HNWI Concierge)',
-      description: 'Complete Dubai relocation and property services',
-      features: [
-        'Dubai relocation consultation (A-Z)',
-        'Property purchase assistance',
-        'Home transformation services',
-        'Legal & documentation support',
-        'Ongoing concierge services'
-      ]
-    }
-  ];
+  const investmentOptions = [{
+    title: 'Join a Flip Investment Project - Shared Stake in Single Property Transformation Project (Flip)',
+    returns: '10%-30%',
+    investment: 'AED 1M (8-14 Months)',
+    description: 'Full transparency on single asset',
+    features: ['Minimum investment: AED 1M', 'Full transparency on single asset', 'Direct involvement opportunities', 'Higher return potential', '6-12 month typical timeline']
+  }, {
+    title: 'Flip a Property with LL - Single Property Transformation Project (Flip)',
+    returns: '15%-30%',
+    investment: 'AED 5M (8-14 Months)',
+    description: 'First access to premium deals',
+    features: ['Minimum investment: AED 5M', 'First access to premium deals', 'Personal relationship manager', 'Customized investment strategies', 'Exclusive networking events']
+  }, {
+    title: 'Invest in Luxury Real Estate - Diversified Fund (Flip & Sell, Flip & Rent, Off-Plan)',
+    returns: '2x-4x',
+    investment: 'AED 500K (3-7 Years Commitment)',
+    description: 'Diversified across 10+ properties',
+    features: ['Minimum investment: AED 500K', 'Diversified across 10+ properties', 'Professional management included', 'Quarterly performance reports', 'Exit flexibility after 12 months']
+  }];
+  const transformationOptions = [{
+    title: 'Personal Property Transformation (Renovation)',
+    description: 'Premium design, project management, material sourcing, furniture and staging',
+    features: ['Premium design services', 'Project management & oversight', 'Material & product sourcing', 'Furniture selection & staging', 'Quality control & inspections']
+  }, {
+    title: 'Property Aquisition, Transformation and Move-in Ready Services (HNWI Concierge)',
+    description: 'Complete property renovation and enhancement services',
+    features: ['Design & renovation consultation', 'Project management & oversight', 'Quality control & inspections', 'Vendor coordination', 'Timeline & budget management']
+  }, {
+    title: 'HNWI Concierge',
+    description: 'Complete Dubai relocation and property services',
+    features: ['Dubai relocation consultation (A-Z)', 'Property purchase assistance', 'Home transformation services', 'Legal & documentation support', 'Ongoing concierge services']
+  }];
+  const advisoryOptions = [{
+    title: 'Consult LL - Luxury Real Estate & Property Transformation Advisory Services',
+    description: 'Premium design, project management, material sourcing, furniture and staging',
+    features: ['Premium design services', 'Project management & oversight', 'Material & product sourcing', 'Furniture selection & staging', 'Quality control & inspections']
+  }, {
+    title: 'Hire LL - End to End Personal Property Transformation (Renovation)',
+    description: 'Complete property renovation and enhancement services',
+    features: ['Design & renovation consultation', 'Project management & oversight', 'Quality control & inspections', 'Vendor coordination', 'Timeline & budget management']
+  }, {
+    title: 'Hire LL - End to End Property Aquisition, Transformation & Move-in Services (HNWI Concierge)',
+    description: 'Complete Dubai relocation and property services',
+    features: ['Dubai relocation consultation (A-Z)', 'Property purchase assistance', 'Home transformation services', 'Legal & documentation support', 'Ongoing concierge services']
+  }];
   return <div className="min-h-screen bg-background">
       <Navigation />
 
@@ -172,15 +104,12 @@ export default function Landing() {
         {/* Dynamic Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/20"></div>
-          <div 
-            className="absolute inset-0 opacity-30"
-            style={{
-              backgroundImage: `url(${heroImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+          <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: `url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }} />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/60"></div>
         </div>
 
@@ -194,11 +123,7 @@ export default function Landing() {
             {/* Header with Logo */}
             <div className="text-center mb-16">
               <div className="inline-block relative">
-                <img 
-                  src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
-                  alt="Luxury Labs Logo" 
-                  className="h-32 sm:h-40 lg:h-48 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500" 
-                />
+                <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-32 sm:h-40 lg:h-48 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500" />
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-xl opacity-50 animate-pulse"></div>
               </div>
               
@@ -207,9 +132,7 @@ export default function Landing() {
                   Transform <span className="text-white">Luxury</span> Real Estate 
                   <span className="block">with Exceptional Quality and Returns</span>
                 </h1>
-                <p className="text-lg sm:text-xl text-muted-foreground font-montserrat max-w-3xl mx-auto leading-relaxed">
-                  Partner with Luxury Labs for premium property transformations, strategic investments, and expert transformation and advisory services in Dubai's elite real estate market
-                </p>
+                <p className="text-lg sm:text-xl text-muted-foreground font-montserrat max-w-3xl mx-auto leading-relaxed">Partner with Luxury Labs for premium property transformations, strategic investments, and advisory services in Dubai's elite real estate market</p>
               </div>
             </div>
 
@@ -221,11 +144,7 @@ export default function Landing() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={strategicPlanningImage} 
-                    alt="Investment Partnership" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                  />
+                  <img src={strategicPlanningImage} alt="Investment Partnership" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
                   
                   {/* Floating Icon */}
@@ -259,10 +178,7 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button 
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
-                    onClick={() => window.location.href = '/investors'}
-                  >
+                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/investors'}>
                     View Investors Details
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
@@ -274,11 +190,7 @@ export default function Landing() {
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={premiumVillaSelectionImage} 
-                    alt="Luxury Property Transformation" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                  />
+                  <img src={premiumVillaSelectionImage} alt="Luxury Property Transformation" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
                   
                   {/* Floating Icon */}
@@ -312,10 +224,7 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button 
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
-                    onClick={() => window.location.href = '/contact'}
-                  >
+                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/contact'}>
                     Contact Us
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
@@ -327,11 +236,7 @@ export default function Landing() {
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={marketAnalysisImage} 
-                    alt="Professional Advisory Services" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                  />
+                  <img src={marketAnalysisImage} alt="Professional Advisory Services" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
                   
                   {/* Floating Icon */}
@@ -365,10 +270,7 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button 
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
-                    onClick={() => window.location.href = '/contact'}
-                  >
+                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/contact'}>
                     Contact Us
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
@@ -389,17 +291,9 @@ export default function Landing() {
                 {/* Toggle Button */}
                 <Collapsible open={showServiceDetails} onOpenChange={setShowServiceDetails}>
                   <CollapsibleTrigger asChild>
-                    <Button 
-                      variant="outline" 
-                      size="lg"
-                      className="group bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300"
-                    >
+                    <Button variant="outline" size="lg" className="group bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300">
                       {showServiceDetails ? 'Hide Details' : 'View All Service Details'}
-                      {showServiceDetails ? (
-                        <ChevronUp className="ml-2 h-5 w-5 transition-transform duration-300" />
-                      ) : (
-                        <ChevronDown className="ml-2 h-5 w-5 transition-transform duration-300" />
-                      )}
+                      {showServiceDetails ? <ChevronUp className="ml-2 h-5 w-5 transition-transform duration-300" /> : <ChevronDown className="ml-2 h-5 w-5 transition-transform duration-300" />}
                     </Button>
                   </CollapsibleTrigger>
 
@@ -409,39 +303,27 @@ export default function Landing() {
                       <div className="animate-fade-in">
                         <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Investment Options</h3>
                         <div className="space-y-4">
-                          {investmentOptions.map((option, index) => (
-                            <Card key={index} className="p-4 border border-border bg-white text-black relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-gray-50 active:bg-gray-100 active:border-yellow-600">
+                          {investmentOptions.map((option, index) => <Card key={index} className="p-4 border border-border bg-white text-black relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-gray-50 active:bg-gray-100 active:border-yellow-600">
                               <div className="flex gap-3">
                                 <div className="flex-1">
                                   <div className="mb-2">
                                     <h4 className="font-semibold text-base mb-1">{option.title}</h4>
-                                    {option.returns && (
-                                      <div className="text-lg font-bold text-primary mb-1">10%-30% ROI</div>
-                                    )}
-                                    {option.investment && (
-                                      <p className="text-xs text-muted-foreground mb-1">Min. {option.investment}</p>
-                                    )}
+                                    {option.returns && <div className="text-lg font-bold text-primary mb-1">10%-30% ROI</div>}
+                                    {option.investment && <p className="text-xs text-muted-foreground mb-1">Min. {option.investment}</p>}
                                     <p className="text-xs text-muted-foreground">{option.description}</p>
                                   </div>
                                   <ul className="space-y-1 mb-3">
-                                    {option.features.slice(0, 3).map((feature, featureIndex) => (
-                                      <li key={featureIndex} className="flex items-start gap-2">
+                                    {option.features.slice(0, 3).map((feature, featureIndex) => <li key={featureIndex} className="flex items-start gap-2">
                                         <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
                                         <span className="text-xs">{feature}</span>
-                                      </li>
-                                    ))}
+                                      </li>)}
                                   </ul>
-                                  <Button 
-                                    size="sm"
-                                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105"
-                                    onClick={() => window.location.href = '/investors'}
-                                  >
+                                  <Button size="sm" className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105" onClick={() => window.location.href = '/investors'}>
                                     Learn More
                                   </Button>
                                 </div>
                               </div>
-                            </Card>
-                          ))}
+                            </Card>)}
                         </div>
                       </div>
 
@@ -449,8 +331,7 @@ export default function Landing() {
                       <div className="animate-fade-in">
                         <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Transformation Services</h3>
                         <div className="space-y-4">
-                          {advisoryOptions.map((option, index) => (
-                            <Card key={index} className="p-4 border border-border bg-white text-black relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-gray-50 active:bg-gray-100 active:border-yellow-600">
+                          {advisoryOptions.map((option, index) => <Card key={index} className="p-4 border border-border bg-white text-black relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-gray-50 active:bg-gray-100 active:border-yellow-600">
                               <div className="flex gap-3">
                                 <div className="flex-1">
                                   <div className="mb-2">
@@ -460,24 +341,17 @@ export default function Landing() {
                                     <p className="text-xs text-muted-foreground">{option.description}</p>
                                   </div>
                                   <ul className="space-y-1 mb-3">
-                                    {option.features.slice(0, 3).map((feature, featureIndex) => (
-                                      <li key={featureIndex} className="flex items-start gap-2">
+                                    {option.features.slice(0, 3).map((feature, featureIndex) => <li key={featureIndex} className="flex items-start gap-2">
                                         <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
                                         <span className="text-xs">{feature}</span>
-                                      </li>
-                                    ))}
+                                      </li>)}
                                   </ul>
-                                  <Button 
-                                    size="sm"
-                                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105"
-                                    onClick={() => window.location.href = '/contact'}
-                                  >
+                                  <Button size="sm" className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105" onClick={() => window.location.href = '/contact'}>
                                     Learn More
                                   </Button>
                                 </div>
                               </div>
-                            </Card>
-                          ))}
+                            </Card>)}
                         </div>
                       </div>
                     </div>
@@ -698,10 +572,7 @@ export default function Landing() {
           {/* Learn More Button */}
           <div className="text-center mt-12">
             <Link to="/about">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg"
-              >
+              <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg">
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -812,11 +683,7 @@ export default function Landing() {
                   <h4 className="font-semibold text-foreground mb-3">Recent Investments</h4>
                   <div className="space-y-2">
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="src/assets/palm-villa-for-sale.jpg" 
-                        alt="Palm Jumeirah Villa" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
+                      <img src="src/assets/palm-villa-for-sale.jpg" alt="Palm Jumeirah Villa" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Palm Jumeirah Villa</p>
                         <p className="text-sm text-muted-foreground">AED 800K invested</p>
@@ -827,11 +694,7 @@ export default function Landing() {
                       </div>
                     </div>
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="src/assets/luxury-penthouse.jpg" 
-                        alt="Marina Penthouse" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
+                      <img src="src/assets/luxury-penthouse.jpg" alt="Marina Penthouse" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Marina Penthouse</p>
                         <p className="text-sm text-muted-foreground">AED 1.2M invested</p>
@@ -842,11 +705,7 @@ export default function Landing() {
                       </div>
                     </div>
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="src/assets/downtown-luxury.jpg" 
-                        alt="Downtown Apartment" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
+                      <img src="src/assets/downtown-luxury.jpg" alt="Downtown Apartment" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Downtown Apartment</p>
                         <p className="text-sm text-muted-foreground">AED 400K invested</p>
@@ -966,35 +825,33 @@ export default function Landing() {
           </div>
 
           <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { name: 'Forbes', logo: forbesLogo },
-              { name: 'Arabian Business', logo: arabianBusinessLogo },
-              { name: 'Gulf News', logo: gulfNewsLogo },
-              { name: 'HGTV', logo: hgtvLogo }
-            ].map((publication, index) => (
-              <Card key={index} className="elegant-card">
+            {[{
+            name: 'Forbes',
+            logo: forbesLogo
+          }, {
+            name: 'Arabian Business',
+            logo: arabianBusinessLogo
+          }, {
+            name: 'Gulf News',
+            logo: gulfNewsLogo
+          }, {
+            name: 'HGTV',
+            logo: hgtvLogo
+          }].map((publication, index) => <Card key={index} className="elegant-card">
                 <CardContent className="p-6 text-center">
                   <div className="w-20 h-20 rounded-lg flex items-center justify-center mb-4 mx-auto bg-white/10 backdrop-blur-sm">
-                    <img 
-                      src={publication.logo} 
-                      alt={`${publication.name} logo`} 
-                      className="max-w-16 max-h-16 object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <img src={publication.logo} alt={`${publication.name} logo`} className="max-w-16 max-h-16 object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <h3 className="font-playfair font-bold text-foreground mb-2">{publication.name}</h3>
                   <p className="text-sm text-muted-foreground font-montserrat">Featured Publication</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
           
           {/* Learn More Button */}
           <div className="text-center mt-12">
             <Link to="/media">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg"
-              >
+              <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg">
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -1056,10 +913,7 @@ export default function Landing() {
           {/* Learn More Button */}
           <div className="text-center mt-12">
             <Link to="/partners">
-              <Button 
-                size="lg" 
-                className="luxury-button font-montserrat px-8 py-3 text-lg"
-              >
+              <Button size="lg" className="luxury-button font-montserrat px-8 py-3 text-lg">
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
