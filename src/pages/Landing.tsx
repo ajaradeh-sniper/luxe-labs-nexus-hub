@@ -128,8 +128,8 @@ export default function Landing() {
               </div>
               
               <div className="mt-8 space-y-4">
-                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-playfair font-bold text-foreground leading-tight">
-                  Transform <span className="text-white">Luxury</span> Real Estate 
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-playfair font-bold text-black dark:text-foreground leading-tight">
+                  Transform <span className="text-black dark:text-white">Luxury</span> Real Estate 
                   <span className="block">with Exceptional Quality and Returns</span>
                 </h1>
                 <p className="text-lg sm:text-xl text-muted-foreground font-montserrat max-w-3xl mx-auto leading-relaxed">Partner with Luxury Labs for premium property transformations, strategic investments, and advisory services in Dubai's elite real estate market</p>
