@@ -410,7 +410,7 @@ export default function Landing() {
                         <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Investment Options</h3>
                         <div className="space-y-4">
                           {investmentOptions.map((option, index) => (
-                            <Card key={index} className="p-4 border border-border bg-card/50 relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-yellow-50/10 active:bg-yellow-100/20 active:border-yellow-600">
+                            <Card key={index} className="p-4 border border-border bg-white text-black relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-gray-50 active:bg-gray-100 active:border-yellow-600">
                               <div className="flex gap-3">
                                 <div className="flex-1">
                                   <div className="mb-2">
