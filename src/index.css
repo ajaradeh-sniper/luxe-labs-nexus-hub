@@ -148,11 +148,11 @@ All colors MUST be HSL.
 
   /* Luxury Labs Custom Classes */
   .luxury-gradient {
-    @apply bg-gradient-luxury;
+    @apply bg-primary;
   }
 
   .luxury-text {
-    @apply bg-gradient-luxury bg-clip-text text-transparent;
+    @apply text-primary;
   }
 
   .luxury-shadow {

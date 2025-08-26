@@ -178,7 +178,7 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/investors'}>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/investors'}>
                     View Investors Details
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
@@ -224,7 +224,7 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/contact'}>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/contact'}>
                     Contact Us
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
@@ -270,7 +270,7 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/contact'}>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/contact'}>
                     Contact Us
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
@@ -318,7 +318,7 @@ export default function Landing() {
                                         <span className="text-xs">{feature}</span>
                                       </li>)}
                                   </ul>
-                                  <Button size="sm" className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105" onClick={() => window.location.href = '/investors'}>
+                                  <Button size="sm" className="w-full bg-primary hover:bg-primary/90 text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105" onClick={() => window.location.href = '/investors'}>
                                     Learn More
                                   </Button>
                                 </div>
@@ -346,7 +346,7 @@ export default function Landing() {
                                         <span className="text-xs">{feature}</span>
                                       </li>)}
                                   </ul>
-                                  <Button size="sm" className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105" onClick={() => window.location.href = '/contact'}>
+                                  <Button size="sm" className="w-full bg-primary hover:bg-primary/90 text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105" onClick={() => window.location.href = '/contact'}>
                                     Learn More
                                   </Button>
                                 </div>
@@ -572,7 +572,7 @@ export default function Landing() {
           {/* Learn More Button */}
           <div className="text-center mt-12">
             <Link to="/about">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold font-montserrat px-8 py-3 text-lg">
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -851,7 +851,7 @@ export default function Landing() {
           {/* Learn More Button */}
           <div className="text-center mt-12">
             <Link to="/media">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold font-montserrat px-8 py-3 text-lg">
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -913,7 +913,7 @@ export default function Landing() {
           {/* Learn More Button */}
           <div className="text-center mt-12">
             <Link to="/partners">
-              <Button size="lg" className="luxury-button font-montserrat px-8 py-3 text-lg">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat px-8 py-3 text-lg">
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
