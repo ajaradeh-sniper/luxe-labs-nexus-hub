@@ -416,7 +416,7 @@ export default function Landing() {
                                   <div className="mb-2">
                                     <h4 className="font-semibold text-base mb-1">{option.title}</h4>
                                     {option.returns && (
-                                       <div className="text-lg font-bold text-primary mb-1">10%-30% ROI</div>
+                                       <div className="text-lg font-bold text-primary mb-1">{option.returns} ROI</div>
                                     )}
                                     {option.investment && (
                                       <p className="text-xs text-muted-foreground mb-1">Min. {option.investment}</p>
