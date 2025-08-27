@@ -310,7 +310,6 @@ export default function Landing() {
                                     <h4 className="font-semibold text-lg mb-1">{option.title}</h4>
                                     {option.returns && <div className="text-lg font-bold text-primary mb-1">10%-30% ROI</div>}
                                     {option.investment && <p className="text-xs text-muted-foreground mb-1">Min. {option.investment}</p>}
-                                    <p className="text-xs text-muted-foreground">{option.description}</p>
                                   </div>
                                   <ul className="space-y-1 mb-3">
                                     {option.features.slice(0, 3).map((feature, featureIndex) => <li key={featureIndex} className="flex items-start gap-2">
@@ -338,7 +337,6 @@ export default function Landing() {
                                     <h4 className="font-semibold text-lg mb-1">{option.title}</h4>
                                     <div className="text-lg font-bold text-primary mb-1">Premium Service</div>
                                     <p className="text-xs text-muted-foreground mb-1">Professional Grade</p>
-                                    <p className="text-xs text-muted-foreground">{option.description}</p>
                                   </div>
                                   <ul className="space-y-1 mb-3">
                                     {option.features.slice(0, 3).map((feature, featureIndex) => <li key={featureIndex} className="flex items-start gap-2">
