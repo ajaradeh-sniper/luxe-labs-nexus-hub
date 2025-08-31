@@ -684,6 +684,152 @@ export type Database = {
           },
         ]
       }
+      opportunity_investor_process: {
+        Row: {
+          assigned_to: string | null
+          created_at: string
+          current_stage: string
+          id: string
+          investor_email: string
+          investor_name: string | null
+          notes: string | null
+          opportunity_id: string
+          stage_history: Json | null
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          created_at?: string
+          current_stage?: string
+          id?: string
+          investor_email: string
+          investor_name?: string | null
+          notes?: string | null
+          opportunity_id: string
+          stage_history?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          created_at?: string
+          current_stage?: string
+          id?: string
+          investor_email?: string
+          investor_name?: string | null
+          notes?: string | null
+          opportunity_id?: string
+          stage_history?: Json | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_investor_process_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "opportunity_investor_process_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunity_share_analytics: {
+        Row: {
+          action_data: Json | null
+          action_type: string
+          created_at: string
+          id: string
+          ip_address: unknown | null
+          share_id: string
+          user_agent: string | null
+        }
+        Insert: {
+          action_data?: Json | null
+          action_type: string
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          share_id: string
+          user_agent?: string | null
+        }
+        Update: {
+          action_data?: Json | null
+          action_type?: string
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          share_id?: string
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_share_analytics_share_id_fkey"
+            columns: ["share_id"]
+            isOneToOne: false
+            referencedRelation: "opportunity_shares"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunity_shares: {
+        Row: {
+          created_at: string
+          id: string
+          opportunity_id: string
+          share_message: string | null
+          share_method: string
+          shared_by: string
+          shared_with_email: string
+          shared_with_name: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          opportunity_id: string
+          share_message?: string | null
+          share_method?: string
+          shared_by: string
+          shared_with_email: string
+          shared_with_name?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          opportunity_id?: string
+          share_message?: string | null
+          share_method?: string
+          shared_by?: string
+          shared_with_email?: string
+          shared_with_name?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_shares_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunity_shares_shared_by_fkey"
+            columns: ["shared_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
