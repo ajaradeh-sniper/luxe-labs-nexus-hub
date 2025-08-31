@@ -499,7 +499,7 @@ export function EnhancedOpportunityManagement() {
         ))}
       </div>
 
-      {/* Enhanced Create Opportunity Modal */}
+      {/* Enhanced Create Opportunity Modal with Images, Blueprints & Geolocation */}
       <EnhancedOpportunityModal 
         open={isCreateDialogOpen} 
         onOpenChange={setIsCreateDialogOpen}
