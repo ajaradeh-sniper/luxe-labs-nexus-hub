@@ -12,6 +12,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { Opportunity } from '@/types/opportunities';
+import { EnhancedOpportunityModal } from '@/components/modals/EnhancedOpportunityModal';
 import { 
   Plus, 
   Eye, 
@@ -202,7 +203,9 @@ export function EnhancedOpportunityManagement() {
     }).format(amount);
   };
 
-  const handleCreateOpportunity = () => {
+  const handleCreateOpportunity = (data: any) => {
+    console.log('New opportunity data:', data);
+    // Here you would typically save to database
     toast({
       title: "Opportunity Created",
       description: "New investment opportunity has been added for review.",
@@ -496,19 +499,12 @@ export function EnhancedOpportunityManagement() {
         ))}
       </div>
 
-      {/* Create Opportunity Dialog */}
-      <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>Create New Investment Opportunity</DialogTitle>
-            <DialogDescription>
-              Add a new real estate investment opportunity for evaluation and investor pitching.
-            </DialogDescription>
-          </DialogHeader>
-          
-          <CreateOpportunityForm onSubmit={handleCreateOpportunity} />
-        </DialogContent>
-      </Dialog>
+      {/* Enhanced Create Opportunity Modal */}
+      <EnhancedOpportunityModal 
+        open={isCreateDialogOpen} 
+        onOpenChange={setIsCreateDialogOpen}
+        onSubmit={handleCreateOpportunity}
+      />
 
       {/* Opportunity Details Dialog */}
       {selectedOpportunity && (
