@@ -87,7 +87,7 @@ interface EnhancedOpportunityModalProps {
   onSubmit: (data: OpportunityFormData & { images: ImageFile[]; location: LocationData | null }) => void;
 }
 
-const MAPBOX_TOKEN = process.env.VITE_MAPBOX_TOKEN || '';
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN || '';
 
 export function EnhancedOpportunityModal({ open, onOpenChange, onSubmit }: EnhancedOpportunityModalProps) {
   const { toast } = useToast();
