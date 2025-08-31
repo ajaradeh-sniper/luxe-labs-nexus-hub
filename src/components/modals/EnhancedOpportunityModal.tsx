@@ -51,6 +51,18 @@ const opportunitySchema = z.object({
   estimated_renovation_duration: z.number().min(1, 'Renovation duration must be at least 1 month'),
   estimated_sale_date: z.string().min(1, 'Sale date is required'),
   notes: z.string().optional(),
+  // Investment fields
+  required_investment: z.number().min(1, 'Required investment must be greater than 0'),
+  minimum_investment: z.number().min(1, 'Minimum investment must be greater than 0'),
+  target_investors: z.number().min(1, 'Target number of investors is required'),
+  current_investors: z.number().min(0, 'Current investors cannot be negative'),
+  investment_structure: z.enum(['equity', 'debt', 'hybrid']),
+  expected_return_timeframe: z.number().min(1, 'Return timeframe must be at least 1 month'),
+  exit_strategy: z.enum(['sale', 'refinance', 'hold', 'other']),
+  process_stage: z.enum(['sourcing', 'due_diligence', 'legal_review', 'funding', 'execution']),
+  key_milestones: z.string().optional(),
+  risk_factors: z.string().optional(),
+  investment_highlights: z.string().optional(),
 });
 
 type OpportunityFormData = z.infer<typeof opportunitySchema>;
@@ -303,11 +315,12 @@ export function EnhancedOpportunityModal({ open, onOpenChange, onSubmit }: Enhan
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onFormSubmit)} className="space-y-6">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-5">
+              <TabsList className="grid w-full grid-cols-6">
                 <TabsTrigger value="basic">Basic Info</TabsTrigger>
                 <TabsTrigger value="images">Images</TabsTrigger>
                 <TabsTrigger value="blueprints">Blueprints</TabsTrigger>
                 <TabsTrigger value="location">Location</TabsTrigger>
+                <TabsTrigger value="investment">Investment</TabsTrigger>
                 <TabsTrigger value="financial">Financial</TabsTrigger>
               </TabsList>
 
@@ -759,6 +772,268 @@ export function EnhancedOpportunityModal({ open, onOpenChange, onSubmit }: Enhan
                         </div>
                       )}
                     </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="investment" className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Building className="h-5 w-5" />
+                      Investment Requirements
+                    </CardTitle>
+                    <CardDescription>
+                      Define the funding requirements and investment structure for this opportunity
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="required_investment"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Total Required Investment (AED)</FormLabel>
+                            <FormControl>
+                              <Input 
+                                type="number" 
+                                placeholder="0"
+                                {...field}
+                                onChange={e => field.onChange(parseInt(e.target.value) || 0)}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="minimum_investment"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Minimum Investment Per Investor (AED)</FormLabel>
+                            <FormControl>
+                              <Input 
+                                type="number" 
+                                placeholder="0"
+                                {...field}
+                                onChange={e => field.onChange(parseInt(e.target.value) || 0)}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="target_investors"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Target Number of Investors</FormLabel>
+                            <FormControl>
+                              <Input 
+                                type="number" 
+                                placeholder="0"
+                                {...field}
+                                onChange={e => field.onChange(parseInt(e.target.value) || 0)}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="current_investors"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Current Committed Investors</FormLabel>
+                            <FormControl>
+                              <Input 
+                                type="number" 
+                                placeholder="0"
+                                {...field}
+                                onChange={e => field.onChange(parseInt(e.target.value) || 0)}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="investment_structure"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Investment Structure</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select structure" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="equity">Equity Partnership</SelectItem>
+                                <SelectItem value="debt">Debt Financing</SelectItem>
+                                <SelectItem value="hybrid">Hybrid (Equity + Debt)</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="expected_return_timeframe"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Expected Return Timeframe (months)</FormLabel>
+                            <FormControl>
+                              <Input 
+                                type="number" 
+                                placeholder="12"
+                                {...field}
+                                onChange={e => field.onChange(parseInt(e.target.value) || 0)}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Project Process & Timeline</CardTitle>
+                    <CardDescription>
+                      Current stage and key milestones for this investment opportunity
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="process_stage"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Current Process Stage</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select stage" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="sourcing">Property Sourcing</SelectItem>
+                                <SelectItem value="due_diligence">Due Diligence</SelectItem>
+                                <SelectItem value="legal_review">Legal Review</SelectItem>
+                                <SelectItem value="funding">Securing Funding</SelectItem>
+                                <SelectItem value="execution">Ready for Execution</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="exit_strategy"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Exit Strategy</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select exit strategy" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="sale">Sale After Renovation</SelectItem>
+                                <SelectItem value="refinance">Refinance & Hold</SelectItem>
+                                <SelectItem value="hold">Long-term Hold</SelectItem>
+                                <SelectItem value="other">Other Strategy</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="key_milestones"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Key Project Milestones</FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="List major milestones and deadlines for this project..."
+                              rows={3}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Investment Analysis</CardTitle>
+                    <CardDescription>
+                      Risk assessment and investment highlights
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <FormField
+                      control={form.control}
+                      name="investment_highlights"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Investment Highlights</FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="Key selling points and unique advantages of this investment opportunity..."
+                              rows={4}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="risk_factors"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Risk Factors & Mitigation</FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="Identify potential risks and how they will be mitigated..."
+                              rows={4}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                   </CardContent>
                 </Card>
               </TabsContent>
