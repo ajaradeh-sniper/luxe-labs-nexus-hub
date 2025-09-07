@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
+import { useOpportunitySharing } from '@/hooks/useOpportunitySharing';
 import { 
   Upload, 
   MapPin, 
@@ -25,7 +26,14 @@ import {
   Building,
   ChevronLeft,
   ChevronRight,
-  Map as MapIcon
+  Map as MapIcon,
+  Share2,
+  Users,
+  Eye,
+  Mail,
+  BarChart3,
+  Target,
+  Clock
 } from 'lucide-react';
 
 const opportunitySchema = z.object({
@@ -85,11 +93,13 @@ interface EnhancedOpportunityModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSubmit: (data: OpportunityFormData & { images: ImageFile[]; location: LocationData | null }) => void;
+  opportunity?: any; // For editing existing opportunities
+  isAdminView?: boolean;
 }
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN || '';
 
-export function EnhancedOpportunityModal({ open, onOpenChange, onSubmit }: EnhancedOpportunityModalProps) {
+export function EnhancedOpportunityModal({ open, onOpenChange, onSubmit, opportunity, isAdminView = false }: EnhancedOpportunityModalProps) {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('basic');
   const [images, setImages] = useState<ImageFile[]>([]);
@@ -97,6 +107,17 @@ export function EnhancedOpportunityModal({ open, onOpenChange, onSubmit }: Enhan
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [location, setLocation] = useState<LocationData | null>(null);
   const [mapboxToken, setMapboxToken] = useState(MAPBOX_TOKEN);
+  const [shareEmails, setShareEmails] = useState<string>('');
+  const [shareMessage, setShareMessage] = useState<string>('');
+  const [shareMethod, setShareMethod] = useState<'email' | 'link'>('email');
+  
+  // Use the sharing hook
+  const {
+    shareAnalytics,
+    investorProcess,
+    shareOpportunity,
+    getAnalyticsSummary
+  } = useOpportunitySharing(opportunity?.id);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const blueprintInputRef = useRef<HTMLInputElement>(null);
 
@@ -267,6 +288,55 @@ export function EnhancedOpportunityModal({ open, onOpenChange, onSubmit }: Enhan
     return '0.0';
   };
 
+  const handleShareOpportunity = async () => {
+    if (!opportunity || !shareEmails.trim()) {
+      toast({
+        title: "Missing Information",
+        description: "Please enter at least one investor email.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const emails = shareEmails
+      .split(/[,\n]/)
+      .map(email => email.trim())
+      .filter(email => email && email.includes('@'))
+      .map(email => ({ email, name: email.split('@')[0] }));
+
+    if (emails.length === 0) {
+      toast({
+        title: "Invalid Emails",
+        description: "Please enter valid email addresses.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const success = await shareOpportunity(emails, shareMessage, shareMethod);
+    if (success) {
+      setShareEmails('');
+      setShareMessage('');
+    }
+  };
+
+
+  const getStageProgress = (stage: string): number => {
+    const stages = {
+      'shared': 15,
+      'invited': 25,
+      'accepted': 40,
+      'contacted': 60,
+      'agreed': 80,
+      'signed': 90,
+      'invested': 100
+    };
+    return stages[stage as keyof typeof stages] || 0;
+  };
+
+  // Get analytics summary for display
+  const analyticsSummary = getAnalyticsSummary();
+
   if (!mapboxToken) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
@@ -315,13 +385,16 @@ export function EnhancedOpportunityModal({ open, onOpenChange, onSubmit }: Enhan
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onFormSubmit)} className="space-y-6">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-6">
+              <TabsList className={`grid w-full ${isAdminView && opportunity ? 'grid-cols-7' : 'grid-cols-6'}`}>
                 <TabsTrigger value="basic">Basic Info</TabsTrigger>
                 <TabsTrigger value="images">Images</TabsTrigger>
                 <TabsTrigger value="blueprints">Blueprints</TabsTrigger>
                 <TabsTrigger value="location">Location</TabsTrigger>
                 <TabsTrigger value="investment">Investment</TabsTrigger>
                 <TabsTrigger value="financial">Financial</TabsTrigger>
+                {isAdminView && opportunity && (
+                  <TabsTrigger value="sharing">Share & Track</TabsTrigger>
+                )}
               </TabsList>
 
               <TabsContent value="basic" className="space-y-6">
@@ -1257,6 +1330,207 @@ export function EnhancedOpportunityModal({ open, onOpenChange, onSubmit }: Enhan
                   )}
                 />
               </TabsContent>
+
+              {isAdminView && opportunity && (
+                <TabsContent value="sharing" className="space-y-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Share Opportunity Card */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          <Share2 className="h-5 w-5" />
+                          Share Opportunity
+                        </CardTitle>
+                        <CardDescription>
+                          Send this opportunity to investors and track their engagement
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div>
+                          <Label htmlFor="share-method">Share Method</Label>
+                          <Select value={shareMethod} onValueChange={(value: 'email' | 'link') => setShareMethod(value)}>
+                            <SelectTrigger>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="email">Email Invitation</SelectItem>
+                              <SelectItem value="link">Shareable Link</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div>
+                          <Label htmlFor="share-emails">Investor Emails</Label>
+                          <Textarea
+                            id="share-emails"
+                            placeholder="Enter investor emails separated by commas or new lines"
+                            value={shareEmails}
+                            onChange={(e) => setShareEmails(e.target.value)}
+                            rows={3}
+                          />
+                        </div>
+
+                        <div>
+                          <Label htmlFor="share-message">Personal Message (Optional)</Label>
+                          <Textarea
+                            id="share-message"
+                            placeholder="Add a personal message to your invitation..."
+                            value={shareMessage}
+                            onChange={(e) => setShareMessage(e.target.value)}
+                            rows={3}
+                          />
+                        </div>
+
+                        <Button className="w-full" onClick={() => handleShareOpportunity()}>
+                          <Mail className="h-4 w-4 mr-2" />
+                          Share with Investors
+                        </Button>
+                      </CardContent>
+                    </Card>
+
+                    {/* Analytics Overview Card */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          <BarChart3 className="h-5 w-5" />
+                          Share Analytics
+                        </CardTitle>
+                        <CardDescription>
+                          Track how investors are engaging with this opportunity
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="text-center p-4 bg-muted rounded-lg">
+                            <div className="text-2xl font-bold text-primary">
+                              {analyticsSummary.sent}
+                            </div>
+                            <div className="text-sm text-muted-foreground">Shared</div>
+                          </div>
+                          <div className="text-center p-4 bg-muted rounded-lg">
+                            <div className="text-2xl font-bold text-primary">
+                              {analyticsSummary.opened}
+                            </div>
+                            <div className="text-sm text-muted-foreground">Opened</div>
+                          </div>
+                          <div className="text-center p-4 bg-muted rounded-lg">
+                            <div className="text-2xl font-bold text-primary">
+                              {analyticsSummary.viewed}
+                            </div>
+                            <div className="text-sm text-muted-foreground">Viewed</div>
+                          </div>
+                          <div className="text-center p-4 bg-muted rounded-lg">
+                            <div className="text-2xl font-bold text-primary">
+                              {analyticsSummary.interested}
+                            </div>
+                            <div className="text-sm text-muted-foreground">Interested</div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Detailed Share History */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Users className="h-5 w-5" />
+                        Share History & Engagement
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {shareAnalytics.length === 0 ? (
+                          <div className="text-center py-8 text-muted-foreground">
+                            No shares recorded yet. Share this opportunity to start tracking engagement.
+                          </div>
+                        ) : (
+                          shareAnalytics.map((share, index) => (
+                            <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
+                              <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                  <Mail className="h-5 w-5 text-primary" />
+                                </div>
+                                <div>
+                                  <div className="font-medium">{share.shared_with_name || share.shared_with_email}</div>
+                                  <div className="text-sm text-muted-foreground">{share.shared_with_email}</div>
+                                </div>
+                              </div>
+                              <div className="text-right">
+                                <Badge variant={
+                                  share.status === 'viewed' ? 'default' :
+                                  share.status === 'opened' ? 'secondary' : 'outline'
+                                }>
+                                  {share.status}
+                                </Badge>
+                                <div className="text-xs text-muted-foreground mt-1">
+                                  {new Date(share.created_at).toLocaleDateString()}
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Investor Process Tracking */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Target className="h-5 w-5" />
+                        Investor Process Pipeline
+                      </CardTitle>
+                      <CardDescription>
+                        Track investors through the complete investment process
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {investorProcess.length === 0 ? (
+                          <div className="text-center py-8 text-muted-foreground">
+                            No investor process tracking yet. Investors will appear here after sharing.
+                          </div>
+                        ) : (
+                          investorProcess.map((process, index) => (
+                            <div key={index} className="p-4 border rounded-lg">
+                              <div className="flex items-center justify-between mb-3">
+                                <div>
+                                  <div className="font-medium">{process.investor_name || process.investor_email}</div>
+                                  <div className="text-sm text-muted-foreground">{process.investor_email}</div>
+                                </div>
+                                <Badge variant="outline" className="capitalize">
+                                  {process.current_stage.replace('_', ' ')}
+                                </Badge>
+                              </div>
+                              
+                              {/* Process Timeline */}
+                              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                <Clock className="h-3 w-3" />
+                                <span>Last updated: {new Date(process.updated_at).toLocaleDateString()}</span>
+                              </div>
+                              
+                              {/* Stage Progress */}
+                              <div className="mt-3">
+                                <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                                  <span>Progress</span>
+                                  <span>{getStageProgress(process.current_stage)}%</span>
+                                </div>
+                                <div className="w-full bg-muted rounded-full h-2">
+                                  <div 
+                                    className="bg-primary h-2 rounded-full transition-all" 
+                                    style={{ width: `${getStageProgress(process.current_stage)}%` }}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              )}
             </Tabs>
 
             <Separator />

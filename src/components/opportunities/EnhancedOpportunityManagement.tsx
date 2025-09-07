@@ -504,6 +504,8 @@ export function EnhancedOpportunityManagement() {
         open={isCreateDialogOpen} 
         onOpenChange={setIsCreateDialogOpen}
         onSubmit={handleCreateOpportunity}
+        opportunity={selectedOpportunity}
+        isAdminView={true}
       />
 
       {/* Opportunity Details Dialog */}
