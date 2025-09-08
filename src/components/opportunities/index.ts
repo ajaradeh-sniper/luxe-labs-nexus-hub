@@ -1,1 +1,2 @@
-export { OpportunityManagement } from './OpportunityManagement'
+export { EnhancedOpportunityManagement } from './EnhancedOpportunityManagement';
+export { OpportunityManagement } from './OpportunityManagement';

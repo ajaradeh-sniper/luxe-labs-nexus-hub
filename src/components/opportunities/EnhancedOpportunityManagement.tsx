@@ -9,6 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { useOpportunities } from '@/hooks/useOpportunities';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
+import { ComprehensiveOpportunityModal } from '@/components/modals/ComprehensiveOpportunityModal';
 import { 
   Plus, 
   Eye, 
@@ -31,26 +32,18 @@ export function EnhancedOpportunityManagement() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [selectedOpportunity, setSelectedOpportunity] = useState<any>(null);
   const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const canCreateOpportunity = ['real_estate_agent', 'real_estate_director', 'administrator'].includes(user?.role || '');
   const canEvaluate = ['real_estate_director', 'administrator'].includes(user?.role || '');
 
-  const handleCreateOpportunity = async () => {
-    try {
-      await createOpportunity({
-        title: 'New Investment Opportunity',
-        description: 'Sample opportunity description',
-        location: 'Dubai, UAE',
-        opportunity_type: 'real_estate',
-        investment_required: 1000000,
-        expected_roi: 25,
-        deadline: '2024-12-31',
-        status: 'evaluation',
-        risk_rating: 'medium'
-      });
-    } catch (error) {
-      console.error('Failed to create opportunity:', error);
-    }
+  const handleCreateOpportunity = () => {
+    setIsCreateModalOpen(true);
+  };
+
+  const handleOpportunityCreated = () => {
+    fetchOpportunities();
+    setIsCreateModalOpen(false);
   };
 
   const handleApproveOpportunity = async (id: string) => {
@@ -389,6 +382,13 @@ export function EnhancedOpportunityManagement() {
           </DialogContent>
         </Dialog>
       )}
+
+      {/* Comprehensive Opportunity Creation Modal */}
+      <ComprehensiveOpportunityModal
+        open={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onOpportunityCreated={handleOpportunityCreated}
+      />
     </div>
   );
 }
