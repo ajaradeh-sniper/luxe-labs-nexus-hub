@@ -4,10 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { Routes, Route, Navigate } from "react-router-dom"
-import { AuthProvider } from "@/contexts/AuthContext"
-import { ThemeProvider } from "@/components/ThemeProvider"
-import { AccessibilityProvider } from "@/components/AccessibilityProvider"
-import { RealTimeProvider } from "@/components/realtime/RealTimeProvider"
 import Landing from "./pages/Landing"
 import Index from "./pages/Index"
 import Auth from "./pages/Auth"
@@ -77,9 +73,8 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <ErrorBoundary>
-      <AuthProvider>
-        <TooltipProvider>
-          <Routes>
+      <TooltipProvider>
+        <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
@@ -302,7 +297,6 @@ function App() {
         <Toaster />
         <Sonner />
       </TooltipProvider>
-      </AuthProvider>
     </ErrorBoundary>
   )
 }
