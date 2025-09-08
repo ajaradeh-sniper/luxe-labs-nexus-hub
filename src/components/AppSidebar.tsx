@@ -16,8 +16,10 @@ import {
   Target,
   Globe,
   Calendar,
-  LogOut
+  LogOut,
+  Eye
 } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 import { NavLink, useLocation } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
 
@@ -110,10 +112,24 @@ export function AppSidebar({ viewingRole }: { viewingRole?: string } = {}) {
       collapsible="icon"
     >
       <SidebarContent className="bg-gradient-elegant">
-        {/* Logo */}
-        <div className="p-4 border-b border-border">
-          {/* Logo removed to prevent duplication - only shown in header */}
-        </div>
+        {/* Role Viewing Indicator */}
+        {viewingRole && user && viewingRole !== user.role && (
+          <div className="flex items-center gap-2 px-3 py-2 mx-2 mt-2 bg-warning/10 border border-warning/20 rounded-lg">
+            <Eye className="h-4 w-4 text-warning" />
+            {!collapsed && (
+              <>
+                <span className="text-sm font-medium text-warning">
+                  Viewing as {viewingRole.replace('_', ' ').split(' ').map(word => 
+                    word.charAt(0).toUpperCase() + word.slice(1)
+                  ).join(' ')}
+                </span>
+                <Badge variant="outline" className="text-xs bg-background/50 ml-auto">
+                  Preview Mode
+                </Badge>
+              </>
+            )}
+          </div>
+        )}
 
         <SidebarGroup>
           <SidebarGroupLabel>{!collapsed && "Navigation"}</SidebarGroupLabel>

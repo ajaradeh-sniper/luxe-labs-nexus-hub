@@ -54,20 +54,6 @@ export function Navigation({ viewingRole }: NavigationProps = {}) {
             />
           </Link>
           
-          {/* Role Viewing Indicator */}
-          {viewingRole && user && viewingRole !== user.role && (
-            <div className="flex items-center gap-2 px-3 py-1 bg-warning/10 border border-warning/20 rounded-full">
-              <Eye className="h-4 w-4 text-warning" />
-              <span className="text-sm font-medium text-warning">
-                Viewing as {viewingRole.replace('_', ' ').split(' ').map(word => 
-                  word.charAt(0).toUpperCase() + word.slice(1)
-                ).join(' ')}
-              </span>
-              <Badge variant="outline" className="text-xs bg-background/50">
-                Preview Mode
-              </Badge>
-            </div>
-          )}
         </div>
         
         <div className="hidden md:flex items-center gap-8">
