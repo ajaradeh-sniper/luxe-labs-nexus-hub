@@ -34,31 +34,56 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       systemDebugger.runFullDiagnostic();
     }
     
-    // Set up auth state listener
+    // Clear any corrupted session data that might be causing fetch failures
+    const clearCorruptedSession = () => {
+      try {
+        localStorage.removeItem('sb-vzrdmjbcbhhyutppuxcf-auth-token');
+        localStorage.removeItem('supabase.auth.token');
+        sessionStorage.removeItem('sb-vzrdmjbcbhhyutppuxcf-auth-token');
+        sessionStorage.removeItem('supabase.auth.token');
+        console.log('AuthProvider: Cleared potentially corrupted session data');
+      } catch (error) {
+        console.warn('AuthProvider: Could not clear session storage:', error);
+      }
+    };
+    
+    // Set up auth state listener with error handling
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
         console.log('AuthProvider: Auth event:', event, 'Has session:', !!session);
         log.info(`Auth state changed: ${event}`, 'AUTH', { 
           hasSession: !!session, 
           userId: session?.user?.id 
         });
         
+        // Handle auth errors by clearing session
+        if (event === 'SIGNED_OUT' || (!session && event !== 'INITIAL_SESSION')) {
+          clearCorruptedSession();
+          setSession(null);
+          setUser(null);
+          setLoading(false);
+          setIsInitialized(true);
+          return;
+        }
+        
         setSession(session);
         
         if (session?.user) {
           console.log('AuthProvider: User found, fetching profile...');
-          await fetchUserProfile(session.user);
+          // Use setTimeout to prevent auth deadlock
+          setTimeout(() => {
+            fetchUserProfile(session.user);
+          }, 0);
         } else {
           console.log('AuthProvider: No session, clearing user');
           setUser(null);
+          setLoading(false);
+          setIsInitialized(true);
         }
-        
-        setLoading(false);
-        setIsInitialized(true);
       }
     );
 
-    // Check for existing session immediately
+    // Check for existing session with error handling
     const initializeAuth = async () => {
       console.log('AuthProvider: Checking for existing session...');
       try {
@@ -66,29 +91,46 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         
         if (error) {
           console.error('AuthProvider: Error getting session:', error);
+          // Clear corrupted session data on error
+          clearCorruptedSession();
+          setSession(null);
+          setUser(null);
           setLoading(false);
           setIsInitialized(true);
           return;
         }
 
         console.log('AuthProvider: Existing session found:', !!session);
-        setSession(session);
         
         if (session?.user) {
+          setSession(session);
           console.log('AuthProvider: Existing session has user, fetching profile...');
           await fetchUserProfile(session.user);
         } else {
+          setSession(null);
+          setUser(null);
           setLoading(false);
           setIsInitialized(true);
         }
       } catch (error) {
         console.error('AuthProvider: Error during initialization:', error);
+        // Network errors or other initialization failures
+        if (error instanceof Error && error.message.includes('Failed to fetch')) {
+          console.log('AuthProvider: Network error detected, clearing session');
+          clearCorruptedSession();
+        }
+        setSession(null);
+        setUser(null);
         setLoading(false);
         setIsInitialized(true);
       }
     };
 
-    initializeAuth();
+    // Clear any existing corrupted session first
+    clearCorruptedSession();
+    
+    // Initialize after a brief delay to ensure cleanup
+    setTimeout(initializeAuth, 100);
 
     return () => subscription.unsubscribe();
   }, []);
