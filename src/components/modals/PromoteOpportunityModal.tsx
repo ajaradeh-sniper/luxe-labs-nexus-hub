@@ -36,7 +36,7 @@ export function PromoteOpportunityModal({
   onClose: () => void; 
   opportunityId?: string;
 }) {
-  const { promote } = useOpportunities();
+  const { updateOpportunity } = useOpportunities();
   const { 
     register, 
     handleSubmit, 
@@ -82,7 +82,7 @@ export function PromoteOpportunityModal({
         description: processedData.notes
       };
 
-      await promote(opportunityId, opportunityUpdates);
+      await updateOpportunity(opportunityId, opportunityUpdates);
       reset();
       onClose();
     } catch (error) {
