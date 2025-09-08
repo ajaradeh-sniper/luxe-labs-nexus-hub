@@ -21,7 +21,9 @@ import {
   Building, 
   TrendingUp,
   AlertCircle,
-  CheckCircle
+  CheckCircle,
+  Link2,
+  Loader2
 } from 'lucide-react';
 
 interface ComprehensiveOpportunityModalProps {
@@ -63,6 +65,9 @@ export function ComprehensiveOpportunityModal({
   const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [isExtracting, setIsExtracting] = useState(false);
+  const [showUrlInput, setShowUrlInput] = useState(false);
+  const [propertyUrl, setPropertyUrl] = useState("");
   
   const [projectInfo, setProjectInfo] = useState<ProjectInfo>({
     title: '',
@@ -91,6 +96,67 @@ export function ComprehensiveOpportunityModal({
 
   const handleInputChange = (field: keyof ProjectInfo, value: string) => {
     setProjectInfo(prev => ({ ...prev, [field]: value }));
+  };
+
+  const extractPropertyData = async () => {
+    if (!propertyUrl.trim()) {
+      toast({
+        title: "URL Required",
+        description: "Please enter a property listing URL",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setIsExtracting(true);
+      
+      const { data, error } = await supabase.functions.invoke('extract-property-data', {
+        body: { url: propertyUrl.trim() }
+      });
+
+      if (error) {
+        console.error('Error extracting property data:', error);
+        throw new Error(error.message || 'Failed to extract property data');
+      }
+
+      if (!data.success) {
+        throw new Error(data.error || 'Failed to extract property data');
+      }
+
+      const extractedData = data.data;
+      
+      // Auto-populate form with extracted data
+      setProjectInfo(prev => ({
+        ...prev,
+        title: extractedData.title || prev.title,
+        description: extractedData.description || prev.description,
+        location: extractedData.location || prev.location,
+        opportunity_type: extractedData.opportunity_type || prev.opportunity_type,
+        property_type: extractedData.property_type || prev.property_type,
+        investment_required: extractedData.investment_required?.toString() || prev.investment_required,
+        expected_roi: extractedData.expected_roi?.toString() || prev.expected_roi,
+        risk_rating: extractedData.risk_rating || prev.risk_rating,
+      }));
+
+      setShowUrlInput(false);
+      setPropertyUrl("");
+      
+      toast({
+        title: "Success",
+        description: "Property data extracted and form populated!",
+      });
+
+    } catch (error) {
+      console.error('Error extracting property data:', error);
+      toast({
+        title: "Extraction Failed",
+        description: error.message || "Failed to extract property data. Please fill the form manually.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsExtracting(false);
+    }
   };
 
   const handleFileUpload = async (files: FileList | null, type: 'image' | 'document') => {
@@ -287,6 +353,8 @@ export function ComprehensiveOpportunityModal({
       exit_strategy: ''
     });
     setUploadedFiles([]);
+    setPropertyUrl("");
+    setShowUrlInput(false);
     onClose();
   };
 
@@ -691,10 +759,42 @@ export function ComprehensiveOpportunityModal({
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Create Investment Opportunity</DialogTitle>
+          <DialogTitle className="flex items-center justify-between">
+            Create Investment Opportunity
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowUrlInput(!showUrlInput)}
+              className="ml-auto"
+            >
+              <Link2 className="h-4 w-4 mr-2" />
+              Import from URL
+            </Button>
+          </DialogTitle>
           <DialogDescription>
             Add a new investment opportunity with complete project information, financial details, and supporting documentation.
           </DialogDescription>
+          {showUrlInput && (
+            <div className="flex gap-2 mt-2">
+              <Input
+                placeholder="Paste property listing URL (e.g., from Bayut, Dubizzle, Property Finder, etc.)"
+                value={propertyUrl}
+                onChange={(e) => setPropertyUrl(e.target.value)}
+                className="flex-1"
+              />
+              <Button 
+                onClick={extractPropertyData}
+                disabled={isExtracting}
+                size="sm"
+              >
+                {isExtracting ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "Extract"
+                )}
+              </Button>
+            </div>
+          )}
         </DialogHeader>
 
         {/* Progress Steps */}
