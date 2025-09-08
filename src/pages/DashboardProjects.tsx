@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useWorkflowModals } from "@/components/IntegratedWorkflows"
+import { useActionRouter } from "@/components/ActionRouter"
 import { useToast } from "@/hooks/use-toast"
 import { TimelinePlanning } from "@/components/projectManagement/TimelinePlanning"
 import { CostManagement } from "@/components/projectManagement/CostManagement"
@@ -57,7 +57,7 @@ const DashboardProjects = () => {
   
   const navigate = useNavigate()
   const { toast } = useToast()
-  const { openProjectWizard, WorkflowModals } = useWorkflowModals()
+  const { open, portal } = useActionRouter()
 
   const projects = [
     {
@@ -202,7 +202,7 @@ const DashboardProjects = () => {
             <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
             <p className="text-muted-foreground">Comprehensive project management and tracking</p>
           </div>
-          <Button onClick={openProjectWizard}>
+          <Button onClick={() => open('promote-opportunity')}>
             <Plus className="h-4 w-4 mr-2" />
             New Project
           </Button>
@@ -390,7 +390,7 @@ const DashboardProjects = () => {
                   <p className="text-muted-foreground mb-4">
                     Try adjusting your search terms or filters to find projects.
                   </p>
-                  <Button onClick={openProjectWizard}>
+                  <Button onClick={() => open('promote-opportunity')}>
                     <Plus className="h-4 w-4 mr-2" />
                     Create New Project
                   </Button>
@@ -438,8 +438,8 @@ const DashboardProjects = () => {
           </AlertDialogContent>
         </AlertDialog>
 
-        {/* Workflow Modals */}
-        <WorkflowModals />
+        {/* Action Modals */}
+        {portal}
       </div>
     </DashboardLayout>
   )
