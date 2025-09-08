@@ -331,11 +331,9 @@ export function ComprehensiveOpportunityModal({
                     <SelectValue placeholder="Select type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="real_estate">Real Estate</SelectItem>
-                    <SelectItem value="development">Development</SelectItem>
+                    <SelectItem value="flip">Flip</SelectItem>
                     <SelectItem value="renovation">Renovation</SelectItem>
-                    <SelectItem value="commercial">Commercial</SelectItem>
-                    <SelectItem value="residential">Residential</SelectItem>
+                    <SelectItem value="other">Other...write down</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
