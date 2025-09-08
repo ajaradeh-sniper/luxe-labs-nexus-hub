@@ -73,10 +73,16 @@ export function PromoteOpportunityModal({
         throw new Error("Timeline must be positive number of months");
       }
 
-      await promote.mutateAsync({ 
-        id: opportunityId, 
-        payload: processedData 
-      });
+      // Transform processedData to match OpportunityData interface
+      const opportunityUpdates = {
+        investment_required: processedData.acquisitionPrice + processedData.capex,
+        expected_roi: processedData.targetRoi,
+        status: 'converted_to_project',
+        deadline: new Date(Date.now() + (processedData.timelineMonths * 30 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0],
+        description: processedData.notes
+      };
+
+      await promote(opportunityId, opportunityUpdates);
       reset();
       onClose();
     } catch (error) {
