@@ -1,4 +1,3 @@
-import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
@@ -7,18 +6,14 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    console.log('Function called successfully');
-    
     const { url } = await req.json();
-    console.log('Processing URL:', url);
-
-    // For now, return mock data to test deployment
+    
+    // Return mock data for testing
     const mockData = {
       title: "Luxury 4BR Penthouse",
       description: "Ultra-luxury penthouse with private pool",
@@ -52,7 +47,6 @@ serve(async (req) => {
     });
 
   } catch (error) {
-    console.error('Error in extract-property-data function:', error);
     return new Response(JSON.stringify({ 
       success: false, 
       error: error.message 
