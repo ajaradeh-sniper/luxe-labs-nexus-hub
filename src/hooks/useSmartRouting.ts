@@ -17,8 +17,8 @@ const ROLE_DEFAULT_ROUTES: Partial<Record<UserRole, string>> = {
   administrator: '/admin/system',
   'real_estate_director': '/properties',
   'project_manager': '/project-management', 
-  'investor': '/portfolio',
-  'client': '/dashboard/projects'
+  'investor': '/fund-management',
+  'client': '/fund-management'
 };
 
 export function useSmartRouting() {
