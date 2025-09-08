@@ -242,33 +242,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       log.api.request('/auth/signin', 'POST', { email }, undefined);
       setLoading(true);
       
-      // Temporary fallback for connectivity issues - admin bypass
-      if (email === 'alijaradeh@gmail.com' && password === 'admin123') {
-        console.log('AuthProvider: Using fallback auth for admin');
-        
-        const mockUser: User = {
-          id: 'admin-mock-id',
-          email: 'alijaradeh@gmail.com',
-          name: 'Admin User',
-          role: 'administrator'
-        };
-        
-        const mockSession = {
-          user: { id: 'admin-mock-id', email: 'alijaradeh@gmail.com' }
-        } as Session;
-        
-        setUser(mockUser);
-        setSession(mockSession);
-        setLoading(false);
-        
-        toast({
-          title: "Welcome back!",
-          description: "Logged in with temporary bypass (testing mode)"
-        });
-        
-        return {};
-      }
-      
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password
