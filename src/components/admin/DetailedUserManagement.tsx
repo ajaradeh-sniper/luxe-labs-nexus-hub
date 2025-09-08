@@ -41,7 +41,9 @@ import {
   Phone,
   Building,
   Calendar,
-  Activity
+  Activity,
+  Users,
+  Clock
 } from 'lucide-react';
 import { UserRole } from '@/types/auth';
 import { useToast } from '@/hooks/use-toast';
@@ -376,6 +378,45 @@ export function DetailedUserManagement() {
 
   return (
     <div className="space-y-6">
+      {/* Enhanced User Management Header */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex items-center">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">Total Users</p>
+                <p className="text-2xl font-bold">{users.length}</p>
+              </div>
+              <Users className="h-8 w-8 text-muted-foreground ml-auto" />
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex items-center">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">Active Users</p>
+                <p className="text-2xl font-bold">{users.filter(u => u.status === 'active').length}</p>
+              </div>
+              <Activity className="h-8 w-8 text-muted-foreground ml-auto" />
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex items-center">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">Pending Reviews</p>
+                <p className="text-2xl font-bold">{users.filter(u => u.status === 'pending').length}</p>
+              </div>
+              <Clock className="h-8 w-8 text-muted-foreground ml-auto" />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
       {/* User Category Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-6">

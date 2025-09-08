@@ -42,6 +42,8 @@ import AdminInvestors from "./pages/admin/Investors"
 import AdminProperties from "./pages/admin/Properties"
 import AdminSystemSettings from "./pages/admin/SystemSettings"
 import AdminSystemHealth from "./pages/admin/SystemHealth"
+import AdminSubmissionReview from "./pages/admin/SubmissionReview"
+import AdminPermissionsManager from "./pages/admin/PermissionsManager"
 
 // Import missing pages
 import Calendar from "./pages/Calendar"
@@ -51,6 +53,7 @@ import Reports from "./pages/Reports"
 import MarketingTools from "./pages/MarketingTools"
 import Messaging from "./pages/Messaging"
 import FundManagement from "./pages/FundManagement"
+import Referrals from "./pages/Referrals"
 
 // Import public pages
 import About from "./pages/About"
@@ -148,6 +151,18 @@ function App() {
           <Route path="/admin/system-health" element={
             <SmartProtectedRoute requiredRoles={['administrator']}>
               <AdminSystemHealth />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/admin/submission-review" element={
+            <SmartProtectedRoute requiredRoles={['administrator']}>
+              <AdminSubmissionReview />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/admin/permissions" element={
+            <SmartProtectedRoute requiredRoles={['administrator']}>
+              <AdminPermissionsManager />
             </SmartProtectedRoute>
           } />
           
@@ -288,6 +303,12 @@ function App() {
           <Route path="/messaging" element={
             <SmartProtectedRoute>
               <Messaging />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/referrals" element={
+            <SmartProtectedRoute>
+              <Referrals />
             </SmartProtectedRoute>
           } />
           

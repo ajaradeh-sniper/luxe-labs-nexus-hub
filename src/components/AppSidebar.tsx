@@ -62,6 +62,8 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
 
   const adminItems = [
     { title: "User Management", url: "/admin/detailed-users", icon: Users, roles: ['administrator'] },
+    { title: "Submission Review", url: "/admin/submission-review", icon: CheckCircle, roles: ['administrator'] },
+    { title: "Permissions Manager", url: "/admin/permissions", icon: ShieldCheck, roles: ['administrator'] },
     { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client', 'real_estate_agent', 'partner'] },
     { title: "Property Management", url: "/admin/properties", icon: Building, roles: ['administrator', 'investor'] },
     { title: "Opportunities", url: "/opportunities", icon: Target, roles: ['administrator', 'real_estate_director', 'real_estate_agent'] },
@@ -80,7 +82,8 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
 
   const investorItems = [
     { title: "Financial", url: "/financial", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor', 'real_estate_agent', 'partner'] },
-    { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'lawyer', 'client', 'project_manager', 'real_estate_agent', 'partner'] }
+    { title: "Documents", url: "/documents", icon: FileText, roles: ['administrator', 'lawyer', 'client', 'project_manager', 'real_estate_agent', 'partner'] },
+    { title: "Referrals", url: "/referrals", icon: Users, roles: ['all'] }
   ];
 
   const allItems = [...baseItems, ...adminItems, ...operationalItems, ...investorItems];

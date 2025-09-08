@@ -1131,6 +1131,51 @@ export type Database = {
           },
         ]
       }
+      referrals: {
+        Row: {
+          created_at: string
+          id: string
+          notes: string | null
+          referral_type: string
+          referred_email: string
+          referred_name: string
+          referred_phone: string | null
+          referrer_id: string
+          reward_amount: number | null
+          reward_status: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          referral_type: string
+          referred_email: string
+          referred_name: string
+          referred_phone?: string | null
+          referrer_id: string
+          reward_amount?: number | null
+          reward_status?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          referral_type?: string
+          referred_email?: string
+          referred_name?: string
+          referred_phone?: string | null
+          referrer_id?: string
+          reward_amount?: number | null
+          reward_status?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       system_analytics: {
         Row: {
           category: string
@@ -1212,6 +1257,135 @@ export type Database = {
         }
         Relationships: []
       }
+      user_activity_log: {
+        Row: {
+          action: string
+          created_at: string
+          details: Json | null
+          id: string
+          ip_address: unknown | null
+          resource: string | null
+          resource_id: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          details?: Json | null
+          id?: string
+          ip_address?: unknown | null
+          resource?: string | null
+          resource_id?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: Json | null
+          id?: string
+          ip_address?: unknown | null
+          resource?: string | null
+          resource_id?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      user_permissions: {
+        Row: {
+          created_at: string
+          expires_at: string | null
+          granted_at: string
+          granted_by: string | null
+          id: string
+          is_active: boolean
+          permissions: string[]
+          resource: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string | null
+          granted_at?: string
+          granted_by?: string | null
+          id?: string
+          is_active?: boolean
+          permissions?: string[]
+          resource: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string | null
+          granted_at?: string
+          granted_by?: string | null
+          id?: string
+          is_active?: boolean
+          permissions?: string[]
+          resource?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_submissions: {
+        Row: {
+          admin_notes: string | null
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          requested_role: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          submission_data: Json | null
+          submission_type: string
+          updated_at: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          requested_role?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          submission_data?: Json | null
+          submission_type: string
+          updated_at?: string
+        }
+        Update: {
+          admin_notes?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          requested_role?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          submission_data?: Json | null
+          submission_type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       website_analytics: {
         Row: {
           bounce_rate: number | null
@@ -1253,6 +1427,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_user_permission: {
+        Args: {
+          permission_type: string
+          resource_name: string
+          user_uuid: string
+        }
+        Returns: boolean
+      }
       get_user_role: {
         Args: { user_uuid?: string }
         Returns: string
