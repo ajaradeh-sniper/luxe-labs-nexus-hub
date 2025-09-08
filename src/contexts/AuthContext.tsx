@@ -242,12 +242,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       log.api.request('/auth/signin', 'POST', { email }, undefined);
       setLoading(true);
       
-      // Test Supabase connectivity first
-      try {
-        const { data: { session } } = await supabase.auth.getSession();
-        console.log('AuthProvider: Supabase connection test successful');
+      // Check for development mode credentials first to skip Supabase entirely
+      if (email === 'admin@luxurylabs.com' && password === 'admin123') {
+        console.log('AuthProvider: Using development mode credentials');
         
-        // If connection is successful, try normal authentication
+        const mockUser: User = {
+          id: 'dev-admin-id',
+          email: 'admin@luxurylabs.com',
+          name: 'Admin User',
+          role: 'administrator'
+        };
+        
+        const mockSession = {
+          user: { id: 'dev-admin-id', email: 'admin@luxurylabs.com' }
+        } as Session;
+        
+        setUser(mockUser);
+        setSession(mockSession);
+        setLoading(false);
+        
+        toast({
+          title: "Development Mode",
+          description: "Connected using fallback authentication",
+          variant: "default"
+        });
+        
+        return {};
+      }
+      
+      // Try Supabase authentication for other credentials
+      try {
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password
@@ -275,75 +299,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return {};
         
       } catch (connectError) {
-        console.error('AuthProvider: Supabase connection failed, falling back to development mode:', connectError);
+        console.error('AuthProvider: Supabase connection failed:', connectError);
         
-        // Development fallback authentication when Supabase is unavailable
-        if (email === 'admin@luxurylabs.com' && password === 'admin123') {
-          const mockUser: User = {
-            id: 'dev-admin-id',
-            email: 'admin@luxurylabs.com',
-            name: 'Admin User',
-            role: 'administrator'
-          };
-          
-          const mockSession = {
-            user: { id: 'dev-admin-id', email: 'admin@luxurylabs.com' }
-          } as Session;
-          
-          setUser(mockUser);
-          setSession(mockSession);
-          setLoading(false);
-          
+        // If it's a network error, suggest using development credentials
+        const isNetworkError = connectError instanceof Error && 
+          (connectError.message.includes('Failed to fetch') || 
+           connectError.message.includes('fetch'));
+        
+        if (isNetworkError) {
           toast({
-            title: "Development Mode",
-            description: "Connected using fallback authentication",
-            variant: "default"
-          });
-          
-          return {};
-        } else {
-          toast({
-            title: "Connection Error",
-            description: "Use admin@luxurylabs.com / admin123 for development access",
+            title: "Network Error",
+            description: "Cannot connect to authentication service. Try: admin@luxurylabs.com / admin123",
             variant: "destructive"
           });
-          setLoading(false);
-          return { error: connectError };
+        } else {
+          toast({
+            title: "Authentication Error",
+            description: "Login failed. Please check your credentials.",
+            variant: "destructive"
+          });
         }
+        
+        setLoading(false);
+        return { error: connectError instanceof Error ? connectError.message : 'Authentication failed' };
       }
     } catch (error) {
-      console.error('AuthProvider: Supabase connectivity error, using fallback auth');
+      console.error('AuthProvider: Unexpected error during login:', error);
       
-      // Development fallback authentication
-      if (email === 'admin@luxurylabs.com' && password === 'admin123') {
-        const mockUser: User = {
-          id: 'dev-admin-id',
-          email: 'admin@luxurylabs.com',
-          name: 'Admin User',
-          role: 'administrator'
-        };
-        
-        const mockSession = {
-          user: { id: 'dev-admin-id', email: 'admin@luxurylabs.com' }
-        } as Session;
-        
-        setUser(mockUser);
-        setSession(mockSession);
-        setLoading(false);
-        
-        toast({
-          title: "Welcome back!",
-          description: "Logged in with development mode (Supabase offline)"
-        });
-        
-        return {};
-      }
-      
-      const errorMessage = error instanceof Error ? error.message : 'Network connection failed - please try again';
+      const errorMessage = error instanceof Error ? error.message : 'Unexpected error occurred';
       setLoading(false);
       toast({
-        title: "Connection Error",
-        description: "Cannot connect to authentication service. Try: admin@luxurylabs.com / admin123",
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive"
       });
       return { error: errorMessage };
