@@ -8,8 +8,8 @@ const ROLE_DASHBOARDS: Partial<Record<UserRole, string>> = {
   administrator: '/dashboard',
   'real_estate_director': '/dashboard', 
   'project_manager': '/pm-dashboard',
-  'investor': '/investor-dashboard',
-  'client': '/client-dashboard'
+  'investor': '/fund-management',
+  'client': '/fund-management'
 };
 
 // Default routes for each role
