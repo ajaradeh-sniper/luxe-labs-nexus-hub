@@ -97,7 +97,7 @@ interface EnhancedOpportunityModalProps {
   isAdminView?: boolean;
 }
 
-const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN || '';
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiYWxpamFyYWRlaCIsImEiOiJjbWZiYnJydzYxcWluMmlwZjlqcnB4MzN6In0.Q0l0dm8se7wp3ja8uiVakw';
 
 export function EnhancedOpportunityModal({ open, onOpenChange, onSubmit, opportunity, isAdminView = false }: EnhancedOpportunityModalProps) {
   const { toast } = useToast();
