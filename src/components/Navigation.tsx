@@ -1,6 +1,7 @@
 
-import { Building2, LayoutDashboard } from "lucide-react"
+import { Building2, LayoutDashboard, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { Link, useLocation } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
@@ -8,7 +9,11 @@ import { ThemeToggle } from "@/components/ThemeToggle"
 import { useTranslation } from 'react-i18next'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
-export function Navigation() {
+interface NavigationProps {
+  viewingRole?: string
+}
+
+export function Navigation({ viewingRole }: NavigationProps = {}) {
   const location = useLocation()
   const { t } = useTranslation()
   
@@ -40,7 +45,7 @@ export function Navigation() {
   return (
     <nav className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center gap-4">
           <Link to="/">
             <img 
               src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
@@ -48,6 +53,21 @@ export function Navigation() {
               className="h-32 w-auto cursor-pointer hover:opacity-80 transition-opacity"
             />
           </Link>
+          
+          {/* Role Viewing Indicator */}
+          {viewingRole && user && viewingRole !== user.role && (
+            <div className="flex items-center gap-2 px-3 py-1 bg-warning/10 border border-warning/20 rounded-full">
+              <Eye className="h-4 w-4 text-warning" />
+              <span className="text-sm font-medium text-warning">
+                Viewing as {viewingRole.replace('_', ' ').split(' ').map(word => 
+                  word.charAt(0).toUpperCase() + word.slice(1)
+                ).join(' ')}
+              </span>
+              <Badge variant="outline" className="text-xs bg-background/50">
+                Preview Mode
+              </Badge>
+            </div>
+          )}
         </div>
         
         <div className="hidden md:flex items-center gap-8">

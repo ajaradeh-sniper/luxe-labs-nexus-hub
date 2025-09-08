@@ -14,7 +14,7 @@ export function DashboardLayout({ children, viewingRole }: DashboardLayoutProps)
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      <Navigation viewingRole={viewingRole} />
       <SidebarProvider>
         <div className="min-h-screen flex w-full">
           <AppSidebar viewingRole={effectiveRole} />

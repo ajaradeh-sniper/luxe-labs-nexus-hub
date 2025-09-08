@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { AuthProvider } from '@/contexts/AuthContext'
+import { RoleSwitchingProvider } from '@/contexts/RoleSwitchingContext'
 import { RealTimeProvider } from '@/components/realtime/RealTimeProvider'
 import './index.css'
 import './i18n/config'
@@ -18,10 +19,12 @@ createRoot(document.getElementById('root')!).render(
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="system" storageKey="luxury-labs-theme">
           <AuthProvider>
-            <RealTimeProvider>
-              <App />
-              <Toaster />
-            </RealTimeProvider>
+            <RoleSwitchingProvider>
+              <RealTimeProvider>
+                <App />
+                <Toaster />
+              </RealTimeProvider>
+            </RoleSwitchingProvider>
           </AuthProvider>
         </ThemeProvider>
       </QueryClientProvider>

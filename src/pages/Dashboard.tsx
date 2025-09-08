@@ -3,11 +3,10 @@ import { useState } from "react"
 import { UnifiedDashboard } from "@/components/dashboards/UnifiedDashboard"
 import { ProtectedRoute } from "@/components/ProtectedRoute"
 import { DashboardLayout } from "@/components/DashboardLayout"
-import { useAuth } from "@/contexts/AuthContext"
+import { useRoleSwitching } from "@/contexts/RoleSwitchingContext"
 
 export default function Dashboard() {
-  const { user } = useAuth()
-  const [viewingRole, setViewingRole] = useState<string>(user?.role || 'administrator')
+  const { viewingRole, setViewingRole } = useRoleSwitching()
 
   return (
     <ProtectedRoute>
