@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { PRESET_USER_TYPES } from './DetailedUserManagement';
 
 interface UserPermission {
   id: string;
@@ -81,6 +82,7 @@ export function PermissionsManager() {
   const [selectedResource, setSelectedResource] = useState('');
   const [selectedPermissions, setSelectedPermissions] = useState<string[]>([]);
   const [expiresAt, setExpiresAt] = useState('');
+  const [selectedPresetType, setSelectedPresetType] = useState('');
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
@@ -262,6 +264,63 @@ export function PermissionsManager() {
     setSelectedResource('');
     setSelectedPermissions([]);
     setExpiresAt('');
+    setSelectedPresetType('');
+  };
+
+  const applyPresetPermissions = async (userType: string) => {
+    if (!selectedUser) {
+      toast({
+        title: "Validation Error",
+        description: "Please select a user first",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const preset = PRESET_USER_TYPES[userType as keyof typeof PRESET_USER_TYPES];
+    if (!preset) return;
+
+    try {
+      setLoading(true);
+      
+      // Clear existing permissions for this user
+      await supabase
+        .from('user_permissions')
+        .update({ is_active: false })
+        .eq('user_id', selectedUser);
+
+      // Apply all preset permissions
+      const permissionInserts = Object.entries(preset.permissions).map(([resource, permissions]) => ({
+        user_id: selectedUser,
+        resource,
+        permissions,
+        is_active: true
+      }));
+
+      const { error } = await supabase
+        .from('user_permissions')
+        .insert(permissionInserts);
+
+      if (error) throw error;
+
+      await fetchPermissions();
+      setIsCreateDialogOpen(false);
+      resetForm();
+
+      toast({
+        title: "Preset Applied",
+        description: `${preset.label} permissions have been applied successfully.`,
+      });
+    } catch (error) {
+      console.error('Error applying preset permissions:', error);
+      toast({
+        title: "Error",
+        description: "Failed to apply preset permissions",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const openEditDialog = (permission: UserPermission) => {
@@ -426,6 +485,28 @@ export function PermissionsManager() {
                   ))}
                 </SelectContent>
               </Select>
+            </div>
+
+            {/* Preset User Types */}
+            <div className="border rounded-lg p-4 bg-muted/50">
+              <h4 className="text-sm font-medium mb-3">Quick Apply Preset Permissions</h4>
+              <div className="grid grid-cols-2 gap-2">
+                {Object.entries(PRESET_USER_TYPES).map(([key, preset]) => (
+                  <Button
+                    key={key}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => applyPresetPermissions(key)}
+                    disabled={!selectedUser || loading}
+                    className="text-left justify-start h-auto p-3"
+                  >
+                    <div>
+                      <div className="font-medium text-xs">{preset.label}</div>
+                      <div className="text-xs text-muted-foreground">{preset.description}</div>
+                    </div>
+                  </Button>
+                ))}
+              </div>
             </div>
 
             <div>

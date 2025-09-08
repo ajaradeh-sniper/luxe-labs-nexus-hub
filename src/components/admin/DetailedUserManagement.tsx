@@ -49,6 +49,7 @@ import { UserRole } from '@/types/auth';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { ComprehensiveUserOnboardingModal } from '@/components/modals/ComprehensiveUserOnboardingModal';
+import { PermissionsManager } from './PermissionsManager';
 
 interface DetailedUser {
   id: string;
@@ -273,6 +274,67 @@ const roleColors = {
   partner: 'bg-yellow-100 text-yellow-800'
 };
 
+// Preset user types with permissions
+export const PRESET_USER_TYPES = {
+  administrator: {
+    label: 'Administrator',
+    description: 'Full system access with all permissions',
+    permissions: {
+      projects: ['view', 'edit', 'approve', 'delete'],
+      opportunities: ['view', 'edit', 'approve', 'delete'],
+      properties: ['view', 'edit', 'approve', 'delete'],
+      users: ['view', 'edit', 'approve', 'delete'],
+      analytics: ['view', 'edit', 'approve', 'delete'],
+      documents: ['view', 'edit', 'approve', 'delete'],
+      financial: ['view', 'edit', 'approve', 'delete'],
+      marketing: ['view', 'edit', 'approve', 'delete'],
+      calendar: ['view', 'edit', 'approve', 'delete'],
+      messages: ['view', 'edit', 'approve', 'delete'],
+      reports: ['view', 'edit', 'approve', 'delete'],
+      settings: ['view', 'edit', 'approve', 'delete']
+    }
+  },
+  'client_investor': {
+    label: 'Client/Investor',
+    description: 'View access to investments and properties',
+    permissions: {
+      projects: ['view'],
+      opportunities: ['view'],
+      properties: ['view'],
+      analytics: ['view'],
+      documents: ['view'],
+      financial: ['view'],
+      calendar: ['view'],
+      messages: ['view', 'edit'],
+      reports: ['view']
+    }
+  },
+  employee: {
+    label: 'Employee',
+    description: 'Access based on department and role',
+    permissions: {
+      projects: ['view', 'edit'],
+      opportunities: ['view', 'edit'],
+      properties: ['view', 'edit'],
+      documents: ['view', 'edit'],
+      calendar: ['view', 'edit'],
+      messages: ['view', 'edit'],
+      reports: ['view']
+    }
+  },
+  partner: {
+    label: 'Partner',
+    description: 'Limited access to relevant projects and communication',
+    permissions: {
+      projects: ['view'],
+      properties: ['view'],
+      documents: ['view'],
+      calendar: ['view'],
+      messages: ['view', 'edit']
+    }
+  }
+};
+
 export function DetailedUserManagement() {
   const [users, setUsers] = useState<DetailedUser[]>(mockDetailedUsers);
   const [searchTerm, setSearchTerm] = useState('');
@@ -283,6 +345,7 @@ export function DetailedUserManagement() {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isOnboardingModalOpen, setIsOnboardingModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
+  const [mainTab, setMainTab] = useState('users');
   const { toast } = useToast();
   const { user, hasPermission } = useAuth();
 
@@ -378,7 +441,15 @@ export function DetailedUserManagement() {
 
   return (
     <div className="space-y-6">
-      {/* Enhanced User Management Header */}
+      {/* Main Navigation Tabs */}
+      <Tabs value={mainTab} onValueChange={setMainTab} className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="users">User Management</TabsTrigger>
+          <TabsTrigger value="permissions">Permissions</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="users" className="space-y-6">
+          {/* Enhanced User Management Header */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <Card>
           <CardContent className="p-6">
@@ -758,6 +829,13 @@ export function DetailedUserManagement() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+        </TabsContent>
+
+        <TabsContent value="permissions" className="space-y-6">
+          <PermissionsManager />
+        </TabsContent>
+      </Tabs>
 
       {/* Comprehensive User Onboarding Modal */}
       <ComprehensiveUserOnboardingModal

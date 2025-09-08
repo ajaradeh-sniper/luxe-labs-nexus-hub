@@ -43,7 +43,7 @@ import AdminProperties from "./pages/admin/Properties"
 import AdminSystemSettings from "./pages/admin/SystemSettings"
 import AdminSystemHealth from "./pages/admin/SystemHealth"
 import AdminSubmissionReview from "./pages/admin/SubmissionReview"
-import AdminPermissionsManager from "./pages/admin/PermissionsManager"
+
 
 // Import missing pages
 import Calendar from "./pages/Calendar"
@@ -160,11 +160,6 @@ function App() {
             </SmartProtectedRoute>
           } />
           
-          <Route path="/admin/permissions" element={
-            <SmartProtectedRoute requiredRoles={['administrator']}>
-              <AdminPermissionsManager />
-            </SmartProtectedRoute>
-          } />
           
           {/* Feature Routes */}
           <Route path="/properties" element={

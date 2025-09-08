@@ -36,6 +36,7 @@ import {
 import { UserRole } from '@/types/auth';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { PRESET_USER_TYPES } from '../admin/DetailedUserManagement';
 
 interface ComprehensiveUserOnboardingModalProps {
   isOpen: boolean;
@@ -473,6 +474,19 @@ export function ComprehensiveUserOnboardingModal({
                         ))}
                       </SelectContent>
                     </Select>
+                    
+                    {/* Preset User Types Guide */}
+                    <div className="mt-3 p-3 bg-muted/50 rounded-lg">
+                      <h4 className="text-sm font-medium mb-2">Preset User Types:</h4>
+                      <div className="grid grid-cols-2 gap-2 text-xs">
+                        {Object.entries(PRESET_USER_TYPES).map(([key, preset]) => (
+                          <div key={key} className="p-2 border rounded bg-background">
+                            <div className="font-medium">{preset.label}</div>
+                            <div className="text-muted-foreground">{preset.description}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
 

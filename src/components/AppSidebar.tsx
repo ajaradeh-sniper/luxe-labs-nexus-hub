@@ -63,7 +63,7 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
   const adminItems = [
     { title: "User Management", url: "/admin/detailed-users", icon: Users, roles: ['administrator'] },
     { title: "Submission Review", url: "/admin/submission-review", icon: CheckCircle, roles: ['administrator'] },
-    { title: "Permissions Manager", url: "/admin/permissions", icon: ShieldCheck, roles: ['administrator'] },
+    
     { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client', 'real_estate_agent', 'partner'] },
     { title: "Property Management", url: "/admin/properties", icon: Building, roles: ['administrator', 'investor'] },
     { title: "Opportunities", url: "/opportunities", icon: Target, roles: ['administrator', 'real_estate_director', 'real_estate_agent'] },
