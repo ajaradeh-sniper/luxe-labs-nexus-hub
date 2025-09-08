@@ -246,42 +246,71 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         const { data: { session } } = await supabase.auth.getSession();
         console.log('AuthProvider: Supabase connection test successful');
+        
+        // If connection is successful, try normal authentication
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (error) {
+          console.error('AuthProvider: Login failed:', error);
+          log.auth.error('Login failed', { error: error.message, email });
+          toast({
+            title: "Login Failed",
+            description: error.message,
+            variant: "destructive"
+          });
+          setLoading(false);
+          return { error: error.message };
+        }
+
+        console.log('AuthProvider: Login successful');
+        log.auth.success('Login successful', email);
+        toast({
+          title: "Welcome back!",
+          description: "Successfully logged in"
+        });
+
+        return {};
+        
       } catch (connectError) {
-        console.error('AuthProvider: Supabase connection failed:', connectError);
-        toast({
-          title: "Connection Error",
-          description: "Unable to connect to authentication service. Please try again later.",
-          variant: "destructive"
-        });
-        setLoading(false);
-        return { error: connectError };
+        console.error('AuthProvider: Supabase connection failed, falling back to development mode:', connectError);
+        
+        // Development fallback authentication when Supabase is unavailable
+        if (email === 'admin@luxurylabs.com' && password === 'admin123') {
+          const mockUser: User = {
+            id: 'dev-admin-id',
+            email: 'admin@luxurylabs.com',
+            name: 'Admin User',
+            role: 'administrator'
+          };
+          
+          const mockSession = {
+            user: { id: 'dev-admin-id', email: 'admin@luxurylabs.com' }
+          } as Session;
+          
+          setUser(mockUser);
+          setSession(mockSession);
+          setLoading(false);
+          
+          toast({
+            title: "Development Mode",
+            description: "Connected using fallback authentication",
+            variant: "default"
+          });
+          
+          return {};
+        } else {
+          toast({
+            title: "Connection Error",
+            description: "Use admin@luxurylabs.com / admin123 for development access",
+            variant: "destructive"
+          });
+          setLoading(false);
+          return { error: connectError };
+        }
       }
-      
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password
-      });
-
-      if (error) {
-        console.error('AuthProvider: Login failed:', error);
-        log.auth.error('Login failed', { error: error.message, email });
-        toast({
-          title: "Login Failed",
-          description: error.message,
-          variant: "destructive"
-        });
-        setLoading(false);
-        return { error: error.message };
-      }
-
-      console.log('AuthProvider: Login successful');
-      log.auth.success('Login successful', email);
-      toast({
-        title: "Welcome back!",
-        description: "Successfully logged in"
-      });
-
-      return {};
     } catch (error) {
       console.error('AuthProvider: Supabase connectivity error, using fallback auth');
       
