@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async"
 import { TrendingUp, Shield, Users, DollarSign, BarChart3, Award, ArrowRight, CheckCircle, User, Building2, Globe, Briefcase, PiggyBank, MapPin, Calendar, Target, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -39,8 +40,21 @@ export default function Investors() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <>
+      <Helmet>
+        <title>Investor Opportunities | Dubai Villa Investments with High ROI</title>
+        <meta name="description" content="Access vetted Dubai villa flips. Track ROI, manage your portfolio, and join exclusive property investment opportunities with Luxury Labs." />
+        <meta name="keywords" content="Dubai property investment, villa investment opportunities, high ROI Dubai, property portfolio, luxury real estate investment" />
+        <meta property="og:title" content="Investor Opportunities | Dubai Villa Investments with High ROI" />
+        <meta property="og:description" content="Access vetted Dubai villa flips. Track ROI, manage your portfolio, and join exclusive property investment opportunities with Luxury Labs." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://luxurylabs.ae/investors" />
+        <meta name="twitter:title" content="Investor Opportunities | Dubai Villa Investments with High ROI" />
+        <meta name="twitter:description" content="Access vetted Dubai villa flips. Track ROI, manage your portfolio, and join exclusive property investment opportunities with Luxury Labs." />
+        <link rel="canonical" href="https://luxurylabs.ae/investors" />
+      </Helmet>
+      <div className="min-h-screen bg-background">
+        <Navigation />
       
       {/* Hero Section */}
       <section className="relative h-96 flex items-center">
@@ -521,6 +535,7 @@ export default function Investors() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }

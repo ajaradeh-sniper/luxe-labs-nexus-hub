@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Helmet } from "react-helmet-async"
 import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -85,6 +86,18 @@ const Contact = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Contact Luxury Labs | Dubai Villa Investment & Renovation Services</title>
+        <meta name="description" content="Connect with Luxury Labs for investor opportunities, villa flipping services, or Dubai luxury property consultations. Start your transformation today." />
+        <meta name="keywords" content="Contact Luxury Labs, Dubai property consultation, villa investment Dubai, luxury property services, real estate contact" />
+        <meta property="og:title" content="Contact Luxury Labs | Dubai Villa Investment & Renovation Services" />
+        <meta property="og:description" content="Connect with Luxury Labs for investor opportunities, villa flipping services, or Dubai luxury property consultations. Start your transformation today." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://luxurylabs.ae/contact" />
+        <meta name="twitter:title" content="Contact Luxury Labs | Dubai Villa Investment & Renovation Services" />
+        <meta name="twitter:description" content="Connect with Luxury Labs for investor opportunities, villa flipping services, or Dubai luxury property consultations. Start your transformation today." />
+        <link rel="canonical" href="https://luxurylabs.ae/contact" />
+      </Helmet>
       <Navigation />
       
       {/* Hero Section */}

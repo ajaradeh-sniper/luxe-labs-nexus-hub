@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async"
 import { Navigation } from "@/components/Navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,6 +11,18 @@ import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
 const Index = () => {
   return (
     <>
+      <Helmet>
+        <title>Luxury Labs | Dubai Luxury Property Flips & High-ROI Investments</title>
+        <meta name="description" content="Invest in Dubai luxury villas with 15–30% ROI. Luxury Labs specializes in property flips, premium renovations, and exclusive investor opportunities." />
+        <meta name="keywords" content="Dubai property investment, luxury villa flips, high ROI, property renovation, real estate Dubai, luxury property, investment opportunities" />
+        <meta property="og:title" content="Luxury Labs | Dubai Luxury Property Flips & High-ROI Investments" />
+        <meta property="og:description" content="Invest in Dubai luxury villas with 15–30% ROI. Luxury Labs specializes in property flips, premium renovations, and exclusive investor opportunities." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://luxurylabs.ae" />
+        <meta name="twitter:title" content="Luxury Labs | Dubai Luxury Property Flips & High-ROI Investments" />
+        <meta name="twitter:description" content="Invest in Dubai luxury villas with 15–30% ROI. Luxury Labs specializes in property flips, premium renovations, and exclusive investor opportunities." />
+        <link rel="canonical" href="https://luxurylabs.ae" />
+      </Helmet>
       <Navigation />
       <div className="min-h-screen">
         {/* Hero Section */}

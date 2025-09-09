@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async"
 import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -173,6 +174,18 @@ const Services = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Services | Dubai Luxury Villa Flips & Renovation by Luxury Labs</title>
+        <meta name="description" content="Explore Luxury Labs services: shared stake investments, single property flips, and diversified Dubai property funds designed for HNWIs and investors." />
+        <meta name="keywords" content="Dubai villa renovation, luxury property services, property flips Dubai, real estate investment, HNWI services, property transformation" />
+        <meta property="og:title" content="Services | Dubai Luxury Villa Flips & Renovation by Luxury Labs" />
+        <meta property="og:description" content="Explore Luxury Labs services: shared stake investments, single property flips, and diversified Dubai property funds designed for HNWIs and investors." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://luxurylabs.ae/services" />
+        <meta name="twitter:title" content="Services | Dubai Luxury Villa Flips & Renovation by Luxury Labs" />
+        <meta name="twitter:description" content="Explore Luxury Labs services: shared stake investments, single property flips, and diversified Dubai property funds designed for HNWIs and investors." />
+        <link rel="canonical" href="https://luxurylabs.ae/services" />
+      </Helmet>
       <Navigation />
       
       {/* Hero Section */}

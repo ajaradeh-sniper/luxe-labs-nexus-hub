@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async"
 import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -77,6 +78,18 @@ const About = () => {
 
   return (
     <>
+      <Helmet>
+        <title>About Luxury Labs | Dubai Luxury Property Transformation Experts</title>
+        <meta name="description" content="Meet the team behind Luxury Labs. Experts in design, real estate, and investment delivering Dubai villa flips and luxury property ROI." />
+        <meta name="keywords" content="Luxury Labs team, Dubai property experts, villa transformation, real estate professionals, property investment Dubai, luxury design" />
+        <meta property="og:title" content="About Luxury Labs | Dubai Luxury Property Transformation Experts" />
+        <meta property="og:description" content="Meet the team behind Luxury Labs. Experts in design, real estate, and investment delivering Dubai villa flips and luxury property ROI." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://luxurylabs.ae/about" />
+        <meta name="twitter:title" content="About Luxury Labs | Dubai Luxury Property Transformation Experts" />
+        <meta name="twitter:description" content="Meet the team behind Luxury Labs. Experts in design, real estate, and investment delivering Dubai villa flips and luxury property ROI." />
+        <link rel="canonical" href="https://luxurylabs.ae/about" />
+      </Helmet>
       <Navigation />
       
       {/* Hero Section with Image */}
