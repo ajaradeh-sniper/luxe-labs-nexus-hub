@@ -1176,6 +1176,30 @@ export type Database = {
         }
         Relationships: []
       }
+      submission_rate_limits: {
+        Row: {
+          created_at: string | null
+          id: string
+          ip_address: unknown
+          submission_count: number | null
+          window_start: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          ip_address: unknown
+          submission_count?: number | null
+          window_start?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          ip_address?: unknown
+          submission_count?: number | null
+          window_start?: string | null
+        }
+        Relationships: []
+      }
       system_analytics: {
         Row: {
           category: string
@@ -1434,6 +1458,10 @@ export type Database = {
           user_uuid: string
         }
         Returns: boolean
+      }
+      cleanup_rate_limits: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
       }
       get_user_role: {
         Args: { user_uuid?: string }
