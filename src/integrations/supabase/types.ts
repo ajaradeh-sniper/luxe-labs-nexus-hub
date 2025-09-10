@@ -1507,6 +1507,10 @@ export type Database = {
         Args: { user_uuid?: string }
         Returns: boolean
       }
+      is_verified_admin: {
+        Args: { user_uuid?: string }
+        Returns: boolean
+      }
       log_security_event: {
         Args: {
           p_details?: Json
@@ -1515,6 +1519,10 @@ export type Database = {
           p_user_id?: string
         }
         Returns: undefined
+      }
+      mask_referral_data: {
+        Args: { referral_data: Json; user_role?: string }
+        Returns: Json
       }
       promote_to_admin: {
         Args: { user_email: string }
