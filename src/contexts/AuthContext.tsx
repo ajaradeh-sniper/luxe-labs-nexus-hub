@@ -284,33 +284,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       log.api.request('/auth/signin', 'POST', { email }, undefined);
       setLoading(true);
       
-      // Check for development mode credentials first to skip Supabase entirely
-      if (email === 'admin@luxurylabs.com' && password === 'admin123') {
-        console.log('AuthProvider: Using development mode credentials');
-        
-        const mockUser: User = {
-          id: 'dev-admin-id',
-          email: 'admin@luxurylabs.com',
-          name: 'Admin User',
-          role: 'administrator'
-        };
-        
-        const mockSession = {
-          user: { id: 'dev-admin-id', email: 'admin@luxurylabs.com' }
-        } as Session;
-        
-        setUser(mockUser);
-        setSession(mockSession);
-        setLoading(false);
-        
-        toast({
-          title: "Development Mode",
-          description: "Connected using fallback authentication",
-          variant: "default"
-        });
-        
-        return {};
-      }
+      // Removed development mode bypass for security
       
       // Try Supabase authentication for other credentials
       try {

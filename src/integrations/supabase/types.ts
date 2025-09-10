@@ -1475,6 +1475,10 @@ export type Database = {
         Args: { user_email: string }
         Returns: undefined
       }
+      track_submission_rate_limit: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       lead_status: "new" | "qualified" | "go_decision" | "no_go" | "converted"

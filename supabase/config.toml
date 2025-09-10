@@ -27,3 +27,6 @@ verify_jwt = false
 
 [functions.extract-property-data]
 verify_jwt = false
+
+[functions.rate-limit-submissions]
+verify_jwt = false
