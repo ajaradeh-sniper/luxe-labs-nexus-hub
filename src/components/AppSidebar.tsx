@@ -13,6 +13,7 @@ import {
   FolderOpen,
   DollarSign,
   CheckCircle,
+  Shield,
   Target,
   Globe,
   Calendar,
@@ -69,6 +70,7 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
     { title: "Opportunities", url: "/opportunities", icon: Target, roles: ['administrator', 'real_estate_director', 'real_estate_agent'] },
     { title: "Fund Management", url: "/fund-management", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor'] },
     { title: "System Settings", url: "/admin/system-settings", icon: Settings, roles: ['administrator'] },
+    { title: "Security Audit", url: "/admin/security-audit", icon: Shield, roles: ['administrator'] },
     { title: "Analytics", url: "/analytics", icon: BarChart3, roles: ['administrator', 'marketing_lead', 'real_estate_director'] },
     { title: "Marketing", url: "/marketing", icon: Target, roles: ['administrator', 'marketing_lead'] },
     { title: "Agreements", url: "/agreements", icon: FileText, roles: ['administrator', 'project_manager', 'lawyer'] }

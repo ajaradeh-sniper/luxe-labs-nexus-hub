@@ -42,6 +42,7 @@ import AdminInvestors from "./pages/admin/Investors"
 import AdminProperties from "./pages/admin/Properties"
 import AdminSystemSettings from "./pages/admin/SystemSettings"
 import AdminSystemHealth from "./pages/admin/SystemHealth"
+import AdminSecurityAudit from "./pages/admin/SecurityAudit"
 import AdminSubmissionReview from "./pages/admin/SubmissionReview"
 
 
@@ -157,6 +158,12 @@ function App() {
           <Route path="/admin/submission-review" element={
             <SmartProtectedRoute requiredRoles={['administrator']}>
               <AdminSubmissionReview />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/admin/security-audit" element={
+            <SmartProtectedRoute requiredRoles={['administrator']}>
+              <AdminSecurityAudit />
             </SmartProtectedRoute>
           } />
           

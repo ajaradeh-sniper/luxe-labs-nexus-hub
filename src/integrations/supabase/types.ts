@@ -1176,6 +1176,39 @@ export type Database = {
         }
         Relationships: []
       }
+      security_audit_log: {
+        Row: {
+          created_at: string | null
+          details: Json | null
+          event_type: string
+          id: string
+          ip_address: unknown | null
+          severity: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          details?: Json | null
+          event_type: string
+          id?: string
+          ip_address?: unknown | null
+          severity?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          details?: Json | null
+          event_type?: string
+          id?: string
+          ip_address?: unknown | null
+          severity?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       submission_rate_limits: {
         Row: {
           created_at: string | null
@@ -1363,6 +1396,7 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          ip_address: unknown | null
           message: string | null
           name: string
           phone: string | null
@@ -1380,6 +1414,7 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
+          ip_address?: unknown | null
           message?: string | null
           name: string
           phone?: string | null
@@ -1397,6 +1432,7 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+          ip_address?: unknown | null
           message?: string | null
           name?: string
           phone?: string | null
@@ -1470,6 +1506,15 @@ export type Database = {
       is_admin: {
         Args: { user_uuid?: string }
         Returns: boolean
+      }
+      log_security_event: {
+        Args: {
+          p_details?: Json
+          p_event_type: string
+          p_severity?: string
+          p_user_id?: string
+        }
+        Returns: undefined
       }
       promote_to_admin: {
         Args: { user_email: string }
