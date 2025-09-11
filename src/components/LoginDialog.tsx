@@ -24,7 +24,7 @@ export function LoginDialog({ trigger }: LoginDialogProps) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
-  const { login } = useAuth()
+  const { login, signUp } = useAuth()
   const navigate = useNavigate()
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -46,7 +46,27 @@ export function LoginDialog({ trigger }: LoginDialogProps) {
 
   const handleDemoLogin = () => {
     setEmail("admin@luxurylabs.com")
-    setPassword("demo123")
+    setPassword("admin123")
+  }
+
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    
+    try {
+      // Try to sign up the admin user
+      const { error } = await signUp(email, password, "Administrator", "administrator")
+      if (error) {
+        console.error('Signup failed:', error)
+      } else {
+        setOpen(false)
+        // Don't navigate immediately for signUp, user needs to verify email
+      }
+    } catch (error) {
+      console.error('Signup failed:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const defaultTrigger = (
@@ -124,15 +144,26 @@ export function LoginDialog({ trigger }: LoginDialogProps) {
                 type="button" 
                 variant="outline" 
                 className="w-full font-montserrat"
+                onClick={handleSignUp}
+                disabled={loading}
+              >
+                {loading ? "Creating Account..." : "Sign Up as Admin"}
+              </Button>
+              
+              <Button 
+                type="button" 
+                variant="ghost" 
+                className="w-full font-montserrat text-sm"
                 onClick={handleDemoLogin}
               >
-                Use Demo Login
+                Use Demo Credentials
               </Button>
             </form>
             
             <div className="mt-6 text-center">
               <p className="text-xs text-muted-foreground font-montserrat">
-                Demo credentials: admin@luxurylabs.com / demo123
+                If login fails due to network issues, try "Sign Up as Admin" first.<br/>
+                Demo credentials: admin@luxurylabs.com / admin123
               </p>
             </div>
           </CardContent>
