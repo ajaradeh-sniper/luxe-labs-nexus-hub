@@ -115,6 +115,15 @@ const Auth = () => {
     }
   }
 
+  const handleOfflineDemo = () => {
+    try {
+      localStorage.setItem('ll_offline_admin', '1')
+      window.location.reload()
+    } catch (e) {
+      console.warn('Failed to enable offline demo mode', e)
+    }
+  }
+
   const getRoleIcon = (role: UserRole) => {
     switch (role) {
       case 'administrator': return <Shield className="h-4 w-4" />
@@ -242,6 +251,15 @@ const Auth = () => {
                     ) : (
                       'Sign In'
                     )}
+                  </Button>
+                  <Button 
+                    type="button" 
+                    className="w-full mt-2" 
+                    variant="secondary"
+                    onClick={handleOfflineDemo}
+                    disabled={isLoading}
+                  >
+                    Continue Offline (Demo Admin)
                   </Button>
                 </form>
               </TabsContent>

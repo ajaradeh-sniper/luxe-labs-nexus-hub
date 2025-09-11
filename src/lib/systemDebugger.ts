@@ -98,10 +98,20 @@ export const systemDebugger = {
   }
 };
 
-// Auto-run diagnostic on import in development
+// Auto-run diagnostic on import in development (opt-in)
 if (import.meta.env.DEV) {
-  console.log('Development mode detected - running system diagnostic...');
-  setTimeout(() => {
-    systemDebugger.runFullDiagnostic();
-  }, 2000);
+  try {
+    const diagnosticsEnabled = localStorage.getItem('ll_enable_diagnostics') === '1';
+    const offlineFlag = localStorage.getItem('ll_offline_admin') === '1';
+    if (diagnosticsEnabled && !offlineFlag && navigator.onLine) {
+      console.log('Development mode - running system diagnostic...');
+      setTimeout(() => {
+        systemDebugger.runFullDiagnostic();
+      }, 2000);
+    } else {
+      console.log('System diagnostic skipped (offline or disabled).');
+    }
+  } catch (e) {
+    console.warn('System diagnostic not run due to storage access error:', e);
+  }
 }

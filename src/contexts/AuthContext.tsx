@@ -29,11 +29,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     console.log('AuthProvider: Initializing...');
     
-    // Run system diagnostic in development
-    if (import.meta.env.DEV) {
-      systemDebugger.runFullDiagnostic();
+    // Offline demo mode: bypass Supabase entirely if flag set
+    try {
+      const offlineFlag = localStorage.getItem('ll_offline_admin') === '1';
+      if (offlineFlag) {
+        const offlineUser = {
+          id: 'demo-admin',
+          email: 'admin@luxurylabs.com',
+          name: 'Administrator',
+          role: 'administrator' as UserRole,
+          avatar: undefined
+        };
+        setUser(offlineUser);
+        setSession(null);
+        setLoading(false);
+        setIsInitialized(true);
+        // Clear the flag so subsequent reloads behave normally
+        localStorage.removeItem('ll_offline_admin');
+        return;
+      }
+    } catch (e) {
+      console.warn('AuthProvider: Offline flag check failed', e);
     }
-    
+
+    // Run system diagnostic in development only if explicitly enabled and online
+    if (import.meta.env.DEV) {
+      const diagnosticsEnabled = localStorage.getItem('ll_enable_diagnostics') === '1';
+      const offlineFlag = localStorage.getItem('ll_offline_admin') === '1';
+      if (diagnosticsEnabled && !offlineFlag && navigator.onLine) {
+        systemDebugger.runFullDiagnostic();
+      } else {
+        console.log('AuthProvider: System diagnostic skipped (offline or disabled).');
+      }
+    }
     // Clear any corrupted session data that might be causing fetch failures
     const clearCorruptedSession = () => {
       try {
