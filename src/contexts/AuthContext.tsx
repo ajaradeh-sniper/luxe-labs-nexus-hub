@@ -328,6 +328,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             description: "Cannot connect to authentication service. Try: admin@luxurylabs.com / admin123",
             variant: "destructive"
           });
+
+          // Offline demo admin fallback (development convenience)
+          if (email === 'admin@luxurylabs.com' && password === 'admin123') {
+            const offlineUser = {
+              id: 'demo-admin',
+              email,
+              name: 'Administrator',
+              role: 'administrator' as UserRole,
+              avatar: undefined
+            };
+            setUser(offlineUser);
+            console.warn('AuthProvider: Offline demo admin login activated due to network failure.');
+            toast({
+              title: 'Offline Demo Mode',
+              description: 'You are logged in as admin (offline). Some data may be unavailable.'
+            });
+            setLoading(false);
+            return {};
+          }
         } else {
           toast({
             title: "Authentication Error",

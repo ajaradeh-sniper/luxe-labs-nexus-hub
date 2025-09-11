@@ -49,8 +49,8 @@ export function LoginDialog({ trigger }: LoginDialogProps) {
     setPassword("admin123")
   }
 
-  const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSignUp = async (e?: React.SyntheticEvent) => {
+    e?.preventDefault()
     setLoading(true)
     
     try {
