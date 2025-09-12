@@ -24,6 +24,8 @@ const Auth = () => {
     name: '',
     role: 'client' as UserRole
   })
+  const [connStatus, setConnStatus] = useState<'idle' | 'testing' | 'ok' | 'blocked' | 'error'>('idle')
+  const [connMessage, setConnMessage] = useState<string | null>(null)
 
   const { login, signUp, user } = useAuth()
   const navigate = useNavigate()
@@ -121,6 +123,31 @@ const Auth = () => {
       window.location.reload()
     } catch (e) {
       console.warn('Failed to enable offline demo mode', e)
+    }
+  }
+
+  const testConnection = async () => {
+    try {
+      setConnStatus('testing')
+      setConnMessage(null)
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 6000)
+      const res = await fetch('https://vzrdmjbcbhhyutppuxcf.supabase.co/auth/v1/health', {
+        mode: 'cors',
+        signal: controller.signal
+      })
+      clearTimeout(timeout)
+      if (res.ok) {
+        setConnStatus('ok')
+        setConnMessage('Supabase reachable from your network.')
+      } else {
+        setConnStatus('error')
+        setConnMessage(`Received ${res.status} ${res.statusText}`)
+      }
+    } catch (e: any) {
+      const msg = e?.name === 'AbortError' ? 'Request timed out' : (e?.message || 'Unknown error')
+      setConnStatus('blocked')
+      setConnMessage(`Network/CORS blocked: ${msg}`)
     }
   }
 
@@ -261,6 +288,27 @@ const Auth = () => {
                   >
                     Continue Offline (Demo Admin)
                   </Button>
+                  <Button
+                    type="button"
+                    className="w-full mt-2"
+                    variant="outline"
+                    onClick={testConnection}
+                    disabled={isLoading || connStatus === 'testing'}
+                  >
+                    {connStatus === 'testing' ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Testing connection...
+                      </>
+                    ) : (
+                      'Test Supabase Connection'
+                    )}
+                  </Button>
+                  {connStatus !== 'idle' && (
+                    <p className="text-xs text-muted-foreground text-center mt-2">
+                      {connMessage || (connStatus === 'ok' ? 'Supabase reachable.' : 'Connection appears blocked.')}
+                    </p>
+                  )}
                 </form>
               </TabsContent>
 
