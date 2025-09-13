@@ -18,9 +18,9 @@ import {
   Video,
   Handshake,
   Building2,
-  Palette,
+  
   ShieldCheck,
-  Eye
+  
 } from "lucide-react"
 
 // Import HD images
@@ -30,7 +30,7 @@ import beforeAfterTransformation from "@/assets/before-after-villa-transformatio
 import diversifiedFundGrowth from "@/assets/diversified-fund-growth.jpg"
 import executiveConcierge from "@/assets/executive-concierge-team.jpg"
 import flippingDubaiMedia from "@/assets/flipping-dubai-media-crew.jpg"
-import luxuryLabsPillars from "@/assets/luxury-labs-four-pillars.jpg"
+
 
 // Location images
 import palmJumeirahVilla from "@/assets/palm-jumeirah-villa-hd.jpg"
@@ -112,28 +112,6 @@ const Services = () => {
     }
   ]
 
-  const whyLuxuryLabs = [
-    {
-      icon: Target,
-      title: 'Curated Property Selection',
-      description: 'Only prime Dubai villas, vetted through DLD and private networks'
-    },
-    {
-      icon: Palette,
-      title: 'World-Class Design',
-      description: 'Led by Federica Freschet with Hermès retail experience'
-    },
-    {
-      icon: Award,
-      title: 'Premium Supplier Network',
-      description: 'Contractors and materials vetted to global luxury standards'
-    },
-    {
-      icon: Eye,
-      title: 'Transparency & ROI',
-      description: 'Real-time investor dashboards, ROI reports, and media-backed exposure'
-    }
-  ]
 
   const locations = [
     {
@@ -329,42 +307,6 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Why Luxury Labs */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 font-playfair">Why Luxury Labs?</h2>
-              <div className="relative h-64 mb-12 overflow-hidden rounded-2xl">
-                <img 
-                  src={luxuryLabsPillars}
-                  alt="Luxury Labs four pillars infographic"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              {whyLuxuryLabs.map((pillar, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <pillar.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{pillar.title}</h3>
-                  <p className="text-muted-foreground text-sm">{pillar.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" onClick={() => window.location.href = '/opportunities'}>
-                Explore Opportunities
-              </Button>
-              <Button variant="outline" size="lg" onClick={() => window.location.href = '/contact'}>
-                Contact Our Team
-              </Button>
-            </div>
-          </div>
-        </section>
 
         {/* Locations We Transform */}
         <section className="py-20 bg-muted/30">
@@ -376,35 +318,38 @@ const Services = () => {
               </p>
             </div>
 
-            <div className="grid gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {locations.map((location) => (
-                <Card key={location.id} className="overflow-hidden">
-                  <div className="grid lg:grid-cols-2 gap-0">
-                    <div className="relative h-64 lg:h-auto">
-                      <img 
-                        src={location.image}
-                        alt={`${location.name} luxury villa`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="p-8">
-                      <h3 className="text-2xl font-bold mb-6">{location.name}</h3>
-                      <div className="space-y-4">
-                        <div>
-                          <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
-                          <p className="text-sm text-muted-foreground leading-relaxed">{location.whyList}</p>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-primary mb-2">Typical Asset</h4>
-                          <p className="text-sm">{location.typicalAsset}</p>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-primary mb-2">Acquisition Budget Band</h4>
-                          <p className="text-sm font-semibold text-accent">{location.budget}</p>
-                        </div>
-                      </div>
+                <Card key={location.id} className="overflow-hidden group hover:shadow-lg transition-shadow">
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={location.image}
+                      alt={`${location.name} luxury villa`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                      <h3 className="text-lg font-bold text-white mb-1">{location.name}</h3>
+                      <p className="text-xs text-white/90">{location.budget}</p>
                     </div>
                   </div>
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-bold mb-4 group-hover:text-primary transition-colors">{location.name}</h3>
+                    <div className="space-y-3">
+                      <div>
+                        <h4 className="font-semibold text-primary text-sm mb-1">Why it makes the list</h4>
+                        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">{location.whyList}</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary text-sm mb-1">Typical Asset</h4>
+                        <p className="text-xs line-clamp-2">{location.typicalAsset}</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary text-sm mb-1">Budget Band</h4>
+                        <p className="text-xs font-semibold text-accent">{location.budget}</p>
+                      </div>
+                    </div>
+                  </CardContent>
                 </Card>
               ))}
             </div>
