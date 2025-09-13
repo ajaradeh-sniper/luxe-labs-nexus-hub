@@ -227,28 +227,35 @@ const Services = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Investment Services</h2>
             </div>
 
-            <div className="space-y-16">
-              {investmentServices.map((service, index) => (
-                <div key={service.id} className={`grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-                  <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                    <div className="flex items-center gap-4 mb-4">
+            <div className="grid lg:grid-cols-3 gap-8">
+              {investmentServices.map((service) => (
+                <Card key={service.id} className="overflow-hidden">
+                  <div className="relative h-64">
+                    <img 
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
                       <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
                         <service.icon className="h-6 w-6 text-primary" />
                       </div>
-                      <h3 className="text-2xl font-bold">{service.title}</h3>
+                      <CardTitle className="text-xl">{service.title}</CardTitle>
                     </div>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      {service.description}
-                    </p>
-                    <ul className="space-y-3">
+                    <p className="text-muted-foreground">{service.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 mb-6">
                       {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                        <li key={idx} className="flex items-start gap-2 text-sm">
+                          <CheckCircle className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
                           <span className="text-muted-foreground">{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <div className="flex gap-3 pt-4">
+                    <div className="flex gap-2">
                       <Button onClick={() => window.location.href = '/contact'}>
                         {service.buttons[0]}
                       </Button>
@@ -256,15 +263,8 @@ const Services = () => {
                         {service.buttons[1]}
                       </Button>
                     </div>
-                  </div>
-                  <div className={`relative h-96 overflow-hidden rounded-2xl ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                    <img 
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
