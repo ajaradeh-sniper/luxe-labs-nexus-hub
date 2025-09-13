@@ -41,7 +41,7 @@ import jumeirahGolfEstateVilla from "@/assets/jumeirah-golf-estate-villa-hd.jpg"
 import alBarariVilla from "@/assets/al-barari-villa-hd.jpg"
 
 const Services = () => {
-  const coreServices = [
+  const investmentServices = [
     {
       id: 'shared-stake',
       title: 'Shared Stake Investment',
@@ -83,23 +83,36 @@ const Services = () => {
     }
   ]
 
-  const complementaryServices = [
+  const transformationServices = [
     {
-      id: 'concierge-advisory',
-      title: 'Concierge & Advisory Services',
-      description: 'Tailored advisory and lifestyle support for HNWIs in Dubai.',
+      id: 'relocation-concierge',
+      title: 'Relocation Concierge Services',
+      description: 'Comprehensive relocation and lifestyle support for HNWIs moving to Dubai.',
+      icon: Handshake,
+      features: [
+        'Full relocation support: visa, banking, residence setup',
+        'Lifestyle integration: schools, clubs, private services',
+        'Ongoing concierge support for Dubai living'
+      ],
+      image: executiveConcierge,
+      buttons: ['Request Concierge', 'Talk to Team']
+    },
+    {
+      id: 'advisory-services',
+      title: 'Advisory Services',
+      description: 'Strategic property and investment advisory for sophisticated investors.',
       icon: FileText,
       features: [
         'Property advisory: sourcing, structuring, legal',
-        'Relocation concierge: setup, lifestyle integration, private services',
-        'Advisory on structuring investments, JV agreements, and long-term portfolios'
+        'Investment structuring and JV agreements',
+        'Long-term portfolio advisory and optimization'
       ],
       image: executiveConcierge,
-      buttons: ['Request Advisory', 'Talk to Concierge']
+      buttons: ['Request Advisory', 'Book Consultation']
     },
     {
-      id: 'flipping-dubai',
-      title: 'Flipping Dubai Media',
+      id: 'media-services',
+      title: 'Flipping Dubai Media Services',
       description: 'Our exclusive media arm documents transformations, reaching global audiences of investors, buyers, and HNWIs.',
       icon: Video,
       features: [
@@ -207,15 +220,15 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Core Investment Services */}
+        {/* Investment Services */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Core Investment Services</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Investment Services</h2>
             </div>
 
             <div className="space-y-16">
-              {coreServices.map((service, index) => (
+              {investmentServices.map((service, index) => (
                 <div key={service.id} className={`grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
                   <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                     <div className="flex items-center gap-4 mb-4">
@@ -257,15 +270,15 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Complementary Services */}
+        {/* Transformation Services */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Complementary Services</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Transformation Services</h2>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-8">
-              {complementaryServices.map((service) => (
+            <div className="grid lg:grid-cols-3 gap-8">
+              {transformationServices.map((service) => (
                 <Card key={service.id} className="overflow-hidden">
                   <div className="relative h-64">
                     <img 
