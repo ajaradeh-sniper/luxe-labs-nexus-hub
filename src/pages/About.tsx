@@ -324,6 +324,100 @@ const About = () => {
           </div>
         </section>
 
+        {/* Why Choose Luxury Labs */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Why Choose Luxury Labs</h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Discover what sets Luxury Labs apart as Dubai's premier luxury property transformation platform.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="p-8 overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                      <Shield className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold">Proven Track Record</h3>
+                  </div>
+                  <p className="text-muted-foreground mb-4">
+                    Our commitment to excellence is backed by consistent results and satisfied investors 
+                    who trust us with their capital.
+                  </p>
+                  <ul className="space-y-2">
+                    {[
+                      "100% project completion rate",
+                      "Zero investor losses to date",
+                      "Average 8-month turnaround"
+                    ].map((point, index) => (
+                      <li key={index} className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-green-500" />
+                        <span className="text-muted-foreground">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="p-8 overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                      <Award className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold">Expert Management</h3>
+                  </div>
+                  <p className="text-muted-foreground mb-4">
+                    Our multidisciplinary team of real estate experts, designers, and project managers 
+                    ensures every transformation exceeds expectations.
+                  </p>
+                  <ul className="space-y-2">
+                    {[
+                      "20+ years combined experience",
+                      "Licensed professionals only",
+                      "Comprehensive project oversight"
+                    ].map((point, index) => (
+                      <li key={index} className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-green-500" />
+                        <span className="text-muted-foreground">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="p-8 overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                      <Users className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold">Luxury Network</h3>
+                  </div>
+                  <p className="text-muted-foreground mb-4">
+                    Our extensive network of elite real estate developers, premium agencies, certified contractors, 
+                    luxury suppliers, and specialized factories ensuring superior quality and craftsmanship.
+                  </p>
+                  <ul className="space-y-2">
+                    {[
+                      "Elite real estate developers & agencies",
+                      "Certified luxury contractors",
+                      "Premium suppliers & material factories"
+                    ].map((point, index) => (
+                      <li key={index} className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-green-500" />
+                        <span className="text-muted-foreground">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20">
           <div className="container mx-auto px-4 text-center">
