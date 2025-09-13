@@ -27,13 +27,12 @@ import {
 } from "lucide-react"
 import renovationShowcase from "@/assets/renovation-showcase.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
-import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
-import businessBay from "@/assets/business-bay.jpg"
-import downtownLuxury from "@/assets/downtown-luxury.jpg"
-import marinaTower from "@/assets/marina-tower.jpg"
-import premiumTower from "@/assets/premium-tower.jpg"
-import premiumVillaSelection from "@/assets/premium-villa-selection.jpg"
-import modernArchitecture from "@/assets/modern-architecture.jpg"
+import emiratesHillsVilla from "@/assets/emirates-hills-villa.jpg"
+import palmJumeirahVilla from "@/assets/palm-jumeirah-villa.jpg"
+import jumeirahGolfEstateVilla from "@/assets/jumeirah-golf-estate-villa.jpg"
+import jumeirahIslandsVilla from "@/assets/jumeirah-islands-villa.jpg"
+import dubaiHillsVilla from "@/assets/dubai-hills-villa.jpg"
+import alBarariVilla from "@/assets/al-barari-villa.jpg"
 
 const Services = () => {
   const [expandedService, setExpandedService] = useState<string | null>(null)
@@ -330,91 +329,192 @@ const Services = () => {
             </div>
 
             <div className="max-w-7xl mx-auto">
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse border border-muted-foreground/20 rounded-lg overflow-hidden bg-card">
-                  <thead>
-                    <tr className="bg-primary/10">
-                      <th className="border border-muted-foreground/20 p-4 text-left font-semibold">Area</th>
-                      <th className="border border-muted-foreground/20 p-4 text-left font-semibold">Why it makes the list</th>
-                      <th className="border border-muted-foreground/20 p-4 text-left font-semibold">Typical asset</th>
-                      <th className="border border-muted-foreground/20 p-4 text-left font-semibold">Acquisition budget band</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="hover:bg-muted/50 transition-colors">
-                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Palm Jumeirah</td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        Deep buyer pool, scarce waterfront plots, highest villa AED/ft² in the city; turnkey premiums are clear. Villas averaged AED ~4,942/ft² (Jul-25); apartments ~3,267/ft² (Jul-25).
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        Garden/Signature villas (5–7BR), trophy apartments (Bulgari/Atlantis/Oceana/Tiara)
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
-                        AED 25–90M+ for villas based on July-25 comps.
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-muted/50 transition-colors">
-                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Dubai Hills Estate</td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        Family prime with velocity; clear comp ladder by sub-community; villas ~AED 2,737/ft² (H1-25); triangulated by Q1-25 ~2,767/ft².
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        Sidra/Maple (lighter), Golf Place/ Fairway/ Parkway Vistas (heavy)
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
-                        AED 8–45M by typology.
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-muted/50 transition-colors">
-                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Jumeirah Islands</td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        Lifestyle "islands" with strong upgrade premiums; villas at ~AED 3,024/ft² (Mar-24). (Order Dubai Chocolate by Uncle Fluffy)
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        4–6BR lake-facing villas
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
-                        AED 12–35M (cluster/condition)
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-muted/50 transition-colors">
-                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Emirates Hills</td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        Blue-chip address; mega-mansion repositioning; median villa ~AED 2,390/ft² (Jan-25); Bayut showed ~AED 3,064/ft² (Nov-24)—methodology/timeframe explain spread.
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        6–10BR estates
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
-                        AED 35–200M+
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-muted/50 transition-colors">
-                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Jumeirah Golf Estates (JGE)</td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        Golf lifestyle; healthy yields and steady end-user demand; villa ~AED 2,481/ft² (Q1-25); luxury villas ROI ~5.9% (rental) benchmark. (Property Monitor)
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        4–6BR golf-course villas
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
-                        AED 8–30M
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-muted/50 transition-colors">
-                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Dubai Marina</td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        Waterfront towers with strong rental yields; high-rise luxury apartments with marina views; consistent demand from professionals and investors; established infrastructure.
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm">
-                        1–4BR marina-view apartments, penthouses
-                      </td>
-                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
-                        AED 2–15M by floor/view
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Emirates Hills */}
+                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={emiratesHillsVilla}
+                      alt="Emirates Hills luxury villa"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold">Emirates Hills</h3>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
+                        <p className="text-sm text-muted-foreground">Blue-chip address; mega-mansion repositioning; median villa ~AED 2,390/ft² (Jan-25); Bayut showed ~AED 3,064/ft² (Nov-24)—methodology/timeframe explain spread.</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
+                        <p className="text-sm">6–10BR estates</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
+                        <p className="text-sm font-semibold text-accent">AED 35–200M+</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Palm Jumeirah */}
+                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={palmJumeirahVilla}
+                      alt="Palm Jumeirah luxury villa"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold">Palm Jumeirah</h3>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
+                        <p className="text-sm text-muted-foreground">Deep buyer pool, scarce waterfront plots, highest villa AED/ft² in the city; turnkey premiums are clear. Villas averaged AED ~4,942/ft² (Jul-25); apartments ~3,267/ft² (Jul-25).</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
+                        <p className="text-sm">Garden/Signature villas (5–7BR), trophy apartments (Bulgari/Atlantis/Oceana/Tiara)</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
+                        <p className="text-sm font-semibold text-accent">AED 25–90M+ for villas based on July-25 comps</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Jumeirah Golf Estate */}
+                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={jumeirahGolfEstateVilla}
+                      alt="Jumeirah Golf Estate luxury villa"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold">Jumeirah Golf Estate</h3>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
+                        <p className="text-sm text-muted-foreground">Golf lifestyle; healthy yields and steady end-user demand; villa ~AED 2,481/ft² (Q1-25); luxury villas ROI ~5.9% (rental) benchmark. (Property Monitor)</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
+                        <p className="text-sm">4–6BR golf-course villas</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
+                        <p className="text-sm font-semibold text-accent">AED 8–30M</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Jumeirah Islands */}
+                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={jumeirahIslandsVilla}
+                      alt="Jumeirah Islands luxury villa"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold">Jumeirah Islands</h3>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
+                        <p className="text-sm text-muted-foreground">Lifestyle "islands" with strong upgrade premiums; villas at ~AED 3,024/ft² (Mar-24). Unique waterfront community with exclusive appeal.</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
+                        <p className="text-sm">4–6BR lake-facing villas</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
+                        <p className="text-sm font-semibold text-accent">AED 12–35M (cluster/condition)</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Dubai Hills */}
+                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={dubaiHillsVilla}
+                      alt="Dubai Hills luxury villa"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold">Dubai Hills</h3>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
+                        <p className="text-sm text-muted-foreground">Family prime with velocity; clear comp ladder by sub-community; villas ~AED 2,737/ft² (H1-25); triangulated by Q1-25 ~2,767/ft².</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
+                        <p className="text-sm">Sidra/Maple (lighter), Golf Place/ Fairway/ Parkway Vistas (heavy)</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
+                        <p className="text-sm font-semibold text-accent">AED 8–45M by typology</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Al Barari */}
+                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={alBarariVilla}
+                      alt="Al Barari luxury villa"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold">Al Barari</h3>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
+                        <p className="text-sm text-muted-foreground">Dubai's green heart; eco-luxury community with mature landscaping; ultra-exclusive with limited supply; villas ~AED 2,800-3,500/ft² depending on size and position.</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
+                        <p className="text-sm">5–7BR eco-luxury villas with private gardens</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
+                        <p className="text-sm font-semibold text-accent">AED 18–60M+ premium locations</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
               
               <div className="mt-8 text-center">
