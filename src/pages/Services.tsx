@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useState } from "react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { 
   TrendingUp, 
   Home,
@@ -35,7 +36,8 @@ import dubaiHillsVilla from "@/assets/dubai-hills-luxury-villa.jpg"
 import alBarariVilla from "@/assets/al-barari-luxury-villa.jpg"
 
 const Services = () => {
-  const [expandedService, setExpandedService] = useState<string | null>(null)
+  const [selectedService, setSelectedService] = useState<string>("real-estate-investment")
+  const [selectedLocation, setSelectedLocation] = useState<string>("emirates-hills")
 
   const services = [
     {
@@ -101,9 +103,59 @@ const Services = () => {
     { step: 10, title: "Completion", description: "Final handover and profit distribution" }
   ]
 
-  const toggleExpanded = (serviceId: string) => {
-    setExpandedService(expandedService === serviceId ? null : serviceId)
-  }
+  const locations = [
+    {
+      id: 'emirates-hills',
+      name: 'Emirates Hills',
+      image: emiratesHillsVilla,
+      whyList: 'Dubai\'s most prestigious address with high-end villa sales; strong demand for luxury properties; villas ~AED 3,100-4,200/ft² (Q1-25).',
+      typicalAsset: '6–8BR luxury signature villas with golf/skyline views',
+      budget: 'AED 20–80M+ ultra-prime'
+    },
+    {
+      id: 'palm-jumeirah',
+      name: 'Palm Jumeirah',
+      image: palmJumeirahVilla,
+      whyList: 'World-famous artificial island; prime waterfront properties; strong rental yields and capital appreciation; villas ~AED 2,900-3,800/ft².',
+      typicalAsset: '5–7BR beachfront villas with private beach access',
+      budget: 'AED 25–120M frond/signature'
+    },
+    {
+      id: 'jumeirah-golf-estate',
+      name: 'Jumeirah Golf Estate',
+      image: jumeirahGolfEstateVilla,
+      whyList: 'Established golf community with strong fundamentals; family-oriented premium location; villas ~AED 2,850-3,400/ft² depending on golf views.',
+      typicalAsset: '4–6BR golf-facing villas with course access',
+      budget: 'AED 15–45M course premium'
+    },
+    {
+      id: 'jumeirah-islands',
+      name: 'Jumeirah Islands',
+      image: jumeirahIslandsVilla,
+      whyList: 'Lifestyle "islands" with strong upgrade premiums; villas at ~AED 3,024/ft² (Mar-24). Unique waterfront community with exclusive appeal.',
+      typicalAsset: '4–6BR lake-facing villas',
+      budget: 'AED 12–35M (cluster/condition)'
+    },
+    {
+      id: 'dubai-hills',
+      name: 'Dubai Hills',
+      image: dubaiHillsVilla,
+      whyList: 'Family prime with velocity; clear comp ladder by sub-community; villas ~AED 2,737/ft² (H1-25); triangulated by Q1-25 ~2,767/ft².',
+      typicalAsset: 'Sidra/Maple (lighter), Golf Place/ Fairway/ Parkway Vistas (heavy)',
+      budget: 'AED 8–45M by typology'
+    },
+    {
+      id: 'al-barari',
+      name: 'Al Barari',
+      image: alBarariVilla,
+      whyList: 'Dubai\'s green heart; eco-luxury community with mature landscaping; ultra-exclusive with limited supply; villas ~AED 2,800-3,500/ft² depending on size and position.',
+      typicalAsset: '5–7BR eco-luxury villas with private gardens',
+      budget: 'AED 18–60M+ premium locations'
+    }
+  ]
+
+  const selectedServiceData = services.find(s => s.id === selectedService)
+  const selectedLocationData = locations.find(l => l.id === selectedLocation)
 
   return (
     <>
@@ -140,7 +192,7 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Services Grid */}
+        {/* Services Dropdowns */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -150,49 +202,71 @@ const Services = () => {
               </p>
             </div>
 
-            <div className="grid gap-8 max-w-6xl mx-auto">
-              {services.map((service) => (
-                <Card key={service.id} className="overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <CardHeader className="pb-4">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <service.icon className="h-6 w-6 text-primary" />
-                        </div>
-                        <div>
-                          <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
-                            {service.title}
-                          </CardTitle>
-                          <p className="text-muted-foreground">{service.description}</p>
-                        </div>
+            <div className="max-w-4xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Select Service</label>
+                  <Select value={selectedService} onValueChange={setSelectedService}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Choose a service" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {services.map((service) => (
+                        <SelectItem key={service.id} value={service.id}>
+                          {service.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Select Location</label>
+                  <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Choose a location" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {locations.map((location) => (
+                        <SelectItem key={location.id} value={location.id}>
+                          {location.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              {selectedServiceData && (
+                <Card className="mb-8">
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                        <selectedServiceData.icon className="h-6 w-6 text-primary" />
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => toggleExpanded(service.id)}
-                        className="shrink-0"
-                      >
-                        {expandedService === service.id ? <ChevronUp /> : <ChevronDown />}
-                      </Button>
+                      <div>
+                        <CardTitle className="text-xl">{selectedServiceData.title}</CardTitle>
+                        <p className="text-muted-foreground">{selectedServiceData.description}</p>
+                      </div>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex flex-wrap gap-4 mb-4">
+                    <div className="flex flex-wrap gap-4 mb-6">
                       <Badge variant="secondary" className="gap-1">
                         <DollarSign className="h-3 w-3" />
-                        {service.price}
+                        {selectedServiceData.price}
                       </Badge>
                       <Badge variant="outline" className="gap-1">
                         <Clock className="h-3 w-3" />
-                        {service.timeline}
+                        {selectedServiceData.timeline}
                       </Badge>
                     </div>
                     
-                    <div className="grid md:grid-cols-2 gap-4 mb-4">
+                    <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <h4 className="font-semibold mb-2">Key Features:</h4>
-                        <ul className="space-y-1">
-                          {service.features.map((feature, index) => (
+                        <h4 className="font-semibold mb-3">Key Features:</h4>
+                        <ul className="space-y-2">
+                          {selectedServiceData.features.map((feature, index) => (
                             <li key={index} className="flex items-center gap-2 text-sm">
                               <CheckCircle className="h-4 w-4 text-green-500 shrink-0" />
                               {feature}
@@ -200,17 +274,15 @@ const Services = () => {
                           ))}
                         </ul>
                       </div>
-                      {expandedService === service.id && (
-                        <div className="md:col-span-2">
-                          <h4 className="font-semibold mb-2">Detailed Overview:</h4>
-                          <p className="text-muted-foreground text-sm leading-relaxed">
-                            {service.detailed}
-                          </p>
-                        </div>
-                      )}
+                      <div>
+                        <h4 className="font-semibold mb-3">Detailed Overview:</h4>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {selectedServiceData.detailed}
+                        </p>
+                      </div>
                     </div>
                     
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 mt-6">
                       <Button onClick={() => window.location.href = '/contact'}>
                         Get Started
                       </Button>
@@ -220,312 +292,40 @@ const Services = () => {
                     </div>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+              )}
 
-        {/* Completed Projects Showcase */}
-        <Card className="mx-4 mb-8">
-          <CardContent className="p-8">
-            {/* Completed Projects Showcase */}
-            <div className="mt-16 pt-12 border-t border-primary/20">
-              <div className="text-center mb-12">
-                <h4 className="text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Completed Transformations
-                </h4>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Successful luxury property renovations that exceeded investor expectations with proven results
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Completed Project 1 - Business Bay Tower */}
-                <Card className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                  <div className="relative h-64 overflow-hidden">
-                    <img 
-                      src="/lovable-uploads/116909a8-0f62-4f76-9b4d-43d93a586fd4.png"
-                      alt="Completed Business Bay Tower"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <Badge className="absolute top-4 left-4 bg-emerald-500 text-white">Completed</Badge>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold mb-1">Business Bay Tower</h3>
-                      <p className="text-sm opacity-90">Business Bay</p>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">Total Investment</span>
-                        <span className="font-semibold">AED 3.1M</span>
+              {selectedLocationData && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-xl">{selectedLocationData.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="relative h-64 overflow-hidden rounded-lg">
+                        <img 
+                          src={selectedLocationData.image}
+                          alt={`${selectedLocationData.name} luxury villa`}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">Achieved ROI</span>
-                        <span className="font-semibold text-emerald-600">24.5%</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">Completion Time</span>
-                        <span className="font-semibold">9 months</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">Investor Return</span>
-                        <span className="font-semibold text-emerald-600">AED 3.86M</span>
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
+                          <p className="text-sm text-muted-foreground">{selectedLocationData.whyList}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
+                          <p className="text-sm">{selectedLocationData.typicalAsset}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
+                          <p className="text-sm font-semibold text-accent">{selectedLocationData.budget}</p>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
-
-                {/* Completed Project 2 - Emirates Hills Villa */}
-                <Card className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                  <div className="relative h-64 overflow-hidden">
-                    <img 
-                      src="/lovable-uploads/4a28db7f-c64a-4b5a-9ec6-71ad24f468f6.png"
-                      alt="Completed Emirates Hills Villa"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <Badge className="absolute top-4 left-4 bg-emerald-500 text-white">Completed</Badge>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold mb-1">Emirates Hills Villa</h3>
-                      <p className="text-sm opacity-90">Emirates Hills</p>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">Total Investment</span>
-                        <span className="font-semibold">AED 5.8M</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">Achieved ROI</span>
-                        <span className="font-semibold text-emerald-600">31.2%</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">Completion Time</span>
-                        <span className="font-semibold">14 months</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">Investor Return</span>
-                        <span className="font-semibold text-emerald-600">AED 7.61M</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Prime Locations - Luxury Labs Focus */}
-        <section className="py-20 bg-gradient-to-br from-accent/5 via-background to-primary/5">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Prime Locations - Luxury Labs Focus</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Strategic investment opportunities in Dubai's most profitable real estate markets with detailed acquisition data
-              </p>
-            </div>
-
-            <div className="max-w-7xl mx-auto">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* Emirates Hills */}
-                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={emiratesHillsVilla}
-                      alt="Emirates Hills luxury villa"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold">Emirates Hills</h3>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
-                        <p className="text-sm text-muted-foreground">Blue-chip address; mega-mansion repositioning; median villa ~AED 2,390/ft² (Jan-25); Bayut showed ~AED 3,064/ft² (Nov-24)—methodology/timeframe explain spread.</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
-                        <p className="text-sm">6–10BR estates</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
-                        <p className="text-sm font-semibold text-accent">AED 35–200M+</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Palm Jumeirah */}
-                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={palmJumeirahVilla}
-                      alt="Palm Jumeirah luxury villa"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold">Palm Jumeirah</h3>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
-                        <p className="text-sm text-muted-foreground">Deep buyer pool, scarce waterfront plots, highest villa AED/ft² in the city; turnkey premiums are clear. Villas averaged AED ~4,942/ft² (Jul-25); apartments ~3,267/ft² (Jul-25).</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
-                        <p className="text-sm">Garden/Signature villas (5–7BR), trophy apartments (Bulgari/Atlantis/Oceana/Tiara)</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
-                        <p className="text-sm font-semibold text-accent">AED 25–90M+ for villas based on July-25 comps</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Jumeirah Golf Estate */}
-                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={jumeirahGolfEstateVilla}
-                      alt="Jumeirah Golf Estate luxury villa"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold">Jumeirah Golf Estate</h3>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
-                        <p className="text-sm text-muted-foreground">Golf lifestyle; healthy yields and steady end-user demand; villa ~AED 2,481/ft² (Q1-25); luxury villas ROI ~5.9% (rental) benchmark. (Property Monitor)</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
-                        <p className="text-sm">4–6BR golf-course villas</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
-                        <p className="text-sm font-semibold text-accent">AED 8–30M</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Jumeirah Islands */}
-                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={jumeirahIslandsVilla}
-                      alt="Jumeirah Islands luxury villa"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold">Jumeirah Islands</h3>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
-                        <p className="text-sm text-muted-foreground">Lifestyle "islands" with strong upgrade premiums; villas at ~AED 3,024/ft² (Mar-24). Unique waterfront community with exclusive appeal.</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
-                        <p className="text-sm">4–6BR lake-facing villas</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
-                        <p className="text-sm font-semibold text-accent">AED 12–35M (cluster/condition)</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Dubai Hills */}
-                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={dubaiHillsVilla}
-                      alt="Dubai Hills luxury villa"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold">Dubai Hills</h3>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
-                        <p className="text-sm text-muted-foreground">Family prime with velocity; clear comp ladder by sub-community; villas ~AED 2,737/ft² (H1-25); triangulated by Q1-25 ~2,767/ft².</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
-                        <p className="text-sm">Sidra/Maple (lighter), Golf Place/ Fairway/ Parkway Vistas (heavy)</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
-                        <p className="text-sm font-semibold text-accent">AED 8–45M by typology</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Al Barari */}
-                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={alBarariVilla}
-                      alt="Al Barari luxury villa"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold">Al Barari</h3>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Why it makes the list</h4>
-                        <p className="text-sm text-muted-foreground">Dubai's green heart; eco-luxury community with mature landscaping; ultra-exclusive with limited supply; villas ~AED 2,800-3,500/ft² depending on size and position.</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Typical asset</h4>
-                        <p className="text-sm">5–7BR eco-luxury villas with private gardens</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-primary mb-2">Acquisition budget band</h4>
-                        <p className="text-sm font-semibold text-accent">AED 18–60M+ premium locations</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-              
-              <div className="mt-8 text-center">
-                <p className="text-sm text-muted-foreground mb-4">
-                  *Pricing data based on Q1-H1 2025 market analysis and recent comparable sales
-                </p>
-                <Button onClick={() => window.location.href = '/contact'} size="lg">
-                  Request Detailed Market Analysis
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
+              )}
             </div>
           </div>
         </section>
