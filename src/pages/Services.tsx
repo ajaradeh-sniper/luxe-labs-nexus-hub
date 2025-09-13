@@ -30,6 +30,8 @@ import beforeAfterTransformation from "@/assets/before-after-villa-transformatio
 import diversifiedFundGrowth from "@/assets/diversified-fund-growth.jpg"
 import executiveConcierge from "@/assets/executive-concierge-team.jpg"
 import flippingDubaiMedia from "@/assets/flipping-dubai-media-crew.jpg"
+import luxuryConciergeRelocation from "@/assets/luxury-concierge-relocation.jpg"
+import realEstateConsultationAdvisory from "@/assets/real-estate-consultation-advisory.jpg"
 
 
 // Location images
@@ -94,7 +96,7 @@ const Services = () => {
         'Lifestyle integration: schools, clubs, private services',
         'Ongoing concierge support for Dubai living'
       ],
-      image: executiveConcierge,
+      image: luxuryConciergeRelocation,
       buttons: ['Request Concierge', 'Talk to Team']
     },
     {
@@ -107,7 +109,7 @@ const Services = () => {
         'Investment structuring and JV agreements',
         'Long-term portfolio advisory and optimization'
       ],
-      image: executiveConcierge,
+      image: realEstateConsultationAdvisory,
       buttons: ['Request Advisory', 'Book Consultation']
     },
     {
