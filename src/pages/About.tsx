@@ -1,78 +1,103 @@
 import { Helmet } from "react-helmet-async"
 import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { 
-  Users, 
   Target, 
+  Users,
+  Eye,
+  TrendingUp,
   Award,
   Globe,
-  TrendingUp,
-  Shield,
-  Heart,
-  Lightbulb,
   ArrowRight,
+  CheckCircle,
+  Building,
+  PieChart,
+  Handshake,
   Star,
-  Search,
-  Leaf
+  Briefcase,
+  User,
+  Shield,
+  FileText,
+  Camera
 } from "lucide-react"
-import professionalTeam from "@/assets/professional-team.jpg"
-import marketAnalysis from "@/assets/market-analysis.jpg"
-import strategicPlanning from "@/assets/strategic-planning.jpg"
-import sustainableLuxury from "@/assets/sustainable-luxury.jpg"
-import executionExcellence from "@/assets/execution-excellence.jpg"
-import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
-import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
+
+// Import new images
+import foundersTeam from "@/assets/founders-team-dubai-skyline.jpg"
+import conceptToReality from "@/assets/concept-to-reality-villa.jpg"
+import aliStrategy from "@/assets/ali-jaradeh-strategy-meeting.jpg"
+import federicaDesign from "@/assets/federica-design-sketches.jpg"
+import teamMontage from "@/assets/team-collaboration-montage.jpg"
+import palmMarketGrowth from "@/assets/palm-jumeirah-market-growth.jpg"
 
 const About = () => {
-  const values = [
+  const founders = [
     {
-      icon: Shield,
-      title: "Trust & Transparency",
-      description: "Complete transparency in all investments with detailed ROI tracking and regular updates."
+      name: "Ali Jaradeh",
+      role: "Founder & CEO",
+      description: "Strategy consultant and investor with 15+ years in government transformation, mega-projects, and real estate. Leads Luxury Labs' investment strategy, partnerships, and operations.",
+      image: aliStrategy,
+      expertise: "Investment Strategy, Partnerships, Operations"
     },
     {
-      icon: TrendingUp,
-      title: "Excellence in Execution",
-      description: "Proven track record of delivering premium renovations and profitable property flips."
-    },
-    {
-      icon: Heart,
-      title: "Client-Centric Approach",
-      description: "Dedicated concierge service ensuring every client receives personalized attention."
-    },
-    {
-      icon: Lightbulb,
-      title: "Innovation & Quality",
-      description: "Cutting-edge technology and premium materials in every project we undertake."
+      name: "Federica Freschet", 
+      role: "Co-Founder & Head of Design",
+      description: "Architect and designer with global luxury retail experience, including projects for Hermès and high-end brands. She oversees design, renovation, and project execution.",
+      image: federicaDesign,
+      expertise: "Luxury Design, Project Execution, Hermès-grade Standards"
     }
   ]
 
   const team = [
     {
-      name: "Ahmed Al-Mansouri",
-      role: "CEO & Founder",
-      experience: "15+ years in Dubai real estate",
-      specialty: "Luxury property investment"
+      icon: Users,
+      title: "Investor Relations Team",
+      description: "Dedicated to onboarding, reporting, and referral programs for investors"
     },
     {
-      name: "Sarah Mitchell",
-      role: "Head of Operations",
-      experience: "12+ years project management",
-      specialty: "High-end renovations"
+      icon: Building,
+      title: "Real Estate Director", 
+      description: "Curates opportunities from Dubai Land Department and luxury networks"
     },
     {
-      name: "Marco Rossi",
-      role: "Chief Investment Officer",
-      experience: "20+ years financial markets",
-      specialty: "Portfolio optimization"
+      icon: Shield,
+      title: "Legal & Finance Team",
+      description: "Manages contracts, compliance (KYC/AML), and ROI reporting"
     },
     {
-      name: "Fatima Al-Zahra",
-      role: "Legal Director",
-      experience: "10+ years UAE property law",
-      specialty: "Compliance & documentation"
+      icon: Award,
+      title: "Contractors & Designers Network",
+      description: "Includes Hermès-grade contractors, MEP specialists, and premium suppliers"
+    }
+  ]
+
+  const dubaiAdvantages = [
+    "19.9% YoY growth in luxury villa prices (2024)",
+    "High demand from HNWIs relocating for tax-free returns and lifestyle", 
+    "Global investors from Europe, GCC, and Asia targeting Palm Jumeirah, Dubai Marina, Emirates Hills"
+  ]
+
+  const ourEdge = [
+    {
+      title: "Proven ROI",
+      value: "12–30%",
+      description: "on completed villa flips"
+    },
+    {
+      title: "Global Standard Design", 
+      value: "Hermès-grade",
+      description: "Curated properties and luxury concept designs with world class finishing"
+    },
+    {
+      title: "Trusted Partnerships",
+      value: "Premium Network",
+      description: "Legal, finance, and contractor networks built for efficiency"
+    },
+    {
+      title: "Media & Transparency",
+      value: "Flipping Dubai",
+      description: "Documented transformations showcasing results"
     }
   ]
 
@@ -80,310 +105,247 @@ const About = () => {
     <>
       <Helmet>
         <title>About Luxury Labs | Dubai Luxury Property Transformation Experts</title>
-        <meta name="description" content="Meet the team behind Luxury Labs. Experts in design, real estate, and investment delivering Dubai villa flips and luxury property ROI." />
-        <meta name="keywords" content="Luxury Labs team, Dubai property experts, villa transformation, real estate professionals, property investment Dubai, luxury design" />
-        <meta property="og:title" content="About Luxury Labs | Dubai Luxury Property Transformation Experts" />
-        <meta property="og:description" content="Meet the team behind Luxury Labs. Experts in design, real estate, and investment delivering Dubai villa flips and luxury property ROI." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://luxurylabs.ae/about" />
-        <meta name="twitter:title" content="About Luxury Labs | Dubai Luxury Property Transformation Experts" />
-        <meta name="twitter:description" content="Meet the team behind Luxury Labs. Experts in design, real estate, and investment delivering Dubai villa flips and luxury property ROI." />
+        <meta name="description" content="Luxury Labs is Dubai's end-to-end luxury property flipping and concierge investment platform. Founded by Ali Jaradeh and Federica Freschet, delivering ROI through design and innovation." />
+        <meta name="keywords" content="Luxury Labs founders, Ali Jaradeh, Federica Freschet, Dubai property experts, luxury villa transformation, Hermès design, real estate investment" />
         <link rel="canonical" href="https://luxurylabs.ae/about" />
       </Helmet>
-      <Navigation />
-      
-      {/* Hero Section with Image */}
-      <section className="relative h-96 flex items-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${dubaeMarinaLuxury})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
-        </div>
+
+      <div className="min-h-screen bg-background">
+        <Navigation />
         
-        <div className="relative container mx-auto px-4 text-white">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">About Luxury Labs</h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
-            Dubai's premier luxury property transformation company, specializing in high-end renovations 
-            and profitable real estate investments for discerning clients.
-          </p>
-        </div>
-      </section>
-
-      <div className="container mx-auto px-4 py-12 space-y-12">
-
-        {/* Company Overview */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Globe className="h-5 w-5" />
-              Our Story
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="prose prose-gray max-w-none">
-            <p className="text-muted-foreground leading-relaxed">
-              Founded in Dubai's dynamic real estate landscape, Luxury Labs Real Estate Transformation FZCO 
-              has established itself as the go-to partner for luxury property investments and high-end renovations. 
-              Our unique 10-step process ensures every project meets the highest standards of quality and profitability.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mt-4">
-              We serve two distinct markets: discerning investors seeking profitable property flips with transparent 
-              ROI sharing, and HNWI clients requiring premium concierge renovation services. Our deep understanding 
-              of Dubai's luxury market and commitment to excellence has made us the trusted choice for clients 
-              seeking exceptional results.
-            </p>
-          </CardContent>
-        </Card>
-
-        {/* Key Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card>
-            <CardContent className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary">50+</div>
-              <p className="text-sm text-muted-foreground">Projects Completed</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary">$25M+</div>
-              <p className="text-sm text-muted-foreground">Total Investment</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary">18.5%</div>
-              <p className="text-sm text-muted-foreground">Average ROI</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary">100%</div>
-              <p className="text-sm text-muted-foreground">Client Satisfaction</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Our Values */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Target className="h-5 w-5" />
-              Our Values
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {values.map((value, index) => {
-                const Icon = value.icon
-                return (
-                  <div key={index} className="flex gap-4">
-                    <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon className="h-6 w-6 text-background" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-2">{value.title}</h3>
-                      <p className="text-sm text-muted-foreground">{value.description}</p>
-                    </div>
-                  </div>
-                )
-              })}
+        {/* Hero Section */}
+        <section className="relative py-24 overflow-hidden">
+          <div className="absolute inset-0">
+            <img 
+              src={foundersTeam}
+              alt="Luxury Labs founders with Dubai skyline"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60"></div>
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-playfair">
+                Redefining Luxury Property Investment in Dubai
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+                Founded in Dubai, Luxury Labs transforms villas into high-ROI assets through world-class design, renovation, and transparent investor partnerships.
+              </p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </section>
 
-        {/* Our Approach Section */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5" />
-              Our Approach
-            </CardTitle>
-            <p className="text-muted-foreground">
-              Strategic methodology that delivers exceptional results through sustainable luxury
-            </p>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
-                <div className="aspect-video relative">
-                  <img 
-                    src={marketAnalysis} 
-                    alt="Market Analysis" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
-                        <Search className="h-5 w-5 text-background" />
-                      </div>
-                      <h4 className="font-semibold text-white text-lg">Market Analysis</h4>
+        {/* Our Mission */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 font-playfair">Our Mission</h2>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <Target className="h-4 w-4 text-primary" />
                     </div>
-                    <p className="text-sm text-white/90">Comprehensive research and property evaluation to identify high-potential investments.</p>
+                    <p className="text-lg text-muted-foreground">
+                      <strong className="text-foreground">To transform Dubai's prime villas into high-return investments.</strong>
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <Award className="h-4 w-4 text-primary" />
+                    </div>
+                    <p className="text-lg text-muted-foreground">
+                      <strong className="text-foreground">To combine world-class design with financial discipline.</strong>
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <Eye className="h-4 w-4 text-primary" />
+                    </div>
+                    <p className="text-lg text-muted-foreground">
+                      <strong className="text-foreground">To create a transparent ecosystem</strong> where investors and clients see real-time ROI tracking and progress reporting.
+                    </p>
                   </div>
                 </div>
               </div>
-              
-              <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
-                <div className="aspect-video relative">
-                  <img 
-                    src={strategicPlanning} 
-                    alt="Strategic Planning" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
-                        <Target className="h-5 w-5 text-background" />
-                      </div>
-                      <h4 className="font-semibold text-white text-lg">Strategic Planning</h4>
-                    </div>
-                    <p className="text-sm text-white/90">Detailed transformation plans with timeline, budget, and ROI projections.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
-                <div className="aspect-video relative">
-                  <img 
-                    src={sustainableLuxury} 
-                    alt="Sustainable Luxury" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
-                        <Leaf className="h-5 w-5 text-background" />
-                      </div>
-                      <h4 className="font-semibold text-white text-lg">Sustainable Luxury</h4>
-                    </div>
-                    <p className="text-sm text-white/90">Eco-friendly materials and energy-efficient solutions that maintain premium quality.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="relative rounded-lg overflow-hidden bg-background/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 group">
-                <div className="aspect-video relative">
-                  <img 
-                    src={executionExcellence} 
-                    alt="Execution Excellence" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 bg-gradient-luxury rounded-xl flex items-center justify-center">
-                        <Award className="h-5 w-5 text-background" />
-                      </div>
-                      <h4 className="font-semibold text-white text-lg">Execution Excellence</h4>
-                    </div>
-                    <p className="text-sm text-white/90">Premium materials, skilled craftsmen, and rigorous quality control throughout.</p>
-                  </div>
-                </div>
+              <div className="relative h-96 overflow-hidden rounded-2xl">
+                <img 
+                  src={conceptToReality}
+                  alt="Conceptual sketch overlaid with finished villa"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </section>
 
-        {/* Leadership Team */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5" />
-              Leadership Team
-            </CardTitle>
-            <p className="text-muted-foreground">
-              Meet the experts behind Luxury Labs' exceptional success
-            </p>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-6">
-              {team.map((member, index) => (
-                <div key={index} className="flex items-start gap-4 p-4 border rounded-lg hover:shadow-md transition-shadow">
-                  <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center flex-shrink-0">
-                    <Star className="h-6 w-6 text-background" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between mb-2">
+        {/* Founders & Team */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Founders & Team</h2>
+            </div>
+
+            {/* Founders */}
+            <div className="space-y-16 mb-20">
+              {founders.map((founder, index) => (
+                <div key={founder.name} className={`grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
+                  <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                        <User className="h-6 w-6 text-primary" />
+                      </div>
                       <div>
-                        <h3 className="font-semibold text-foreground">{member.name}</h3>
-                        <p className="text-sm text-primary font-medium">{member.role}</p>
+                        <h3 className="text-2xl font-bold">{founder.name}</h3>
+                        <p className="text-primary font-semibold">{founder.role}</p>
                       </div>
-                      <Badge variant="secondary">{member.experience}</Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground">{member.specialty}</p>
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                      {founder.description}
+                    </p>
+                    <div>
+                      <h4 className="font-semibold mb-2">Key Expertise:</h4>
+                      <Badge variant="secondary" className="text-sm">
+                        {founder.expertise}
+                      </Badge>
+                    </div>
+                  </div>
+                  <div className={`relative h-96 overflow-hidden rounded-2xl ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
+                    <img 
+                      src={founder.image}
+                      alt={founder.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
               ))}
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Certifications */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Award className="h-5 w-5" />
-              Certifications & Compliance
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center p-4 border rounded-lg">
-                <div className="text-2xl mb-2">🏢</div>
-                <p className="text-sm font-medium">DMCC Licensed</p>
-                <p className="text-xs text-muted-foreground">Free Zone Company</p>
-              </div>
-              <div className="text-center p-4 border rounded-lg">
-                <div className="text-2xl mb-2">🏛️</div>
-                <p className="text-sm font-medium">DLD Registered</p>
-                <p className="text-xs text-muted-foreground">Real Estate Broker</p>
-              </div>
-              <div className="text-center p-4 border rounded-lg">
-                <div className="text-2xl mb-2">🛡️</div>
-                <p className="text-sm font-medium">AML Compliant</p>
-                <p className="text-xs text-muted-foreground">Anti-Money Laundering</p>
-              </div>
-              <div className="text-center p-4 border rounded-lg">
-                <div className="text-2xl mb-2">📋</div>
-                <p className="text-sm font-medium">ISO Certified</p>
-                <p className="text-xs text-muted-foreground">Quality Management</p>
+            {/* Team Departments */}
+            <div className="relative mb-12">
+              <img 
+                src={teamMontage}
+                alt="Team collaboration montage"
+                className="w-full h-64 object-cover rounded-2xl"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent rounded-2xl"></div>
+              <div className="absolute inset-0 flex items-center">
+                <div className="container mx-auto px-8">
+                  <h3 className="text-2xl font-bold mb-2">Our Extended Team</h3>
+                  <p className="text-muted-foreground">World-class professionals across every discipline</p>
+                </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
 
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {team.map((dept, index) => (
+                <Card key={index}>
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mb-4">
+                      <dept.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <CardTitle className="text-lg">{dept.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">{dept.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Dubai */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="relative h-96 overflow-hidden rounded-2xl">
+                <img 
+                  src={palmMarketGrowth}
+                  alt="Palm Jumeirah aerial with market growth chart"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 font-playfair">Why Dubai</h2>
+                <p className="text-xl text-muted-foreground mb-8">
+                  Dubai is the world's luxury property capital:
+                </p>
+                <div className="space-y-4 mb-8">
+                  {dubaiAdvantages.map((advantage, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                      <p className="text-muted-foreground">{advantage}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg text-muted-foreground">
+                  Luxury Labs is positioned at the heart of this growth, leveraging local knowledge and global design expertise to deliver investor success.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Edge */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Our Edge</h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              {ourEdge.map((edge, index) => (
+                <Card key={index} className="text-center">
+                  <CardHeader>
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <Star className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-lg">{edge.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-primary mb-2">{edge.value}</div>
+                    <p className="text-sm text-muted-foreground">{edge.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" onClick={() => window.location.href = '/team'}>
+                <Users className="mr-2 h-5 w-5" />
+                Meet the Team
+              </Button>
+              <Button variant="outline" size="lg" onClick={() => window.location.href = '/projects'}>
+                <Camera className="mr-2 h-5 w-5" />
+                View Projects
+              </Button>
+            </div>
+          </div>
+        </section>
 
         {/* CTA Section */}
-        <Card className="bg-gradient-luxury text-background">
-          <CardContent className="p-8 text-center">
-            <h2 className="text-3xl font-bold mb-4">Experience Luxury Labs Excellence</h2>
-            <p className="text-background/80 mb-6 max-w-2xl mx-auto text-lg">
-              Ready to transform your property investment journey with Dubai's most trusted luxury real estate experts?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="bg-background text-foreground hover:bg-background/90"
-                onClick={() => window.location.href = '/contact'}
-              >
-                Schedule Consultation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="bg-background text-foreground hover:bg-background/90"
-                onClick={() => window.location.href = '/services'}
-              >
-                View Our Services
-              </Button>
+        <section className="py-20">
+          <div className="container mx-auto px-4 text-center">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 font-playfair">
+                Ready to Experience Luxury Labs Excellence?
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8">
+                Join Dubai's most exclusive property transformation platform. Discover how our founders' vision and expertise can transform your investment portfolio.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" onClick={() => window.location.href = '/contact'}>
+                  Schedule Consultation
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button variant="outline" size="lg" onClick={() => window.location.href = '/services'}>
+                  Explore Our Services
+                </Button>
+              </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </section>
       </div>
     </>
   )
