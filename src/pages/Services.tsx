@@ -319,6 +319,117 @@ const Services = () => {
           </CardContent>
         </Card>
 
+        {/* Prime Locations - Luxury Labs Focus */}
+        <section className="py-20 bg-gradient-to-br from-accent/5 via-background to-primary/5">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Prime Locations - Luxury Labs Focus</h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Strategic investment opportunities in Dubai's most profitable real estate markets with detailed acquisition data
+              </p>
+            </div>
+
+            <div className="max-w-7xl mx-auto">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse border border-muted-foreground/20 rounded-lg overflow-hidden bg-card">
+                  <thead>
+                    <tr className="bg-primary/10">
+                      <th className="border border-muted-foreground/20 p-4 text-left font-semibold">Area</th>
+                      <th className="border border-muted-foreground/20 p-4 text-left font-semibold">Why it makes the list</th>
+                      <th className="border border-muted-foreground/20 p-4 text-left font-semibold">Typical asset</th>
+                      <th className="border border-muted-foreground/20 p-4 text-left font-semibold">Acquisition budget band</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="hover:bg-muted/50 transition-colors">
+                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Palm Jumeirah</td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        Deep buyer pool, scarce waterfront plots, highest villa AED/ft² in the city; turnkey premiums are clear. Villas averaged AED ~4,942/ft² (Jul-25); apartments ~3,267/ft² (Jul-25).
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        Garden/Signature villas (5–7BR), trophy apartments (Bulgari/Atlantis/Oceana/Tiara)
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
+                        AED 25–90M+ for villas based on July-25 comps.
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-muted/50 transition-colors">
+                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Dubai Hills Estate</td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        Family prime with velocity; clear comp ladder by sub-community; villas ~AED 2,737/ft² (H1-25); triangulated by Q1-25 ~2,767/ft².
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        Sidra/Maple (lighter), Golf Place/ Fairway/ Parkway Vistas (heavy)
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
+                        AED 8–45M by typology.
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-muted/50 transition-colors">
+                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Jumeirah Islands</td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        Lifestyle "islands" with strong upgrade premiums; villas at ~AED 3,024/ft² (Mar-24). (Order Dubai Chocolate by Uncle Fluffy)
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        4–6BR lake-facing villas
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
+                        AED 12–35M (cluster/condition)
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-muted/50 transition-colors">
+                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Emirates Hills</td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        Blue-chip address; mega-mansion repositioning; median villa ~AED 2,390/ft² (Jan-25); Bayut showed ~AED 3,064/ft² (Nov-24)—methodology/timeframe explain spread.
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        6–10BR estates
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
+                        AED 35–200M+
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-muted/50 transition-colors">
+                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Jumeirah Golf Estates (JGE)</td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        Golf lifestyle; healthy yields and steady end-user demand; villa ~AED 2,481/ft² (Q1-25); luxury villas ROI ~5.9% (rental) benchmark. (Property Monitor)
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        4–6BR golf-course villas
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
+                        AED 8–30M
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-muted/50 transition-colors">
+                      <td className="border border-muted-foreground/20 p-4 font-semibold text-primary">Dubai Marina</td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        Waterfront towers with strong rental yields; high-rise luxury apartments with marina views; consistent demand from professionals and investors; established infrastructure.
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm">
+                        1–4BR marina-view apartments, penthouses
+                      </td>
+                      <td className="border border-muted-foreground/20 p-4 text-sm font-semibold">
+                        AED 2–15M by floor/view
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div className="mt-8 text-center">
+                <p className="text-sm text-muted-foreground mb-4">
+                  *Pricing data based on Q1-H1 2025 market analysis and recent comparable sales
+                </p>
+                <Button onClick={() => window.location.href = '/contact'} size="lg">
+                  Request Detailed Market Analysis
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* 10-Step Process */}
         <Card className="mx-4 mb-8">
           <CardHeader>
