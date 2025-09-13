@@ -27,12 +27,12 @@ import {
 } from "lucide-react"
 import renovationShowcase from "@/assets/renovation-showcase.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
-import emiratesHillsVilla from "@/assets/emirates-hills-villa.jpg"
-import palmJumeirahVilla from "@/assets/palm-jumeirah-villa.jpg"
-import jumeirahGolfEstateVilla from "@/assets/jumeirah-golf-estate-villa.jpg"
-import jumeirahIslandsVilla from "@/assets/jumeirah-islands-villa.jpg"
-import dubaiHillsVilla from "@/assets/dubai-hills-villa.jpg"
-import alBarariVilla from "@/assets/al-barari-villa.jpg"
+import emiratesHillsVilla from "@/assets/emirates-hills-luxury-villa.jpg"
+import palmJumeirahVilla from "@/assets/palm-jumeirah-luxury-villa.jpg"
+import jumeirahGolfEstateVilla from "@/assets/jumeirah-golf-estate-luxury-villa.jpg"
+import jumeirahIslandsVilla from "@/assets/jumeirah-islands-luxury-villa.jpg"
+import dubaiHillsVilla from "@/assets/dubai-hills-luxury-villa.jpg"
+import alBarariVilla from "@/assets/al-barari-luxury-villa.jpg"
 
 const Services = () => {
   const [expandedService, setExpandedService] = useState<string | null>(null)
