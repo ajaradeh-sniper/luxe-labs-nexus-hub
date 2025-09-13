@@ -33,6 +33,7 @@ export function Navigation({ viewingRole }: NavigationProps = {}) {
     { path: "/", label: t('navigation.home') },
     { path: "/about", label: t('navigation.about') },
     { path: "/services", label: t('navigation.services') },
+    { path: "/projects", label: t('navigation.projects') },
     { path: "/media", label: t('navigation.media') },
     { path: "/partners", label: t('navigation.partners') },
     { path: "/investors", label: t('navigation.investors') },
