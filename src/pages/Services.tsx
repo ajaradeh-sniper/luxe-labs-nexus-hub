@@ -43,21 +43,8 @@ import alBarariVilla from "@/assets/al-barari-villa-hd.jpg"
 const Services = () => {
   const investmentServices = [
     {
-      id: 'shared-stake',
-      title: 'Shared Stake Investment',
-      description: 'Join Dubai villa flips with entry points from AED 500K. Diversify risk while benefiting from Luxury Labs\' curated property selection and luxury-grade renovations.',
-      icon: Users,
-      features: [
-        'Accessible entry into Dubai luxury real estate',
-        'Pool capital with vetted co-investors',
-        'ROI: 12–20% in 9–12 months'
-      ],
-      image: investorGroup,
-      buttons: ['Join Now', 'View Active Opportunities']
-    },
-    {
       id: 'single-property',
-      title: 'Single Property Flip',
+      title: 'Flip a luxury property with Luxury Labs',
       description: 'Lead or co-lead a curated villa transformation in Palm Jumeirah, Dubai Marina, or Emirates Hills.',
       icon: TrendingUp,
       features: [
@@ -67,6 +54,19 @@ const Services = () => {
       ],
       image: beforeAfterTransformation,
       buttons: ['Start Your Flip', 'Book a Consultation']
+    },
+    {
+      id: 'shared-stake',
+      title: 'Shared Stake Investment in luxury labs flip',
+      description: 'Join Dubai villa flips with entry points from AED 500K. Diversify risk while benefiting from Luxury Labs\' curated property selection and luxury-grade renovations.',
+      icon: Users,
+      features: [
+        'Accessible entry into Dubai luxury real estate',
+        'Pool capital with vetted co-investors',
+        'ROI: 12–20% in 9–12 months'
+      ],
+      image: investorGroup,
+      buttons: ['Join Now', 'View Active Opportunities']
     },
     {
       id: 'diversified-fund',
@@ -79,7 +79,7 @@ const Services = () => {
         'Annualized ROI: 12–18%'
       ],
       image: diversifiedFundGrowth,
-      buttons: ['View Fund Details', 'Apply to Join']
+      buttons: ['Coming Soon', 'Apply to Join']
     }
   ]
 
