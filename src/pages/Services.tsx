@@ -48,495 +48,279 @@ const Services = () => {
       timeline: '6-12 months',
       features: [
         'Transparent ROI tracking',
-        'Professional property selection',
-        'Complete renovation management',
-        'Shared profit distribution',
+        'Professional property management',
+        'Diversified portfolio options',
         'Regular progress updates',
-        'Legal documentation included'
+        'Legal protection and compliance'
       ],
-      cta: 'Explore Opportunities',
-      highlight: true,
-      expandedOptions: [
-        {
-          title: 'Shared Stake in Single Property',
-          returns: '10%-30%',
-          investment: 'AED 1M',
-          description: 'Full transparency on single asset',
-          features: [
-            'Minimum investment: AED 1M',
-            'Full transparency on single asset',
-            'Direct involvement opportunities',
-            'Higher return potential',
-            '6-12 month typical timeline'
-          ]
-        },
-        {
-          title: 'Single Property',
-          returns: '15%-30%',
-          investment: 'AED 5M',
-          description: 'First access to premium deals',
-          features: [
-            'Minimum investment: AED 5M',
-            'First access to premium deals',
-            'Personal relationship manager',
-            'Customized investment strategies',
-            'Exclusive networking events'
-          ]
-        },
-        {
-          title: 'Diversified Fund (3-7 years)',
-          returns: '2x-4x',
-          investment: 'AED 500K',
-          description: 'Diversified across 10+ properties',
-          features: [
-            'Minimum investment: AED 500K',
-            'Diversified across 10+ properties',
-            'Professional management included',
-            'Quarterly performance reports',
-            'Exit flexibility after 12 months'
-          ]
-        }
-      ]
+      detailed: 'Our flagship investment service offers qualified investors the opportunity to participate in luxury property transformations across Dubai\'s most prestigious locations. Each project undergoes rigorous due diligence, market analysis, and profit potential assessment. Investors receive detailed monthly reports, full transparency on costs and progress, and guaranteed minimum returns through our profit-sharing model.'
     },
     {
-      id: 'luxury-transformation',
-      title: 'Luxury Real Estate Transformation Services & Advisory (Renovate or Move to Dubai)',
-      description: 'Comprehensive consulting services including investment advisory, property transformation, sourcing, project management, and HNWI concierge services.',
-      icon: Hammer,
+      id: 'concierge-acquisition',
+      title: 'HNWI Concierge Property Acquisition & Renovation',
+      description: 'Complete end-to-end property acquisition and luxury renovation services for high-net-worth individuals.',
+      icon: Users,
       price: 'Custom pricing',
       timeline: '3-18 months',
       features: [
-        'Property transformation consulting',
-        'Premium property sourcing',
-        'End-to-end project management',
-        'Market analysis & due diligence',
-        'Investment strategy development',
-        'HNWI concierge services'
+        'Personalized property sourcing',
+        'Market analysis and valuation',
+        'Negotiation and acquisition',
+        'Complete renovation management',
+        'Interior design consultation'
       ],
-      cta: 'Request Consultation',
-      highlight: false,
-      expandedOptions: [
-        {
-          title: 'Investment Advisory',
-          price: 'AED 25,000',
-          description: 'Comprehensive market analysis and investment strategy',
-          features: [
-            'Market research and analysis',
-            'Property valuation assessment',
-            'Investment strategy development',
-            'Risk assessment and mitigation',
-            'Legal and regulatory guidance',
-            'Portfolio optimization recommendations'
-          ]
-        },
-        {
-          title: 'Property Transformation',
-          price: 'AED 150,000+',
-          description: 'Full-service renovation and design management',
-          features: [
-            'Architectural design and planning',
-            'Premium material sourcing',
-            'Project management and coordination',
-            'Quality control and inspection',
-            'Timeline and budget management',
-            'Post-completion maintenance support'
-          ]
-        },
-        {
-          title: 'HNWI Concierge Services',
-          price: 'Custom pricing',
-          description: 'Personalized luxury services and lifestyle management',
-          features: [
-            'Personal property management',
-            'Exclusive property access and tours',
-            'Private banking coordination',
-            'Legal and tax advisory services',
-            'Relocation and visa assistance',
-            '24/7 dedicated support team'
-          ]
-        }
-      ]
+      detailed: 'Our exclusive concierge service caters to discerning clients seeking the perfect luxury property in Dubai. From initial search criteria to final handover, our team manages every aspect of acquisition and renovation. This includes off-market opportunities, private viewings, detailed market analysis, negotiation support, and comprehensive renovation project management with our network of premium contractors and designers.'
+    },
+    {
+      id: 'advisory-consultation',
+      title: 'Real Estate Investment Advisory & Consultation',
+      description: 'Expert guidance on Dubai real estate investments, market trends, and portfolio optimization.',
+      icon: FileText,
+      price: 'AED 2,500/session',
+      timeline: '1-4 hours',
+      features: [
+        'Market trend analysis',
+        'Investment opportunity identification',
+        'Portfolio diversification strategies',
+        'Legal and regulatory guidance',
+        'Exit strategy planning'
+      ],
+      detailed: 'Our advisory service provides sophisticated investors with deep market insights and strategic guidance. Sessions include comprehensive market analysis, identification of emerging opportunities, portfolio optimization recommendations, regulatory compliance guidance, and detailed financial projections. Ideal for investors looking to enter the Dubai market or optimize existing portfolios.'
     }
   ]
 
   const process = [
-    { step: 1, title: 'Initial Inquiry & Lead Capture', description: 'Website, WhatsApp, referrals' },
-    { step: 2, title: 'Client Qualification', description: 'Investment goals, budget, preferences' },
-    { step: 3, title: 'KYC & Due Diligence', description: 'Passport, Emirates ID, AML compliance' },
-    { step: 4, title: 'Project Presentation', description: 'Property analysis, financial projections' },
-    { step: 5, title: 'Legal Agreement Signing', description: 'NDA, JVA, investment agreements' },
-    { step: 6, title: 'Property Acquisition', description: 'Purchase, DLD registration, title transfer' },
-    { step: 7, title: 'Renovation Initiation', description: 'Timeline, status reports, site visits' },
-    { step: 8, title: 'Project Completion', description: 'Final inspection, handover, certification' },
-    { step: 9, title: 'Sale or Rental', description: 'Marketing, listing, buyer negotiations' },
-    { step: 10, title: 'Profit Distribution & Next Opportunity', description: 'ROI payout, reinvestment options, new deals' }
+    { step: 1, title: "Initial Consultation", description: "Understanding your investment goals and risk profile" },
+    { step: 2, title: "Market Analysis", description: "Comprehensive evaluation of current market opportunities" },
+    { step: 3, title: "Property Selection", description: "Curated selection based on your criteria and budget" },
+    { step: 4, title: "Due Diligence", description: "Thorough property inspection and legal verification" },
+    { step: 5, title: "Investment Structure", description: "Optimal financing and ownership structure setup" },
+    { step: 6, title: "Acquisition", description: "Negotiation and completion of property purchase" },
+    { step: 7, title: "Renovation Planning", description: "Detailed renovation scope and timeline development" },
+    { step: 8, title: "Project Execution", description: "Professional renovation with quality oversight" },
+    { step: 9, title: "Marketing & Sales", description: "Strategic marketing for optimal returns" },
+    { step: 10, title: "Completion", description: "Final handover and profit distribution" }
   ]
+
+  const toggleExpanded = (serviceId: string) => {
+    setExpandedService(expandedService === serviceId ? null : serviceId)
+  }
 
   return (
     <>
       <Helmet>
-        <title>Services | Dubai Luxury Villa Flips & Renovation by Luxury Labs</title>
-        <meta name="description" content="Explore Luxury Labs services: shared stake investments, single property flips, and diversified Dubai property funds designed for HNWIs and investors." />
-        <meta name="keywords" content="Dubai villa renovation, luxury property services, property flips Dubai, real estate investment, HNWI services, property transformation" />
-        <meta property="og:title" content="Services | Dubai Luxury Villa Flips & Renovation by Luxury Labs" />
-        <meta property="og:description" content="Explore Luxury Labs services: shared stake investments, single property flips, and diversified Dubai property funds designed for HNWIs and investors." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://luxurylabs.ae/services" />
-        <meta name="twitter:title" content="Services | Dubai Luxury Villa Flips & Renovation by Luxury Labs" />
-        <meta name="twitter:description" content="Explore Luxury Labs services: shared stake investments, single property flips, and diversified Dubai property funds designed for HNWIs and investors." />
+        <title>Luxury Real Estate Services Dubai | Investment & Renovation - Luxury Labs</title>
+        <meta name="description" content="Premium real estate investment services in Dubai. Property flips, concierge acquisition, and expert advisory. Minimum AED 500K investment with transparent ROI." />
+        <meta name="keywords" content="Dubai real estate investment, luxury property renovation, property flips Dubai, real estate advisory, HNWI services Dubai" />
         <link rel="canonical" href="https://luxurylabs.ae/services" />
       </Helmet>
-      <Navigation />
-      
-      {/* Hero Section */}
-      <section className="relative h-96 flex items-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${renovationShowcase})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
-        </div>
+
+      <div className="min-h-screen bg-background">
+        <Navigation />
         
-        <div className="relative container mx-auto px-4 text-white">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Our Services</h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
-            Comprehensive luxury property services designed for investors and high-net-worth individuals 
-            seeking services and premium experiences.
-          </p>
-        </div>
-      </section>
+        {/* Hero Section */}
+        <section className="relative py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-playfair">
+                Luxury Real Estate Services
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+                Transform premium properties into profitable investments with Dubai's most trusted luxury real estate specialists
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" onClick={() => window.location.href = '/contact'}>
+                  Start Your Investment Journey
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button variant="outline" size="lg" onClick={() => window.location.href = '/projects'}>
+                  View Our Projects
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <div className="container mx-auto px-4 py-12 space-y-12">
+        {/* Services Grid */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Our Premium Services</h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Comprehensive real estate solutions tailored for sophisticated investors and high-net-worth individuals
+              </p>
+            </div>
 
-        {/* Our Services */}
-        <div className="grid grid-cols-1 gap-8">
-          {services.map((service) => {
-            const Icon = service.icon
-            const isExpanded = expandedService === service.id
-            const serviceImage = service.id === 'real-estate-investment' ? luxuryInteriorModern : dubaeMarinaLuxury
-            
-            return (
-              <Card key={service.id} className="relative hover:shadow-lg hover:shadow-primary/20 hover:border-primary/50 active:scale-[0.98] transition-all duration-300 cursor-pointer">
-                
-                <div className="flex flex-col lg:flex-row">
-                  <div className="flex-1">
-                    <CardHeader className="pb-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center gap-3 flex-1">
-                          <div className="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center">
-                            <Icon className="h-6 w-6 text-background" />
-                          </div>
-                          <div className="flex-1">
-                            <CardTitle className="text-xl">{service.title}</CardTitle>
-                            <p className="text-sm text-muted-foreground mt-1">{service.description}</p>
-                          </div>
+            <div className="grid gap-8 max-w-6xl mx-auto">
+              {services.map((service) => (
+                <Card key={service.id} className="overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <CardHeader className="pb-4">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                          <service.icon className="h-6 w-6 text-primary" />
                         </div>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setExpandedService(isExpanded ? null : service.id)}
-                          className="ml-4 bg-primary/10 border-primary/30 hover:bg-primary/20 text-primary font-medium"
-                        >
-                          {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                          <span className="ml-1 text-xs">{isExpanded ? 'Less' : 'More'}</span>
-                        </Button>
-                      </div>
-                      
-                      <div className="flex items-center gap-4 mt-4">
-                        <div className="flex items-center gap-1 text-sm">
-                          <DollarSign className="h-4 w-4 text-success" />
-                          <span className="font-medium">{service.price}</span>
-                        </div>
-                        <div className="flex items-center gap-1 text-sm">
-                          <Clock className="h-4 w-4 text-muted-foreground" />
-                          <span>{service.timeline}</span>
+                        <div>
+                          <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
+                            {service.title}
+                          </CardTitle>
+                          <p className="text-muted-foreground">{service.description}</p>
                         </div>
                       </div>
-                    </CardHeader>
-
-                    <CardContent className="space-y-4">
-                      <div className="space-y-2">
-                        {service.features.slice(0, 4).map((feature, index) => (
-                          <div key={index} className="flex items-center gap-2">
-                            <CheckCircle className="h-4 w-4 text-success flex-shrink-0" />
-                            <span className="text-sm">{feature}</span>
-                          </div>
-                        ))}
-                        {service.features.length > 4 && (
-                          <p className="text-xs text-muted-foreground">+{service.features.length - 4} more features</p>
-                        )}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => toggleExpanded(service.id)}
+                        className="shrink-0"
+                      >
+                        {expandedService === service.id ? <ChevronUp /> : <ChevronDown />}
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-4 mb-4">
+                      <Badge variant="secondary" className="gap-1">
+                        <DollarSign className="h-3 w-3" />
+                        {service.price}
+                      </Badge>
+                      <Badge variant="outline" className="gap-1">
+                        <Clock className="h-3 w-3" />
+                        {service.timeline}
+                      </Badge>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-4 mb-4">
+                      <div>
+                        <h4 className="font-semibold mb-2">Key Features:</h4>
+                        <ul className="space-y-1">
+                          {service.features.map((feature, index) => (
+                            <li key={index} className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="h-4 w-4 text-green-500 shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-
-                      {/* Expanded Options */}
-                      {isExpanded && service.expandedOptions && (
-                        <div className="mt-6 pt-6 border-t">
-                          <h4 className="text-lg font-semibold mb-4">Available Options:</h4>
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {service.expandedOptions.map((option, index) => (
-                              <Card key={index} className="p-4 border hover:shadow-md hover:border-primary/50 active:scale-[0.98] transition-all duration-300 cursor-pointer relative">
-                                
-                                <div className="text-center mb-4">
-                                  <h5 className="font-semibold text-lg mb-1">{option.title}</h5>
-                                  {option.returns && (
-                                    <div className="text-2xl font-bold text-primary mb-1">{option.returns}</div>
-                                  )}
-                                   {option.investment && (
-                                     <p className="text-sm text-muted-foreground mb-2">Min. {option.investment}</p>
-                                   )}
-                                   {option.price && (
-                                     <p className="text-sm text-muted-foreground mb-2">From {option.price}</p>
-                                   )}
-                                  <p className="text-sm text-muted-foreground">{option.description}</p>
-                                </div>
-                                <ul className="space-y-2 mb-4">
-                                  {option.features.map((feature, featureIndex) => (
-                                    <li key={featureIndex} className="flex items-start gap-2">
-                                      <CheckCircle className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
-                                      <span className="text-sm">{feature}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </Card>
-                            ))}
-                          </div>
+                      {expandedService === service.id && (
+                        <div className="md:col-span-2">
+                          <h4 className="font-semibold mb-2">Detailed Overview:</h4>
+                          <p className="text-muted-foreground text-sm leading-relaxed">
+                            {service.detailed}
+                          </p>
                         </div>
                       )}
-                    </CardContent>
-                  </div>
-                  
-                  <div className="w-full lg:w-80 lg:flex lg:flex-col lg:justify-between p-6">
-                    <div className="aspect-video lg:aspect-[4/3] overflow-hidden rounded-lg mb-4 group">
-                      <img 
-                        src={serviceImage} 
-                        alt={service.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
                     </div>
-                    <Button 
-                      variant={service.highlight ? "luxury" : "outline"} 
-                      className="w-full"
-                      onClick={() => window.location.href = '/contact'}
-                    >
-                      {service.cta}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            )
-          })}
-        </div>
-
-        {/* Luxury Labs Approach */}
-        <Card className="luxury-border luxury-shadow bg-background backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Target className="h-5 w-5" />
-              The Luxury Labs Approach
-            </CardTitle>
-            <p className="text-muted-foreground">
-              Our proven methodology combines data-driven market analysis, premium design expertise, and strategic investment planning to deliver exceptional results.
-            </p>
-          </CardHeader>
-          <CardContent className="p-0">
-            {/* Main Three Pillars */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
-              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary/70 z-10"></div>
-                <img 
-                  src="/src/assets/premium-selection.jpg" 
-                  alt="Property selection and analysis"
-                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <Search className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-2xl font-bold mb-3">PROPERTY SELECTION</h4>
-                    <p className="text-white/90 leading-relaxed">
-                      Strategic acquisition of high-potential properties in prime Dubai locations with detailed market analysis and unique value propositions.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/90 to-secondary/70 z-10"></div>
-                <img 
-                  src="/src/assets/luxury-transformation.jpg" 
-                  alt="Luxury renovation showcase"
-                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <Hammer className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-2xl font-bold mb-3">LUXURY RENOVATION</h4>
-                    <p className="text-white/90 leading-relaxed">
-                      Complete transformation with premium finishes, modern design, and meticulous attention to detail creating exceptional living spaces.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-500">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/90 to-accent/70 z-10"></div>
-                <img 
-                  src="/src/assets/exceptional-returns.jpg" 
-                  alt="Profitable sale and returns"
-                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between text-white">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <TrendingUp className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-2xl font-bold mb-3">PROFITABLE SALE</h4>
-                    <p className="text-white/90 leading-relaxed">
-                      Strategic marketing and sale optimization to maximize investor returns and portfolio growth through premium positioning.
-                    </p>
-                  </div>
-                </div>
-              </div>
+                    
+                    <div className="flex gap-2">
+                      <Button onClick={() => window.location.href = '/contact'}>
+                        Get Started
+                      </Button>
+                      <Button variant="outline" onClick={() => window.location.href = '/projects'}>
+                        View Examples
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
+          </div>
+        </section>
 
-            {/* Investment Timeline and Expected Returns */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 pt-0">
-              {/* Investment Timeline */}
-              <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                    <Clock className="h-5 w-5 text-primary" />
-                  </div>
-                  <h4 className="text-xl font-semibold">Investment Timeline</h4>
-                </div>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg border">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <div className="w-3 h-3 bg-primary rounded-full"></div>
-                        <span className="font-medium">Property Purchase & Analysis</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">Due diligence and acquisition</p>
-                    </div>
-                    <span className="text-sm font-semibold text-primary">Month 1</span>
-                  </div>
-                  
-                  <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg border">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <div className="w-3 h-3 bg-primary rounded-full"></div>
-                        <span className="font-medium">Design & Renovation Phase</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">Complete luxury transformation</p>
-                    </div>
-                    <span className="text-sm font-semibold text-primary">Months 2-4</span>
-                  </div>
-                  
-                  <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg border">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <div className="w-3 h-3 bg-primary rounded-full"></div>
-                        <span className="font-medium">Marketing & Sale</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">Premium market positioning</p>
-                    </div>
-                    <span className="text-sm font-semibold text-primary">Month 5</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Expected Returns */}
-              <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                    <DollarSign className="h-5 w-5 text-primary" />
-                  </div>
-                  <h4 className="text-xl font-semibold">Expected Returns</h4>
-                </div>
-                
-                {/* Main ROI */}
-                <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl p-6 mb-4 border border-primary/20">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">10%-30%</div>
-                    <div className="text-lg font-semibold mb-1">ROI Range</div>
-                    <div className="text-sm text-muted-foreground">In 8-10 months average</div>
-                  </div>
-                </div>
-                
-                {/* Additional Stats */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center p-4 bg-background/50 rounded-lg border">
-                    <div className="text-2xl font-bold text-primary mb-1">6-12</div>
-                    <div className="text-sm text-muted-foreground">Month Timeline</div>
-                  </div>
-                  <div className="text-center p-4 bg-background/50 rounded-lg border">
-                    <div className="text-2xl font-bold text-primary mb-1">200+</div>
-                    <div className="text-sm text-muted-foreground">Projects Completed</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Key Results Section */}
+        {/* Completed Projects Showcase */}
+        <Card className="mx-4 mb-8">
+          <CardContent className="p-8">
+            {/* Completed Projects Showcase */}
             <div className="mt-16 pt-12 border-t border-primary/20">
               <div className="text-center mb-12">
                 <h4 className="text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Proven Track Record
+                  Completed Transformations
                 </h4>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Our exceptional results speak for themselves - delivering consistent returns and satisfaction across hundreds of luxury property transformations.
+                  Successful luxury property renovations that exceeded investor expectations with proven results
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="group relative overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Home className="h-6 w-6 text-primary" />
+
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Completed Project 1 - Business Bay Tower */}
+                <Card className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src="/lovable-uploads/116909a8-0f62-4f76-9b4d-43d93a586fd4.png"
+                      alt="Completed Business Bay Tower"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <Badge className="absolute top-4 left-4 bg-emerald-500 text-white">Completed</Badge>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold mb-1">Business Bay Tower</h3>
+                      <p className="text-sm opacity-90">Business Bay</p>
+                    </div>
                   </div>
-                  <div className="text-center pt-4">
-                    <div className="text-4xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform duration-300">250+</div>
-                    <div className="text-sm font-medium text-foreground/80">Properties Transformed</div>
+                  <CardContent className="p-6">
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Total Investment</span>
+                        <span className="font-semibold">AED 3.1M</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Achieved ROI</span>
+                        <span className="font-semibold text-emerald-600">24.5%</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Completion Time</span>
+                        <span className="font-semibold">9 months</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Investor Return</span>
+                        <span className="font-semibold text-emerald-600">AED 3.86M</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Completed Project 2 - Emirates Hills Villa */}
+                <Card className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src="/lovable-uploads/4a28db7f-c64a-4b5a-9ec6-71ad24f468f6.png"
+                      alt="Completed Emirates Hills Villa"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <Badge className="absolute top-4 left-4 bg-emerald-500 text-white">Completed</Badge>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold mb-1">Emirates Hills Villa</h3>
+                      <p className="text-sm opacity-90">Emirates Hills</p>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="group relative overflow-hidden bg-gradient-to-br from-accent/10 to-accent/5 backdrop-blur-sm rounded-2xl p-8 border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:scale-105">
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <TrendingUp className="h-6 w-6 text-accent" />
-                  </div>
-                  <div className="text-center pt-4">
-                    <div className="text-4xl font-bold text-accent mb-3 group-hover:scale-110 transition-transform duration-300">25%</div>
-                    <div className="text-sm font-medium text-foreground/80">Average ROI</div>
-                  </div>
-                </div>
-                
-                <div className="group relative overflow-hidden bg-gradient-to-br from-secondary/10 to-secondary/5 backdrop-blur-sm rounded-2xl p-8 border border-secondary/20 hover:border-secondary/40 transition-all duration-300 hover:scale-105">
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Clock className="h-6 w-6 text-secondary" />
-                  </div>
-                  <div className="text-center pt-4">
-                    <div className="text-4xl font-bold text-secondary mb-3 group-hover:scale-110 transition-transform duration-300">6-12</div>
-                    <div className="text-sm font-medium text-foreground/80">Months Timeline</div>
-                  </div>
-                </div>
-                
-                <div className="group relative overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Award className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="text-center pt-4">
-                    <div className="text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">100%</div>
-                    <div className="text-sm font-medium text-foreground/80">Client Satisfaction</div>
-                  </div>
-                </div>
+                  <CardContent className="p-6">
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Total Investment</span>
+                        <span className="font-semibold">AED 5.8M</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Achieved ROI</span>
+                        <span className="font-semibold text-emerald-600">31.2%</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Completion Time</span>
+                        <span className="font-semibold">14 months</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Investor Return</span>
+                        <span className="font-semibold text-emerald-600">AED 7.61M</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* 10-Step Process */}
-        <Card>
+        <Card className="mx-4 mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Settings className="h-5 w-5" />
@@ -563,292 +347,51 @@ const Services = () => {
                       <h4 className="font-semibold text-base mb-3 text-primary">{step.title}</h4>
                       <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
                     </div>
-                    {step.step < 3 && (
-                      <div className="hidden md:block absolute top-1/2 -right-2 transform -translate-y-1/2 z-10">
-                        <ArrowRight className="h-6 w-6 text-primary" />
-                      </div>
-                    )}
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Complete Process */}
-            <div>
-              <h4 className="text-lg font-semibold text-center mb-6">Complete 10-Step Process</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                {process.slice(3).map((step) => (
-                  <div key={step.step} className="relative">
-                    <div className="flex flex-col items-center text-center p-4 border rounded-lg">
-                      <div className="w-8 h-8 bg-gradient-luxury rounded-full flex items-center justify-center text-background font-bold text-sm mb-3">
-                        {step.step}
-                      </div>
-                      <h4 className="font-semibold text-sm mb-2">{step.title}</h4>
-                      <p className="text-xs text-muted-foreground">{step.description}</p>
+            {/* Complete Process Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {process.map((step, index) => (
+                <div key={step.step} className="relative">
+                  <div className="flex flex-col items-center text-center p-4 bg-card border rounded-lg hover:shadow-md transition-shadow">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-sm mb-3">
+                      {step.step}
                     </div>
-                    {step.step < 10 && (
-                      <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2">
-                        <ArrowRight className="h-4 w-4 text-muted-foreground" />
-                      </div>
-                    )}
+                    <h4 className="font-semibold text-sm mb-2">{step.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{step.description}</p>
                   </div>
-                ))}
-              </div>
+                  {index < process.length - 1 && (
+                    <div className="hidden lg:block absolute top-8 -right-2 w-4 h-0.5 bg-primary/30"></div>
+                  )}
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>
-
-        {/* Prime Dubai Locations */}
-        <Card className="luxury-border luxury-shadow bg-background backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Star className="h-5 w-5" />
-              Prime Locations Luxury Labs Focus on
-            </CardTitle>
-            <p className="text-muted-foreground">
-              Strategic locations with exceptional growth potential and luxury living experiences in Dubai's most sought-after areas.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                <div className="aspect-video overflow-hidden">
-                  <img 
-                    src={dubaeMarinaLuxury} 
-                    alt="Dubai Marina" 
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-lg mb-3">Dubai Marina</h4>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Waterfront lifestyle with stunning marina views, premium amenities, and strong rental yields in one of Dubai's most vibrant communities.
-                  </p>
-                  <ul className="text-xs space-y-1">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      High rental yield potential (6-8%)
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Waterfront luxury living
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Strong resale value
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      World-class dining & entertainment
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                <div className="aspect-video overflow-hidden">
-                  <img 
-                    src={downtownLuxury} 
-                    alt="Downtown Dubai" 
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-lg mb-3">Downtown Dubai</h4>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    The heart of modern Dubai featuring iconic landmarks, luxury shopping, and premium residential developments with unmatched prestige.
-                  </p>
-                  <ul className="text-xs space-y-1">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Iconic Burj Khalifa vicinity
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Premium location prestige
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Excellent connectivity
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Dubai Mall & Opera nearby
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                <div className="aspect-video overflow-hidden">
-                  <img 
-                    src={businessBay} 
-                    alt="Business Bay" 
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-lg mb-3">Business Bay</h4>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Dubai's central business district offering modern luxury towers, canal views, and excellent investment returns in a thriving commercial hub.
-                  </p>
-                  <ul className="text-xs space-y-1">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Central business district location
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Dubai Canal waterfront
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      High appreciation potential
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Modern luxury developments
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                <div className="aspect-video overflow-hidden">
-                  <img 
-                    src={marinaTower} 
-                    alt="Palm Jumeirah" 
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-lg mb-3">Palm Jumeirah</h4>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    World-famous man-made island offering exclusive beachfront properties, luxury resorts, and unparalleled prestige in Dubai's real estate market.
-                  </p>
-                  <ul className="text-xs space-y-1">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Exclusive beachfront living
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      World-renowned landmark
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Ultra-luxury properties
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Premium resort amenities
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                <div className="aspect-video overflow-hidden">
-                  <img 
-                    src={premiumVillaSelection} 
-                    alt="Dubai Hills Estate" 
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-lg mb-3">Dubai Hills Estate</h4>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Master-planned community featuring golf course views, family-friendly amenities, and modern villas with excellent growth potential.
-                  </p>
-                  <ul className="text-xs space-y-1">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Championship golf course
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Family-oriented community
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Modern villa developments
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Strong capital appreciation
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                <div className="aspect-video overflow-hidden">
-                  <img 
-                    src={premiumTower} 
-                    alt="JBR - Jumeirah Beach Residence" 
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-lg mb-3">JBR - Jumeirah Beach Residence</h4>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Beachfront towers with direct beach access, vibrant nightlife, and premium rental opportunities in Dubai's most popular coastal destination.
-                  </p>
-                  <ul className="text-xs space-y-1">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Direct beach access
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Vibrant beachfront lifestyle
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      Strong tourism demand
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                      The Walk entertainment district
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
 
         {/* CTA Section */}
-        <Card className="bg-gradient-luxury text-background">
-          <CardContent className="p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Ready to Start Your Luxury Property Journey?</h2>
-            <p className="text-background/80 mb-6 max-w-2xl mx-auto">
-              Whether you're looking to invest in profitable property flips or need premium renovation services, 
-              our expert team is ready to deliver exceptional results.
+        <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-playfair">
+              Ready to Transform Your Investment Portfolio?
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Join Dubai's most exclusive real estate investment opportunities. Limited spots available for qualified investors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="bg-background text-foreground hover:bg-background/90"
-                onClick={() => window.location.href = '/contact'}
-              >
-                <TrendingUp className="mr-2 h-4 w-4" />
-                Start a Flip Investment
+              <Button size="lg" onClick={() => window.location.href = '/contact'}>
+                Schedule Consultation
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="bg-background text-foreground hover:bg-background/90"
-                onClick={() => window.location.href = '/contact'}
-              >
-                <Users className="mr-2 h-4 w-4" />
-                Request Consultation
+              <Button variant="outline" size="lg" onClick={() => window.location.href = '/projects'}>
+                Explore Current Opportunities
               </Button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </section>
       </div>
     </>
   )
