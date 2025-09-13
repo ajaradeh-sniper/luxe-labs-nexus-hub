@@ -237,7 +237,7 @@ export default function Investors() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Investors and HNWI",
+                title: "Real Estate Investors / Short term Investors",
                 icon: User,
                 description: "Sophisticated investors seeking portfolio diversification through luxury real estate investments in Dubai's premier locations.",
                 characteristics: ["Portfolio diversification", "Luxury lifestyle investment", "Capital preservation"]
@@ -255,7 +255,7 @@ export default function Investors() {
                 characteristics: ["Legacy planning", "Wealth preservation", "Generational assets"]
               },
               {
-                title: "Dubai Relocators",
+                title: "HNWI & VIP Dubai Relocators",
                 icon: Globe,
                 description: "International professionals and entrepreneurs establishing their presence in Dubai's dynamic business ecosystem.",
                 characteristics: ["Market entry strategy", "Local expertise", "Regulatory guidance"]
