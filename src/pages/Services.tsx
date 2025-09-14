@@ -258,7 +258,10 @@ const Services = () => {
                       ))}
                     </ul>
                     <div className="flex gap-2">
-                      <Button variant="secondary" onClick={() => window.location.href = '/contact'}>
+                      <Button 
+                        variant={service.buttons[0] === 'Coming Soon' ? 'secondary' : 'luxury'} 
+                        onClick={() => window.location.href = '/contact'}
+                      >
                         {service.buttons[0]}
                       </Button>
                       <Button variant="outline" onClick={() => window.location.href = '/contact'}>
