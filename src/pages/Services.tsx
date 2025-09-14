@@ -51,7 +51,7 @@ const Services = () => {
       icon: TrendingUp,
       features: [
         'Full-cycle management: acquisition → design → renovation → resale',
-        'Guided by Hermès-grade design and premium supplier network',
+        'Guided by world class luxury design and premium supplier network',
         'ROI: 18–30% in 6–12 months'
       ],
       image: beforeAfterTransformation,
