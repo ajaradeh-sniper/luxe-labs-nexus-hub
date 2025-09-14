@@ -333,7 +333,7 @@ const About = () => {
                 Discover what sets Luxury Labs apart as Dubai's premier luxury property transformation platform.
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <Card className="p-8 overflow-hidden">
                 <CardContent className="p-0">
                   <div className="flex items-center gap-4 mb-6">
@@ -405,6 +405,33 @@ const About = () => {
                       "Elite real estate developers & agencies",
                       "Certified luxury contractors",
                       "Premium suppliers & material factories"
+                    ].map((point, index) => (
+                      <li key={index} className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-green-500" />
+                        <span className="text-muted-foreground">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="p-8 overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                      <Camera className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold">Media & Transparency</h3>
+                  </div>
+                  <p className="text-muted-foreground mb-4">
+                    Our "Flipping Dubai" media series showcases every transformation in detail, 
+                    providing complete transparency and building trust through documented results.
+                  </p>
+                  <ul className="space-y-2">
+                    {[
+                      "Full transformation documentation",
+                      "Real-time progress updates",
+                      "Transparent ROI reporting"
                     ].map((point, index) => (
                       <li key={index} className="flex items-center gap-2">
                         <CheckCircle className="h-4 w-4 text-green-500" />
