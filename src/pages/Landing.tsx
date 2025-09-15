@@ -80,7 +80,7 @@ export default function Landing() {
     },
     {
       title: 'Fund Investment',
-      description: 'Diversified portfolio of luxury properties for long-term growth (Flips, Buy & Rent, Build).',
+      description: "Diversified portfolio of luxury properties for long-term growth (Flips to Sell + Rent).",
       features: [
         'Professional fund management',
         'Multi-property diversification',
