@@ -397,10 +397,10 @@ const Contact = () => {
             })}
 
             {/* Quick Actions */}
-            <Card className="bg-gradient-luxury text-background">
-              <CardContent className="p-6 text-center">
+            <Card className="bg-gradient-luxury text-background h-full flex flex-col">
+              <CardContent className="p-6 text-center flex-1 flex flex-col justify-center">
                 <h3 className="font-semibold mb-4">Quick Actions</h3>
-                <div className="space-y-3">
+                <div className="space-y-3 flex-1 flex flex-col justify-center">
                   <Button 
                     variant="outline" 
                     size="sm" 
