@@ -56,8 +56,8 @@ export default function Landing() {
       title: 'Solo Investment',
       description: 'Luxury Labs leads your own luxury villa transformation investment from acquisition to resale.',
       features: [
-        'Invest from AED 5M–30M in a flip, fully executed end-to-end by Luxury Labs according to your objectives',
-        'Premium design and execution',
+        'Invest from AED 5M–30M in a flip & Set your objectives',
+        'End-to-end execution by Luxury Labs',
         'Target ROI: 18–30%'
       ],
       buttons: [
