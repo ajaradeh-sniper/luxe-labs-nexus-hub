@@ -72,45 +72,26 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* Services Overview Section */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4 font-playfair">Why Choose Luxury Labs</h2>
+              <h2 className="text-4xl font-bold mb-4 font-playfair">Our Services</h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Dubai's premier luxury property transformation company with proven results
+                Complete luxury property investment ecosystem in Dubai
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Investment Services */}
               <Card className="group hover:shadow-luxury transition-all duration-300">
-                <div className="aspect-video overflow-hidden rounded-t-lg">
-                  <img 
-                    src={luxuryInteriorModern} 
-                    alt="Luxury Interior" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-3">Premium Transformations</h3>
+                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                    <TrendingUp className="h-8 w-8 text-background" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Solo Investment</h3>
                   <p className="text-muted-foreground">
-                    Expert renovations using premium materials and cutting-edge design
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="group hover:shadow-luxury transition-all duration-300">
-                <div className="aspect-video overflow-hidden rounded-t-lg">
-                  <img 
-                    src={dubaeMarinaLuxury} 
-                    alt="Dubai Marina Luxury" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-3">Prime Locations</h3>
-                  <p className="text-muted-foreground">
-                    Access to Dubai's most prestigious neighborhoods and developments
+                    Lead your own luxury villa transformation from acquisition to resale
                   </p>
                 </CardContent>
               </Card>
@@ -118,22 +99,61 @@ const Index = () => {
               <Card className="group hover:shadow-luxury transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
-                    <TrendingUp className="h-8 w-8 text-background" />
+                    <Users className="h-8 w-8 text-background" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Exceptional Returns</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Average 18.5% ROI with transparent profit sharing
+                  <h3 className="text-xl font-semibold mb-3">Co-Investment</h3>
+                  <p className="text-muted-foreground">
+                    Join villa flips with other investors. Lower entry, shared rewards
                   </p>
-                  <div className="flex items-center gap-4 text-sm">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">50+</div>
-                      <div className="text-muted-foreground">Projects</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">$25M+</div>
-                      <div className="text-muted-foreground">Invested</div>
-                    </div>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-luxury transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                    <Target className="h-8 w-8 text-background" />
                   </div>
+                  <h3 className="text-xl font-semibold mb-3">Fund Investment</h3>
+                  <p className="text-muted-foreground">
+                    Diversified portfolio of luxury villa transformations for growth
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Transformation Services */}
+              <Card className="group hover:shadow-luxury transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                    <Building className="h-8 w-8 text-background" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Dubai Relocation</h3>
+                  <p className="text-muted-foreground">
+                    Complete relocation support for moving to Dubai seamlessly
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-luxury transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                    <FileText className="h-8 w-8 text-background" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Investment Advisory</h3>
+                  <p className="text-muted-foreground">
+                    Strategic guidance for property investments and portfolio optimization
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-luxury transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                    <Star className="h-8 w-8 text-background" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Media & Marketing</h3>
+                  <p className="text-muted-foreground">
+                    Professional documentation and marketing of property transformations
+                  </p>
                 </CardContent>
               </Card>
             </div>
