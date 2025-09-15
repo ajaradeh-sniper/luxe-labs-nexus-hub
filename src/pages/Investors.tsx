@@ -1,46 +1,41 @@
-import { Helmet } from "react-helmet-async"
-import { TrendingUp, Shield, Users, DollarSign, BarChart3, Award, ArrowRight, CheckCircle, User, Building2, Globe, Briefcase, PiggyBank, MapPin, Calendar, Target, Mail } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Link } from "react-router-dom"
-import { Navigation } from "@/components/Navigation"
-import { useAuth } from "@/contexts/AuthContext"
-import { useToast } from "@/hooks/use-toast"
-import businessBayImage from "@/assets/business-bay.jpg"
-import downtownImage from "@/assets/downtown-luxury.jpg"
-import marinaTowerImage from "@/assets/marina-tower.jpg"
-import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
-
+import { Helmet } from "react-helmet-async";
+import { TrendingUp, Shield, Users, DollarSign, BarChart3, Award, ArrowRight, CheckCircle, User, Building2, Globe, Briefcase, PiggyBank, MapPin, Calendar, Target, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
+import { Navigation } from "@/components/Navigation";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
+import businessBayImage from "@/assets/business-bay.jpg";
+import downtownImage from "@/assets/downtown-luxury.jpg";
+import marinaTowerImage from "@/assets/marina-tower.jpg";
+import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg";
 export default function Investors() {
-  const { user } = useAuth();
-  const { toast } = useToast();
-
+  const {
+    user
+  } = useAuth();
+  const {
+    toast
+  } = useToast();
   const handleAuthButtonClick = () => {
     if (user) {
       toast({
         title: "Already Signed In",
-        description: (
-          <div className="flex flex-col gap-2">
+        description: <div className="flex flex-col gap-2">
             <span>You are already signed in!</span>
-            <Link 
-              to="/dashboard" 
-              className="text-primary hover:underline font-medium"
-            >
+            <Link to="/dashboard" className="text-primary hover:underline font-medium">
               Want to access your dashboard? Click here →
             </Link>
-          </div>
-        ),
-        duration: 5000,
+          </div>,
+        duration: 5000
       });
     } else {
       // Handle navigation to auth page when not signed in
       window.location.href = '/auth';
     }
   };
-
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Investor Opportunities | Dubai Villa Investments with High ROI</title>
         <meta name="description" content="Access vetted Dubai villa flips. Track ROI, manage your portfolio, and join exclusive property investment opportunities with Luxury Labs." />
@@ -58,10 +53,9 @@ export default function Investors() {
       
       {/* Hero Section */}
       <section className="relative h-96 flex items-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${dubaiMarinaImage})` }}
-        >
+        <div className="absolute inset-0 bg-cover bg-center" style={{
+          backgroundImage: `url(${dubaiMarinaImage})`
+        }}>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
         </div>
         
@@ -92,25 +86,14 @@ export default function Investors() {
                   Exclusive access for accredited investors only.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-                  <Button 
-                    onClick={handleAuthButtonClick}
-                    className="luxury-gradient text-primary-foreground font-montserrat px-8 py-3"
-                  >
+                  <Button onClick={handleAuthButtonClick} className="luxury-gradient text-primary-foreground font-montserrat px-8 py-3">
                     <User className="w-5 h-5 mr-2" />
                     Sign In
                   </Button>
-                  <Button 
-                    onClick={handleAuthButtonClick}
-                    variant="outline" 
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat px-8 py-3"
-                  >
+                  <Button onClick={handleAuthButtonClick} variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-montserrat px-8 py-3">
                     Sign Up
                   </Button>
-                  <Button 
-                    asChild
-                    variant="outline" 
-                    className="border-muted text-foreground hover:bg-muted hover:text-foreground font-montserrat px-8 py-3"
-                  >
+                  <Button asChild variant="outline" className="border-muted text-foreground hover:bg-muted hover:text-foreground font-montserrat px-8 py-3">
                     <Link to="/contact">
                       <Mail className="w-5 h-5 mr-2" />
                       Contact Us
@@ -155,11 +138,7 @@ export default function Investors() {
                   <h4 className="font-semibold text-foreground mb-3">Recent Investments</h4>
                   <div className="space-y-2">
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="/src/assets/palm-villa-for-sale.jpg" 
-                        alt="Palm Jumeirah Villa" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
+                      <img src="/src/assets/palm-villa-for-sale.jpg" alt="Palm Jumeirah Villa" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Palm Jumeirah Villa</p>
                         <p className="text-sm text-muted-foreground">AED 800K invested</p>
@@ -170,11 +149,7 @@ export default function Investors() {
                       </div>
                     </div>
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="/src/assets/luxury-penthouse.jpg" 
-                        alt="Marina Penthouse" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
+                      <img src="/src/assets/luxury-penthouse.jpg" alt="Marina Penthouse" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Marina Penthouse</p>
                         <p className="text-sm text-muted-foreground">AED 1.2M invested</p>
@@ -185,11 +160,7 @@ export default function Investors() {
                       </div>
                     </div>
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="/src/assets/downtown-luxury.jpg" 
-                        alt="Downtown Apartment" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
+                      <img src="/src/assets/downtown-luxury.jpg" alt="Downtown Apartment" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Downtown Apartment</p>
                         <p className="text-sm text-muted-foreground">AED 400K invested</p>
@@ -203,17 +174,13 @@ export default function Investors() {
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-border">
-                  <Button 
-                    variant="outline" 
-                    className="w-full"
-                    onClick={() => {
-                      if (user) {
-                        window.location.href = '/dashboard';
-                      } else {
-                        window.location.href = '/auth';
-                      }
-                    }}
-                  >
+                  <Button variant="outline" className="w-full" onClick={() => {
+                    if (user) {
+                      window.location.href = '/dashboard';
+                    } else {
+                      window.location.href = '/auth';
+                    }
+                  }}>
                     View Full Dashboard
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -235,47 +202,39 @@ export default function Investors() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Real Estate Investors / Short term Investors",
-                icon: User,
-                description: "Sophisticated investors seeking portfolio diversification through luxury real estate investments in Dubai's premier locations.",
-                characteristics: ["Portfolio diversification", "Luxury lifestyle investment", "Capital preservation"]
-              },
-              {
-                title: "Wealth Managers",
-                icon: TrendingUp,
-                description: "Professional investment advisors managing client portfolios with focus on alternative asset classes and real estate opportunities.",
-                characteristics: ["Client portfolio management", "Risk assessment", "Performance tracking"]
-              },
-              {
-                title: "Family Offices",
-                icon: Building2,
-                description: "Multi-generational wealth preservation through strategic real estate investments in stable, high-growth markets.",
-                characteristics: ["Legacy planning", "Wealth preservation", "Generational assets"]
-              },
-              {
-                title: "HNWI & VIP Dubai Relocators",
-                icon: Globe,
-                description: "International professionals and entrepreneurs establishing their presence in Dubai's dynamic business ecosystem.",
-                characteristics: ["Market entry strategy", "Local expertise", "Regulatory guidance"]
-              },
-              {
-                title: "Venture Capital",
-                icon: Users,
-                description: "Forward-thinking investors seeking innovative real estate transformation opportunities with scalable returns.",
-                characteristics: ["Innovation focus", "Scalable returns", "Market disruption"]
-              },
-              {
-                title: "Private Equity",
-                icon: Briefcase,
-                description: "Institutional investors focused on large-scale property development and transformation projects.",
-                characteristics: ["Large-scale projects", "Operational improvement", "Value creation"]
-              }
-            ].map((type, index) => {
+            {[{
+              title: "Real Estate Investors / Short term Investors",
+              icon: User,
+              description: "Sophisticated investors seeking portfolio diversification through luxury real estate investments in Dubai's premier locations.",
+              characteristics: ["Portfolio diversification", "Luxury lifestyle investment", "Capital preservation"]
+            }, {
+              title: "Wealth Managers",
+              icon: TrendingUp,
+              description: "Professional investment advisors managing client portfolios with focus on alternative asset classes and real estate opportunities.",
+              characteristics: ["Client portfolio management", "Risk assessment", "Performance tracking"]
+            }, {
+              title: "Family Offices",
+              icon: Building2,
+              description: "Multi-generational wealth preservation through strategic real estate investments in stable, high-growth markets.",
+              characteristics: ["Legacy planning", "Wealth preservation", "Generational assets"]
+            }, {
+              title: "HNWI & VIP Dubai Relocators",
+              icon: Globe,
+              description: "International professionals and entrepreneurs establishing their presence in Dubai's dynamic business ecosystem.",
+              characteristics: ["Market entry strategy", "Local expertise", "Regulatory guidance"]
+            }, {
+              title: "Venture Capital",
+              icon: Users,
+              description: "Forward-thinking investors seeking innovative real estate transformation opportunities with scalable returns.",
+              characteristics: ["Innovation focus", "Scalable returns", "Market disruption"]
+            }, {
+              title: "Private Equity",
+              icon: Briefcase,
+              description: "Institutional investors focused on large-scale property development and transformation projects.",
+              characteristics: ["Large-scale projects", "Operational improvement", "Value creation"]
+            }].map((type, index) => {
               const IconComponent = type.icon;
-              return (
-                <Card key={index} className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm h-full">
+              return <Card key={index} className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm h-full">
                   <CardContent className="p-6">
                     <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center mb-4">
                       <IconComponent className="w-6 w-6 text-primary-foreground" />
@@ -287,16 +246,13 @@ export default function Investors() {
                       {type.description}
                     </p>
                     <div className="space-y-2">
-                      {type.characteristics.map((char, charIndex) => (
-                        <div key={charIndex} className="flex items-center gap-2">
+                      {type.characteristics.map((char, charIndex) => <div key={charIndex} className="flex items-center gap-2">
                           <Target className="w-4 h-4 text-primary flex-shrink-0" />
                           <span className="text-sm text-muted-foreground font-montserrat">{char}</span>
-                        </div>
-                      ))}
+                        </div>)}
                     </div>
                   </CardContent>
-                </Card>
-              );
+                </Card>;
             })}
           </div>
         </div>
@@ -309,43 +265,34 @@ export default function Investors() {
           <div className="mb-20">
             <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Current Opportunities</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "Downtown Premium Villa",
-                  location: "Downtown Dubai",
-                  investment: "AED 2.5M",
-                  returns: "32%",
-                  timeline: "8 months",
-                  image: downtownImage,
-                  status: "75% Funded"
-                },
-                {
-                  title: "Marina Luxury Penthouse",
-                  location: "Dubai Marina",
-                  investment: "AED 1.8M",
-                  returns: "28%",
-                  timeline: "6 months",
-                  image: marinaTowerImage,
-                  status: "Available"
-                },
-                {
-                  title: "Business Bay Apartment",
-                  location: "Business Bay",
-                  investment: "AED 1.2M",
-                  returns: "30%",
-                  timeline: "5 months",
-                  image: businessBayImage,
-                  status: "New"
-                }
-              ].map((opportunity, index) => (
-                <Card key={index} className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
+              {[{
+                title: "Downtown Premium Villa",
+                location: "Downtown Dubai",
+                investment: "AED 2.5M",
+                returns: "32%",
+                timeline: "8 months",
+                image: downtownImage,
+                status: "75% Funded"
+              }, {
+                title: "Marina Luxury Penthouse",
+                location: "Dubai Marina",
+                investment: "AED 1.8M",
+                returns: "28%",
+                timeline: "6 months",
+                image: marinaTowerImage,
+                status: "Available"
+              }, {
+                title: "Business Bay Apartment",
+                location: "Business Bay",
+                investment: "AED 1.2M",
+                returns: "30%",
+                timeline: "5 months",
+                image: businessBayImage,
+                status: "New"
+              }].map((opportunity, index) => <Card key={index} className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
                   <CardContent className="p-0">
                     <div className="relative h-48">
-                      <img 
-                        src={opportunity.image} 
-                        alt={opportunity.title}
-                        className="w-full h-full object-cover"
-                      />
+                      <img src={opportunity.image} alt={opportunity.title} className="w-full h-full object-cover" />
                       <div className="absolute top-4 left-4">
                         <Badge variant="secondary" className="bg-background/80 text-foreground">
                           {opportunity.status}
@@ -375,54 +322,13 @@ export default function Investors() {
                       </Button>
                     </div>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
 
 
           {/* Key Metrics */}
-          <div className="grid md:grid-cols-4 gap-6 mb-20">
-            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">30%</div>
-                <p className="text-sm text-muted-foreground font-montserrat">Average ROI</p>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BarChart3 className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">50+</div>
-                <p className="text-sm text-muted-foreground font-montserrat">Completed Projects</p>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <DollarSign className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">500M</div>
-                <p className="text-sm text-muted-foreground font-montserrat">AED Managed</p>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm text-center">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <div className="text-3xl font-bold text-foreground mb-2 font-playfair">200+</div>
-                <p className="text-sm text-muted-foreground font-montserrat">Active Investors</p>
-              </CardContent>
-            </Card>
-          </div>
+          
 
           {/* CTA Section */}
           <div className="text-center">
@@ -450,6 +356,5 @@ export default function Investors() {
         </div>
       </section>
       </div>
-    </>
-  )
+    </>;
 }
