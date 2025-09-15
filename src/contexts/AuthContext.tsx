@@ -44,8 +44,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setSession(null);
         setLoading(false);
         setIsInitialized(true);
-        // Clear the flag so subsequent reloads behave normally
-        localStorage.removeItem('ll_offline_admin');
+        console.log('AuthProvider: Offline demo admin mode activated');
+        // Keep the flag persistent until explicit logout
         return;
       }
     } catch (e) {
@@ -448,6 +448,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = async (): Promise<void> => {
     try {
       console.log('AuthProvider: Logging out...');
+      
+      // Clear offline demo mode flag if it exists
+      if (localStorage.getItem('ll_offline_admin') === '1') {
+        localStorage.removeItem('ll_offline_admin');
+        setUser(null);
+        setSession(null);
+        console.log('AuthProvider: Offline demo mode cleared');
+        toast({
+          title: "Logged out",
+          description: "Successfully logged out of demo mode"
+        });
+        // Redirect to landing page
+        window.location.href = '/';
+        return;
+      }
+      
       const { error } = await supabase.auth.signOut();
       if (error) {
         console.error('AuthProvider: Logout error:', error);
