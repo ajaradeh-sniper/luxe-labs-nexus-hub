@@ -460,6 +460,55 @@ const Contact = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Footer */}
+        <footer className="bg-secondary text-secondary-foreground py-12 px-4 mt-16">
+          <div className="container mx-auto">
+            <div className="grid md:grid-cols-4 gap-8">
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-16 w-auto" />
+                </div>
+                <p className="text-secondary-foreground/80 font-montserrat text-sm">
+                  Dubai's premier property investment and transformation platform.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-secondary-foreground font-playfair mb-4">Services</h4>
+                <ul className="space-y-2 font-montserrat text-sm">
+                  <li><a href="#services" className="text-secondary-foreground/80 hover:text-primary transition-colors">Property Investment</a></li>
+                  <li><a href="#services" className="text-secondary-foreground/80 hover:text-primary transition-colors">Luxury Transformation</a></li>
+                  <li><a href="#services" className="text-secondary-foreground/80 hover:text-primary transition-colors">Portfolio Management</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-secondary-foreground font-playfair mb-4">Company</h4>
+                <ul className="space-y-2 font-montserrat text-sm">
+                  <li><a href="#about" className="text-secondary-foreground/80 hover:text-primary transition-colors">About Us</a></li>
+                  <li><a href="#projects" className="text-secondary-foreground/80 hover:text-primary transition-colors">Projects</a></li>
+                  <li><a href="#contact" className="text-secondary-foreground/80 hover:text-primary transition-colors">Contact</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-secondary-foreground font-playfair mb-4">Legal</h4>
+                <ul className="space-y-2 font-montserrat text-sm">
+                  <li><a href="#" className="text-secondary-foreground/80 hover:text-primary transition-colors">Privacy Policy</a></li>
+                  <li><a href="#" className="text-secondary-foreground/80 hover:text-primary transition-colors">Terms of Service</a></li>
+                  <li><a href="#" className="text-secondary-foreground/80 hover:text-primary transition-colors">Investment Disclaimer</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="border-t border-secondary-foreground/20 mt-12 pt-8 text-center">
+              <p className="text-secondary-foreground/60 font-montserrat text-sm">
+                © 2025 Luxury Labs. All rights reserved. Licensed by RERA.
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
     </>
   )
