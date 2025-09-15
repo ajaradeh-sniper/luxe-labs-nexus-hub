@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Link } from "react-router-dom"
 import { Navigation } from "@/components/Navigation"
+import { useAuth } from "@/contexts/AuthContext"
 import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
 import businessBayImage from "@/assets/business-bay.jpg"
 import downtownLuxuryImage from "@/assets/downtown-luxury.jpg"
@@ -28,6 +29,8 @@ import venetacucineLogo from "@/assets/venetacucine-logo.png"
 import prestigeLogo from "@/assets/prestige-logo.png"
 
 export default function Partners() {
+  const { user } = useAuth();
+  
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -378,69 +381,71 @@ export default function Partners() {
             </div>
           </div>
 
-          {/* Premium Network of Luxury Suppliers */}
-          <div className="mb-20">
-            <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Premium Network of Luxury Suppliers (Some of our Partners)</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { 
-                  name: "ESPACE.AE", 
-                  category: "Real Estate",
-                  logo: espaceLogo,
-                  description: "Premium real estate services and property management"
-                },
-                { 
-                  name: "Barovie&Toso", 
-                  category: "Luxury Venetian Glass",
-                  logo: barovieTosoLogo,
-                  description: "Exquisite Venetian glass craftsmanship and lighting"
-                },
-                { 
-                  name: "Linealight", 
-                  category: "Lighting",
-                  logo: linealightLogo,
-                  description: "Contemporary lighting solutions and design"
-                },
-                { 
-                  name: "Bose", 
-                  category: "Audio",
-                  logo: boseLogo,
-                  description: "Premium audio systems and sound technology"
-                },
-                { 
-                  name: "Venetacucine.com", 
-                  category: "Kitchens",
-                  logo: venetacucineLogo,
-                  description: "Italian luxury kitchen design and manufacturing"
-                },
-                { 
-                  name: "Prestige", 
-                  category: "Luxury Contractor",
-                  logo: prestigeLogo,
-                  description: "High-end construction and renovation services"
-                }
-              ].map((partner, index) => (
-                <Card key={index} className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-colors">
-                  <CardContent className="p-0 text-center">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-lg overflow-hidden bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                      <img 
-                        src={partner.logo} 
-                        alt={`${partner.name} logo`}
-                        className="w-16 h-16 object-contain"
-                      />
-                    </div>
-                    <h4 className="font-bold text-foreground mb-2 font-playfair">{partner.name}</h4>
-                    <Badge variant="outline" className="text-primary border-primary/30 bg-primary/5 mb-3">
-                      {partner.category}
-                    </Badge>
-                    <p className="text-sm text-muted-foreground font-montserrat">
-                      {partner.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+          {/* Premium Network of Luxury Suppliers - Only visible when logged in */}
+          {user && (
+            <div className="mb-20">
+              <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Premium Network of Luxury Suppliers (Some of our Partners)</h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { 
+                    name: "ESPACE.AE", 
+                    category: "Real Estate",
+                    logo: espaceLogo,
+                    description: "Premium real estate services and property management"
+                  },
+                  { 
+                    name: "Barovie&Toso", 
+                    category: "Luxury Venetian Glass",
+                    logo: barovieTosoLogo,
+                    description: "Exquisite Venetian glass craftsmanship and lighting"
+                  },
+                  { 
+                    name: "Linealight", 
+                    category: "Lighting",
+                    logo: linealightLogo,
+                    description: "Contemporary lighting solutions and design"
+                  },
+                  { 
+                    name: "Bose", 
+                    category: "Audio",
+                    logo: boseLogo,
+                    description: "Premium audio systems and sound technology"
+                  },
+                  { 
+                    name: "Venetacucine.com", 
+                    category: "Kitchens",
+                    logo: venetacucineLogo,
+                    description: "Italian luxury kitchen design and manufacturing"
+                  },
+                  { 
+                    name: "Prestige", 
+                    category: "Luxury Contractor",
+                    logo: prestigeLogo,
+                    description: "High-end construction and renovation services"
+                  }
+                ].map((partner, index) => (
+                  <Card key={index} className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-colors">
+                    <CardContent className="p-0 text-center">
+                      <div className="w-20 h-20 mx-auto mb-4 rounded-lg overflow-hidden bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                        <img 
+                          src={partner.logo} 
+                          alt={`${partner.name} logo`}
+                          className="w-16 h-16 object-contain"
+                        />
+                      </div>
+                      <h4 className="font-bold text-foreground mb-2 font-playfair">{partner.name}</h4>
+                      <Badge variant="outline" className="text-primary border-primary/30 bg-primary/5 mb-3">
+                        {partner.category}
+                      </Badge>
+                      <p className="text-sm text-muted-foreground font-montserrat">
+                        {partner.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Join Our Network */}
           <div className="text-center">
