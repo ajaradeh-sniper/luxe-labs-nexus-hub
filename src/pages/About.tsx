@@ -327,7 +327,31 @@ const About = () => {
           </div>
         </section>
 
-        {/* Our Edge */}
+        {/* Final CTA Banner */}
+        <section className="py-20 relative overflow-hidden">
+          <div className="absolute inset-0">
+            <img 
+              src="/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png"
+              alt="Invest in Dubai Luxury"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-background/50"></div>
+          </div>
+          <div className="container mx-auto px-4 relative z-10 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-playfair">
+              From villa flips to lifestyle concierge — Luxury Labs is Dubai's full-service property transformation platform.
+            </h2>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" onClick={() => window.location.href = '/contact'}>
+                Get Started
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button variant="outline" size="lg" onClick={() => window.location.href = '/contact'}>
+                Book a Call
+              </Button>
+            </div>
+          </div>
+        </section>
         
 
       </div>
