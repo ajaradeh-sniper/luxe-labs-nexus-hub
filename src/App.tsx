@@ -44,7 +44,7 @@ import AdminSystemSettings from "./pages/admin/SystemSettings"
 import AdminSystemHealth from "./pages/admin/SystemHealth"
 import AdminSecurityAudit from "./pages/admin/SecurityAudit"
 import AdminSubmissionReview from "./pages/admin/SubmissionReview"
-import AdminLeadsManagement from "./pages/admin/LeadsManagement"
+import LeadsManagement from "./pages/admin/LeadsManagement"
 
 // Import questionnaire page
 import InvestorQuestionnairePage from "./pages/InvestorQuestionnaire"
@@ -172,7 +172,7 @@ function App() {
           
           <Route path="/admin/leads" element={
             <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_director']}>
-              <AdminLeadsManagement />
+              <LeadsManagement />
             </SmartProtectedRoute>
           } />
           
