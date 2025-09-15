@@ -99,6 +99,14 @@ const About = () => {
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <Award className="h-4 w-4 text-primary" />
+                    </div>
+                    <p className="text-lg text-muted-foreground">
+                      <strong className="text-foreground">Luxury design and transformation ensuring class, comfort and long-lasting property appreciation</strong> through Luxury Labs' trust and reputation.
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <Target className="h-4 w-4 text-primary" />
                     </div>
                     <p className="text-lg text-muted-foreground">
@@ -129,99 +137,6 @@ const About = () => {
             </div>
           </div>
         </section>
-
-        {/* Founders & Team */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Founders & Team</h2>
-            </div>
-
-            {/* Founders */}
-            <div className="space-y-16 mb-20">
-              {founders.map((founder, index) => <div key={founder.name} className={`grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-                  <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                        <User className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold">{founder.name}</h3>
-                        <p className="text-primary font-semibold">{founder.role}</p>
-                      </div>
-                    </div>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      {founder.description}
-                    </p>
-                    <div>
-                      <h4 className="font-semibold mb-2">Key Expertise:</h4>
-                      <Badge variant="secondary" className="text-sm">
-                        {founder.expertise}
-                      </Badge>
-                    </div>
-                  </div>
-                  <div className={`relative h-96 overflow-hidden rounded-2xl ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                    <img src={founder.image} alt={founder.name} className="w-full h-full object-cover" />
-                  </div>
-                </div>)}
-            </div>
-
-            {/* Team Departments */}
-            <div className="relative mb-12">
-              <img src={teamMontage} alt="Team collaboration montage" className="w-full h-64 object-cover rounded-2xl" />
-              <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent rounded-2xl"></div>
-              <div className="absolute inset-0 flex items-center">
-                <div className="container mx-auto px-8">
-                  <h3 className="text-2xl font-bold mb-2">Our Extended Team</h3>
-                  <p className="text-muted-foreground">World-class professionals across every discipline</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {team.map((dept, index) => <Card key={index}>
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mb-4">
-                      <dept.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <CardTitle className="text-lg">{dept.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">{dept.description}</p>
-                  </CardContent>
-                </Card>)}
-            </div>
-          </div>
-        </section>
-
-        {/* Why Dubai */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="relative h-96 overflow-hidden rounded-2xl">
-                <img src={palmMarketGrowth} alt="Palm Jumeirah aerial with market growth chart" className="w-full h-full object-cover" />
-              </div>
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 font-playfair">Why Dubai</h2>
-                <p className="text-xl text-muted-foreground mb-8">
-                  Dubai is the world's luxury property capital:
-                </p>
-                <div className="space-y-4 mb-8">
-                  {dubaiAdvantages.map((advantage, index) => <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
-                      <p className="text-muted-foreground">{advantage}</p>
-                    </div>)}
-                </div>
-                <p className="text-lg text-muted-foreground">
-                  Luxury Labs is positioned at the heart of this growth, leveraging local knowledge and global design expertise to deliver investor success.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Our Edge */}
-        
 
         {/* Why Choose Luxury Labs */}
         <section className="py-20 bg-muted/30">
@@ -320,28 +235,101 @@ const About = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* Founders & Team */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Founders & Team</h2>
+            </div>
+
+            {/* Founders */}
+            <div className="grid md:grid-cols-2 gap-8 mb-20">
+              {founders.map((founder, index) => (
+                <Card key={founder.name} className="overflow-hidden">
+                  <div className="relative h-64 overflow-hidden">
+                    <img src={founder.image} alt={founder.name} className="w-full h-full object-cover" />
+                  </div>
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                        <User className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold">{founder.name}</h3>
+                        <p className="text-primary font-semibold">{founder.role}</p>
+                      </div>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                      {founder.description}
+                    </p>
+                    <div>
+                      <h4 className="font-semibold mb-2 text-sm">Key Expertise:</h4>
+                      <Badge variant="secondary" className="text-xs">
+                        {founder.expertise}
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Team Departments */}
+            <div className="relative mb-12">
+              <img src={teamMontage} alt="Team collaboration montage" className="w-full h-64 object-cover rounded-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent rounded-2xl"></div>
+              <div className="absolute inset-0 flex items-center">
+                <div className="container mx-auto px-8">
+                  <h3 className="text-2xl font-bold mb-2">Our Extended Team</h3>
+                  <p className="text-muted-foreground">World-class professionals across every discipline</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {team.map((dept, index) => <Card key={index}>
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mb-4">
+                      <dept.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <CardTitle className="text-lg">{dept.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">{dept.description}</p>
+                  </CardContent>
+                </Card>)}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Dubai */}
         <section className="py-20">
-          <div className="container mx-auto px-4 text-center">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 font-playfair">
-                Ready to Experience Luxury Labs Excellence?
-              </h2>
-              <p className="text-xl text-muted-foreground mb-8">
-                Join Dubai's most exclusive property transformation platform. Discover how our founders' vision and expertise can transform your investment portfolio.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" onClick={() => window.location.href = '/contact'}>
-                  Schedule Consultation
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button variant="outline" size="lg" onClick={() => window.location.href = '/services'}>
-                  Explore Our Services
-                </Button>
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="relative h-96 overflow-hidden rounded-2xl">
+                <img src={palmMarketGrowth} alt="Palm Jumeirah aerial with market growth chart" className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 font-playfair">Why Dubai</h2>
+                <p className="text-xl text-muted-foreground mb-8">
+                  Dubai is the world's luxury property capital:
+                </p>
+                <div className="space-y-4 mb-8">
+                  {dubaiAdvantages.map((advantage, index) => <div key={index} className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                      <p className="text-muted-foreground">{advantage}</p>
+                    </div>)}
+                </div>
+                <p className="text-lg text-muted-foreground">
+                  Luxury Labs is positioned at the heart of this growth, leveraging local knowledge and global design expertise to deliver investor success.
+                </p>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Our Edge */}
+        
+
       </div>
     </>;
 };
