@@ -1,46 +1,44 @@
-import { Building2, Users, Handshake, Award, CheckCircle, ArrowRight, Star, Package, Plus, ChevronRight, Share2, Send } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Link } from "react-router-dom"
-import { Navigation } from "@/components/Navigation"
-import { useAuth } from "@/contexts/AuthContext"
-import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
-import businessBayImage from "@/assets/business-bay.jpg"
-import downtownLuxuryImage from "@/assets/downtown-luxury.jpg"
-import investmentPartnershipImage from "@/assets/investment-partnership-handshake.jpg"
-import luxuryGlassWork from "@/assets/luxury-glass-work.jpg"
-import luxuryWoodwork from "@/assets/luxury-woodwork.jpg"
-import luxuryOutdoorVase from "@/assets/luxury-outdoor-vase.jpg"
-import luxurySpeaker from "@/assets/luxury-speaker.jpg"
-import luxuryArt from "@/assets/luxury-art.jpg"
-import luxuryMarbleStone from "@/assets/luxury-marble-stone.jpg"
-import architectDesigning from "@/assets/architect-designing.jpg"
-import contractorDrilling from "@/assets/contractor-drilling.jpg"
-import projectManagerTimeline from "@/assets/project-manager-timeline.jpg"
-import palmVillaForSale from "@/assets/palm-villa-for-sale.jpg"
-import emaarConstructionSite from "@/assets/emaar-construction-site.jpg"
-import securityGuardGolfHouse from "@/assets/security-guard-golf-house.jpg"
-import espaceLogo from "@/assets/espace-logo.png"
-import barovieTosoLogo from "@/assets/barovie-toso-logo.png"
-import linealightLogo from "@/assets/linealight-logo.png"
-import boseLogo from "@/assets/bose-logo.png"
-import venetacucineLogo from "@/assets/venetacucine-logo.png"
-import prestigeLogo from "@/assets/prestige-logo.png"
-
+import { Building2, Users, Handshake, Award, CheckCircle, ArrowRight, Star, Package, Plus, ChevronRight, Share2, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
+import { Navigation } from "@/components/Navigation";
+import { useAuth } from "@/contexts/AuthContext";
+import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg";
+import businessBayImage from "@/assets/business-bay.jpg";
+import downtownLuxuryImage from "@/assets/downtown-luxury.jpg";
+import investmentPartnershipImage from "@/assets/investment-partnership-handshake.jpg";
+import luxuryGlassWork from "@/assets/luxury-glass-work.jpg";
+import luxuryWoodwork from "@/assets/luxury-woodwork.jpg";
+import luxuryOutdoorVase from "@/assets/luxury-outdoor-vase.jpg";
+import luxurySpeaker from "@/assets/luxury-speaker.jpg";
+import luxuryArt from "@/assets/luxury-art.jpg";
+import luxuryMarbleStone from "@/assets/luxury-marble-stone.jpg";
+import architectDesigning from "@/assets/architect-designing.jpg";
+import contractorDrilling from "@/assets/contractor-drilling.jpg";
+import projectManagerTimeline from "@/assets/project-manager-timeline.jpg";
+import palmVillaForSale from "@/assets/palm-villa-for-sale.jpg";
+import emaarConstructionSite from "@/assets/emaar-construction-site.jpg";
+import securityGuardGolfHouse from "@/assets/security-guard-golf-house.jpg";
+import espaceLogo from "@/assets/espace-logo.png";
+import barovieTosoLogo from "@/assets/barovie-toso-logo.png";
+import linealightLogo from "@/assets/linealight-logo.png";
+import boseLogo from "@/assets/bose-logo.png";
+import venetacucineLogo from "@/assets/venetacucine-logo.png";
+import prestigeLogo from "@/assets/prestige-logo.png";
 export default function Partners() {
-  const { user } = useAuth();
-  
-  return (
-    <div className="min-h-screen bg-background">
+  const {
+    user
+  } = useAuth();
+  return <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* Hero Section */}
       <section className="relative h-96 flex items-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${dubaiMarinaImage})` }}
-        >
+        <div className="absolute inset-0 bg-cover bg-center" style={{
+        backgroundImage: `url(${dubaiMarinaImage})`
+      }}>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
         </div>
         
@@ -76,11 +74,7 @@ export default function Partners() {
                 {/* Grid of real estate images */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4">
                   <div className="relative h-32 rounded-lg overflow-hidden">
-                    <img 
-                      src={palmVillaForSale} 
-                      alt="Luxury palm villa with FOR SALE board sign"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={palmVillaForSale} alt="Luxury palm villa with FOR SALE board sign" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-2 left-2">
                       <span className="text-white text-sm font-medium">Palm Villa For Sale</span>
@@ -88,11 +82,7 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-32 rounded-lg overflow-hidden">
-                    <img 
-                      src={emaarConstructionSite} 
-                      alt="EMAAR construction site with logo"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={emaarConstructionSite} alt="EMAAR construction site with logo" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-2 left-2">
                       <span className="text-white text-sm font-medium">EMAAR Development</span>
@@ -100,11 +90,7 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-32 rounded-lg overflow-hidden">
-                    <img 
-                      src={securityGuardGolfHouse} 
-                      alt="Security guard by golf course luxury house"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={securityGuardGolfHouse} alt="Security guard by golf course luxury house" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-2 left-2">
                       <span className="text-white text-sm font-medium">Golf Course Property</span>
@@ -131,11 +117,7 @@ export default function Partners() {
                 {/* Grid of service provider types */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4">
                   <div className="relative h-32 rounded-lg overflow-hidden">
-                    <img 
-                      src={architectDesigning} 
-                      alt="Professional architect designing luxury building plans"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={architectDesigning} alt="Professional architect designing luxury building plans" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-2 left-2">
                       <span className="text-white text-sm font-medium">Architect Designing</span>
@@ -143,11 +125,7 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-32 rounded-lg overflow-hidden">
-                    <img 
-                      src={contractorDrilling} 
-                      alt="Construction contractor drilling on luxury building site"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={contractorDrilling} alt="Construction contractor drilling on luxury building site" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-2 left-2">
                       <span className="text-white text-sm font-medium">Contractor On Site</span>
@@ -155,11 +133,7 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-32 rounded-lg overflow-hidden">
-                    <img 
-                      src={projectManagerTimeline} 
-                      alt="Project manager reviewing timeline charts and planning schedules"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={projectManagerTimeline} alt="Project manager reviewing timeline charts and planning schedules" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-2 left-2">
                       <span className="text-white text-sm font-medium">Project Timeline</span>
@@ -186,10 +160,9 @@ export default function Partners() {
                 {/* Grid of investment partner types */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4">
                   <div className="relative h-32 rounded-lg overflow-hidden">
-                    <div 
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${businessBayImage})` }}
-                    >
+                    <div className="absolute inset-0 bg-cover bg-center" style={{
+                    backgroundImage: `url(${businessBayImage})`
+                  }}>
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-blue-800/90" />
                     </div>
                     <div className="relative z-10 h-full flex items-center justify-center">
@@ -201,10 +174,9 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-32 rounded-lg overflow-hidden">
-                    <div 
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${downtownLuxuryImage})` }}
-                    >
+                    <div className="absolute inset-0 bg-cover bg-center" style={{
+                    backgroundImage: `url(${downtownLuxuryImage})`
+                  }}>
                       <div className="absolute inset-0 bg-gradient-to-br from-green-600/80 to-green-800/90" />
                     </div>
                     <div className="relative z-10 h-full flex items-center justify-center">
@@ -216,10 +188,9 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-32 rounded-lg overflow-hidden">
-                    <div 
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${dubaiMarinaImage})` }}
-                    >
+                    <div className="absolute inset-0 bg-cover bg-center" style={{
+                    backgroundImage: `url(${dubaiMarinaImage})`
+                  }}>
                       <div className="absolute inset-0 bg-gradient-to-br from-purple-600/80 to-purple-800/90" />
                     </div>
                     <div className="relative z-10 h-full flex items-center justify-center">
@@ -250,11 +221,7 @@ export default function Partners() {
                 {/* Grid of luxury items */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-2 p-4">
                   <div className="relative h-24 rounded-lg overflow-hidden">
-                    <img 
-                      src={luxuryGlassWork} 
-                      alt="Premium luxury glass work"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={luxuryGlassWork} alt="Premium luxury glass work" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-1 left-1">
                       <span className="text-white text-xs font-medium">Glass Work</span>
@@ -262,11 +229,7 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-24 rounded-lg overflow-hidden">
-                    <img 
-                      src={luxuryWoodwork} 
-                      alt="Luxury woodwork craftsmanship"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={luxuryWoodwork} alt="Luxury woodwork craftsmanship" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-1 left-1">
                       <span className="text-white text-xs font-medium">Woodwork</span>
@@ -274,11 +237,7 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-24 rounded-lg overflow-hidden">
-                    <img 
-                      src={luxuryOutdoorVase} 
-                      alt="Expensive outdoor luxury vase"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={luxuryOutdoorVase} alt="Expensive outdoor luxury vase" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-1 left-1">
                       <span className="text-white text-xs font-medium">Outdoor Vase</span>
@@ -286,11 +245,7 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-24 rounded-lg overflow-hidden">
-                    <img 
-                      src={luxurySpeaker} 
-                      alt="High-end luxury speaker system"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={luxurySpeaker} alt="High-end luxury speaker system" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-1 left-1">
                       <span className="text-white text-xs font-medium">Audio System</span>
@@ -298,11 +253,7 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-24 rounded-lg overflow-hidden">
-                    <img 
-                      src={luxuryArt} 
-                      alt="Expensive luxury art collection"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={luxuryArt} alt="Expensive luxury art collection" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-1 left-1">
                       <span className="text-white text-xs font-medium">Art Collection</span>
@@ -310,11 +261,7 @@ export default function Partners() {
                   </div>
                   
                   <div className="relative h-24 rounded-lg overflow-hidden">
-                    <img 
-                      src={luxuryMarbleStone} 
-                      alt="Luxury marble and stone work"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={luxuryMarbleStone} alt="Luxury marble and stone work" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-1 left-1">
                       <span className="text-white text-xs font-medium">Marble & Stone</span>
@@ -345,42 +292,15 @@ export default function Partners() {
                       Service Providers & Suppliers
                     </h4>
                     <ul className="space-y-3">
-                      {[
-                        "Access to premium luxury projects",
-                        "Guaranteed payment terms",
-                        "Long-term partnership opportunities",
-                        "Marketing and brand exposure",
-                        "Professional development support"
-                      ].map((benefit, index) => (
-                        <li key={index} className="flex items-center gap-3">
+                      {["Access to premium luxury projects", "Guaranteed payment terms", "Long-term partnership opportunities", "Marketing and brand exposure", "Professional development support"].map((benefit, index) => <li key={index} className="flex items-center gap-3">
                           <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                           <span className="text-muted-foreground font-montserrat text-sm">{benefit}</span>
-                        </li>
-                      ))}
+                        </li>)}
                     </ul>
                   </div>
 
                   {/* Real Estate Partners Benefits */}
-                  <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                      <Building2 className="h-5 w-5 text-primary" />
-                      Real Estate Partners
-                    </h4>
-                    <ul className="space-y-3">
-                      {[
-                        "Exclusive off-market opportunities",
-                        "Preferred buyer status",
-                        "Fast transaction processing",
-                        "Volume-based incentives",
-                        "Market insights and analytics"
-                      ].map((benefit, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
-                          <span className="text-muted-foreground font-montserrat text-sm">{benefit}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  
                 </div>
               </CardContent>
             </Card>
@@ -496,56 +416,43 @@ export default function Partners() {
           </div>
 
           {/* Premium Network of Luxury Suppliers - Only visible when logged in */}
-          {user && (
-            <div className="mb-20">
+          {user && <div className="mb-20">
               <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Premium Network of Luxury Suppliers (Some of our Partners)</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { 
-                    name: "ESPACE.AE", 
-                    category: "Real Estate",
-                    logo: espaceLogo,
-                    description: "Premium real estate services and property management"
-                  },
-                  { 
-                    name: "Barovie&Toso", 
-                    category: "Luxury Venetian Glass",
-                    logo: barovieTosoLogo,
-                    description: "Exquisite Venetian glass craftsmanship and lighting"
-                  },
-                  { 
-                    name: "Linealight", 
-                    category: "Lighting",
-                    logo: linealightLogo,
-                    description: "Contemporary lighting solutions and design"
-                  },
-                  { 
-                    name: "Bose", 
-                    category: "Audio",
-                    logo: boseLogo,
-                    description: "Premium audio systems and sound technology"
-                  },
-                  { 
-                    name: "Venetacucine.com", 
-                    category: "Kitchens",
-                    logo: venetacucineLogo,
-                    description: "Italian luxury kitchen design and manufacturing"
-                  },
-                  { 
-                    name: "Prestige", 
-                    category: "Luxury Contractor",
-                    logo: prestigeLogo,
-                    description: "High-end construction and renovation services"
-                  }
-                ].map((partner, index) => (
-                  <Card key={index} className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-colors">
+                {[{
+              name: "ESPACE.AE",
+              category: "Real Estate",
+              logo: espaceLogo,
+              description: "Premium real estate services and property management"
+            }, {
+              name: "Barovie&Toso",
+              category: "Luxury Venetian Glass",
+              logo: barovieTosoLogo,
+              description: "Exquisite Venetian glass craftsmanship and lighting"
+            }, {
+              name: "Linealight",
+              category: "Lighting",
+              logo: linealightLogo,
+              description: "Contemporary lighting solutions and design"
+            }, {
+              name: "Bose",
+              category: "Audio",
+              logo: boseLogo,
+              description: "Premium audio systems and sound technology"
+            }, {
+              name: "Venetacucine.com",
+              category: "Kitchens",
+              logo: venetacucineLogo,
+              description: "Italian luxury kitchen design and manufacturing"
+            }, {
+              name: "Prestige",
+              category: "Luxury Contractor",
+              logo: prestigeLogo,
+              description: "High-end construction and renovation services"
+            }].map((partner, index) => <Card key={index} className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-colors">
                     <CardContent className="p-0 text-center">
                       <div className="w-20 h-20 mx-auto mb-4 rounded-lg overflow-hidden bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                        <img 
-                          src={partner.logo} 
-                          alt={`${partner.name} logo`}
-                          className="w-16 h-16 object-contain"
-                        />
+                        <img src={partner.logo} alt={`${partner.name} logo`} className="w-16 h-16 object-contain" />
                       </div>
                       <h4 className="font-bold text-foreground mb-2 font-playfair">{partner.name}</h4>
                       <Badge variant="outline" className="text-primary border-primary/30 bg-primary/5 mb-3">
@@ -555,11 +462,9 @@ export default function Partners() {
                         {partner.description}
                       </p>
                     </CardContent>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
-            </div>
-          )}
+            </div>}
 
           {/* Join Our Network */}
           <div className="text-center">
@@ -586,6 +491,5 @@ export default function Partners() {
           </div>
         </div>
       </section>
-    </div>
-  )
+    </div>;
 }
