@@ -67,7 +67,7 @@ export default function Landing() {
     },
     {
       title: 'Co-Investment',
-      description: 'Join Luxury Labs villa flip projects with other investors — lower entry, shared rewards, and guaranteed Luxury Labs standards.',
+      description: 'Join Luxury Labs Transformation projects with pool of investors',
       features: [
         'From AED 1M entry point (Lower entry , shared rewards)',
         'Vetted Investment Network ; guaranteed Luxury Labs standards',
