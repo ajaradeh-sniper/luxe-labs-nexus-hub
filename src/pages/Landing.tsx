@@ -51,116 +51,86 @@ export default function Landing() {
   const [showServiceDetails, setShowServiceDetails] = useState(false);
 
   // Service data from Services page
-  const investmentOptions = [
+  const investmentServices = [
     {
-      title: 'Join a Flip Investment Project - Shared Stake in Single Property Transformation Project (Flip)',
-      returns: '10%-30%',
-      investment: 'AED 1M (8-14 Months)',
-      description: 'Full transparency on single asset',
+      title: 'Solo Investment',
+      description: 'Luxury Labs leads your own luxury villa transformation investment from acquisition to resale.',
       features: [
-        'Minimum investment: AED 1M',
-        'Full transparency on single asset',
-        'Direct involvement opportunities',
-        'Higher return potential',
-        '6-12 month typical timeline'
+        'Invest from AED 5M–30M in a flip, fully executed end-to-end by Luxury Labs according to your objectives',
+        'Premium design and execution',
+        'Target ROI: 18–30%'
+      ],
+      buttons: [
+        { text: 'Start Investment', href: '/contact' },
+        { text: 'Learn More', href: '/investors' }
       ]
     },
     {
-      title: 'Flip a Property with LL - Single Property Transformation Project (Flip)',
-      returns: '15%-30%',
-      investment: 'AED 5M (8-14 Months)',
-      description: 'First access to premium deals',
+      title: 'Co-Investment',
+      description: 'Join Luxury Labs villa flip projects with other investors — lower entry, shared rewards, and guaranteed Luxury Labs standards.',
       features: [
-        'Minimum investment: AED 5M',
-        'First access to premium deals',
-        'Personal relationship manager',
-        'Customized investment strategies',
-        'Exclusive networking events'
+        'From AED 1M entry point',
+        'Vetted investment network',
+        'Target ROI: 12–20%'
+      ],
+      buttons: [
+        { text: 'Join Investment', href: '/contact' },
+        { text: 'View Opportunities', href: '/investors' }
       ]
     },
     {
-      title: 'Invest in Luxury Real Estate - Diversified Fund (Flip & Sell, Flip & Rent, Off-Plan)',
-      returns: '2x-4x',
-      investment: 'AED 500K (3-7 Years Commitment)',
-      description: 'Diversified across 10+ properties',
+      title: 'Fund Investment',
+      description: 'Diversified portfolio of luxury properties for long-term growth (Flips, Buy & Rent, Build).',
       features: [
-        'Minimum investment: AED 500K',
-        'Diversified across 10+ properties',
-        'Professional management included',
-        'Quarterly performance reports',
-        'Exit flexibility after 12 months'
+        'Professional fund management',
+        'Multi-property diversification',
+        'Target ROI: XX% annually (Coming Soon)'
+      ],
+      buttons: [
+        { text: 'Coming Soon', href: '#', disabled: true },
+        { text: 'Join Waitlist', href: '/contact' }
       ]
     }
   ];
 
-  const transformationOptions = [
+  const transformationServices = [
     {
-      title: 'Personal Property Transformation (Renovation)',
-      description: 'Premium design, project management, material sourcing, furniture and staging',
+      title: 'Dubai Relocation',
+      description: 'End-to-end relocation support for moving to Dubai.',
       features: [
-        'Premium design services',
-        'Project management & oversight',
-        'Material & product sourcing',
-        'Furniture selection & staging',
-        'Quality control & inspections'
+        'Property sourcing and acquisition',
+        'Full design, renovation, and furnishing',
+        'Ongoing Dubai support'
+      ],
+      buttons: [
+        { text: 'Get Support', href: '/contact' },
+        { text: 'Book Call', href: '/contact' }
       ]
     },
     {
-      title: 'Property Aquisition, Transformation and Move-in Ready Services (HNWI Concierge)',
-      description: 'Complete property renovation and enhancement services',
+      title: 'Advisory',
+      description: 'Strategic guidance for property investment and luxury design.',
       features: [
-        'Design & renovation consultation',
-        'Project management & oversight',
-        'Quality control & inspections',
-        'Vendor coordination',
-        'Timeline & budget management'
+        'Property sourcing and analysis',
+        'Investment structuring',
+        'Portfolio optimization'
+      ],
+      buttons: [
+        { text: 'Get Advisory', href: '/contact' },
+        { text: 'Schedule Meeting', href: '/contact' }
       ]
     },
     {
-      title: 'HNWI Concierge',
-      description: 'Complete Dubai relocation and property services',
+      title: 'Media & Marketing',
+      description: 'Professional documentation and global marketing of property transformations.',
       features: [
-        'Dubai relocation consultation (A-Z)',
-        'Property purchase assistance',
-        'Home transformation services',
-        'Legal & documentation support',
-        'Ongoing concierge services'
-      ]
-    }
-  ];
-
-  const advisoryOptions = [
-    {
-      title: 'Consult LL - Luxury Real Estate & Property Transformation Advisory Services',
-      description: 'Premium design, project management, material sourcing, furniture and staging',
-      features: [
-        'Premium design services',
-        'Project management & oversight',
-        'Material & product sourcing',
-        'Furniture selection & staging',
-        'Quality control & inspections'
-      ]
-    },
-    {
-      title: 'Hire LL - End to End Personal Property Transformation (Renovation)',
-      description: 'Complete property renovation and enhancement services',
-      features: [
-        'Design & renovation consultation',
-        'Project management & oversight',
-        'Quality control & inspections',
-        'Vendor coordination',
-        'Timeline & budget management'
-      ]
-    },
-    {
-      title: 'Hire LL - End to End Property Aquisition, Transformation & Move-in Services (HNWI Concierge)',
-      description: 'Complete Dubai relocation and property services',
-      features: [
-        'Dubai relocation consultation (A-Z)',
-        'Property purchase assistance',
-        'Home transformation services',
-        'Legal & documentation support',
-        'Ongoing concierge services'
+        'Professional filming and production',
+        'Global marketing campaigns',
+        'Enhanced resale visibility'
+      ],
+      buttons: [
+        { text: 'See Portfolio', href: '/media' },
+        { text: 'Partner With Us', href: '/partners' }
       ]
     }
   ];
@@ -405,39 +375,46 @@ export default function Landing() {
 
                   <CollapsibleContent className="animate-accordion-down data-[state=closed]:animate-accordion-up">
                     <div className="mt-12 grid lg:grid-cols-2 gap-12">
-                      {/* Investment Options */}
+                      {/* Investment Services */}
                       <div className="animate-fade-in">
-                        <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Investment Options</h3>
+                        <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Investment Services</h3>
                         <div className="space-y-4">
-                          {investmentOptions.map((option, index) => (
+                          {investmentServices.map((service, index) => (
                             <Card key={index} className="p-4 border border-border bg-white text-black relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-gray-50 active:bg-gray-100 active:border-yellow-600">
                               <div className="flex gap-3">
                                 <div className="flex-1">
-                                  <div className="mb-2">
-                                    <h4 className="font-semibold text-base mb-1">{option.title}</h4>
-                                    {option.returns && (
-                                       <div className="text-lg font-bold text-primary mb-1">{option.returns} ROI</div>
-                                    )}
-                                    {option.investment && (
-                                      <p className="text-xs text-muted-foreground mb-1">Min. {option.investment}</p>
-                                    )}
-                                    <p className="text-xs text-muted-foreground">{option.description}</p>
+                                  <div className="mb-3">
+                                    <h4 className="font-semibold text-lg mb-2">{service.title}</h4>
+                                    <p className="text-sm text-muted-foreground mb-3">{service.description}</p>
                                   </div>
-                                  <ul className="space-y-1 mb-3">
-                                    {option.features.slice(0, 3).map((feature, featureIndex) => (
+                                  <ul className="space-y-2 mb-4">
+                                    {service.features.map((feature, featureIndex) => (
                                       <li key={featureIndex} className="flex items-start gap-2">
-                                        <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-xs">{feature}</span>
+                                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm">{feature}</span>
                                       </li>
                                     ))}
                                   </ul>
-                                  <Button 
-                                    size="sm"
-                                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105"
-                                    onClick={() => window.location.href = '/investors'}
-                                  >
-                                    Learn More
-                                  </Button>
+                                  <div className="flex gap-2">
+                                    {service.buttons.map((button, buttonIndex) => (
+                                      <Button
+                                        key={buttonIndex}
+                                        size="sm"
+                                        variant={buttonIndex === 0 ? "default" : "outline"}
+                                        className={`flex-1 transition-all duration-300 hover:scale-105 ${
+                                          button.disabled 
+                                            ? 'opacity-50 cursor-not-allowed' 
+                                            : buttonIndex === 0 
+                                              ? 'bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold'
+                                              : 'hover:bg-primary/5'
+                                        }`}
+                                        onClick={() => !button.disabled && (window.location.href = button.href)}
+                                        disabled={button.disabled}
+                                      >
+                                        {button.text}
+                                      </Button>
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                             </Card>
@@ -445,35 +422,43 @@ export default function Landing() {
                         </div>
                       </div>
 
-                      {/* Advisory Services */}
+                      {/* Transformation Services */}
                       <div className="animate-fade-in">
                         <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Transformation Services</h3>
                         <div className="space-y-4">
-                          {advisoryOptions.map((option, index) => (
+                          {transformationServices.map((service, index) => (
                             <Card key={index} className="p-4 border border-border bg-white text-black relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-gray-50 active:bg-gray-100 active:border-yellow-600">
                               <div className="flex gap-3">
                                 <div className="flex-1">
-                                  <div className="mb-2">
-                                    <h4 className="font-semibold text-base mb-1">{option.title}</h4>
-                                    <div className="text-lg font-bold text-primary mb-1">Premium Service</div>
-                                    <p className="text-xs text-muted-foreground mb-1">Professional Grade</p>
-                                    <p className="text-xs text-muted-foreground">{option.description}</p>
+                                  <div className="mb-3">
+                                    <h4 className="font-semibold text-lg mb-2">{service.title}</h4>
+                                    <p className="text-sm text-muted-foreground mb-3">{service.description}</p>
                                   </div>
-                                  <ul className="space-y-1 mb-3">
-                                    {option.features.slice(0, 3).map((feature, featureIndex) => (
+                                  <ul className="space-y-2 mb-4">
+                                    {service.features.map((feature, featureIndex) => (
                                       <li key={featureIndex} className="flex items-start gap-2">
-                                        <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-xs">{feature}</span>
+                                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm">{feature}</span>
                                       </li>
                                     ))}
                                   </ul>
-                                  <Button 
-                                    size="sm"
-                                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat transition-all duration-300 hover:scale-105"
-                                    onClick={() => window.location.href = '/contact'}
-                                  >
-                                    Learn More
-                                  </Button>
+                                  <div className="flex gap-2">
+                                    {service.buttons.map((button, buttonIndex) => (
+                                      <Button
+                                        key={buttonIndex}
+                                        size="sm"
+                                        variant={buttonIndex === 0 ? "default" : "outline"}
+                                        className={`flex-1 transition-all duration-300 hover:scale-105 ${
+                                          buttonIndex === 0 
+                                            ? 'bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold'
+                                            : 'hover:bg-primary/5'
+                                        }`}
+                                        onClick={() => window.location.href = button.href}
+                                      >
+                                        {button.text}
+                                      </Button>
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                             </Card>
