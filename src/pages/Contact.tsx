@@ -13,6 +13,13 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { 
   MapPin, 
   Phone, 
   Mail,
@@ -21,7 +28,10 @@ import {
   Send,
   Building,
   Users,
-  TrendingUp
+  TrendingUp,
+  Search,
+  FileText,
+  HelpCircle
 } from "lucide-react"
 import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
 
@@ -34,6 +44,84 @@ const Contact = () => {
     budget: '',
     message: ''
   })
+
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const faqData = [
+    {
+      category: "Investment Opportunities",
+      items: [
+        {
+          question: "What types of investment opportunities does Luxury Labs offer?",
+          answer: "We offer three main investment models: Co-Investment (join transformation projects with other investors), Fund Investment (diversified portfolio for long-term growth including flips to sell and rent), and HNWI Concierge (personalized luxury property renovation services)."
+        },
+        {
+          question: "What is the minimum investment amount?",
+          answer: "Investment minimums vary by opportunity type. Co-investment projects typically start from $100K, while our diversified fund has a minimum of $500K. HNWI concierge services are customized based on project scope."
+        },
+        {
+          question: "What returns can I expect from Dubai property investments?",
+          answer: "Historical returns vary, but Dubai luxury properties have shown strong performance. Our transformation projects typically target 20-35% returns, while our diversified fund aims for steady long-term growth through both capital appreciation and rental yields."
+        }
+      ]
+    },
+    {
+      category: "Services & Process",
+      items: [
+        {
+          question: "What areas of Dubai do you focus on?",
+          answer: "We specialize in premium locations including Emirates Hills, Palm Jumeirah, Dubai Hills, Jumeirah Golf Estates, Jumeirah Islands, Al Barari, and other luxury communities known for high-end villa properties."
+        },
+        {
+          question: "How long does a typical villa transformation take?",
+          answer: "Project timelines vary based on scope, but most villa transformations take 4-8 months from start to finish. We provide detailed project timelines during the consultation phase and keep investors updated throughout the process."
+        },
+        {
+          question: "Do you handle all aspects of the renovation process?",
+          answer: "Yes, we provide end-to-end services including design, permits, construction management, quality control, and final staging. Our team handles everything so you can focus on the investment opportunity."
+        }
+      ]
+    },
+    {
+      category: "Getting Started",
+      items: [
+        {
+          question: "How do I get started with Luxury Labs?",
+          answer: "Start by filling out our contact form or booking a consultation call. We'll discuss your investment goals, budget, and preferences to recommend the best opportunities for your portfolio."
+        },
+        {
+          question: "What documents do I need to invest?",
+          answer: "Required documentation typically includes proof of funds, identification, and investment agreements. Our team will guide you through the complete documentation process for each specific opportunity."
+        },
+        {
+          question: "Can international investors participate?",
+          answer: "Yes, we welcome international investors. Dubai's property market is open to foreign investment, and we assist with the legal and regulatory requirements for international clients."
+        }
+      ]
+    },
+    {
+      category: "Market & Strategy",
+      items: [
+        {
+          question: "Why focus on Dubai's luxury property market?",
+          answer: "Dubai offers unique advantages: no property taxes, strong rental yields, growing expat population, world-class infrastructure, and government initiatives supporting real estate growth. The luxury segment has shown particular resilience and growth potential."
+        },
+        {
+          question: "How do you select properties for transformation?",
+          answer: "Our selection criteria include location desirability, transformation potential, market demand analysis, and projected returns. We use data-driven analysis combined with local market expertise to identify the best opportunities."
+        }
+      ]
+    }
+  ]
+
+  const filteredFAQs = faqData.map(category => ({
+    ...category,
+    items: category.items.filter(item =>
+      item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      category.category.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  })).filter(category => category.items.length > 0)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -215,6 +303,68 @@ const Contact = () => {
                     Send Message
                   </Button>
                 </form>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section */}
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <HelpCircle className="h-5 w-5" />
+                  Frequently Asked Questions
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Find answers to common questions about our services and investment opportunities.
+                </p>
+                
+                {/* Search Bar */}
+                <div className="relative mt-4">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search FAQ, documentation, and articles..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <ScrollArea className="h-96">
+                  {filteredFAQs.length > 0 ? (
+                    <div className="space-y-4">
+                      {filteredFAQs.map((category, categoryIndex) => (
+                        <div key={categoryIndex}>
+                          <div className="flex items-center gap-2 mb-3">
+                            <FileText className="h-4 w-4 text-primary" />
+                            <h4 className="font-semibold text-sm text-primary">{category.category}</h4>
+                          </div>
+                          <Accordion type="single" collapsible className="w-full">
+                            {category.items.map((item, itemIndex) => (
+                              <AccordionItem key={itemIndex} value={`${categoryIndex}-${itemIndex}`}>
+                                <AccordionTrigger className="text-left">
+                                  {item.question}
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                  <p className="text-muted-foreground leading-relaxed">
+                                    {item.answer}
+                                  </p>
+                                </AccordionContent>
+                              </AccordionItem>
+                            ))}
+                          </Accordion>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-8">
+                      <Search className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+                      <p className="text-muted-foreground">No results found for "{searchQuery}"</p>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Try different keywords or browse all categories above
+                      </p>
+                    </div>
+                  )}
+                </ScrollArea>
               </CardContent>
             </Card>
           </div>
