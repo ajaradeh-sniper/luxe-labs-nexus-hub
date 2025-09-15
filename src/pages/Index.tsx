@@ -89,13 +89,13 @@ const Index = () => {
                   <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
                     <TrendingUp className="h-8 w-8 text-background" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Solo Investment</h3>
+                  <h3 className="text-xl font-semibold mb-3">Single Property Flip</h3>
                   <p className="text-muted-foreground mb-4">
-                    Lead your own luxury villa transformation from acquisition to resale
+                    Lead or co-lead a curated villa transformation in prime Dubai areas.
                   </p>
                   <div className="flex items-center gap-2 text-sm text-primary font-semibold">
                     <Target className="h-4 w-4" />
-                    ROI: 18-30% in 6-12 months
+                    Typical ROI: 18–30% · 6–12 months
                   </div>
                 </CardContent>
               </Card>
@@ -105,13 +105,13 @@ const Index = () => {
                   <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
                     <Users className="h-8 w-8 text-background" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Co-Investment</h3>
+                  <h3 className="text-xl font-semibold mb-3">Shared Stake (Co-Invest)</h3>
                   <p className="text-muted-foreground mb-4">
-                    Join Dubai villa flips with vetted co-investors from AED 500K
+                    Join vetted Dubai villa flips from AED 500K.
                   </p>
                   <div className="flex items-center gap-2 text-sm text-primary font-semibold">
                     <Target className="h-4 w-4" />
-                    ROI: 12-20% in 9-12 months
+                    Typical ROI: 12–20% · 9–12 months
                   </div>
                 </CardContent>
               </Card>
@@ -121,9 +121,9 @@ const Index = () => {
                   <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
                     <Building className="h-8 w-8 text-background" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Fund Investment</h3>
+                  <h3 className="text-xl font-semibold mb-3">Diversified Fund</h3>
                   <p className="text-muted-foreground mb-4">
-                    Diversified portfolio of luxury villas with professional management
+                    Long-term portfolio of luxury villas with professional management.
                   </p>
                   <div className="flex items-center gap-2 text-sm text-primary font-semibold">
                     <Target className="h-4 w-4" />
@@ -138,13 +138,13 @@ const Index = () => {
                   <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
                     <Shield className="h-8 w-8 text-background" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Dubai Relocation</h3>
+                  <h3 className="text-xl font-semibold mb-3">Relocation Concierge</h3>
                   <p className="text-muted-foreground mb-4">
-                    Comprehensive relocation and lifestyle support for HNWIs moving to Dubai
+                    End‑to‑end visa, banking, residence and lifestyle setup for HNWIs.
                   </p>
                   <div className="flex items-center gap-2 text-sm text-primary font-semibold">
                     <CheckCircle className="h-4 w-4" />
-                    Full concierge services
+                    Ongoing concierge support
                   </div>
                 </CardContent>
               </Card>
@@ -154,13 +154,13 @@ const Index = () => {
                   <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
                     <FileText className="h-8 w-8 text-background" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Investment Advisory</h3>
+                  <h3 className="text-xl font-semibold mb-3">Advisory Services</h3>
                   <p className="text-muted-foreground mb-4">
-                    Strategic property and investment advisory for sophisticated investors
+                    Property sourcing, structuring and long‑term portfolio advisory.
                   </p>
                   <div className="flex items-center gap-2 text-sm text-primary font-semibold">
                     <CheckCircle className="h-4 w-4" />
-                    Expert guidance & structuring
+                    Expert guidance
                   </div>
                 </CardContent>
               </Card>
@@ -170,13 +170,13 @@ const Index = () => {
                   <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
                     <Star className="h-8 w-8 text-background" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Media & Marketing</h3>
+                  <h3 className="text-xl font-semibold mb-3">Flipping Dubai Media</h3>
                   <p className="text-muted-foreground mb-4">
-                    Professional media services documenting transformations for global audiences
+                    Document and market transformations to buyers and investors.
                   </p>
                   <div className="flex items-center gap-2 text-sm text-primary font-semibold">
                     <CheckCircle className="h-4 w-4" />
-                    Flipping Dubai brand
+                    Professional production & campaigns
                   </div>
                 </CardContent>
               </Card>
