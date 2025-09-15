@@ -327,58 +327,63 @@ export default function Partners() {
 
           {/* Partnership Benefits */}
           <div className="mb-20">
-            <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Partnership Benefits</h2>
-            <div className="grid md:grid-cols-2 gap-12">
-              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center">
-                      <Award className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-foreground font-playfair">For Service Providers</h3>
+            <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Partners (Suppliers and Service providers)</h2>
+            <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm max-w-4xl mx-auto">
+              <CardContent className="p-0">
+                <div className="flex items-center gap-4 mb-8 justify-center">
+                  <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center">
+                    <Handshake className="h-6 w-6 text-primary-foreground" />
                   </div>
-                  <ul className="space-y-4">
-                    {[
-                      "Access to premium luxury projects",
-                      "Guaranteed payment terms",
-                      "Long-term partnership opportunities",
-                      "Marketing and brand exposure",
-                      "Professional development support"
-                    ].map((benefit, index) => (
-                      <li key={index} className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground font-montserrat">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                  <h3 className="text-2xl font-bold text-foreground font-playfair">Partnership Benefits</h3>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Service Providers Benefits */}
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                      <Award className="h-5 w-5 text-primary" />
+                      Service Providers & Suppliers
+                    </h4>
+                    <ul className="space-y-3">
+                      {[
+                        "Access to premium luxury projects",
+                        "Guaranteed payment terms",
+                        "Long-term partnership opportunities",
+                        "Marketing and brand exposure",
+                        "Professional development support"
+                      ].map((benefit, index) => (
+                        <li key={index} className="flex items-center gap-3">
+                          <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                          <span className="text-muted-foreground font-montserrat text-sm">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center">
-                      <Building2 className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-foreground font-playfair">For Real Estate Partners</h3>
+                  {/* Real Estate Partners Benefits */}
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                      <Building2 className="h-5 w-5 text-primary" />
+                      Real Estate Partners
+                    </h4>
+                    <ul className="space-y-3">
+                      {[
+                        "Exclusive off-market opportunities",
+                        "Preferred buyer status",
+                        "Fast transaction processing",
+                        "Volume-based incentives",
+                        "Market insights and analytics"
+                      ].map((benefit, index) => (
+                        <li key={index} className="flex items-center gap-3">
+                          <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                          <span className="text-muted-foreground font-montserrat text-sm">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="space-y-4">
-                    {[
-                      "Exclusive off-market opportunities",
-                      "Preferred buyer status",
-                      "Fast transaction processing",
-                      "Volume-based incentives",
-                      "Market insights and analytics"
-                    ].map((benefit, index) => (
-                      <li key={index} className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground font-montserrat">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Service Provider Dashboard Demo */}
