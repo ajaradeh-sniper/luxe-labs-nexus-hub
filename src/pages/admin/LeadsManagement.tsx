@@ -155,32 +155,19 @@ export default function LeadsManagement() {
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline">
-                <Share2 className="mr-2 h-4 w-4" />
-                Share Questionnaire
+                <Edit className="mr-2 h-4 w-4" />
+                Investor Questionnaire
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-md">
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
-                <DialogTitle>Share Investor Questionnaire</DialogTitle>
+                <DialogTitle>Investor Questionnaire</DialogTitle>
                 <DialogDescription>
-                  Share this link with potential investors to collect their information and preferences.
+                  View and edit the questionnaire design and content that will be shared with potential investors.
                 </DialogDescription>
               </DialogHeader>
-              <div className="space-y-4">
-                <Input 
-                  value={`${window.location.origin}/investor-questionnaire`}
-                  readOnly
-                  className="bg-muted"
-                />
-                <Button 
-                  onClick={() => {
-                    navigator.clipboard.writeText(`${window.location.origin}/investor-questionnaire`);
-                    toast({ title: 'Link copied to clipboard!' });
-                  }}
-                  className="w-full"
-                >
-                  Copy Link
-                </Button>
+              <div className="mt-4">
+                <InvestorQuestionnaire standalone={false} />
               </div>
             </DialogContent>
           </Dialog>
