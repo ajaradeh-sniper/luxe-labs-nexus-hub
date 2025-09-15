@@ -1,11 +1,12 @@
 
-import { Building2, LayoutDashboard, Eye } from "lucide-react"
+import { Building2, LayoutDashboard, Eye, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Link, useLocation } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 import { ThemeToggle } from "@/components/ThemeToggle"
+import { SidebarTrigger } from "@/components/ui/sidebar"
 import { useTranslation } from 'react-i18next'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
@@ -40,11 +41,27 @@ export function Navigation({ viewingRole }: NavigationProps = {}) {
   ]
   
   const isActive = (path: string) => location.pathname === path
+  const isDashboardPage = location.pathname.startsWith('/dashboard') || 
+                          location.pathname.startsWith('/admin') ||
+                          location.pathname.startsWith('/opportunities') ||
+                          location.pathname.startsWith('/fund-management') ||
+                          location.pathname.startsWith('/analytics') ||
+                          location.pathname.startsWith('/marketing') ||
+                          location.pathname.startsWith('/financial') ||
+                          location.pathname.startsWith('/documents') ||
+                          location.pathname.startsWith('/referrals') ||
+                          location.pathname.startsWith('/calendar') ||
+                          location.pathname.startsWith('/reports') ||
+                          location.pathname.startsWith('/qa') ||
+                          location.pathname.startsWith('/agreements')
 
   return (
     <nav className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <div className="flex items-center gap-4 min-w-0">
+          {isDashboardPage && (
+            <SidebarTrigger className="p-2" />
+          )}
           <Link to="/" className="flex-shrink-0">
             <img 
               src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 

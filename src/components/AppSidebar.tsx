@@ -114,8 +114,9 @@ export function AppSidebar({ viewingRole }: { viewingRole?: string } = {}) {
 
   return (
     <Sidebar
-      className={collapsed ? "w-16" : "w-64"}
+      className="border-r border-border"
       collapsible="icon"
+      side="left"
     >
       <SidebarContent className="bg-gradient-elegant">
         {/* Role Viewing Indicator */}
