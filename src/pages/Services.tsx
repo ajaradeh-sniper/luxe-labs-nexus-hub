@@ -46,84 +46,84 @@ const Services = () => {
   const investmentServices = [
     {
       id: 'single-property',
-      title: 'Flip a luxury property with Luxury Labs',
-      description: 'Lead or co-lead a curated villa transformation in Palm Jumeirah, Dubai Marina, or Emirates Hills.',
+      title: 'Solo Investment',
+      description: 'Lead your own luxury villa transformation from acquisition to resale.',
       icon: TrendingUp,
       features: [
-        'Full-cycle management: acquisition → design → renovation → resale',
-        'Guided by world class luxury design and premium supplier network',
-        'ROI: 18–30% in 6–12 months'
+        'Complete ownership and control',
+        'Premium design and execution',
+        'Target ROI: 18–30%'
       ],
       image: beforeAfterTransformation,
-      buttons: ['Start Your Flip', 'Book a Consultation']
+      buttons: ['Start Investment', 'Learn More']
     },
     {
       id: 'shared-stake',
-      title: 'Shared Stake Investment in luxury labs flip',
-      description: 'Join Dubai villa flips with entry points from AED 500K. Diversify risk while benefiting from Luxury Labs\' curated property selection and luxury-grade renovations.',
+      title: 'Co-Investment',
+      description: 'Join villa flips with other investors. Lower entry, shared rewards.',
       icon: Users,
       features: [
-        'Accessible entry into Dubai luxury real estate',
-        'Pool capital with vetted co-investors',
-        'ROI: 12–20% in 9–12 months'
+        'From AED 500K entry point',
+        'Vetted co-investor network',
+        'Target ROI: 12–20%'
       ],
       image: investorGroup,
-      buttons: ['Join Now', 'View Active Opportunities']
+      buttons: ['Join Investment', 'View Opportunities']
     },
     {
       id: 'diversified-fund',
-      title: 'Diversified Fund (3–7 Years)',
-      description: 'Build long-term wealth with a curated portfolio of luxury villas, transformed to Luxury Labs\' design standards.',
+      title: 'Fund Investment',
+      description: 'Diversified portfolio of luxury villa transformations for long-term growth.',
       icon: BarChart3,
       features: [
-        'Ideal for HNWIs seeking stable, diversified yield',
-        'Balanced exposure across Dubai\'s most in-demand communities',
-        'Annualized ROI: 12–18%'
+        'Professional fund management',
+        'Multi-property diversification',
+        'Target ROI: 12–18% annually'
       ],
       image: diversifiedFundGrowth,
-      buttons: ['Coming Soon', 'Apply to Join']
+      buttons: ['Coming Soon', 'Join Waitlist']
     }
   ]
 
   const transformationServices = [
     {
       id: 'relocation-concierge',
-      title: 'Relocation Concierge Services',
-      description: 'Comprehensive relocation and lifestyle support for HNWIs moving to Dubai.',
+      title: 'Dubai Relocation',
+      description: 'Complete relocation support for moving to Dubai.',
       icon: Handshake,
       features: [
-        'Full relocation support: visa, banking, residence setup',
-        'Lifestyle integration: schools, clubs, private services',
-        'Ongoing concierge support for Dubai living'
+        'Visa and banking setup',
+        'Property and lifestyle services',
+        'Ongoing Dubai support'
       ],
       image: luxuryConciergeRelocation,
-      buttons: ['Request Concierge', 'Talk to Team']
+      buttons: ['Get Support', 'Book Call']
     },
     {
       id: 'advisory-services',
-      title: 'Advisory Services',
-      description: 'Strategic property and investment advisory for sophisticated investors.',
+      title: 'Investment Advisory',
+      description: 'Strategic guidance for property investments and portfolio optimization.',
       icon: FileText,
       features: [
-        'Property advisory: sourcing, structuring, legal',
-        'Investment structuring and JV agreements',
-        'Long-term portfolio advisory and optimization'
+        'Property sourcing and analysis',
+        'Investment structuring',
+        'Portfolio optimization'
       ],
       image: realEstateConsultationAdvisory,
-      buttons: ['Request Advisory', 'Book Consultation']
+      buttons: ['Get Advisory', 'Schedule Meeting']
     },
     {
       id: 'media-services',
-      title: 'Flipping Dubai Media Services',
-      description: 'Our exclusive media arm documents transformations, reaching global audiences of investors, buyers, and HNWIs.',
+      title: 'Media & Marketing',
+      description: 'Professional documentation and marketing of property transformations.',
       icon: Video,
       features: [
-        'Professional filming and production of property transformations',
-        'Media campaigns showcasing ROI and design excellence',
-        'Marketing leverage for resale and brand visibility'
+        'Professional filming and production',
+        'Global marketing campaigns',
+        'Enhanced resale visibility'
       ],
       image: flippingDubaiMedia,
-      buttons: ['See Flipping Dubai', 'Partner With Us']
+      buttons: ['See Portfolio', 'Partner With Us']
     }
   ]
 
