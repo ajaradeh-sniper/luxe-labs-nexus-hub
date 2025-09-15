@@ -280,6 +280,69 @@ export type Database = {
         }
         Relationships: []
       }
+      investor_questionnaires: {
+        Row: {
+          additional_notes: string | null
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          interested_in_luxury_flips: boolean | null
+          interested_in_luxury_funds: boolean | null
+          investment_appetite: number | null
+          investment_objectives: string | null
+          investment_range_max: number | null
+          investment_range_min: number | null
+          investment_timeline: string | null
+          name: string
+          phone: string | null
+          preferred_locations: string[] | null
+          risk_tolerance: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          additional_notes?: string | null
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          interested_in_luxury_flips?: boolean | null
+          interested_in_luxury_funds?: boolean | null
+          investment_appetite?: number | null
+          investment_objectives?: string | null
+          investment_range_max?: number | null
+          investment_range_min?: number | null
+          investment_timeline?: string | null
+          name: string
+          phone?: string | null
+          preferred_locations?: string[] | null
+          risk_tolerance?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          additional_notes?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          interested_in_luxury_flips?: boolean | null
+          interested_in_luxury_funds?: boolean | null
+          investment_appetite?: number | null
+          investment_objectives?: string | null
+          investment_range_max?: number | null
+          investment_range_min?: number | null
+          investment_timeline?: string | null
+          name?: string
+          phone?: string | null
+          preferred_locations?: string[] | null
+          risk_tolerance?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       ll_leads: {
         Row: {
           area: string

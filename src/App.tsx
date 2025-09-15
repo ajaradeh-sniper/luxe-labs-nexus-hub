@@ -44,7 +44,10 @@ import AdminSystemSettings from "./pages/admin/SystemSettings"
 import AdminSystemHealth from "./pages/admin/SystemHealth"
 import AdminSecurityAudit from "./pages/admin/SecurityAudit"
 import AdminSubmissionReview from "./pages/admin/SubmissionReview"
+import AdminLeadsManagement from "./pages/admin/LeadsManagement"
 
+// Import questionnaire page
+import InvestorQuestionnairePage from "./pages/InvestorQuestionnaire"
 
 // Import missing pages
 import Calendar from "./pages/Calendar"
@@ -167,7 +170,15 @@ function App() {
             </SmartProtectedRoute>
           } />
           
+          <Route path="/admin/leads" element={
+            <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_director']}>
+              <AdminLeadsManagement />
+            </SmartProtectedRoute>
+          } />
           
+          {/* Public Questionnaire Route */}
+          <Route path="/investor-questionnaire" element={<InvestorQuestionnairePage />} />
+
           {/* Feature Routes */}
           <Route path="/properties" element={
             <SmartProtectedRoute>
