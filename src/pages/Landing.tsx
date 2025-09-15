@@ -70,7 +70,7 @@ export default function Landing() {
       description: 'Join Luxury Labs villa flip projects with other investors — lower entry, shared rewards, and guaranteed Luxury Labs standards.',
       features: [
         'From AED 1M entry point (Lower entry , shared rewards)',
-        'Vetted investment network',
+        'Vetted Investment Network ; guaranteed Luxury Labs standards',
         'Target ROI: 12–20%'
       ],
       buttons: [
