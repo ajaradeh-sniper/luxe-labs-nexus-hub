@@ -1,4 +1,4 @@
-import { Building2, Users, Handshake, Award, CheckCircle, ArrowRight, Star, Package } from "lucide-react"
+import { Building2, Users, Handshake, Award, CheckCircle, ArrowRight, Star, Package, Plus, ChevronRight, Share2, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -378,6 +378,115 @@ export default function Partners() {
                   </ul>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+
+          {/* Service Provider Dashboard Demo */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-foreground mb-4 font-playfair">Service Provider Dashboard</h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-montserrat">
+                Experience our comprehensive platform designed specifically for real estate brokers and service providers
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Dashboard Preview */}
+              <div className="relative">
+                <Card className="p-6 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
+                  <CardContent className="p-0">
+                    <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg p-6">
+                      <div className="flex items-center justify-between mb-6">
+                        <h3 className="text-2xl font-bold text-foreground font-playfair">Provider Dashboard</h3>
+                        <Badge variant="outline" className="text-primary border-primary/30 bg-primary/5">
+                          Live Demo
+                        </Badge>
+                      </div>
+                      
+                      {/* Dashboard Stats */}
+                      <div className="grid grid-cols-3 gap-4 mb-6">
+                        <div className="text-center p-3 bg-card/50 rounded-lg">
+                          <div className="text-2xl font-bold text-primary">24</div>
+                          <div className="text-xs text-muted-foreground">Active Opportunities</div>
+                        </div>
+                        <div className="text-center p-3 bg-card/50 rounded-lg">
+                          <div className="text-2xl font-bold text-accent">8</div>
+                          <div className="text-xs text-muted-foreground">Shared Flips</div>
+                        </div>
+                        <div className="text-center p-3 bg-card/50 rounded-lg">
+                          <div className="text-2xl font-bold text-green-500">12</div>
+                          <div className="text-xs text-muted-foreground">Completed Projects</div>
+                        </div>
+                      </div>
+
+                      {/* Quick Actions */}
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 p-3 bg-card/30 rounded-lg border border-primary/20">
+                          <Plus className="h-5 w-5 text-primary" />
+                          <span className="text-sm font-medium">Post New Flippable Opportunity</span>
+                          <ChevronRight className="h-4 w-4 text-muted-foreground ml-auto" />
+                        </div>
+                        <div className="flex items-center gap-3 p-3 bg-card/30 rounded-lg border border-accent/20">
+                          <Share2 className="h-5 w-5 text-accent" />
+                          <span className="text-sm font-medium">Start & Share Flip Project</span>
+                          <ChevronRight className="h-4 w-4 text-muted-foreground ml-auto" />
+                        </div>
+                        <div className="flex items-center gap-3 p-3 bg-card/30 rounded-lg border border-green-500/20">
+                          <Send className="h-5 w-5 text-green-500" />
+                          <span className="text-sm font-medium">Submit to Investor Pool</span>
+                          <ChevronRight className="h-4 w-4 text-muted-foreground ml-auto" />
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Features List */}
+              <div className="space-y-8">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Plus className="h-6 w-6 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-foreground mb-2 font-playfair">Post Flippable Opportunities</h4>
+                    <p className="text-muted-foreground font-montserrat">
+                      List properties with high flip potential directly to our investor network. Set your terms, commission structure, and target ROI expectations.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Share2 className="h-6 w-6 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-foreground mb-2 font-playfair">Start & Share Flip Projects</h4>
+                    <p className="text-muted-foreground font-montserrat">
+                      Initiate your own flip projects and invite co-investors. Manage partnerships, track progress, and share profits transparently.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 luxury-gradient rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Send className="h-6 w-6 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-foreground mb-2 font-playfair">Submit to Investor Pool</h4>
+                    <p className="text-muted-foreground font-montserrat">
+                      Submit opportunities to Luxury Labs' curated investor pool. We match properties with investors based on their specific objectives and risk profiles.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  <Button className="luxury-button">
+                    Request Demo Access
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
 
