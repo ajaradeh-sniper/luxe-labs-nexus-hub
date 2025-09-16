@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { ProtectedRoute } from "@/components/ProtectedRoute"
+import { DashboardLayout } from "@/components/DashboardLayout"
 import { Calendar as CalendarIcon, Clock, Users, MapPin, Plus } from "lucide-react"
 
 export default function Calendar() {
@@ -47,7 +49,9 @@ export default function Calendar() {
   }
 
   return (
-    <div className="space-y-6">
+    <ProtectedRoute>
+      <DashboardLayout>
+        <div className="p-6 space-y-6">
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Calendar Widget */}
@@ -171,7 +175,9 @@ export default function Calendar() {
             </div>
           </CardContent>
         </Card>
-      </div>
-    </div>
+        </div>
+        </div>
+      </DashboardLayout>
+    </ProtectedRoute>
   )
 }

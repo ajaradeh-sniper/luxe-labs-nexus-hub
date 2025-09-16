@@ -10,6 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { InvestorQuestionnaire } from '@/components/InvestorQuestionnaire';
+import { ProtectedRoute } from '@/components/ProtectedRoute';
+import { DashboardLayout } from '@/components/DashboardLayout';
 import { 
   Users, 
   Eye, 
@@ -144,7 +146,9 @@ export default function LeadsManagement() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <ProtectedRoute>
+      <DashboardLayout>
+        <div className="p-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -408,6 +412,8 @@ export default function LeadsManagement() {
           )}
         </CardContent>
       </Card>
-    </div>
+        </div>
+      </DashboardLayout>
+    </ProtectedRoute>
   );
 }
