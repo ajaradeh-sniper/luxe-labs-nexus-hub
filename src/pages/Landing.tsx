@@ -207,8 +207,8 @@ export default function Landing() {
                     <h3 className="text-2xl font-bold font-playfair text-white mb-2">
                       Invest in Flipping Projects
                     </h3>
-                    <p className="text-sm text-white/90 font-montserrat leading-relaxed">
-                      Start a Project or join (Invest) in Real Estate Transformation (Flipping) Projects /Fund with Luxury Labs
+          <p className="text-sm text-white/90 font-montserrat leading-relaxed">
+            Start a Project or join (Invest) in Real Estate Transformation (Flipping) Projects with Luxury Labs
                     </p>
                   </div>
                 </div>
