@@ -27,6 +27,23 @@ import {
   Loader2
 } from 'lucide-react';
 
+// Location images
+import palmJumeirahVilla from '@/assets/palm-jumeirah-villa-hd.jpg';
+import dubaiHillsVilla from '@/assets/dubai-hills-villa-hd.jpg';
+import jumeirahIslandsVilla from '@/assets/jumeirah-islands-villa-hd.jpg';
+import emiratesHillsVilla from '@/assets/emirates-hills-villa-hd.jpg';
+import jumeirahGolfEstateVilla from '@/assets/jumeirah-golf-estate-villa-hd.jpg';
+import alBarariVilla from '@/assets/al-barari-villa-hd.jpg';
+
+// Property type images
+import luxuryPenthouse from '@/assets/luxury-penthouse.jpg';
+import businessBay from '@/assets/business-bay.jpg';
+import luxuryOffice from '@/assets/luxury-office.jpg';
+import premiumTower from '@/assets/premium-tower.jpg';
+import luxuryBuilding from '@/assets/luxury-building.jpg';
+import marinaTower from '@/assets/marina-tower.jpg';
+import downtownLuxury from '@/assets/downtown-luxury.jpg';
+
 interface ComprehensiveOpportunityModalProps {
   open: boolean;
   onClose: () => void;
@@ -93,6 +110,27 @@ export function ComprehensiveOpportunityModal({
 
   const [uploadedFiles, setUploadedFiles] = useState<FileUpload[]>([]);
   const [dragActive, setDragActive] = useState(false);
+
+  // Image mappings
+  const locationImages = {
+    'palm-jumeirah': palmJumeirahVilla,
+    'dubai-hills': dubaiHillsVilla,
+    'jumeirah-islands': jumeirahIslandsVilla,
+    'emirates-hills': emiratesHillsVilla,
+    'jumeirah-golf-estate': jumeirahGolfEstateVilla,
+    'al-barari': alBarariVilla,
+    'other': downtownLuxury
+  };
+
+  const propertyTypeImages = {
+    'villa': palmJumeirahVilla,
+    'apartment': premiumTower,
+    'penthouse': luxuryPenthouse,
+    'townhouse': dubaiHillsVilla,
+    'commercial': businessBay,
+    'office': luxuryOffice,
+    'retail': luxuryBuilding
+  };
 
   const steps = [
     { number: 1, title: 'Project Information', icon: Building },
@@ -405,6 +443,15 @@ export function ComprehensiveOpportunityModal({
                     <SelectItem value="retail">Retail</SelectItem>
                   </SelectContent>
                 </Select>
+                {projectInfo.property_type && propertyTypeImages[projectInfo.property_type as keyof typeof propertyTypeImages] && (
+                  <div className="mt-3">
+                    <img 
+                      src={propertyTypeImages[projectInfo.property_type as keyof typeof propertyTypeImages]} 
+                      alt={`${projectInfo.property_type} example`}
+                      className="w-full h-32 object-cover rounded-lg border shadow-sm"
+                    />
+                  </div>
+                )}
               </div>
 
               <div>
@@ -425,6 +472,15 @@ export function ComprehensiveOpportunityModal({
                     <SelectItem value="other">📍 Other (specify below)</SelectItem>
                   </SelectContent>
                 </Select>
+                {projectInfo.location && locationImages[projectInfo.location as keyof typeof locationImages] && (
+                  <div className="mt-3">
+                    <img 
+                      src={locationImages[projectInfo.location as keyof typeof locationImages]} 
+                      alt={`${projectInfo.location} area`}
+                      className="w-full h-32 object-cover rounded-lg border shadow-sm"
+                    />
+                  </div>
+                )}
               </div>
 
               {projectInfo.location === 'other' && (
