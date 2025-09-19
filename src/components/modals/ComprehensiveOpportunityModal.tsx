@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
+import { LocationMapPicker } from '@/components/LocationMapPicker';
 import { 
   Upload, 
   X, 
@@ -36,6 +37,7 @@ interface ProjectInfo {
   title: string;
   description: string;
   location: string;
+  custom_location: string;
   opportunity_type: string;
   property_type: string;
   investment_required: string;
@@ -45,6 +47,8 @@ interface ProjectInfo {
   timeline_months: string;
   market_analysis: string;
   exit_strategy: string;
+  map_coordinates?: [number, number];
+  map_address?: string;
 }
 
 interface FileUpload {
@@ -73,6 +77,7 @@ export function ComprehensiveOpportunityModal({
     title: '',
     description: '',
     location: '',
+    custom_location: '',
     opportunity_type: '',
     property_type: '',
     investment_required: '',
@@ -81,7 +86,9 @@ export function ComprehensiveOpportunityModal({
     risk_rating: '',
     timeline_months: '',
     market_analysis: '',
-    exit_strategy: ''
+    exit_strategy: '',
+    map_coordinates: undefined,
+    map_address: ''
   });
 
   const [uploadedFiles, setUploadedFiles] = useState<FileUpload[]>([]);
@@ -342,6 +349,7 @@ export function ComprehensiveOpportunityModal({
       title: '',
       description: '',
       location: '',
+      custom_location: '',
       opportunity_type: '',
       property_type: '',
       investment_required: '',
@@ -350,7 +358,9 @@ export function ComprehensiveOpportunityModal({
       risk_rating: '',
       timeline_months: '',
       market_analysis: '',
-      exit_strategy: ''
+      exit_strategy: '',
+      map_coordinates: undefined,
+      map_address: ''
     });
     setUploadedFiles([]);
     setPropertyUrl("");
@@ -378,35 +388,6 @@ export function ComprehensiveOpportunityModal({
               </div>
 
               <div>
-                <Label htmlFor="location" className="text-sm font-medium">
-                  Location *
-                </Label>
-                <Input
-                  id="location"
-                  value={projectInfo.location}
-                  onChange={(e) => handleInputChange('location', e.target.value)}
-                  placeholder="e.g., Dubai Marina, UAE"
-                  className="mt-1"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="opportunity_type" className="text-sm font-medium">
-                  Opportunity Type *
-                </Label>
-                <Select value={projectInfo.opportunity_type} onValueChange={(value) => handleInputChange('opportunity_type', value)}>
-                  <SelectTrigger className="mt-1">
-                    <SelectValue placeholder="Select type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="flip">Flip</SelectItem>
-                    <SelectItem value="renovation">Renovation</SelectItem>
-                    <SelectItem value="other">Other...write down</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
                 <Label htmlFor="property_type" className="text-sm font-medium">
                   Property Type *
                 </Label>
@@ -414,7 +395,7 @@ export function ComprehensiveOpportunityModal({
                   <SelectTrigger className="mt-1">
                     <SelectValue placeholder="Select property type" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-background border shadow-lg z-[100]">
                     <SelectItem value="apartment">Apartment</SelectItem>
                     <SelectItem value="villa">Villa</SelectItem>
                     <SelectItem value="penthouse">Penthouse</SelectItem>
@@ -426,19 +407,94 @@ export function ComprehensiveOpportunityModal({
                 </Select>
               </div>
 
-              <div className="md:col-span-2">
-                <Label htmlFor="description" className="text-sm font-medium">
-                  Project Description *
+              <div>
+                <Label htmlFor="location" className="text-sm font-medium">
+                  Location *
                 </Label>
-                <Textarea
-                  id="description"
-                  value={projectInfo.description}
-                  onChange={(e) => handleInputChange('description', e.target.value)}
-                  placeholder="Provide a detailed description of the investment opportunity"
-                  rows={4}
-                  className="mt-1"
-                />
+                <Select value={projectInfo.location} onValueChange={(value) => handleInputChange('location', value)}>
+                  <SelectTrigger className="mt-1">
+                    <SelectValue placeholder="Select location" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border shadow-lg z-[100]">
+                    <SelectItem value="palm-jumeirah">🏝 Palm Jumeirah</SelectItem>
+                    <SelectItem value="dubai-hills">🌳 Dubai Hills Estate</SelectItem>
+                    <SelectItem value="jumeirah-islands">🌊 Jumeirah Islands</SelectItem>
+                    <SelectItem value="emirates-hills">🏰 Emirates Hills</SelectItem>
+                    <SelectItem value="jumeirah-golf-estate">⛳ Jumeirah Golf Estates</SelectItem>
+                    <SelectItem value="al-barari">🌿 Al Barari</SelectItem>
+                    <SelectItem value="other">📍 Other (specify below)</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
+
+              {projectInfo.location === 'other' && (
+                <div className="md:col-span-2">
+                  <Label htmlFor="custom_location" className="text-sm font-medium">
+                    Specify Location *
+                  </Label>
+                  <Input
+                    id="custom_location"
+                    value={projectInfo.custom_location}
+                    onChange={(e) => handleInputChange('custom_location', e.target.value)}
+                    placeholder="Enter specific area/location"
+                    className="mt-1"
+                  />
+                </div>
+              )}
+
+              <div>
+                <Label htmlFor="opportunity_type" className="text-sm font-medium">
+                  Opportunity Type *
+                </Label>
+                <Select value={projectInfo.opportunity_type} onValueChange={(value) => handleInputChange('opportunity_type', value)}>
+                  <SelectTrigger className="mt-1">
+                    <SelectValue placeholder="Select type" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border shadow-lg z-[100]">
+                    <SelectItem value="flip">Flip</SelectItem>
+                    <SelectItem value="renovation">Renovation</SelectItem>
+                    <SelectItem value="other">Other...write down</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Map Location Picker */}
+            <div className="mt-6">
+              <Label className="text-sm font-medium mb-3 block">
+                Pin Location on Map
+              </Label>
+              <LocationMapPicker
+                className="h-80"
+                initialLocation={[55.2708, 25.2048]} // Dubai center
+                onLocationSelect={(coordinates, address) => {
+                  setProjectInfo(prev => ({
+                    ...prev,
+                    map_coordinates: coordinates,
+                    map_address: address
+                  }));
+                }}
+              />
+              {projectInfo.map_address && (
+                <div className="mt-2 text-sm text-muted-foreground">
+                  <MapPin className="h-4 w-4 inline mr-1" />
+                  Selected: {projectInfo.map_address}
+                </div>
+              )}
+            </div>
+
+            <div className="md:col-span-2">
+              <Label htmlFor="description" className="text-sm font-medium">
+                Project Description *
+              </Label>
+              <Textarea
+                id="description"
+                value={projectInfo.description}
+                onChange={(e) => handleInputChange('description', e.target.value)}
+                placeholder="Provide a detailed description of the investment opportunity"
+                rows={4}
+                className="mt-1"
+              />
             </div>
           </div>
         );
