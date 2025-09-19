@@ -1056,6 +1056,10 @@ export type Database = {
       projects: {
         Row: {
           actual_cost: number | null
+          approval_data: Json | null
+          approval_status: string | null
+          approved_at: string | null
+          approved_by: string | null
           budget: number | null
           created_at: string
           created_by: string | null
@@ -1064,15 +1068,21 @@ export type Database = {
           id: string
           manager_id: string | null
           name: string
+          opportunity_id: string | null
           project_type: string
           property_id: string | null
           roi_percentage: number | null
           start_date: string | null
           status: string
           updated_at: string
+          visual_assets: Json | null
         }
         Insert: {
           actual_cost?: number | null
+          approval_data?: Json | null
+          approval_status?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
           budget?: number | null
           created_at?: string
           created_by?: string | null
@@ -1081,15 +1091,21 @@ export type Database = {
           id?: string
           manager_id?: string | null
           name: string
+          opportunity_id?: string | null
           project_type: string
           property_id?: string | null
           roi_percentage?: number | null
           start_date?: string | null
           status?: string
           updated_at?: string
+          visual_assets?: Json | null
         }
         Update: {
           actual_cost?: number | null
+          approval_data?: Json | null
+          approval_status?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
           budget?: number | null
           created_at?: string
           created_by?: string | null
@@ -1098,12 +1114,14 @@ export type Database = {
           id?: string
           manager_id?: string | null
           name?: string
+          opportunity_id?: string | null
           project_type?: string
           property_id?: string | null
           roi_percentage?: number | null
           start_date?: string | null
           status?: string
           updated_at?: string
+          visual_assets?: Json | null
         }
         Relationships: [
           {
@@ -1119,6 +1137,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "projects_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "projects_property_id_fkey"
