@@ -1,40 +1,15 @@
-import { useState } from "react"
-import { Helmet } from "react-helmet-async"
-import { Navigation } from "@/components/Navigation"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { 
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { 
-  MapPin, 
-  Phone, 
-  Mail,
-  MessageSquare,
-  Clock,
-  Send,
-  Building,
-  Users,
-  TrendingUp,
-  Search,
-  FileText,
-  HelpCircle
-} from "lucide-react"
-import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg"
-
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { Navigation } from "@/components/Navigation";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { MapPin, Phone, Mail, MessageSquare, Clock, Send, Building, Users, TrendingUp, Search, FileText, HelpCircle } from "lucide-react";
+import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg";
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -43,137 +18,119 @@ const Contact = () => {
     service: '',
     budget: '',
     message: ''
-  })
-
-  const [searchQuery, setSearchQuery] = useState('')
-
-  const faqData = [
-    {
-      category: "Investment Opportunities",
-      items: [
-        {
-          question: "What types of investment opportunities does Luxury Labs offer?",
-          answer: "We offer three main investment models: Co-Investment (join transformation projects with other investors), Fund Investment (diversified portfolio for long-term growth including flips to sell and rent), and HNWI Concierge (personalized luxury property renovation services)."
-        },
-        {
-          question: "What is the minimum investment amount?",
-          answer: "Investment minimums vary by opportunity type. Co-investment projects typically start from $100K, while our diversified fund has a minimum of $500K. HNWI concierge services are customized based on project scope."
-        },
-        {
-          question: "What returns can I expect from Dubai property investments?",
-          answer: "Historical returns vary, but Dubai luxury properties have shown strong performance. Our transformation projects typically target 20-35% returns, while our diversified fund aims for steady long-term growth through both capital appreciation and rental yields."
-        }
-      ]
-    },
-    {
-      category: "Services & Process",
-      items: [
-        {
-          question: "What areas of Dubai do you focus on?",
-          answer: "We specialize in premium locations including Emirates Hills, Palm Jumeirah, Dubai Hills, Jumeirah Golf Estates, Jumeirah Islands, Al Barari, and other luxury communities known for high-end villa properties."
-        },
-        {
-          question: "How long does a typical villa transformation take?",
-          answer: "Project timelines vary based on scope, but most villa transformations take 4-8 months from start to finish. We provide detailed project timelines during the consultation phase and keep investors updated throughout the process."
-        },
-        {
-          question: "Do you handle all aspects of the renovation process?",
-          answer: "Yes, we provide end-to-end services including design, permits, construction management, quality control, and final staging. Our team handles everything so you can focus on the investment opportunity."
-        }
-      ]
-    },
-    {
-      category: "Getting Started",
-      items: [
-        {
-          question: "How do I get started with Luxury Labs?",
-          answer: "Start by filling out our contact form or booking a consultation call. We'll discuss your investment goals, budget, and preferences to recommend the best opportunities for your portfolio."
-        },
-        {
-          question: "What documents do I need to invest?",
-          answer: "Required documentation typically includes proof of funds, identification, and investment agreements. Our team will guide you through the complete documentation process for each specific opportunity."
-        },
-        {
-          question: "Can international investors participate?",
-          answer: "Yes, we welcome international investors. Dubai's property market is open to foreign investment, and we assist with the legal and regulatory requirements for international clients."
-        }
-      ]
-    },
-    {
-      category: "Market & Strategy",
-      items: [
-        {
-          question: "Why focus on Dubai's luxury property market?",
-          answer: "Dubai offers unique advantages: no property taxes, strong rental yields, growing expat population, world-class infrastructure, and government initiatives supporting real estate growth. The luxury segment has shown particular resilience and growth potential."
-        },
-        {
-          question: "How do you select properties for transformation?",
-          answer: "Our selection criteria include location desirability, transformation potential, market demand analysis, and projected returns. We use data-driven analysis combined with local market expertise to identify the best opportunities."
-        }
-      ]
-    }
-  ]
-
+  });
+  const [searchQuery, setSearchQuery] = useState('');
+  const faqData = [{
+    category: "Investment Opportunities",
+    items: [{
+      question: "What types of investment opportunities does Luxury Labs offer?",
+      answer: "We offer three main investment models: Co-Investment (join transformation projects with other investors), Fund Investment (diversified portfolio for long-term growth including flips to sell and rent), and HNWI Concierge (personalized luxury property renovation services)."
+    }, {
+      question: "What is the minimum investment amount?",
+      answer: "Investment minimums vary by opportunity type. Co-investment projects typically start from $100K, while our diversified fund has a minimum of $500K. HNWI concierge services are customized based on project scope."
+    }, {
+      question: "What returns can I expect from Dubai property investments?",
+      answer: "Historical returns vary, but Dubai luxury properties have shown strong performance. Our transformation projects typically target 20-35% returns, while our diversified fund aims for steady long-term growth through both capital appreciation and rental yields."
+    }]
+  }, {
+    category: "Services & Process",
+    items: [{
+      question: "What areas of Dubai do you focus on?",
+      answer: "We specialize in premium locations including Emirates Hills, Palm Jumeirah, Dubai Hills, Jumeirah Golf Estates, Jumeirah Islands, Al Barari, and other luxury communities known for high-end villa properties."
+    }, {
+      question: "How long does a typical villa transformation take?",
+      answer: "Project timelines vary based on scope, but most villa transformations take 4-8 months from start to finish. We provide detailed project timelines during the consultation phase and keep investors updated throughout the process."
+    }, {
+      question: "Do you handle all aspects of the renovation process?",
+      answer: "Yes, we provide end-to-end services including design, permits, construction management, quality control, and final staging. Our team handles everything so you can focus on the investment opportunity."
+    }]
+  }, {
+    category: "Getting Started",
+    items: [{
+      question: "How do I get started with Luxury Labs?",
+      answer: "Start by filling out our contact form or booking a consultation call. We'll discuss your investment goals, budget, and preferences to recommend the best opportunities for your portfolio."
+    }, {
+      question: "What documents do I need to invest?",
+      answer: "Required documentation typically includes proof of funds, identification, and investment agreements. Our team will guide you through the complete documentation process for each specific opportunity."
+    }, {
+      question: "Can international investors participate?",
+      answer: "Yes, we welcome international investors. Dubai's property market is open to foreign investment, and we assist with the legal and regulatory requirements for international clients."
+    }]
+  }, {
+    category: "Market & Strategy",
+    items: [{
+      question: "Why focus on Dubai's luxury property market?",
+      answer: "Dubai offers unique advantages: no property taxes, strong rental yields, growing expat population, world-class infrastructure, and government initiatives supporting real estate growth. The luxury segment has shown particular resilience and growth potential."
+    }, {
+      question: "How do you select properties for transformation?",
+      answer: "Our selection criteria include location desirability, transformation potential, market demand analysis, and projected returns. We use data-driven analysis combined with local market expertise to identify the best opportunities."
+    }]
+  }];
   const filteredFAQs = faqData.map(category => ({
     ...category,
-    items: category.items.filter(item =>
-      item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      category.category.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  })).filter(category => category.items.length > 0)
-
+    items: category.items.filter(item => item.question.toLowerCase().includes(searchQuery.toLowerCase()) || item.answer.toLowerCase().includes(searchQuery.toLowerCase()) || category.category.toLowerCase().includes(searchQuery.toLowerCase()))
+  })).filter(category => category.items.length > 0);
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
+    e.preventDefault();
+    console.log('Form submitted:', formData);
     // Handle form submission
-  }
-
+  };
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
-  }
-
-  const contactInfo = [
-    {
-      icon: Building,
-      title: "Office Address",
-      details: ["DMCC Business Centre", "Level 1, Jewellery & Gemplex 3", "Dubai Multi Commodities Centre", "Dubai, UAE"]
-    },
-    {
-      icon: Phone,
-      title: "Phone Numbers",
-      details: ["+971 4 123 4567", "+971 50 123 4567", "WhatsApp Available"]
-    },
-    {
-      icon: Mail,
-      title: "Email Addresses",
-      details: ["info@luxurylabs.ae", "investments@luxurylabs.ae", "support@luxurylabs.ae"]
-    },
-    {
-      icon: Clock,
-      title: "Business Hours",
-      details: ["Sunday - Thursday: 9:00 AM - 6:00 PM", "Friday: 9:00 AM - 1:00 PM", "Saturday: Closed"]
-    }
-  ]
-
-  const services = [
-    { value: 'investment-flip', label: 'Property Investment Flip' },
-    { value: 'hnwi-renovation', label: 'HNWI Concierge Renovation' },
-    { value: 'investment-opportunity', label: 'Investment Opportunity' },
-    { value: 'consultation', label: 'General Consultation' },
-    { value: 'other', label: 'Other Services' }
-  ]
-
-  const budgetRanges = [
-    { value: '100k-500k', label: '$100K - $500K' },
-    { value: '500k-1m', label: '$500K - $1M' },
-    { value: '1m-5m', label: '$1M - $5M' },
-    { value: '5m-plus', label: '$5M+' },
-    { value: 'undisclosed', label: 'Prefer not to say' }
-  ]
-
-  return (
-    <>
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+  const contactInfo = [{
+    icon: Building,
+    title: "Office Address",
+    details: ["DMCC Business Centre", "Level 1, Jewellery & Gemplex 3", "Dubai Multi Commodities Centre", "Dubai, UAE"]
+  }, {
+    icon: Phone,
+    title: "Phone Numbers",
+    details: ["+971 4 123 4567", "+971 50 123 4567", "WhatsApp Available"]
+  }, {
+    icon: Mail,
+    title: "Email Addresses",
+    details: ["info@luxurylabs.ae", "investments@luxurylabs.ae", "support@luxurylabs.ae"]
+  }, {
+    icon: Clock,
+    title: "Business Hours",
+    details: ["Sunday - Thursday: 9:00 AM - 6:00 PM", "Friday: 9:00 AM - 1:00 PM", "Saturday: Closed"]
+  }];
+  const services = [{
+    value: 'investment-flip',
+    label: 'Property Investment Flip'
+  }, {
+    value: 'hnwi-renovation',
+    label: 'HNWI Concierge Renovation'
+  }, {
+    value: 'investment-opportunity',
+    label: 'Investment Opportunity'
+  }, {
+    value: 'consultation',
+    label: 'General Consultation'
+  }, {
+    value: 'other',
+    label: 'Other Services'
+  }];
+  const budgetRanges = [{
+    value: '100k-500k',
+    label: '$100K - $500K'
+  }, {
+    value: '500k-1m',
+    label: '$500K - $1M'
+  }, {
+    value: '1m-5m',
+    label: '$1M - $5M'
+  }, {
+    value: '5m-plus',
+    label: '$5M+'
+  }, {
+    value: 'undisclosed',
+    label: 'Prefer not to say'
+  }];
+  return <>
       <Helmet>
         <title>Contact Luxury Labs | Dubai Villa Investment & Renovation Services</title>
         <meta name="description" content="Connect with Luxury Labs for investor opportunities, villa flipping services, or Dubai luxury property consultations. Start your transformation today." />
@@ -190,10 +147,9 @@ const Contact = () => {
       
       {/* Hero Section */}
       <section className="relative h-96 flex items-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${dubaiMarinaImage})` }}
-        >
+        <div className="absolute inset-0 bg-cover bg-center" style={{
+        backgroundImage: `url(${dubaiMarinaImage})`
+      }}>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
         </div>
         
@@ -226,46 +182,29 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-medium mb-2 block">Full Name *</label>
-                      <Input
-                        placeholder="Enter your full name"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange('name', e.target.value)}
-                        required
-                      />
+                      <Input placeholder="Enter your full name" value={formData.name} onChange={e => handleInputChange('name', e.target.value)} required />
                     </div>
                     <div>
                       <label className="text-sm font-medium mb-2 block">Email Address *</label>
-                      <Input
-                        type="email"
-                        placeholder="Enter your email"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
-                        required
-                      />
+                      <Input type="email" placeholder="Enter your email" value={formData.email} onChange={e => handleInputChange('email', e.target.value)} required />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-medium mb-2 block">Phone Number</label>
-                      <Input
-                        placeholder="+971 50 123 4567"
-                        value={formData.phone}
-                        onChange={(e) => handleInputChange('phone', e.target.value)}
-                      />
+                      <Input placeholder="+971 50 123 4567" value={formData.phone} onChange={e => handleInputChange('phone', e.target.value)} />
                     </div>
                     <div>
                       <label className="text-sm font-medium mb-2 block">Service Interest *</label>
-                      <Select value={formData.service} onValueChange={(value) => handleInputChange('service', value)}>
+                      <Select value={formData.service} onValueChange={value => handleInputChange('service', value)}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
-                          {services.map((service) => (
-                            <SelectItem key={service.value} value={service.value}>
+                          {services.map(service => <SelectItem key={service.value} value={service.value}>
                               {service.label}
-                            </SelectItem>
-                          ))}
+                            </SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>
@@ -273,29 +212,21 @@ const Contact = () => {
 
                   <div>
                     <label className="text-sm font-medium mb-2 block">Investment Budget</label>
-                    <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
+                    <Select value={formData.budget} onValueChange={value => handleInputChange('budget', value)}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select budget range" />
                       </SelectTrigger>
                       <SelectContent>
-                        {budgetRanges.map((range) => (
-                          <SelectItem key={range.value} value={range.value}>
+                        {budgetRanges.map(range => <SelectItem key={range.value} value={range.value}>
                             {range.label}
-                          </SelectItem>
-                        ))}
+                          </SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div>
                     <label className="text-sm font-medium mb-2 block">Message *</label>
-                    <Textarea
-                      placeholder="Tell us about your project requirements, investment goals, or any questions you have..."
-                      rows={6}
-                      value={formData.message}
-                      onChange={(e) => handleInputChange('message', e.target.value)}
-                      required
-                    />
+                    <Textarea placeholder="Tell us about your project requirements, investment goals, or any questions you have..." rows={6} value={formData.message} onChange={e => handleInputChange('message', e.target.value)} required />
                   </div>
 
                   <Button type="submit" variant="luxury" size="lg" className="w-full">
@@ -320,27 +251,19 @@ const Contact = () => {
                 {/* Search Bar */}
                 <div className="relative mt-4">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Search FAQ, documentation, and articles..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10"
-                  />
+                  <Input placeholder="Search FAQ, documentation, and articles..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10" />
                 </div>
               </CardHeader>
               <CardContent>
                 <ScrollArea className="h-96">
-                  {filteredFAQs.length > 0 ? (
-                    <div className="space-y-4">
-                      {filteredFAQs.map((category, categoryIndex) => (
-                        <div key={categoryIndex}>
+                  {filteredFAQs.length > 0 ? <div className="space-y-4">
+                      {filteredFAQs.map((category, categoryIndex) => <div key={categoryIndex}>
                           <div className="flex items-center gap-2 mb-3">
                             <FileText className="h-4 w-4 text-primary" />
                             <h4 className="font-semibold text-sm text-primary">{category.category}</h4>
                           </div>
                           <Accordion type="single" collapsible className="w-full">
-                            {category.items.map((item, itemIndex) => (
-                              <AccordionItem key={itemIndex} value={`${categoryIndex}-${itemIndex}`}>
+                            {category.items.map((item, itemIndex) => <AccordionItem key={itemIndex} value={`${categoryIndex}-${itemIndex}`}>
                                 <AccordionTrigger className="text-left">
                                   {item.question}
                                 </AccordionTrigger>
@@ -349,21 +272,16 @@ const Contact = () => {
                                     {item.answer}
                                   </p>
                                 </AccordionContent>
-                              </AccordionItem>
-                            ))}
+                              </AccordionItem>)}
                           </Accordion>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="text-center py-8">
+                        </div>)}
+                    </div> : <div className="text-center py-8">
                       <Search className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
                       <p className="text-muted-foreground">No results found for "{searchQuery}"</p>
                       <p className="text-sm text-muted-foreground mt-1">
                         Try different keywords or browse all categories above
                       </p>
-                    </div>
-                  )}
+                    </div>}
                 </ScrollArea>
               </CardContent>
             </Card>
@@ -372,9 +290,8 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-6">
             {contactInfo.map((info, index) => {
-              const Icon = info.icon
-              return (
-                <Card key={index}>
+            const Icon = info.icon;
+            return <Card key={index}>
                   <CardHeader className="pb-3">
                     <CardTitle className="flex items-center gap-2 text-lg">
                       <div className="w-10 h-10 bg-gradient-luxury rounded-lg flex items-center justify-center">
@@ -385,52 +302,34 @@ const Contact = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-1">
-                      {info.details.map((detail, idx) => (
-                        <p key={idx} className="text-sm text-muted-foreground">
+                      {info.details.map((detail, idx) => <p key={idx} className="text-sm text-muted-foreground">
                           {detail}
-                        </p>
-                      ))}
+                        </p>)}
                     </div>
                   </CardContent>
-                </Card>
-              )
-            })}
+                </Card>;
+          })}
 
             {/* Quick Actions */}
             <Card className="bg-gradient-luxury text-background h-full flex flex-col">
               <CardContent className="p-6 text-center flex-1 flex flex-col justify-center">
                 <h3 className="font-semibold mb-4">Quick Actions</h3>
                 <div className="space-y-3 flex-1 flex flex-col justify-center">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full bg-background text-foreground hover:bg-background/90"
-                    onClick={() => window.location.href = '/projects'}
-                  >
+                  <Button variant="outline" size="sm" className="w-full bg-background text-foreground hover:bg-background/90" onClick={() => window.location.href = '/projects'}>
                     <TrendingUp className="mr-2 h-4 w-4" />
                     View Investment Opportunities
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full bg-background text-foreground hover:bg-background/90"
-                    onClick={() => {
-                      const messageElement = document.querySelector('textarea[placeholder*="Tell us about your project"]') as HTMLTextAreaElement;
-                      if (messageElement) {
-                        messageElement.value = 'I would like to schedule a consultation to discuss my investment needs.';
-                        messageElement.focus();
-                      }
-                    }}
-                  >
+                  <Button variant="outline" size="sm" className="w-full bg-background text-foreground hover:bg-background/90" onClick={() => {
+                  const messageElement = document.querySelector('textarea[placeholder*="Tell us about your project"]') as HTMLTextAreaElement;
+                  if (messageElement) {
+                    messageElement.value = 'I would like to schedule a consultation to discuss my investment needs.';
+                    messageElement.focus();
+                  }
+                }}>
                     <Users className="mr-2 h-4 w-4" />
                     Schedule Consultation
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full bg-background text-foreground hover:bg-background/90"
-                    onClick={() => window.open('https://wa.me/971501234567', '_blank')}
-                  >
+                  <Button variant="outline" size="sm" className="w-full bg-background text-foreground hover:bg-background/90" onClick={() => window.open('https://wa.me/971501234567', '_blank')}>
                     <MessageSquare className="mr-2 h-4 w-4" />
                     WhatsApp Chat
                   </Button>
@@ -441,25 +340,7 @@ const Contact = () => {
         </div>
 
         {/* Map Section */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <MapPin className="h-5 w-5" />
-              Find Our Office
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-                <p className="text-muted-foreground">Interactive map coming soon</p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  DMCC Business Centre, Jewellery & Gemplex 3, Dubai
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        
 
         {/* Footer */}
         <footer className="bg-secondary text-secondary-foreground py-12 px-4 mt-16">
@@ -510,8 +391,6 @@ const Contact = () => {
           </div>
         </footer>
       </div>
-    </>
-  )
-}
-
-export default Contact
+    </>;
+};
+export default Contact;
