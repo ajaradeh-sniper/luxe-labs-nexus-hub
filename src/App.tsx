@@ -283,6 +283,12 @@ function App() {
             </SmartProtectedRoute>
           } />
           
+          <Route path="/settings" element={
+            <SmartProtectedRoute>
+              <Settings />
+            </SmartProtectedRoute>
+          } />
+          
           <Route path="/notification-settings" element={
             <SmartProtectedRoute>
               <Settings />

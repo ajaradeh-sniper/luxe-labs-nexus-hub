@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge"
 import { User, Settings, LogOut, Shield, ShieldCheck } from "lucide-react"
 import { useAuth } from "@/contexts/AuthContext"
 import { UserRole } from "@/types/auth"
+import { Link } from "react-router-dom"
 
 export function UserProfile() {
   const { user, logout } = useAuth()
@@ -64,13 +65,17 @@ export function UserProfile() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer">
-          <User className="mr-2 h-4 w-4" />
-          <span>Profile</span>
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link to="/settings" className="flex items-center w-full">
+            <User className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+          </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">
-          <Settings className="mr-2 h-4 w-4" />
-          <span>Settings</span>
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link to="/settings" className="flex items-center w-full">
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Settings</span>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={logout} className="cursor-pointer text-destructive focus:text-destructive">

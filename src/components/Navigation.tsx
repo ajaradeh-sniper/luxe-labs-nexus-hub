@@ -9,6 +9,7 @@ import { ThemeToggle } from "@/components/ThemeToggle"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { useTranslation } from 'react-i18next'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { UserProfile } from "@/components/UserProfile"
 
 interface NavigationProps {
   viewingRole?: string
@@ -90,8 +91,8 @@ export function Navigation({ viewingRole }: NavigationProps = {}) {
         <div className="flex items-center gap-4 min-w-0 flex-shrink-0">
           <ThemeToggle />
           <LanguageSwitcher />
-          <div className="w-32 flex justify-end">
-            {isAuthAvailable && user ? (
+          {isAuthAvailable && user ? (
+            <div className="flex items-center gap-3">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -103,18 +104,19 @@ export function Navigation({ viewingRole }: NavigationProps = {}) {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Welcome, Master Administrator</p>
+                    <p>Go to Dashboard</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-            ) : (
-              <Button asChild variant="luxury" size="sm" className="luxury-shadow">
-                <Link to="/auth">
-                  {t('navigation.signIn')}
-                </Link>
-              </Button>
-            )}
-          </div>
+              <UserProfile />
+            </div>
+          ) : (
+            <Button asChild variant="luxury" size="sm" className="luxury-shadow">
+              <Link to="/auth">
+                {t('navigation.signIn')}
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
     </nav>
