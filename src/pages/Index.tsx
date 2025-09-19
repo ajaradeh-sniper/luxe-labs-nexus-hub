@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { TrendingUp, Calendar, Users, FileText, ArrowRight, Star, Building, Target, CheckCircle, Shield } from "lucide-react"
+import { Link } from "react-router-dom"
 import luxuryDubaiSkyline from "@/assets/luxury-dubai-skyline.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
 import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
@@ -45,13 +46,18 @@ const Index = () => {
                 <span className="block">with Exceptional Quality and Returns</span>
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button size="lg" variant="luxury" className="text-lg px-8 py-6">
-                  <TrendingUp className="mr-2 h-5 w-5" />
-                  Explore Opportunities
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                <Button size="lg" variant="luxury" className="text-lg px-8 py-6" asChild>
+                  <Link to="/investor-questionnaire">
+                    <TrendingUp className="mr-2 h-5 w-5" />
+                    Start Investing
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20">
-                  View Portfolio
+                <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20" asChild>
+                  <Link to="/about">Learn More</Link>
+                </Button>
+                <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20" asChild>
+                  <Link to="/auth">Admin Access</Link>
                 </Button>
               </div>
               <div className="flex flex-wrap gap-4">

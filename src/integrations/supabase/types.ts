@@ -280,6 +280,33 @@ export type Database = {
         }
         Relationships: []
       }
+      investor_preferences: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          id: string
+          preferences: Json
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          preferences?: Json
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          preferences?: Json
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       investor_questionnaires: {
         Row: {
           additional_notes: string | null

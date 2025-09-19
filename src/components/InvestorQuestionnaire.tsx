@@ -1,371 +1,392 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Progress } from '@/components/ui/progress';
+import { Badge } from '@/components/ui/badge';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { supabase } from '@/integrations/supabase/client';
+import { Slider } from '@/components/ui/slider';
+import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Send } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
+import { Trophy, Target, DollarSign, TrendingUp, MapPin, Clock } from 'lucide-react';
 
-interface InvestorQuestionnaireProps {
-  onSuccess?: () => void;
-  standalone?: boolean;
+interface QuestionnaireData {
+  investmentExperience: string;
+  riskTolerance: string;
+  investmentGoals: string[];
+  preferredInvestmentSize: number[];
+  timeHorizon: string;
+  geographicPreference: string[];
+  propertyTypes: string[];
+  expectedReturns: string;
+  liquidityPreference: string;
+  investmentApproach: string;
 }
 
-export function InvestorQuestionnaire({ onSuccess, standalone = false }: InvestorQuestionnaireProps) {
+interface InvestorQuestionnaireProps {
+  standalone?: boolean;
+  onComplete?: (data: QuestionnaireData) => void;
+}
+
+export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({ 
+  standalone = false, 
+  onComplete 
+}) => {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [answers, setAnswers] = useState<Partial<QuestionnaireData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    investment_appetite: '',
-    investment_range_min: '',
-    investment_range_max: '',
-    interested_in_luxury_flips: false,
-    interested_in_luxury_funds: false,
-    investment_timeline: '',
-    risk_tolerance: '',
-    preferred_locations: [] as string[],
-    investment_objectives: '',
-    additional_notes: '',
-  });
-
   const { toast } = useToast();
+  const { user } = useAuth();
 
-  const handleLocationToggle = (location: string, checked: boolean) => {
-    if (checked) {
-      setFormData(prev => ({
-        ...prev,
-        preferred_locations: [...prev.preferred_locations, location]
-      }));
+  const questions = [
+    {
+      id: 'investmentExperience',
+      title: 'Investment Experience',
+      subtitle: 'Tell us about your real estate investment background',
+      icon: <Trophy className="w-6 h-6" />,
+      type: 'radio',
+      options: [
+        { value: 'beginner', label: 'New to real estate investing', description: 'First investment or limited experience' },
+        { value: 'intermediate', label: 'Some experience', description: '2-5 successful investments' },
+        { value: 'experienced', label: 'Experienced investor', description: '5+ investments, understand market dynamics' },
+        { value: 'expert', label: 'Real estate professional', description: 'Extensive portfolio, industry expertise' }
+      ]
+    },
+    {
+      id: 'riskTolerance',
+      title: 'Risk Tolerance',
+      subtitle: 'How comfortable are you with investment risk?',
+      icon: <Target className="w-6 h-6" />,
+      type: 'radio',
+      options: [
+        { value: 'conservative', label: 'Conservative', description: 'Prefer stable, low-risk investments' },
+        { value: 'moderate', label: 'Moderate', description: 'Balanced approach to risk and return' },
+        { value: 'aggressive', label: 'Aggressive', description: 'Comfortable with higher risk for higher returns' }
+      ]
+    },
+    {
+      id: 'preferredInvestmentSize',
+      title: 'Investment Capacity',
+      subtitle: 'What is your preferred investment range?',
+      icon: <DollarSign className="w-6 h-6" />,
+      type: 'slider',
+      min: 100000,
+      max: 10000000,
+      step: 100000,
+      format: (value: number) => `AED ${(value / 1000000).toFixed(1)}M`
+    },
+    {
+      id: 'investmentGoals',
+      title: 'Investment Objectives',
+      subtitle: 'What are your primary investment goals?',
+      icon: <TrendingUp className="w-6 h-6" />,
+      type: 'checkbox',
+      options: [
+        { value: 'capital_appreciation', label: 'Capital Appreciation', description: 'Long-term property value growth' },
+        { value: 'rental_income', label: 'Rental Income', description: 'Regular monthly/annual income' },
+        { value: 'diversification', label: 'Portfolio Diversification', description: 'Spread investment risk' },
+        { value: 'tax_benefits', label: 'Tax Advantages', description: 'Optimize tax efficiency' },
+        { value: 'legacy_building', label: 'Wealth Preservation', description: 'Build generational wealth' }
+      ]
+    },
+    {
+      id: 'geographicPreference',
+      title: 'Location Preferences',
+      subtitle: 'Which areas interest you most?',
+      icon: <MapPin className="w-6 h-6" />,
+      type: 'checkbox',
+      options: [
+        { value: 'downtown', label: 'Downtown Dubai', description: 'City center, business district' },
+        { value: 'marina', label: 'Dubai Marina', description: 'Waterfront luxury living' },
+        { value: 'palm', label: 'Palm Jumeirah', description: 'Iconic man-made island' },
+        { value: 'emirates_hills', label: 'Emirates Hills', description: 'Exclusive villa community' },
+        { value: 'business_bay', label: 'Business Bay', description: 'Commercial and residential hub' },
+        { value: 'difc', label: 'DIFC', description: 'Financial district' }
+      ]
+    },
+    {
+      id: 'timeHorizon',
+      title: 'Investment Timeline',
+      subtitle: 'What is your expected holding period?',
+      icon: <Clock className="w-6 h-6" />,
+      type: 'radio',
+      options: [
+        { value: 'short', label: '1-3 years', description: 'Quick turnaround, flipping focus' },
+        { value: 'medium', label: '3-7 years', description: 'Medium-term appreciation' },
+        { value: 'long', label: '7+ years', description: 'Long-term wealth building' }
+      ]
+    }
+  ];
+
+  const progress = ((currentStep + 1) / questions.length) * 100;
+
+  const handleAnswer = (questionId: string, value: any) => {
+    setAnswers(prev => ({
+      ...prev,
+      [questionId]: value
+    }));
+  };
+
+  const handleNext = () => {
+    if (currentStep < questions.length - 1) {
+      setCurrentStep(currentStep + 1);
     } else {
-      setFormData(prev => ({
-        ...prev,
-        preferred_locations: prev.preferred_locations.filter(loc => loc !== location)
-      }));
+      handleSubmit();
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handlePrevious = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please log in to save your preferences.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-
     try {
-      const submitData = {
-        ...formData,
-        investment_appetite: formData.investment_appetite ? Number(formData.investment_appetite) : null,
-        investment_range_min: formData.investment_range_min ? Number(formData.investment_range_min) : null,
-        investment_range_max: formData.investment_range_max ? Number(formData.investment_range_max) : null,
-        status: 'new',
-      };
-
       const { error } = await supabase
-        .from('investor_questionnaires')
-        .insert([submitData]);
+        .from('investor_preferences')
+        .upsert({
+          user_id: user.id,
+          preferences: answers,
+          completed_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        });
 
       if (error) throw error;
 
       toast({
-        title: 'Questionnaire Submitted',
-        description: 'Thank you for your interest. We will contact you soon!',
+        title: "Profile Complete!",
+        description: "Your investor profile has been saved successfully."
       });
 
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        investment_appetite: '',
-        investment_range_min: '',
-        investment_range_max: '',
-        interested_in_luxury_flips: false,
-        interested_in_luxury_funds: false,
-        investment_timeline: '',
-        risk_tolerance: '',
-        preferred_locations: [],
-        investment_objectives: '',
-        additional_notes: '',
-      });
-
-      onSuccess?.();
+      if (onComplete) {
+        onComplete(answers as QuestionnaireData);
+      }
     } catch (error) {
-      console.error('Error submitting questionnaire:', error);
+      console.error('Error saving questionnaire:', error);
       toast({
-        title: 'Submission Failed',
-        description: 'There was an error submitting your questionnaire. Please try again.',
-        variant: 'destructive',
+        title: "Error",
+        description: "Failed to save your preferences. Please try again.",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const questionnaire = (
-    <Card className="w-full max-w-4xl mx-auto">
-      <CardHeader className="text-center">
-        <CardTitle className="text-2xl font-bold">Investor Interest Questionnaire</CardTitle>
-        <CardDescription>
-          Help us understand your investment preferences and objectives so we can match you with the right luxury opportunities.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Personal Information */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold border-b pb-2">Personal Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Full Name *</Label>
-                <Input
-                  id="name"
-                  placeholder="Your full name"
-                  value={formData.name}
-                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email Address *</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="your.email@example.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number</Label>
-                <Input
-                  id="phone"
-                  placeholder="+1 (555) 123-4567"
-                  value={formData.phone}
-                  onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="company">Company/Organization</Label>
-                <Input
-                  id="company"
-                  placeholder="Your company name"
-                  value={formData.company}
-                  onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
-                />
-              </div>
-            </div>
-          </div>
+  const currentQuestion = questions[currentStep];
+  const currentAnswer = answers[currentQuestion.id as keyof QuestionnaireData];
 
-          {/* Investment Preferences */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold border-b pb-2">Investment Preferences</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="investment_appetite">Investment Appetite (AED)</Label>
-                <Input
-                  id="investment_appetite"
-                  type="number"
-                  placeholder="e.g., 1000000"
-                  value={formData.investment_appetite}
-                  onChange={(e) => setFormData(prev => ({ ...prev, investment_appetite: e.target.value }))}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="investment_timeline">Investment Timeline</Label>
-                <Select
-                  value={formData.investment_timeline}
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, investment_timeline: value }))}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select timeline" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="immediate">Immediate (0-3 months)</SelectItem>
-                    <SelectItem value="short_term">Short term (3-6 months)</SelectItem>
-                    <SelectItem value="medium_term">Medium term (6-12 months)</SelectItem>
-                    <SelectItem value="long_term">Long term (1+ years)</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="investment_range_min">Minimum Investment Range (AED)</Label>
-                <Input
-                  id="investment_range_min"
-                  type="number"
-                  placeholder="e.g., 500000"
-                  value={formData.investment_range_min}
-                  onChange={(e) => setFormData(prev => ({ ...prev, investment_range_min: e.target.value }))}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="investment_range_max">Maximum Investment Range (AED)</Label>
-                <Input
-                  id="investment_range_max"
-                  type="number"
-                  placeholder="e.g., 5000000"
-                  value={formData.investment_range_max}
-                  onChange={(e) => setFormData(prev => ({ ...prev, investment_range_max: e.target.value }))}
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="risk_tolerance">Risk Tolerance</Label>
-              <Select
-                value={formData.risk_tolerance}
-                onValueChange={(value) => setFormData(prev => ({ ...prev, risk_tolerance: value }))}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select risk tolerance" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="conservative">Conservative</SelectItem>
-                  <SelectItem value="moderate">Moderate</SelectItem>
-                  <SelectItem value="aggressive">Aggressive</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
-          {/* Investment Types */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold border-b pb-2">Investment Types of Interest</h3>
-            <div className="space-y-3">
-              <div className="flex items-start space-x-3">
-                <Checkbox
-                  id="luxury_flips"
-                  checked={formData.interested_in_luxury_flips}
-                  onCheckedChange={(checked) => 
-                    setFormData(prev => ({ ...prev, interested_in_luxury_flips: checked as boolean }))
-                  }
-                />
-                <div className="space-y-1 leading-none">
-                  <Label htmlFor="luxury_flips">
-                    Luxury Property Flips
-                  </Label>
-                  <p className="text-sm text-muted-foreground">
-                    High-end property renovation and resale opportunities
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <Checkbox
-                  id="luxury_funds"
-                  checked={formData.interested_in_luxury_funds}
-                  onCheckedChange={(checked) => 
-                    setFormData(prev => ({ ...prev, interested_in_luxury_funds: checked as boolean }))
-                  }
-                />
-                <div className="space-y-1 leading-none">
-                  <Label htmlFor="luxury_funds">
-                    Luxury Real Estate Funds
-                  </Label>
-                  <p className="text-sm text-muted-foreground">
-                    Diversified luxury real estate investment funds
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Preferred Locations */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold border-b pb-2">Preferred Locations</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {[
-                'Downtown Dubai',
-                'Dubai Marina',
-                'Business Bay',
-                'Palm Jumeirah',
-                'Emirates Hills',
-                'Dubai Hills',
-                'Jumeirah',
-                'Al Barari',
-                'DIFC',
-                'Other'
-              ].map((location) => (
-                <div key={location} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={location}
-                    checked={formData.preferred_locations.includes(location)}
-                    onCheckedChange={(checked) => handleLocationToggle(location, checked as boolean)}
-                  />
-                  <Label
-                    htmlFor={location}
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    {location}
-                  </Label>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Investment Objectives */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold border-b pb-2">Investment Objectives & Additional Information</h3>
-            <div className="space-y-2">
-              <Label htmlFor="investment_objectives">Primary Investment Objectives</Label>
-              <Textarea
-                id="investment_objectives"
-                placeholder="Describe your investment goals, expected returns, and what you're looking to achieve..."
-                className="min-h-[100px]"
-                value={formData.investment_objectives}
-                onChange={(e) => setFormData(prev => ({ ...prev, investment_objectives: e.target.value }))}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="additional_notes">Additional Notes or Questions</Label>
-              <Textarea
-                id="additional_notes"
-                placeholder="Any additional information you'd like to share or questions you have..."
-                className="min-h-[80px]"
-                value={formData.additional_notes}
-                onChange={(e) => setFormData(prev => ({ ...prev, additional_notes: e.target.value }))}
-              />
-            </div>
-          </div>
-
-          <Button 
-            type="submit" 
-            disabled={isSubmitting}
-            className="w-full"
+  const renderQuestion = () => {
+    switch (currentQuestion.type) {
+      case 'radio':
+        return (
+          <RadioGroup
+            value={currentAnswer as string}
+            onValueChange={(value) => handleAnswer(currentQuestion.id, value)}
+            className="space-y-4"
           >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Submitting...
-              </>
-            ) : (
-              <>
-                <Send className="mr-2 h-4 w-4" />
-                Submit Questionnaire
-              </>
-            )}
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
-  );
+            {currentQuestion.options?.map((option: any) => (
+              <div key={option.value} className="flex items-start space-x-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors">
+                <RadioGroupItem value={option.value} id={option.value} className="mt-1" />
+                <div className="flex-1">
+                  <Label htmlFor={option.value} className="font-medium cursor-pointer">
+                    {option.label}
+                  </Label>
+                  {option.description && (
+                    <p className="text-sm text-muted-foreground mt-1">{option.description}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </RadioGroup>
+        );
+
+      case 'checkbox':
+        const selectedValues = (currentAnswer as string[]) || [];
+        return (
+          <div className="space-y-4">
+            {currentQuestion.options?.map((option: any) => (
+              <div key={option.value} className="flex items-start space-x-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors">
+                <Checkbox
+                  id={option.value}
+                  checked={selectedValues.includes(option.value)}
+                  onCheckedChange={(checked) => {
+                    const newValues = checked
+                      ? [...selectedValues, option.value]
+                      : selectedValues.filter(v => v !== option.value);
+                    handleAnswer(currentQuestion.id, newValues);
+                  }}
+                  className="mt-1"
+                />
+                <div className="flex-1">
+                  <Label htmlFor={option.value} className="font-medium cursor-pointer">
+                    {option.label}
+                  </Label>
+                  {option.description && (
+                    <p className="text-sm text-muted-foreground mt-1">{option.description}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+
+      case 'slider':
+        const sliderValue = (currentAnswer as number[]) || [currentQuestion.min || 0];
+        return (
+          <div className="space-y-6">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary mb-2">
+                {currentQuestion.format ? currentQuestion.format(sliderValue[0]) : sliderValue[0]}
+              </div>
+              <p className="text-muted-foreground">Drag to adjust your preferred investment amount</p>
+            </div>
+            <Slider
+              value={sliderValue}
+              onValueChange={(value) => handleAnswer(currentQuestion.id, value)}
+              min={currentQuestion.min}
+              max={currentQuestion.max}
+              step={currentQuestion.step}
+              className="mt-6"
+            />
+            <div className="flex justify-between text-sm text-muted-foreground">
+              <span>{currentQuestion.format ? currentQuestion.format(currentQuestion.min!) : currentQuestion.min}</span>
+              <span>{currentQuestion.format ? currentQuestion.format(currentQuestion.max!) : currentQuestion.max}</span>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  const isCurrentStepComplete = () => {
+    const answer = currentAnswer;
+    if (!answer) return false;
+    
+    if (Array.isArray(answer)) {
+      return answer.length > 0;
+    }
+    
+    return true;
+  };
 
   if (standalone) {
     return (
-      <div className="min-h-screen bg-gradient-elegant p-4">
-        <div className="container mx-auto py-8">
-          {questionnaire}
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold mb-4">Investor Profile Assessment</h1>
+            <p className="text-xl text-muted-foreground">
+              Help us understand your investment preferences to provide personalized opportunities
+            </p>
+          </div>
+          
+          <Card className="max-w-2xl mx-auto">
+            <CardHeader>
+              <div className="flex items-center justify-between mb-4">
+                <Badge variant="outline">
+                  Step {currentStep + 1} of {questions.length}
+                </Badge>
+                <span className="text-sm text-muted-foreground">{Math.round(progress)}% Complete</span>
+              </div>
+              <Progress value={progress} className="mb-6" />
+              
+              <div className="flex items-center space-x-3">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                  {currentQuestion.icon}
+                </div>
+                <div>
+                  <CardTitle className="text-xl">{currentQuestion.title}</CardTitle>
+                  <CardDescription className="text-base">{currentQuestion.subtitle}</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            
+            <CardContent>
+              {renderQuestion()}
+            </CardContent>
+            
+            <CardFooter className="flex justify-between">
+              <Button
+                variant="outline"
+                onClick={handlePrevious}
+                disabled={currentStep === 0}
+              >
+                Previous
+              </Button>
+              
+              <Button
+                onClick={handleNext}
+                disabled={!isCurrentStepComplete() || isSubmitting}
+                className="min-w-[120px]"
+              >
+                {isSubmitting ? 'Saving...' : currentStep === questions.length - 1 ? 'Complete Profile' : 'Next'}
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
       </div>
     );
   }
 
-  return questionnaire;
-}
+  return (
+    <Card>
+      <CardHeader>
+        <div className="flex items-center justify-between mb-4">
+          <Badge variant="outline">
+            Step {currentStep + 1} of {questions.length}
+          </Badge>
+          <span className="text-sm text-muted-foreground">{Math.round(progress)}% Complete</span>
+        </div>
+        <Progress value={progress} className="mb-6" />
+        
+        <div className="flex items-center space-x-3">
+          <div className="p-2 rounded-lg bg-primary/10 text-primary">
+            {currentQuestion.icon}
+          </div>
+          <div>
+            <CardTitle className="text-xl">{currentQuestion.title}</CardTitle>
+            <CardDescription className="text-base">{currentQuestion.subtitle}</CardDescription>
+          </div>
+        </div>
+      </CardHeader>
+      
+      <CardContent>
+        {renderQuestion()}
+      </CardContent>
+      
+      <CardFooter className="flex justify-between">
+        <Button
+          variant="outline"
+          onClick={handlePrevious}
+          disabled={currentStep === 0}
+        >
+          Previous
+        </Button>
+        
+        <Button
+          onClick={handleNext}
+          disabled={!isCurrentStepComplete() || isSubmitting}
+          className="min-w-[120px]"
+        >
+          {isSubmitting ? 'Saving...' : currentStep === questions.length - 1 ? 'Complete Profile' : 'Next'}
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+};

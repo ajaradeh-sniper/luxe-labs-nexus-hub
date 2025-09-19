@@ -47,7 +47,6 @@ import AdminSubmissionReview from "./pages/admin/SubmissionReview"
 import LeadsManagement from "./pages/admin/LeadsManagement"
 import WorkflowsProcesses from "./pages/admin/WorkflowsProcesses"
 
-// Import questionnaire page
 import InvestorQuestionnairePage from "./pages/InvestorQuestionnaire"
 
 // Import missing pages
@@ -86,6 +85,7 @@ function App() {
           {/* Public Routes */}
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
+          <Route path="/investor-questionnaire" element={<InvestorQuestionnairePage />} />
           <Route path="/services" element={<Services />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/media" element={<Media />} />
