@@ -45,6 +45,7 @@ import AdminSystemHealth from "./pages/admin/SystemHealth"
 import AdminSecurityAudit from "./pages/admin/SecurityAudit"
 import AdminSubmissionReview from "./pages/admin/SubmissionReview"
 import LeadsManagement from "./pages/admin/LeadsManagement"
+import WorkflowsProcesses from "./pages/admin/WorkflowsProcesses"
 
 // Import questionnaire page
 import InvestorQuestionnairePage from "./pages/InvestorQuestionnaire"
@@ -173,6 +174,12 @@ function App() {
           <Route path="/admin/leads" element={
             <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_director']}>
               <LeadsManagement />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/admin/workflows-processes" element={
+            <SmartProtectedRoute requiredRoles={['administrator']}>
+              <WorkflowsProcesses />
             </SmartProtectedRoute>
           } />
           

@@ -18,7 +18,8 @@ import {
   Globe,
   Calendar,
   LogOut,
-  Eye
+  Eye,
+  GitBranch
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { NavLink, useLocation } from "react-router-dom"
@@ -65,6 +66,7 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
     { title: "User Management", url: "/admin/detailed-users", icon: Users, roles: ['administrator'] },
     { title: "Submission Review", url: "/admin/submission-review", icon: CheckCircle, roles: ['administrator'] },
     { title: "Leads Management", url: "/admin/leads", icon: Target, roles: ['administrator', 'real_estate_director'] },
+    { title: "Workflows & Processes", url: "/admin/workflows-processes", icon: GitBranch, roles: ['administrator'] },
     
     { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client', 'real_estate_agent', 'partner'] },
     { title: "Property Management", url: "/admin/properties", icon: Building, roles: ['administrator', 'investor'] },
