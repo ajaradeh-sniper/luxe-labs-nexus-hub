@@ -13,6 +13,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { Opportunity, OpportunityEvaluation } from '@/types/opportunities';
 import { Plus, Eye, Edit, Trash2, CheckCircle, XCircle, DollarSign, Clock, MapPin, Building } from 'lucide-react';
+import { InvestmentRequestModal } from '@/components/workflows/InvestmentRequestModal';
 
 // Mock data - in real app this would come from Supabase
 const mockOpportunities: Opportunity[] = [
@@ -66,6 +67,8 @@ export function OpportunityManagement() {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [selectedOpportunity, setSelectedOpportunity] = useState<Opportunity | null>(null);
   const [activeTab, setActiveTab] = useState('overview');
+  const [showInvestmentModal, setShowInvestmentModal] = useState(false);
+  const [selectedOpportunityForInvestment, setSelectedOpportunityForInvestment] = useState<Opportunity | null>(null);
 
   const canCreateOpportunity = user?.role === 'real_estate_agent' || user?.role === 'administrator';
   const canEvaluate = user?.role === 'real_estate_director' || user?.role === 'administrator';

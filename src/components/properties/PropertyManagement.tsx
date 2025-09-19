@@ -22,6 +22,7 @@ import {
   Trash2,
   Eye
 } from 'lucide-react'
+import { AddListingModal } from '@/components/workflows/AddListingModal'
 
 interface Property {
   id: string
@@ -46,6 +47,7 @@ export function PropertyManagement() {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [typeFilter, setTypeFilter] = useState('all')
+  const [showAddListingModal, setShowAddListingModal] = useState(false)
   const { toast } = useToast()
 
   useEffect(() => {
@@ -113,7 +115,7 @@ export function PropertyManagement() {
           <h1 className="text-3xl font-bold text-foreground">Property Management</h1>
           <p className="text-muted-foreground">Manage your real estate portfolio</p>
         </div>
-        <Button variant="luxury">
+        <Button variant="luxury" onClick={() => setShowAddListingModal(true)}>
           <Plus className="mr-2 h-4 w-4" />
           Add Property
         </Button>
@@ -246,6 +248,11 @@ export function PropertyManagement() {
           </CardContent>
         </Card>
       )}
+
+      <AddListingModal 
+        open={showAddListingModal}
+        onClose={() => setShowAddListingModal(false)}
+      />
     </div>
   )
 }
