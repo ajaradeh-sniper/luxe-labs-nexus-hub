@@ -120,7 +120,7 @@ export function AppSidebar({ viewingRole }: { viewingRole?: string } = {}) {
       collapsible="icon"
       side="left"
     >
-      <SidebarContent className="bg-gradient-elegant">
+      <SidebarContent className="bg-gradient-elegant pt-16">
         {/* Role Viewing Indicator */}
         {viewingRole && user && viewingRole !== user.role && (
           <div className="flex items-center gap-2 px-3 py-2 mx-2 mt-2 bg-warning/10 border border-warning/20 rounded-lg">
