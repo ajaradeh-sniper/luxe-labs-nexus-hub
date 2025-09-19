@@ -32,15 +32,29 @@ export function LoginDialog({ trigger }: LoginDialogProps) {
     setLoading(true)
     
     try {
-      // For demo purposes, we'll simulate login with any email/password
-      // In a real app, this would authenticate with Supabase
-      await login(email, password)
-      setOpen(false)
-      navigate('/dashboard')
+      const { error } = await login(email, password)
+      if (!error) {
+        setOpen(false)
+        navigate('/dashboard')
+      }
     } catch (error) {
       console.error('Login failed:', error)
+      // If it's admin credentials and there's a network error, try offline mode
+      if (email === 'admin@luxurylabs.com' && password === 'admin123') {
+        handleOfflineDemo()
+        return
+      }
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleOfflineDemo = () => {
+    try {
+      localStorage.setItem('ll_offline_admin', '1')
+      window.location.reload()
+    } catch (e) {
+      console.warn('Failed to enable offline demo mode', e)
     }
   }
 
@@ -158,12 +172,21 @@ export function LoginDialog({ trigger }: LoginDialogProps) {
               >
                 Use Demo Credentials
               </Button>
+
+              <Button 
+                type="button" 
+                variant="secondary" 
+                className="w-full font-montserrat text-sm mt-2"
+                onClick={handleOfflineDemo}
+                disabled={loading}
+              >
+                Continue Offline (Demo Admin)
+              </Button>
             </form>
             
             <div className="mt-6 text-center">
               <p className="text-xs text-muted-foreground font-montserrat">
-                If login fails due to network issues, try "Sign Up as Admin" first.<br/>
-                Demo credentials: admin@luxurylabs.com / admin123
+                If network fails, use "Continue Offline" or try admin@luxurylabs.com / admin123
               </p>
             </div>
           </CardContent>
