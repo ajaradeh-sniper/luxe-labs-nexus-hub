@@ -399,7 +399,11 @@ export function RecommendationsPanel({ selectedWorkflow }: RecommendationsPanelP
                   </div>
                   
                   {/* Action Button */}
-                  <Button size="sm" className="w-full">
+                  <Button 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => alert(`Starting implementation for: ${rec.title}\n\nAction items:\n${rec.actionItems.map((item, i) => `${i + 1}. ${item}`).join('\n')}`)}
+                  >
                     Start Implementation
                   </Button>
                 </div>

@@ -459,25 +459,32 @@ export function WorkflowVisualization({ workflowType, filter }: WorkflowVisualiz
                     {/* Actions */}
                     <div className="space-y-2 mb-4">
                       <h5 className="font-medium text-sm">Actions & Buttons:</h5>
-                      <div className="flex flex-wrap gap-2">
-                        {step.actions.map((action, actionIndex) => (
-                          <div key={actionIndex} className="flex items-center gap-2">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className={`${getStatusColor(action.status)} border`}
-                              disabled={action.status === 'missing'}
-                            >
-                              {getStatusIcon(action.status)}
-                              <span className="ml-1">{action.name}</span>
-                              {action.route && <Eye className="h-3 w-3 ml-1" />}
-                            </Button>
-                            {actionIndex < step.actions.length - 1 && (
-                              <ArrowRight className="h-3 w-3 text-muted-foreground" />
-                            )}
-                          </div>
-                        ))}
-                      </div>
+                       <div className="flex flex-wrap gap-2">
+                         {step.actions.map((action, actionIndex) => (
+                           <div key={actionIndex} className="flex items-center gap-2">
+                             <Button
+                               variant="outline"
+                               size="sm"
+                               className={`${getStatusColor(action.status)} border`}
+                               disabled={action.status === 'missing'}
+                               onClick={() => {
+                                 if (action.route) {
+                                   window.location.href = action.route
+                                 } else {
+                                   alert(`${action.name} functionality coming soon!`)
+                                 }
+                               }}
+                             >
+                               {getStatusIcon(action.status)}
+                               <span className="ml-1">{action.name}</span>
+                               {action.route && <Eye className="h-3 w-3 ml-1" />}
+                             </Button>
+                             {actionIndex < step.actions.length - 1 && (
+                               <ArrowRight className="h-3 w-3 text-muted-foreground" />
+                             )}
+                           </div>
+                         ))}
+                       </div>
                     </div>
                     
                     {/* Bottlenecks */}
@@ -500,13 +507,18 @@ export function WorkflowVisualization({ workflowType, filter }: WorkflowVisualiz
                       </div>
                     )}
                     
-                    {/* Edit Button */}
-                    <div className="flex justify-end mt-3">
-                      <Button variant="ghost" size="sm" className="text-muted-foreground">
-                        <Edit className="h-3 w-3 mr-1" />
-                        Edit Workflow
-                      </Button>
-                    </div>
+                     {/* Edit Button */}
+                     <div className="flex justify-end mt-3">
+                       <Button 
+                         variant="ghost" 
+                         size="sm" 
+                         className="text-muted-foreground"
+                         onClick={() => alert(`Editing workflow for: ${step.title}`)}
+                       >
+                         <Edit className="h-3 w-3 mr-1" />
+                         Edit Workflow
+                       </Button>
+                     </div>
                   </CardContent>
                 </Card>
               </div>
