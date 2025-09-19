@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { WorkflowVisualization } from './WorkflowVisualization'
 import { RecommendationsPanel } from './RecommendationsPanel'
 import { WorkflowMetrics } from './WorkflowMetrics'
+import { UnifiedWorkflowSystem } from '@/components/workflows/UnifiedWorkflowSystem'
 import { 
   Users, 
   UserCheck, 
@@ -16,7 +17,8 @@ import {
   Filter,
   AlertTriangle,
   CheckCircle,
-  Clock
+  Clock,
+  Settings
 } from 'lucide-react'
 
 type WorkflowType = 'client' | 'investor' | 'admin' | 'project_manager' | 'real_estate_agent' | 'partner'
@@ -191,8 +193,9 @@ export function WorkflowsDashboard() {
         {/* Main Visualization Panel */}
         <div className="lg:col-span-3 space-y-6">
           <Tabs defaultValue="visualization" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="visualization">Workflow Visualization</TabsTrigger>
+              <TabsTrigger value="management">Workflow Management</TabsTrigger>
               <TabsTrigger value="performance">Performance Metrics</TabsTrigger>
               <TabsTrigger value="settings">Workflow Settings</TabsTrigger>
             </TabsList>
@@ -204,6 +207,10 @@ export function WorkflowsDashboard() {
               />
             </TabsContent>
             
+            <TabsContent value="management" className="space-y-6">
+              <UnifiedWorkflowSystem />
+            </TabsContent>
+            
             <TabsContent value="performance" className="space-y-6">
               <WorkflowMetrics workflowType={selectedWorkflow} />
             </TabsContent>
@@ -211,14 +218,17 @@ export function WorkflowsDashboard() {
             <TabsContent value="settings" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Workflow Configuration</CardTitle>
+                  <CardTitle className="flex items-center gap-2">
+                    <Settings className="h-5 w-5" />
+                    Workflow Configuration
+                  </CardTitle>
                   <CardDescription>
                     Configure workflow settings and automation rules
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="text-center py-12 text-muted-foreground">
-                    <FolderKanban className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                    <Settings className="h-12 w-12 mx-auto mb-4 opacity-50" />
                     <p>Workflow configuration panel coming soon</p>
                   </div>
                 </CardContent>

@@ -18,7 +18,17 @@ import {
   TableHeader, 
   TableRow 
 } from '@/components/ui/table';
-import { UserPlus, Search, MoreHorizontal, Shield } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { UserPlus, Search, MoreHorizontal, Shield, Edit, Trash, UserCheck } from 'lucide-react';
+import { UserInviteModal } from '@/components/workflows/UserInviteModal';
+import { useToast } from '@/hooks/use-toast';
 import { UserRole } from '@/types/auth';
 
 interface MockUser {
@@ -91,21 +101,59 @@ const statusColors = {
 };
 
 export function UserManagement() {
-  const [users] = useState<MockUser[]>(mockUsers);
+  const [users, setUsers] = useState<MockUser[]>(mockUsers);
   const [searchTerm, setSearchTerm] = useState('');
+  const [roleFilter, setRoleFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
+  const { toast } = useToast();
 
-  const filteredUsers = users.filter(user =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredUsers = users.filter(user => {
+    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         user.email.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesRole = roleFilter === 'all' || user.role === roleFilter;
+    const matchesStatus = statusFilter === 'all' || user.status === statusFilter;
+    return matchesSearch && matchesRole && matchesStatus;
+  });
+
+  const handleActivateUser = (userId: string) => {
+    setUsers(prev => prev.map(user => 
+      user.id === userId ? { ...user, status: 'active' as const } : user
+    ));
+    toast({
+      title: "User Activated",
+      description: "User has been successfully activated.",
+    });
+  };
+
+  const handleDeactivateUser = (userId: string) => {
+    setUsers(prev => prev.map(user => 
+      user.id === userId ? { ...user, status: 'inactive' as const } : user
+    ));
+    toast({
+      title: "User Deactivated", 
+      description: "User has been deactivated.",
+    });
+  };
+
+  const handleDeleteUser = (userId: string) => {
+    setUsers(prev => prev.filter(user => user.id !== userId));
+    toast({
+      title: "User Deleted",
+      description: "User has been permanently deleted.",
+      variant: "destructive"
+    });
+  };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <Button className="gap-2">
-          <UserPlus className="h-4 w-4" />
-          Add User
-        </Button>
+        <div className="flex gap-2">
+          <Button className="gap-2" onClick={() => setIsInviteModalOpen(true)}>
+            <UserPlus className="h-4 w-4" />
+            Add User
+          </Button>
+        </div>
       </div>
 
       <Card>
@@ -129,7 +177,7 @@ export function UserManagement() {
                 className="pl-10"
               />
             </div>
-            <Select>
+            <Select value={roleFilter} onValueChange={setRoleFilter}>
               <SelectTrigger className="w-48">
                 <SelectValue placeholder="Filter by role" />
               </SelectTrigger>
@@ -138,6 +186,18 @@ export function UserManagement() {
                 <SelectItem value="administrator">Administrator</SelectItem>
                 <SelectItem value="project_manager">Project Manager</SelectItem>
                 <SelectItem value="investor">Investor</SelectItem>
+                <SelectItem value="client">Client</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select value={statusFilter} onValueChange={setStatusFilter}>
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="Filter by status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Status</SelectItem>
+                <SelectItem value="active">Active</SelectItem>
+                <SelectItem value="inactive">Inactive</SelectItem>
+                <SelectItem value="pending">Pending</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -175,9 +235,40 @@ export function UserManagement() {
                     {user.lastLogin}
                   </TableCell>
                   <TableCell>
-                    <Button variant="ghost" size="sm">
-                      <MoreHorizontal className="h-4 w-4" />
-                    </Button>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem>
+                          <Edit className="mr-2 h-4 w-4" />
+                          Edit User
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        {user.status === 'active' ? (
+                          <DropdownMenuItem onClick={() => handleDeactivateUser(user.id)}>
+                            <UserCheck className="mr-2 h-4 w-4" />
+                            Deactivate
+                          </DropdownMenuItem>
+                        ) : (
+                          <DropdownMenuItem onClick={() => handleActivateUser(user.id)}>
+                            <UserCheck className="mr-2 h-4 w-4" />
+                            Activate
+                          </DropdownMenuItem>
+                        )}
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem 
+                          className="text-red-600"
+                          onClick={() => handleDeleteUser(user.id)}
+                        >
+                          <Trash className="mr-2 h-4 w-4" />
+                          Delete
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </TableCell>
                 </TableRow>
               ))}
@@ -185,6 +276,19 @@ export function UserManagement() {
           </Table>
         </CardContent>
       </Card>
+
+      <UserInviteModal 
+        open={isInviteModalOpen}
+        onClose={() => setIsInviteModalOpen(false)}
+        mode="add"
+        onSuccess={() => {
+          // Refresh users list in real implementation
+          toast({
+            title: "Success",
+            description: "User has been added successfully.",
+          });
+        }}
+      />
     </div>
   );
 }

@@ -1,306 +1,242 @@
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { UnifiedProjectModal } from "@/components/modals/UnifiedProjectModal"
-import { InvestorManagementModal } from "@/components/modals/InvestorManagementModal"
-import { OpportunityPitchModal } from "@/components/modals/OpportunityPitchModal"
-import { UserInviteModal } from "./UserInviteModal"
-import { MessagingCenter } from "./MessagingCenter"
-import { AnalyticsCenter } from "./AnalyticsCenter"
-import { DocumentWorkflows } from "@/components/documents/DocumentWorkflows"
-import { EmailSystem } from "@/components/notifications/EmailSystem"
-import { FinancialTracking } from "@/components/financial/FinancialTracking"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { useState } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { 
-  Plus, 
   Users, 
-  UserPlus, 
-  Target, 
-  MessageCircle,
-  BarChart3,
-  Building,
+  Shield, 
+  Building, 
+  FileText, 
   TrendingUp,
-  Send,
-  FileText,
-  Mail,
-  DollarSign
-} from "lucide-react"
+  Settings,
+  CheckCircle2,
+  Clock,
+  AlertTriangle
+} from 'lucide-react';
+import { UserManagement } from '@/components/admin/UserManagement';
+import { SubmissionReview } from '@/components/admin/SubmissionReview';
+import { AdminApprovalSystem } from './AdminApprovalSystem';
 
-export type WorkflowAction = 
-  | 'create-project'
-  | 'add-user'
-  | 'invite-user'
-  | 'add-investor'
-  | 'invite-investor'
-  | 'create-opportunity'
-  | 'send-pitch'
-  | 'open-messaging'
-  | 'view-analytics'
-
-interface UnifiedWorkflowSystemProps {
-  trigger?: WorkflowAction
-  onActionComplete?: () => void
+interface WorkflowStats {
+  total: number;
+  pending: number;
+  active: number;
+  completed: number;
+  blocked: number;
 }
 
-export function UnifiedWorkflowSystem({ trigger, onActionComplete }: UnifiedWorkflowSystemProps) {
-  const [activeModal, setActiveModal] = useState<WorkflowAction | null>(trigger || null)
-  const [documentsOpen, setDocumentsOpen] = useState(false)
-  const [emailOpen, setEmailOpen] = useState(false)
-  const [financialOpen, setFinancialOpen] = useState(false)
-
-  const handleOpenModal = (action: WorkflowAction) => {
-    setActiveModal(action)
+const workflowStats: Record<string, WorkflowStats> = {
+  user_management: {
+    total: 156,
+    pending: 12,
+    active: 144,
+    completed: 89,
+    blocked: 0
+  },
+  submissions: {
+    total: 34,
+    pending: 8,
+    active: 26,
+    completed: 22,
+    blocked: 4
+  },
+  approvals: {
+    total: 23,
+    pending: 7,
+    active: 16,
+    completed: 19,
+    blocked: 1
+  },
+  kyc_verification: {
+    total: 45,
+    pending: 15,
+    active: 30,
+    completed: 38,
+    blocked: 2
   }
+};
 
-  const handleCloseModal = () => {
-    setActiveModal(null)
-    onActionComplete?.()
-  }
+export function UnifiedWorkflowSystem() {
+  const [activeWorkflow, setActiveWorkflow] = useState('user_management');
 
-  const handleModalSuccess = () => {
-    handleCloseModal()
-  }
-
-  const workflows = [
-    {
-      id: 'create-project' as WorkflowAction,
-      title: 'Create New Project',
-      description: 'Start a new project (Flip, Fund, Advisory, Transformation)',
-      icon: Building,
-      color: 'bg-blue-500',
-      shortcut: 'Ctrl+N'
-    },
-    {
-      id: 'add-user' as WorkflowAction,
-      title: 'Add Team Member',
-      description: 'Add a new user to the system',
-      icon: UserPlus,
-      color: 'bg-green-500',
-      shortcut: 'Ctrl+U'
-    },
-    {
-      id: 'invite-user' as WorkflowAction,
-      title: 'Invite User',
-      description: 'Send invitation to join the platform',
-      icon: Send,
-      color: 'bg-green-600',
-      shortcut: 'Ctrl+I'
-    },
-    {
-      id: 'add-investor' as WorkflowAction,
-      title: 'Add Investor',
-      description: 'Add new investor to database',
-      icon: TrendingUp,
-      color: 'bg-purple-500',
-      shortcut: 'Ctrl+A'
-    },
-    {
-      id: 'invite-investor' as WorkflowAction,
-      title: 'Invite Investor',
-      description: 'Invite new investor with onboarding',
-      icon: Users,
-      color: 'bg-purple-600',
-      shortcut: 'Ctrl+V'
-    },
-    {
-      id: 'send-pitch' as WorkflowAction,
-      title: 'Send Opportunity Pitch',
-      description: 'Create and distribute investment opportunity',
-      icon: Target,
-      color: 'bg-orange-500',
-      shortcut: 'Ctrl+P'
-    },
-    {
-      id: 'open-messaging' as WorkflowAction,
-      title: 'Message Center',
-      description: 'Send and manage messages',
-      icon: MessageCircle,
-      color: 'bg-indigo-500',
-      shortcut: 'Ctrl+M'
-    },
-    {
-      id: 'view-analytics' as WorkflowAction,
-      title: 'Analytics Dashboard',
-      description: 'View and filter analytics data',
-      icon: BarChart3,
-      color: 'bg-cyan-500',
-      shortcut: 'Ctrl+D'
-    }
-  ]
-
-  const additionalWorkflows = [
-    {
-      id: 'documents',
-      title: 'Documents',
-      description: 'Manage document workflows',
-      icon: FileText,
-      color: 'bg-green-500',
-      action: () => setDocumentsOpen(true)
-    },
-    {
-      id: 'email',
-      title: 'Email System',
-      description: 'Send emails and campaigns',
-      icon: Mail,
-      color: 'bg-blue-500',
-      action: () => setEmailOpen(true)
-    },
-    {
-      id: 'financial',
-      title: 'Financial Tracking',
-      description: 'Track ROI and expenses',
-      icon: DollarSign,
-      color: 'bg-yellow-500',
-      action: () => setFinancialOpen(true)
-    }
-  ]
-
-  // Keyboard shortcuts
-  useState(() => {
-    const handleKeydown = (e: KeyboardEvent) => {
-      if (e.ctrlKey || e.metaKey) {
-        switch (e.key.toLowerCase()) {
-          case 'n':
-            e.preventDefault()
-            handleOpenModal('create-project')
-            break
-          case 'u':
-            e.preventDefault()
-            handleOpenModal('add-user')
-            break
-          case 'i':
-            e.preventDefault()
-            handleOpenModal('invite-user')
-            break
-          case 'a':
-            e.preventDefault()
-            handleOpenModal('add-investor')
-            break
-          case 'v':
-            e.preventDefault()
-            handleOpenModal('invite-investor')
-            break
-          case 'p':
-            e.preventDefault()
-            handleOpenModal('send-pitch')
-            break
-          case 'm':
-            e.preventDefault()
-            handleOpenModal('open-messaging')
-            break
-          case 'd':
-            e.preventDefault()
-            handleOpenModal('view-analytics')
-            break
-        }
-      }
-    }
-
-    document.addEventListener('keydown', handleKeydown)
-    return () => document.removeEventListener('keydown', handleKeydown)
-  })
+  const WorkflowStatsCard = ({ 
+    title, 
+    icon: Icon, 
+    stats 
+  }: { 
+    title: string; 
+    icon: any; 
+    stats: WorkflowStats;
+  }) => (
+    <Card className="cursor-pointer hover:shadow-md transition-shadow">
+      <CardHeader className="pb-2">
+        <CardTitle className="flex items-center gap-2 text-sm">
+          <Icon className="h-4 w-4" />
+          {title}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-2 text-sm">
+          <div className="flex items-center gap-1">
+            <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+            <span>Total: {stats.total}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Clock className="w-3 h-3 text-yellow-500" />
+            <span>Pending: {stats.pending}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            <span>Active: {stats.active}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <CheckCircle2 className="w-3 h-3 text-green-600" />
+            <span>Done: {stats.completed}</span>
+          </div>
+        </div>
+        {stats.blocked > 0 && (
+          <div className="mt-2 flex items-center gap-1 text-red-600">
+            <AlertTriangle className="w-3 h-3" />
+            <span className="text-sm">Blocked: {stats.blocked}</span>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
 
   return (
-    <>
-      {/* Quick Actions Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-        {workflows.map((workflow) => (
-          <Button
-            key={workflow.id}
-            variant="outline"
-            className="h-auto p-4 flex flex-col items-center gap-2 hover:shadow-md transition-all"
-            onClick={() => handleOpenModal(workflow.id)}
-          >
-            <div className={`p-3 rounded-lg ${workflow.color} text-white`}>
-              <workflow.icon className="h-6 w-6" />
-            </div>
-            <div className="text-center">
-              <div className="font-medium text-sm">{workflow.title}</div>
-              <div className="text-xs text-muted-foreground">{workflow.description}</div>
-              <div className="text-xs text-muted-foreground mt-1 font-mono">{workflow.shortcut}</div>
-            </div>
-          </Button>
-        ))}
-        </div>
-        
-        {/* Additional Workflows */}
-        <div className="grid grid-cols-3 gap-4 p-4">
-          {additionalWorkflows.map((workflow) => (
-            <Button
-              key={workflow.id}
-              variant="outline"
-              className="h-24 flex flex-col gap-2"
-              onClick={workflow.action}
-            >
-              <workflow.icon className="h-6 w-6" />
-              <span className="text-sm">{workflow.title}</span>
-            </Button>
-          ))}
-        </div>
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <WorkflowStatsCard 
+          title="User Management"
+          icon={Users}
+          stats={workflowStats.user_management}
+        />
+        <WorkflowStatsCard 
+          title="Submissions"
+          icon={FileText}
+          stats={workflowStats.submissions}
+        />
+        <WorkflowStatsCard 
+          title="Approvals"
+          icon={Shield}
+          stats={workflowStats.approvals}
+        />
+        <WorkflowStatsCard 
+          title="KYC Verification"
+          icon={Building}
+          stats={workflowStats.kyc_verification}
+        />
+      </div>
 
-      {/* Modals */}
-      <UnifiedProjectModal
-        open={activeModal === 'create-project'}
-        onClose={handleCloseModal}
-        onSuccess={handleModalSuccess}
-      />
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Settings className="h-5 w-5" />
+            Workflow Management System
+          </CardTitle>
+          <CardDescription>
+            Centralized control for all user management and approval workflows
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Tabs value={activeWorkflow} onValueChange={setActiveWorkflow} className="w-full">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="user_management">User Management</TabsTrigger>
+              <TabsTrigger value="submissions">Submissions</TabsTrigger>
+              <TabsTrigger value="approvals">Approvals</TabsTrigger>
+              <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            </TabsList>
 
-      <UserInviteModal
-        open={activeModal === 'add-user' || activeModal === 'invite-user'}
-        onClose={handleCloseModal}
-        mode={activeModal === 'invite-user' ? 'invite' : 'add'}
-        onSuccess={handleModalSuccess}
-      />
+            <TabsContent value="user_management" className="mt-6">
+              <UserManagement />
+            </TabsContent>
 
-      <InvestorManagementModal
-        open={activeModal === 'add-investor' || activeModal === 'invite-investor'}
-        onClose={handleCloseModal}
-        mode={activeModal === 'invite-investor' ? 'invite' : 'add'}
-        onSuccess={handleModalSuccess}
-      />
+            <TabsContent value="submissions" className="mt-6">
+              <SubmissionReview />
+            </TabsContent>
 
-      <OpportunityPitchModal
-        open={activeModal === 'send-pitch'}
-        onClose={handleCloseModal}
-        onSuccess={handleModalSuccess}
-      />
+            <TabsContent value="approvals" className="mt-6">
+              <AdminApprovalSystem />
+            </TabsContent>
 
-      <MessagingCenter
-        open={activeModal === 'open-messaging'}
-        onClose={handleCloseModal}
-      />
+            <TabsContent value="analytics" className="mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Workflow Performance</CardTitle>
+                    <CardDescription>Average processing times and completion rates</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">User Onboarding</span>
+                        <div className="flex items-center gap-2">
+                          <div className="w-20 bg-gray-200 rounded-full h-2">
+                            <div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                          </div>
+                          <span className="text-sm">85%</span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">KYC Processing</span>
+                        <div className="flex items-center gap-2">
+                          <div className="w-20 bg-gray-200 rounded-full h-2">
+                            <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '67%' }}></div>
+                          </div>
+                          <span className="text-sm">67%</span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">Investment Approvals</span>
+                        <div className="flex items-center gap-2">
+                          <div className="w-20 bg-gray-200 rounded-full h-2">
+                            <div className="bg-blue-500 h-2 rounded-full" style={{ width: '92%' }}></div>
+                          </div>
+                          <span className="text-sm">92%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-      <AnalyticsCenter
-        open={activeModal === 'view-analytics'}
-        onClose={handleCloseModal}
-      />
-      
-      {/* Additional System Modals */}
-      <Dialog open={documentsOpen} onOpenChange={setDocumentsOpen}>
-        <DialogContent className="max-w-7xl max-h-[95vh] overflow-hidden">
-          <DialogHeader>
-            <DialogTitle>Document Management</DialogTitle>
-          </DialogHeader>
-          <DocumentWorkflows />
-        </DialogContent>
-      </Dialog>
-      
-      <Dialog open={emailOpen} onOpenChange={setEmailOpen}>
-        <DialogContent className="max-w-7xl max-h-[95vh] overflow-hidden">
-          <DialogHeader>
-            <DialogTitle>Email System</DialogTitle>
-          </DialogHeader>
-          <EmailSystem />
-        </DialogContent>
-      </Dialog>
-      
-      <Dialog open={financialOpen} onOpenChange={setFinancialOpen}>
-        <DialogContent className="max-w-7xl max-h-[95vh] overflow-hidden">
-          <DialogHeader>
-            <DialogTitle>Financial Tracking</DialogTitle>
-          </DialogHeader>
-          <FinancialTracking />
-        </DialogContent>
-      </Dialog>
-    </>
-  )
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Recent Activity</CardTitle>
+                    <CardDescription>Latest workflow actions and updates</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium">User approved: Sarah Johnson</p>
+                          <p className="text-xs text-muted-foreground">2 minutes ago</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium">Investment request submitted</p>
+                          <p className="text-xs text-muted-foreground">15 minutes ago</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium">KYC document uploaded</p>
+                          <p className="text-xs text-muted-foreground">1 hour ago</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
+    </div>
+  );
 }
