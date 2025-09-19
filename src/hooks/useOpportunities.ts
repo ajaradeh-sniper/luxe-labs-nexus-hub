@@ -28,43 +28,7 @@ export const useOpportunities = () => {
   const { toast } = useToast();
   const { user } = useAuth();
 
-  // Mock data fallback when database is not available
-  const mockOpportunities: OpportunityData[] = [
-    {
-      id: '1',
-      title: 'Luxury Penthouse - DIFC',
-      description: 'Premium penthouse with panoramic city views and world-class amenities',
-      location: 'DIFC, Dubai',
-      opportunity_type: 'real_estate',
-      investment_required: 8500000,
-      expected_roi: 35.3,
-      deadline: '2024-03-01',
-      status: 'under_review',
-      risk_rating: 'medium',
-      contact_info: { email: 'agent@luxurylabs.com', phone: '+971-4-123-4567' },
-      documents: ['property_valuation.pdf', 'financial_analysis.xlsx'],
-      created_by: 'agent-1',
-      created_at: '2024-01-15T10:00:00Z',
-      updated_at: '2024-01-20T15:30:00Z'
-    },
-    {
-      id: '2',
-      title: 'Luxury Villa - Emirates Hills',
-      description: 'Exclusive villa in Dubai\'s most prestigious residential community',
-      location: 'Emirates Hills, Dubai',
-      opportunity_type: 'real_estate',
-      investment_required: 15000000,
-      expected_roi: 27.5,
-      deadline: '2024-04-15',
-      status: 'approved',
-      risk_rating: 'low',
-      contact_info: { email: 'agent2@luxurylabs.com', phone: '+971-4-987-6543' },
-      documents: ['villa_blueprint.pdf', 'market_analysis.xlsx'],
-      created_by: 'agent-2',
-      created_at: '2024-01-18T14:30:00Z',
-      updated_at: '2024-01-22T09:15:00Z'
-    }
-  ];
+  // No mock data - using live database only
 
   const fetchOpportunities = async () => {
     try {
@@ -80,14 +44,14 @@ export const useOpportunities = () => {
       if (supabaseError) {
         console.error('Error fetching opportunities from Supabase:', supabaseError);
         
-        // Fallback to mock data
-        console.log('Using mock data for opportunities');
-        setOpportunities(mockOpportunities);
+        // No fallback data - show empty state
+        console.log('No opportunities available');
+        setOpportunities([]);
         
         toast({
-          title: "Using Demo Data",
-          description: "Connected to demonstration data while database is unavailable",
-          variant: "default"
+          title: "Database Error",
+          description: "Unable to load opportunities. Please try again later.",
+          variant: "destructive"
         });
       } else {
         // Transform the data to match our interface
@@ -102,13 +66,13 @@ export const useOpportunities = () => {
       console.error('Error in fetchOpportunities:', error);
       setError('Failed to load opportunities');
       
-      // Fallback to mock data
-      setOpportunities(mockOpportunities);
+      // No fallback data - show empty state
+      setOpportunities([]);
       
       toast({
-        title: "Using Demo Data", 
-        description: "Connected to demonstration data",
-        variant: "default"
+        title: "Connection Error", 
+        description: "Unable to connect to database",
+        variant: "destructive"
       });
     } finally {
       setLoading(false);
