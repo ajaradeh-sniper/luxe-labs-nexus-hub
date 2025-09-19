@@ -11,9 +11,11 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
 import { Opportunity, OpportunityEvaluation } from '@/types/opportunities';
-import { Plus, Eye, Edit, Trash2, CheckCircle, XCircle, DollarSign, Clock, MapPin, Building } from 'lucide-react';
+import { Plus, Eye, Edit, Trash2, CheckCircle, XCircle, DollarSign, Clock, MapPin, Building, ArrowUpCircle } from 'lucide-react';
 import { InvestmentRequestModal } from '@/components/workflows/InvestmentRequestModal';
+import { ConvertOpportunityToProjectModal } from '@/components/modals/ConvertOpportunityToProjectModal';
 
 // Mock data - in real app this would come from Supabase
 const mockOpportunities: Opportunity[] = [
@@ -69,6 +71,8 @@ export function OpportunityManagement() {
   const [activeTab, setActiveTab] = useState('overview');
   const [showInvestmentModal, setShowInvestmentModal] = useState(false);
   const [selectedOpportunityForInvestment, setSelectedOpportunityForInvestment] = useState<Opportunity | null>(null);
+  const [showConvertModal, setShowConvertModal] = useState(false);
+  const [selectedOpportunityForConversion, setSelectedOpportunityForConversion] = useState<Opportunity | null>(null);
 
   const canCreateOpportunity = user?.role === 'real_estate_agent' || user?.role === 'administrator';
   const canEvaluate = user?.role === 'real_estate_director' || user?.role === 'administrator';
@@ -82,16 +86,33 @@ export function OpportunityManagement() {
     setIsCreateDialogOpen(false);
   };
 
-  const handleApproveOpportunity = (id: string) => {
-    setOpportunities(prev => 
-      prev.map(opp => 
-        opp.id === id ? { ...opp, status: 'approved' as const } : opp
-      )
-    );
-    toast({
-      title: "Opportunity Approved",
-      description: "Opportunity has been approved and can now be converted to a project.",
-    });
+  const handleApproveOpportunity = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('opportunities')
+        .update({ status: 'approved' })
+        .eq('id', id);
+
+      if (error) throw error;
+
+      setOpportunities(prev => 
+        prev.map(opp => 
+          opp.id === id ? { ...opp, status: 'approved' as const } : opp
+        )
+      );
+      
+      toast({
+        title: "Opportunity Approved",
+        description: "Opportunity has been approved and can now be converted to a project.",
+      });
+    } catch (error) {
+      console.error('Error approving opportunity:', error);
+      toast({
+        title: "Approval Failed",
+        description: "Failed to approve opportunity. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleRejectOpportunity = (id: string) => {
