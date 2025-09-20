@@ -118,7 +118,7 @@ function App() {
           
           <Route path="/client-dashboard" element={
             <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
-              <ClientDashboard />
+              <EnhancedClientDashboard />
             </SmartProtectedRoute>
           } />
           
