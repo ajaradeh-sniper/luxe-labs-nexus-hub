@@ -15,6 +15,7 @@ import { Trophy, Target, DollarSign, TrendingUp, MapPin, Clock } from 'lucide-re
 interface QuestionnaireData {
   investmentExperience: string;
   riskTolerance: string;
+  investmentPreference: string;
   investmentGoals: string[];
   preferredInvestmentSize: number[];
   timeHorizon: string;
@@ -64,6 +65,36 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         { value: 'conservative', label: 'Conservative', description: 'Prefer stable, low-risk investments' },
         { value: 'moderate', label: 'Moderate', description: 'Balanced approach to risk and return' },
         { value: 'aggressive', label: 'Aggressive', description: 'Comfortable with higher risk for higher returns' }
+      ]
+    },
+    {
+      id: 'investmentPreference',
+      title: 'Investment Preference',
+      subtitle: 'Select your preferred investment range and expected returns',
+      icon: <DollarSign className="w-6 h-6" />,
+      type: 'preference-boxes',
+      options: [
+        { 
+          value: 'conservative', 
+          label: 'Conservative', 
+          range: 'AED 5M-15M', 
+          returns: '6%-15%',
+          description: 'Lower risk, stable returns'
+        },
+        { 
+          value: 'moderate', 
+          label: 'Moderate', 
+          range: 'AED 15M-45M', 
+          returns: '15%-30%',
+          description: 'Balanced risk and reward'
+        },
+        { 
+          value: 'aggressive', 
+          label: 'Aggressive', 
+          range: 'AED 45M+', 
+          returns: '25%-60%',
+          description: 'Higher risk, premium returns'
+        }
       ]
     },
     {
@@ -244,43 +275,42 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           </div>
         );
 
+      case 'preference-boxes':
+        const selectedPreference = currentAnswer as string;
+        return (
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {currentQuestion.options?.map((option: any) => (
+                <div 
+                  key={option.value}
+                  className={`p-6 border-2 rounded-lg cursor-pointer transition-all hover:scale-105 ${
+                    selectedPreference === option.value 
+                      ? 'border-primary bg-primary/10 shadow-lg' 
+                      : 'border-muted hover:border-primary/40 bg-gradient-to-br from-muted/20 to-muted/40'
+                  }`}
+                  onClick={() => handleAnswer(currentQuestion.id, option.value)}
+                >
+                  <div className="text-center">
+                    <h4 className={`font-semibold mb-3 ${selectedPreference === option.value ? 'text-primary' : 'text-foreground'}`}>
+                      {option.label}
+                    </h4>
+                    <div className="text-2xl font-bold mb-2">{option.range}</div>
+                    <div className="text-lg text-muted-foreground mb-3">{option.returns}</div>
+                    <p className="text-sm text-muted-foreground">{option.description}</p>
+                    {selectedPreference === option.value && (
+                      <div className="mt-3 text-primary font-medium">✓ Selected</div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+
       case 'slider':
         const sliderValue = (currentAnswer as number[]) || [currentQuestion.min || 0];
         return (
           <div className="space-y-6">
-            {/* Investment Preference Boxes */}
-            {currentQuestion.id === 'preferredInvestmentSize' && (
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold mb-4 text-center">Investment Preferences</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="p-4 border-2 border-primary/20 rounded-lg bg-gradient-to-br from-primary/5 to-primary/10 hover:border-primary/40 transition-all">
-                    <div className="text-center">
-                      <h4 className="font-semibold text-primary mb-2">Conservative</h4>
-                      <div className="text-2xl font-bold mb-2">AED 5M-15M</div>
-                      <div className="text-lg text-muted-foreground">6%-15%</div>
-                      <p className="text-sm text-muted-foreground mt-2">Lower risk, stable returns</p>
-                    </div>
-                  </div>
-                  <div className="p-4 border-2 border-secondary/20 rounded-lg bg-gradient-to-br from-secondary/5 to-secondary/10 hover:border-secondary/40 transition-all">
-                    <div className="text-center">
-                      <h4 className="font-semibold text-secondary-foreground mb-2">Moderate</h4>
-                      <div className="text-2xl font-bold mb-2">AED 15M-45M</div>
-                      <div className="text-lg text-muted-foreground">15%-30%</div>
-                      <p className="text-sm text-muted-foreground mt-2">Balanced risk and reward</p>
-                    </div>
-                  </div>
-                  <div className="p-4 border-2 border-accent/20 rounded-lg bg-gradient-to-br from-accent/5 to-accent/10 hover:border-accent/40 transition-all">
-                    <div className="text-center">
-                      <h4 className="font-semibold text-accent-foreground mb-2">Aggressive</h4>
-                      <div className="text-2xl font-bold mb-2">AED 45M+</div>
-                      <div className="text-lg text-muted-foreground">25%-60%</div>
-                      <p className="text-sm text-muted-foreground mt-2">Higher risk, premium returns</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-            
             <div className="text-center">
               <div className="text-3xl font-bold text-primary mb-2">
                 {currentQuestion.format ? currentQuestion.format(sliderValue[0]) : sliderValue[0]}
