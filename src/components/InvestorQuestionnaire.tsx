@@ -13,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { Trophy, Target, DollarSign, TrendingUp, MapPin, Clock, User } from 'lucide-react';
+import { Trophy, Target, DollarSign, TrendingUp, MapPin, Clock, User, Building } from 'lucide-react';
 
 interface QuestionnaireData {
   investorType: string;
@@ -173,6 +173,33 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         { value: 'emirates_hills', label: 'Emirates Hills', description: 'Exclusive villa community' },
         { value: 'business_bay', label: 'Business Bay', description: 'Commercial and residential hub' },
         { value: 'difc', label: 'DIFC', description: 'Financial district' }
+      ]
+    },
+    {
+      id: 'involvementPreference',
+      title: 'Involvement Preference',
+      subtitle: 'How involved would you like to be in the investment process?',
+      icon: <User className="w-6 h-6" />,
+      type: 'radio',
+      options: [
+        { value: 'no_involvement', label: 'No Involvement', description: 'Just financial payback and monthly updates and project monitoring' },
+        { value: 'support_luxury_labs', label: 'Support Luxury Labs', description: 'Selection of property options, selection of design options, monthly updates and project monitoring' },
+        { value: 'full_involvement', label: 'Full Involvement', description: 'Selection of property, selection of design, project management' },
+        { value: 'other', label: 'Other', description: 'Please specify your preference' }
+      ]
+    },
+    {
+      id: 'investmentTypePreference',
+      title: 'Investment Type Preference',
+      subtitle: 'Select your preferred investment structure',
+      icon: <Building className="w-6 h-6" />,
+      type: 'radio',
+      options: [
+        { value: 'uae_title_deed', label: 'In UAE - Name on Title Deed', description: 'Direct ownership with your name on the property title' },
+        { value: 'uae_spv_cayman', label: 'In UAE - Joint Venture - SPV (Cayman Island)', description: 'Investment through Special Purpose Vehicle structure' },
+        { value: 'outside_uae_title_deed', label: 'Outside UAE - Name on Title Deed', description: 'Direct ownership outside UAE with title deed' },
+        { value: 'outside_uae_spv_cayman', label: 'Outside UAE - Joint Venture - SPV (Cayman Island)', description: 'International investment through SPV structure' },
+        { value: 'other', label: 'Other', description: 'Please specify your preferred investment type' }
       ]
     }
   ];

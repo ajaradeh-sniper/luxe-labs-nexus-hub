@@ -48,6 +48,7 @@ import LeadsManagement from "./pages/admin/LeadsManagement"
 import WorkflowsProcesses from "./pages/admin/WorkflowsProcesses"
 
 import InvestorQuestionnairePage from "./pages/InvestorQuestionnaire"
+import EnhancedClientDashboard from "./pages/EnhancedClientDashboard"
 
 // Import missing pages
 import Calendar from "./pages/Calendar"
