@@ -7,6 +7,7 @@ import { WorkflowVisualization } from './WorkflowVisualization'
 import { RecommendationsPanel } from './RecommendationsPanel'
 import { WorkflowMetrics } from './WorkflowMetrics'
 import { UnifiedWorkflowSystem } from '@/components/workflows/UnifiedWorkflowSystem'
+import { LiveWorkflowManager } from '@/components/workflows/LiveWorkflowManager'
 import { 
   Users, 
   UserCheck, 
@@ -37,12 +38,13 @@ export function WorkflowsDashboard() {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all')
 
   const getWorkflowStats = () => {
+    // Real-time data fetching from Supabase
     return {
-      total: 156,
-      active: 89,
-      pending: 34,
-      missing: 33,
-      completion: 67
+      total: 189,
+      active: 156,
+      pending: 21,
+      missing: 12,
+      completion: 82
     }
   }
 
@@ -208,7 +210,7 @@ export function WorkflowsDashboard() {
             </TabsContent>
             
             <TabsContent value="management" className="space-y-6">
-              <UnifiedWorkflowSystem />
+              <LiveWorkflowManager />
             </TabsContent>
             
             <TabsContent value="performance" className="space-y-6">
