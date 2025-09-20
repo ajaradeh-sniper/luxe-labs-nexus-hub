@@ -399,32 +399,102 @@ export default function About() {
 
 
       {/* Why Dubai Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Dubai</h2>
-          
-          <div className="text-center mb-8">
-            <p className="text-xl font-medium mb-6">Dubai is the world's luxury property capital:</p>
-            <div className="space-y-4 text-lg text-muted-foreground">
-              <p>19.9% YoY growth in luxury villa prices (2024).</p>
-              <p>High demand from HNWIs relocating for tax-free returns and lifestyle.</p>
-              <p>Global investors from Europe, GCC, and Asia targeting Palm Jumeirah, Dubai Marina, Emirates Hills.</p>
+      <section className="py-20 px-4 bg-gradient-to-r from-primary/5 via-background to-primary/5">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Why Dubai</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Dubai is the world's luxury property capital, offering unmatched growth opportunities and strategic advantages
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left Side - Image */}
+            <div className="order-2 lg:order-1">
+              <div className="relative">
+                <img 
+                  src={palmJumeirahMarketImage} 
+                  alt="Aerial view of Palm Jumeirah showcasing luxury developments"
+                  className="w-full rounded-2xl shadow-2xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
+              </div>
+            </div>
+
+            {/* Right Side - Stats */}
+            <div className="order-1 lg:order-2 space-y-8">
+              <Card className="overflow-hidden border-l-4 border-l-primary">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center">
+                      <TrendingUp className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-primary">19.9%</div>
+                      <div className="text-sm text-muted-foreground">YoY Growth</div>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground">
+                    Luxury villa prices surged 19.9% year-over-year in 2024, outpacing global markets
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden border-l-4 border-l-green-500">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-500/20 to-green-300/10 rounded-xl flex items-center justify-center">
+                      <Globe className="h-6 w-6 text-green-600" />
+                    </div>
+                    <div>
+                      <div className="text-lg font-bold">Global Hub</div>
+                      <div className="text-sm text-muted-foreground">Tax-Free Returns</div>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground">
+                    High demand from HNWIs relocating for tax-free returns and premium lifestyle opportunities
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden border-l-4 border-l-purple-500">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-purple-300/10 rounded-xl flex items-center justify-center">
+                      <Building2 className="h-6 w-6 text-purple-600" />
+                    </div>
+                    <div>
+                      <div className="text-lg font-bold">Prime Locations</div>
+                      <div className="text-sm text-muted-foreground">Global Investment</div>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground">
+                    International investors from Europe, GCC, and Asia targeting Palm Jumeirah, Dubai Marina, and Emirates Hills
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
-          
-          <div className="mb-8">
-            <img 
-              src={palmJumeirahMarketImage} 
-              alt="Aerial view of Palm Jumeirah with market growth chart overlay"
-              className="w-full rounded-lg luxury-shadow"
-            />
-          </div>
-          
-          <div className="text-center">
-            <p className="text-lg text-muted-foreground">
-              Luxury Labs is positioned at the heart of this growth, leveraging local knowledge 
-              and global design expertise to deliver investor success.
-            </p>
+
+          {/* Bottom Section */}
+          <div className="mt-16 text-center">
+            <Card className="max-w-4xl mx-auto bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+              <CardContent className="p-8">
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center">
+                    <Award className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="text-left">
+                    <h3 className="text-xl font-bold">Strategic Advantage</h3>
+                    <p className="text-muted-foreground">Positioned for Success</p>
+                  </div>
+                </div>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Luxury Labs is strategically positioned at the heart of this unprecedented growth, leveraging deep local market knowledge 
+                  and world-class design expertise to deliver exceptional investor success in Dubai's luxury property sector.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
