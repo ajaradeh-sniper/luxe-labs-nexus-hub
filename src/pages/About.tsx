@@ -64,7 +64,7 @@ export default function About() {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <Navigation />
       {/* Hero Section */}
-      <section className="relative py-20 px-4">
+      <section className="relative py-20 px-4 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${conceptToRealityImage})` }}>
         <div className="max-w-6xl mx-auto text-center">
           <Badge variant="outline" className="mb-4">
             <Globe className="w-4 h-4 mr-2" />
