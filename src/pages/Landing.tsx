@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp, PiggyBank, Eye } from "lucide-react";
+import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp, PiggyBank, Eye, DollarSign, Home, BarChart3, Shield, Briefcase, HeartHandshake, Zap } from "lucide-react";
 import { InvestorAssessmentModal } from "@/components/modals/InvestorAssessmentModal";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
 import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
@@ -376,95 +376,151 @@ export default function Landing() {
                   </CollapsibleTrigger>
 
                   <CollapsibleContent className="animate-accordion-down data-[state=closed]:animate-accordion-up">
-                    <div className="mt-12 grid lg:grid-cols-2 gap-12">
-                      {/* Investment Services */}
+                    <div className="mt-12 space-y-16">
+                      
+                      {/* Investment Services Section */}
                       <div className="animate-fade-in">
-                        <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Investment Services</h3>
-                        <div className="space-y-4">
-                          {investmentServices.map((service, index) => (
-                            <Card key={index} className="p-4 border border-border bg-white text-black relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-gray-50 active:bg-gray-100 active:border-yellow-600">
-                              <div className="flex gap-3">
-                                <div className="flex-1">
-                                  <div className="mb-3">
-                                    <h4 className="font-semibold text-lg mb-2">{service.title}</h4>
-                                    <p className="text-sm text-muted-foreground mb-3">{service.description}</p>
+                        <div className="text-center mb-10">
+                          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-primary to-primary/80 rounded-full mb-4">
+                            <TrendingUp className="h-8 w-8 text-white" />
+                          </div>
+                          <h3 className="text-3xl font-playfair font-bold text-foreground mb-3">Investment Services</h3>
+                          <p className="text-muted-foreground font-montserrat max-w-2xl mx-auto">
+                            Join our exclusive investment opportunities with guaranteed luxury execution and exceptional returns
+                          </p>
+                        </div>
+                        
+                        <div className="grid md:grid-cols-3 gap-6">
+                          {investmentServices.map((service, index) => {
+                            const icons = [DollarSign, Users, PiggyBank];
+                            const IconComponent = icons[index];
+                            const gradients = [
+                              'from-emerald-500 to-emerald-600',
+                              'from-blue-500 to-blue-600', 
+                              'from-purple-500 to-purple-600'
+                            ];
+                            
+                            return (
+                              <Card key={index} className="group relative overflow-hidden border-0 bg-card/60 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                                {/* Background Gradient */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index]}/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                                
+                                {/* Header with Icon */}
+                                <div className="relative p-6 text-center border-b border-border/50">
+                                  <div className={`inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r ${gradients[index]} rounded-full mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                                    <IconComponent className="h-7 w-7 text-white" />
                                   </div>
-                                  <ul className="space-y-2 mb-4">
-                                    {service.features.map((feature, featureIndex) => (
-                                      <li key={featureIndex} className="flex items-start gap-2">
-                                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-sm">{feature}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                  <div className="flex gap-2">
-                                    {service.buttons.map((button, buttonIndex) => (
-                                      <Button
-                                        key={buttonIndex}
-                                        size="sm"
-                                        variant={buttonIndex === 0 ? "default" : "outline"}
-                                        className={`flex-1 transition-all duration-300 hover:scale-105 ${
-                                          button.disabled 
-                                            ? 'opacity-50 cursor-not-allowed' 
-                                            : buttonIndex === 0 
-                                              ? 'bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold'
-                                              : 'hover:bg-primary/5'
-                                        }`}
-                                        onClick={() => !button.disabled && (window.location.href = button.href)}
-                                        disabled={button.disabled}
-                                      >
-                                        {button.text}
-                                      </Button>
-                                    ))}
-                                  </div>
+                                  <h4 className="text-xl font-playfair font-bold text-foreground mb-2">{service.title}</h4>
+                                  <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">{service.description}</p>
                                 </div>
-                              </div>
-                            </Card>
-                          ))}
+                                
+                                {/* Features List */}
+                                <div className="p-6 space-y-3">
+                                  {service.features.map((feature, featureIndex) => (
+                                    <div key={featureIndex} className="flex items-start gap-3 group/feature">
+                                      <div className={`w-2 h-2 bg-gradient-to-r ${gradients[index]} rounded-full flex-shrink-0 mt-2 group-hover/feature:scale-125 transition-transform duration-200`}></div>
+                                      <span className="text-sm font-montserrat text-foreground leading-relaxed">{feature}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                                
+                                {/* Action Buttons */}
+                                <div className="p-6 pt-0 space-y-3">
+                                  {service.buttons.map((button, buttonIndex) => (
+                                    <Button
+                                      key={buttonIndex}
+                                      size="sm"
+                                      variant={buttonIndex === 0 ? "default" : "outline"}
+                                      className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat ${
+                                        button.disabled 
+                                          ? 'opacity-50 cursor-not-allowed' 
+                                          : buttonIndex === 0 
+                                            ? `bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`
+                                            : 'hover:bg-card-foreground/5 border-border'
+                                      }`}
+                                      onClick={() => !button.disabled && (window.location.href = button.href)}
+                                      disabled={button.disabled}
+                                    >
+                                      {button.text}
+                                      {!button.disabled && <ArrowRight className="ml-2 h-3 w-3" />}
+                                    </Button>
+                                  ))}
+                                </div>
+                              </Card>
+                            );
+                          })}
                         </div>
                       </div>
 
-                      {/* Transformation Services */}
+                      {/* Transformation Services Section */}
                       <div className="animate-fade-in">
-                        <h3 className="text-2xl font-playfair font-bold text-foreground mb-6 text-center">Transformation Services</h3>
-                        <div className="space-y-4">
-                          {transformationServices.map((service, index) => (
-                            <Card key={index} className="p-4 border border-border bg-white text-black relative hover:shadow-lg transition-all duration-300 hover-scale hover:border-yellow-500 hover:bg-gray-50 active:bg-gray-100 active:border-yellow-600">
-                              <div className="flex gap-3">
-                                <div className="flex-1">
-                                  <div className="mb-3">
-                                    <h4 className="font-semibold text-lg mb-2">{service.title}</h4>
-                                    <p className="text-sm text-muted-foreground mb-3">{service.description}</p>
+                        <div className="text-center mb-10">
+                          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-accent to-accent/80 rounded-full mb-4">
+                            <Building2 className="h-8 w-8 text-white" />
+                          </div>
+                          <h3 className="text-3xl font-playfair font-bold text-foreground mb-3">Transformation Services</h3>
+                          <p className="text-muted-foreground font-montserrat max-w-2xl mx-auto">
+                            Comprehensive solutions for luxury property transformation, relocation, and strategic advisory
+                          </p>
+                        </div>
+                        
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {transformationServices.map((service, index) => {
+                            const icons = [Home, BarChart3, Globe, Shield];
+                            const IconComponent = icons[index];
+                            const gradients = [
+                              'from-orange-500 to-orange-600',
+                              'from-teal-500 to-teal-600',
+                              'from-indigo-500 to-indigo-600',
+                              'from-rose-500 to-rose-600'
+                            ];
+                            
+                            return (
+                              <Card key={index} className="group relative overflow-hidden border-0 bg-card/60 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                                {/* Background Gradient */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index]}/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                                
+                                {/* Header with Icon */}
+                                <div className="relative p-6 text-center border-b border-border/50">
+                                  <div className={`inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r ${gradients[index]} rounded-full mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                                    <IconComponent className="h-7 w-7 text-white" />
                                   </div>
-                                  <ul className="space-y-2 mb-4">
-                                    {service.features.map((feature, featureIndex) => (
-                                      <li key={featureIndex} className="flex items-start gap-2">
-                                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-sm">{feature}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                  <div className="flex gap-2">
-                                    {service.buttons.map((button, buttonIndex) => (
-                                      <Button
-                                        key={buttonIndex}
-                                        size="sm"
-                                        variant={buttonIndex === 0 ? "default" : "outline"}
-                                        className={`flex-1 transition-all duration-300 hover:scale-105 ${
-                                          buttonIndex === 0 
-                                            ? 'bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold'
-                                            : 'hover:bg-primary/5'
-                                        }`}
-                                        onClick={() => window.location.href = button.href}
-                                      >
-                                        {button.text}
-                                      </Button>
-                                    ))}
-                                  </div>
+                                  <h4 className="text-xl font-playfair font-bold text-foreground mb-2">{service.title}</h4>
+                                  <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">{service.description}</p>
                                 </div>
-                              </div>
-                            </Card>
-                          ))}
+                                
+                                {/* Features List */}
+                                <div className="p-6 space-y-3">
+                                  {service.features.map((feature, featureIndex) => (
+                                    <div key={featureIndex} className="flex items-start gap-3 group/feature">
+                                      <div className={`w-2 h-2 bg-gradient-to-r ${gradients[index]} rounded-full flex-shrink-0 mt-2 group-hover/feature:scale-125 transition-transform duration-200`}></div>
+                                      <span className="text-sm font-montserrat text-foreground leading-relaxed">{feature}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                                
+                                {/* Action Buttons */}
+                                <div className="p-6 pt-0 space-y-3">
+                                  {service.buttons.map((button, buttonIndex) => (
+                                    <Button
+                                      key={buttonIndex}
+                                      size="sm"
+                                      variant={buttonIndex === 0 ? "default" : "outline"}
+                                      className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat ${
+                                        buttonIndex === 0 
+                                          ? `bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`
+                                          : 'hover:bg-card-foreground/5 border-border'
+                                      }`}
+                                      onClick={() => window.location.href = button.href}
+                                    >
+                                      {button.text}
+                                      <ArrowRight className="ml-2 h-3 w-3" />
+                                    </Button>
+                                  ))}
+                                </div>
+                              </Card>
+                            );
+                          })}
                         </div>
                       </div>
                     </div>
