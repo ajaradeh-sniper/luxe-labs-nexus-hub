@@ -43,13 +43,16 @@ import {
   Calendar,
   Activity,
   Users,
-  Clock
+  Clock,
+  Grid,
+  List
 } from 'lucide-react';
 import { UserRole } from '@/types/auth';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { ComprehensiveUserOnboardingModal } from '@/components/modals/ComprehensiveUserOnboardingModal';
 import { PermissionsManager } from './PermissionsManager';
+import { EnhancedUserDisplay } from './EnhancedUserDisplay';
 
 interface DetailedUser {
   id: string;
@@ -346,6 +349,7 @@ export function DetailedUserManagement() {
   const [isOnboardingModalOpen, setIsOnboardingModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
   const [mainTab, setMainTab] = useState('users');
+  const [viewMode, setViewMode] = useState<'grid' | 'table'>('table');
   const { toast } = useToast();
   const { user, hasPermission } = useAuth();
 
@@ -557,6 +561,26 @@ export function DetailedUserManagement() {
                 ))}
               </SelectContent>
             </Select>
+            
+            {/* View Mode Toggle for Investors/Clients */}
+            {(activeTab === 'investors' || activeTab === 'customers') && (
+              <div className="flex gap-1 border rounded-md p-1">
+                <Button
+                  variant={viewMode === 'table' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('table')}
+                >
+                  <List className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('grid')}
+                >
+                  <Grid className="h-4 w-4" />
+                </Button>
+              </div>
+            )}
           </div>
 
           <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
@@ -564,6 +588,19 @@ export function DetailedUserManagement() {
             <Badge variant="outline">{users.filter(u => u.status === 'active').length} Active</Badge>
             <Badge variant="outline">{users.filter(u => u.status === 'pending').length} Pending</Badge>
           </div>
+
+          {/* Enhanced Grid View for Investors/Clients */}
+          {(activeTab === 'investors' || activeTab === 'customers') && viewMode === 'grid' ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {filteredUsers.map((user) => (
+                <EnhancedUserDisplay
+                  key={user.id}
+                  user={user}
+                  showInvestorData={true}
+                />
+              ))}
+            </div>
+          ) : (
 
           <Table>
             <TableHeader>
@@ -684,6 +721,7 @@ export function DetailedUserManagement() {
               ))}
             </TableBody>
           </Table>
+          )}
         </CardContent>
       </Card>
 
