@@ -64,7 +64,25 @@ export default function About() {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <Navigation />
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${conceptToRealityImage})` }}>
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Dynamic Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/20"></div>
+          <div 
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: `url(${conceptToRealityImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/60"></div>
+        </div>
+        
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="max-w-6xl mx-auto text-center">
           <Badge variant="outline" className="mb-4">
             <Globe className="w-4 h-4 mr-2" />
