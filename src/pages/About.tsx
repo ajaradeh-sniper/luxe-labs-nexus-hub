@@ -61,7 +61,7 @@ export default function About() {
           
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <Button asChild size="lg" className="luxury-gradient text-primary-foreground">
-              <Link to="/investor-questionnaire">Start Investing</Link>
+              
             </Button>
             <Button variant="outline" size="lg" asChild>
               <Link to="/opportunities">View Opportunities</Link>
