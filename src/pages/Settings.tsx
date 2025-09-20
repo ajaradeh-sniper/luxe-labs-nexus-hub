@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
+import { InvestorProfileDisplay } from "@/components/InvestorProfileDisplay"
 import { 
   Settings as SettingsIcon, 
   Save,
@@ -43,6 +44,9 @@ const Settings = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
+
+        {/* Investor Profile Assessment */}
+        <InvestorProfileDisplay />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Profile Settings */}
