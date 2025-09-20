@@ -17,7 +17,11 @@ import {
   CheckCircle,
   Eye,
   ArrowRight,
-  Handshake
+  Handshake,
+  User,
+  Palette,
+  Building,
+  Scale
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { InvestorAssessmentModal } from '@/components/modals/InvestorAssessmentModal';
@@ -235,11 +239,9 @@ export default function About() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex flex-col items-center text-center">
-                  <img 
-                    src={aliJaradehStrategyImage} 
-                    alt="Ali Jaradeh in business setting"
-                    className="w-32 h-32 rounded-full object-cover mb-4"
-                  />
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-4">
+                    <User className="w-16 h-16 text-primary" />
+                  </div>
                   <h3 className="text-xl font-bold mb-2">Ali Jaradeh</h3>
                   <Badge variant="outline" className="mb-4">Founder & CEO</Badge>
                   <p className="text-muted-foreground leading-relaxed">
@@ -254,11 +256,9 @@ export default function About() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex flex-col items-center text-center">
-                  <img 
-                    src={federicaDesignImage} 
-                    alt="Federica Freschet with design sketches"
-                    className="w-32 h-32 rounded-full object-cover mb-4"
-                  />
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-500/20 to-purple-300/10 flex items-center justify-center mb-4">
+                    <Palette className="w-16 h-16 text-purple-600" />
+                  </div>
                   <h3 className="text-xl font-bold mb-2">Federica Freschet</h3>
                   <Badge variant="outline" className="mb-4">Co-Founder & Head of Design</Badge>
                   <p className="text-muted-foreground leading-relaxed">
@@ -271,18 +271,16 @@ export default function About() {
             </Card>
           </div>
           
-          <div className="text-center mb-8">
-            <img 
-              src={teamCollaborationImage} 
-              alt="Montage of project managers, designers, and contractors"
-              className="w-full max-w-4xl mx-auto rounded-lg luxury-shadow"
-            />
-          </div>
           
           <div className="grid md:grid-cols-3 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Investor Relations Team</CardTitle>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-500/20 to-green-300/10 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-green-600" />
+                  </div>
+                  <CardTitle className="text-lg">Investor Relations Team</CardTitle>
+                </div>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
@@ -293,7 +291,12 @@ export default function About() {
             
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Real Estate Director</CardTitle>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-300/10 flex items-center justify-center">
+                    <Building className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-lg">Real Estate Director</CardTitle>
+                </div>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
@@ -304,7 +307,12 @@ export default function About() {
             
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Legal & Finance Team</CardTitle>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500/20 to-orange-300/10 flex items-center justify-center">
+                    <Scale className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <CardTitle className="text-lg">Legal & Finance Team</CardTitle>
+                </div>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
