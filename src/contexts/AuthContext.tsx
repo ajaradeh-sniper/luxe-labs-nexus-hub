@@ -12,6 +12,9 @@ interface AuthContextType {
   loading: boolean;
   login: (email: string, password: string) => Promise<{ error?: string }>;
   signUp: (email: string, password: string, name: string, role?: UserRole) => Promise<{ error?: string }>;
+  resetPassword: (email: string) => Promise<{ error?: string }>;
+  signInWithGoogle: () => Promise<{ error?: string }>;
+  signInWithLinkedIn: () => Promise<{ error?: string }>;
   logout: () => Promise<void>;
   hasPermission: (resource: string, permission: Permission) => boolean;
   isInitialized: boolean;
@@ -445,6 +448,101 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const resetPassword = async (email: string): Promise<{ error?: string }> => {
+    try {
+      console.log('AuthProvider: Attempting password reset for:', email);
+      const redirectUrl = `${window.location.origin}/auth`;
+      
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: redirectUrl,
+      });
+
+      if (error) {
+        console.error('AuthProvider: Reset password error:', error);
+        toast({
+          title: "Reset Failed",
+          description: error.message,
+          variant: "destructive"
+        });
+        return { error: error.message };
+      }
+
+      console.log('AuthProvider: Reset password email sent successfully');
+      toast({
+        title: "Reset Email Sent",
+        description: "Check your email for password reset instructions"
+      });
+      
+      return {};
+    } catch (error) {
+      console.error('AuthProvider: Reset password exception:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+      return { error: errorMessage };
+    }
+  };
+
+  const signInWithGoogle = async (): Promise<{ error?: string }> => {
+    try {
+      console.log('AuthProvider: Attempting Google sign-in');
+      const redirectUrl = `${window.location.origin}/`;
+      
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: redirectUrl,
+        },
+      });
+
+      if (error) {
+        console.error('AuthProvider: Google sign-in error:', error);
+        toast({
+          title: "Google Sign-In Failed",
+          description: error.message,
+          variant: "destructive"
+        });
+        return { error: error.message };
+      }
+
+      console.log('AuthProvider: Google sign-in initiated');
+      return {};
+    } catch (error) {
+      console.error('AuthProvider: Google sign-in exception:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+      return { error: errorMessage };
+    }
+  };
+
+  const signInWithLinkedIn = async (): Promise<{ error?: string }> => {
+    try {
+      console.log('AuthProvider: Attempting LinkedIn sign-in');
+      const redirectUrl = `${window.location.origin}/`;
+      
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'linkedin_oidc',
+        options: {
+          redirectTo: redirectUrl,
+        },
+      });
+
+      if (error) {
+        console.error('AuthProvider: LinkedIn sign-in error:', error);
+        toast({
+          title: "LinkedIn Sign-In Failed",
+          description: error.message,
+          variant: "destructive"
+        });
+        return { error: error.message };
+      }
+
+      console.log('AuthProvider: LinkedIn sign-in initiated');
+      return {};
+    } catch (error) {
+      console.error('AuthProvider: LinkedIn sign-in exception:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+      return { error: errorMessage };
+    }
+  };
+
   const logout = async (): Promise<void> => {
     try {
       console.log('AuthProvider: Logging out...');
@@ -519,6 +617,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       loading, 
       login, 
       signUp, 
+      resetPassword,
+      signInWithGoogle,
+      signInWithLinkedIn,
       logout, 
       hasPermission,
       isInitialized
