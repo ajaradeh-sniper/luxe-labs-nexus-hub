@@ -1,3 +1,4 @@
+import React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { DashboardLayout } from "@/components/DashboardLayout"
 import { EnhancedClientOverview } from "@/components/client/EnhancedClientOverview"
@@ -15,7 +16,7 @@ import {
   BarChart3 
 } from "lucide-react"
 
-export default function EnhancedClientDashboard() {
+const EnhancedClientDashboard: React.FC = () => {
   const { user } = useAuth()
   
   return (
@@ -82,7 +83,6 @@ export default function EnhancedClientDashboard() {
             <div className="grid gap-6">
               {/* Project Performance Analytics */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* Analytics components would go here */}
                 <div className="p-6 border rounded-lg">
                   <h3 className="font-semibold mb-4">Project Timeline Performance</h3>
                   <p className="text-muted-foreground">Visual timeline analytics and milestone tracking</p>
@@ -105,3 +105,5 @@ export default function EnhancedClientDashboard() {
     </DashboardLayout>
   )
 }
+
+export default EnhancedClientDashboard
