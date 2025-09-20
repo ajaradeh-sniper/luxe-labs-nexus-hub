@@ -48,28 +48,6 @@ export default function About() {
     }
   ];
 
-  const services = [
-    {
-      title: 'Property Acquisition',
-      description: 'Identify and secure premium properties with high growth potential',
-      features: ['Market Analysis', 'Due Diligence', 'Negotiation', 'Legal Support']
-    },
-    {
-      title: 'Luxury Renovations',
-      description: 'Transform properties into luxury assets that maximize value',
-      features: ['Design & Planning', 'Premium Materials', 'Project Management', 'Quality Assurance']
-    },
-    {
-      title: 'Investment Management',
-      description: 'End-to-end investment lifecycle management and optimization',
-      features: ['Portfolio Tracking', 'Performance Analytics', 'Risk Management', 'Exit Strategy']
-    },
-    {
-      title: 'Investor Relations',
-      description: 'Comprehensive support and communication throughout your journey',
-      features: ['Regular Updates', 'Financial Reporting', 'Market Insights', '24/7 Support']
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
@@ -190,41 +168,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">What We Do</h2>
-            <p className="text-lg text-muted-foreground">
-              Comprehensive services covering every aspect of luxury real estate investment
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription className="text-base">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Separator className="mb-4" />
-                  <div className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-primary" />
-                        <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
