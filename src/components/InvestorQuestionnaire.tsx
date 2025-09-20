@@ -8,12 +8,16 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { Trophy, Target, DollarSign, TrendingUp, MapPin, Clock } from 'lucide-react';
+import { Trophy, Target, DollarSign, TrendingUp, MapPin, Clock, User } from 'lucide-react';
 
 interface QuestionnaireData {
+  investorType: string;
+  otherDescription?: string;
   investmentExperience: string;
   riskTolerance: string;
   investmentPreference: string;
@@ -46,6 +50,22 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   const { user } = useAuth();
 
   const questions = [
+    {
+      id: 'investorType',
+      title: 'Investor Type',
+      subtitle: 'Which category best describes you?',
+      icon: <User className="w-6 h-6" />,
+      type: 'select',
+      options: [
+        { value: 'real-estate-short-term', label: 'Real Estate Investors / Short term Investors' },
+        { value: 'wealth-managers', label: 'Wealth Managers' },
+        { value: 'family-offices', label: 'Family Offices' },
+        { value: 'hnwi-vip-relocators', label: 'HNWI & VIP Dubai Relocators' },
+        { value: 'venture-capital', label: 'Venture Capital' },
+        { value: 'private-equity', label: 'Private Equity' },
+        { value: 'other', label: 'Other' }
+      ]
+    },
     {
       id: 'investmentExperience',
       title: 'Investment Experience',
@@ -228,6 +248,49 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
 
   const renderQuestion = () => {
     switch (currentQuestion.type) {
+      case 'select':
+        const selectedValue = currentAnswer as string;
+        const otherDescription = answers.otherDescription as string;
+        
+        return (
+          <div className="space-y-6">
+            <Select
+              value={selectedValue || ''}
+              onValueChange={(value) => handleAnswer(currentQuestion.id, value)}
+            >
+              <SelectTrigger className="w-full text-base p-6 bg-background border-2 border-muted hover:border-primary transition-colors">
+                <SelectValue placeholder="Select your investor type..." />
+              </SelectTrigger>
+              <SelectContent className="bg-background border-2 border-muted shadow-lg z-50">
+                {currentQuestion.options?.map((option: any) => (
+                  <SelectItem 
+                    key={option.value} 
+                    value={option.value}
+                    className="text-base p-4 hover:bg-muted focus:bg-muted cursor-pointer"
+                  >
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            
+            {selectedValue === 'other' && (
+              <div className="space-y-3">
+                <Label htmlFor="other-description" className="text-base font-medium">
+                  Please describe your investor type:
+                </Label>
+                <Textarea
+                  id="other-description"
+                  placeholder="Please provide details about your investment background and focus..."
+                  value={otherDescription || ''}
+                  onChange={(e) => handleAnswer('otherDescription', e.target.value)}
+                  className="min-h-[100px] text-base"
+                />
+              </div>
+            )}
+          </div>
+        );
+
       case 'radio':
         return (
           <RadioGroup
@@ -426,6 +489,12 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   const isCurrentStepComplete = () => {
     const answer = currentAnswer;
     if (!answer) return false;
+    
+    // For select type questions, check if "other" is selected and needs description
+    if (currentQuestion.type === 'select' && answer === 'other') {
+      const otherDescription = answers.otherDescription as string;
+      return otherDescription && otherDescription.trim().length > 0;
+    }
     
     if (currentQuestion.type === 'timeline') {
       const timelineData = answer as { fundsAvailable: string; paybackPeriod: string };
