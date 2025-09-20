@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -20,6 +20,7 @@ import {
   Handshake
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { InvestorAssessmentModal } from '@/components/modals/InvestorAssessmentModal';
 import aliJaradehStrategyImage from '@/assets/ali-jaradeh-strategy-meeting.jpg';
 import federicaDesignImage from '@/assets/federica-design-sketches.jpg';
 import teamCollaborationImage from '@/assets/team-collaboration-montage.jpg';
@@ -27,6 +28,7 @@ import palmJumeirahMarketImage from '@/assets/palm-jumeirah-market-growth.jpg';
 import conceptToRealityImage from '@/assets/concept-to-reality-villa.jpg';
 
 export default function About() {
+  const [isInvestorModalOpen, setIsInvestorModalOpen] = useState(false);
   const stats = [
     { label: 'Projects Completed', value: '150+', icon: <Building2 className="w-6 h-6" /> },
     { label: 'Happy Investors', value: '500+', icon: <Users className="w-6 h-6" /> },
@@ -80,8 +82,12 @@ export default function About() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Button asChild size="lg" className="luxury-gradient text-primary-foreground">
-              <Link to="/investor-questionnaire">Start Investing</Link>
+            <Button 
+              size="lg" 
+              className="luxury-gradient text-primary-foreground"
+              onClick={() => setIsInvestorModalOpen(true)}
+            >
+              Start Investing
             </Button>
             <Button variant="outline" size="lg" asChild>
               <Link to="/opportunities">View Opportunities</Link>
@@ -382,8 +388,12 @@ export default function About() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="luxury-gradient text-primary-foreground">
-              <Link to="/investor-questionnaire">Start Investing</Link>
+            <Button 
+              size="lg" 
+              className="luxury-gradient text-primary-foreground"
+              onClick={() => setIsInvestorModalOpen(true)}
+            >
+              Start Investing
             </Button>
             <Button variant="outline" size="lg" asChild>
               <Link to="/contact">Contact Us</Link>
@@ -391,6 +401,11 @@ export default function About() {
           </div>
         </div>
       </section>
+      
+      <InvestorAssessmentModal 
+        open={isInvestorModalOpen} 
+        onOpenChange={setIsInvestorModalOpen} 
+      />
     </div>
   );
 }
