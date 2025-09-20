@@ -248,6 +248,39 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         const sliderValue = (currentAnswer as number[]) || [currentQuestion.min || 0];
         return (
           <div className="space-y-6">
+            {/* Investment Preference Boxes */}
+            {currentQuestion.id === 'preferredInvestmentSize' && (
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold mb-4 text-center">Investment Preferences</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="p-4 border-2 border-primary/20 rounded-lg bg-gradient-to-br from-primary/5 to-primary/10 hover:border-primary/40 transition-all">
+                    <div className="text-center">
+                      <h4 className="font-semibold text-primary mb-2">Conservative</h4>
+                      <div className="text-2xl font-bold mb-2">AED 5M-15M</div>
+                      <div className="text-lg text-muted-foreground">6%-15%</div>
+                      <p className="text-sm text-muted-foreground mt-2">Lower risk, stable returns</p>
+                    </div>
+                  </div>
+                  <div className="p-4 border-2 border-secondary/20 rounded-lg bg-gradient-to-br from-secondary/5 to-secondary/10 hover:border-secondary/40 transition-all">
+                    <div className="text-center">
+                      <h4 className="font-semibold text-secondary-foreground mb-2">Moderate</h4>
+                      <div className="text-2xl font-bold mb-2">AED 15M-45M</div>
+                      <div className="text-lg text-muted-foreground">15%-30%</div>
+                      <p className="text-sm text-muted-foreground mt-2">Balanced risk and reward</p>
+                    </div>
+                  </div>
+                  <div className="p-4 border-2 border-accent/20 rounded-lg bg-gradient-to-br from-accent/5 to-accent/10 hover:border-accent/40 transition-all">
+                    <div className="text-center">
+                      <h4 className="font-semibold text-accent-foreground mb-2">Aggressive</h4>
+                      <div className="text-2xl font-bold mb-2">AED 45M+</div>
+                      <div className="text-lg text-muted-foreground">25%-60%</div>
+                      <p className="text-sm text-muted-foreground mt-2">Higher risk, premium returns</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            
             <div className="text-center">
               <div className="text-3xl font-bold text-primary mb-2">
                 {currentQuestion.format ? currentQuestion.format(sliderValue[0]) : sliderValue[0]}
