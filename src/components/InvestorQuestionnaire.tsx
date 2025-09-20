@@ -212,6 +212,28 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
 
     setIsSubmitting(true);
     try {
+      // Handle demo mode - don't try to save to database
+      if (user.id === 'demo-admin') {
+        // Store in localStorage for demo mode
+        localStorage.setItem('demo_investor_preferences', JSON.stringify({
+          user_id: user.id,
+          preferences: answers,
+          completed_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        }));
+
+        toast({
+          title: "Profile Complete!",
+          description: "Your investor profile has been saved successfully (demo mode)."
+        });
+
+        if (onComplete) {
+          onComplete(answers as QuestionnaireData);
+        }
+        return;
+      }
+
+      // Normal database save for real users
       const { error } = await supabase
         .from('investor_preferences')
         .upsert({
