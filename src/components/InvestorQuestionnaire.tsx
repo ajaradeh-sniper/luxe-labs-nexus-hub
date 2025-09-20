@@ -17,7 +17,10 @@ interface QuestionnaireData {
   investmentExperience: string;
   riskTolerance: string;
   investmentPreference: string;
-  investmentGoals: string[];
+  investmentTimeline: {
+    fundsAvailable: string;
+    paybackPeriod: string;
+  };
   preferredInvestmentSize: number;
   timeHorizon: string;
   geographicPreference: string[];
@@ -109,17 +112,29 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       max: 100000000
     },
     {
-      id: 'investmentGoals',
-      title: 'Investment Objectives',
-      subtitle: 'What are your primary investment goals?',
+      id: 'investmentTimeline',
+      title: 'Investment Timeline',
+      subtitle: 'Tell us about your funding and payback preferences',
       icon: <TrendingUp className="w-6 h-6" />,
-      type: 'checkbox',
-      options: [
-        { value: 'capital_appreciation', label: 'Capital Appreciation', description: 'Long-term property value growth' },
-        { value: 'rental_income', label: 'Rental Income', description: 'Regular monthly/annual income' },
-        { value: 'diversification', label: 'Portfolio Diversification', description: 'Spread investment risk' },
-        { value: 'tax_benefits', label: 'Tax Advantages', description: 'Optimize tax efficiency' },
-        { value: 'legacy_building', label: 'Wealth Preservation', description: 'Build generational wealth' }
+      type: 'timeline',
+      fields: [
+        {
+          id: 'fundsAvailable',
+          label: 'When can you provide funds?',
+          type: 'text',
+          placeholder: 'e.g., Immediately, Within 2 weeks, Next month'
+        },
+        {
+          id: 'paybackPeriod',
+          label: 'Preferred payback period',
+          type: 'radio',
+          options: [
+            { value: '8-12', label: '8-12 months', description: 'Short-term investment' },
+            { value: '10-15', label: '10-15 months', description: 'Medium-term investment' },
+            { value: '24', label: '24 months', description: 'Long-term investment' },
+            { value: '36', label: '36 months', description: 'Extended investment period' }
+          ]
+        }
       ]
     },
     {
@@ -340,6 +355,57 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           </div>
         );
 
+      case 'timeline':
+        const timelineData = (currentAnswer as { fundsAvailable: string; paybackPeriod: string }) || { fundsAvailable: '', paybackPeriod: '' };
+        
+        return (
+          <div className="space-y-8">
+            {currentQuestion.fields?.map((field: any) => (
+              <div key={field.id} className="space-y-4">
+                <h3 className="text-lg font-semibold">{field.label}</h3>
+                
+                {field.type === 'text' && (
+                  <Input
+                    type="text"
+                    placeholder={field.placeholder}
+                    value={timelineData[field.id as keyof typeof timelineData] || ''}
+                    onChange={(e) => handleAnswer(currentQuestion.id, {
+                      ...timelineData,
+                      [field.id]: e.target.value
+                    })}
+                    className="text-base"
+                  />
+                )}
+                
+                {field.type === 'radio' && (
+                  <RadioGroup
+                    value={timelineData[field.id as keyof typeof timelineData] || ''}
+                    onValueChange={(value) => handleAnswer(currentQuestion.id, {
+                      ...timelineData,
+                      [field.id]: value
+                    })}
+                    className="space-y-3"
+                  >
+                    {field.options?.map((option: any) => (
+                      <div key={option.value} className="flex items-start space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors">
+                        <RadioGroupItem value={option.value} id={`${field.id}-${option.value}`} className="mt-1" />
+                        <div className="flex-1">
+                          <Label htmlFor={`${field.id}-${option.value}`} className="font-medium cursor-pointer">
+                            {option.label}
+                          </Label>
+                          {option.description && (
+                            <p className="text-sm text-muted-foreground mt-1">{option.description}</p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </RadioGroup>
+                )}
+              </div>
+            ))}
+          </div>
+        );
+
       default:
         return null;
     }
@@ -348,6 +414,11 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   const isCurrentStepComplete = () => {
     const answer = currentAnswer;
     if (!answer) return false;
+    
+    if (currentQuestion.type === 'timeline') {
+      const timelineData = answer as { fundsAvailable: string; paybackPeriod: string };
+      return timelineData.fundsAvailable && timelineData.paybackPeriod;
+    }
     
     if (Array.isArray(answer)) {
       return answer.length > 0;
