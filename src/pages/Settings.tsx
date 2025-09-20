@@ -7,11 +7,10 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
-import { InvestorProfileDisplay } from "@/components/InvestorProfileDisplay"
+import { ComprehensiveProfileSection } from "@/components/ComprehensiveProfileSection"
 import { 
   Settings as SettingsIcon, 
   Save,
-  User,
   Bell,
   Shield,
   Palette,
@@ -45,77 +44,10 @@ const Settings = () => {
     <DashboardLayout>
       <div className="p-6 space-y-6">
 
-        {/* Investor Profile Assessment */}
-        <InvestorProfileDisplay />
+        {/* Comprehensive Profile Section */}
+        <ComprehensiveProfileSection />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Profile Settings */}
-          <Card className="lg:col-span-2">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <User className="h-5 w-5" />
-                Profile Information
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" defaultValue="Luxury" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" defaultValue="Labs" />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
-                <Input id="email" type="email" defaultValue="admin@luxurylabs.ae" />
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" defaultValue="+971 50 123 4567" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="role">Role</Label>
-                  <Input id="role" defaultValue="Administrator" disabled />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="bio">Bio</Label>
-                <Textarea 
-                  id="bio" 
-                  defaultValue="Leading luxury real estate transformation in Dubai with over 10 years of experience in premium property development."
-                  rows={3}
-                />
-              </div>
-              
-              <Separator />
-              
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Company Information</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="company">Company Name</Label>
-                    <Input id="company" defaultValue="Luxury Labs FZO" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="position">Position</Label>
-                    <Input id="position" defaultValue="CEO & Founder" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="address">Business Address</Label>
-                  <Input id="address" defaultValue="Dubai International Financial Centre, Dubai, UAE" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Quick Actions */}
           <Card>
             <CardHeader>
