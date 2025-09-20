@@ -21,7 +21,8 @@ import {
   User,
   Palette,
   Building,
-  Scale
+  Scale,
+  BarChart3
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { InvestorAssessmentModal } from '@/components/modals/InvestorAssessmentModal';
@@ -207,23 +208,62 @@ export default function About() {
 
 
       {/* Our Mission Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Our Mission</h2>
-          <div className="space-y-6 text-lg">
-            <p className="font-medium">Luxury Labs was founded with a clear purpose:</p>
-            <div className="space-y-4 text-muted-foreground">
-              <p>To transform Dubai's prime villas into high-return investments.</p>
-              <p>To combine world-class design with financial discipline.</p>
-              <p>To create a transparent ecosystem where investors and clients see real-time ROI tracking and progress reporting.</p>
-            </div>
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Our Mission</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Transforming Dubai's luxury real estate landscape through innovation, expertise, and unwavering commitment to excellence
+            </p>
           </div>
           
-          <div className="mt-12">
+          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+            {/* Mission Card 1 */}
+            <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <TrendingUp className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">High-Return Investments</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Transform Dubai's prime villas into exceptional investment opportunities with projected returns of 25-35% through strategic renovations and market expertise.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Mission Card 2 */}
+            <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-300/10 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Palette className="h-8 w-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">World-Class Design</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Combine cutting-edge design with financial discipline, creating luxury properties that maximize both aesthetic appeal and investment value.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Mission Card 3 */}
+            <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-300/10 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <BarChart3 className="h-8 w-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">Transparent Ecosystem</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Create complete transparency with real-time ROI tracking, progress reporting, and detailed analytics for investors and clients throughout the journey.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Featured Image */}
+          <div className="text-center">
             <img 
               src={conceptToRealityImage} 
               alt="Conceptual sketch overlaid with finished villa transformation"
-              className="w-full max-w-3xl mx-auto rounded-lg luxury-shadow"
+              className="w-full max-w-4xl mx-auto rounded-xl shadow-2xl"
             />
           </div>
         </div>
