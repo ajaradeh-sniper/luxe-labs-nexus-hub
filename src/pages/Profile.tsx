@@ -14,7 +14,8 @@ import {
   Settings as SettingsIcon,
   Bell,
   Download,
-  Lock
+  Lock,
+  UserCheck
 } from "lucide-react"
 
 const Profile = () => {
@@ -27,14 +28,21 @@ const Profile = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        {/* Page Header */}
+        {/* Page Header - Distinctive for Profile */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Profile</h1>
+            <h1 className="text-3xl font-bold flex items-center gap-3">
+              <UserCheck className="h-8 w-8 text-primary" />
+              My Profile
+            </h1>
             <p className="text-muted-foreground">
-              Manage your profile information and investment preferences
+              Manage your profile information, investment preferences, and account settings
             </p>
           </div>
+          <Button onClick={handleEditAssessment} className="flex items-center gap-2">
+            <FileEdit className="h-4 w-4" />
+            Update Assessment
+          </Button>
         </div>
 
         {/* Profile Information & Investment Assessment */}
@@ -43,12 +51,12 @@ const Profile = () => {
         {/* Quick Actions Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
-          {/* Account Actions */}
-          <Card>
+          {/* Account Security */}
+          <Card className="border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <User className="h-5 w-5" />
-                Account Actions
+                <Shield className="h-5 w-5 text-primary" />
+                Account Security
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -58,21 +66,21 @@ const Profile = () => {
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 <Shield className="mr-2 h-4 w-4" />
-                Security Settings
+                Two-Factor Authentication
               </Button>
               <Button variant="outline" className="w-full justify-start">
-                <Mail className="mr-2 h-4 w-4" />
-                Email Preferences
+                <Database className="mr-2 h-4 w-4" />
+                Login History
               </Button>
             </CardContent>
           </Card>
 
-          {/* Investment Actions */}
-          <Card>
+          {/* Investment Management */}
+          <Card className="border-l-4 border-l-green-500">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <FileEdit className="h-5 w-5" />
-                Investment Actions
+                <FileEdit className="h-5 w-5 text-green-600" />
+                Investment Management
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -82,11 +90,11 @@ const Profile = () => {
                 onClick={handleEditAssessment}
               >
                 <FileEdit className="mr-2 h-4 w-4" />
-                Update Assessment
+                Retake Assessment
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 <Download className="mr-2 h-4 w-4" />
-                Download Profile
+                Download Portfolio
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 <CreditCard className="mr-2 h-4 w-4" />
@@ -95,26 +103,26 @@ const Profile = () => {
             </CardContent>
           </Card>
 
-          {/* Settings & Data */}
-          <Card>
+          {/* Communication & Data */}
+          <Card className="border-l-4 border-l-blue-500">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <SettingsIcon className="h-5 w-5" />
-                Settings & Data
+                <Mail className="h-5 w-5 text-blue-600" />
+                Communication & Data
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <Button variant="outline" className="w-full justify-start">
+                <Mail className="mr-2 h-4 w-4" />
+                Email Preferences
+              </Button>
+              <Button variant="outline" className="w-full justify-start">
                 <Bell className="mr-2 h-4 w-4" />
-                Notifications
+                Notification Settings
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 <Database className="mr-2 h-4 w-4" />
-                Export Data
-              </Button>
-              <Button variant="outline" className="w-full justify-start">
-                <SettingsIcon className="mr-2 h-4 w-4" />
-                Advanced Settings
+                Export My Data
               </Button>
             </CardContent>
           </Card>
