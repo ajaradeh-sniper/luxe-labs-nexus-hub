@@ -350,28 +350,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Your Investment Journey?</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Join hundreds of investors who trust Luxury Labs with their real estate investments.
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button 
-              size="lg" 
-              className="luxury-gradient text-primary-foreground"
-              onClick={() => setIsInvestorModalOpen(true)}
-            >
-              Start Investing
-            </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link to="/contact">Contact Us</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
 
       {/* Why Dubai Section */}
       <section className="py-20 px-4">
@@ -400,6 +378,29 @@ export default function About() {
               Luxury Labs is positioned at the heart of this growth, leveraging local knowledge 
               and global design expertise to deliver investor success.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Start Your Investment Journey?</h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            Join hundreds of investors who trust Luxury Labs with their real estate investments.
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button 
+              size="lg" 
+              className="luxury-gradient text-primary-foreground"
+              onClick={() => setIsInvestorModalOpen(true)}
+            >
+              Start Investing
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <Link to="/contact">Contact Us</Link>
+            </Button>
           </div>
         </div>
       </section>
