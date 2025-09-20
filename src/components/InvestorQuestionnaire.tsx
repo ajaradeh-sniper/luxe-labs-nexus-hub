@@ -120,9 +120,11 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       fields: [
         {
           id: 'fundsAvailable',
-          label: 'When can you provide funds?',
-          type: 'text',
-          placeholder: 'e.g., Immediately, Within 2 weeks, Next month'
+          label: 'When can you provide funds? (in days)',
+          type: 'number',
+          placeholder: 'Enter number of days (1-365)',
+          min: 1,
+          max: 365
         },
         {
           id: 'paybackPeriod',
@@ -375,6 +377,27 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
                     })}
                     className="text-base"
                   />
+                )}
+                
+                {field.type === 'number' && (
+                  <div className="space-y-3">
+                    <Input
+                      type="number"
+                      placeholder={field.placeholder}
+                      value={timelineData[field.id as keyof typeof timelineData] || ''}
+                      onChange={(e) => handleAnswer(currentQuestion.id, {
+                        ...timelineData,
+                        [field.id]: e.target.value
+                      })}
+                      min={field.min}
+                      max={field.max}
+                      className="text-base"
+                    />
+                    <div className="flex justify-between text-sm text-muted-foreground">
+                      <span>Min: {field.min} day{field.min !== 1 ? 's' : ''}</span>
+                      <span>Max: {field.max} days</span>
+                    </div>
+                  </div>
                 )}
                 
                 {field.type === 'radio' && (
