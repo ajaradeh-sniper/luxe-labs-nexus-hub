@@ -146,6 +146,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       icon: <MapPin className="w-6 h-6" />,
       type: 'checkbox',
       options: [
+        { value: 'highest_roi', label: "I don't care about location", description: 'As long as highest ROI' },
         { value: 'downtown', label: 'Downtown Dubai', description: 'City center, business district' },
         { value: 'marina', label: 'Dubai Marina', description: 'Waterfront luxury living' },
         { value: 'palm', label: 'Palm Jumeirah', description: 'Iconic man-made island' },
