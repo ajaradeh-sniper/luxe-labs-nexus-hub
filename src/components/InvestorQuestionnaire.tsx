@@ -28,6 +28,8 @@ interface QuestionnaireData {
   preferredInvestmentSize: number;
   timeHorizon: string;
   geographicPreference: string[];
+  involvementPreference: string;
+  investmentTypePreference: string;
   propertyTypes: string[];
   expectedReturns: string;
   liquidityPreference: string;
