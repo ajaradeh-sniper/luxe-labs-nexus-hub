@@ -20,7 +20,11 @@ import {
   Mail,
   Phone,
   MapPin,
-  Building2
+  Building2,
+  Key,
+  Link,
+  Eye,
+  EyeOff
 } from "lucide-react"
 
 const Settings = () => {
@@ -39,6 +43,44 @@ const Settings = () => {
     dataSharing: false,
     twoFactorAuth: false
   })
+
+  const [passwords, setPasswords] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  })
+
+  const [showPasswords, setShowPasswords] = useState({
+    current: false,
+    new: false,
+    confirm: false
+  })
+
+  const [connectedAccounts, setConnectedAccounts] = useState({
+    google: false,
+    linkedin: false
+  })
+
+  const handlePasswordChange = (field: string, value: string) => {
+    setPasswords(prev => ({ ...prev, [field]: value }))
+  }
+
+  const handleChangePassword = () => {
+    // TODO: Implement password change logic
+    console.log('Changing password...')
+  }
+
+  const handleConnectAccount = (provider: string) => {
+    // TODO: Implement OAuth connection logic
+    console.log(`Connecting to ${provider}...`)
+    setConnectedAccounts(prev => ({ ...prev, [provider]: true }))
+  }
+
+  const handleDisconnectAccount = (provider: string) => {
+    // TODO: Implement OAuth disconnection logic
+    console.log(`Disconnecting from ${provider}...`)
+    setConnectedAccounts(prev => ({ ...prev, [provider]: false }))
+  }
 
   return (
     <DashboardLayout>
@@ -138,6 +180,160 @@ const Settings = () => {
                     <Input id="quiet-hours-end" type="time" defaultValue="08:00" />
                   </div>
                 </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Change Password */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Key className="h-5 w-5" />
+              Change Password
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4 max-w-md">
+              <div className="space-y-2">
+                <Label htmlFor="current-password">Current Password</Label>
+                <div className="relative">
+                  <Input
+                    id="current-password"
+                    type={showPasswords.current ? "text" : "password"}
+                    value={passwords.currentPassword}
+                    onChange={(e) => handlePasswordChange('currentPassword', e.target.value)}
+                    placeholder="Enter current password"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 h-6 w-6"
+                    onClick={() => setShowPasswords(prev => ({ ...prev, current: !prev.current }))}
+                  >
+                    {showPasswords.current ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="new-password">New Password</Label>
+                <div className="relative">
+                  <Input
+                    id="new-password"
+                    type={showPasswords.new ? "text" : "password"}
+                    value={passwords.newPassword}
+                    onChange={(e) => handlePasswordChange('newPassword', e.target.value)}
+                    placeholder="Enter new password"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 h-6 w-6"
+                    onClick={() => setShowPasswords(prev => ({ ...prev, new: !prev.new }))}
+                  >
+                    {showPasswords.new ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="confirm-password">Confirm New Password</Label>
+                <div className="relative">
+                  <Input
+                    id="confirm-password"
+                    type={showPasswords.confirm ? "text" : "password"}
+                    value={passwords.confirmPassword}
+                    onChange={(e) => handlePasswordChange('confirmPassword', e.target.value)}
+                    placeholder="Confirm new password"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 h-6 w-6"
+                    onClick={() => setShowPasswords(prev => ({ ...prev, confirm: !prev.confirm }))}
+                  >
+                    {showPasswords.confirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </Button>
+                </div>
+              </div>
+              
+              <Button onClick={handleChangePassword} className="w-full">
+                Update Password
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Connected Accounts */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Link className="h-5 w-5" />
+              Connected Accounts
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-muted-foreground">
+                Link your accounts for easier sign-in and data synchronization
+              </p>
+              
+              {/* Google Account */}
+              <div className="flex items-center justify-between p-4 border border-border rounded-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    G
+                  </div>
+                  <div>
+                    <h3 className="font-medium">Google</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {connectedAccounts.google ? 'Connected' : 'Connect your Google account'}
+                    </p>
+                  </div>
+                </div>
+                {connectedAccounts.google ? (
+                  <Button 
+                    variant="outline" 
+                    onClick={() => handleDisconnectAccount('google')}
+                  >
+                    Disconnect
+                  </Button>
+                ) : (
+                  <Button onClick={() => handleConnectAccount('google')}>
+                    Connect
+                  </Button>
+                )}
+              </div>
+              
+              {/* LinkedIn Account */}
+              <div className="flex items-center justify-between p-4 border border-border rounded-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    in
+                  </div>
+                  <div>
+                    <h3 className="font-medium">LinkedIn</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {connectedAccounts.linkedin ? 'Connected' : 'Connect your LinkedIn account'}
+                    </p>
+                  </div>
+                </div>
+                {connectedAccounts.linkedin ? (
+                  <Button 
+                    variant="outline" 
+                    onClick={() => handleDisconnectAccount('linkedin')}
+                  >
+                    Disconnect
+                  </Button>
+                ) : (
+                  <Button onClick={() => handleConnectAccount('linkedin')}>
+                    Connect
+                  </Button>
+                )}
               </div>
             </div>
           </CardContent>
