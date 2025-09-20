@@ -272,7 +272,7 @@ export default function About() {
       {/* Founders & Team Section */}
       <section className="py-20 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Founders & Team</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Team</h2>
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card>
