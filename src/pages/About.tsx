@@ -316,36 +316,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Why Dubai Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Dubai</h2>
-          
-          <div className="text-center mb-8">
-            <p className="text-xl font-medium mb-6">Dubai is the world's luxury property capital:</p>
-            <div className="space-y-4 text-lg text-muted-foreground">
-              <p>19.9% YoY growth in luxury villa prices (2024).</p>
-              <p>High demand from HNWIs relocating for tax-free returns and lifestyle.</p>
-              <p>Global investors from Europe, GCC, and Asia targeting Palm Jumeirah, Dubai Marina, Emirates Hills.</p>
-            </div>
-          </div>
-          
-          <div className="mb-8">
-            <img 
-              src={palmJumeirahMarketImage} 
-              alt="Aerial view of Palm Jumeirah with market growth chart overlay"
-              className="w-full rounded-lg luxury-shadow"
-            />
-          </div>
-          
-          <div className="text-center">
-            <p className="text-lg text-muted-foreground">
-              Luxury Labs is positioned at the heart of this growth, leveraging local knowledge 
-              and global design expertise to deliver investor success.
-            </p>
-          </div>
-        </div>
-      </section>
 
 
       {/* Values Section */}
@@ -399,6 +369,37 @@ export default function About() {
             <Button variant="outline" size="lg" asChild>
               <Link to="/contact">Contact Us</Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Dubai Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Why Dubai</h2>
+          
+          <div className="text-center mb-8">
+            <p className="text-xl font-medium mb-6">Dubai is the world's luxury property capital:</p>
+            <div className="space-y-4 text-lg text-muted-foreground">
+              <p>19.9% YoY growth in luxury villa prices (2024).</p>
+              <p>High demand from HNWIs relocating for tax-free returns and lifestyle.</p>
+              <p>Global investors from Europe, GCC, and Asia targeting Palm Jumeirah, Dubai Marina, Emirates Hills.</p>
+            </div>
+          </div>
+          
+          <div className="mb-8">
+            <img 
+              src={palmJumeirahMarketImage} 
+              alt="Aerial view of Palm Jumeirah with market growth chart overlay"
+              className="w-full rounded-lg luxury-shadow"
+            />
+          </div>
+          
+          <div className="text-center">
+            <p className="text-lg text-muted-foreground">
+              Luxury Labs is positioned at the heart of this growth, leveraging local knowledge 
+              and global design expertise to deliver investor success.
+            </p>
           </div>
         </div>
       </section>
