@@ -384,6 +384,14 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           }
           return `AED ${value.toLocaleString()}`;
         };
+
+        const formatUSDCurrency = (aedValue: number) => {
+          const usdValue = aedValue / 3.67;
+          if (usdValue >= 1000000) {
+            return `USD ${(usdValue / 1000000).toFixed(1)}M`;
+          }
+          return `USD ${usdValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
+        };
         
         return (
           <div className="space-y-6">
@@ -391,7 +399,15 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
               <div className="text-3xl font-bold text-primary mb-2">
                 {numberValue ? formatCurrency(numberValue) : 'Enter Amount'}
               </div>
+              {numberValue > 0 && (
+                <div className="text-xl font-semibold text-muted-foreground mb-2">
+                  ≈ {formatUSDCurrency(numberValue)}
+                </div>
+              )}
               <p className="text-muted-foreground">Enter your preferred investment amount</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Conversion rate: 3.67 AED = 1 USD
+              </p>
             </div>
             <Input
               type="number"
