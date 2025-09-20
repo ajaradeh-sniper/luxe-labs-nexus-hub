@@ -401,7 +401,7 @@ const Services = () => {
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">What We Do</h2>
+              <h2 className="text-3xl font-bold mb-4">End to End Transformation</h2>
               <p className="text-lg text-muted-foreground">
                 Comprehensive services covering every aspect of luxury real estate investment
               </p>
