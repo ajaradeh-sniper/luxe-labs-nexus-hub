@@ -154,18 +154,6 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         { value: 'business_bay', label: 'Business Bay', description: 'Commercial and residential hub' },
         { value: 'difc', label: 'DIFC', description: 'Financial district' }
       ]
-    },
-    {
-      id: 'timeHorizon',
-      title: 'Investment Timeline',
-      subtitle: 'What is your expected holding period?',
-      icon: <Clock className="w-6 h-6" />,
-      type: 'radio',
-      options: [
-        { value: 'short', label: '1-3 years', description: 'Quick turnaround, flipping focus' },
-        { value: 'medium', label: '3-7 years', description: 'Medium-term appreciation' },
-        { value: 'long', label: '7+ years', description: 'Long-term wealth building' }
-      ]
     }
   ];
 
