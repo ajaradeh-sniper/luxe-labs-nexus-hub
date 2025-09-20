@@ -68,6 +68,7 @@ import Media from "./pages/Media"
 import Partners from "./pages/Partners"
 import Investors from "./pages/Investors"
 import Contact from "./pages/Contact"
+import Profile from "./pages/Profile"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -281,6 +282,12 @@ function App() {
           <Route path="/notifications" element={
             <SmartProtectedRoute>
               <Notifications />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/profile" element={
+            <SmartProtectedRoute>
+              <Profile />
             </SmartProtectedRoute>
           } />
           

@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
-import { ComprehensiveProfileSection } from "@/components/ComprehensiveProfileSection"
+
 import { 
   Settings as SettingsIcon, 
   Save,
@@ -43,36 +43,18 @@ const Settings = () => {
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-
-        {/* Comprehensive Profile Section */}
-        <ComprehensiveProfileSection />
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Quick Actions */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <Button variant="outline" className="w-full justify-start">
-                <Mail className="mr-2 h-4 w-4" />
-                Change Password
-              </Button>
-              <Button variant="outline" className="w-full justify-start">
-                <Shield className="mr-2 h-4 w-4" />
-                Security Settings
-              </Button>
-              <Button variant="outline" className="w-full justify-start">
-                <CreditCard className="mr-2 h-4 w-4" />
-                Billing Information
-              </Button>
-              <Button variant="outline" className="w-full justify-start">
-                <Database className="mr-2 h-4 w-4" />
-                Export Data
-              </Button>
-            </CardContent>
-          </Card>
+        {/* Page Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold">Settings</h1>
+            <p className="text-muted-foreground">
+              Manage your preferences and application settings
+            </p>
+          </div>
         </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Notification Settings */}
 
         {/* Notification Settings */}
         <Card>
@@ -337,6 +319,7 @@ const Settings = () => {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     </DashboardLayout>
   )
