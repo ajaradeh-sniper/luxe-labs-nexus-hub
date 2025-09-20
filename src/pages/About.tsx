@@ -65,21 +65,20 @@ export default function About() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen bg-background">
       <Navigation />
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${conceptToRealityImage})` }}>
-        <div className="max-w-6xl mx-auto text-center">
-          <Badge variant="outline" className="mb-4">
-            <Globe className="w-4 h-4 mr-2" />
-            Dubai's Premier Investment Platform
-          </Badge>
-          
-          <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
-            Luxury Labs
-          </h1>
-          
-          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+      <section className="relative h-96 flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${conceptToRealityImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+        </div>
+        
+        <div className="relative container mx-auto px-4 text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 font-playfair">Luxury Labs</h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
             Transforming Dubai's luxury real estate landscape through strategic investments, 
             premium renovations, and data-driven decision making. We create exceptional 
             returns for our investors while delivering world-class properties.
@@ -101,7 +100,7 @@ export default function About() {
       </section>
 
       {/* Our Edge Section */}
-      <section className="py-20 px-4 bg-muted/30">
+      <section className="py-20 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Our Edge</h2>
           
@@ -231,7 +230,7 @@ export default function About() {
       </section>
 
       {/* Founders & Team Section */}
-      <section className="py-20 px-4 bg-muted/30">
+      <section className="py-20 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Founders & Team</h2>
           
@@ -327,7 +326,7 @@ export default function About() {
 
 
       {/* Values Section */}
-      <section className="py-20 px-4 bg-muted/30">
+      <section className="py-20 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Our Values</h2>
