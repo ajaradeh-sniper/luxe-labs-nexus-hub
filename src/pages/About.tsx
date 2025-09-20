@@ -94,7 +94,7 @@ export default function About() {
               Start Investing
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link to="/opportunities">View Opportunities</Link>
+              <Link to="/contact">Contact Us</Link>
             </Button>
           </div>
         </div>
