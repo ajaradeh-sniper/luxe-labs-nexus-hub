@@ -7,6 +7,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
@@ -17,7 +18,7 @@ interface QuestionnaireData {
   riskTolerance: string;
   investmentPreference: string;
   investmentGoals: string[];
-  preferredInvestmentSize: number[];
+  preferredInvestmentSize: number;
   timeHorizon: string;
   geographicPreference: string[];
   propertyTypes: string[];
@@ -100,13 +101,12 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
     {
       id: 'preferredInvestmentSize',
       title: 'Investment Capacity',
-      subtitle: 'What is your preferred investment range?',
+      subtitle: 'Enter your preferred investment amount in AED',
       icon: <DollarSign className="w-6 h-6" />,
-      type: 'slider',
+      type: 'number',
+      placeholder: 'Enter amount in AED (e.g., 5000000)',
       min: 100000,
-      max: 10000000,
-      step: 100000,
-      format: (value: number) => `AED ${(value / 1000000).toFixed(1)}M`
+      max: 100000000
     },
     {
       id: 'investmentGoals',
@@ -307,27 +307,35 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           </div>
         );
 
-      case 'slider':
-        const sliderValue = (currentAnswer as number[]) || [currentQuestion.min || 0];
+      case 'number':
+        const numberValue = (typeof currentAnswer === 'number') ? currentAnswer : 0;
+        const formatCurrency = (value: number) => {
+          if (value >= 1000000) {
+            return `AED ${(value / 1000000).toFixed(1)}M`;
+          }
+          return `AED ${value.toLocaleString()}`;
+        };
+        
         return (
           <div className="space-y-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-primary mb-2">
-                {currentQuestion.format ? currentQuestion.format(sliderValue[0]) : sliderValue[0]}
+                {numberValue ? formatCurrency(numberValue) : 'Enter Amount'}
               </div>
-              <p className="text-muted-foreground">Drag to adjust your preferred investment amount</p>
+              <p className="text-muted-foreground">Enter your preferred investment amount</p>
             </div>
-            <Slider
-              value={sliderValue}
-              onValueChange={(value) => handleAnswer(currentQuestion.id, value)}
+            <Input
+              type="number"
+              placeholder={currentQuestion.placeholder}
+              value={numberValue || ''}
+              onChange={(e) => handleAnswer(currentQuestion.id, parseInt(e.target.value) || 0)}
               min={currentQuestion.min}
               max={currentQuestion.max}
-              step={currentQuestion.step}
-              className="mt-6"
+              className="text-center text-lg"
             />
             <div className="flex justify-between text-sm text-muted-foreground">
-              <span>{currentQuestion.format ? currentQuestion.format(currentQuestion.min!) : currentQuestion.min}</span>
-              <span>{currentQuestion.format ? currentQuestion.format(currentQuestion.max!) : currentQuestion.max}</span>
+              <span>Min: AED {currentQuestion.min?.toLocaleString()}</span>
+              <span>Max: AED {currentQuestion.max?.toLocaleString()}</span>
             </div>
           </div>
         );
