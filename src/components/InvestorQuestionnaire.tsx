@@ -182,10 +182,30 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       icon: <User className="w-6 h-6" />,
       type: 'radio',
       options: [
-        { value: 'no_involvement', label: 'No Involvement', description: 'Just financial payback and monthly updates and project monitoring' },
-        { value: 'support_luxury_labs', label: 'Support Luxury Labs', description: 'Selection of property options, selection of design options, monthly updates and project monitoring' },
-        { value: 'full_involvement', label: 'Full Involvement', description: 'Selection of property, selection of design, project management' },
-        { value: 'other', label: 'Other', description: 'Please specify your preference' }
+        { 
+          value: 'no_involvement', 
+          label: 'No Involvement', 
+          description: 'Just financial payback and monthly updates and project monitoring',
+          details: 'Perfect for busy investors who prefer passive involvement. You receive comprehensive monthly reports with financial updates, project photos, timeline progress, and milestone achievements. No decision-making required from your side.'
+        },
+        { 
+          value: 'support_luxury_labs', 
+          label: 'Support Luxury Labs', 
+          description: 'Selection of property options, selection of design options, monthly updates and project monitoring',
+          details: 'Ideal for investors who want strategic input without daily management. You participate in key decisions like property selection from curated options and approve major design choices. Includes all reporting benefits plus consultation calls.'
+        },
+        { 
+          value: 'full_involvement', 
+          label: 'Full Involvement', 
+          description: 'Selection of property, selection of design, project management',
+          details: 'For hands-on investors who want complete control. You participate in property sourcing, design development, contractor selection, timeline management, and all major project decisions. Includes weekly calls and real-time project access.'
+        },
+        { 
+          value: 'other', 
+          label: 'Other', 
+          description: 'Please specify your preferred involvement level',
+          details: 'Describe your custom involvement preferences. We can create a tailored engagement model that fits your specific needs and time availability.'
+        }
       ]
     },
     {
@@ -195,11 +215,36 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       icon: <Building className="w-6 h-6" />,
       type: 'radio',
       options: [
-        { value: 'uae_title_deed', label: 'In UAE - Name on Title Deed', description: 'Direct ownership with your name on the property title' },
-        { value: 'uae_spv_cayman', label: 'In UAE - Joint Venture - SPV (Cayman Island)', description: 'Investment through Special Purpose Vehicle structure' },
-        { value: 'outside_uae_title_deed', label: 'Outside UAE - Name on Title Deed', description: 'Direct ownership outside UAE with title deed' },
-        { value: 'outside_uae_spv_cayman', label: 'Outside UAE - Joint Venture - SPV (Cayman Island)', description: 'International investment through SPV structure' },
-        { value: 'other', label: 'Other', description: 'Please specify your preferred investment type' }
+        { 
+          value: 'uae_title_deed', 
+          label: 'In UAE - Name on Title Deed', 
+          description: 'Direct ownership with your name on the property title',
+          details: 'You hold direct legal ownership of the property in Dubai. Your name appears on the official title deed. Suitable for amounts above AED 1M. Provides maximum ownership rights and potential for independent future decisions.'
+        },
+        { 
+          value: 'uae_spv_cayman', 
+          label: 'In UAE - Joint Venture - SPV (Cayman Island)', 
+          description: 'Investment through Special Purpose Vehicle structure',
+          details: 'Investment through a Cayman Islands SPV that owns the Dubai property. Offers tax optimization, limited liability protection, and professional fund management. Minimum investment typically AED 500K. Ideal for institutional or high-net-worth investors.'
+        },
+        { 
+          value: 'outside_uae_title_deed', 
+          label: 'Outside UAE - Name on Title Deed', 
+          description: 'Direct ownership outside UAE with title deed',
+          details: 'Direct property ownership in international markets like UK, Portugal, or other approved jurisdictions. Your name on the title deed with full ownership rights. Minimum investments vary by market (typically £200K-£500K+).'
+        },
+        { 
+          value: 'outside_uae_spv_cayman', 
+          label: 'Outside UAE - Joint Venture - SPV (Cayman Island)', 
+          description: 'International investment through SPV structure',
+          details: 'SPV-based investment in international real estate markets. Provides diversification, professional management, and tax efficiency. Suitable for multi-property portfolios and institutional-grade investments. Minimum typically $250K USD.'
+        },
+        { 
+          value: 'other', 
+          label: 'Other', 
+          description: 'Please specify your preferred investment structure',
+          details: 'Describe your specific investment structure requirements. We can explore alternative structures like REITs, property funds, or custom arrangements based on your jurisdiction and preferences.'
+        }
       ]
     }
   ];
@@ -356,6 +401,11 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
                   </Label>
                   {option.description && (
                     <p className="text-sm text-muted-foreground mt-1">{option.description}</p>
+                  )}
+                  {option.details && (
+                    <div className="text-xs text-muted-foreground mt-2 pl-2 border-l-2 border-muted">
+                      {option.details}
+                    </div>
                   )}
                 </div>
               </div>
