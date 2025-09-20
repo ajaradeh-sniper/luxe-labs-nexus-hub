@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp, PiggyBank, Eye } from "lucide-react";
+import { InvestorAssessmentModal } from "@/components/modals/InvestorAssessmentModal";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
 import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
 import flippingDubaiLogo from "/lovable-uploads/d2dfa4c3-7fd3-40db-af51-ad041d2b2ce2.png";
@@ -49,6 +50,7 @@ export default function Landing() {
   const [showConsultingDropdown, setShowConsultingDropdown] = useState(false);
   const [showTransformDropdown, setShowTransformDropdown] = useState(false);
   const [showServiceDetails, setShowServiceDetails] = useState(false);
+  const [showInvestorAssessment, setShowInvestorAssessment] = useState(false);
 
   // Service data from Services page
   const investmentServices = [
@@ -231,7 +233,7 @@ export default function Landing() {
                   
                   <Button 
                     className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
-                    onClick={() => window.location.href = '/investor-questionnaire'}
+                    onClick={() => setShowInvestorAssessment(true)}
                   >
                     Start Investor Assessment
                     <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -1186,5 +1188,11 @@ export default function Landing() {
           </div>
         </div>
       </footer>
+
+      {/* Investor Assessment Modal */}
+      <InvestorAssessmentModal 
+        open={showInvestorAssessment}
+        onOpenChange={setShowInvestorAssessment}
+      />
     </div>;
 }
