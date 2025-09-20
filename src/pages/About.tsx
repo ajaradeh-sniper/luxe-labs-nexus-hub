@@ -165,7 +165,7 @@ export default function About() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 hidden">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Our Story</h2>
