@@ -65,7 +65,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         { value: 'hnwi-vip-relocators', label: 'HNWI & VIP Dubai Relocators' },
         { value: 'venture-capital', label: 'Venture Capital' },
         { value: 'private-equity', label: 'Private Equity' },
-        { value: 'other', label: 'Other' }
+        { value: 'other', label: 'Skip - Let\'s discuss later' }
       ]
     },
     {
@@ -198,9 +198,9 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         },
         { 
           value: 'other', 
-          label: 'Other', 
-          description: 'Please specify your preferred involvement level',
-          details: 'Describe your custom involvement preferences. We can create a tailored engagement model that fits your specific needs and time availability.'
+          label: 'Skip - Let\'s discuss later', 
+          description: 'We can customize your involvement level during our consultation',
+          details: 'We\'ll discuss your custom involvement preferences during our initial consultation. We can create a tailored engagement model that fits your specific needs and time availability.'
         }
       ]
     },
@@ -237,9 +237,9 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         },
         { 
           value: 'other', 
-          label: 'Other', 
-          description: 'Please specify your preferred investment structure',
-          details: 'Describe your specific investment structure requirements. We can explore alternative structures like REITs, property funds, or custom arrangements based on your jurisdiction and preferences.'
+          label: 'Skip - Let\'s discuss later', 
+          description: 'We can explore structure options during our consultation',
+          details: 'We\'ll discuss your specific investment structure requirements during our consultation. We can explore alternative structures like REITs, property funds, or custom arrangements based on your jurisdiction and preferences.'
         }
       ]
     }
