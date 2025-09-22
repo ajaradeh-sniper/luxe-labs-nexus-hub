@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ContactModal } from "@/components/modals/ContactModal"
+import { InvestorAssessmentModal } from "@/components/modals/InvestorAssessmentModal"
 import { 
   TrendingUp, 
   Users,
@@ -46,6 +47,7 @@ import alBarariVilla from "@/assets/al-barari-villa-hd.jpg"
 
 const Services = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isAssessmentModalOpen, setIsAssessmentModalOpen] = useState(false);
   const investmentServices = [
     {
       id: 'single-property',
@@ -286,9 +288,9 @@ const Services = () => {
                     <div className="flex gap-2">
                       <Button 
                         variant={service.buttons[0] === 'Coming Soon' ? 'secondary' : 'luxury'} 
-                        onClick={() => setIsContactModalOpen(true)}
+                        onClick={() => service.buttons[0] === 'Coming Soon' ? setIsContactModalOpen(true) : setIsAssessmentModalOpen(true)}
                       >
-                        Contact Us
+                        {service.buttons[0] === 'Coming Soon' ? 'Contact Us' : 'Investor Profile Assessment'}
                       </Button>
                       <Button variant="outline" onClick={() => setIsContactModalOpen(true)}>
                         Contact Us
@@ -467,6 +469,10 @@ const Services = () => {
       <ContactModal 
         open={isContactModalOpen} 
         onOpenChange={setIsContactModalOpen} 
+      />
+      <InvestorAssessmentModal 
+        open={isAssessmentModalOpen} 
+        onOpenChange={setIsAssessmentModalOpen} 
       />
     </>
   )
