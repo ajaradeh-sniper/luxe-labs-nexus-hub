@@ -1,8 +1,10 @@
+import { useState } from "react"
 import { Helmet } from "react-helmet-async"
 import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { ContactModal } from "@/components/modals/ContactModal"
 import { 
   TrendingUp, 
   Users,
@@ -43,6 +45,7 @@ import jumeirahGolfEstateVilla from "@/assets/jumeirah-golf-estate-villa-hd.jpg"
 import alBarariVilla from "@/assets/al-barari-villa-hd.jpg"
 
 const Services = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const investmentServices = [
     {
       id: 'single-property',
@@ -233,12 +236,12 @@ const Services = () => {
                 From curated villa investments and world-class renovations to luxury advisory and global media exposure — Luxury Labs is your partner for high-ROI Dubai property transformation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" onClick={() => window.location.href = '/contact'}>
-                  Compare Options
+                <Button size="lg" onClick={() => setIsContactModalOpen(true)}>
+                  Contact Us
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button variant="outline" size="lg" onClick={() => window.location.href = '/contact'}>
-                  Start Your Journey
+                <Button variant="outline" size="lg" onClick={() => setIsContactModalOpen(true)}>
+                  Contact Us
                 </Button>
               </div>
             </div>
@@ -283,12 +286,12 @@ const Services = () => {
                     <div className="flex gap-2">
                       <Button 
                         variant={service.buttons[0] === 'Coming Soon' ? 'secondary' : 'luxury'} 
-                        onClick={() => window.location.href = '/contact'}
+                        onClick={() => setIsContactModalOpen(true)}
                       >
-                        {service.buttons[0]}
+                        Contact Us
                       </Button>
-                      <Button variant="outline" onClick={() => window.location.href = '/contact'}>
-                        {service.buttons[1]}
+                      <Button variant="outline" onClick={() => setIsContactModalOpen(true)}>
+                        Contact Us
                       </Button>
                     </div>
                   </CardContent>
@@ -334,11 +337,11 @@ const Services = () => {
                       ))}
                     </ul>
                     <div className="flex gap-2">
-                      <Button onClick={() => window.location.href = '/contact'}>
-                        {service.buttons[0]}
+                      <Button onClick={() => setIsContactModalOpen(true)}>
+                        Contact Us
                       </Button>
-                      <Button variant="outline" onClick={() => window.location.href = '/contact'}>
-                        {service.buttons[1]}
+                      <Button variant="outline" onClick={() => setIsContactModalOpen(true)}>
+                        Contact Us
                       </Button>
                     </div>
                   </CardContent>
@@ -449,17 +452,22 @@ const Services = () => {
               From villa flips to lifestyle concierge — Luxury Labs is Dubai's full-service property transformation platform.
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" onClick={() => window.location.href = '/contact'}>
-                Get Started
+              <Button size="lg" onClick={() => setIsContactModalOpen(true)}>
+                Contact Us 
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" onClick={() => window.location.href = '/contact'}>
-                Book a Call
+              <Button variant="outline" size="lg" onClick={() => setIsContactModalOpen(true)}>
+                Contact Us
               </Button>
             </div>
           </div>
         </section>
       </div>
+
+      <ContactModal 
+        open={isContactModalOpen} 
+        onOpenChange={setIsContactModalOpen} 
+      />
     </>
   )
 }
