@@ -13,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { Trophy, DollarSign, TrendingUp, MapPin, Clock, User, Building, Crown, Diamond, Gem, Star, Sparkles, Award, Shield, Zap } from 'lucide-react';
+import { Trophy, DollarSign, TrendingUp, MapPin, Clock, User, Building, Crown, Diamond, Gem, Star, Sparkles, Award, Shield, Zap, ArrowUpDown } from 'lucide-react';
 
 interface QuestionnaireData {
   investorType: string;
@@ -47,6 +47,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Partial<QuestionnaireData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isUSDInput, setIsUSDInput] = useState(false); // Track currency input mode
   const { toast } = useToast();
   const { user } = useAuth();
 
@@ -516,11 +517,12 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
 
       case 'number':
         const numberValue = (typeof currentAnswer === 'number') ? currentAnswer : 0;
-        const formatCurrency = (value: number) => {
-          if (value >= 1000000) {
-            return `AED ${(value / 1000000).toFixed(1)}M`;
+        
+        const formatAEDCurrency = (aedValue: number) => {
+          if (aedValue >= 1000000) {
+            return `AED ${(aedValue / 1000000).toFixed(1)}M`;
           }
-          return `AED ${value.toLocaleString()}`;
+          return `AED ${aedValue.toLocaleString()}`;
         };
 
         const formatUSDCurrency = (aedValue: number) => {
@@ -530,16 +532,84 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           }
           return `USD ${usdValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
         };
+
+        const formatUSDCurrencyDirect = (usdValue: number) => {
+          if (usdValue >= 1000000) {
+            return `USD ${(usdValue / 1000000).toFixed(1)}M`;
+          }
+          return `USD ${usdValue.toLocaleString()}`;
+        };
+
+        const formatAEDFromUSD = (usdValue: number) => {
+          const aedValue = usdValue * 3.67;
+          if (aedValue >= 1000000) {
+            return `AED ${(aedValue / 1000000).toFixed(1)}M`;
+          }
+          return `AED ${aedValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
+        };
+
+        const getDisplayValue = () => {
+          if (!numberValue) return 'Enter Amount';
+          return isUSDInput ? formatUSDCurrencyDirect(numberValue / 3.67) : formatAEDCurrency(numberValue);
+        };
+
+        const getConversionValue = () => {
+          if (!numberValue) return '';
+          return isUSDInput ? formatAEDCurrency(numberValue) : formatUSDCurrency(numberValue);
+        };
+
+        const handleCurrencySwap = () => {
+          setIsUSDInput(!isUSDInput);
+        };
+
+        const handleNumberInput = (value: string) => {
+          const inputValue = parseInt(value) || 0;
+          // Always store as AED in the backend
+          const aedValue = isUSDInput ? inputValue * 3.67 : inputValue;
+          handleAnswer(currentQuestion.id, aedValue);
+        };
+
+        const getInputValue = () => {
+          if (!numberValue) return '';
+          return isUSDInput ? Math.round(numberValue / 3.67) : numberValue;
+        };
+
+        const getPlaceholder = () => {
+          return isUSDInput ? 'Enter amount in USD (e.g., 1000000)' : 'Enter amount in AED (e.g., 5000000)';
+        };
+
+        const getMinMax = () => {
+          if (isUSDInput) {
+            return {
+              min: Math.round((currentQuestion.min || 0) / 3.67),
+              max: Math.round((currentQuestion.max || 0) / 3.67)
+            };
+          }
+          return {
+            min: currentQuestion.min || 0,
+            max: currentQuestion.max || 0
+          };
+        };
         
         return (
           <div className="space-y-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">
-                {numberValue ? formatCurrency(numberValue) : 'Enter Amount'}
+            <div className="text-center relative">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="text-3xl font-bold text-primary">
+                  {getDisplayValue()}
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCurrencySwap}
+                  className="p-2 h-10 w-10 rounded-full hover:bg-primary/10 hover:border-primary transition-all duration-200"
+                >
+                  <ArrowUpDown className="h-4 w-4" />
+                </Button>
               </div>
               {numberValue > 0 && (
                 <div className="text-xl font-semibold text-muted-foreground mb-2">
-                  ≈ {formatUSDCurrency(numberValue)}
+                  ≈ {getConversionValue()}
                 </div>
               )}
               <p className="text-muted-foreground">Enter your preferred investment amount</p>
@@ -549,16 +619,16 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
             </div>
             <Input
               type="number"
-              placeholder={currentQuestion.placeholder}
-              value={numberValue || ''}
-              onChange={(e) => handleAnswer(currentQuestion.id, parseInt(e.target.value) || 0)}
-              min={currentQuestion.min}
-              max={currentQuestion.max}
+              placeholder={getPlaceholder()}
+              value={getInputValue() || ''}
+              onChange={(e) => handleNumberInput(e.target.value)}
+              min={getMinMax().min}
+              max={getMinMax().max}
               className="text-center text-lg"
             />
             <div className="flex justify-between text-sm text-muted-foreground">
-              <span>Min: AED {currentQuestion.min?.toLocaleString()}</span>
-              <span>Max: AED {currentQuestion.max?.toLocaleString()}</span>
+              <span>Min: {isUSDInput ? `USD ${getMinMax().min.toLocaleString()}` : `AED ${getMinMax().min.toLocaleString()}`}</span>
+              <span>Max: {isUSDInput ? `USD ${getMinMax().max.toLocaleString()}` : `AED ${getMinMax().max.toLocaleString()}`}</span>
             </div>
           </div>
         );
