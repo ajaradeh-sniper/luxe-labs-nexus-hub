@@ -258,14 +258,6 @@ export default function About() {
             </Card>
           </div>
 
-          {/* Featured Image */}
-          <div className="text-center">
-            <img 
-              src={conceptToRealityImage} 
-              alt="Conceptual sketch overlaid with finished villa transformation"
-              className="w-full max-w-4xl mx-auto rounded-xl shadow-2xl"
-            />
-          </div>
         </div>
       </section>
 
@@ -409,17 +401,6 @@ export default function About() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            {/* Left Side - Image */}
-            <div className="order-2 lg:order-1">
-              <div className="relative">
-                <img 
-                  src={palmJumeirahMarketImage} 
-                  alt="Aerial view of Palm Jumeirah showcasing luxury developments"
-                  className="w-full rounded-2xl shadow-2xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
-              </div>
-            </div>
 
             {/* Right Side - Stats */}
             <div className="order-1 lg:order-2 space-y-8">
