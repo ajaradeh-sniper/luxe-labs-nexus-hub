@@ -13,13 +13,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { Trophy, Target, DollarSign, TrendingUp, MapPin, Clock, User, Building } from 'lucide-react';
+import { Trophy, DollarSign, TrendingUp, MapPin, Clock, User, Building, Crown, Diamond, Gem, Star, Sparkles, Award, Shield, Zap } from 'lucide-react';
 
 interface QuestionnaireData {
   investorType: string;
   otherDescription?: string;
   investmentExperience: string;
-  riskTolerance: string;
   investmentPreference: string;
   investmentTimeline: {
     fundsAvailable: string;
@@ -54,9 +53,9 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   const questions = [
     {
       id: 'investorType',
-      title: 'Investor Type',
-      subtitle: 'Which category best describes you?',
-      icon: <User className="w-6 h-6" />,
+      title: 'Investor Profile',
+      subtitle: 'Which elite category best describes you?',
+      icon: <Crown className="w-7 h-7" />,
       type: 'select',
       options: [
         { value: 'real-estate-short-term', label: 'Real Estate Investors / Short term Investors' },
@@ -70,64 +69,58 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
     },
     {
       id: 'investmentExperience',
-      title: 'Investment Experience',
-      subtitle: 'Tell us about your real estate investment background',
-      icon: <Trophy className="w-6 h-6" />,
+      title: 'Investment Mastery',
+      subtitle: 'Your level of investment excellence',
+      icon: <Trophy className="w-7 h-7" />,
       type: 'radio',
       options: [
-        { value: 'beginner', label: 'New to real estate investing', description: 'First investment or limited experience' },
-        { value: 'intermediate', label: 'Some experience', description: '2-5 successful investments' },
-        { value: 'experienced', label: 'Experienced investor', description: '5+ investments, understand market dynamics' },
-        { value: 'expert', label: 'Real estate professional', description: 'Extensive portfolio, industry expertise' }
-      ]
-    },
-    {
-      id: 'riskTolerance',
-      title: 'Risk Tolerance',
-      subtitle: 'How comfortable are you with investment risk?',
-      icon: <Target className="w-6 h-6" />,
-      type: 'radio',
-      options: [
-        { value: 'conservative', label: 'Conservative', description: 'Prefer stable, low-risk investments' },
-        { value: 'moderate', label: 'Moderate', description: 'Balanced approach to risk and return' },
-        { value: 'aggressive', label: 'Aggressive', description: 'Comfortable with higher risk for higher returns' }
+        { value: 'beginner', label: 'Rising Investor', description: 'Starting your luxury investment journey', icon: <Star className="w-5 h-5" /> },
+        { value: 'intermediate', label: 'Seasoned Investor', description: '2-5 successful luxury investments', icon: <Award className="w-5 h-5" /> },
+        { value: 'experienced', label: 'Elite Investor', description: '5+ investments, market expertise', icon: <Diamond className="w-5 h-5" /> },
+        { value: 'expert', label: 'Investment Virtuoso', description: 'Extensive portfolio, industry mastery', icon: <Crown className="w-5 h-5" /> }
       ]
     },
     {
       id: 'investmentPreference',
-      title: 'Investment Preference',
-      subtitle: 'Select your preferred investment range and expected returns',
-      icon: <DollarSign className="w-6 h-6" />,
+      title: 'Investment Tier',
+      subtitle: 'Select your preferred luxury investment range',
+      icon: <Gem className="w-7 h-7" />,
       type: 'preference-boxes',
       options: [
         { 
           value: 'conservative', 
-          label: 'Conservative', 
+          label: 'Emerald Tier', 
           range: 'AED 5M-15M', 
           returns: '6%-15%',
-          description: 'Lower risk, stable returns'
+          description: 'Stable luxury returns',
+          icon: <Shield className="w-6 h-6" />,
+          gradient: 'from-emerald-500/20 to-green-600/20'
         },
         { 
           value: 'moderate', 
-          label: 'Moderate', 
+          label: 'Sapphire Tier', 
           range: 'AED 15M-45M', 
           returns: '15%-30%',
-          description: 'Balanced risk and reward'
+          description: 'Premium balanced growth',
+          icon: <Sparkles className="w-6 h-6" />,
+          gradient: 'from-blue-500/20 to-indigo-600/20'
         },
         { 
           value: 'aggressive', 
-          label: 'Aggressive', 
+          label: 'Diamond Tier', 
           range: 'AED 45M+', 
           returns: '25%-60%',
-          description: 'Higher risk, premium returns'
+          description: 'Ultra-premium returns',
+          icon: <Diamond className="w-6 h-6" />,
+          gradient: 'from-purple-500/20 to-pink-600/20'
         }
       ]
     },
     {
       id: 'preferredInvestmentSize',
-      title: 'Investment Capacity',
-      subtitle: 'Enter your preferred investment amount in AED',
-      icon: <DollarSign className="w-6 h-6" />,
+      title: 'Investment Capital',
+      subtitle: 'Your luxury investment capacity in AED',
+      icon: <Zap className="w-7 h-7" />,
       type: 'number',
       placeholder: 'Enter amount in AED (e.g., 5000000)',
       min: 100000,
@@ -136,8 +129,8 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
     {
       id: 'investmentTimeline',
       title: 'Investment Timeline',
-      subtitle: 'Tell us about your funding and payback preferences',
-      icon: <TrendingUp className="w-6 h-6" />,
+      subtitle: 'Your luxury investment schedule preferences',
+      icon: <TrendingUp className="w-7 h-7" />,
       type: 'timeline',
       fields: [
         {
@@ -163,9 +156,9 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
     },
     {
       id: 'geographicPreference',
-      title: 'Location Preferences',
-      subtitle: 'Which areas interest you most?',
-      icon: <MapPin className="w-6 h-6" />,
+      title: 'Luxury Locations',
+      subtitle: 'Your preferred prestigious areas',
+      icon: <MapPin className="w-7 h-7" />,
       type: 'checkbox',
       options: [
         { value: 'highest_roi', label: "I don't care about location", description: 'As long as highest ROI' },
@@ -179,9 +172,9 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
     },
     {
       id: 'involvementPreference',
-      title: 'Involvement Preference',
-      subtitle: 'How involved would you like to be in the investment process?',
-      icon: <User className="w-6 h-6" />,
+      title: 'Engagement Style',
+      subtitle: 'Your preferred level of luxury project involvement',
+      icon: <User className="w-7 h-7" />,
       type: 'radio',
       options: [
         { 
@@ -212,9 +205,9 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
     },
     {
       id: 'investmentTypePreference',
-      title: 'Investment Type Preference',
-      subtitle: 'Select your preferred investment structure',
-      icon: <Building className="w-6 h-6" />,
+      title: 'Investment Structure',
+      subtitle: 'Your preferred luxury investment framework',
+      icon: <Building className="w-7 h-7" />,
       type: 'radio',
       options: [
         { 
@@ -394,22 +387,44 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
             onValueChange={(value) => handleAnswer(currentQuestion.id, value)}
             className="space-y-4"
           >
-            {currentQuestion.options?.map((option: any) => (
-              <div key={option.value} className="flex items-start space-x-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors">
-                <RadioGroupItem value={option.value} id={option.value} className="mt-1" />
-                <div className="flex-1">
-                  <Label htmlFor={option.value} className="font-medium cursor-pointer">
-                    {option.label}
-                  </Label>
-                  {option.description && (
-                    <p className="text-sm text-muted-foreground mt-1">{option.description}</p>
-                  )}
-                  {option.details && (
-                    <div className="text-xs text-muted-foreground mt-2 pl-2 border-l-2 border-muted">
-                      {option.details}
+            {currentQuestion.options?.map((option: any, index: number) => (
+              <div 
+                key={option.value} 
+                className={`group flex items-start space-x-4 p-6 rounded-xl border-2 hover:border-primary/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg animate-fade-in bg-gradient-to-r from-background to-muted/10 ${
+                  currentAnswer === option.value ? 'border-primary bg-primary/5 shadow-lg scale-[1.02]' : 'border-muted'
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <RadioGroupItem value={option.value} id={option.value} className="mt-1.5" />
+                <div className="flex items-start space-x-3 flex-1">
+                  {option.icon && (
+                    <div className={`p-2 rounded-lg transition-all duration-300 ${
+                      currentAnswer === option.value 
+                        ? 'bg-primary/20 text-primary' 
+                        : 'bg-muted/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
+                    }`}>
+                      {option.icon}
                     </div>
                   )}
+                  <div className="flex-1">
+                    <Label htmlFor={option.value} className="font-semibold cursor-pointer text-lg group-hover:text-primary transition-colors">
+                      {option.label}
+                    </Label>
+                    {option.description && (
+                      <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{option.description}</p>
+                    )}
+                    {option.details && (
+                      <div className="text-xs text-muted-foreground mt-3 pl-3 border-l-2 border-primary/20 bg-muted/20 rounded-r-lg p-2">
+                        {option.details}
+                      </div>
+                    )}
+                  </div>
                 </div>
+                {currentAnswer === option.value && (
+                  <div className="text-primary animate-scale-in">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                )}
               </div>
             ))}
           </RadioGroup>
@@ -449,28 +464,50 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         const selectedPreference = currentAnswer as string;
         return (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {currentQuestion.options?.map((option: any) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {currentQuestion.options?.map((option: any, index: number) => (
                 <div 
                   key={option.value}
-                  className={`p-6 border-2 rounded-lg cursor-pointer transition-all hover:scale-105 ${
+                  className={`group relative p-8 border-2 rounded-2xl cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-fade-in ${
                     selectedPreference === option.value 
-                      ? 'border-primary bg-primary/10 shadow-lg' 
-                      : 'border-muted hover:border-primary/40 bg-gradient-to-br from-muted/20 to-muted/40'
+                      ? 'border-primary bg-gradient-to-br from-primary/10 via-background to-primary/5 shadow-2xl scale-105' 
+                      : `border-muted hover:border-primary/40 bg-gradient-to-br ${option.gradient || 'from-muted/20 to-muted/40'}`
                   }`}
+                  style={{ animationDelay: `${index * 150}ms` }}
                   onClick={() => handleAnswer(currentQuestion.id, option.value)}
                 >
-                  <div className="text-center">
-                    <h4 className={`font-semibold mb-3 ${selectedPreference === option.value ? 'text-primary' : 'text-foreground'}`}>
+                  <div className="text-center relative">
+                    <div className={`flex justify-center mb-4 transition-all duration-300 ${
+                      selectedPreference === option.value ? 'text-primary' : 'text-muted-foreground group-hover:text-primary'
+                    }`}>
+                      {option.icon}
+                    </div>
+                    <h4 className={`font-bold text-xl mb-4 transition-colors ${
+                      selectedPreference === option.value ? 'text-primary' : 'text-foreground group-hover:text-primary'
+                    }`}>
                       {option.label}
                     </h4>
-                    <div className="text-2xl font-bold mb-2">{option.range}</div>
-                    <div className="text-lg text-muted-foreground mb-3">{option.returns}</div>
-                    <p className="text-sm text-muted-foreground">{option.description}</p>
+                    <div className="text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                      {option.range}
+                    </div>
+                    <div className="text-xl font-semibold text-muted-foreground mb-4">{option.returns}</div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{option.description}</p>
                     {selectedPreference === option.value && (
-                      <div className="mt-3 text-primary font-medium">✓ Selected</div>
+                      <div className="mt-6 flex justify-center animate-scale-in">
+                        <div className="flex items-center space-x-2 bg-primary/20 text-primary px-4 py-2 rounded-full">
+                          <Crown className="w-4 h-4" />
+                          <span className="font-semibold">Selected</span>
+                        </div>
+                      </div>
                     )}
                   </div>
+                  {selectedPreference === option.value && (
+                    <div className="absolute -top-2 -right-2 text-primary animate-scale-in">
+                      <div className="bg-primary text-primary-foreground p-2 rounded-full">
+                        <Sparkles className="w-4 h-4" />
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -646,15 +683,22 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
               </div>
               <Progress value={progress} className="mb-6" />
               
-              <div className="flex items-center space-x-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                  {currentQuestion.icon}
-                </div>
-                <div>
-                  <CardTitle className="text-xl">{currentQuestion.title}</CardTitle>
-                  <CardDescription className="text-base">{currentQuestion.subtitle}</CardDescription>
-                </div>
-              </div>
+        <div className="flex items-center space-x-4 animate-fade-in">
+          <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 text-primary shadow-lg animate-scale-in">
+            {currentQuestion.icon}
+          </div>
+          <div>
+            <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              {currentQuestion.title}
+            </CardTitle>
+            <CardDescription className="text-lg text-muted-foreground">
+              {currentQuestion.subtitle}
+            </CardDescription>
+          </div>
+          <div className="flex-1 flex justify-end">
+            <Sparkles className="w-6 h-6 text-primary/40 animate-pulse" />
+          </div>
+        </div>
             </CardHeader>
             
             <CardContent>
@@ -695,13 +739,20 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         </div>
         <Progress value={progress} className="mb-6" />
         
-        <div className="flex items-center space-x-3">
-          <div className="p-2 rounded-lg bg-primary/10 text-primary">
+        <div className="flex items-center space-x-4 animate-fade-in">
+          <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 text-primary shadow-lg animate-scale-in">
             {currentQuestion.icon}
           </div>
           <div>
-            <CardTitle className="text-xl">{currentQuestion.title}</CardTitle>
-            <CardDescription className="text-base">{currentQuestion.subtitle}</CardDescription>
+            <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              {currentQuestion.title}
+            </CardTitle>
+            <CardDescription className="text-lg text-muted-foreground">
+              {currentQuestion.subtitle}
+            </CardDescription>
+          </div>
+          <div className="flex-1 flex justify-end">
+            <Sparkles className="w-6 h-6 text-primary/40 animate-pulse" />
           </div>
         </div>
       </CardHeader>
