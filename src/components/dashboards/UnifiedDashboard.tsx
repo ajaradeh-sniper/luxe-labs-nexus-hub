@@ -273,13 +273,16 @@ export function UnifiedDashboard({ viewingRole: propViewingRole, onRoleChange }:
 
       {/* Role-Specific Content Tabs */}
       <Tabs defaultValue="overview" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           {(viewingRole === 'administrator' || viewingRole === 'project_manager' || viewingRole === 'real_estate_director') && (
             <TabsTrigger value="performance">Performance</TabsTrigger>
           )}
           {(viewingRole === 'administrator' || viewingRole === 'investor' || viewingRole === 'real_estate_director') && (
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
+          )}
+          {(viewingRole === 'client' || viewingRole === 'investor') && (
+            <TabsTrigger value="opportunities">Opportunities</TabsTrigger>
           )}
           <TabsTrigger value="actions">Quick Actions</TabsTrigger>
         </TabsList>
@@ -380,6 +383,99 @@ export function UnifiedDashboard({ viewingRole: propViewingRole, onRoleChange }:
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+        )}
+
+        {(viewingRole === 'client' || viewingRole === 'investor') && (
+          <TabsContent value="opportunities" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Target className="h-5 w-5" />
+                  Investment Opportunities
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {/* Sample opportunities - this would be dynamically loaded */}
+                  {[
+                    {
+                      title: "Luxury Villa - Palm Jumeirah",
+                      location: "Palm Jumeirah, Dubai",
+                      type: "Renovation & Flip",
+                      investment: "$850K",
+                      expectedROI: "28%",
+                      deadline: "15 days",
+                      riskRating: "Medium"
+                    },
+                    {
+                      title: "Downtown Penthouse",
+                      location: "Downtown Dubai",
+                      type: "Buy & Hold",
+                      investment: "$1.2M",
+                      expectedROI: "22%",
+                      deadline: "8 days",
+                      riskRating: "Low"
+                    },
+                    {
+                      title: "Emirates Hills Estate",
+                      location: "Emirates Hills, Dubai",
+                      type: "Development",
+                      investment: "$2.5M",
+                      expectedROI: "35%",
+                      deadline: "30 days",
+                      riskRating: "High"
+                    }
+                  ].map((opportunity, index) => (
+                    <div key={index} className="p-4 border border-border rounded-lg hover:bg-accent/30 transition-colors">
+                      <div className="flex justify-between items-start mb-3">
+                        <div>
+                          <h3 className="font-semibold text-lg">{opportunity.title}</h3>
+                          <p className="text-sm text-muted-foreground">{opportunity.location}</p>
+                        </div>
+                        <Badge variant={opportunity.riskRating === 'Low' ? 'default' : opportunity.riskRating === 'Medium' ? 'secondary' : 'destructive'}>
+                          {opportunity.riskRating} Risk
+                        </Badge>
+                      </div>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                        <div>
+                          <p className="text-xs text-muted-foreground">Type</p>
+                          <p className="font-medium">{opportunity.type}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Investment</p>
+                          <p className="font-medium text-primary">{opportunity.investment}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Expected ROI</p>
+                          <p className="font-medium text-success">{opportunity.expectedROI}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Deadline</p>
+                          <p className="font-medium text-warning">{opportunity.deadline}</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button size="sm" className="flex-1">View Details</Button>
+                        <Button size="sm" variant="outline">Express Interest</Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {viewingRole === 'client' && (
+                  <div className="mt-6 p-4 bg-accent/20 rounded-lg border border-dashed border-border">
+                    <div className="text-center">
+                      <Target className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+                      <h3 className="font-semibold mb-1">Curated for You</h3>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        These opportunities are specially selected based on your preferences and investment profile.
+                      </p>
+                      <Button variant="outline" size="sm">Update Preferences</Button>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </TabsContent>
         )}
 
