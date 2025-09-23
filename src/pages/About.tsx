@@ -100,54 +100,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Our Edge Section */}
-      <section className="py-20 px-4 bg-background">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Edge</h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card>
-              <CardHeader>
-                <TrendingUp className="w-8 h-8 text-primary mb-2" />
-                <CardTitle>Proven ROI</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">15–30% on completed villa flips.</p>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <Award className="w-8 h-8 text-primary mb-2" />
-                <CardTitle>Global Standard Design</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Led by Federica Freschet, with Hermès-grade finishing.</p>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <Handshake className="w-8 h-8 text-primary mb-2" />
-                <CardTitle>Trusted Partnerships</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Legal, finance, and contractor networks built for efficiency.</p>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <Eye className="w-8 h-8 text-primary mb-2" />
-                <CardTitle>Media & Transparency</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Documented on Flipping Dubai, our media arm showcasing transformations.</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
 
       {/* Stats Section */}
       <section className="py-16 px-4 bg-muted/30 hidden">
@@ -389,6 +341,54 @@ export default function About() {
         </div>
       </section>
 
+      {/* Our Edge Section */}
+      <section className="py-20 px-4 bg-background">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Our Edge</h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card>
+              <CardHeader>
+                <TrendingUp className="w-8 h-8 text-primary mb-2" />
+                <CardTitle>Proven ROI</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">15–30% on completed villa flips.</p>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <Award className="w-8 h-8 text-primary mb-2" />
+                <CardTitle>Global Standard Design</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">Led by Federica Freschet, with Hermès-grade finishing.</p>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <Handshake className="w-8 h-8 text-primary mb-2" />
+                <CardTitle>Trusted Partnerships</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">Legal, finance, and contractor networks built for efficiency.</p>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <Eye className="w-8 h-8 text-primary mb-2" />
+                <CardTitle>Media & Transparency</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">Documented on Flipping Dubai, our media arm showcasing transformations.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
 
       {/* Why Dubai Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-primary/5 via-background to-primary/5">
