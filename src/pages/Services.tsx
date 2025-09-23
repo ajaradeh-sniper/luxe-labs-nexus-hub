@@ -339,9 +339,6 @@ const Services = () => {
                       ))}
                     </ul>
                     <div className="flex gap-2">
-                      <Button onClick={() => setIsContactModalOpen(true)}>
-                        Contact Us
-                      </Button>
                       <Button variant="outline" onClick={() => setIsContactModalOpen(true)}>
                         Contact Us
                       </Button>
