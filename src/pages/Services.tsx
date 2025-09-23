@@ -290,7 +290,7 @@ const Services = () => {
                         variant={service.buttons[0] === 'Coming Soon' ? 'secondary' : 'luxury'} 
                         onClick={() => service.buttons[0] === 'Coming Soon' ? setIsContactModalOpen(true) : setIsAssessmentModalOpen(true)}
                       >
-                        {service.buttons[0] === 'Coming Soon' ? 'Contact Us' : 'Investor Profile Assessment'}
+                        {service.id === 'diversified-fund' ? 'Register Interest' : (service.buttons[0] === 'Coming Soon' ? 'Contact Us' : 'Investor Profile Assessment')}
                       </Button>
                       <Button variant="outline" onClick={() => setIsContactModalOpen(true)}>
                         Contact Us
