@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -30,50 +30,17 @@ import { UserPlus, Search, MoreHorizontal, Shield, Edit, Trash, UserCheck } from
 import { UserInviteModal } from '@/components/workflows/UserInviteModal';
 import { useToast } from '@/hooks/use-toast';
 import { UserRole } from '@/types/auth';
+import { supabase } from '@/integrations/supabase/client';
 
-interface MockUser {
+interface User {
   id: string;
   name: string;
   email: string;
   role: UserRole;
   status: 'active' | 'inactive' | 'pending';
   lastLogin: string;
+  user_id: string;
 }
-
-const mockUsers: MockUser[] = [
-  {
-    id: '1',
-    name: 'System Administrator',
-    email: 'admin@luxurylabs.com',
-    role: 'administrator',
-    status: 'active',
-    lastLogin: '2024-01-15'
-  },
-  {
-    id: '2',
-    name: 'Sarah Johnson',
-    email: 'sarah.j@luxurylabs.com',
-    role: 'project_manager',
-    status: 'active',
-    lastLogin: '2024-01-14'
-  },
-  {
-    id: '3',
-    name: 'Michael Chen',
-    email: 'michael.c@luxurylabs.com',
-    role: 'investor',
-    status: 'active',
-    lastLogin: '2024-01-13'
-  },
-  {
-    id: '4',
-    name: 'Emma Wilson',
-    email: 'emma.w@luxurylabs.com',
-    role: 'real_estate_director',
-    status: 'pending',
-    lastLogin: 'Never'
-  }
-];
 
 const roleLabels: Record<UserRole, string> = {
   administrator: 'Administrator',
@@ -101,12 +68,60 @@ const statusColors = {
 };
 
 export function UserManagement() {
-  const [users, setUsers] = useState<MockUser[]>(mockUsers);
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [roleFilter, setRoleFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
   const { toast } = useToast();
+
+  // Fetch real users from database
+  const fetchUsers = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching users:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load users from database.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Transform data to match our interface
+      const transformedUsers: User[] = (data || []).map(profile => ({
+        id: profile.id,
+        user_id: profile.user_id,
+        name: profile.name || 'Unknown User',
+        email: `user-${profile.user_id.substring(0, 8)}@system.local`, // We don't have email in profiles
+        role: profile.role as UserRole,
+        status: 'active' as const,
+        lastLogin: new Date(profile.created_at).toLocaleDateString()
+      }));
+
+      setUsers(transformedUsers);
+    } catch (error) {
+      console.error('Error in fetchUsers:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load users.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   const filteredUsers = users.filter(user => {
     const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -208,70 +223,84 @@ export function UserManagement() {
                 <TableHead>User</TableHead>
                 <TableHead>Role</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Last Login</TableHead>
+                <TableHead>Created</TableHead>
                 <TableHead className="w-[100px]">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredUsers.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>
-                    <div>
-                      <div className="font-medium">{user.name}</div>
-                      <div className="text-sm text-muted-foreground">{user.email}</div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">
-                      {roleLabels[user.role]}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Badge className={statusColors[user.status]}>
-                      {user.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-sm text-muted-foreground">
-                    {user.lastLogin}
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>
-                          <Edit className="mr-2 h-4 w-4" />
-                          Edit User
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        {user.status === 'active' ? (
-                          <DropdownMenuItem onClick={() => handleDeactivateUser(user.id)}>
-                            <UserCheck className="mr-2 h-4 w-4" />
-                            Deactivate
-                          </DropdownMenuItem>
-                        ) : (
-                          <DropdownMenuItem onClick={() => handleActivateUser(user.id)}>
-                            <UserCheck className="mr-2 h-4 w-4" />
-                            Activate
-                          </DropdownMenuItem>
-                        )}
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem 
-                          className="text-red-600"
-                          onClick={() => handleDeleteUser(user.id)}
-                        >
-                          <Trash className="mr-2 h-4 w-4" />
-                          Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center py-8">
+                    Loading users...
                   </TableCell>
                 </TableRow>
-              ))}
+              ) : filteredUsers.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center py-8">
+                    No users found. Use the "Add User" button to invite team members.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                filteredUsers.map((user) => (
+                  <TableRow key={user.id}>
+                    <TableCell>
+                      <div>
+                        <div className="font-medium">{user.name}</div>
+                        <div className="text-sm text-muted-foreground">ID: {user.user_id.substring(0, 8)}...</div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline">
+                        {roleLabels[user.role]}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Badge className={statusColors[user.status]}>
+                        {user.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-sm text-muted-foreground">
+                      {user.lastLogin}
+                    </TableCell>
+                    <TableCell>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="sm">
+                            <MoreHorizontal className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                          <DropdownMenuItem>
+                            <Edit className="mr-2 h-4 w-4" />
+                            Edit User
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          {user.status === 'active' ? (
+                            <DropdownMenuItem onClick={() => handleDeactivateUser(user.id)}>
+                              <UserCheck className="mr-2 h-4 w-4" />
+                              Deactivate
+                            </DropdownMenuItem>
+                          ) : (
+                            <DropdownMenuItem onClick={() => handleActivateUser(user.id)}>
+                              <UserCheck className="mr-2 h-4 w-4" />
+                              Activate
+                            </DropdownMenuItem>
+                          )}
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem 
+                            className="text-red-600"
+                            onClick={() => handleDeleteUser(user.id)}
+                          >
+                            <Trash className="mr-2 h-4 w-4" />
+                            Delete
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>
@@ -282,7 +311,7 @@ export function UserManagement() {
         onClose={() => setIsInviteModalOpen(false)}
         mode="add"
         onSuccess={() => {
-          // Refresh users list in real implementation
+          fetchUsers(); // Refresh users list
           toast({
             title: "Success",
             description: "User has been added successfully.",
