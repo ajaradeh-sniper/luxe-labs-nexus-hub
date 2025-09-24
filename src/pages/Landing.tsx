@@ -189,7 +189,7 @@ export default function Landing() {
                   <div className="space-y-4 mb-6">
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">25-30% ROI target in 8-14 Months</span>
+                      <span className="text-sm font-montserrat text-foreground">Up to 40% RoI in 08-14 Months</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
