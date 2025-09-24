@@ -96,12 +96,20 @@ const Index = () => {
                     <TrendingUp className="h-8 w-8 text-background" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Single Property Flip</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Lead or co-lead a curated villa transformation in prime Dubai areas.
+                  <p className="text-muted-foreground mb-6">
+                    Lead or co-lead curated villa transformations in Dubai's most exclusive areas with exceptional returns.
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-primary font-semibold">
-                    <Target className="h-4 w-4" />
-                    Typical ROI: 18–30% · 6–12 months
+                  <div className="flex flex-col gap-2">
+                    <Button size="sm" variant="luxury" className="w-full" asChild>
+                      <Link to="/investor-questionnaire">
+                        Start Investing
+                      </Link>
+                    </Button>
+                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                      <Link to="/services">
+                        Learn More
+                      </Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -112,12 +120,20 @@ const Index = () => {
                     <Users className="h-8 w-8 text-background" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Shared Stake (Co-Invest)</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Join vetted Dubai villa flips from AED 500K.
+                  <p className="text-muted-foreground mb-6">
+                    Join vetted Dubai villa flips with other investors from AED 500K minimum investment.
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-primary font-semibold">
-                    <Target className="h-4 w-4" />
-                    Typical ROI: 12–20% · 9–12 months
+                  <div className="flex flex-col gap-2">
+                    <Button size="sm" variant="luxury" className="w-full" asChild>
+                      <Link to="/investor-questionnaire">
+                        Start Investing
+                      </Link>
+                    </Button>
+                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                      <Link to="/services">
+                        Learn More
+                      </Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -128,12 +144,20 @@ const Index = () => {
                     <Building className="h-8 w-8 text-background" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Diversified Fund</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Long-term portfolio of luxury villas with professional management.
+                  <p className="text-muted-foreground mb-6">
+                    Long-term diversified portfolio of luxury villas with professional management and steady returns.
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-primary font-semibold">
-                    <Target className="h-4 w-4" />
-                    Annualized ROI: 12-18%
+                  <div className="flex flex-col gap-2">
+                    <Button size="sm" variant="luxury" className="w-full" asChild>
+                      <Link to="/investor-questionnaire">
+                        Start Investing
+                      </Link>
+                    </Button>
+                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                      <Link to="/services">
+                        Learn More
+                      </Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -145,12 +169,20 @@ const Index = () => {
                     <Shield className="h-8 w-8 text-background" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Relocation Concierge</h3>
-                  <p className="text-muted-foreground mb-4">
-                    End‑to‑end visa, banking, residence and lifestyle setup for HNWIs.
+                  <p className="text-muted-foreground mb-6">
+                    Complete visa, banking, residence and luxury lifestyle setup services for high-net-worth individuals.
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-primary font-semibold">
-                    <CheckCircle className="h-4 w-4" />
-                    Ongoing concierge support
+                  <div className="flex flex-col gap-2">
+                    <Button size="sm" variant="luxury" className="w-full" asChild>
+                      <Link to="/contact">
+                        Get Started
+                      </Link>
+                    </Button>
+                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                      <Link to="/services">
+                        Learn More
+                      </Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -161,12 +193,20 @@ const Index = () => {
                     <FileText className="h-8 w-8 text-background" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Advisory Services</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Property sourcing, structuring and long‑term portfolio advisory.
+                  <p className="text-muted-foreground mb-6">
+                    Expert property sourcing, investment structuring and long-term portfolio advisory services.
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-primary font-semibold">
-                    <CheckCircle className="h-4 w-4" />
-                    Expert guidance
+                  <div className="flex flex-col gap-2">
+                    <Button size="sm" variant="luxury" className="w-full" asChild>
+                      <Link to="/contact">
+                        Get Started
+                      </Link>
+                    </Button>
+                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                      <Link to="/services">
+                        Learn More
+                      </Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -177,12 +217,20 @@ const Index = () => {
                     <Star className="h-8 w-8 text-background" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Flipping Dubai Media</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Document and market transformations to buyers and investors.
+                  <p className="text-muted-foreground mb-6">
+                    Professional documentation and marketing of property transformations to attract buyers and investors.
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-primary font-semibold">
-                    <CheckCircle className="h-4 w-4" />
-                    Professional production & campaigns
+                  <div className="flex flex-col gap-2">
+                    <Button size="sm" variant="luxury" className="w-full" asChild>
+                      <Link to="/contact">
+                        Get Started
+                      </Link>
+                    </Button>
+                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                      <Link to="/services">
+                        Learn More
+                      </Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
