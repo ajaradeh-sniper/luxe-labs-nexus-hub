@@ -1089,7 +1089,7 @@ export default function Landing() {
           <div className="text-center mt-12">
             <Button asChild size="lg" className="luxury-gradient hover:luxury-glow font-montserrat">
               <Link to="/contact">
-                Schedule a Consultation
+                Write down your Inquiry
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
