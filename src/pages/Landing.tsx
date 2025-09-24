@@ -417,22 +417,28 @@ export default function Landing() {
                                 {/* Teaser only: icon, title, description */}
                                 
                                 {/* Action Buttons */}
-                                <div className="p-6 pt-0 space-y-3">
-                                  {/* Primary action from service config */}
+                                <div className="p-6 pt-0 space-y-3 relative z-10">
+                                  {/* Primary action button */}
                                   <Button
                                     size="sm"
-                                    className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat ${
+                                    className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat pointer-events-auto ${
                                       service.buttons?.[0] && 'disabled' in service.buttons[0] && service.buttons[0].disabled
                                         ? 'opacity-50 cursor-not-allowed bg-gray-400 text-white'
                                         : `bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`
                                     }`}
-                                    onClick={() => {
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      console.log('Primary button clicked', service.title);
+                                      
                                       const button = service.buttons?.[0];
                                       if (!button) return;
                                       if ('disabled' in button && button.disabled) return;
                                       if ('action' in button && button.action === 'assessment') {
+                                        console.log('Opening assessment modal');
                                         setShowInvestorAssessment(true);
                                       } else if ('href' in button && button.href) {
+                                        console.log('Navigating to:', button.href);
                                         window.location.href = button.href;
                                       }
                                     }}
@@ -442,14 +448,19 @@ export default function Landing() {
                                     {!((service.buttons?.[0] as any)?.disabled) && <ArrowRight className="ml-2 h-3 w-3" />}
                                   </Button>
 
-                                  {/* Secondary: Learn More to Services */}
+                                  {/* Secondary: Learn More button */}
                                   <Button
                                     size="sm"
                                     variant="outline"
-                                    className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat"
-                                    asChild
+                                    className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat pointer-events-auto"
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      console.log('Learn More button clicked');
+                                      window.location.href = '/services';
+                                    }}
                                   >
-                                    <Link to="/services">Learn More</Link>
+                                    Learn More
                                   </Button>
                                 </div>
                               </Card>
@@ -498,25 +509,37 @@ export default function Landing() {
                                 {/* Teaser only: icon, title, description */}
                                 
                                 {/* Action Buttons */}
-                                <div className="p-6 pt-0 space-y-3">
-                                  {/* Primary action from service config */}
+                                <div className="p-6 pt-0 space-y-3 relative z-10">
+                                  {/* Primary action button */}
                                   <Button
                                     size="sm"
-                                    className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`}
-                                    onClick={() => window.location.href = service.buttons?.[0]?.href}
+                                    className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0 pointer-events-auto`}
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      console.log('Transformation primary button clicked', service.title);
+                                      if (service.buttons?.[0]?.href) {
+                                        window.location.href = service.buttons[0].href;
+                                      }
+                                    }}
                                   >
                                     {service.buttons?.[0]?.text}
                                     <ArrowRight className="ml-2 h-3 w-3" />
                                   </Button>
 
-                                  {/* Secondary: Learn More to Services */}
+                                  {/* Secondary: Learn More button */}
                                   <Button
                                     size="sm"
                                     variant="outline"
-                                    className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat"
-                                    asChild
+                                    className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat pointer-events-auto"
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      console.log('Transformation Learn More button clicked');
+                                      window.location.href = '/services';
+                                    }}
                                   >
-                                    <Link to="/services">Learn More</Link>
+                                    Learn More
                                   </Button>
                                 </div>
                               </Card>
