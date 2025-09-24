@@ -1046,7 +1046,7 @@ export default function Landing() {
                   <Phone className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Phone</h3>
-                <p className="text-muted-foreground font-montserrat mb-4">Speak directly with our investment team</p>
+                <p className="text-muted-foreground font-montserrat mb-4">Give us a call!</p>
                 <span className="text-primary font-montserrat font-semibold">
                   +971 55 55 65 345
                 </span>
