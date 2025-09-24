@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Helmet } from "react-helmet-async"
+import { Link } from "react-router-dom"
 import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -238,9 +239,11 @@ const Services = () => {
                 From curated villa investments and world-class renovations to luxury advisory and global media exposure — Luxury Labs is your partner for high-ROI Dubai property transformation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" onClick={() => setIsContactModalOpen(true)}>
-                  Contact Us
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                <Button size="lg" asChild>
+                  <Link to="/investor-questionnaire">
+                    Investment Assessment
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
                 </Button>
                 <Button variant="outline" size="lg" onClick={() => setIsContactModalOpen(true)}>
                   Contact Us
