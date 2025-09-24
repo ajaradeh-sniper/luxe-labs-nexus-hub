@@ -1072,7 +1072,7 @@ export default function Landing() {
                   <CalendarDays className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Book a Meeting</h3>
-                <p className="text-muted-foreground font-montserrat mb-6">Schedule a consultation with our investment team</p>
+                <p className="text-muted-foreground font-montserrat mb-6">Schedule a consultation</p>
                 <Button 
                   className="w-full luxury-gradient hover:luxury-glow font-montserrat"
                   onClick={() => {
