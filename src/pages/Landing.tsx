@@ -1048,7 +1048,7 @@ export default function Landing() {
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Phone</h3>
                 <p className="text-muted-foreground font-montserrat mb-4">Speak directly with our investment team</p>
                 <span className="text-primary font-montserrat font-semibold">
-                  +971 4 XXX XXXX
+                  +971 55 55 65 345
                 </span>
               </CardContent>
             </Card>
