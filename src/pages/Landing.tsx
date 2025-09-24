@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp, PiggyBank, Eye, DollarSign, Home, BarChart3, Shield, Briefcase, HeartHandshake, Zap, Calendar } from "lucide-react";
+import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp, PiggyBank, Eye, DollarSign, Home, BarChart3, Shield, Briefcase, HeartHandshake, Zap, CalendarDays } from "lucide-react";
 import { InvestorAssessmentModal } from "@/components/modals/InvestorAssessmentModal";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
 import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
@@ -1069,7 +1069,7 @@ export default function Landing() {
             <Card className="elegant-card">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
-                  <Calendar className="h-8 w-8 text-primary-foreground" />
+                  <CalendarDays className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Book a Meeting</h3>
                 <p className="text-muted-foreground font-montserrat mb-6">Schedule a consultation with our investment team</p>
