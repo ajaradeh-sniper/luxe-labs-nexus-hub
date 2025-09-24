@@ -182,6 +182,22 @@ const Services = () => {
       whyList: 'Dubai\'s green heart with unmatched lifestyle appeal. Known for sprawling villas, private gardens, and eco-luxury positioning.',
       typicalAsset: '5–7BR nature-themed luxury villas',
       budget: 'AED 15M – 50M'
+    },
+    {
+      id: 'jumeirah',
+      name: '🏖 Jumeirah',
+      image: palmJumeirahVilla, // Using existing image as placeholder
+      whyList: 'Classic beachside community with established villa stock and strong rental yields. Prime location near key amenities with steady capital appreciation potential.',
+      typicalAsset: '4–6BR beachside and garden villas',
+      budget: 'AED 10M – 40M'
+    },
+    {
+      id: 'umm-suqeim-2',
+      name: '🌅 Umm Suqeim 2',
+      image: dubaiHillsVilla, // Using existing image as placeholder
+      whyList: 'Strategic beachfront location with high-end villa communities. Close to Burj Al Arab and premium retail, offering excellent lifestyle positioning for luxury transformations.',
+      typicalAsset: '4–7BR beachfront and garden villas',
+      budget: 'AED 12M – 50M'
     }
   ]
 
