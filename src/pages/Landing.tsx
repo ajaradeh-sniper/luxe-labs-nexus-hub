@@ -1047,9 +1047,9 @@ export default function Landing() {
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Phone</h3>
                 <p className="text-muted-foreground font-montserrat mb-4">Speak directly with our investment team</p>
-                <a href="tel:+971-4-XXX-XXXX" className="text-primary font-montserrat font-semibold hover:underline">
+                <span className="text-primary font-montserrat font-semibold">
                   +971 4 XXX XXXX
-                </a>
+                </span>
               </CardContent>
             </Card>
 
@@ -1060,9 +1060,9 @@ export default function Landing() {
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Email</h3>
                 <p className="text-muted-foreground font-montserrat mb-4">Send us your investment inquiries</p>
-                <a href="mailto:invest@luxurylabs.ae" className="text-primary font-montserrat font-semibold hover:underline">
+                <span className="text-primary font-montserrat font-semibold">
                   invest@luxurylabs.ae
-                </a>
+                </span>
               </CardContent>
             </Card>
 
