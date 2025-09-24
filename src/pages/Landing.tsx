@@ -414,37 +414,30 @@ export default function Landing() {
                                   <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">{service.description}</p>
                                 </div>
                                 
-                                {/* Features List */}
-                                <div className="p-6 space-y-3">
-                                  {service.features.map((feature, featureIndex) => (
-                                    <div key={featureIndex} className="flex items-start gap-3 group/feature">
-                                      <div className={`w-2 h-2 bg-gradient-to-r ${gradients[index]} rounded-full flex-shrink-0 mt-2 group-hover/feature:scale-125 transition-transform duration-200`}></div>
-                                      <span className="text-sm font-montserrat text-foreground leading-relaxed">{feature}</span>
-                                    </div>
-                                  ))}
-                                </div>
+                                {/* Teaser only: icon, title, description */}
                                 
                                 {/* Action Buttons */}
                                 <div className="p-6 pt-0 space-y-3">
-                                  {service.buttons.map((button, buttonIndex) => (
-                                    <Button
-                                      key={buttonIndex}
-                                      size="sm"
-                                      variant={buttonIndex === 0 ? "default" : "outline"}
-                                      className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat ${
-                                        button.disabled 
-                                          ? 'opacity-50 cursor-not-allowed' 
-                                          : buttonIndex === 0 
-                                            ? `bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`
-                                            : 'hover:bg-card-foreground/5 border-border'
-                                      }`}
-                                      onClick={() => !button.disabled && (window.location.href = button.href)}
-                                      disabled={button.disabled}
-                                    >
-                                      {button.text}
-                                      {!button.disabled && <ArrowRight className="ml-2 h-3 w-3" />}
-                                    </Button>
-                                  ))}
+                                  {/* Primary action from service config */}
+                                  <Button
+                                    size="sm"
+                                    className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`}
+                                    onClick={() => !(service.buttons?.[0]?.disabled) && (window.location.href = service.buttons?.[0]?.href)}
+                                    disabled={service.buttons?.[0]?.disabled}
+                                  >
+                                    {service.buttons?.[0]?.text}
+                                    {!service.buttons?.[0]?.disabled && <ArrowRight className="ml-2 h-3 w-3" />}
+                                  </Button>
+
+                                  {/* Secondary: Learn More to Services */}
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat"
+                                    asChild
+                                  >
+                                    <Link to="/services">Learn More</Link>
+                                  </Button>
                                 </div>
                               </Card>
                             );
@@ -489,34 +482,29 @@ export default function Landing() {
                                   <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">{service.description}</p>
                                 </div>
                                 
-                                {/* Features List */}
-                                <div className="p-6 space-y-3">
-                                  {service.features.map((feature, featureIndex) => (
-                                    <div key={featureIndex} className="flex items-start gap-3 group/feature">
-                                      <div className={`w-2 h-2 bg-gradient-to-r ${gradients[index]} rounded-full flex-shrink-0 mt-2 group-hover/feature:scale-125 transition-transform duration-200`}></div>
-                                      <span className="text-sm font-montserrat text-foreground leading-relaxed">{feature}</span>
-                                    </div>
-                                  ))}
-                                </div>
+                                {/* Teaser only: icon, title, description */}
                                 
                                 {/* Action Buttons */}
                                 <div className="p-6 pt-0 space-y-3">
-                                  {service.buttons.map((button, buttonIndex) => (
-                                    <Button
-                                      key={buttonIndex}
-                                      size="sm"
-                                      variant={buttonIndex === 0 ? "default" : "outline"}
-                                      className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat ${
-                                        buttonIndex === 0 
-                                          ? `bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`
-                                          : 'hover:bg-card-foreground/5 border-border'
-                                      }`}
-                                      onClick={() => window.location.href = button.href}
-                                    >
-                                      {button.text}
-                                      <ArrowRight className="ml-2 h-3 w-3" />
-                                    </Button>
-                                  ))}
+                                  {/* Primary action from service config */}
+                                  <Button
+                                    size="sm"
+                                    className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`}
+                                    onClick={() => window.location.href = service.buttons?.[0]?.href}
+                                  >
+                                    {service.buttons?.[0]?.text}
+                                    <ArrowRight className="ml-2 h-3 w-3" />
+                                  </Button>
+
+                                  {/* Secondary: Learn More to Services */}
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat"
+                                    asChild
+                                  >
+                                    <Link to="/services">Learn More</Link>
+                                  </Button>
                                 </div>
                               </Card>
                             );
