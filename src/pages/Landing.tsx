@@ -1059,7 +1059,7 @@ export default function Landing() {
                   <Mail className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Email</h3>
-                <p className="text-muted-foreground font-montserrat mb-4">Send us your investment inquiries</p>
+                <p className="text-muted-foreground font-montserrat mb-4">Send us your inquiries</p>
                 <span className="text-primary font-montserrat font-semibold">
                   info@luxurylabs.ae
                 </span>
