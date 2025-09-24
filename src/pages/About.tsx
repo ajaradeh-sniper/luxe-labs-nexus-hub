@@ -4,26 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Navigation } from '@/components/Navigation';
-import { 
-  Building2, 
-  Users, 
-  TrendingUp, 
-  Award, 
-  Globe, 
-  Shield,
-  Target,
-  Lightbulb,
-  Heart,
-  CheckCircle,
-  Eye,
-  ArrowRight,
-  Handshake,
-  User,
-  Palette,
-  Building,
-  Scale,
-  BarChart3
-} from 'lucide-react';
+import { Building2, Users, TrendingUp, Award, Globe, Shield, Target, Lightbulb, Heart, CheckCircle, Eye, ArrowRight, Handshake, User, Palette, Building, Scale, BarChart3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { InvestorAssessmentModal } from '@/components/modals/InvestorAssessmentModal';
 import aliJaradehStrategyImage from '@/assets/ali-jaradeh-strategy-meeting.jpg';
@@ -31,49 +12,49 @@ import federicaDesignImage from '@/assets/federica-design-sketches.jpg';
 import teamCollaborationImage from '@/assets/team-collaboration-montage.jpg';
 import palmJumeirahMarketImage from '@/assets/palm-jumeirah-market-growth.jpg';
 import conceptToRealityImage from '@/assets/concept-to-reality-villa.jpg';
-
 export default function About() {
   const [isInvestorModalOpen, setIsInvestorModalOpen] = useState(false);
-  const stats = [
-    { label: 'Projects Completed', value: '150+', icon: <Building2 className="w-6 h-6" /> },
-    { label: 'Happy Investors', value: '500+', icon: <Users className="w-6 h-6" /> },
-    { label: 'Average ROI', value: '28%', icon: <TrendingUp className="w-6 h-6" /> },
-    { label: 'Years Experience', value: '12+', icon: <Award className="w-6 h-6" /> }
-  ];
-
-  const values = [
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: 'Trust & Transparency',
-      description: 'Every investment opportunity is thoroughly vetted with complete financial transparency and regular reporting.'
-    },
-    {
-      icon: <Target className="w-8 h-8" />,
-      title: 'Results-Driven',
-      description: 'Our track record speaks for itself with consistent above-market returns and successful project completions.'
-    },
-    {
-      icon: <Lightbulb className="w-8 h-8" />,
-      title: 'Innovation',
-      description: 'Leveraging cutting-edge technology and market insights to identify and maximize investment opportunities.'
-    },
-    {
-      icon: <Heart className="w-8 h-8" />,
-      title: 'Client-Centric',
-      description: 'Your success is our success. We provide personalized service and maintain long-term relationships.'
-    }
-  ];
-
-
-  return (
-    <div className="min-h-screen bg-background">
+  const stats = [{
+    label: 'Projects Completed',
+    value: '150+',
+    icon: <Building2 className="w-6 h-6" />
+  }, {
+    label: 'Happy Investors',
+    value: '500+',
+    icon: <Users className="w-6 h-6" />
+  }, {
+    label: 'Average ROI',
+    value: '28%',
+    icon: <TrendingUp className="w-6 h-6" />
+  }, {
+    label: 'Years Experience',
+    value: '12+',
+    icon: <Award className="w-6 h-6" />
+  }];
+  const values = [{
+    icon: <Shield className="w-8 h-8" />,
+    title: 'Trust & Transparency',
+    description: 'Every investment opportunity is thoroughly vetted with complete financial transparency and regular reporting.'
+  }, {
+    icon: <Target className="w-8 h-8" />,
+    title: 'Results-Driven',
+    description: 'Our track record speaks for itself with consistent above-market returns and successful project completions.'
+  }, {
+    icon: <Lightbulb className="w-8 h-8" />,
+    title: 'Innovation',
+    description: 'Leveraging cutting-edge technology and market insights to identify and maximize investment opportunities.'
+  }, {
+    icon: <Heart className="w-8 h-8" />,
+    title: 'Client-Centric',
+    description: 'Your success is our success. We provide personalized service and maintain long-term relationships.'
+  }];
+  return <div className="min-h-screen bg-background">
       <Navigation />
       {/* Hero Section */}
       <section className="relative h-96 flex items-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${conceptToRealityImage})` }}
-        >
+        <div className="absolute inset-0 bg-cover bg-center" style={{
+        backgroundImage: `url(${conceptToRealityImage})`
+      }}>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
         </div>
         
@@ -86,11 +67,7 @@ export default function About() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Button 
-              size="lg" 
-              className="luxury-gradient text-primary-foreground"
-              onClick={() => setIsInvestorModalOpen(true)}
-            >
+            <Button size="lg" className="luxury-gradient text-primary-foreground" onClick={() => setIsInvestorModalOpen(true)}>
               Start Investing
             </Button>
             <Button variant="outline" size="lg" asChild>
@@ -105,8 +82,7 @@ export default function About() {
       <section className="py-16 px-4 bg-muted/30 hidden">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <Card key={index} className="text-center">
+            {stats.map((stat, index) => <Card key={index} className="text-center">
                 <CardContent className="pt-6">
                   <div className="flex justify-center mb-4 text-primary">
                     {stat.icon}
@@ -114,8 +90,7 @@ export default function About() {
                   <div className="text-3xl font-bold mb-2">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -320,8 +295,7 @@ export default function About() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
-              <Card key={index}>
+            {values.map((value, index) => <Card key={index}>
                 <CardHeader>
                   <div className="flex items-center space-x-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary">
@@ -335,8 +309,7 @@ export default function About() {
                     {value.description}
                   </p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -391,103 +364,12 @@ export default function About() {
       </section>
 
       {/* Why Dubai Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-primary/5 via-background to-primary/5">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Why Dubai</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Dubai is the world's luxury property capital, offering unmatched growth opportunities and strategic advantages
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-
-            {/* Right Side - Stats */}
-            <div className="order-1 lg:order-2 space-y-8">
-              <Card className="overflow-hidden border-l-4 border-l-primary">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center">
-                      <TrendingUp className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-primary">19.9%</div>
-                      <div className="text-sm text-muted-foreground">YoY Growth</div>
-                    </div>
-                  </div>
-                  <p className="text-muted-foreground">
-                    Luxury villa prices surged 19.9% year-over-year in 2024, outpacing global markets
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden border-l-4 border-l-green-500">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-500/20 to-green-300/10 rounded-xl flex items-center justify-center">
-                      <Globe className="h-6 w-6 text-green-600" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold">Global Hub</div>
-                      <div className="text-sm text-muted-foreground">Tax-Free Returns</div>
-                    </div>
-                  </div>
-                  <p className="text-muted-foreground">
-                    High demand from HNWIs relocating for tax-free returns and premium lifestyle opportunities
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden border-l-4 border-l-purple-500">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-purple-300/10 rounded-xl flex items-center justify-center">
-                      <Building2 className="h-6 w-6 text-purple-600" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold">Prime Locations</div>
-                      <div className="text-sm text-muted-foreground">Global Investment</div>
-                    </div>
-                  </div>
-                  <p className="text-muted-foreground">
-                    International investors from Europe, GCC, and Asia targeting Palm Jumeirah, Dubai Marina, and Emirates Hills
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          {/* Bottom Section */}
-          <div className="mt-16 text-center">
-            <Card className="max-w-4xl mx-auto bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
-              <CardContent className="p-8">
-                <div className="flex items-center justify-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center">
-                    <Award className="h-8 w-8 text-primary" />
-                  </div>
-                  <div className="text-left">
-                    <h3 className="text-xl font-bold">Strategic Advantage</h3>
-                    <p className="text-muted-foreground">Positioned for Success</p>
-                  </div>
-                </div>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Luxury Labs is strategically positioned at the heart of this unprecedented growth, leveraging deep local market knowledge 
-                  and world-class design expertise to deliver exceptional investor success in Dubai's luxury property sector.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      
 
       {/* CTA Section */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src={conceptToRealityImage}
-            alt="Luxury Labs Investment Journey"
-            className="w-full h-full object-cover"
-          />
+          <img src={conceptToRealityImage} alt="Luxury Labs Investment Journey" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-background/50"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
@@ -497,10 +379,7 @@ export default function About() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              onClick={() => setIsInvestorModalOpen(true)}
-            >
+            <Button size="lg" onClick={() => setIsInvestorModalOpen(true)}>
               Start Investing
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -511,10 +390,6 @@ export default function About() {
         </div>
       </section>
       
-      <InvestorAssessmentModal 
-        open={isInvestorModalOpen} 
-        onOpenChange={setIsInvestorModalOpen} 
-      />
-    </div>
-  );
+      <InvestorAssessmentModal open={isInvestorModalOpen} onOpenChange={setIsInvestorModalOpen} />
+    </div>;
 }
