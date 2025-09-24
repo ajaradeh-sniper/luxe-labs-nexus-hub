@@ -1061,7 +1061,7 @@ export default function Landing() {
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Email</h3>
                 <p className="text-muted-foreground font-montserrat mb-4">Send us your investment inquiries</p>
                 <span className="text-primary font-montserrat font-semibold">
-                  invest@luxurylabs.ae
+                  info@luxurylabs.ae
                 </span>
               </CardContent>
             </Card>
