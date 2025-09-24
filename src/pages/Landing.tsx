@@ -1207,7 +1207,7 @@ export default function Landing() {
               <h4 className="font-bold text-secondary-foreground font-playfair mb-4">Services</h4>
               <ul className="space-y-2 font-montserrat text-sm">
                 <li><a href="#services" className="text-secondary-foreground/80 hover:text-primary transition-colors">Property Investment</a></li>
-                <li><a href="#services" className="text-secondary-foreground/80 hover:text-primary transition-colors">Luxury Transformation</a></li>
+                <li><a href="#services" className="text-secondary-foreground/80 hover:text-primary transition-colors">Transformation Services</a></li>
                 <li><a href="#services" className="text-secondary-foreground/80 hover:text-primary transition-colors">Portfolio Management</a></li>
               </ul>
             </div>
