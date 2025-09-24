@@ -3,13 +3,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { UserRole } from '@/types/auth';
 
-// Role-based dashboard mapping
+// Role-based dashboard mapping - all users go to Featured Projects after sign in
 const ROLE_DASHBOARDS: Partial<Record<UserRole, string>> = {
-  administrator: '/dashboard',
-  'real_estate_director': '/dashboard', 
-  'project_manager': '/pm-dashboard',
-  'investor': '/fund-management',
-  'client': '/fund-management'
+  administrator: '/projects',
+  'real_estate_director': '/projects', 
+  'project_manager': '/projects',
+  'investor': '/projects',
+  'client': '/projects'
 };
 
 // Default routes for each role
