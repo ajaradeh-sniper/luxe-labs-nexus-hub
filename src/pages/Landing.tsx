@@ -63,8 +63,8 @@ export default function Landing() {
         'Target ROI: 18–30%'
       ],
       buttons: [
-        { text: 'Start Investment', href: '/contact' },
-        { text: 'Learn More', href: '/investors' }
+        { text: 'Investment Assessment', action: 'assessment' },
+        { text: 'Learn More', href: '/services' }
       ]
     },
     {
@@ -76,8 +76,8 @@ export default function Landing() {
         'Target ROI: 12–20%'
       ],
       buttons: [
-        { text: 'Join Investment', href: '/contact' },
-        { text: 'View Opportunities', href: '/investors' }
+        { text: 'Investment Assessment', action: 'assessment' },
+        { text: 'Learn More', href: '/services' }
       ]
     },
     {
@@ -90,7 +90,7 @@ export default function Landing() {
       ],
       buttons: [
         { text: 'Coming Soon', href: '#', disabled: true },
-        { text: 'Join Waitlist', href: '/contact' }
+        { text: 'Learn More', href: '/services' }
       ]
     }
   ];
@@ -421,12 +421,25 @@ export default function Landing() {
                                   {/* Primary action from service config */}
                                   <Button
                                     size="sm"
-                                    className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`}
-                                    onClick={() => !(service.buttons?.[0]?.disabled) && (window.location.href = service.buttons?.[0]?.href)}
-                                    disabled={service.buttons?.[0]?.disabled}
+                                    className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat ${
+                                      service.buttons?.[0] && 'disabled' in service.buttons[0] && service.buttons[0].disabled
+                                        ? 'opacity-50 cursor-not-allowed bg-gray-400 text-white'
+                                        : `bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`
+                                    }`}
+                                    onClick={() => {
+                                      const button = service.buttons?.[0];
+                                      if (!button) return;
+                                      if ('disabled' in button && button.disabled) return;
+                                      if ('action' in button && button.action === 'assessment') {
+                                        setShowInvestorAssessment(true);
+                                      } else if ('href' in button && button.href) {
+                                        window.location.href = button.href;
+                                      }
+                                    }}
+                                    disabled={(service.buttons?.[0] as any)?.disabled}
                                   >
                                     {service.buttons?.[0]?.text}
-                                    {!service.buttons?.[0]?.disabled && <ArrowRight className="ml-2 h-3 w-3" />}
+                                    {!((service.buttons?.[0] as any)?.disabled) && <ArrowRight className="ml-2 h-3 w-3" />}
                                   </Button>
 
                                   {/* Secondary: Learn More to Services */}
