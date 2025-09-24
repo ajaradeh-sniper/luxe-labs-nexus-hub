@@ -371,67 +371,21 @@ export default function Landing() {
                             ];
                             
                             return (
-                              <Card key={index} className="group relative overflow-hidden border-0 bg-card/60 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                              <Card 
+                                key={index} 
+                                className="group relative overflow-hidden border-0 bg-card/60 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer"
+                                onClick={() => window.location.href = '/services'}
+                              >
                                 {/* Background Gradient */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index]}/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                                 
                                 {/* Header with Icon */}
-                                <div className="relative p-6 text-center border-b border-border/50">
+                                <div className="relative p-6 text-center">
                                   <div className={`inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r ${gradients[index]} rounded-full mb-4 group-hover:scale-110 transition-transform duration-300`}>
                                     <IconComponent className="h-7 w-7 text-white" />
                                   </div>
                                   <h4 className="text-xl font-playfair font-bold text-foreground mb-2">{service.title}</h4>
                                   <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">{service.description}</p>
-                                </div>
-                                
-                                {/* Teaser only: icon, title, description */}
-                                
-                                {/* Action Buttons */}
-                                <div className="p-6 pt-0 space-y-3 relative z-10">
-                                  {/* Primary action button */}
-                                  <Button
-                                    size="sm"
-                                    className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat pointer-events-auto ${
-                                      service.buttons?.[0] && 'disabled' in service.buttons[0] && service.buttons[0].disabled
-                                        ? 'opacity-50 cursor-not-allowed bg-gray-400 text-white'
-                                        : `bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0`
-                                    }`}
-                                    onClick={(e) => {
-                                      e.preventDefault();
-                                      e.stopPropagation();
-                                      console.log('Primary button clicked', service.title);
-                                      
-                                      const button = service.buttons?.[0];
-                                      if (!button) return;
-                                      if ('disabled' in button && button.disabled) return;
-                                      if ('action' in button && button.action === 'assessment') {
-                                        console.log('Opening assessment modal');
-                                        setShowInvestorAssessment(true);
-                                      } else if ('href' in button && button.href) {
-                                        console.log('Navigating to:', button.href);
-                                        window.location.href = button.href;
-                                      }
-                                    }}
-                                    disabled={(service.buttons?.[0] as any)?.disabled}
-                                  >
-                                    {service.buttons?.[0]?.text}
-                                    {!((service.buttons?.[0] as any)?.disabled) && <ArrowRight className="ml-2 h-3 w-3" />}
-                                  </Button>
-
-                                  {/* Secondary: Learn More button */}
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="w-full bg-foreground text-background border-foreground hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat pointer-events-auto"
-                                    onClick={(e) => {
-                                      e.preventDefault();
-                                      e.stopPropagation();
-                                      console.log('Learn More button clicked');
-                                      window.location.href = '/services';
-                                    }}
-                                  >
-                                    Learn More
-                                  </Button>
                                 </div>
                               </Card>
                             );
@@ -463,54 +417,21 @@ export default function Landing() {
                             ];
                             
                             return (
-                              <Card key={index} className="group relative overflow-hidden border-0 bg-card/60 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                              <Card 
+                                key={index} 
+                                className="group relative overflow-hidden border-0 bg-card/60 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer"
+                                onClick={() => window.location.href = '/services'}
+                              >
                                 {/* Background Gradient */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index]}/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                                 
                                 {/* Header with Icon */}
-                                <div className="relative p-6 text-center border-b border-border/50">
+                                <div className="relative p-6 text-center">
                                   <div className={`inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r ${gradients[index]} rounded-full mb-4 group-hover:scale-110 transition-transform duration-300`}>
                                     <IconComponent className="h-7 w-7 text-white" />
                                   </div>
                                   <h4 className="text-xl font-playfair font-bold text-foreground mb-2">{service.title}</h4>
                                   <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">{service.description}</p>
-                                </div>
-                                
-                                {/* Teaser only: icon, title, description */}
-                                
-                                {/* Action Buttons */}
-                                <div className="p-6 pt-0 space-y-3 relative z-10">
-                                  {/* Primary action button */}
-                                  <Button
-                                    size="sm"
-                                    className={`w-full transition-all duration-300 hover:scale-[1.02] font-montserrat bg-gradient-to-r ${gradients[index]} hover:opacity-90 text-white font-semibold border-0 pointer-events-auto`}
-                                    onClick={(e) => {
-                                      e.preventDefault();
-                                      e.stopPropagation();
-                                      console.log('Transformation primary button clicked', service.title);
-                                      if (service.buttons?.[0]?.href) {
-                                        window.location.href = service.buttons[0].href;
-                                      }
-                                    }}
-                                  >
-                                    {service.buttons?.[0]?.text}
-                                    <ArrowRight className="ml-2 h-3 w-3" />
-                                  </Button>
-
-                                  {/* Secondary: Learn More button */}
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="w-full bg-foreground text-background border-foreground hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat pointer-events-auto"
-                                    onClick={(e) => {
-                                      e.preventDefault();
-                                      e.stopPropagation();
-                                      console.log('Transformation Learn More button clicked');
-                                      window.location.href = '/services';
-                                    }}
-                                  >
-                                    Learn More
-                                  </Button>
                                 </div>
                               </Card>
                             );
