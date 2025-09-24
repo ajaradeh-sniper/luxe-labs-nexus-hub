@@ -56,12 +56,7 @@ export default function Landing() {
   const investmentServices = [
     {
       title: 'Solo Investment',
-      description: 'Flip a property with Luxury labs execution from acquisition to resale',
-      features: [
-        'Invest from AED 5M–30M in a flip & Set your objectives',
-        'End-to-end execution by Luxury Labs',
-        'Target ROI: 18–30%'
-      ],
+      description: 'Flip a property with Luxury labs execution from acquisition to resale - your gateway to premium real estate transformation with guaranteed luxury execution.',
       buttons: [
         { text: 'Investment Assessment', action: 'assessment' },
         { text: 'Learn More', href: '/services' }
@@ -69,12 +64,7 @@ export default function Landing() {
     },
     {
       title: 'Co-Investment',
-      description: 'Join Luxury Labs Transformation projects with pool of investors',
-      features: [
-        'From AED 1M entry point (Lower entry , shared rewards)',
-        'Vetted Investment Network ; guaranteed Luxury Labs standards',
-        'Target ROI: 12–20%'
-      ],
+      description: 'Join Luxury Labs Transformation projects with pool of investors - share the rewards while minimizing individual risk through our vetted network.',
       buttons: [
         { text: 'Investment Assessment', action: 'assessment' },
         { text: 'Learn More', href: '/services' }
@@ -82,12 +72,7 @@ export default function Landing() {
     },
     {
       title: 'Fund Investment',
-      description: "Diversified portfolio of luxury properties for long-term growth (Flips to Sell + Rent).",
-      features: [
-        'Professional fund management',
-        'Multi-property diversification',
-        'Target ROI: XX% annually (Coming Soon)'
-      ],
+      description: "Diversified portfolio of luxury properties for long-term growth combining flips and rental income - professional fund management with multi-property diversification.",
       buttons: [
         { text: 'Coming Soon', href: '#', disabled: true },
         { text: 'Learn More', href: '/services' }
@@ -98,41 +83,26 @@ export default function Landing() {
   const transformationServices = [
     {
       title: 'Dubai Relocation',
-      description: 'End-to-end relocation support for moving to Dubai.',
-      features: [
-        'Property sourcing and acquisition',
-        'Full design, renovation, and furnishing',
-        'Ongoing Dubai support'
-      ],
+      description: 'End-to-end relocation support for moving to Dubai - from property sourcing to full design, renovation, and ongoing support in your new home.',
       buttons: [
         { text: 'Get Support', href: '/contact' },
-        { text: 'Book Call', href: '/contact' }
+        { text: 'Learn More', href: '/services' }
       ]
     },
     {
       title: 'Advisory',
-      description: 'Strategic guidance for property investment and luxury design.',
-      features: [
-        'Property sourcing and analysis',
-        'Investment structuring',
-        'Portfolio optimization'
-      ],
+      description: 'Strategic guidance for property investment and luxury design - expert analysis, investment structuring, and portfolio optimization for maximum returns.',
       buttons: [
         { text: 'Get Advisory', href: '/contact' },
-        { text: 'Schedule Meeting', href: '/contact' }
+        { text: 'Learn More', href: '/services' }
       ]
     },
     {
       title: 'Media & Marketing',
-      description: 'Professional documentation and global marketing of property transformations.',
-      features: [
-        'Professional filming and production',
-        'Global marketing campaigns',
-        'Enhanced resale visibility'
-      ],
+      description: 'Professional documentation and global marketing of property transformations - enhance your property value through professional filming, production, and worldwide marketing campaigns.',
       buttons: [
         { text: 'See Portfolio', href: '/media' },
-        { text: 'Partner With Us', href: '/partners' }
+        { text: 'Learn More', href: '/services' }
       ]
     }
   ];
@@ -452,7 +422,7 @@ export default function Landing() {
                                   <Button
                                     size="sm"
                                     variant="outline"
-                                    className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat pointer-events-auto"
+                                    className="w-full bg-foreground text-background border-foreground hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat pointer-events-auto"
                                     onClick={(e) => {
                                       e.preventDefault();
                                       e.stopPropagation();
@@ -531,7 +501,7 @@ export default function Landing() {
                                   <Button
                                     size="sm"
                                     variant="outline"
-                                    className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat pointer-events-auto"
+                                    className="w-full bg-foreground text-background border-foreground hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:scale-[1.02] font-montserrat pointer-events-auto"
                                     onClick={(e) => {
                                       e.preventDefault();
                                       e.stopPropagation();
