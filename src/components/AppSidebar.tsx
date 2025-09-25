@@ -81,7 +81,8 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
 
   const operationalItems = [
     { title: "QA", url: "/qa", icon: CheckCircle, roles: ['administrator', 'project_manager', 'head_of_design'] },
-    { title: "Calendar", url: "/calendar", icon: Bell, roles: ['all'] },
+    { title: "Payments", url: "/payments", icon: DollarSign, roles: ['all'] },
+    { title: "Opportunities", url: "/client-opportunities", icon: Target, roles: ['client', 'investor'] },
     { title: "Reports", url: "/reports", icon: BarChart3, roles: ['administrator', 'finance_lead', 'project_manager', 'real_estate_director'] }
   ];
 
