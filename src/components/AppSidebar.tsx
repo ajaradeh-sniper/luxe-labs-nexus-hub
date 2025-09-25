@@ -17,6 +17,8 @@ import {
   Target,
   Globe,
   Calendar,
+  CreditCard,
+  Briefcase,
   LogOut,
   Eye,
   GitBranch
@@ -81,7 +83,9 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
 
   const operationalItems = [
     { title: "QA", url: "/qa", icon: CheckCircle, roles: ['administrator', 'project_manager', 'head_of_design'] },
-    { title: "Calendar", url: "/calendar", icon: Bell, roles: ['all'] },
+    { title: "Calendar", url: "/calendar", icon: Calendar, roles: ['administrator', 'project_manager', 'head_of_design', 'real_estate_director', 'finance_lead'] },
+    { title: "Payments", url: "/payments", icon: CreditCard, roles: ['client', 'administrator'] },
+    { title: "Opportunities", url: "/client-opportunities", icon: Briefcase, roles: ['client', 'administrator'] },
     { title: "Reports", url: "/reports", icon: BarChart3, roles: ['administrator', 'finance_lead', 'project_manager', 'real_estate_director'] }
   ];
 

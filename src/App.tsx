@@ -59,6 +59,9 @@ import MarketingTools from "./pages/MarketingTools"
 import Messaging from "./pages/Messaging"
 import FundManagement from "./pages/FundManagement"
 import Referrals from "./pages/Referrals"
+import ClientProfile from "./pages/ClientProfile"
+import Payments from "./pages/Payments"
+import ClientOpportunities from "./pages/ClientOpportunities"
 
 // Import public pages
 import About from "./pages/About"
@@ -121,6 +124,24 @@ function App() {
           <Route path="/client-dashboard" element={
             <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
               <EnhancedClientDashboard />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/client-profile" element={
+            <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
+              <ClientProfile />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/payments" element={
+            <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
+              <Payments />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/client-opportunities" element={
+            <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
+              <ClientOpportunities />
             </SmartProtectedRoute>
           } />
           
