@@ -53,59 +53,69 @@ export default function Landing() {
   const [showInvestorAssessment, setShowInvestorAssessment] = useState(false);
 
   // Service data from Services page
-  const investmentServices = [
-    {
-      title: 'Solo Investment',
-      description: 'Flip a property with Luxury labs execution from acquisition to resale - your gateway to premium real estate transformation with guaranteed luxury execution.',
-      buttons: [
-        { text: 'Investment Assessment', action: 'assessment' },
-        { text: 'Learn More', href: '/services' }
-      ]
-    },
-    {
-      title: 'Co-Investment',
-      description: 'Join Luxury Labs Transformation projects with pool of investors - share the rewards while minimizing individual risk through our vetted network.',
-      buttons: [
-        { text: 'Investment Assessment', action: 'assessment' },
-        { text: 'Learn More', href: '/services' }
-      ]
-    },
-    {
-      title: 'Fund Investment',
-      description: "Diversified portfolio of luxury properties for long-term growth combining flips and rental income - professional fund management with multi-property diversification.",
-      buttons: [
-        { text: 'Coming Soon', href: '#', disabled: true },
-        { text: 'Learn More', href: '/services' }
-      ]
-    }
-  ];
-
-  const transformationServices = [
-    {
-      title: 'Dubai Relocation',
-      description: 'End-to-end relocation support for moving to Dubai - from property sourcing to full design, renovation, and ongoing support in your new home.',
-      buttons: [
-        { text: 'Get Support', href: '/contact' },
-        { text: 'Learn More', href: '/services' }
-      ]
-    },
-    {
-      title: 'Advisory',
-      description: 'Strategic guidance for property investment and luxury design - expert analysis, investment structuring, and portfolio optimization for maximum returns.',
-      buttons: [
-        { text: 'Get Advisory', href: '/contact' },
-        { text: 'Learn More', href: '/services' }
-      ]
-    },
-    {
-      title: 'Media & Marketing',
-      description: 'Professional documentation and global marketing of property transformations - enhance your property value through professional filming, production, and worldwide marketing campaigns.',
-      buttons: [
-        { text: 'See Portfolio', href: '/media' },
-        { text: 'Learn More', href: '/services' }
-      ]
-    }
-  ];
+  const investmentServices = [{
+    title: 'Solo Investment',
+    description: 'Flip a property with Luxury labs execution from acquisition to resale - your gateway to premium real estate transformation with guaranteed luxury execution.',
+    buttons: [{
+      text: 'Investment Assessment',
+      action: 'assessment'
+    }, {
+      text: 'Learn More',
+      href: '/services'
+    }]
+  }, {
+    title: 'Co-Investment',
+    description: 'Join Luxury Labs Transformation projects with pool of investors - share the rewards while minimizing individual risk through our vetted network.',
+    buttons: [{
+      text: 'Investment Assessment',
+      action: 'assessment'
+    }, {
+      text: 'Learn More',
+      href: '/services'
+    }]
+  }, {
+    title: 'Fund Investment',
+    description: "Diversified portfolio of luxury properties for long-term growth combining flips and rental income - professional fund management with multi-property diversification.",
+    buttons: [{
+      text: 'Coming Soon',
+      href: '#',
+      disabled: true
+    }, {
+      text: 'Learn More',
+      href: '/services'
+    }]
+  }];
+  const transformationServices = [{
+    title: 'Dubai Relocation',
+    description: 'End-to-end relocation support for moving to Dubai - from property sourcing to full design, renovation, and ongoing support in your new home.',
+    buttons: [{
+      text: 'Get Support',
+      href: '/contact'
+    }, {
+      text: 'Learn More',
+      href: '/services'
+    }]
+  }, {
+    title: 'Advisory',
+    description: 'Strategic guidance for property investment and luxury design - expert analysis, investment structuring, and portfolio optimization for maximum returns.',
+    buttons: [{
+      text: 'Get Advisory',
+      href: '/contact'
+    }, {
+      text: 'Learn More',
+      href: '/services'
+    }]
+  }, {
+    title: 'Media & Marketing',
+    description: 'Professional documentation and global marketing of property transformations - enhance your property value through professional filming, production, and worldwide marketing campaigns.',
+    buttons: [{
+      text: 'See Portfolio',
+      href: '/media'
+    }, {
+      text: 'Learn More',
+      href: '/services'
+    }]
+  }];
   return <div className="min-h-screen bg-background">
       <Navigation />
 
@@ -114,15 +124,12 @@ export default function Landing() {
         {/* Dynamic Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/20"></div>
-          <div 
-            className="absolute inset-0 opacity-30"
-            style={{
-              backgroundImage: `url(${heroImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+          <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: `url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }} />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/60"></div>
         </div>
 
@@ -136,11 +143,7 @@ export default function Landing() {
             {/* Header with Logo */}
             <div className="text-center mb-16">
               <div className="inline-block relative">
-                <img 
-                  src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
-                  alt="Luxury Labs Logo" 
-                  className="h-32 sm:h-40 lg:h-48 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500" 
-                />
+                <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-32 sm:h-40 lg:h-48 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500" />
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-xl opacity-50 animate-pulse"></div>
               </div>
               
@@ -163,11 +166,7 @@ export default function Landing() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={strategicPlanningImage} 
-                    alt="Investment Partnership" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                  />
+                  <img src={strategicPlanningImage} alt="Investment Partnership" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
                   
                   {/* Floating Icon */}
@@ -193,18 +192,17 @@ export default function Landing() {
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Minimum AED 500K investment</span>
+                      <span className="text-sm font-montserrat text-foreground">Solo Investment
+                    </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Full transparency & reporting</span>
+                      <span className="text-sm font-montserrat text-foreground">Co-Investment - Join a fund
+                    </span>
                     </div>
                   </div>
                   
-                  <Button 
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
-                    onClick={() => setShowInvestorAssessment(true)}
-                  >
+                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => setShowInvestorAssessment(true)}>
                     Start Investor Assessment
                     <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
@@ -216,11 +214,7 @@ export default function Landing() {
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={premiumVillaSelectionImage} 
-                    alt="Luxury Property Transformation" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                  />
+                  <img src={premiumVillaSelectionImage} alt="Luxury Property Transformation" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
                   
                   {/* Floating Icon */}
@@ -242,22 +236,19 @@ export default function Landing() {
                   <div className="space-y-4 mb-6">
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-accent rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Luxury design & finishes</span>
+                      <span className="text-sm font-montserrat text-foreground">End to End Transformation (Aquisition to Sale)</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-accent rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Project management included</span>
+                      <span className="text-sm font-montserrat text-foreground">HNWI Relocation Concierge Services</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-accent rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Value increase guarantee</span>
+                      <span className="text-sm font-montserrat text-foreground">Design, PM and Luxury Staging and Finishing</span>
                     </div>
                   </div>
                   
-                  <Button 
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
-                    onClick={() => window.location.href = '/contact'}
-                  >
+                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/contact'}>
                     Contact Us
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
@@ -269,11 +260,7 @@ export default function Landing() {
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={marketAnalysisImage} 
-                    alt="Professional Advisory Services" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                  />
+                  <img src={marketAnalysisImage} alt="Professional Advisory Services" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
                   
                   {/* Floating Icon */}
@@ -303,14 +290,11 @@ export default function Landing() {
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">HNWI concierge services</span>
+                      <span className="text-sm font-montserrat text-foreground">Project Management & Quality Control</span>
                     </div>
                   </div>
                   
-                  <Button 
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn"
-                    onClick={() => window.location.href = '/contact'}
-                  >
+                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/contact'}>
                     Contact Us
                     <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
                   </Button>
@@ -331,17 +315,9 @@ export default function Landing() {
                 {/* Toggle Button */}
                 <Collapsible open={showServiceDetails} onOpenChange={setShowServiceDetails}>
                   <CollapsibleTrigger asChild>
-                    <Button 
-                      variant="outline" 
-                      size="lg"
-                      className="group bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300"
-                    >
+                    <Button variant="outline" size="lg" className="group bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300">
                       {showServiceDetails ? 'Hide Details' : 'View All Service Details'}
-                      {showServiceDetails ? (
-                        <ChevronUp className="ml-2 h-5 w-5 transition-transform duration-300" />
-                      ) : (
-                        <ChevronDown className="ml-2 h-5 w-5 transition-transform duration-300" />
-                      )}
+                      {showServiceDetails ? <ChevronUp className="ml-2 h-5 w-5 transition-transform duration-300" /> : <ChevronDown className="ml-2 h-5 w-5 transition-transform duration-300" />}
                     </Button>
                   </CollapsibleTrigger>
 
@@ -362,20 +338,10 @@ export default function Landing() {
                         
                         <div className="grid md:grid-cols-3 gap-6">
                           {investmentServices.map((service, index) => {
-                            const icons = [DollarSign, Users, PiggyBank];
-                            const IconComponent = icons[index];
-                            const gradients = [
-                              'from-emerald-500 to-emerald-600',
-                              'from-blue-500 to-blue-600', 
-                              'from-purple-500 to-purple-600'
-                            ];
-                            
-                            return (
-                              <Card 
-                                key={index} 
-                                className="group relative overflow-hidden border-0 bg-card/60 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer"
-                                onClick={() => window.location.href = '/services'}
-                              >
+                          const icons = [DollarSign, Users, PiggyBank];
+                          const IconComponent = icons[index];
+                          const gradients = ['from-emerald-500 to-emerald-600', 'from-blue-500 to-blue-600', 'from-purple-500 to-purple-600'];
+                          return <Card key={index} className="group relative overflow-hidden border-0 bg-card/60 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer" onClick={() => window.location.href = '/services'}>
                                 {/* Background Gradient */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index]}/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                                 
@@ -387,9 +353,8 @@ export default function Landing() {
                                   <h4 className="text-xl font-playfair font-bold text-foreground mb-2">{service.title}</h4>
                                   <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">{service.description}</p>
                                 </div>
-                              </Card>
-                            );
-                          })}
+                              </Card>;
+                        })}
                         </div>
                       </div>
 
@@ -407,21 +372,10 @@ export default function Landing() {
                         
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                           {transformationServices.map((service, index) => {
-                            const icons = [Home, BarChart3, Globe, Shield];
-                            const IconComponent = icons[index];
-                            const gradients = [
-                              'from-orange-500 to-orange-600',
-                              'from-teal-500 to-teal-600',
-                              'from-indigo-500 to-indigo-600',
-                              'from-rose-500 to-rose-600'
-                            ];
-                            
-                            return (
-                              <Card 
-                                key={index} 
-                                className="group relative overflow-hidden border-0 bg-card/60 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer"
-                                onClick={() => window.location.href = '/services'}
-                              >
+                          const icons = [Home, BarChart3, Globe, Shield];
+                          const IconComponent = icons[index];
+                          const gradients = ['from-orange-500 to-orange-600', 'from-teal-500 to-teal-600', 'from-indigo-500 to-indigo-600', 'from-rose-500 to-rose-600'];
+                          return <Card key={index} className="group relative overflow-hidden border-0 bg-card/60 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer" onClick={() => window.location.href = '/services'}>
                                 {/* Background Gradient */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index]}/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                                 
@@ -433,9 +387,8 @@ export default function Landing() {
                                   <h4 className="text-xl font-playfair font-bold text-foreground mb-2">{service.title}</h4>
                                   <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">{service.description}</p>
                                 </div>
-                              </Card>
-                            );
-                          })}
+                              </Card>;
+                        })}
                         </div>
                       </div>
                     </div>
@@ -656,10 +609,7 @@ export default function Landing() {
           {/* Learn More Button */}
           <div className="text-center mt-12">
             <Link to="/about">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg"
-              >
+              <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg">
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -770,11 +720,7 @@ export default function Landing() {
                   <h4 className="font-semibold text-foreground mb-3">Recent Investments</h4>
                   <div className="space-y-2">
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="src/assets/palm-villa-for-sale.jpg" 
-                        alt="Palm Jumeirah Villa" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
+                      <img src="src/assets/palm-villa-for-sale.jpg" alt="Palm Jumeirah Villa" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Palm Jumeirah Villa</p>
                         <p className="text-sm text-muted-foreground">AED 800K invested</p>
@@ -785,11 +731,7 @@ export default function Landing() {
                       </div>
                     </div>
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="src/assets/luxury-penthouse.jpg" 
-                        alt="Marina Penthouse" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
+                      <img src="src/assets/luxury-penthouse.jpg" alt="Marina Penthouse" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Marina Penthouse</p>
                         <p className="text-sm text-muted-foreground">AED 1.2M invested</p>
@@ -800,11 +742,7 @@ export default function Landing() {
                       </div>
                     </div>
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img 
-                        src="src/assets/downtown-luxury.jpg" 
-                        alt="Downtown Apartment" 
-                        className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0"
-                      />
+                      <img src="src/assets/downtown-luxury.jpg" alt="Downtown Apartment" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Downtown Apartment</p>
                         <p className="text-sm text-muted-foreground">AED 400K invested</p>
@@ -924,35 +862,33 @@ export default function Landing() {
           </div>
 
           <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { name: 'Forbes', logo: forbesLogo },
-              { name: 'Arabian Business', logo: arabianBusinessLogo },
-              { name: 'Gulf News', logo: gulfNewsLogo },
-              { name: 'HGTV', logo: hgtvLogo }
-            ].map((publication, index) => (
-              <Card key={index} className="elegant-card">
+            {[{
+            name: 'Forbes',
+            logo: forbesLogo
+          }, {
+            name: 'Arabian Business',
+            logo: arabianBusinessLogo
+          }, {
+            name: 'Gulf News',
+            logo: gulfNewsLogo
+          }, {
+            name: 'HGTV',
+            logo: hgtvLogo
+          }].map((publication, index) => <Card key={index} className="elegant-card">
                 <CardContent className="p-6 text-center">
                   <div className="w-20 h-20 rounded-lg flex items-center justify-center mb-4 mx-auto bg-white/10 backdrop-blur-sm">
-                    <img 
-                      src={publication.logo} 
-                      alt={`${publication.name} logo`} 
-                      className="max-w-16 max-h-16 object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <img src={publication.logo} alt={`${publication.name} logo`} className="max-w-16 max-h-16 object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <h3 className="font-playfair font-bold text-foreground mb-2">{publication.name}</h3>
                   <p className="text-sm text-muted-foreground font-montserrat">Featured Publication</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
           
           {/* Learn More Button */}
           <div className="text-center mt-12">
             <Link to="/media">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg"
-              >
+              <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg">
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -1014,10 +950,7 @@ export default function Landing() {
           {/* Learn More Button */}
           <div className="text-center mt-12">
             <Link to="/partners">
-              <Button 
-                size="lg" 
-                className="luxury-button font-montserrat px-8 py-3 text-lg"
-              >
+              <Button size="lg" className="luxury-button font-montserrat px-8 py-3 text-lg">
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -1073,13 +1006,10 @@ export default function Landing() {
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Book a Meeting</h3>
                 <p className="text-muted-foreground font-montserrat mb-6">Schedule a consultation</p>
-                <Button 
-                  className="w-full luxury-gradient hover:luxury-glow font-montserrat"
-                  onClick={() => {
-                    // Replace with your actual Calendly link
-                    window.open('https://calendly.com/luxurylabs-consultation', '_blank');
-                  }}
-                >
+                <Button className="w-full luxury-gradient hover:luxury-glow font-montserrat" onClick={() => {
+                // Replace with your actual Calendly link
+                window.open('https://calendly.com/luxurylabs-consultation', '_blank');
+              }}>
                   Schedule Consultation
                 </Button>
               </CardContent>
@@ -1166,9 +1096,6 @@ export default function Landing() {
       </footer>
 
       {/* Investor Assessment Modal */}
-      <InvestorAssessmentModal 
-        open={showInvestorAssessment}
-        onOpenChange={setShowInvestorAssessment}
-      />
+      <InvestorAssessmentModal open={showInvestorAssessment} onOpenChange={setShowInvestorAssessment} />
     </div>;
 }
