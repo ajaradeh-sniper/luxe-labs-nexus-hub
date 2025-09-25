@@ -180,7 +180,7 @@ export default function Landing() {
                       Invest in Flipping Projects
                     </h3>
           <p className="text-sm text-white/90 font-montserrat leading-relaxed">
-            Start a Project or join (Invest) in Real Estate Transformation (Flipping) Projects with Luxury Labs
+            Start a Project or join (Invest) in Luxury Labs Real Estate Transformation (Flipping) Projects
                     </p>
                   </div>
                 </div>
