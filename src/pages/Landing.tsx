@@ -230,7 +230,7 @@ export default function Landing() {
                   
                   <div className="absolute bottom-6 left-6 right-6">
                     <h3 className="text-2xl font-bold font-playfair text-white mb-2">
-                      Transform a Property with LL
+                      Transform a Property
                     </h3>
                     <p className="text-sm text-white/90 font-montserrat leading-relaxed">
                       Start a Transformation (Flip)/Project or Transform your Luxury Property with Luxury Labs
