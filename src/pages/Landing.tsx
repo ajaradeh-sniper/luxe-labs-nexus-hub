@@ -283,7 +283,7 @@ export default function Landing() {
                   
                   <div className="absolute bottom-6 left-6 right-6">
                     <h3 className="text-2xl font-bold font-playfair text-white mb-2">
-                      Get Advisory from LL
+                      Advisory
                     </h3>
                     <p className="text-sm text-white/90 font-montserrat leading-relaxed">
                       Property transformation design, material/product sourcing, investment and financial advisory with Luxury Labs
