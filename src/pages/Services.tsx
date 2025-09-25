@@ -267,105 +267,102 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Investment & Transformation Services */}
+        {/* Investment Services */}
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-16">
-              {/* Investment Services */}
-              <div>
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Investment Services</h2>
-                </div>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Investment Services</h2>
+            </div>
 
-                <div className="space-y-8">
-                  {investmentServices.map((service) => (
-                    <Card key={service.id} className="overflow-hidden">
-                      <div className="relative h-64">
-                        <img 
-                          src={service.image}
-                          alt={service.title}
-                          className="w-full h-full object-cover"
-                        />
+            <div className="grid lg:grid-cols-3 gap-8">
+              {investmentServices.map((service) => (
+                <Card key={service.id} className="overflow-hidden">
+                  <div className="relative h-64">
+                    <img 
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                        <service.icon className="h-6 w-6 text-primary" />
                       </div>
-                      <CardHeader>
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                            <service.icon className="h-6 w-6 text-primary" />
-                          </div>
-                          <CardTitle className="text-xl">{service.title}</CardTitle>
-                        </div>
-                        <p className="text-muted-foreground">{service.description}</p>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2 mb-6">
-                          {service.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-sm">
-                              <CheckCircle className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
-                              <span className="text-muted-foreground">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="flex gap-2">
-                          <Button 
-                            variant={service.buttons[0] === 'Coming Soon' ? 'secondary' : 'luxury'} 
-                            onClick={() => service.buttons[0] === 'Coming Soon' ? setIsContactModalOpen(true) : setIsAssessmentModalOpen(true)}
-                          >
-                            {service.id === 'diversified-fund' ? 'Register Interest' : (service.buttons[0] === 'Coming Soon' ? 'Contact Us' : 'Investor Profile Assessment')}
-                          </Button>
-                          <Button variant="outline" onClick={() => setIsContactModalOpen(true)}>
-                            Contact Us
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
+                      <CardTitle className="text-xl">{service.title}</CardTitle>
+                    </div>
+                    <p className="text-muted-foreground">{service.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 mb-6">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm">
+                          <CheckCircle className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex gap-2">
+                      <Button 
+                        variant={service.buttons[0] === 'Coming Soon' ? 'secondary' : 'luxury'} 
+                        onClick={() => service.buttons[0] === 'Coming Soon' ? setIsContactModalOpen(true) : setIsAssessmentModalOpen(true)}
+                      >
+                        {service.id === 'diversified-fund' ? 'Register Interest' : (service.buttons[0] === 'Coming Soon' ? 'Contact Us' : 'Investor Profile Assessment')}
+                      </Button>
+                      <Button variant="outline" onClick={() => setIsContactModalOpen(true)}>
+                        Contact Us
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              {/* Transformation Services */}
-              <div>
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Transformation Services</h2>
-                </div>
+        {/* Transformation Services */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">Transformation Services</h2>
+            </div>
 
-                <div className="space-y-8">
-                  {transformationServices.map((service) => (
-                    <Card key={service.id} className="overflow-hidden">
-                      <div className="relative h-64">
-                        <img 
-                          src={service.image}
-                          alt={service.title}
-                          className="w-full h-full object-cover"
-                        />
+            <div className="grid lg:grid-cols-3 gap-8">
+              {transformationServices.map((service) => (
+                <Card key={service.id} className="overflow-hidden">
+                  <div className="relative h-64">
+                    <img 
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                        <service.icon className="h-6 w-6 text-primary" />
                       </div>
-                      <CardHeader>
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                            <service.icon className="h-6 w-6 text-primary" />
-                          </div>
-                          <CardTitle className="text-xl">{service.title}</CardTitle>
-                        </div>
-                        <p className="text-muted-foreground">{service.description}</p>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2 mb-6">
-                          {service.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-sm">
-                              <CheckCircle className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
-                              <span className="text-muted-foreground">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="flex gap-2">
-                          <Button variant="outline" onClick={() => setIsContactModalOpen(true)}>
-                            Contact Us
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
+                      <CardTitle className="text-xl">{service.title}</CardTitle>
+                    </div>
+                    <p className="text-muted-foreground">{service.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 mb-6">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm">
+                          <CheckCircle className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex gap-2">
+                      <Button variant="outline" onClick={() => setIsContactModalOpen(true)}>
+                        Contact Us
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>

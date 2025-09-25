@@ -69,9 +69,6 @@ import Partners from "./pages/Partners"
 import Investors from "./pages/Investors"
 import Contact from "./pages/Contact"
 import Profile from "./pages/Profile"
-import ClientProfile from "./pages/ClientProfile"
-import Payments from "./pages/Payments"
-import ClientOpportunities from "./pages/ClientOpportunities"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -123,19 +120,7 @@ function App() {
           
           <Route path="/client-dashboard" element={
             <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
-              <ClientProfile />
-            </SmartProtectedRoute>
-          } />
-          
-          <Route path="/payments" element={
-            <SmartProtectedRoute>
-              <Payments />
-            </SmartProtectedRoute>
-          } />
-          
-          <Route path="/client-opportunities" element={
-            <SmartProtectedRoute requiredRoles={['client', 'investor', 'administrator']}>
-              <ClientOpportunities />
+              <EnhancedClientDashboard />
             </SmartProtectedRoute>
           } />
           
