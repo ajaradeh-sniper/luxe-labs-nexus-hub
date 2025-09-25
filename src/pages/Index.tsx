@@ -88,152 +88,162 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Investment Services */}
-              <Card className="group hover:shadow-luxury transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
-                    <TrendingUp className="h-8 w-8 text-background" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Single Property Flip</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Lead or co-lead curated villa transformations in Dubai's most exclusive areas with exceptional returns.
-                  </p>
-                  <div className="flex flex-col gap-2">
-                    <Button size="sm" variant="luxury" className="w-full" asChild>
-                      <Link to="/investor-questionnaire">
-                        Start Investing
-                      </Link>
-                    </Button>
-                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
-                      <Link to="/services">
-                        Learn More
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+              {/* Investment Services Column */}
+              <div className="lg:col-span-3 space-y-6">
+                <h3 className="text-2xl font-bold mb-6 text-center font-playfair">Investment Services</h3>
+                <div className="space-y-6">
+                  <Card className="group hover:shadow-luxury transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                        <TrendingUp className="h-8 w-8 text-background" />
+                      </div>
+                      <h4 className="text-xl font-semibold mb-3">Single Property Flip</h4>
+                      <p className="text-muted-foreground mb-6">
+                        Lead or co-lead curated villa transformations in Dubai's most exclusive areas with exceptional returns.
+                      </p>
+                      <div className="flex flex-col gap-2">
+                        <Button size="sm" variant="luxury" className="w-full" asChild>
+                          <Link to="/investor-questionnaire">
+                            Start Investing
+                          </Link>
+                        </Button>
+                        <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                          <Link to="/services">
+                            Learn More
+                          </Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              <Card className="group hover:shadow-luxury transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
-                    <Users className="h-8 w-8 text-background" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Shared Stake (Co-Invest)</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Join vetted Dubai villa flips with other investors from AED 500K minimum investment.
-                  </p>
-                  <div className="flex flex-col gap-2">
-                    <Button size="sm" variant="luxury" className="w-full" asChild>
-                      <Link to="/investor-questionnaire">
-                        Start Investing
-                      </Link>
-                    </Button>
-                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
-                      <Link to="/services">
-                        Learn More
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                  <Card className="group hover:shadow-luxury transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                        <Users className="h-8 w-8 text-background" />
+                      </div>
+                      <h4 className="text-xl font-semibold mb-3">Shared Stake (Co-Invest)</h4>
+                      <p className="text-muted-foreground mb-6">
+                        Join vetted Dubai villa flips with other investors from AED 500K minimum investment.
+                      </p>
+                      <div className="flex flex-col gap-2">
+                        <Button size="sm" variant="luxury" className="w-full" asChild>
+                          <Link to="/investor-questionnaire">
+                            Start Investing
+                          </Link>
+                        </Button>
+                        <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                          <Link to="/services">
+                            Learn More
+                          </Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              <Card className="group hover:shadow-luxury transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
-                    <Building className="h-8 w-8 text-background" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Diversified Fund</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Long-term diversified portfolio of luxury villas with professional management and steady returns.
-                  </p>
-                  <div className="flex flex-col gap-2">
-                    <Button size="sm" variant="luxury" className="w-full" asChild>
-                      <Link to="/investor-questionnaire">
-                        Start Investing
-                      </Link>
-                    </Button>
-                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
-                      <Link to="/services">
-                        Learn More
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                  <Card className="group hover:shadow-luxury transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                        <Building className="h-8 w-8 text-background" />
+                      </div>
+                      <h4 className="text-xl font-semibold mb-3">Diversified Fund</h4>
+                      <p className="text-muted-foreground mb-6">
+                        Long-term diversified portfolio of luxury villas with professional management and steady returns.
+                      </p>
+                      <div className="flex flex-col gap-2">
+                        <Button size="sm" variant="luxury" className="w-full" asChild>
+                          <Link to="/investor-questionnaire">
+                            Start Investing
+                          </Link>
+                        </Button>
+                        <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                          <Link to="/services">
+                            Learn More
+                          </Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
 
-              {/* Transformation Services */}
-              <Card className="group hover:shadow-luxury transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
-                    <Shield className="h-8 w-8 text-background" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Relocation Concierge</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Complete visa, banking, residence and luxury lifestyle setup services for high-net-worth individuals.
-                  </p>
-                  <div className="flex flex-col gap-2">
-                    <Button size="sm" variant="luxury" className="w-full" asChild>
-                      <Link to="/contact">
-                        Get Started
-                      </Link>
-                    </Button>
-                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
-                      <Link to="/services">
-                        Learn More
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              {/* Transformation Services Column */}
+              <div className="lg:col-span-2 space-y-6">
+                <h3 className="text-2xl font-bold mb-6 text-center font-playfair">Transformation Services</h3>
+                <div className="space-y-6">
+                  <Card className="group hover:shadow-luxury transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                        <Shield className="h-8 w-8 text-background" />
+                      </div>
+                      <h4 className="text-xl font-semibold mb-3">Relocation Concierge</h4>
+                      <p className="text-muted-foreground mb-6">
+                        Complete visa, banking, residence and luxury lifestyle setup services for high-net-worth individuals.
+                      </p>
+                      <div className="flex flex-col gap-2">
+                        <Button size="sm" variant="luxury" className="w-full" asChild>
+                          <Link to="/contact">
+                            Get Started
+                          </Link>
+                        </Button>
+                        <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                          <Link to="/services">
+                            Learn More
+                          </Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              <Card className="group hover:shadow-luxury transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
-                    <FileText className="h-8 w-8 text-background" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Advisory Services</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Expert property sourcing, investment structuring and long-term portfolio advisory services.
-                  </p>
-                  <div className="flex flex-col gap-2">
-                    <Button size="sm" variant="luxury" className="w-full" asChild>
-                      <Link to="/contact">
-                        Get Started
-                      </Link>
-                    </Button>
-                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
-                      <Link to="/services">
-                        Learn More
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                  <Card className="group hover:shadow-luxury transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                        <FileText className="h-8 w-8 text-background" />
+                      </div>
+                      <h4 className="text-xl font-semibold mb-3">Advisory Services</h4>
+                      <p className="text-muted-foreground mb-6">
+                        Expert property sourcing, investment structuring and long-term portfolio advisory services.
+                      </p>
+                      <div className="flex flex-col gap-2">
+                        <Button size="sm" variant="luxury" className="w-full" asChild>
+                          <Link to="/contact">
+                            Get Started
+                          </Link>
+                        </Button>
+                        <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                          <Link to="/services">
+                            Learn More
+                          </Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              <Card className="group hover:shadow-luxury transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
-                    <Star className="h-8 w-8 text-background" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Flipping Dubai Media</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Professional documentation and marketing of property transformations to attract buyers and investors.
-                  </p>
-                  <div className="flex flex-col gap-2">
-                    <Button size="sm" variant="luxury" className="w-full" asChild>
-                      <Link to="/contact">
-                        Get Started
-                      </Link>
-                    </Button>
-                    <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
-                      <Link to="/services">
-                        Learn More
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                  <Card className="group hover:shadow-luxury transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                        <Star className="h-8 w-8 text-background" />
+                      </div>
+                      <h4 className="text-xl font-semibold mb-3">Flipping Dubai Media</h4>
+                      <p className="text-muted-foreground mb-6">
+                        Professional documentation and marketing of property transformations to attract buyers and investors.
+                      </p>
+                      <div className="flex flex-col gap-2">
+                        <Button size="sm" variant="luxury" className="w-full" asChild>
+                          <Link to="/contact">
+                            Get Started
+                          </Link>
+                        </Button>
+                        <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
+                          <Link to="/services">
+                            Learn More
+                          </Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
             </div>
           </div>
         </section>
