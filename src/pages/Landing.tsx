@@ -192,13 +192,11 @@ export default function Landing() {
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Solo Investment
-                    </span>
+                      <span className="text-sm font-montserrat text-foreground">Solo Investment & Luxury Labs Execute</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Co-Investment - Join a fund
-                    </span>
+                      <span className="text-sm font-montserrat text-foreground">Co-Investment - Join other investors</span>
                     </div>
                   </div>
                   
