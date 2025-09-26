@@ -25,6 +25,20 @@ import {
   Building,
   Target
 } from "lucide-react"
+import { 
+  LineChart, 
+  Line, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell
+} from 'recharts';
 
 export default function ClientDashboard() {
   const { user } = useAuth()
@@ -269,10 +283,11 @@ export default function ClientDashboard() {
           
           <CardContent>
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-5">
+              <TabsList className="grid w-full grid-cols-6">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="progress">Progress</TabsTrigger>
                 <TabsTrigger value="milestones">Milestones</TabsTrigger>
+                <TabsTrigger value="captable">Cap Table</TabsTrigger>
                 <TabsTrigger value="documents">Documents</TabsTrigger>
                 <TabsTrigger value="communication">Communication</TabsTrigger>
               </TabsList>
@@ -396,6 +411,185 @@ export default function ClientDashboard() {
                           )}
                         </div>
                       ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="captable" className="space-y-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Investment Breakdown</CardTitle>
+                      <CardDescription>Current ownership structure and stake distribution</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                          <div>
+                            <p className="font-medium">Luxury Labs (GP)</p>
+                            <p className="text-sm text-muted-foreground">General Partner</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="font-bold text-lg">25%</p>
+                            <p className="text-sm text-muted-foreground">{formatCurrency(selectedProject.budget * 0.25)}</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                          <div>
+                            <p className="font-medium">Limited Partners</p>
+                            <p className="text-sm text-muted-foreground">Multiple investors</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="font-bold text-lg">75%</p>
+                            <p className="text-sm text-muted-foreground">{formatCurrency(selectedProject.budget * 0.75)}</p>
+                          </div>
+                        </div>
+                        
+                        <div className="pt-4 border-t">
+                          <div className="text-center">
+                            <div className="h-40 w-full">
+                              <ResponsiveContainer width="100%" height="100%">
+                                <PieChart>
+                                  <Pie
+                                    data={[
+                                      { name: 'LP Investors', value: 75, fill: '#0088FE' },
+                                      { name: 'GP (Luxury Labs)', value: 25, fill: '#00C49F' }
+                                    ]}
+                                    cx="50%"
+                                    cy="50%"
+                                    labelLine={false}
+                                    label={({ name, value }) => `${name}: ${value}%`}
+                                    outerRadius={60}
+                                    dataKey="value"
+                                  >
+                                    {[{ name: 'LP Investors', value: 75, fill: '#0088FE' }, { name: 'GP (Luxury Labs)', value: 25, fill: '#00C49F' }].map((entry, index) => (
+                                      <Cell key={`cell-${index}`} fill={entry.fill} />
+                                    ))}
+                                  </Pie>
+                                  <Tooltip />
+                                </PieChart>
+                              </ResponsiveContainer>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Market Status & Valuation</CardTitle>
+                      <CardDescription>Current market conditions and NAV calculations</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="p-3 bg-green-50 rounded-lg border border-green-200">
+                          <p className="text-sm text-green-700 font-medium">Current Value</p>
+                          <p className="text-xl font-bold text-green-800">{formatCurrency(selectedProject.budget * (1 + selectedProject.progress / 100 * 0.3))}</p>
+                          <p className="text-xs text-green-600">+{(selectedProject.progress / 100 * 30).toFixed(1)}% from start</p>
+                        </div>
+                        
+                        <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                          <p className="text-sm text-blue-700 font-medium">Market Cap</p>
+                          <p className="text-xl font-bold text-blue-800">{formatCurrency(selectedProject.budget * 1.15)}</p>
+                          <p className="text-xs text-blue-600">15% premium to budget</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-sm">Property Investment:</span>
+                          <span className="font-medium">{formatCurrency(selectedProject.budget * 0.92)}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-sm">Cash & Reserves:</span>
+                          <span className="font-medium">{formatCurrency(selectedProject.budget * 0.05)}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-sm">Other Assets:</span>
+                          <span className="font-medium">{formatCurrency(selectedProject.budget * 0.03)}</span>
+                        </div>
+                        <div className="border-t pt-2 flex justify-between font-bold">
+                          <span>Total Value:</span>
+                          <span>{formatCurrency(selectedProject.budget)}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="pt-4 border-t">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <span className="text-sm font-medium">Market Outlook: Strong</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          Dubai real estate market showing robust performance with continued investor confidence and strong rental yields.
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+                
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Investor Distribution</CardTitle>
+                    <CardDescription>Breakdown by investor type and geographic location</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="space-y-3">
+                        <h4 className="font-medium text-sm">By Investor Type</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-sm">
+                            <span>High Net Worth Individuals</span>
+                            <span className="font-medium">68%</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>Family Offices</span>
+                            <span className="font-medium">22%</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>Institutional</span>
+                            <span className="font-medium">10%</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <h4 className="font-medium text-sm">By Geography</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-sm">
+                            <span>UAE</span>
+                            <span className="font-medium">45%</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>GCC</span>
+                            <span className="font-medium">30%</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>International</span>
+                            <span className="font-medium">25%</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <h4 className="font-medium text-sm">Investment Size</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-sm">
+                            <span>AED 1-5M</span>
+                            <span className="font-medium">50%</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>AED 5-20M</span>
+                            <span className="font-medium">35%</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>AED 20M+</span>
+                            <span className="font-medium">15%</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
