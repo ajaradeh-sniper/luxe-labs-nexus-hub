@@ -77,7 +77,7 @@ export default function Partners() {
                     <img src={palmVillaForSale} alt="Luxury palm villa with FOR SALE board sign" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-2 left-2">
-                      <span className="text-white text-sm font-medium">Palm Villa For Sale</span>
+                      <span className="text-white text-sm font-medium">Real Estate Brokers</span>
                     </div>
                   </div>
                   
@@ -85,7 +85,7 @@ export default function Partners() {
                     <img src={emaarConstructionSite} alt="EMAAR construction site with logo" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-2 left-2">
-                      <span className="text-white text-sm font-medium">EMAAR Development</span>
+                      <span className="text-white text-sm font-medium">Real Estate Developers</span>
                     </div>
                   </div>
                   
@@ -93,7 +93,7 @@ export default function Partners() {
                     <img src={securityGuardGolfHouse} alt="Security guard by golf course luxury house" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-2 left-2">
-                      <span className="text-white text-sm font-medium">Golf Course Property</span>
+                      <span className="text-white text-sm font-medium">Property Management</span>
                     </div>
                   </div>
                 </div>
@@ -136,7 +136,7 @@ export default function Partners() {
                     <img src={projectManagerTimeline} alt="Project manager reviewing timeline charts and planning schedules" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-2 left-2">
-                      <span className="text-white text-sm font-medium">Project Timeline</span>
+                      <span className="text-white text-sm font-medium">Project Manager</span>
                     </div>
                   </div>
                 </div>
