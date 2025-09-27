@@ -167,7 +167,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         { value: 'marina', label: 'Dubai Marina', description: 'Waterfront luxury living' },
         { value: 'palm', label: 'Palm Jumeirah', description: 'Iconic man-made island' },
         { value: 'emirates_hills', label: 'Emirates Hills', description: 'Exclusive villa community' },
-        { value: 'business_bay', label: 'Business Bay', description: 'Commercial and residential hub' },
+        { value: 'business_bay', label: 'Jumeirah', description: 'Commercial and residential hub' },
         { value: 'difc', label: 'DIFC', description: 'Financial district' }
       ]
     },
