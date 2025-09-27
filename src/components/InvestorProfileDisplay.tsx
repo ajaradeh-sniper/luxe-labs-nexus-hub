@@ -8,16 +8,24 @@ import { BarChart3, DollarSign, Target, Clock, MapPin, TrendingUp, FileEdit } fr
 import { useToast } from "@/hooks/use-toast"
 
 interface InvestorPreferences {
-  investmentCapacity?: number
-  riskTolerance?: string
-  investmentHorizon?: string
-  preferredLocations?: string[]
-  propertyTypes?: string[]
-  investmentGoals?: string[]
-  liquidityNeeds?: string
-  experience?: string
-  backgroundInfo?: string
-  additionalComments?: string
+  investorType?: string;
+  otherDescription?: string;
+  investmentExperience?: string;
+  investmentPreference?: string;
+  investmentTimeline?: {
+    fundsAvailable?: string;
+    paybackPeriod?: string;
+  };
+  preferredInvestmentSize?: number;
+  timeHorizon?: string;
+  geographicPreference?: string[];
+  involvementPreference?: string;
+  investmentTypePreference?: string;
+  propertyTypes?: string[];
+  expectedReturns?: string;
+  liquidityPreference?: string;
+  investmentApproach?: string;
+  additionalComments?: string;
 }
 
 export function InvestorProfileDisplay({ onEdit }: { onEdit?: () => void }) {
@@ -150,54 +158,62 @@ export function InvestorProfileDisplay({ onEdit }: { onEdit?: () => void }) {
       <CardContent className="space-y-6">
         
         {/* Investment Capacity */}
-        {preferences.investmentCapacity && (
+        {preferences.preferredInvestmentSize && (
           <div className="flex items-center gap-3">
             <DollarSign className="h-5 w-5 text-primary" />
             <div>
               <p className="font-semibold">Investment Capacity</p>
               <p className="text-lg text-primary font-bold">
-                {formatCurrency(preferences.investmentCapacity)}
+                {formatCurrency(preferences.preferredInvestmentSize)}
               </p>
             </div>
           </div>
         )}
 
-        {/* Risk & Timeline */}
+        {/* Experience & Preference */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {preferences.riskTolerance && (
+          {preferences.investmentExperience && (
             <div className="flex items-center gap-3">
               <TrendingUp className="h-5 w-5 text-muted-foreground" />
               <div>
-                <p className="font-semibold">Risk Tolerance</p>
-                <Badge className={getRiskColor(preferences.riskTolerance)}>
-                  {preferences.riskTolerance}
+                <p className="font-semibold">Experience Level</p>
+                <Badge className={preferences.investmentExperience === 'beginner' ? 'bg-yellow-500' : 
+                                preferences.investmentExperience === 'intermediate' ? 'bg-blue-500' : 'bg-green-500'}>
+                  {preferences.investmentExperience}
                 </Badge>
               </div>
             </div>
           )}
 
-          {preferences.investmentHorizon && (
+          {preferences.investmentPreference && (
             <div className="flex items-center gap-3">
               <Clock className="h-5 w-5 text-muted-foreground" />
               <div>
-                <p className="font-semibold">Investment Horizon</p>
-                <p className="text-muted-foreground">{preferences.investmentHorizon}</p>
+                <p className="font-semibold">Investment Preference</p>
+                <p className="text-muted-foreground">{preferences.investmentPreference}</p>
               </div>
             </div>
           )}
         </div>
 
         {/* Preferred Locations */}
-        {preferences.preferredLocations && preferences.preferredLocations.length > 0 && (
+        {preferences.geographicPreference && preferences.geographicPreference.length > 0 && (
           <div>
             <div className="flex items-center gap-2 mb-2">
               <MapPin className="h-5 w-5 text-muted-foreground" />
               <p className="font-semibold">Preferred Locations</p>
             </div>
             <div className="flex flex-wrap gap-2">
-              {preferences.preferredLocations.map((location, index) => (
+              {preferences.geographicPreference.map((location, index) => (
                 <Badge key={index} variant="secondary">
-                  {location}
+                  {location === 'highest_roi' ? "Skip - Let's discuss later" :
+                   location === 'downtown' ? 'Downtown Dubai' :
+                   location === 'marina' ? 'Dubai Marina' :
+                   location === 'palm' ? 'Palm Jumeirah' :
+                   location === 'emirates_hills' ? 'Emirates Hills' :
+                   location === 'business_bay' ? 'Jumeirah' :
+                   location === 'difc' ? 'DIFC' :
+                   location}
                 </Badge>
               ))}
             </div>
@@ -218,48 +234,65 @@ export function InvestorProfileDisplay({ onEdit }: { onEdit?: () => void }) {
           </div>
         )}
 
-        {/* Investment Goals */}
-        {preferences.investmentGoals && preferences.investmentGoals.length > 0 && (
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <Target className="h-5 w-5 text-muted-foreground" />
-              <p className="font-semibold">Investment Goals</p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {preferences.investmentGoals.map((goal, index) => (
-                <Badge key={index} variant="secondary">
-                  {goal}
-                </Badge>
-              ))}
-            </div>
+        {/* Investment Timeline */}
+        {preferences.investmentTimeline && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {preferences.investmentTimeline.fundsAvailable && (
+              <div>
+                <p className="font-semibold">Funds Available</p>
+                <p className="text-muted-foreground">
+                  {preferences.investmentTimeline.fundsAvailable === '1' ? 'Within 1 month' :
+                   preferences.investmentTimeline.fundsAvailable === '3' ? 'Within 3 months' :
+                   preferences.investmentTimeline.fundsAvailable === '6' ? 'Within 6 months' :
+                   preferences.investmentTimeline.fundsAvailable === '12' ? 'Within 12 months' :
+                   preferences.investmentTimeline.fundsAvailable}
+                </p>
+              </div>
+            )}
+
+            {preferences.investmentTimeline.paybackPeriod && (
+              <div>
+                <p className="font-semibold">Expected Payback Period</p>
+                <p className="text-muted-foreground">
+                  {preferences.investmentTimeline.paybackPeriod === '1-2' ? '1-2 years' :
+                   preferences.investmentTimeline.paybackPeriod === '3-5' ? '3-5 years' :
+                   preferences.investmentTimeline.paybackPeriod === '5-10' ? '5-10 years' :
+                   preferences.investmentTimeline.paybackPeriod === '8-12' ? '8-12 months' :
+                   preferences.investmentTimeline.paybackPeriod}
+                </p>
+              </div>
+            )}
           </div>
         )}
 
-        {/* Experience & Liquidity */}
+        {/* Involvement & Investment Type */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {preferences.experience && (
+          {preferences.involvementPreference && (
             <div>
-              <p className="font-semibold">Experience Level</p>
-              <p className="text-muted-foreground">{preferences.experience}</p>
+              <p className="font-semibold">Involvement Preference</p>
+              <p className="text-muted-foreground">
+                {preferences.involvementPreference === 'full_involvement' ? 'Full Involvement' :
+                 preferences.involvementPreference === 'periodic_updates' ? 'Periodic Updates' :
+                 preferences.involvementPreference === 'no_involvement' ? 'No Involvement' :
+                 preferences.involvementPreference}
+              </p>
             </div>
           )}
 
-          {preferences.liquidityNeeds && (
+          {preferences.investmentTypePreference && (
             <div>
-              <p className="font-semibold">Liquidity Needs</p>
-              <p className="text-muted-foreground">{preferences.liquidityNeeds}</p>
+              <p className="font-semibold">Investment Type</p>
+              <p className="text-muted-foreground">
+                {preferences.investmentTypePreference === 'uae_title_deed' ? 'UAE Title Deed' :
+                 preferences.investmentTypePreference === 'company_shares' ? 'Company Shares' :
+                 preferences.investmentTypePreference === 'both' ? 'Both Options' :
+                 preferences.investmentTypePreference}
+              </p>
             </div>
           )}
         </div>
 
         {/* Additional Info */}
-        {preferences.backgroundInfo && (
-          <div>
-            <p className="font-semibold mb-2">Background Information</p>
-            <p className="text-sm text-muted-foreground">{preferences.backgroundInfo}</p>
-          </div>
-        )}
-
         {preferences.additionalComments && (
           <div>
             <p className="font-semibold mb-2">Additional Comments</p>

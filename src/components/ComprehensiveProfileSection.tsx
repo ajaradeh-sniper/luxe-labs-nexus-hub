@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 import { useAuth } from "@/contexts/AuthContext"
 import { supabase } from "@/integrations/supabase/client"
+import { EditableInvestmentAssessment } from "./EditableInvestmentAssessment"
 import { 
   User, 
   BarChart3, 
@@ -21,27 +22,37 @@ import {
   Save,
   Mail,
   Phone,
-  Building2
+  Building2,
+  Edit
 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 interface InvestorPreferences {
-  investmentCapacity?: number
-  riskTolerance?: string
-  investmentHorizon?: string
-  preferredLocations?: string[]
-  propertyTypes?: string[]
-  investmentGoals?: string[]
-  liquidityNeeds?: string
-  experience?: string
-  backgroundInfo?: string
-  additionalComments?: string
+  investorType?: string;
+  otherDescription?: string;
+  investmentExperience?: string;
+  investmentPreference?: string;
+  investmentTimeline?: {
+    fundsAvailable?: string;
+    paybackPeriod?: string;
+  };
+  preferredInvestmentSize?: number;
+  timeHorizon?: string;
+  geographicPreference?: string[];
+  involvementPreference?: string;
+  investmentTypePreference?: string;
+  propertyTypes?: string[];
+  expectedReturns?: string;
+  liquidityPreference?: string;
+  investmentApproach?: string;
+  additionalComments?: string;
 }
 
 export function ComprehensiveProfileSection({ onEditAssessment }: { onEditAssessment?: () => void }) {
   const [preferences, setPreferences] = useState<InvestorPreferences | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [isEditingAssessment, setIsEditingAssessment] = useState(false)
   const { user } = useAuth()
   const { toast } = useToast()
 
@@ -256,10 +267,10 @@ export function ComprehensiveProfileSection({ onEditAssessment }: { onEditAssess
               <BarChart3 className="h-5 w-5" />
               Investment Assessment Results
             </h3>
-            {!preferences && onEditAssessment && (
-              <Button variant="outline" onClick={onEditAssessment}>
-                <FileEdit className="mr-2 h-4 w-4" />
-                Complete Assessment
+            {preferences && (
+              <Button variant="outline" onClick={() => setIsEditingAssessment(true)}>
+                <Edit className="mr-2 h-4 w-4" />
+                Edit Assessment
               </Button>
             )}
           </div>
@@ -270,129 +281,152 @@ export function ComprehensiveProfileSection({ onEditAssessment }: { onEditAssess
               <div className="h-4 bg-muted rounded w-1/2"></div>
               <div className="h-4 bg-muted rounded w-2/3"></div>
             </div>
+          ) : isEditingAssessment ? (
+            <EditableInvestmentAssessment onClose={() => setIsEditingAssessment(false)} />
           ) : preferences ? (
             <div className="space-y-6">
               
-              {/* Investment Capacity */}
-              {preferences.investmentCapacity && (
+              {/* Investor Type */}
+              {preferences.investorType && (
                 <div className="flex items-center gap-3 p-4 bg-muted/30 rounded-lg">
-                  <DollarSign className="h-6 w-6 text-primary" />
+                  <User className="h-6 w-6 text-primary" />
                   <div>
-                    <p className="font-semibold">Investment Capacity</p>
+                    <p className="font-semibold">Investor Type</p>
                     <p className="text-lg text-primary font-bold">
-                      {formatCurrency(preferences.investmentCapacity)}
+                      {preferences.investorType === 'real-estate-short-term' ? 'Real Estate - Short Term' :
+                       preferences.investorType === 'real-estate-long-term' ? 'Real Estate - Long Term' :
+                       preferences.investorType === 'diversified-portfolio' ? 'Diversified Portfolio' :
+                       preferences.investorType}
                     </p>
                   </div>
                 </div>
               )}
 
-              {/* Risk & Timeline */}
+              {/* Investment Size */}
+              {preferences.preferredInvestmentSize && (
+                <div className="flex items-center gap-3 p-4 bg-muted/30 rounded-lg">
+                  <DollarSign className="h-6 w-6 text-primary" />
+                  <div>
+                    <p className="font-semibold">Investment Capacity</p>
+                    <p className="text-lg text-primary font-bold">
+                      {formatCurrency(preferences.preferredInvestmentSize)}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Experience & Preference */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {preferences.riskTolerance && (
+                {preferences.investmentExperience && (
                   <div className="flex items-center gap-3 p-4 bg-muted/30 rounded-lg">
                     <TrendingUp className="h-5 w-5 text-muted-foreground" />
                     <div>
-                      <p className="font-semibold">Risk Tolerance</p>
-                      <Badge className={getRiskColor(preferences.riskTolerance)}>
-                        {preferences.riskTolerance}
+                      <p className="font-semibold">Experience Level</p>
+                      <Badge className={preferences.investmentExperience === 'beginner' ? 'bg-yellow-500' : 
+                                      preferences.investmentExperience === 'intermediate' ? 'bg-blue-500' : 'bg-green-500'}>
+                        {preferences.investmentExperience}
                       </Badge>
                     </div>
                   </div>
                 )}
 
-                {preferences.investmentHorizon && (
+                {preferences.investmentPreference && (
                   <div className="flex items-center gap-3 p-4 bg-muted/30 rounded-lg">
                     <Clock className="h-5 w-5 text-muted-foreground" />
                     <div>
-                      <p className="font-semibold">Investment Horizon</p>
-                      <p className="text-muted-foreground">{preferences.investmentHorizon}</p>
+                      <p className="font-semibold">Investment Preference</p>
+                      <p className="text-muted-foreground">
+                        {preferences.investmentPreference === 'conservative' ? 'Conservative' :
+                         preferences.investmentPreference === 'moderate' ? 'Moderate' :
+                         preferences.investmentPreference === 'aggressive' ? 'Aggressive' :
+                         preferences.investmentPreference}
+                      </p>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Experience & Liquidity */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {preferences.experience && (
-                  <div className="p-4 bg-muted/30 rounded-lg">
-                    <p className="font-semibold mb-1">Experience Level</p>
-                    <p className="text-muted-foreground">{preferences.experience}</p>
-                  </div>
-                )}
+              {/* Investment Timeline */}
+              {preferences.investmentTimeline && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {preferences.investmentTimeline.fundsAvailable && (
+                    <div className="p-4 bg-muted/30 rounded-lg">
+                      <p className="font-semibold mb-1">Funds Available</p>
+                      <p className="text-muted-foreground">
+                        {preferences.investmentTimeline.fundsAvailable === '1' ? 'Within 1 month' :
+                         preferences.investmentTimeline.fundsAvailable === '3' ? 'Within 3 months' :
+                         preferences.investmentTimeline.fundsAvailable === '6' ? 'Within 6 months' :
+                         preferences.investmentTimeline.fundsAvailable === '12' ? 'Within 12 months' :
+                         preferences.investmentTimeline.fundsAvailable}
+                      </p>
+                    </div>
+                  )}
 
-                {preferences.liquidityNeeds && (
-                  <div className="p-4 bg-muted/30 rounded-lg">
-                    <p className="font-semibold mb-1">Liquidity Needs</p>
-                    <p className="text-muted-foreground">{preferences.liquidityNeeds}</p>
-                  </div>
-                )}
-              </div>
+                  {preferences.investmentTimeline.paybackPeriod && (
+                    <div className="p-4 bg-muted/30 rounded-lg">
+                      <p className="font-semibold mb-1">Expected Payback Period</p>
+                      <p className="text-muted-foreground">
+                        {preferences.investmentTimeline.paybackPeriod === '1-2' ? '1-2 years' :
+                         preferences.investmentTimeline.paybackPeriod === '3-5' ? '3-5 years' :
+                         preferences.investmentTimeline.paybackPeriod === '5-10' ? '5-10 years' :
+                         preferences.investmentTimeline.paybackPeriod === '8-12' ? '8-12 months' :
+                         preferences.investmentTimeline.paybackPeriod}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
 
-              {/* Preferred Locations */}
-              {preferences.preferredLocations && preferences.preferredLocations.length > 0 && (
+              {/* Geographic Preferences */}
+              {preferences.geographicPreference && preferences.geographicPreference.length > 0 && (
                 <div className="p-4 bg-muted/30 rounded-lg">
                   <div className="flex items-center gap-2 mb-3">
                     <MapPin className="h-5 w-5 text-muted-foreground" />
                     <p className="font-semibold">Preferred Locations</p>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {preferences.preferredLocations.map((location, index) => (
+                    {preferences.geographicPreference.map((location, index) => (
                       <Badge key={index} variant="secondary">
-                        {location}
+                        {location === 'highest_roi' ? "Skip - Let's discuss later" :
+                         location === 'downtown' ? 'Downtown Dubai' :
+                         location === 'marina' ? 'Dubai Marina' :
+                         location === 'palm' ? 'Palm Jumeirah' :
+                         location === 'emirates_hills' ? 'Emirates Hills' :
+                         location === 'business_bay' ? 'Jumeirah' :
+                         location === 'difc' ? 'DIFC' :
+                         location}
                       </Badge>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Property Types */}
-              {preferences.propertyTypes && preferences.propertyTypes.length > 0 && (
-                <div className="p-4 bg-muted/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Building className="h-5 w-5 text-muted-foreground" />
-                    <p className="font-semibold">Property Types</p>
+              {/* Involvement & Investment Type */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {preferences.involvementPreference && (
+                  <div className="p-4 bg-muted/30 rounded-lg">
+                    <p className="font-semibold mb-1">Involvement Preference</p>
+                    <p className="text-muted-foreground">
+                      {preferences.involvementPreference === 'full_involvement' ? 'Full Involvement' :
+                       preferences.involvementPreference === 'periodic_updates' ? 'Periodic Updates' :
+                       preferences.involvementPreference === 'no_involvement' ? 'No Involvement' :
+                       preferences.involvementPreference}
+                    </p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {preferences.propertyTypes.map((type, index) => (
-                      <Badge key={index} variant="outline">
-                        {type}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
+                )}
 
-              {/* Investment Goals */}
-              {preferences.investmentGoals && preferences.investmentGoals.length > 0 && (
-                <div className="p-4 bg-muted/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Target className="h-5 w-5 text-muted-foreground" />
-                    <p className="font-semibold">Investment Goals</p>
+                {preferences.investmentTypePreference && (
+                  <div className="p-4 bg-muted/30 rounded-lg">
+                    <p className="font-semibold mb-1">Investment Type</p>
+                    <p className="text-muted-foreground">
+                      {preferences.investmentTypePreference === 'uae_title_deed' ? 'UAE Title Deed' :
+                       preferences.investmentTypePreference === 'company_shares' ? 'Company Shares' :
+                       preferences.investmentTypePreference === 'both' ? 'Both Options' :
+                       preferences.investmentTypePreference}
+                    </p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {preferences.investmentGoals.map((goal, index) => (
-                      <Badge key={index} variant="secondary">
-                        {goal}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Additional Information */}
-              {preferences.backgroundInfo && (
-                <div className="p-4 bg-muted/30 rounded-lg">
-                  <p className="font-semibold mb-2">Background Information</p>
-                  <p className="text-sm text-muted-foreground">{preferences.backgroundInfo}</p>
-                </div>
-              )}
-
-              {preferences.additionalComments && (
-                <div className="p-4 bg-muted/30 rounded-lg">
-                  <p className="font-semibold mb-2">Additional Comments</p>
-                  <p className="text-sm text-muted-foreground">{preferences.additionalComments}</p>
-                </div>
-              )}
+                )}
+              </div>
 
             </div>
           ) : (
