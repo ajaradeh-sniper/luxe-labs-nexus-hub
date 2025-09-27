@@ -124,7 +124,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       icon: <Zap className="w-7 h-7" />,
       type: 'number',
       placeholder: 'Enter amount in AED (e.g., 5000000)',
-      min: 100000,
+      min: 500000,
       max: 100000000
     },
     {
