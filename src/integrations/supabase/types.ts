@@ -513,42 +513,6 @@ export type Database = {
         }
         Relationships: []
       }
-      investor_preferences: {
-        Row: {
-          asset_types: string[] | null
-          created_at: string | null
-          email_digest: string | null
-          investor_id: string
-          locations: string[] | null
-          min_investment: number | null
-          notifications: Json | null
-          risk_profile: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          asset_types?: string[] | null
-          created_at?: string | null
-          email_digest?: string | null
-          investor_id: string
-          locations?: string[] | null
-          min_investment?: number | null
-          notifications?: Json | null
-          risk_profile?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          asset_types?: string[] | null
-          created_at?: string | null
-          email_digest?: string | null
-          investor_id?: string
-          locations?: string[] | null
-          min_investment?: number | null
-          notifications?: Json | null
-          risk_profile?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
       investor_questionnaires: {
         Row: {
           additional_notes: string | null
@@ -609,6 +573,42 @@ export type Database = {
           risk_tolerance?: string | null
           status?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      investor_settings: {
+        Row: {
+          asset_types: string[] | null
+          created_at: string | null
+          email_digest: string | null
+          locations: string[] | null
+          min_investment: number | null
+          notifications: Json | null
+          risk_profile: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          asset_types?: string[] | null
+          created_at?: string | null
+          email_digest?: string | null
+          locations?: string[] | null
+          min_investment?: number | null
+          notifications?: Json | null
+          risk_profile?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          asset_types?: string[] | null
+          created_at?: string | null
+          email_digest?: string | null
+          locations?: string[] | null
+          min_investment?: number | null
+          notifications?: Json | null
+          risk_profile?: string | null
+          updated_at?: string | null
+          user_id?: string
         }
         Relationships: []
       }
