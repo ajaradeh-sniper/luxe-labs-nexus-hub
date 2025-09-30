@@ -1,15 +1,7 @@
 export type Role =
   | 'administrator'
-  | 'project_manager'
-  | 'investor'
-  | 'real_estate_director'
   | 'real_estate_agent'
-  | 'client'
-  | 'finance'
-  | 'legal'
-  | 'marketing'
-  | 'vendor_manager'
-  | 'automation';
+  | 'investor';
 
 export type Capability =
   | 'project:create' | 'project:read' | 'project:update' | 'project:delete'
@@ -26,23 +18,10 @@ export const roleCapabilities: Record<Role, Capability[]> = {
     'document:upload', 'document:manage',
     'opportunity:create', 'opportunity:approve', 'opportunity:promote'
   ],
-  real_estate_director: [
-    'opportunity:create', 'opportunity:approve', 'opportunity:promote',
-    'project:read', 'project:update'
-  ],
   real_estate_agent: [
-    'opportunity:create', 'project:read'
+    'opportunity:create', 'project:read', 'document:upload'
   ],
-  project_manager: [
-    'project:read', 'project:update', 'document:upload', 'document:manage'
-  ],
-  investor: ['project:read'],
-  client: ['project:read'],
-  finance: ['investment:update', 'project:read', 'document:manage'],
-  legal: ['document:manage', 'project:read'],
-  marketing: ['project:read'],
-  vendor_manager: ['project:read'],
-  automation: ['project:read'],
+  investor: ['project:read', 'opportunity:create'],
 };
 
 export function hasCapability(role: Role, capability: Capability): boolean {

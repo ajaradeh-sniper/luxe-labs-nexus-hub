@@ -217,10 +217,7 @@ const Auth = () => {
   const getRoleIcon = (role: UserRole) => {
     switch (role) {
       case 'administrator': return <Shield className="h-4 w-4" />
-      case 'real_estate_director': return <Building2 className="h-4 w-4" />
       case 'real_estate_agent': return <UserCheck className="h-4 w-4" />
-      case 'project_manager': return <TrendingUp className="h-4 w-4" />
-      case 'finance_lead': return <TrendingUp className="h-4 w-4" />
       case 'investor': return <TrendingUp className="h-4 w-4" />
       default: return <User className="h-4 w-4" />
     }
@@ -229,10 +226,7 @@ const Auth = () => {
   const getRoleDescription = (role: UserRole) => {
     switch (role) {
       case 'administrator': return 'Full system access and user management'
-      case 'real_estate_director': return 'Property portfolio management and oversight'
       case 'real_estate_agent': return 'Property sales and client relations'
-      case 'project_manager': return 'Project planning and execution'
-      case 'finance_lead': return 'Financial analysis and reporting'
       case 'investor': return 'Investment opportunities and portfolio tracking'
       default: return 'Basic access to properties and investments'
     }

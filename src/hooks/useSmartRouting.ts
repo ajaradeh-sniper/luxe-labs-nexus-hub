@@ -5,20 +5,16 @@ import { UserRole } from '@/types/auth';
 
 // Role-based dashboard mapping - all users go to Featured Projects after sign in
 const ROLE_DASHBOARDS: Partial<Record<UserRole, string>> = {
-  administrator: '/projects',
-  'real_estate_director': '/projects', 
-  'project_manager': '/projects',
-  'investor': '/projects',
-  'client': '/projects'
+  administrator: '/admin/projects',
+  real_estate_agent: '/properties',
+  investor: '/opportunities'
 };
 
 // Default routes for each role
 const ROLE_DEFAULT_ROUTES: Partial<Record<UserRole, string>> = {
   administrator: '/admin/system',
-  'real_estate_director': '/properties',
-  'project_manager': '/project-management', 
-  'investor': '/fund-management',
-  'client': '/fund-management'
+  real_estate_agent: '/properties',
+  investor: '/opportunities'
 };
 
 export function useSmartRouting() {
@@ -45,7 +41,7 @@ export function useSmartRouting() {
 
     // Admin routes
     if (path.startsWith('/admin')) {
-      return user.role === 'administrator' || user.role === 'real_estate_director';
+      return user.role === 'administrator';
     }
 
     // Project management routes

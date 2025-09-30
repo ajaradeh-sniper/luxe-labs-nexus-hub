@@ -1,20 +1,7 @@
 export type UserRole = 
   | 'administrator'
-  | 'real_estate_director'
   | 'real_estate_agent'
-  | 'investor_relations_manager'
-  | 'property_sales_lead'
-  | 'bd_manager'
-  | 'project_manager'
-  | 'head_of_design'
-  | 'lawyer'
-  | 'finance_lead'
-  | 'marketing_lead'
-  | 'vendor_manager'
-  | 'automation_lead'
-  | 'investor'
-  | 'client'
-  | 'partner';
+  | 'investor';
 
 export type Permission = 'view' | 'edit' | 'approve' | 'delete';
 
@@ -28,88 +15,27 @@ export const ROLE_PERMISSIONS: Record<UserRole, RolePermissions> = {
     project_management: ['view', 'edit', 'approve', 'delete'],
     costs: ['view', 'edit', 'approve', 'delete'],
     risks: ['view', 'edit', 'approve', 'delete'],
-    tenders: ['view', 'edit', 'approve', 'delete']
-  },
-  real_estate_director: {
-    opportunities: ['view', 'edit', 'approve'],
-    dld_data: ['view', 'edit', 'approve']
+    tenders: ['view', 'edit', 'approve', 'delete'],
+    opportunities: ['view', 'edit', 'approve', 'delete'],
+    properties: ['view', 'edit', 'approve', 'delete'],
+    users: ['view', 'edit', 'approve', 'delete'],
+    analytics: ['view', 'edit', 'approve', 'delete'],
+    documents: ['view', 'edit', 'approve', 'delete'],
+    financial: ['view', 'edit', 'approve', 'delete']
   },
   real_estate_agent: {
     listings: ['view', 'edit'],
     crm_leads: ['view', 'edit'],
     projects: ['view'],
     docs: ['view'],
-    payments: ['view'],
-    invoices: ['view'],
     opportunities: ['view', 'edit']
-  },
-  investor_relations_manager: {
-    investors: ['view', 'edit', 'approve'],
-    kyc: ['view', 'edit', 'approve'],
-    roi_reports: ['view', 'edit', 'approve']
-  },
-  property_sales_lead: {
-    post_renovation_projects: ['view', 'edit'],
-    listings: ['view', 'edit']
-  },
-  bd_manager: {
-    crm: ['view', 'edit'],
-    partner_records: ['view', 'edit']
-  },
-  project_manager: {
-    projects: ['view', 'edit', 'approve'],
-    timelines: ['view', 'edit', 'approve'],
-    partners: ['view', 'edit', 'approve'],
-    project_management: ['view', 'edit', 'approve'],
-    costs: ['view', 'edit', 'approve'],
-    risks: ['view', 'edit', 'approve'],
-    tenders: ['view', 'edit', 'approve']
-  },
-  head_of_design: {
-    design_boards: ['view', 'edit'],
-    comments: ['view', 'edit']
-  },
-  lawyer: {
-    legal_docs: ['view', 'edit', 'approve'],
-    contracts: ['view', 'edit', 'approve']
-  },
-  finance_lead: {
-    payments: ['view', 'edit', 'approve'],
-    roi: ['view', 'edit', 'approve'],
-    invoices: ['view', 'edit', 'approve']
-  },
-  marketing_lead: {
-    media: ['view', 'edit', 'approve'],
-    campaign_builder: ['view', 'edit', 'approve'],
-    marketing: ['view', 'edit', 'approve'],
-    traffic_analytics: ['view', 'edit', 'approve'],
-    seo: ['view', 'edit', 'approve'],
-    social_media: ['view', 'edit', 'approve']
-  },
-  vendor_manager: {
-    partner_profiles: ['view', 'edit'],
-    ratings: ['view', 'edit']
-  },
-  automation_lead: {
-    system_logs: ['view', 'edit', 'approve'],
-    flow_manager: ['view', 'edit', 'approve']
   },
   investor: {
     investment_portfolio: ['view'],
-    docs: ['view']
-  },
-  client: {
-    their_projects: ['view'],
-    designs: ['view']
-  },
-  partner: {
-    assigned_tasks: ['view'],
-    uploads: ['view', 'edit'],
     projects: ['view'],
+    opportunities: ['view'],
     docs: ['view'],
-    payments: ['view'],
-    invoices: ['view'],
-    project_agreements: ['view']
+    financial: ['view']
   }
 };
 

@@ -44,21 +44,8 @@ interface User {
 
 const roleLabels: Record<UserRole, string> = {
   administrator: 'Administrator',
-  real_estate_director: 'Real Estate Director',
   real_estate_agent: 'Real Estate Agent',
-  investor_relations_manager: 'Investor Relations Manager',
-  property_sales_lead: 'Property Sales Lead',
-  bd_manager: 'BD Manager',
-  project_manager: 'Project Manager',
-  head_of_design: 'Head of Design',
-  lawyer: 'Lawyer',
-  finance_lead: 'Finance Lead',
-  marketing_lead: 'Marketing Lead',
-  vendor_manager: 'Vendor Manager',
-  automation_lead: 'Automation Lead',
-  investor: 'Investor',
-  client: 'Client',
-  partner: 'Partner'
+  investor: 'Investor'
 };
 
 const statusColors = {
@@ -76,17 +63,19 @@ export function UserManagement() {
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
   const { toast } = useToast();
 
-  // Fetch real users from database
+  // Fetch real users from database with actual emails
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
+      
+      // Fetch profiles with user emails from auth.users
+      const { data: profiles, error: profilesError } = await supabase
         .from('profiles')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) {
-        console.error('Error fetching users:', error);
+      if (profilesError) {
+        console.error('Error fetching profiles:', profilesError);
         toast({
           title: "Error",
           description: "Failed to load users from database.",
@@ -95,16 +84,33 @@ export function UserManagement() {
         return;
       }
 
-      // Transform data to match our interface
-      const transformedUsers: User[] = (data || []).map(profile => ({
-        id: profile.id,
-        user_id: profile.user_id,
-        name: profile.name || 'Unknown User',
-        email: `user-${profile.user_id.substring(0, 8)}@system.local`, // We don't have email in profiles
-        role: profile.role as UserRole,
-        status: 'active' as const,
-        lastLogin: new Date(profile.created_at).toLocaleDateString()
-      }));
+      // Get auth user data to fetch emails
+      const { data: { users: authUsers }, error: authError } = await supabase.auth.admin.listUsers();
+      
+      if (authError) {
+        console.error('Error fetching auth users:', authError);
+      }
+
+      // Create a map of user_id to email
+      const emailMap = new Map(
+        (authUsers || []).map(user => [user.id, user.email || ''])
+      );
+
+      // Filter to only show our 3 core roles
+      const allowedRoles: UserRole[] = ['administrator', 'real_estate_agent', 'investor'];
+      
+      // Transform data to match our interface with real emails
+      const transformedUsers: User[] = (profiles || [])
+        .filter(profile => allowedRoles.includes(profile.role as UserRole))
+        .map(profile => ({
+          id: profile.id,
+          user_id: profile.user_id,
+          name: profile.name || 'Unknown User',
+          email: emailMap.get(profile.user_id) || `user-${profile.user_id.substring(0, 8)}@system.local`,
+          role: profile.role as UserRole,
+          status: 'active' as const,
+          lastLogin: new Date(profile.created_at).toLocaleDateString()
+        }));
 
       setUsers(transformedUsers);
     } catch (error) {
@@ -199,9 +205,8 @@ export function UserManagement() {
               <SelectContent>
                 <SelectItem value="all">All Roles</SelectItem>
                 <SelectItem value="administrator">Administrator</SelectItem>
-                <SelectItem value="project_manager">Project Manager</SelectItem>
+                <SelectItem value="real_estate_agent">Real Estate Agent</SelectItem>
                 <SelectItem value="investor">Investor</SelectItem>
-                <SelectItem value="client">Client</SelectItem>
               </SelectContent>
             </Select>
             <Select value={statusFilter} onValueChange={setStatusFilter}>

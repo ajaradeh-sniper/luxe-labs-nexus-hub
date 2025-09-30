@@ -86,19 +86,6 @@ const mockDetailedUsers: DetailedUser[] = [
     notes: 'Primary system administrator with full access'
   },
   {
-    id: '2',
-    name: 'Sarah Johnson',
-    email: 'sarah.j@luxurylabs.com',
-    phone: '+971-50-234-5678',
-    role: 'project_manager',
-    department: 'Operations',
-    status: 'active',
-    lastLogin: '2024-01-14 16:45',
-    joinedDate: '2023-03-15',
-    projectsAssigned: 8,
-    notes: 'Senior project manager handling luxury villa projects'
-  },
-  {
     id: '3',
     name: 'Michael Chen',
     email: 'michael.c@luxurylabs.com',
@@ -114,84 +101,6 @@ const mockDetailedUsers: DetailedUser[] = [
     notes: 'High-value investor focused on Dubai Marina properties'
   },
   {
-    id: '4',
-    name: 'Emma Wilson',
-    email: 'emma.w@luxurylabs.com',
-    phone: '+971-50-456-7890',
-    role: 'real_estate_director',
-    department: 'Real Estate',
-    status: 'pending',
-    lastLogin: 'Never',
-    joinedDate: '2024-01-10',
-    projectsAssigned: 0,
-    notes: 'New hire, pending onboarding completion'
-  },
-  {
-    id: '5',
-    name: 'Ahmed Al-Rashid',
-    email: 'ahmed.r@luxurylabs.com',
-    phone: '+971-50-567-8901',
-    role: 'finance_lead',
-    department: 'Finance',
-    status: 'active',
-    lastLogin: '2024-01-15 11:15',
-    joinedDate: '2023-02-01',
-    projectsAssigned: 15,
-    notes: 'Senior finance lead overseeing all project budgets'
-  },
-  {
-    id: '6',
-    name: 'Maria Rodriguez',
-    email: 'maria.r@luxurylabs.com',
-    phone: '+971-50-678-9012',
-    role: 'head_of_design',
-    department: 'Design',
-    status: 'active',
-    lastLogin: '2024-01-15 10:30',
-    joinedDate: '2023-05-12',
-    projectsAssigned: 12,
-    notes: 'Leading all design initiatives and contractor coordination'
-  },
-  {
-    id: '7',
-    name: 'David Thompson',
-    email: 'david.t@luxurylabs.com',
-    phone: '+971-50-789-0123',
-    role: 'lawyer',
-    department: 'Legal',
-    status: 'active',
-    lastLogin: '2024-01-14 09:15',
-    joinedDate: '2023-04-18',
-    projectsAssigned: 25,
-    notes: 'Senior legal counsel handling all property contracts'
-  },
-  {
-    id: '8',
-    name: 'Lisa Park',
-    email: 'lisa.p@luxurylabs.com',
-    phone: '+971-50-890-1234',
-    role: 'marketing_lead',
-    department: 'Marketing',
-    status: 'active',
-    lastLogin: '2024-01-15 13:45',
-    joinedDate: '2023-07-22',
-    projectsAssigned: 6,
-    notes: 'Overseeing all marketing campaigns and social media'
-  },
-  {
-    id: '9',
-    name: 'James Wilson',
-    email: 'james.w@luxurylabs.com',
-    phone: '+971-50-901-2345',
-    role: 'vendor_manager',
-    department: 'Procurement',
-    status: 'active',
-    lastLogin: '2024-01-14 16:20',
-    joinedDate: '2023-08-10',
-    projectsAssigned: 18,
-    notes: 'Managing all vendor relationships and contracts'
-  },
-  {
     id: '10',
     name: 'Isabella Garcia',
     email: 'isabella.g@luxurylabs.com',
@@ -203,52 +112,13 @@ const mockDetailedUsers: DetailedUser[] = [
     joinedDate: '2023-09-15',
     projectsAssigned: 8,
     notes: 'Top performing agent specializing in luxury properties'
-  },
-  {
-    id: '11',
-    name: 'Alex Thompson',
-    email: 'alex.t@client.com',
-    phone: '+971-50-123-7890',
-    role: 'client',
-    department: 'External',
-    status: 'active',
-    lastLogin: '2024-01-14 18:30',
-    joinedDate: '2024-01-05',
-    projectsAssigned: 1,
-    notes: 'VIP client with ongoing downtown apartment renovation'
-  },
-  {
-    id: '12',
-    name: 'Premium Contractors LLC',
-    email: 'contact@premiumcontractors.ae',
-    phone: '+971-50-234-8901',
-    role: 'partner',
-    department: 'External',
-    status: 'active',
-    lastLogin: '2024-01-15 08:45',
-    joinedDate: '2023-11-20',
-    projectsAssigned: 5,
-    notes: 'Trusted contractor partner for high-end renovations'
   }
 ];
 
 const roleLabels: Record<UserRole, string> = {
   administrator: 'Administrator',
-  real_estate_director: 'Real Estate Director',
   real_estate_agent: 'Real Estate Agent',
-  investor_relations_manager: 'Investor Relations Manager',
-  property_sales_lead: 'Property Sales Lead',
-  bd_manager: 'BD Manager',
-  project_manager: 'Project Manager',
-  head_of_design: 'Head of Design',
-  lawyer: 'Lawyer',
-  finance_lead: 'Finance Lead',
-  marketing_lead: 'Marketing Lead',
-  vendor_manager: 'Vendor Manager',
-  automation_lead: 'Automation Lead',
-  investor: 'Investor',
-  client: 'Client',
-  partner: 'Partner'
+  investor: 'Investor'
 };
 
 const statusColors = {
@@ -258,23 +128,10 @@ const statusColors = {
   suspended: 'bg-red-100 text-red-800'
 };
 
-const roleColors = {
+const roleColors: Record<UserRole, string> = {
   administrator: 'bg-red-100 text-red-800',
-  real_estate_director: 'bg-orange-100 text-orange-800',
   real_estate_agent: 'bg-amber-100 text-amber-800',
-  investor_relations_manager: 'bg-cyan-100 text-cyan-800',
-  property_sales_lead: 'bg-lime-100 text-lime-800',
-  bd_manager: 'bg-emerald-100 text-emerald-800',
-  project_manager: 'bg-blue-100 text-blue-800',
-  head_of_design: 'bg-violet-100 text-violet-800',
-  lawyer: 'bg-slate-100 text-slate-800',
-  finance_lead: 'bg-purple-100 text-purple-800',
-  marketing_lead: 'bg-pink-100 text-pink-800',
-  vendor_manager: 'bg-rose-100 text-rose-800',
-  automation_lead: 'bg-teal-100 text-teal-800',
-  investor: 'bg-green-100 text-green-800',
-  client: 'bg-indigo-100 text-indigo-800',
-  partner: 'bg-yellow-100 text-yellow-800'
+  investor: 'bg-green-100 text-green-800'
 };
 
 // Preset user types with permissions
@@ -361,19 +218,13 @@ export function DetailedUserManagement() {
     
     switch (category) {
       case 'employees':
-        categoryUsers = users.filter(u => ['administrator', 'project_manager', 'real_estate_director', 'real_estate_agent', 'finance_lead', 'head_of_design', 'lawyer', 'marketing_lead', 'vendor_manager', 'automation_lead'].includes(u.role));
+        categoryUsers = users.filter(u => ['administrator', 'real_estate_agent'].includes(u.role));
         break;
       case 'administrators':
         categoryUsers = users.filter(u => u.role === 'administrator');
         break;
-      case 'customers':
-        categoryUsers = users.filter(u => u.role === 'client');
-        break;
       case 'investors':
         categoryUsers = users.filter(u => u.role === 'investor');
-        break;
-      case 'partners':
-        categoryUsers = users.filter(u => u.role === 'partner');
         break;
       default:
         categoryUsers = users;

@@ -403,7 +403,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const signUp = async (email: string, password: string, name: string, role: UserRole = 'client'): Promise<{ error?: string }> => {
+  const signUp = async (email: string, password: string, name: string, role: UserRole = 'investor'): Promise<{ error?: string }> => {
     try {
       console.log('AuthProvider: Attempting signup for:', email);
       setLoading(true);
