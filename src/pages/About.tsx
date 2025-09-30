@@ -336,7 +336,7 @@ export default function About() {
                 <CardTitle>Luxury Transformation Brand</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Build global world class luxury transformation brand</p>
+                <p className="text-muted-foreground">Build global world class luxury transformation brand, portfolio of curated luxury properties with higher values</p>
               </CardContent>
             </Card>
             
