@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -13,7 +13,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { Trophy, DollarSign, TrendingUp, MapPin, Clock, User, Building, Crown, Diamond, Gem, Star, Sparkles, Award, Shield, Zap, ArrowUpDown } from 'lucide-react';
+import { Trophy, DollarSign, TrendingUp, MapPin, Clock, User, Building, Crown, Diamond, Gem, Star, Sparkles, Award, Shield, Zap, ArrowUpDown, Phone, Mail } from 'lucide-react';
+import { SplashCursor } from '@/components/ui/splash-cursor';
 
 interface QuestionnaireData {
   investorType: string;
@@ -33,6 +34,11 @@ interface QuestionnaireData {
   expectedReturns: string;
   liquidityPreference: string;
   investmentApproach: string;
+  contactInfo?: {
+    name: string;
+    email: string;
+    phone: string;
+  };
 }
 
 interface InvestorQuestionnaireProps {
@@ -48,8 +54,23 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   const [answers, setAnswers] = useState<Partial<QuestionnaireData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUSDInput, setIsUSDInput] = useState(false); // Track currency input mode
+  const [showSplash, setShowSplash] = useState(true);
+  const [isComplete, setIsComplete] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
+
+  // Handle completion with 8-second splash delay
+  useEffect(() => {
+    if (isComplete) {
+      const timer = setTimeout(() => {
+        setShowSplash(false);
+        if (onComplete) {
+          onComplete(answers as QuestionnaireData);
+        }
+      }, 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [isComplete, answers, onComplete]);
 
   const questions = [
     {
@@ -245,7 +266,26 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
     }
   ];
 
-  const progress = ((currentStep + 1) / questions.length) * 100;
+  // Add contact info question for unauthenticated users
+  const allQuestions = !user 
+    ? [
+        ...questions,
+        {
+          id: 'contactInfo',
+          title: 'Contact Information',
+          subtitle: 'Complete your submission with your details',
+          icon: <User className="w-7 h-7" />,
+          type: 'contact',
+          fields: [
+            { id: 'name', label: 'Full Name', type: 'text', placeholder: 'Enter your full name', required: true },
+            { id: 'email', label: 'Email Address', type: 'email', placeholder: 'your.email@example.com', required: true },
+            { id: 'phone', label: 'Phone Number', type: 'tel', placeholder: '+971 50 123 4567', required: true }
+          ]
+        }
+      ]
+    : questions;
+
+  const progress = ((currentStep + 1) / allQuestions.length) * 100;
 
   const handleAnswer = (questionId: string, value: any) => {
     setAnswers(prev => ({
@@ -255,7 +295,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   };
 
   const handleNext = () => {
-    if (currentStep < questions.length - 1) {
+    if (currentStep < allQuestions.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
       handleSubmit();
@@ -269,59 +309,54 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   };
 
   const handleSubmit = async () => {
-    if (!user) {
-      toast({
-        title: "Authentication Required",
-        description: "Please log in to save your preferences.",
-        variant: "destructive"
-      });
-      return;
-    }
-
     setIsSubmitting(true);
     try {
-      // Handle demo mode - don't try to save to database
-      if (user.id === 'demo-admin') {
-        // Store in localStorage for demo mode
-        localStorage.setItem('demo_investor_preferences', JSON.stringify({
-          user_id: user.id,
-          preferences: answers,
-          completed_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        }));
+      if (user) {
+        // Handle demo mode - don't try to save to database
+        if (user.id === 'demo-admin') {
+          // Store in localStorage for demo mode
+          localStorage.setItem('demo_investor_preferences', JSON.stringify({
+            user_id: user.id,
+            preferences: answers,
+            completed_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          }));
+
+          toast({
+            title: "Profile Complete!",
+            description: "Your investor profile has been saved successfully (demo mode)."
+          });
+
+          setIsComplete(true);
+          return;
+        }
+
+        // Normal database save for real users
+        console.log('Saving to investor_settings:', { user_id: user.id })
+        const { error } = await supabase
+          .from('investor_settings')
+          .upsert({
+            user_id: user.id,
+            preferences: answers,
+            completed_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          });
+
+        if (error) throw error;
 
         toast({
           title: "Profile Complete!",
-          description: "Your investor profile has been saved successfully (demo mode)."
+          description: "Your investor profile has been saved successfully."
         });
-
-        if (onComplete) {
-          onComplete(answers as QuestionnaireData);
-        }
-        return;
+      } else {
+        // For unauthenticated users, just show success
+        toast({
+          title: "Assessment Complete!",
+          description: "Thank you for completing your investor profile. We'll contact you soon."
+        });
       }
 
-      // Normal database save for real users
-      console.log('Saving to investor_settings:', { user_id: user.id })
-      const { error } = await supabase
-        .from('investor_settings')
-        .upsert({
-          user_id: user.id,
-          preferences: answers,
-          completed_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        });
-
-      if (error) throw error;
-
-      toast({
-        title: "Profile Complete!",
-        description: "Your investor profile has been saved successfully."
-      });
-
-      if (onComplete) {
-        onComplete(answers as QuestionnaireData);
-      }
+      setIsComplete(true);
     } catch (error) {
       console.error('Error saving questionnaire:', error);
       toast({
@@ -334,7 +369,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
     }
   };
 
-  const currentQuestion = questions[currentStep];
+  const currentQuestion = allQuestions[currentStep];
   const currentAnswer = answers[currentQuestion.id as keyof QuestionnaireData];
 
   const renderQuestion = () => {
@@ -353,7 +388,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
                 <SelectValue placeholder="Select your investor type..." />
               </SelectTrigger>
               <SelectContent className="bg-background border-2 border-muted shadow-lg z-50">
-                {currentQuestion.options?.map((option: any) => (
+                {'options' in currentQuestion && currentQuestion.options?.map((option: any) => (
                   <SelectItem 
                     key={option.value} 
                     value={option.value}
@@ -389,7 +424,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
             onValueChange={(value) => handleAnswer(currentQuestion.id, value)}
             className="space-y-4"
           >
-            {currentQuestion.options?.map((option: any, index: number) => (
+            {'options' in currentQuestion && currentQuestion.options?.map((option: any, index: number) => (
               <div 
                 key={option.value} 
                 className={`group flex items-start space-x-4 p-6 rounded-xl border-2 hover:border-primary/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg animate-fade-in bg-gradient-to-r from-background to-muted/10 ${
@@ -436,7 +471,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         const selectedValues = (currentAnswer as string[]) || [];
         return (
           <div className="space-y-4">
-            {currentQuestion.options?.map((option: any) => (
+            {'options' in currentQuestion && currentQuestion.options?.map((option: any) => (
               <div key={option.value} className="flex items-start space-x-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors">
                 <Checkbox
                   id={option.value}
@@ -467,7 +502,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         return (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {currentQuestion.options?.map((option: any, index: number) => (
+              {'options' in currentQuestion && currentQuestion.options?.map((option: any, index: number) => (
                 <div 
                   key={option.value}
                   className={`group relative p-8 border-2 rounded-2xl cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-fade-in ${
@@ -582,13 +617,13 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         const getMinMax = () => {
           if (isUSDInput) {
             return {
-              min: Math.round((currentQuestion.min || 0) / 3.67),
-              max: Math.round((currentQuestion.max || 0) / 3.67)
+              min: Math.round((('min' in currentQuestion ? currentQuestion.min : 0) || 0) / 3.67),
+              max: Math.round((('max' in currentQuestion ? currentQuestion.max : 0) || 0) / 3.67)
             };
           }
           return {
-            min: currentQuestion.min || 0,
-            max: currentQuestion.max || 0
+            min: ('min' in currentQuestion ? currentQuestion.min : 0) || 0,
+            max: ('max' in currentQuestion ? currentQuestion.max : 0) || 0
           };
         };
         
@@ -639,7 +674,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         
         return (
           <div className="space-y-8">
-            {currentQuestion.fields?.map((field: any) => (
+            {'fields' in currentQuestion && currentQuestion.fields?.map((field: any) => (
               <div key={field.id} className="space-y-4">
                 <h3 className="text-lg font-semibold">{field.label}</h3>
                 
@@ -706,6 +741,45 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           </div>
         );
 
+      case 'contact':
+        const contactData = (currentAnswer as { name: string; email: string; phone: string }) || { name: '', email: '', phone: '' };
+        
+        return (
+          <div className="space-y-6">
+            {'fields' in currentQuestion && currentQuestion.fields?.map((field: any) => (
+              <div key={field.id} className="space-y-2">
+                <Label htmlFor={field.id} className="text-base font-medium">
+                  {field.label}
+                  {field.required && <span className="text-destructive ml-1">*</span>}
+                </Label>
+                <div className="relative">
+                  {field.id === 'email' && <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />}
+                  {field.id === 'name' && <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />}
+                  {field.id === 'phone' && <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />}
+                  <Input
+                    id={field.id}
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    value={contactData[field.id as keyof typeof contactData] || ''}
+                    onChange={(e) => handleAnswer(currentQuestion.id, {
+                      ...contactData,
+                      [field.id]: e.target.value
+                    })}
+                    className="text-base pl-10"
+                    required={field.required}
+                  />
+                </div>
+              </div>
+            ))}
+            <div className="mt-6 p-4 bg-muted/30 rounded-lg border border-primary/20">
+              <p className="text-sm text-muted-foreground">
+                <Shield className="w-4 h-4 inline mr-2 text-primary" />
+                Your information is secure and will only be used to contact you about investment opportunities.
+              </p>
+            </div>
+          </div>
+        );
+
       default:
         return null;
     }
@@ -725,6 +799,11 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       const timelineData = answer as { fundsAvailable: string; paybackPeriod: string };
       return timelineData.fundsAvailable && timelineData.paybackPeriod;
     }
+
+    if (currentQuestion.type === 'contact') {
+      const contactData = answer as { name: string; email: string; phone: string };
+      return contactData.name && contactData.email && contactData.phone;
+    }
     
     if (Array.isArray(answer)) {
       return answer.length > 0;
@@ -735,24 +814,26 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
 
   if (standalone) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold mb-4">Investor Profile Assessment</h1>
-            <p className="text-xl text-muted-foreground">
-              Help us understand your investment preferences to provide personalized opportunities
-            </p>
-          </div>
-          
-          <Card className="max-w-2xl mx-auto">
-            <CardHeader>
-              <div className="flex items-center justify-between mb-4">
-                <Badge variant="outline">
-                  Step {currentStep + 1} of {questions.length}
-                </Badge>
-                <span className="text-sm text-muted-foreground">{Math.round(progress)}% Complete</span>
-              </div>
-              <Progress value={progress} className="mb-6" />
+      <>
+        {showSplash && <SplashCursor />}
+        <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <h1 className="text-4xl font-bold mb-4">Investor Profile Assessment</h1>
+              <p className="text-xl text-muted-foreground">
+                Help us understand your investment preferences to provide personalized opportunities
+              </p>
+            </div>
+            
+            <Card className="max-w-2xl mx-auto">
+              <CardHeader>
+                <div className="flex items-center justify-between mb-4">
+                  <Badge variant="outline">
+                    Step {currentStep + 1} of {allQuestions.length}
+                  </Badge>
+                  <span className="text-sm text-muted-foreground">{Math.round(progress)}% Complete</span>
+                </div>
+                <Progress value={progress} className="mb-6" />
               
         <div className="flex items-center space-x-4 animate-fade-in">
           <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 text-primary shadow-lg animate-scale-in">
@@ -790,25 +871,28 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
                 disabled={!isCurrentStepComplete() || isSubmitting}
                 className="min-w-[120px]"
               >
-                {isSubmitting ? 'Saving...' : currentStep === questions.length - 1 ? 'Complete Profile' : 'Next'}
+                {isSubmitting ? 'Saving...' : currentStep === allQuestions.length - 1 ? 'Complete Profile' : 'Next'}
               </Button>
             </CardFooter>
           </Card>
         </div>
       </div>
+      </>
     );
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <div className="flex items-center justify-between mb-4">
-          <Badge variant="outline">
-            Step {currentStep + 1} of {questions.length}
-          </Badge>
-          <span className="text-sm text-muted-foreground">{Math.round(progress)}% Complete</span>
-        </div>
-        <Progress value={progress} className="mb-6" />
+    <>
+      {showSplash && <SplashCursor />}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between mb-4">
+            <Badge variant="outline">
+              Step {currentStep + 1} of {allQuestions.length}
+            </Badge>
+            <span className="text-sm text-muted-foreground">{Math.round(progress)}% Complete</span>
+          </div>
+          <Progress value={progress} className="mb-6" />
         
         <div className="flex items-center space-x-4 animate-fade-in">
           <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 text-primary shadow-lg animate-scale-in">
@@ -846,9 +930,10 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           disabled={!isCurrentStepComplete() || isSubmitting}
           className="min-w-[120px]"
         >
-          {isSubmitting ? 'Saving...' : currentStep === questions.length - 1 ? 'Complete Profile' : 'Next'}
+          {isSubmitting ? 'Saving...' : currentStep === allQuestions.length - 1 ? 'Complete Profile' : 'Next'}
         </Button>
       </CardFooter>
     </Card>
+    </>
   );
 };
