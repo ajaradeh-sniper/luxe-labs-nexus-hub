@@ -51,6 +51,9 @@ export default function Landing() {
   const [showTransformDropdown, setShowTransformDropdown] = useState(false);
   const [showServiceDetails, setShowServiceDetails] = useState(false);
   const [showInvestorAssessment, setShowInvestorAssessment] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
+  const [disclaimerOpen, setDisclaimerOpen] = useState(false);
 
   // Service data from Services page
   const investmentServices = [{
@@ -988,10 +991,10 @@ export default function Landing() {
             <div>
               <h4 className="font-bold text-secondary-foreground font-playfair mb-4">Legal</h4>
               <ul className="space-y-2 font-montserrat text-sm">
+                <li><button type="button" onClick={() => setPrivacyOpen(true)} className="text-secondary-foreground/80 hover:text-primary transition-colors">Privacy Policy</button></li>
+                <li><button type="button" onClick={() => setTermsOpen(true)} className="text-secondary-foreground/80 hover:text-primary transition-colors">Terms of Service</button></li>
+                <li><button type="button" onClick={() => setDisclaimerOpen(true)} className="text-secondary-foreground/80 hover:text-primary transition-colors">Investment Disclaimer</button></li>
                 <li><a href="/legal/legal-notice" className="text-secondary-foreground/80 hover:text-primary transition-colors">Legal Notice</a></li>
-                <li><a href="/legal/privacy-policy" className="text-secondary-foreground/80 hover:text-primary transition-colors">Privacy Policy</a></li>
-                <li><a href="/legal/terms-of-service" className="text-secondary-foreground/80 hover:text-primary transition-colors">Terms of Service</a></li>
-                <li><a href="/legal/investment-disclaimer" className="text-secondary-foreground/80 hover:text-primary transition-colors">Investment Disclaimer</a></li>
                 <li><a href="/legal/cookie-policy" className="text-secondary-foreground/80 hover:text-primary transition-colors">Cookie Policy</a></li>
               </ul>
             </div>
@@ -1004,6 +1007,89 @@ export default function Landing() {
           </div>
         </div>
       </footer>
+
+      {/* Legal Modals */}
+      <Dialog open={privacyOpen} onOpenChange={setPrivacyOpen}>
+        <DialogContent className="max-w-3xl bg-card border border-border">
+          <DialogHeader>
+            <DialogTitle>Privacy Policy</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
+            <p>Effective Date: {new Date().toLocaleDateString()}</p>
+            <section>
+              <h3 className="text-foreground font-semibold">Information Collection and Usage</h3>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>Personal Information (name, email, phone, address)</li>
+                <li>Investment preferences and financial data</li>
+              </ul>
+              <p className="mt-2">Data usage includes: providing and improving our services, communicating offers and updates, and compliance/security purposes.</p>
+            </section>
+            <section>
+              <h3 className="text-foreground font-semibold">Sharing Information</h3>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>With legal authorities if required</li>
+                <li>Third-party service providers under confidentiality</li>
+              </ul>
+            </section>
+            <section>
+              <h3 className="text-foreground font-semibold">Data Security</h3>
+              <p>We implement stringent measures to secure your data against unauthorized access or misuse.</p>
+            </section>
+            <section>
+              <h3 className="text-foreground font-semibold">Your Rights</h3>
+              <p>You can access, correct, or delete your personal data by contacting us at privacy@luxurylabs.ae.</p>
+            </section>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={termsOpen} onOpenChange={setTermsOpen}>
+        <DialogContent className="max-w-3xl bg-card border border-border">
+          <DialogHeader>
+            <DialogTitle>Terms of Service</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
+            <p>Effective Date: {new Date().toLocaleDateString()}</p>
+            <section>
+              <h3 className="text-foreground font-semibold">Services Offered</h3>
+              <p>Luxury Labs provides real estate investment, design, renovation, and advisory services. Website content is informational and not binding contractual advice.</p>
+            </section>
+            <section>
+              <h3 className="text-foreground font-semibold">User Obligations</h3>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>Provide accurate and updated information</li>
+                <li>Use our services lawfully and ethically</li>
+              </ul>
+            </section>
+            <section>
+              <h3 className="text-foreground font-semibold">Intellectual Property</h3>
+              <p>All website content is the intellectual property of Luxury Labs LLC.</p>
+            </section>
+            <section>
+              <h3 className="text-foreground font-semibold">Limitation of Liability</h3>
+              <p>Luxury Labs LLC shall not be liable for indirect or consequential losses from use or inability to use our website or services.</p>
+            </section>
+            <section>
+              <h3 className="text-foreground font-semibold">Governing Law</h3>
+              <p>These Terms are governed by the laws of Dubai and the UAE.</p>
+            </section>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={disclaimerOpen} onOpenChange={setDisclaimerOpen}>
+        <DialogContent className="max-w-3xl bg-card border border-border">
+          <DialogHeader>
+            <DialogTitle>Investment Disclaimer</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
+            <section>
+              <p><strong>Investment in real estate carries inherent risks.</strong> Information provided by Luxury Labs LLC does not constitute financial or investment advice. Past performance is not indicative of future results. Conduct thorough due diligence and consult a financial advisor before investing.</p>
+              <p className="mt-2">Luxury Labs LLC is not liable for investment decisions based on information provided.</p>
+            </section>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Investor Assessment Modal */}
       <InvestorAssessmentModal open={showInvestorAssessment} onOpenChange={setShowInvestorAssessment} />
