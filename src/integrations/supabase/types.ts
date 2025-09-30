@@ -1123,63 +1123,146 @@ export type Database = {
       }
       opportunities: {
         Row: {
-          contact_info: Json | null
-          created_at: string
-          created_by: string | null
-          deadline: string | null
+          created_at: string | null
+          current_value: number
           description: string | null
           documents: Json | null
-          expected_roi: number | null
+          estimated_after_value: number
+          estimated_renovation_cost: number
+          financial_details: Json | null
           id: string
-          investment_required: number | null
-          location: string
-          opportunity_type: string
-          risk_rating: string | null
+          location: Json | null
+          notes: string | null
+          potential_roi: number
+          property_address: string
+          property_details: Json | null
+          property_type: string
+          sourced_by: string | null
+          sourced_date: string | null
           status: string
+          timeline: Json | null
           title: string
-          updated_at: string
+          updated_at: string | null
         }
         Insert: {
-          contact_info?: Json | null
-          created_at?: string
-          created_by?: string | null
-          deadline?: string | null
+          created_at?: string | null
+          current_value?: number
           description?: string | null
           documents?: Json | null
-          expected_roi?: number | null
+          estimated_after_value?: number
+          estimated_renovation_cost?: number
+          financial_details?: Json | null
           id?: string
-          investment_required?: number | null
-          location: string
-          opportunity_type: string
-          risk_rating?: string | null
+          location?: Json | null
+          notes?: string | null
+          potential_roi?: number
+          property_address: string
+          property_details?: Json | null
+          property_type: string
+          sourced_by?: string | null
+          sourced_date?: string | null
           status?: string
+          timeline?: Json | null
           title: string
-          updated_at?: string
+          updated_at?: string | null
         }
         Update: {
-          contact_info?: Json | null
-          created_at?: string
-          created_by?: string | null
-          deadline?: string | null
+          created_at?: string | null
+          current_value?: number
           description?: string | null
           documents?: Json | null
-          expected_roi?: number | null
+          estimated_after_value?: number
+          estimated_renovation_cost?: number
+          financial_details?: Json | null
           id?: string
-          investment_required?: number | null
-          location?: string
-          opportunity_type?: string
-          risk_rating?: string | null
+          location?: Json | null
+          notes?: string | null
+          potential_roi?: number
+          property_address?: string
+          property_details?: Json | null
+          property_type?: string
+          sourced_by?: string | null
+          sourced_date?: string | null
           status?: string
+          timeline?: Json | null
           title?: string
-          updated_at?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      opportunity_analytics: {
+        Row: {
+          action_type: string
+          created_at: string | null
+          id: string
+          metadata: Json | null
+          opportunity_id: string
+          user_id: string | null
+        }
+        Insert: {
+          action_type: string
+          created_at?: string | null
+          id?: string
+          metadata?: Json | null
+          opportunity_id: string
+          user_id?: string | null
+        }
+        Update: {
+          action_type?: string
+          created_at?: string | null
+          id?: string
+          metadata?: Json | null
+          opportunity_id?: string
+          user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "opportunities_created_by_fkey"
-            columns: ["created_by"]
+            foreignKeyName: "opportunity_analytics_opportunity_id_fkey"
+            columns: ["opportunity_id"]
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["user_id"]
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunity_interests: {
+        Row: {
+          created_at: string | null
+          id: string
+          investment_amount: number | null
+          investor_id: string
+          notes: string | null
+          opportunity_id: string
+          status: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          investment_amount?: number | null
+          investor_id: string
+          notes?: string | null
+          opportunity_id: string
+          status?: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          investment_amount?: number | null
+          investor_id?: string
+          notes?: string | null
+          opportunity_id?: string
+          status?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_interests_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -1227,13 +1310,6 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["user_id"]
-          },
-          {
-            foreignKeyName: "opportunity_investor_process_opportunity_id_fkey"
-            columns: ["opportunity_id"]
-            isOneToOne: false
-            referencedRelation: "opportunities"
-            referencedColumns: ["id"]
           },
         ]
       }
@@ -1313,13 +1389,6 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
-          {
-            foreignKeyName: "opportunity_shares_opportunity_id_fkey"
-            columns: ["opportunity_id"]
-            isOneToOne: false
-            referencedRelation: "opportunities"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "opportunity_shares_shared_by_fkey"
             columns: ["shared_by"]
@@ -1731,13 +1800,6 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["user_id"]
-          },
-          {
-            foreignKeyName: "projects_opportunity_id_fkey"
-            columns: ["opportunity_id"]
-            isOneToOne: false
-            referencedRelation: "opportunities"
-            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "projects_property_id_fkey"

@@ -19,6 +19,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
+// Temporary: bypass strict Supabase types for newly added tables
+const sb = supabase as any;
+
 interface Opportunity {
   id: string;
   title: string;
@@ -119,7 +122,7 @@ export default function OpportunityDetail() {
     if (!user || !id) return;
     
     try {
-      const { error } = await supabase
+      const { error } = await sb
         .from('opportunity_analytics')
         .insert({
           opportunity_id: id,
@@ -141,7 +144,7 @@ export default function OpportunityDetail() {
     if (!id) return;
     
     try {
-      const { data, error } = await supabase
+      const { data, error } = await sb
         .from('opportunity_analytics')
         .select('action_type')
         .eq('opportunity_id', id);
@@ -167,7 +170,7 @@ export default function OpportunityDetail() {
 
     try {
       // Record interest in database
-      const { error: interestError } = await supabase
+      const { error: interestError } = await sb
         .from('opportunity_interests')
         .insert({
           opportunity_id: id,
@@ -180,7 +183,7 @@ export default function OpportunityDetail() {
       if (interestError) throw interestError;
 
       // Track analytics
-      await supabase
+      await sb
         .from('opportunity_analytics')
         .insert({
           opportunity_id: id,
