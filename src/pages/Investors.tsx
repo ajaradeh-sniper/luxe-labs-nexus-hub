@@ -11,6 +11,8 @@ import businessBayImage from "@/assets/business-bay.jpg";
 import downtownImage from "@/assets/downtown-luxury.jpg";
 import marinaTowerImage from "@/assets/marina-tower.jpg";
 import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg";
+import palmVillaImage from "@/assets/palm-villa-for-sale.jpg";
+import luxuryPenthouseImage from "@/assets/luxury-penthouse.jpg";
 export default function Investors() {
   const {
     user
@@ -138,7 +140,7 @@ export default function Investors() {
                   <h4 className="font-semibold text-foreground mb-3">Recent Investments</h4>
                   <div className="space-y-2">
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img src="/src/assets/palm-villa-for-sale.jpg" alt="Palm Jumeirah Villa" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
+                      <img src={palmVillaImage} alt="Palm Jumeirah Villa" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Palm Jumeirah Villa</p>
                         <p className="text-sm text-muted-foreground">AED 800K invested</p>
@@ -149,7 +151,7 @@ export default function Investors() {
                       </div>
                     </div>
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img src="/src/assets/luxury-penthouse.jpg" alt="Marina Penthouse" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
+                      <img src={luxuryPenthouseImage} alt="Marina Penthouse" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Marina Penthouse</p>
                         <p className="text-sm text-muted-foreground">AED 1.2M invested</p>
@@ -160,7 +162,7 @@ export default function Investors() {
                       </div>
                     </div>
                     <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img src="/src/assets/downtown-luxury.jpg" alt="Downtown Apartment" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
+                      <img src={downtownImage} alt="Downtown Apartment" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
                       <div className="flex-grow">
                         <p className="font-medium text-foreground">Downtown Apartment</p>
                         <p className="text-sm text-muted-foreground">AED 400K invested</p>
