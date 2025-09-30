@@ -579,33 +579,39 @@ export type Database = {
       investor_settings: {
         Row: {
           asset_types: string[] | null
+          completed_at: string | null
           created_at: string | null
           email_digest: string | null
           locations: string[] | null
           min_investment: number | null
           notifications: Json | null
+          preferences: Json | null
           risk_profile: string | null
           updated_at: string | null
           user_id: string
         }
         Insert: {
           asset_types?: string[] | null
+          completed_at?: string | null
           created_at?: string | null
           email_digest?: string | null
           locations?: string[] | null
           min_investment?: number | null
           notifications?: Json | null
+          preferences?: Json | null
           risk_profile?: string | null
           updated_at?: string | null
           user_id: string
         }
         Update: {
           asset_types?: string[] | null
+          completed_at?: string | null
           created_at?: string | null
           email_digest?: string | null
           locations?: string[] | null
           min_investment?: number | null
           notifications?: Json | null
+          preferences?: Json | null
           risk_profile?: string | null
           updated_at?: string | null
           user_id?: string
