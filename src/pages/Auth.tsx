@@ -12,6 +12,7 @@ import { Loader2, Building2, TrendingUp, Shield, Mail, Lock, User, UserCheck, Ar
 import { toast } from '@/hooks/use-toast'
 import { UserRole } from '@/types/auth'
 import { Navigation } from '@/components/Navigation'
+import { SplashCursor } from '@/components/ui/splash-cursor'
 
 const Auth = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -20,6 +21,8 @@ const Auth = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false)
   const [resetEmail, setResetEmail] = useState('')
   const [resetSent, setResetSent] = useState(false)
+  const [showSplash, setShowSplash] = useState(true)
+  const [authSuccess, setAuthSuccess] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -32,6 +35,17 @@ const Auth = () => {
 
   const { login, signUp, resetPassword, signInWithGoogle, signInWithLinkedIn, user } = useAuth()
   const navigate = useNavigate()
+
+  // Handle auth success with delayed navigation
+  useEffect(() => {
+    if (authSuccess) {
+      const timer = setTimeout(() => {
+        setShowSplash(false)
+        navigate('/')
+      }, 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [authSuccess, navigate])
 
   // Redirect if already authenticated
   if (user) {
@@ -68,7 +82,7 @@ const Auth = () => {
           title: "Welcome back!",
           description: "You have successfully logged in.",
         })
-        navigate('/')
+        setAuthSuccess(true)
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.')
@@ -111,7 +125,7 @@ const Auth = () => {
           title: "Account created successfully!",
           description: "Welcome to Luxury Labs. You can now start managing your real estate investments.",
         })
-        navigate('/')
+        setAuthSuccess(true)
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.')
@@ -233,10 +247,12 @@ const Auth = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-accent/10 to-background">
-      <Navigation />
-      <div className="flex items-center justify-center p-4 pt-24">
-      <div className="w-full max-w-md">
+    <>
+      {showSplash && <SplashCursor />}
+      <div className="min-h-screen bg-gradient-to-br from-background via-accent/10 to-background">
+        <Navigation />
+        <div className="flex items-center justify-center p-4 pt-24">
+          <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
           <img 
@@ -630,14 +646,15 @@ const Auth = () => {
           </CardContent>
         </Card>
 
-        <div className="text-center mt-6">
-          <p className="text-sm text-muted-foreground">
-            By continuing, you agree to our Terms of Service and Privacy Policy
-          </p>
+            <div className="text-center mt-6">
+              <p className="text-sm text-muted-foreground">
+                By continuing, you agree to our Terms of Service and Privacy Policy
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-    </div>
+    </>
   )
 }
 
