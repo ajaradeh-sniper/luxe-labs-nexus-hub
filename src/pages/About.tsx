@@ -333,7 +333,7 @@ export default function About() {
             <Card>
               <CardHeader>
                 <Award className="w-8 h-8 text-primary mb-2" />
-                <CardTitle>Global Standard Design</CardTitle>
+                <CardTitle>Global World-Class Luxury Transformation Brand</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">Led by Federica Freschet, with Hermès-grade finishing.</p>
