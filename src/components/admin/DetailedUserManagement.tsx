@@ -347,11 +347,9 @@ export function DetailedUserManagement() {
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="all">All Users ({users.length})</TabsTrigger>
-          <TabsTrigger value="employees">Employees ({users.filter(u => ['administrator', 'project_manager', 'real_estate_director', 'real_estate_agent', 'finance_lead', 'head_of_design', 'lawyer', 'marketing_lead', 'vendor_manager', 'automation_lead'].includes(u.role)).length})</TabsTrigger>
+          <TabsTrigger value="employees">Employees ({users.filter(u => ['administrator', 'real_estate_agent'].includes(u.role)).length})</TabsTrigger>
           <TabsTrigger value="administrators">Admins ({users.filter(u => u.role === 'administrator').length})</TabsTrigger>
-          <TabsTrigger value="customers">Customers ({users.filter(u => u.role === 'client').length})</TabsTrigger>
           <TabsTrigger value="investors">Investors ({users.filter(u => u.role === 'investor').length})</TabsTrigger>
-          <TabsTrigger value="partners">Partners ({users.filter(u => u.role === 'partner').length})</TabsTrigger>
         </TabsList>
 
         <TabsContent value={activeTab} className="space-y-6">

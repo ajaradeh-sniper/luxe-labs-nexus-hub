@@ -75,7 +75,7 @@ export function OpportunityManagement() {
   const [selectedOpportunityForConversion, setSelectedOpportunityForConversion] = useState<Opportunity | null>(null);
 
   const canCreateOpportunity = user?.role === 'real_estate_agent' || user?.role === 'administrator';
-  const canEvaluate = user?.role === 'real_estate_director' || user?.role === 'administrator';
+  const canEvaluate = user?.role === 'administrator';
 
   const handleCreateOpportunity = () => {
     // Mock creation - in real app would call Supabase

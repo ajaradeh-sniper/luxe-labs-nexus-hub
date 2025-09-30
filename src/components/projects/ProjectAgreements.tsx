@@ -131,7 +131,7 @@ export function ProjectAgreements() {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [selectedAgreement, setSelectedAgreement] = useState<ProjectAgreement | null>(null);
 
-  const canManageAgreements = user?.role === 'administrator' || user?.role === 'project_manager' || user?.role === 'lawyer';
+  const canManageAgreements = user?.role === 'administrator';
 
   const handleCreateAgreement = () => {
     toast({

@@ -11,15 +11,6 @@ export default function Dashboard() {
   const { viewingRole, setViewingRole } = useRoleSwitching()
   const { user } = useAuth()
 
-  // If the user is a client, render the dedicated Client Dashboard (full layout)
-  if (user?.role === 'client') {
-    return (
-      <ProtectedRoute>
-        <ClientDashboard />
-      </ProtectedRoute>
-    )
-  }
-
   return (
     <ProtectedRoute>
       <DashboardLayout viewingRole={viewingRole}>

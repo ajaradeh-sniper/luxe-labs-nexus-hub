@@ -82,21 +82,8 @@ interface DocumentUpload {
 
 const roleLabels: Record<UserRole, string> = {
   administrator: 'Administrator',
-  real_estate_director: 'Real Estate Director',
   real_estate_agent: 'Real Estate Agent',
-  investor_relations_manager: 'Investor Relations Manager',
-  property_sales_lead: 'Property Sales Lead',
-  bd_manager: 'BD Manager',
-  project_manager: 'Project Manager',
-  head_of_design: 'Head of Design',
-  lawyer: 'Lawyer',
-  finance_lead: 'Finance Lead',
-  marketing_lead: 'Marketing Lead',
-  vendor_manager: 'Vendor Manager',
-  automation_lead: 'Automation Lead',
-  investor: 'Investor',
-  client: 'Client',
-  partner: 'Partner'
+  investor: 'Investor'
 };
 
 const departments = [
@@ -113,67 +100,11 @@ const requiredDocuments: Record<UserRole, DocumentUpload[]> = {
     { id: '5', name: 'Investment Agreement', type: 'legal', status: 'pending', required: true },
     { id: '6', name: 'Accreditation Certificate', type: 'legal', status: 'pending', required: false },
   ],
-  client: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Address Proof', type: 'kyc', status: 'pending', required: true },
-    { id: '3', name: 'Service Agreement', type: 'legal', status: 'pending', required: true },
-  ],
-  partner: [
-    { id: '1', name: 'Business License', type: 'legal', status: 'pending', required: true },
-    { id: '2', name: 'Tax Certificate', type: 'legal', status: 'pending', required: true },
-    { id: '3', name: 'Partnership Agreement', type: 'legal', status: 'pending', required: true },
-    { id: '4', name: 'Insurance Certificate', type: 'legal', status: 'pending', required: false },
-  ],
   administrator: [],
-  real_estate_director: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
   real_estate_agent: [
     { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
     { id: '2', name: 'Real Estate License', type: 'legal', status: 'pending', required: true },
     { id: '3', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
-  investor_relations_manager: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
-  property_sales_lead: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
-  bd_manager: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
-  project_manager: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
-  head_of_design: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
-  lawyer: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Bar Association License', type: 'legal', status: 'pending', required: true },
-    { id: '3', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
-  finance_lead: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
-  marketing_lead: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
-  vendor_manager: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
-  ],
-  automation_lead: [
-    { id: '1', name: 'Government ID', type: 'identification', status: 'pending', required: true },
-    { id: '2', name: 'Employment Contract', type: 'legal', status: 'pending', required: true },
   ],
 };
 
@@ -187,7 +118,7 @@ export function ComprehensiveUserOnboardingModal({
     name: '',
     email: '',
     phone: '',
-    role: 'client',
+    role: 'investor',
     department: '',
     notes: '',
     agreesToTerms: false,
@@ -314,7 +245,7 @@ export function ComprehensiveUserOnboardingModal({
         name: '',
         email: '',
         phone: '',
-        role: 'client',
+        role: 'investor',
         department: '',
         notes: '',
         agreesToTerms: false,
@@ -774,7 +705,7 @@ export function ComprehensiveUserOnboardingModal({
               </CardContent>
             </Card>
 
-            {(formData.role === 'investor' || formData.role === 'client') && (
+            {formData.role === 'investor' && (
               <Card>
                 <CardHeader>
                   <CardTitle>Legal Compliance</CardTitle>

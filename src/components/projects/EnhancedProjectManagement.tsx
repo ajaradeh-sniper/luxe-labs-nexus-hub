@@ -77,8 +77,8 @@ export function EnhancedProjectManagement() {
   const [selectedOpportunity, setSelectedOpportunity] = useState<Opportunity | null>(null)
   const [isConvertModalOpen, setIsConvertModalOpen] = useState(false)
 
-  const canApprove = user?.role === 'administrator' || user?.role === 'real_estate_director'
-  const canManageProjects = user?.role === 'administrator' || user?.role === 'project_manager' || user?.role === 'real_estate_director'
+  const canApprove = user?.role === 'administrator'
+  const canManageProjects = user?.role === 'administrator'
 
   useEffect(() => {
     fetchData()

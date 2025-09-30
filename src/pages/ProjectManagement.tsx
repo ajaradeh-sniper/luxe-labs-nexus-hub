@@ -25,7 +25,7 @@ export default function ProjectManagement() {
   const [loading, setLoading] = useState(true);
 
   // Check if user has access to project management tools
-  const hasAccess = user?.role === 'administrator' || user?.role === 'project_manager';
+  const hasAccess = user?.role === 'administrator';
 
   useEffect(() => {
     fetchProjects();
