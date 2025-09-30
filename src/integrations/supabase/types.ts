@@ -163,6 +163,38 @@ export type Database = {
         }
         Relationships: []
       }
+      cap_table_snapshots: {
+        Row: {
+          as_of: string
+          created_at: string | null
+          data: Json
+          id: string
+          project_id: string
+        }
+        Insert: {
+          as_of: string
+          created_at?: string | null
+          data: Json
+          id?: string
+          project_id: string
+        }
+        Update: {
+          as_of?: string
+          created_at?: string | null
+          data?: Json
+          id?: string
+          project_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cap_table_snapshots_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_interactions: {
         Row: {
           completed_at: string | null
@@ -362,6 +394,95 @@ export type Database = {
           status?: string
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      investment_payments: {
+        Row: {
+          amount: number
+          created_at: string | null
+          currency: string | null
+          id: string
+          investor_id: string
+          ledger_type: string
+          notes: string | null
+          paid_date: string | null
+          project_id: string
+          receipt_url: string | null
+          reference: string | null
+          scheduled_date: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          investor_id: string
+          ledger_type: string
+          notes?: string | null
+          paid_date?: string | null
+          project_id: string
+          receipt_url?: string | null
+          reference?: string | null
+          scheduled_date?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          investor_id?: string
+          ledger_type?: string
+          notes?: string | null
+          paid_date?: string | null
+          project_id?: string
+          receipt_url?: string | null
+          reference?: string | null
+          scheduled_date?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "investment_payments_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      investor_messages: {
+        Row: {
+          attachments: Json | null
+          body: string
+          created_at: string | null
+          id: string
+          sender: string
+          thread_id: string | null
+          thread_type: string
+        }
+        Insert: {
+          attachments?: Json | null
+          body: string
+          created_at?: string | null
+          id?: string
+          sender: string
+          thread_id?: string | null
+          thread_type: string
+        }
+        Update: {
+          attachments?: Json | null
+          body?: string
+          created_at?: string | null
+          id?: string
+          sender?: string
+          thread_id?: string | null
+          thread_type?: string
         }
         Relationships: []
       }
@@ -840,6 +961,53 @@ export type Database = {
         }
         Relationships: []
       }
+      monthly_reports: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          id: string
+          kpis: Json | null
+          notes: string | null
+          pdf_url: string | null
+          period: string
+          project_id: string
+          updated_at: string | null
+          visibility: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          kpis?: Json | null
+          notes?: string | null
+          pdf_url?: string | null
+          period: string
+          project_id: string
+          updated_at?: string | null
+          visibility?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          kpis?: Json | null
+          notes?: string | null
+          pdf_url?: string | null
+          period?: string
+          project_id?: string
+          updated_at?: string | null
+          visibility?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "monthly_reports_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notification_preferences: {
         Row: {
           created_at: string
@@ -1256,6 +1424,53 @@ export type Database = {
           },
           {
             foreignKeyName: "project_costs_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      project_investors: {
+        Row: {
+          commitment: number
+          created_at: string | null
+          currency: string | null
+          id: string
+          investor_id: string
+          ownership_pct: number | null
+          project_id: string
+          signed_agreement: boolean | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          commitment: number
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          investor_id: string
+          ownership_pct?: number | null
+          project_id: string
+          signed_agreement?: boolean | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          commitment?: number
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          investor_id?: string
+          ownership_pct?: number | null
+          project_id?: string
+          signed_agreement?: boolean | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_investors_project_id_fkey"
             columns: ["project_id"]
             isOneToOne: false
             referencedRelation: "projects"
