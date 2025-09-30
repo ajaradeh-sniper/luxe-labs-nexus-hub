@@ -54,6 +54,8 @@ export default function Landing() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
   const [disclaimerOpen, setDisclaimerOpen] = useState(false);
+  const [legalNoticeOpen, setLegalNoticeOpen] = useState(false);
+  const [cookieOpen, setCookieOpen] = useState(false);
 
   // Service data from Services page
   const investmentServices = [{
@@ -994,8 +996,8 @@ export default function Landing() {
                 <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setPrivacyOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Privacy Policy</button></li>
                 <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setTermsOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Terms of Service</button></li>
                 <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDisclaimerOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Investment Disclaimer</button></li>
-                <li><a href="/legal/legal-notice" className="text-secondary-foreground/80 hover:text-primary transition-colors">Legal Notice</a></li>
-                <li><a href="/legal/cookie-policy" className="text-secondary-foreground/80 hover:text-primary transition-colors">Cookie Policy</a></li>
+                <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLegalNoticeOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Legal Notice</button></li>
+                <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCookieOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Cookie Policy</button></li>
               </ul>
             </div>
           </div>
@@ -1086,6 +1088,58 @@ export default function Landing() {
             <section>
               <p><strong>Investment in real estate carries inherent risks.</strong> Information provided by Luxury Labs LLC does not constitute financial or investment advice. Past performance is not indicative of future results. Conduct thorough due diligence and consult a financial advisor before investing.</p>
               <p className="mt-2">Luxury Labs LLC is not liable for investment decisions based on information provided.</p>
+            </section>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={legalNoticeOpen} onOpenChange={setLegalNoticeOpen}>
+        <DialogContent className="max-w-3xl bg-card border border-border">
+          <DialogHeader>
+            <DialogTitle>Legal Notice</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
+            <section>
+              <h3 className="text-foreground font-semibold">Company Information</h3>
+              <ul className="list-disc pl-6 space-y-1">
+                <li><strong>Company Name:</strong> Luxury Labs LLC</li>
+                <li><strong>Registered Office:</strong> [Insert Registered Address, Dubai, UAE]</li>
+                <li><strong>Trade License Number:</strong> [Insert License Number]</li>
+                <li><strong>Jurisdiction:</strong> Dubai, United Arab Emirates</li>
+                <li><strong>Email:</strong> info@luxurylabs.ae</li>
+              </ul>
+            </section>
+            <section>
+              <h3 className="text-foreground font-semibold">Legal Framework</h3>
+              <p>Luxury Labs LLC operates under the laws of the United Arab Emirates and Dubai jurisdiction.</p>
+            </section>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={cookieOpen} onOpenChange={setCookieOpen}>
+        <DialogContent className="max-w-3xl bg-card border border-border">
+          <DialogHeader>
+            <DialogTitle>Cookie Policy</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
+            <p>Effective Date: {new Date().toLocaleDateString()}</p>
+            <section>
+              <h3 className="text-foreground font-semibold">What Are Cookies?</h3>
+              <p>Cookies are small data files placed on your device when you visit our website.</p>
+            </section>
+            <section>
+              <h3 className="text-foreground font-semibold">How We Use Cookies</h3>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>Essential Cookies</li>
+                <li>Performance Cookies</li>
+                <li>Functional Cookies</li>
+                <li>Advertising Cookies</li>
+              </ul>
+            </section>
+            <section>
+              <h3 className="text-foreground font-semibold">Managing Cookies</h3>
+              <p>You may disable cookies through your browser settings; this may affect website functionality.</p>
             </section>
           </div>
         </DialogContent>
