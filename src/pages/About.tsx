@@ -323,7 +323,7 @@ export default function About() {
             <Card>
               <CardHeader>
                 <TrendingUp className="w-8 h-8 text-primary mb-2" />
-                <CardTitle>Proven ROI</CardTitle>
+                <CardTitle>Trusted Investment Brand</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">End to End Transformation Investment Services, with focus on luxury properties with 20% ROI</p>
