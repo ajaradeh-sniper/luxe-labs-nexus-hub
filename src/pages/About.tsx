@@ -336,7 +336,7 @@ export default function About() {
                 <CardTitle>Global World-Class Luxury Transformation Brand</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Led by Federica Freschet, with Hermès-grade finishing.</p>
+                <p className="text-muted-foreground">Build global world class luxury transformation brand</p>
               </CardContent>
             </Card>
             
