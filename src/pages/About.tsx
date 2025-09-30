@@ -343,7 +343,7 @@ export default function About() {
             <Card>
               <CardHeader>
                 <Handshake className="w-8 h-8 text-primary mb-2" />
-                <CardTitle>Luxury Design, Materials and Partners</CardTitle>
+                <CardTitle>Luxury Network</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">Build a network of trusted and curated luxury partners and suppliers</p>
