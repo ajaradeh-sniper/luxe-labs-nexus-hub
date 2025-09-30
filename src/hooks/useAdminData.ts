@@ -16,7 +16,7 @@ export function useAdminStats() {
         supabase.from('profiles').select('id', { count: 'exact', head: true }),
         supabase.from('projects').select('id', { count: 'exact', head: true }).in('status', ['planning', 'in_progress', 'on_hold']),
         supabase.from('leads').select('id', { count: 'exact', head: true }).eq('status', 'new'),
-        supabase.from('opportunities').select('investment_required').eq('status', 'evaluation')
+        (supabase as any).from('opportunities').select('investment_required').eq('status', 'evaluation')
       ]);
 
       const pipelineValue = opportunities.data?.reduce((sum, opp) => sum + (Number(opp.investment_required) || 0), 0) || 0;

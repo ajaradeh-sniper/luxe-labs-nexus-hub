@@ -15,6 +15,9 @@ import {
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
+// Temporary: bypass strict Supabase types for newly added tables
+const sb = supabase as any;
+
 interface AdvancedStats {
   totalRevenue: number;
   revenueGrowth: number;
@@ -53,7 +56,7 @@ export function AdvancedDashboard() {
           .select('status, price');
 
         // Fetch opportunities data
-        const { data: opportunities } = await supabase
+        const { data: opportunities } = await sb
           .from('opportunities')
           .select('deadline, expected_roi, investment_required');
 

@@ -1123,20 +1123,27 @@ export type Database = {
       }
       opportunities: {
         Row: {
+          contact_info: Json | null
           created_at: string | null
+          created_by: string | null
           current_value: number
+          deadline: string | null
           description: string | null
           documents: Json | null
           estimated_after_value: number
           estimated_renovation_cost: number
+          expected_roi: number | null
           financial_details: Json | null
           id: string
-          location: Json | null
+          investment_required: number | null
+          location: string | null
           notes: string | null
+          opportunity_type: string | null
           potential_roi: number
-          property_address: string
+          property_address: string | null
           property_details: Json | null
-          property_type: string
+          property_type: string | null
+          risk_rating: string | null
           sourced_by: string | null
           sourced_date: string | null
           status: string
@@ -1145,20 +1152,27 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          contact_info?: Json | null
           created_at?: string | null
+          created_by?: string | null
           current_value?: number
+          deadline?: string | null
           description?: string | null
           documents?: Json | null
           estimated_after_value?: number
           estimated_renovation_cost?: number
+          expected_roi?: number | null
           financial_details?: Json | null
           id?: string
-          location?: Json | null
+          investment_required?: number | null
+          location?: string | null
           notes?: string | null
+          opportunity_type?: string | null
           potential_roi?: number
-          property_address: string
+          property_address?: string | null
           property_details?: Json | null
-          property_type: string
+          property_type?: string | null
+          risk_rating?: string | null
           sourced_by?: string | null
           sourced_date?: string | null
           status?: string
@@ -1167,20 +1181,27 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          contact_info?: Json | null
           created_at?: string | null
+          created_by?: string | null
           current_value?: number
+          deadline?: string | null
           description?: string | null
           documents?: Json | null
           estimated_after_value?: number
           estimated_renovation_cost?: number
+          expected_roi?: number | null
           financial_details?: Json | null
           id?: string
-          location?: Json | null
+          investment_required?: number | null
+          location?: string | null
           notes?: string | null
+          opportunity_type?: string | null
           potential_roi?: number
-          property_address?: string
+          property_address?: string | null
           property_details?: Json | null
-          property_type?: string
+          property_type?: string | null
+          risk_rating?: string | null
           sourced_by?: string | null
           sourced_date?: string | null
           status?: string

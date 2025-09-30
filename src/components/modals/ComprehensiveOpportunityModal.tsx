@@ -11,6 +11,9 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { LocationMapPicker } from '@/components/LocationMapPicker';
+
+// Temporary: bypass strict Supabase types for newly added tables
+const sb = supabase as any;
 import { 
   Upload, 
   X, 
@@ -346,7 +349,7 @@ export function ComprehensiveOpportunityModal({
         created_by: user.id
       };
 
-      const { data, error } = await supabase
+      const { data, error } = await sb
         .from('opportunities')
         .insert([opportunityData])
         .select();

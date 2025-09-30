@@ -11,6 +11,9 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { useToast } from "@/hooks/use-toast"
 import { supabase } from "@/integrations/supabase/client"
 import { useAuth } from "@/contexts/AuthContext"
+
+// Temporary: bypass strict Supabase types for newly added tables
+const sb = supabase as any;
 import { 
   FileText, 
   Upload,
@@ -111,7 +114,7 @@ export function OpportunityPitchModal({ open, onClose, opportunityId, onSuccess 
     setLoading(true)
     try {
       // Create opportunity in database
-      const { data: opportunity, error: opportunityError } = await supabase
+      const { data: opportunity, error: opportunityError } = await sb
         .from('opportunities')
         .insert({
           title: opportunityData.title,

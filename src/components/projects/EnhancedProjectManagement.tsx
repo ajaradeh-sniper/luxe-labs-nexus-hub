@@ -95,7 +95,7 @@ export function EnhancedProjectManagement() {
       if (projectsError) throw projectsError
 
       // Fetch approved opportunities that haven't been converted
-      const { data: opportunitiesData, error: opportunitiesError } = await supabase
+      const { data: opportunitiesData, error: opportunitiesError } = await (supabase as any)
         .from('opportunities')
         .select('*')
         .eq('status', 'approved')
@@ -111,10 +111,10 @@ export function EnhancedProjectManagement() {
       }))
 
       const typedOpportunities: Opportunity[] = (opportunitiesData || []).map(opp => ({
-        ...opp,
+        ...opp as any,
         documents: Array.isArray(opp.documents) ? opp.documents as any[] : [],
         contact_info: (opp.contact_info as any) || {}
-      }))
+      } as Opportunity))
 
       setProjects(typedProjects)
       setOpportunities(typedOpportunities)

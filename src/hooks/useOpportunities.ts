@@ -36,7 +36,7 @@ export const useOpportunities = () => {
       setError(null);
 
       // Try to fetch from Supabase first
-      const { data, error: supabaseError } = await supabase
+      const { data, error: supabaseError } = await (supabase as any)
         .from('opportunities')
         .select('*')
         .order('created_at', { ascending: false });
@@ -103,7 +103,7 @@ export const useOpportunities = () => {
       };
 
       // Try Supabase first
-      const { data, error: supabaseError } = await supabase
+      const { data, error: supabaseError } = await (supabase as any)
         .from('opportunities')
         .insert([newOpportunity])
         .select()
@@ -171,7 +171,7 @@ export const useOpportunities = () => {
       };
 
       // Try Supabase first
-      const { data, error: supabaseError } = await supabase
+      const { data, error: supabaseError } = await (supabase as any)
         .from('opportunities')
         .update(updatedData)
         .eq('id', id)

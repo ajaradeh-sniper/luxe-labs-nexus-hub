@@ -223,7 +223,7 @@ export class SupabaseService {
   // Opportunities
   static async getOpportunities() {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('opportunities')
         .select('*')
         .order('created_at', { ascending: false });
@@ -237,7 +237,7 @@ export class SupabaseService {
 
   static async createOpportunity(opportunity: Omit<Opportunity, 'id' | 'created_at' | 'updated_at'>) {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('opportunities')
         .insert([opportunity])
         .select()
@@ -256,7 +256,7 @@ export class SupabaseService {
       const [propertiesResult, projectsResult, opportunitiesResult] = await Promise.all([
         supabase.from('properties').select('id, status, price'),
         supabase.from('projects').select('id, status, budget, actual_cost, roi_percentage'),
-        supabase.from('opportunities').select('id, status, investment_required, expected_roi')
+        (supabase as any).from('opportunities').select('id, status, investment_required, expected_roi')
       ]);
 
       if (propertiesResult.error) throw propertiesResult.error;
