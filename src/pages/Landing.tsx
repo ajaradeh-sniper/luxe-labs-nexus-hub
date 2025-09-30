@@ -991,9 +991,9 @@ export default function Landing() {
             <div>
               <h4 className="font-bold text-secondary-foreground font-playfair mb-4">Legal</h4>
               <ul className="space-y-2 font-montserrat text-sm">
-                <li><button type="button" onClick={() => setPrivacyOpen(true)} className="text-secondary-foreground/80 hover:text-primary transition-colors">Privacy Policy</button></li>
-                <li><button type="button" onClick={() => setTermsOpen(true)} className="text-secondary-foreground/80 hover:text-primary transition-colors">Terms of Service</button></li>
-                <li><button type="button" onClick={() => setDisclaimerOpen(true)} className="text-secondary-foreground/80 hover:text-primary transition-colors">Investment Disclaimer</button></li>
+                <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setPrivacyOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Privacy Policy</button></li>
+                <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setTermsOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Terms of Service</button></li>
+                <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDisclaimerOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Investment Disclaimer</button></li>
                 <li><a href="/legal/legal-notice" className="text-secondary-foreground/80 hover:text-primary transition-colors">Legal Notice</a></li>
                 <li><a href="/legal/cookie-policy" className="text-secondary-foreground/80 hover:text-primary transition-colors">Cookie Policy</a></li>
               </ul>
