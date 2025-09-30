@@ -36,6 +36,7 @@ import InvestorDashboard from "./pages/InvestorDashboard"
 import ClientDashboard from "./pages/ClientDashboard"
 
 // Import admin pages
+import AdminDashboard from "./pages/admin/AdminDashboard"
 import SystemOverview from "./pages/admin/System"
 import DetailedUsers from "./pages/admin/DetailedUsers"
 import AdminInvestors from "./pages/admin/Investors"
@@ -111,7 +112,7 @@ function App() {
           
           {/* Role-Specific Dashboards */}
           <Route path="/pm-dashboard" element={
-            <SmartProtectedRoute requiredRoles={['project_manager', 'administrator']}>
+            <SmartProtectedRoute requiredRoles={['real_estate_agent', 'administrator']}>
               <ProjectManagerDashboard />
             </SmartProtectedRoute>
           } />
@@ -123,30 +124,36 @@ function App() {
           } />
           
           <Route path="/client-dashboard" element={
-            <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
+            <SmartProtectedRoute requiredRoles={['investor', 'administrator']}>
               <EnhancedClientDashboard />
             </SmartProtectedRoute>
           } />
           
           <Route path="/client-profile" element={
-            <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
+            <SmartProtectedRoute requiredRoles={['investor', 'administrator']}>
               <ClientProfile />
             </SmartProtectedRoute>
           } />
           
           <Route path="/payments" element={
-            <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
+            <SmartProtectedRoute requiredRoles={['investor', 'administrator']}>
               <Payments />
             </SmartProtectedRoute>
           } />
           
           <Route path="/client-opportunities" element={
-            <SmartProtectedRoute requiredRoles={['client', 'administrator']}>
+            <SmartProtectedRoute requiredRoles={['investor', 'administrator']}>
               <ClientOpportunities />
             </SmartProtectedRoute>
           } />
           
           {/* Admin Routes */}
+          <Route path="/admin/dashboard" element={
+            <SmartProtectedRoute requiredRoles={['administrator']}>
+              <AdminDashboard />
+            </SmartProtectedRoute>
+          } />
+          
           <Route path="/admin/system" element={
             <SmartProtectedRoute requiredRoles={['administrator']}>
               <SystemOverview />
@@ -196,7 +203,7 @@ function App() {
           } />
           
           <Route path="/admin/leads" element={
-            <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_director']}>
+            <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_agent']}>
               <LeadsManagement />
             </SmartProtectedRoute>
           } />
@@ -278,7 +285,7 @@ function App() {
           } />
           
           <Route path="/fund-management" element={
-            <SmartProtectedRoute requiredRoles={['administrator', 'finance_lead', 'investor']}>
+            <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_agent', 'investor']}>
               <FundManagement />
             </SmartProtectedRoute>
           } />
@@ -345,19 +352,19 @@ function App() {
           } />
           
           <Route path="/crm" element={
-            <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_director', 'real_estate_agent']}>
+            <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_agent']}>
               <CRM />
             </SmartProtectedRoute>
           } />
           
           <Route path="/reports" element={
-            <SmartProtectedRoute requiredRoles={['administrator', 'finance_lead', 'project_manager', 'real_estate_director']}>
+            <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_agent']}>
               <Reports />
             </SmartProtectedRoute>
           } />
           
           <Route path="/marketing-tools" element={
-            <SmartProtectedRoute requiredRoles={['administrator', 'marketing_lead']}>
+            <SmartProtectedRoute requiredRoles={['administrator', 'real_estate_agent']}>
               <MarketingTools />
             </SmartProtectedRoute>
           } />
