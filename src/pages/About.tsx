@@ -333,7 +333,7 @@ export default function About() {
             <Card>
               <CardHeader>
                 <Award className="w-8 h-8 text-primary mb-2" />
-                <CardTitle>Global Luxury Transformation Brand</CardTitle>
+                <CardTitle>Luxury Transformation Brand</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">Build global world class luxury transformation brand</p>
