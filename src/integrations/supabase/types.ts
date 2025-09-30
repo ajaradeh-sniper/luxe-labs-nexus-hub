@@ -456,6 +456,33 @@ export type Database = {
           },
         ]
       }
+      investor_assessment: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          id: string
+          preferences: Json
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          preferences?: Json
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          preferences?: Json
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       investor_messages: {
         Row: {
           attachments: Json | null
@@ -488,28 +515,37 @@ export type Database = {
       }
       investor_preferences: {
         Row: {
-          completed_at: string | null
-          created_at: string
-          id: string
-          preferences: Json
-          updated_at: string
-          user_id: string
+          asset_types: string[] | null
+          created_at: string | null
+          email_digest: string | null
+          investor_id: string
+          locations: string[] | null
+          min_investment: number | null
+          notifications: Json | null
+          risk_profile: string | null
+          updated_at: string | null
         }
         Insert: {
-          completed_at?: string | null
-          created_at?: string
-          id?: string
-          preferences?: Json
-          updated_at?: string
-          user_id: string
+          asset_types?: string[] | null
+          created_at?: string | null
+          email_digest?: string | null
+          investor_id: string
+          locations?: string[] | null
+          min_investment?: number | null
+          notifications?: Json | null
+          risk_profile?: string | null
+          updated_at?: string | null
         }
         Update: {
-          completed_at?: string | null
-          created_at?: string
-          id?: string
-          preferences?: Json
-          updated_at?: string
-          user_id?: string
+          asset_types?: string[] | null
+          created_at?: string | null
+          email_digest?: string | null
+          investor_id?: string
+          locations?: string[] | null
+          min_investment?: number | null
+          notifications?: Json | null
+          risk_profile?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
