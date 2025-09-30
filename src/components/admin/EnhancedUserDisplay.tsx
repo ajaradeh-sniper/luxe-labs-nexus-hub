@@ -87,7 +87,7 @@ export function EnhancedUserDisplay({ user, showInvestorData = false }: Enhanced
         // Fetch real data for actual users
         const [preferencesResult, referralResult, submissionResult] = await Promise.all([
           supabase
-            .from('investor_preferences')
+            .from('investor_settings')
             .select('preferences, completed_at')
             .eq('user_id', user.id)
             .maybeSingle(),

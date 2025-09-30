@@ -72,7 +72,7 @@ export const EditableInvestmentAssessment = ({ onClose }: EditableInvestmentAsse
 
         // Fetch from database for real users
         const { data, error } = await supabase
-          .from('investor_preferences')
+          .from('investor_settings')
           .select('preferences')
           .eq('user_id', user.id)
           .maybeSingle()
@@ -116,7 +116,7 @@ export const EditableInvestmentAssessment = ({ onClose }: EditableInvestmentAsse
 
       // Normal database save for real users
       const { error } = await supabase
-        .from('investor_preferences')
+        .from('investor_settings')
         .upsert({
           user_id: user.id,
           preferences: preferences as any,

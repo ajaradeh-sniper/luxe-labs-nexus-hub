@@ -52,7 +52,7 @@ export function InvestorProfileDisplay({ onEdit }: { onEdit?: () => void }) {
 
         // Fetch from database for real users
         const { data, error } = await supabase
-          .from('investor_preferences')
+          .from('investor_settings')
           .select('preferences')
           .eq('user_id', user.id)
           .maybeSingle()
