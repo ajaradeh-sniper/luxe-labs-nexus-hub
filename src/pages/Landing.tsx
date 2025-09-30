@@ -988,9 +988,11 @@ export default function Landing() {
             <div>
               <h4 className="font-bold text-secondary-foreground font-playfair mb-4">Legal</h4>
               <ul className="space-y-2 font-montserrat text-sm">
-                <li><a href="#" className="text-secondary-foreground/80 hover:text-primary transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-secondary-foreground/80 hover:text-primary transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="text-secondary-foreground/80 hover:text-primary transition-colors">Investment Disclaimer</a></li>
+                <li><a href="/legal/legal-notice" className="text-secondary-foreground/80 hover:text-primary transition-colors">Legal Notice</a></li>
+                <li><a href="/legal/privacy-policy" className="text-secondary-foreground/80 hover:text-primary transition-colors">Privacy Policy</a></li>
+                <li><a href="/legal/terms-of-service" className="text-secondary-foreground/80 hover:text-primary transition-colors">Terms of Service</a></li>
+                <li><a href="/legal/investment-disclaimer" className="text-secondary-foreground/80 hover:text-primary transition-colors">Investment Disclaimer</a></li>
+                <li><a href="/legal/cookie-policy" className="text-secondary-foreground/80 hover:text-primary transition-colors">Cookie Policy</a></li>
               </ul>
             </div>
           </div>
