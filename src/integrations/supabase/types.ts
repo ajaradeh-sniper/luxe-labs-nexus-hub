@@ -14,6 +14,50 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_log: {
+        Row: {
+          action: string
+          actor: string | null
+          created_at: string | null
+          diff: Json | null
+          entity: string | null
+          entity_id: string | null
+          id: number
+          ip: unknown | null
+          user_agent: string | null
+        }
+        Insert: {
+          action: string
+          actor?: string | null
+          created_at?: string | null
+          diff?: Json | null
+          entity?: string | null
+          entity_id?: string | null
+          id?: number
+          ip?: unknown | null
+          user_agent?: string | null
+        }
+        Update: {
+          action?: string
+          actor?: string | null
+          created_at?: string | null
+          diff?: Json | null
+          entity?: string | null
+          entity_id?: string | null
+          id?: number
+          ip?: unknown | null
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_log_actor_fkey"
+            columns: ["actor"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       calendar_events: {
         Row: {
           attendees: Json | null
@@ -241,6 +285,47 @@ export type Database = {
         }
         Relationships: []
       }
+      documents: {
+        Row: {
+          created_at: string | null
+          entity_id: string | null
+          entity_type: string | null
+          id: string
+          name: string
+          owner_id: string
+          url: string
+          visibility: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          name: string
+          owner_id: string
+          url: string
+          visibility?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          name?: string
+          owner_id?: string
+          url?: string
+          visibility?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       financial_reports: {
         Row: {
           created_at: string
@@ -369,6 +454,82 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      investors: {
+        Row: {
+          created_at: string | null
+          id: string
+          kyc_status: string | null
+          notes: string | null
+          preferred_communication: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id: string
+          kyc_status?: string | null
+          notes?: string | null
+          preferred_communication?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          kyc_status?: string | null
+          notes?: string | null
+          preferred_communication?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "investors_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          contact: Json | null
+          created_at: string | null
+          id: string
+          owner_id: string | null
+          source: string | null
+          status: string | null
+          type: string
+          updated_at: string | null
+        }
+        Insert: {
+          contact?: Json | null
+          created_at?: string | null
+          id?: string
+          owner_id?: string | null
+          source?: string | null
+          status?: string | null
+          type: string
+          updated_at?: string | null
+        }
+        Update: {
+          contact?: Json | null
+          created_at?: string | null
+          id?: string
+          owner_id?: string | null
+          source?: string | null
+          status?: string | null
+          type?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leads_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       ll_leads: {
         Row: {
@@ -712,6 +873,44 @@ export type Database = {
         }
         Relationships: []
       }
+      notifications: {
+        Row: {
+          body: string | null
+          created_at: string | null
+          id: string
+          read_at: string | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string | null
+          id?: string
+          read_at?: string | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string | null
+          id?: string
+          read_at?: string | null
+          title?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       opportunities: {
         Row: {
           contact_info: Json | null
@@ -920,12 +1119,65 @@ export type Database = {
           },
         ]
       }
+      payments: {
+        Row: {
+          amount: number
+          created_at: string | null
+          currency: string | null
+          id: string
+          investor_id: string | null
+          project_id: string | null
+          status: string | null
+          type: string
+          updated_at: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          investor_id?: string | null
+          project_id?: string | null
+          status?: string | null
+          type: string
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          investor_id?: string | null
+          project_id?: string | null
+          status?: string | null
+          type?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "investors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payments_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
           created_at: string
+          full_name: string | null
           id: string
           name: string
+          phone: string | null
           role: string
           updated_at: string
           user_id: string
@@ -933,8 +1185,10 @@ export type Database = {
         Insert: {
           avatar_url?: string | null
           created_at?: string
+          full_name?: string | null
           id?: string
           name: string
+          phone?: string | null
           role?: string
           updated_at?: string
           user_id: string
@@ -942,8 +1196,10 @@ export type Database = {
         Update: {
           avatar_url?: string | null
           created_at?: string
+          full_name?: string | null
           id?: string
           name?: string
+          phone?: string | null
           role?: string
           updated_at?: string
           user_id?: string
@@ -1080,6 +1336,54 @@ export type Database = {
           },
         ]
       }
+      project_updates: {
+        Row: {
+          attachments: Json | null
+          body: string | null
+          created_at: string | null
+          created_by: string | null
+          id: string
+          project_id: string
+          title: string
+          visibility: string | null
+        }
+        Insert: {
+          attachments?: Json | null
+          body?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          project_id: string
+          title: string
+          visibility?: string | null
+        }
+        Update: {
+          attachments?: Json | null
+          body?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          project_id?: string
+          title?: string
+          visibility?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_updates_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_updates_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       projects: {
         Row: {
           actual_cost: number | null
@@ -1096,9 +1400,11 @@ export type Database = {
           manager_id: string | null
           name: string
           opportunity_id: string | null
+          percent_complete: number | null
           project_type: string
           property_id: string | null
           roi_percentage: number | null
+          stage: string | null
           start_date: string | null
           status: string
           updated_at: string
@@ -1119,9 +1425,11 @@ export type Database = {
           manager_id?: string | null
           name: string
           opportunity_id?: string | null
+          percent_complete?: number | null
           project_type: string
           property_id?: string | null
           roi_percentage?: number | null
+          stage?: string | null
           start_date?: string | null
           status?: string
           updated_at?: string
@@ -1142,9 +1450,11 @@ export type Database = {
           manager_id?: string | null
           name?: string
           opportunity_id?: string | null
+          percent_complete?: number | null
           project_type?: string
           property_id?: string | null
           roi_percentage?: number | null
+          stage?: string | null
           start_date?: string | null
           status?: string
           updated_at?: string
