@@ -64,6 +64,7 @@ import Referrals from "./pages/Referrals"
 import ClientProfile from "./pages/ClientProfile"
 import Payments from "./pages/Payments"
 import ClientOpportunities from "./pages/ClientOpportunities"
+import InvestorProperties from "./pages/InvestorProperties"
 
 // Import public pages
 import About from "./pages/About"
@@ -74,6 +75,7 @@ import Partners from "./pages/Partners"
 import Investors from "./pages/Investors"
 import Contact from "./pages/Contact"
 import Profile from "./pages/Profile"
+import OpportunityDetail from "./pages/OpportunityDetail"
 
 // Import legal pages
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy"
@@ -158,6 +160,12 @@ function App() {
           <Route path="/client-opportunities" element={
             <SmartProtectedRoute requiredRoles={['investor', 'administrator']}>
               <ClientOpportunities />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/investor-properties" element={
+            <SmartProtectedRoute requiredRoles={['investor', 'administrator']}>
+              <InvestorProperties />
             </SmartProtectedRoute>
           } />
           
@@ -295,6 +303,12 @@ function App() {
           <Route path="/opportunities" element={
             <SmartProtectedRoute>
               <Opportunities />
+            </SmartProtectedRoute>
+          } />
+          
+          <Route path="/opportunities/:id" element={
+            <SmartProtectedRoute>
+              <OpportunityDetail />
             </SmartProtectedRoute>
           } />
           

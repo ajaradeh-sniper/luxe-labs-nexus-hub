@@ -76,36 +76,78 @@ export default function OpportunityDetail() {
 
   const loadOpportunityDetails = async () => {
     try {
-      // For now using mock data - would fetch from opportunities table
-      const mockOpportunity: Opportunity = {
-        id: id!,
-        title: "Luxury Villa - Palm Jumeirah",
-        description: "Stunning villa with panoramic views, prime location on the Palm Jumeirah frond. Excellent opportunity for renovation and value appreciation.",
-        location: "Palm Jumeirah, Dubai",
-        type: "Renovation & Flip",
-        investment_required: 850000,
-        expected_roi: 28,
-        risk_level: "Medium",
-        status: "Active",
-        deadline: "2024-03-15",
+      // Fetch real opportunity data
+      const { data: opportunityData, error } = await sb
+        .from('opportunities')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) {
+        console.error('Error loading opportunity:', error);
+        // Fallback to mock data if database query fails
+        const mockOpportunity: Opportunity = {
+          id: id!,
+          title: "Luxury Villa - Palm Jumeirah",
+          description: "Stunning villa with panoramic views, prime location on the Palm Jumeirah frond. Excellent opportunity for renovation and value appreciation.",
+          location: "Palm Jumeirah, Dubai",
+          type: "Renovation & Flip",
+          investment_required: 850000,
+          expected_roi: 28,
+          risk_level: "Medium",
+          status: "Active",
+          deadline: "2024-03-15",
+          property_details: {
+            bedrooms: 5,
+            bathrooms: 6,
+            area_sqft: 4500,
+            parking: 3,
+            amenities: ["Private Pool", "Beach Access", "Gym", "Smart Home", "Landscaped Garden"]
+          },
+          financial_details: {
+            asking_price: 3200000,
+            renovation_cost: 450000,
+            after_value: 4500000,
+            holding_costs: 85000
+          },
+          created_by: user?.id || '',
+          created_at: new Date().toISOString()
+        };
+        
+        setOpportunity(mockOpportunity);
+        return;
+      }
+
+      // Transform database opportunity to component format
+      const transformedOpportunity: Opportunity = {
+        id: opportunityData.id,
+        title: opportunityData.title || 'Untitled Opportunity',
+        description: opportunityData.description || '',
+        location: opportunityData.location || opportunityData.property_address || '',
+        type: opportunityData.opportunity_type || 'Investment',
+        investment_required: opportunityData.investment_required || opportunityData.current_value || 0,
+        expected_roi: opportunityData.expected_roi || opportunityData.potential_roi || 0,
+        risk_level: opportunityData.risk_rating || 'Medium',
+        status: opportunityData.status === 'approved' ? 'Active' : 'Pending',
+        deadline: opportunityData.deadline || '',
         property_details: {
-          bedrooms: 5,
-          bathrooms: 6,
-          area_sqft: 4500,
-          parking: 3,
-          amenities: ["Private Pool", "Beach Access", "Gym", "Smart Home", "Landscaped Garden"]
+          bedrooms: (opportunityData.property_details as any)?.bedrooms || 0,
+          bathrooms: (opportunityData.property_details as any)?.bathrooms || 0,
+          area_sqft: (opportunityData.property_details as any)?.area_sqft || 0,
+          parking: (opportunityData.property_details as any)?.parking || 0,
+          amenities: (opportunityData.property_details as any)?.amenities || []
         },
         financial_details: {
-          asking_price: 3200000,
-          renovation_cost: 450000,
-          after_value: 4500000,
-          holding_costs: 85000
+          asking_price: (opportunityData.financial_details as any)?.asking_price || opportunityData.current_value || 0,
+          renovation_cost: opportunityData.estimated_renovation_cost || 0,
+          after_value: opportunityData.estimated_after_value || 0,
+          holding_costs: (opportunityData.financial_details as any)?.holding_costs || 0
         },
-        created_by: user?.id || '',
-        created_at: new Date().toISOString()
+        created_by: opportunityData.sourced_by || opportunityData.created_by || '',
+        created_at: opportunityData.created_at
       };
       
-      setOpportunity(mockOpportunity);
+      setOpportunity(transformedOpportunity);
     } catch (error) {
       console.error('Error loading opportunity:', error);
       toast({

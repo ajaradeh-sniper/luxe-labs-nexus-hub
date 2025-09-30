@@ -73,7 +73,8 @@ const getNavigationItems = (userRole: string, viewingRole?: string) => {
     { title: "Workflows & Processes", url: "/admin/workflows-processes", icon: GitBranch, roles: ['administrator'] },
     
     { title: "Projects", url: "/dashboard/projects", icon: FolderOpen, roles: ['administrator', 'project_manager', 'head_of_design', 'client', 'real_estate_agent', 'partner'] },
-    { title: "Property Management", url: "/admin/properties", icon: Building, roles: ['administrator', 'investor'] },
+    { title: "Property Portfolio", url: "/investor-properties", icon: Building, roles: ['administrator', 'investor'] },
+    { title: "Property Management", url: "/admin/properties", icon: Building, roles: ['administrator'] },
     { title: "Opportunities", url: "/opportunities", icon: Target, roles: ['administrator', 'real_estate_director', 'real_estate_agent'] },
     { title: "Fund Management", url: "/fund-management", icon: DollarSign, roles: ['administrator', 'finance_lead', 'investor'] },
     { title: "System Settings", url: "/admin/system-settings", icon: Settings, roles: ['administrator'] },
