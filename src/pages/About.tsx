@@ -326,7 +326,7 @@ export default function About() {
                 <CardTitle>Proven ROI</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">15–30% on completed villa flips.</p>
+                <p className="text-muted-foreground">End to End Transformation Investment Services, with focus on luxury properties with 20% ROI</p>
               </CardContent>
             </Card>
             
