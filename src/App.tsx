@@ -75,6 +75,13 @@ import Investors from "./pages/Investors"
 import Contact from "./pages/Contact"
 import Profile from "./pages/Profile"
 
+// Import legal pages
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy"
+import TermsOfService from "./pages/legal/TermsOfService"
+import InvestmentDisclaimer from "./pages/legal/InvestmentDisclaimer"
+import LegalNotice from "./pages/legal/LegalNotice"
+import CookiePolicy from "./pages/legal/CookiePolicy"
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -99,6 +106,13 @@ function App() {
           <Route path="/partners" element={<Partners />} />
           <Route path="/investors" element={<Investors />} />
           <Route path="/contact" element={<Contact />} />
+          
+          {/* Legal Routes */}
+          <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/legal/terms-of-service" element={<TermsOfService />} />
+          <Route path="/legal/investment-disclaimer" element={<InvestmentDisclaimer />} />
+          <Route path="/legal/legal-notice" element={<LegalNotice />} />
+          <Route path="/legal/cookie-policy" element={<CookiePolicy />} />
           
           {/* Auth Route */}
           <Route path="/auth" element={<Auth />} />

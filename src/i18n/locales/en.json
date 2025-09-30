@@ -49,9 +49,11 @@
     "quick_links": "Quick Links",
     "services_links": "Services",
     "legal": "Legal",
+    "legal_notice": "Legal Notice",
     "privacy_policy": "Privacy Policy",
     "terms_of_service": "Terms of Service",
     "investment_disclaimer": "Investment Disclaimer",
+    "cookie_policy": "Cookie Policy",
     "rights_reserved": "All rights reserved.",
     "financial_disclaimer": "All investments carry risk. Past performance does not guarantee future results."
   }
