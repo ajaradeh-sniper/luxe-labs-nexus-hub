@@ -302,6 +302,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       }
 
       // Normal database save for real users
+      console.log('Saving to investor_settings:', { user_id: user.id })
       const { error } = await supabase
         .from('investor_settings')
         .upsert({

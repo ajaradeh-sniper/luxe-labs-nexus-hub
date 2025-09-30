@@ -86,6 +86,7 @@ export function ComprehensiveProfileSection({ onEditAssessment }: { onEditAssess
         }
 
         // Fetch from database for real users
+        console.log('Fetching investor settings for user:', user.id)
         const { data, error } = await supabase
           .from('investor_settings')
           .select('preferences')

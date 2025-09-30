@@ -71,6 +71,7 @@ export const EditableInvestmentAssessment = ({ onClose }: EditableInvestmentAsse
         }
 
         // Fetch from database for real users
+        console.log('Fetching investor settings for user:', user.id)
         const { data, error } = await supabase
           .from('investor_settings')
           .select('preferences')
@@ -115,6 +116,7 @@ export const EditableInvestmentAssessment = ({ onClose }: EditableInvestmentAsse
       }
 
       // Normal database save for real users
+      console.log('Saving to investor_settings:', { user_id: user.id })
       const { error } = await supabase
         .from('investor_settings')
         .upsert({
