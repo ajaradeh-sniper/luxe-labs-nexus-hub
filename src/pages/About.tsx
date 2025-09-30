@@ -346,7 +346,7 @@ export default function About() {
                 <CardTitle>Luxury Design, Materials and Partners</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Legal, finance, and contractor networks built for efficiency.</p>
+                <p className="text-muted-foreground">Build a network of trusted and curated luxury partners and suppliers</p>
               </CardContent>
             </Card>
             
