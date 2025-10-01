@@ -192,6 +192,7 @@ const Contact = () => {
         <meta name="twitter:title" content="Contact Luxury Labs | Dubai Villa Investment & Renovation Services" />
         <meta name="twitter:description" content="Connect with Luxury Labs for investor opportunities, villa flipping services, or Dubai luxury property consultations. Start your transformation today." />
         <link rel="canonical" href="https://luxurylabs.ae/contact" />
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
       </Helmet>
       <Navigation />
       
@@ -333,6 +334,26 @@ const Contact = () => {
                       </p>
                     </div>}
                 </ScrollArea>
+              </CardContent>
+            </Card>
+
+            {/* Calendly Scheduling Section */}
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Clock className="h-5 w-5" />
+                  Schedule a Consultation
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Book a time that works for you to discuss your investment goals and opportunities.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <div 
+                  className="calendly-inline-widget" 
+                  data-url="https://calendly.com/ali-luxurylabs" 
+                  style={{ minWidth: '320px', height: '700px' }}
+                />
               </CardContent>
             </Card>
           </div>
