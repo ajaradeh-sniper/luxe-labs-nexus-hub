@@ -4,10 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { useOpportunities } from '@/hooks/useOpportunities';
+import { useEOI } from '@/hooks/useEOI';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { ComprehensiveOpportunityModal } from '@/components/modals/ComprehensiveOpportunityModal';
 import { 
@@ -20,7 +23,8 @@ import {
   MapPin, 
   Search,
   TrendingUp,
-  AlertTriangle
+  AlertTriangle,
+  HandHeart
 } from 'lucide-react';
 
 export function EnhancedOpportunityManagement() {
@@ -36,6 +40,7 @@ export function EnhancedOpportunityManagement() {
 
   const canCreateOpportunity = ['real_estate_agent', 'real_estate_director', 'administrator'].includes(user?.role || '');
   const canEvaluate = ['real_estate_director', 'administrator'].includes(user?.role || '');
+  const isInvestor = user?.role === 'investor';
 
   const handleCreateOpportunity = () => {
     setIsCreateModalOpen(true);
@@ -285,6 +290,10 @@ export function EnhancedOpportunityManagement() {
                     View
                   </Button>
                   
+                  {isInvestor && opportunity.status === 'approved' && (
+                    <EOIButton opportunity={opportunity} />
+                  )}
+                  
                   {canEvaluate && (opportunity.status === 'under_review' || opportunity.status === 'evaluation') && (
                     <>
                       <Button
@@ -390,5 +399,81 @@ export function EnhancedOpportunityManagement() {
         onOpportunityCreated={handleOpportunityCreated}
       />
     </div>
+  );
+}
+
+// EOI Button Component
+function EOIButton({ opportunity }: { opportunity: any }) {
+  const [open, setOpen] = useState(false);
+  const [amount, setAmount] = useState<number>(Number(opportunity.investment_required || 0));
+  const [note, setNote] = useState<string>('');
+  const { submitEOI, loading } = useEOI(opportunity.id);
+
+  const handleSubmit = async () => {
+    const result = await submitEOI(amount, note);
+    if (result) {
+      setOpen(false);
+      setNote('');
+    }
+  };
+
+  return (
+    <>
+      <Button 
+        variant="default" 
+        size="sm"
+        onClick={() => setOpen(true)}
+      >
+        <HandHeart className="h-4 w-4 mr-1" />
+        Express Interest
+      </Button>
+      
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Express Interest – {opportunity.title}</DialogTitle>
+            <DialogDescription>
+              Indicate your investment amount and any additional notes
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="amount">Investment Amount (AED)</Label>
+              <Input 
+                id="amount"
+                type="number" 
+                value={amount} 
+                onChange={(e) => setAmount(Number(e.target.value || 0))}
+                min={0}
+              />
+              <p className="text-sm text-muted-foreground">
+                Min: {new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED' }).format(opportunity.investment_required || 0)}
+              </p>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="note">Note (Optional)</Label>
+              <Textarea
+                id="note"
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+                placeholder="Any questions or special requirements..."
+                rows={3}
+              />
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+            <Button disabled={loading || amount <= 0} onClick={handleSubmit}>
+              {loading ? "Submitting..." : "Submit Interest"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

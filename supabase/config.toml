@@ -30,3 +30,9 @@ verify_jwt = false
 
 [functions.rate-limit-submissions]
 verify_jwt = false
+
+[functions.send-signature]
+verify_jwt = false
+
+[functions.signature-webhook]
+verify_jwt = false
