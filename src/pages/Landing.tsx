@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -919,11 +919,8 @@ export default function Landing() {
                 </div>
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Book a Meeting</h3>
                 <p className="text-muted-foreground font-montserrat mb-6">Schedule a consultation</p>
-                <Button className="w-full luxury-gradient hover:luxury-glow font-montserrat" onClick={() => {
-                // Replace with your actual Calendly link
-                window.open('https://calendly.com/luxurylabs-consultation', '_blank');
-              }}>
-                  Schedule Consultation
+                <Button asChild className="w-full luxury-gradient hover:luxury-glow font-montserrat">
+                  <Link to="/contact">Schedule Consultation</Link>
                 </Button>
               </CardContent>
             </Card>
