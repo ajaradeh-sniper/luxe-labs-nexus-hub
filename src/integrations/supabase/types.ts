@@ -14,6 +14,71 @@ export type Database = {
   }
   public: {
     Tables: {
+      allocations: {
+        Row: {
+          allocated_amount: number
+          created_at: string | null
+          id: string
+          investor_id: string
+          opportunity_id: string | null
+          project_id: string | null
+          status: string
+          unit_price: number | null
+          units: number | null
+        }
+        Insert: {
+          allocated_amount: number
+          created_at?: string | null
+          id?: string
+          investor_id: string
+          opportunity_id?: string | null
+          project_id?: string | null
+          status?: string
+          unit_price?: number | null
+          units?: number | null
+        }
+        Update: {
+          allocated_amount?: number
+          created_at?: string | null
+          id?: string
+          investor_id?: string
+          opportunity_id?: string | null
+          project_id?: string | null
+          status?: string
+          unit_price?: number | null
+          units?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "allocations_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "investors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "allocations_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "allocations_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "allocations_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
+          },
+        ]
+      }
       audit_log: {
         Row: {
           action: string
@@ -163,6 +228,70 @@ export type Database = {
         }
         Relationships: []
       }
+      cap_table_entries: {
+        Row: {
+          carry_pct: number | null
+          class: string | null
+          committed_amount: number
+          created_at: string | null
+          funded_amount: number
+          id: string
+          investor_id: string
+          pct: number | null
+          pref_return: number | null
+          project_id: string
+          units: number
+        }
+        Insert: {
+          carry_pct?: number | null
+          class?: string | null
+          committed_amount: number
+          created_at?: string | null
+          funded_amount?: number
+          id?: string
+          investor_id: string
+          pct?: number | null
+          pref_return?: number | null
+          project_id: string
+          units?: number
+        }
+        Update: {
+          carry_pct?: number | null
+          class?: string | null
+          committed_amount?: number
+          created_at?: string | null
+          funded_amount?: number
+          id?: string
+          investor_id?: string
+          pct?: number | null
+          pref_return?: number | null
+          project_id?: string
+          units?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cap_table_entries_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "investors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cap_table_entries_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cap_table_entries_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
+          },
+        ]
+      }
       cap_table_snapshots: {
         Row: {
           as_of: string
@@ -192,6 +321,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "projects"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cap_table_snapshots_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
           },
         ]
       }
@@ -358,6 +494,51 @@ export type Database = {
           },
         ]
       }
+      expressions_of_interest: {
+        Row: {
+          amount: number
+          created_at: string | null
+          id: string
+          investor_id: string
+          note: string | null
+          opportunity_id: string
+          status: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          id?: string
+          investor_id: string
+          note?: string | null
+          opportunity_id: string
+          status?: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          id?: string
+          investor_id?: string
+          note?: string | null
+          opportunity_id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expressions_of_interest_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "investors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "expressions_of_interest_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       financial_reports: {
         Row: {
           created_at: string
@@ -453,6 +634,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "projects"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "investment_payments_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
           },
         ]
       }
@@ -626,6 +814,7 @@ export type Database = {
           notes: string | null
           preferred_communication: string | null
           updated_at: string | null
+          user_id: string | null
         }
         Insert: {
           created_at?: string | null
@@ -634,6 +823,7 @@ export type Database = {
           notes?: string | null
           preferred_communication?: string | null
           updated_at?: string | null
+          user_id?: string | null
         }
         Update: {
           created_at?: string | null
@@ -642,6 +832,7 @@ export type Database = {
           notes?: string | null
           preferred_communication?: string | null
           updated_at?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -1047,6 +1238,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "projects"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "monthly_reports_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
           },
         ]
       }
@@ -1468,6 +1666,13 @@ export type Database = {
             referencedRelation: "projects"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "payments_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
+          },
         ]
       }
       profiles: {
@@ -1561,6 +1766,13 @@ export type Database = {
             referencedRelation: "projects"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "project_costs_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
+          },
         ]
       }
       project_investors: {
@@ -1607,6 +1819,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "projects"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_investors_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
           },
         ]
       }
@@ -1681,6 +1900,13 @@ export type Database = {
             referencedRelation: "projects"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "project_risks_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
+          },
         ]
       }
       project_updates: {
@@ -1729,6 +1955,13 @@ export type Database = {
             referencedRelation: "projects"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "project_updates_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
+          },
         ]
       }
       projects: {
@@ -1743,7 +1976,10 @@ export type Database = {
           created_by: string | null
           description: string | null
           end_date: string | null
+          expected_exit_value: number | null
           id: string
+          kind: string | null
+          legal_entity_id: string | null
           manager_id: string | null
           name: string
           opportunity_id: string | null
@@ -1751,9 +1987,11 @@ export type Database = {
           project_type: string
           property_id: string | null
           roi_percentage: number | null
+          spv_name: string | null
           stage: string | null
           start_date: string | null
           status: string
+          units_total: number | null
           updated_at: string
           visual_assets: Json | null
         }
@@ -1768,7 +2006,10 @@ export type Database = {
           created_by?: string | null
           description?: string | null
           end_date?: string | null
+          expected_exit_value?: number | null
           id?: string
+          kind?: string | null
+          legal_entity_id?: string | null
           manager_id?: string | null
           name: string
           opportunity_id?: string | null
@@ -1776,9 +2017,11 @@ export type Database = {
           project_type: string
           property_id?: string | null
           roi_percentage?: number | null
+          spv_name?: string | null
           stage?: string | null
           start_date?: string | null
           status?: string
+          units_total?: number | null
           updated_at?: string
           visual_assets?: Json | null
         }
@@ -1793,7 +2036,10 @@ export type Database = {
           created_by?: string | null
           description?: string | null
           end_date?: string | null
+          expected_exit_value?: number | null
           id?: string
+          kind?: string | null
+          legal_entity_id?: string | null
           manager_id?: string | null
           name?: string
           opportunity_id?: string | null
@@ -1801,9 +2047,11 @@ export type Database = {
           project_type?: string
           property_id?: string | null
           roi_percentage?: number | null
+          spv_name?: string | null
           stage?: string | null
           start_date?: string | null
           status?: string
+          units_total?: number | null
           updated_at?: string
           visual_assets?: Json | null
         }
@@ -1974,6 +2222,53 @@ export type Database = {
         }
         Relationships: []
       }
+      signature_requests: {
+        Row: {
+          allocation_id: string
+          created_at: string | null
+          doc_type: string | null
+          id: string
+          signer_email: string | null
+          signer_name: string | null
+          status: string
+          updated_at: string | null
+          vendor: string
+          vendor_envelope_id: string | null
+        }
+        Insert: {
+          allocation_id: string
+          created_at?: string | null
+          doc_type?: string | null
+          id?: string
+          signer_email?: string | null
+          signer_name?: string | null
+          status?: string
+          updated_at?: string | null
+          vendor: string
+          vendor_envelope_id?: string | null
+        }
+        Update: {
+          allocation_id?: string
+          created_at?: string | null
+          doc_type?: string | null
+          id?: string
+          signer_email?: string | null
+          signer_name?: string | null
+          status?: string
+          updated_at?: string | null
+          vendor?: string
+          vendor_envelope_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "signature_requests_allocation_id_fkey"
+            columns: ["allocation_id"]
+            isOneToOne: false
+            referencedRelation: "allocations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       submission_rate_limits: {
         Row: {
           created_at: string | null
@@ -2076,6 +2371,133 @@ export type Database = {
           sessions_per_user?: number | null
           source?: string
           users?: number | null
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount: number
+          created_at: string | null
+          id: string
+          investor_id: string
+          kind: string
+          memo: string | null
+          project_id: string
+          tx_date: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          id?: string
+          investor_id: string
+          kind: string
+          memo?: string | null
+          project_id: string
+          tx_date: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          id?: string
+          investor_id?: string
+          kind?: string
+          memo?: string | null
+          project_id?: string
+          tx_date?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "investors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transactions_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transactions_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "v_portfolio_positions"
+            referencedColumns: ["project_id"]
+          },
+        ]
+      }
+      user_actions: {
+        Row: {
+          action_type: string
+          browser: string | null
+          button_id: string
+          created_at: string
+          device_type: string | null
+          id: string
+          ip_address: unknown | null
+          metadata: Json | null
+          os: string | null
+          page_source: string
+          page_url: string | null
+          referrer: string | null
+          screen_resolution: string | null
+          session_id: string | null
+          user_agent: string | null
+          user_id: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+        }
+        Insert: {
+          action_type: string
+          browser?: string | null
+          button_id: string
+          created_at?: string
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown | null
+          metadata?: Json | null
+          os?: string | null
+          page_source: string
+          page_url?: string | null
+          referrer?: string | null
+          screen_resolution?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+        }
+        Update: {
+          action_type?: string
+          browser?: string | null
+          button_id?: string
+          created_at?: string
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown | null
+          metadata?: Json | null
+          os?: string | null
+          page_source?: string
+          page_url?: string | null
+          referrer?: string | null
+          screen_resolution?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Relationships: []
       }
@@ -2249,7 +2671,26 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      v_portfolio_positions: {
+        Row: {
+          capital_in: number | null
+          distributions: number | null
+          expected_exit_value: number | null
+          investor_id: string | null
+          kind: string | null
+          name: string | null
+          project_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "investors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       check_user_permission: {
@@ -2263,6 +2704,21 @@ export type Database = {
       cleanup_rate_limits: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      get_button_analytics: {
+        Args: { end_date?: string; start_date?: string }
+        Returns: {
+          action_type: string
+          button_id: string
+          conversion_rate: number
+          page_source: string
+          total_clicks: number
+          unique_users: number
+        }[]
+      }
+      get_current_investor_id: {
+        Args: Record<PropertyKey, never>
+        Returns: string
       }
       get_user_role: {
         Args: { user_uuid?: string }
