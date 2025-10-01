@@ -10,7 +10,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MapPin, Phone, Mail, MessageSquare, Clock, Send, Building, Users, TrendingUp, Search, FileText, HelpCircle } from "lucide-react";
 import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 const Contact = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -70,10 +74,56 @@ const Contact = () => {
     ...category,
     items: category.items.filter(item => item.question.toLowerCase().includes(searchQuery.toLowerCase()) || item.answer.toLowerCase().includes(searchQuery.toLowerCase()) || category.category.toLowerCase().includes(searchQuery.toLowerCase()))
   })).filter(category => category.items.length > 0);
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission
+    setIsSubmitting(true);
+
+    try {
+      const emailHtml = `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${formData.name}</p>
+        <p><strong>Email:</strong> ${formData.email}</p>
+        <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
+        <p><strong>Service Interest:</strong> ${formData.service}</p>
+        <p><strong>Budget Range:</strong> ${formData.budget || 'Not specified'}</p>
+        <p><strong>Message:</strong></p>
+        <p>${formData.message}</p>
+      `;
+
+      const { error } = await supabase.functions.invoke('send-email', {
+        body: {
+          to: 'info@luxurylabs.ae',
+          subject: `New Contact Form Submission from ${formData.name}`,
+          html: emailHtml,
+          reply_to: formData.email
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: 'Message Sent!',
+        description: 'Thank you for contacting us. We\'ll get back to you within 24 hours.',
+      });
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        budget: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to send message. Please try again or contact us directly.',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -229,10 +279,10 @@ const Contact = () => {
                     <Textarea placeholder="Tell us about your project requirements, investment goals, or any questions you have..." rows={6} value={formData.message} onChange={e => handleInputChange('message', e.target.value)} required />
                   </div>
 
-                  <Button type="submit" variant="luxury" size="lg" className="w-full">
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </Button>
+                <Button type="submit" variant="luxury" size="lg" className="w-full" disabled={isSubmitting}>
+                  <Send className="mr-2 h-4 w-4" />
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </Button>
                 </form>
               </CardContent>
             </Card>

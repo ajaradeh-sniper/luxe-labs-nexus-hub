@@ -6,6 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MessageSquare, Send, X } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface ContactModalProps {
   open: boolean;
@@ -16,6 +18,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   open,
   onOpenChange
 }) => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,11 +29,58 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission
-    onOpenChange(false);
+    setIsSubmitting(true);
+
+    try {
+      const emailHtml = `
+        <h2>New Contact Form Submission (Modal)</h2>
+        <p><strong>Name:</strong> ${formData.name}</p>
+        <p><strong>Email:</strong> ${formData.email}</p>
+        <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
+        <p><strong>Service Interest:</strong> ${formData.service}</p>
+        <p><strong>Budget Range:</strong> ${formData.budget || 'Not specified'}</p>
+        <p><strong>Message:</strong></p>
+        <p>${formData.message}</p>
+      `;
+
+      const { error } = await supabase.functions.invoke('send-email', {
+        body: {
+          to: 'info@luxurylabs.ae',
+          subject: `New Contact Form Submission from ${formData.name}`,
+          html: emailHtml,
+          reply_to: formData.email
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: 'Message Sent!',
+        description: 'Thank you for contacting us. We\'ll get back to you within 24 hours.',
+      });
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        budget: '',
+        message: ''
+      });
+      
+      onOpenChange(false);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to send message. Please try again or contact us directly.',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -157,9 +208,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   />
                 </div>
 
-                <Button type="submit" variant="luxury" size="lg" className="w-full">
+                <Button type="submit" variant="luxury" size="lg" className="w-full" disabled={isSubmitting}>
                   <Send className="mr-2 h-4 w-4" />
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </CardContent>
