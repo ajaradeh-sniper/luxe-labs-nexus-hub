@@ -141,12 +141,35 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
     {
       id: 'preferredInvestmentSize',
       title: 'Investment Capital',
-      subtitle: 'Your luxury investment capacity in AED',
-      icon: <Zap className="w-7 h-7" />,
-      type: 'number',
-      placeholder: 'Enter amount in AED (e.g., 5000000)',
-      min: 500000,
-      max: 100000000
+      subtitle: 'Your luxury investment capacity',
+      icon: <DollarSign className="w-7 h-7" />,
+      type: 'investment-boxes',
+      options: [
+        { 
+          value: '500000-1000000', 
+          label: 'AED 500,000 - 1,000,000', 
+          usdRange: '$136K - $272K',
+          icon: <Shield className="w-5 h-5" />
+        },
+        { 
+          value: '1000000-5000000', 
+          label: 'AED 1,000,000 - 5,000,000', 
+          usdRange: '$272K - $1.36M',
+          icon: <Sparkles className="w-5 h-5" />
+        },
+        { 
+          value: '5000000-15000000', 
+          label: 'AED 5,000,000 - 15,000,000', 
+          usdRange: '$1.36M - $4.08M',
+          icon: <Diamond className="w-5 h-5" />
+        },
+        { 
+          value: '15000000+', 
+          label: 'Over AED 15,000,000', 
+          usdRange: 'Over $4.08M',
+          icon: <Crown className="w-5 h-5" />
+        }
+      ]
     },
     {
       id: 'investmentTimeline',
@@ -551,6 +574,50 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           </div>
         );
 
+      case 'investment-boxes':
+        const selectedInvestment = currentAnswer as string;
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {'options' in currentQuestion && currentQuestion.options?.map((option: any) => {
+              const isSelected = selectedInvestment === option.value;
+              return (
+                <button
+                  key={option.value}
+                  onClick={() => handleAnswer(currentQuestion.id, option.value)}
+                  className={`
+                    relative p-8 rounded-2xl border-2 text-left transition-all duration-300 hover:scale-105
+                    ${isSelected 
+                      ? 'border-primary bg-primary/10 shadow-lg shadow-primary/20 scale-105' 
+                      : 'border-muted hover:border-primary/50 hover:shadow-md'
+                    }
+                  `}
+                >
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className={`p-3 rounded-lg transition-colors ${isSelected ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
+                        {option.icon}
+                      </div>
+                      {isSelected && (
+                        <div className="flex items-center space-x-1 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
+                          <Sparkles className="w-3 h-3" />
+                          <span>Selected</span>
+                        </div>
+                      )}
+                    </div>
+                    <h3 className={`text-xl font-bold mb-3 transition-colors ${isSelected ? 'text-primary' : 'text-foreground'}`}>
+                      {option.label}
+                    </h3>
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <DollarSign className="w-4 h-4" />
+                      <span className="text-sm font-medium">{option.usdRange}</span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        );
+
       case 'number':
         const numberValue = (typeof currentAnswer === 'number') ? currentAnswer : 0;
         
@@ -615,15 +682,18 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         };
 
         const getMinMax = () => {
+          const minValue = ('min' in currentQuestion && typeof currentQuestion.min === 'number') ? currentQuestion.min : 0;
+          const maxValue = ('max' in currentQuestion && typeof currentQuestion.max === 'number') ? currentQuestion.max : 0;
+          
           if (isUSDInput) {
             return {
-              min: Math.round((('min' in currentQuestion ? currentQuestion.min : 0) || 0) / 3.67),
-              max: Math.round((('max' in currentQuestion ? currentQuestion.max : 0) || 0) / 3.67)
+              min: Math.round(minValue / 3.67),
+              max: Math.round(maxValue / 3.67)
             };
           }
           return {
-            min: ('min' in currentQuestion ? currentQuestion.min : 0) || 0,
-            max: ('max' in currentQuestion ? currentQuestion.max : 0) || 0
+            min: minValue,
+            max: maxValue
           };
         };
         
