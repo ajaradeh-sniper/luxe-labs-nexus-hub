@@ -319,26 +319,6 @@ const Contact = () => {
                 </ScrollArea>
               </CardContent>
             </Card>
-
-            {/* Calendly Scheduling Section */}
-            <Card className="mt-6">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Clock className="h-5 w-5" />
-                  Schedule a Consultation
-                </CardTitle>
-                <p className="text-muted-foreground">
-                  Book a time that works for you to discuss your investment goals and opportunities.
-                </p>
-              </CardHeader>
-              <CardContent>
-                <div 
-                  className="calendly-inline-widget" 
-                  data-url="https://calendly.com/ali-luxurylabs" 
-                  style={{ minWidth: '320px', height: '700px' }}
-                />
-              </CardContent>
-            </Card>
           </div>
 
           {/* Contact Information */}
@@ -397,6 +377,26 @@ const Contact = () => {
                   <Clock className="mr-2 h-4 w-4" />
                   Schedule Consultation
                 </Button>
+              </CardContent>
+            </Card>
+
+            {/* Calendly Scheduling Section */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Clock className="h-5 w-5" />
+                  Schedule a Consultation
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Book a time that works for you to discuss your investment goals and opportunities.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <div 
+                  className="calendly-inline-widget" 
+                  data-url="https://calendly.com/ali-luxurylabs" 
+                  style={{ minWidth: '320px', height: '700px' }}
+                />
               </CardContent>
             </Card>
           </div>
