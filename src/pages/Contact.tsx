@@ -271,52 +271,23 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            {/* FAQ Section */}
+            {/* Calendly Scheduling Section */}
             <Card className="mt-6">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <HelpCircle className="h-5 w-5" />
-                  Frequently Asked Questions
+                  <Clock className="h-5 w-5" />
+                  Schedule a Consultation
                 </CardTitle>
                 <p className="text-muted-foreground">
-                  Find answers to common questions about our services and investment opportunities.
+                  Book a time that works for you to discuss your investment goals and opportunities.
                 </p>
-                
-                {/* Search Bar */}
-                <div className="relative mt-4">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input placeholder="Search FAQ, documentation, and articles..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10" />
-                </div>
               </CardHeader>
               <CardContent>
-                <ScrollArea className="h-96">
-                  {filteredFAQs.length > 0 ? <div className="space-y-4">
-                      {filteredFAQs.map((category, categoryIndex) => <div key={categoryIndex}>
-                          <div className="flex items-center gap-2 mb-3">
-                            <FileText className="h-4 w-4 text-primary" />
-                            <h4 className="font-semibold text-sm text-primary">{category.category}</h4>
-                          </div>
-                          <Accordion type="single" collapsible className="w-full">
-                            {category.items.map((item, itemIndex) => <AccordionItem key={itemIndex} value={`${categoryIndex}-${itemIndex}`}>
-                                <AccordionTrigger className="text-left">
-                                  {item.question}
-                                </AccordionTrigger>
-                                <AccordionContent>
-                                  <p className="text-muted-foreground leading-relaxed">
-                                    {item.answer}
-                                  </p>
-                                </AccordionContent>
-                              </AccordionItem>)}
-                          </Accordion>
-                        </div>)}
-                    </div> : <div className="text-center py-8">
-                      <Search className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-                      <p className="text-muted-foreground">No results found for "{searchQuery}"</p>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        Try different keywords or browse all categories above
-                      </p>
-                    </div>}
-                </ScrollArea>
+                <div 
+                  className="calendly-inline-widget" 
+                  data-url="https://calendly.com/ali-luxurylabs" 
+                  style={{ minWidth: '320px', height: '700px' }}
+                />
               </CardContent>
             </Card>
           </div>
@@ -380,23 +351,52 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            {/* Calendly Scheduling Section */}
+            {/* FAQ Section */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Clock className="h-5 w-5" />
-                  Schedule a Consultation
+                  <HelpCircle className="h-5 w-5" />
+                  Frequently Asked Questions
                 </CardTitle>
                 <p className="text-muted-foreground">
-                  Book a time that works for you to discuss your investment goals and opportunities.
+                  Find answers to common questions about our services and investment opportunities.
                 </p>
+                
+                {/* Search Bar */}
+                <div className="relative mt-4">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input placeholder="Search FAQ, documentation, and articles..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10" />
+                </div>
               </CardHeader>
               <CardContent>
-                <div 
-                  className="calendly-inline-widget" 
-                  data-url="https://calendly.com/ali-luxurylabs" 
-                  style={{ minWidth: '320px', height: '700px' }}
-                />
+                <ScrollArea className="h-96">
+                  {filteredFAQs.length > 0 ? <div className="space-y-4">
+                      {filteredFAQs.map((category, categoryIndex) => <div key={categoryIndex}>
+                          <div className="flex items-center gap-2 mb-3">
+                            <FileText className="h-4 w-4 text-primary" />
+                            <h4 className="font-semibold text-sm text-primary">{category.category}</h4>
+                          </div>
+                          <Accordion type="single" collapsible className="w-full">
+                            {category.items.map((item, itemIndex) => <AccordionItem key={itemIndex} value={`${categoryIndex}-${itemIndex}`}>
+                                <AccordionTrigger className="text-left">
+                                  {item.question}
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                  <p className="text-muted-foreground leading-relaxed">
+                                    {item.answer}
+                                  </p>
+                                </AccordionContent>
+                              </AccordionItem>)}
+                          </Accordion>
+                        </div>)}
+                    </div> : <div className="text-center py-8">
+                      <Search className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+                      <p className="text-muted-foreground">No results found for "{searchQuery}"</p>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Try different keywords or browse all categories above
+                      </p>
+                    </div>}
+                </ScrollArea>
               </CardContent>
             </Card>
           </div>
