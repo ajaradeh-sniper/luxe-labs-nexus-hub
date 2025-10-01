@@ -42,7 +42,7 @@ const Auth = () => {
       const timer = setTimeout(() => {
         setShowSplash(false)
         navigate('/')
-      }, 3000)
+      }, 1500)
       return () => clearTimeout(timer)
     }
   }, [authSuccess, navigate])
