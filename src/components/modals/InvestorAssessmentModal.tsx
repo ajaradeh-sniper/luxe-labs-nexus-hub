@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { InvestorQuestionnaire } from '@/components/InvestorQuestionnaire';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -36,9 +36,9 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
               <X className="h-4 w-4" />
             </Button>
           </div>
-          <p className="text-muted-foreground">
+          <DialogDescription className="text-muted-foreground">
             Help us understand your investment preferences to provide personalized opportunities
-          </p>
+          </DialogDescription>
         </DialogHeader>
         
         <div className="px-6 pb-6 overflow-y-auto max-h-[calc(90vh-120px)]">
