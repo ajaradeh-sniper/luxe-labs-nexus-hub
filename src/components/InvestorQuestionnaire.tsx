@@ -14,7 +14,6 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { Trophy, DollarSign, TrendingUp, MapPin, Clock, User, Building, Crown, Diamond, Gem, Star, Sparkles, Award, Shield, Zap, ArrowUpDown, Phone, Mail } from 'lucide-react';
-import { SplashCursor } from '@/components/ui/splash-cursor';
 
 interface QuestionnaireData {
   investorType: string;
@@ -54,23 +53,8 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   const [answers, setAnswers] = useState<Partial<QuestionnaireData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUSDInput, setIsUSDInput] = useState(false); // Track currency input mode
-  const [showSplash, setShowSplash] = useState(true);
-  const [isComplete, setIsComplete] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
-
-  // Handle completion with 8-second splash delay
-  useEffect(() => {
-    if (isComplete) {
-      const timer = setTimeout(() => {
-        setShowSplash(false);
-        if (onComplete) {
-          onComplete(answers as QuestionnaireData);
-        }
-      }, 8000);
-      return () => clearTimeout(timer);
-    }
-  }, [isComplete, answers, onComplete]);
 
   const questions = [
     {
@@ -350,7 +334,9 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
             description: "Your investor profile has been saved successfully (demo mode)."
           });
 
-          setIsComplete(true);
+          if (onComplete) {
+            onComplete(answers as QuestionnaireData);
+          }
           return;
         }
 
@@ -379,7 +365,9 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         });
       }
 
-      setIsComplete(true);
+      if (onComplete) {
+        onComplete(answers as QuestionnaireData);
+      }
     } catch (error) {
       console.error('Error saving questionnaire:', error);
       toast({
@@ -884,9 +872,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
 
   if (standalone) {
     return (
-      <>
-        {showSplash && <SplashCursor />}
-        <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-4">
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h1 className="text-4xl font-bold mb-4">Investor Profile Assessment</h1>
@@ -947,14 +933,11 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           </Card>
         </div>
       </div>
-      </>
     );
   }
 
   return (
-    <>
-      {showSplash && <SplashCursor />}
-      <Card>
+    <Card>
         <CardHeader>
           <div className="flex items-center justify-between mb-4">
             <Badge variant="outline">
@@ -1004,6 +987,5 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         </Button>
       </CardFooter>
     </Card>
-    </>
   );
 };
