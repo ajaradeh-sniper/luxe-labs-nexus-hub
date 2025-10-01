@@ -177,7 +177,7 @@ export default function About() {
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-300/10 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <BarChart3 className="h-8 w-8 text-green-600" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Top Class Network of Investors and Partners</h3>
+                <h3 className="text-xl font-bold mb-4">Luxury Eco-system - Top Class Network of Investors and Partners</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Create complete transparency with real-time ROI tracking, progress reporting, and detailed analytics for investors and clients throughout the journey.
                 </p>
