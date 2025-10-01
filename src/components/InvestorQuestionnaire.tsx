@@ -14,6 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { Trophy, DollarSign, TrendingUp, MapPin, Clock, User, Building, Crown, Diamond, Gem, Star, Sparkles, Award, Shield, Zap, ArrowUpDown, Phone, Mail } from 'lucide-react';
+import { SplashCursor } from '@/components/ui/splash-cursor';
 
 interface QuestionnaireData {
   investorType: string;
@@ -164,11 +165,13 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       fields: [
         {
           id: 'fundsAvailable',
-          label: 'When can you provide funds? (in days)',
-          type: 'number',
-          placeholder: 'Enter number of days (1-365)',
-          min: 1,
-          max: 365
+          label: 'When can you provide funds?',
+          type: 'radio',
+          options: [
+            { value: '1-5', label: 'Immediately (1-5 days)', description: 'Funds ready for immediate deployment' },
+            { value: '5-30', label: 'Shortly (5-30 days)', description: 'Funds available within a month' },
+            { value: '30+', label: 'Later (more than 30 days)', description: 'Planning ahead for future investments' }
+          ]
         },
         {
           id: 'paybackPeriod',
@@ -181,22 +184,6 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
             { value: '36', label: '36 months', description: 'Extended investment period' }
           ]
         }
-      ]
-    },
-    {
-      id: 'geographicPreference',
-      title: 'Luxury Locations',
-      subtitle: 'Your preferred prestigious areas',
-      icon: <MapPin className="w-7 h-7" />,
-      type: 'checkbox',
-      options: [
-        { value: 'highest_roi', label: "Skip - Let's discuss later", description: 'We can explore all location options during consultation' },
-        { value: 'downtown', label: 'Downtown Dubai', description: 'City center, business district' },
-        { value: 'marina', label: 'Dubai Marina', description: 'Waterfront luxury living' },
-        { value: 'palm', label: 'Palm Jumeirah', description: 'Iconic man-made island' },
-        { value: 'emirates_hills', label: 'Emirates Hills', description: 'Exclusive villa community' },
-        { value: 'business_bay', label: 'Jumeirah', description: 'Exclusive Beach Front only for UAE Locals or GCC Citizens' },
-        { value: 'difc', label: 'DIFC', description: 'Financial district' }
       ]
     },
     {
@@ -240,34 +227,19 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       type: 'radio',
       options: [
         { 
-          value: 'uae_title_deed', 
-          label: 'In UAE - Name on Title Deed', 
-          description: 'Direct ownership with your name on the property title',
-          details: 'You hold direct legal ownership of the property in Dubai. Your name appears on the official title deed. Suitable for amounts above AED 1M. Provides maximum ownership rights and potential for independent future decisions.'
+          value: 'in_uae', 
+          label: 'In UAE', 
+          description: 'Direct ownership or SPV structure in Dubai'
         },
         { 
-          value: 'uae_spv_cayman', 
-          label: 'In UAE - Joint Venture - SPV (Cayman Island)', 
-          description: 'Investment through Special Purpose Vehicle structure',
-          details: 'Investment through a Cayman Islands SPV that owns the Dubai property. Offers tax optimization, limited liability protection, and professional fund management. Minimum investment typically AED 500K. Ideal for institutional or high-net-worth investors.'
+          value: 'outside_uae', 
+          label: 'Outside UAE', 
+          description: 'International property investments'
         },
         { 
-          value: 'outside_uae_title_deed', 
-          label: 'Outside UAE - Name on Title Deed', 
-          description: 'Direct ownership outside UAE with title deed',
-          details: 'Direct property ownership in international markets like UK, Portugal, or other approved jurisdictions. Your name on the title deed with full ownership rights. Minimum investments vary by market (typically £200K-£500K+).'
-        },
-        { 
-          value: 'outside_uae_spv_cayman', 
-          label: 'Outside UAE - Joint Venture - SPV (Cayman Island)', 
-          description: 'International investment through SPV structure',
-          details: 'SPV-based investment in international real estate markets. Provides diversification, professional management, and tax efficiency. Suitable for multi-property portfolios and institutional-grade investments. Minimum typically $250K USD.'
-        },
-        { 
-          value: 'other', 
-          label: 'Skip - Let\'s discuss later', 
-          description: 'We can explore structure options during our consultation',
-          details: 'We\'ll discuss your specific investment structure requirements during our consultation. We can explore alternative structures like REITs, property funds, or custom arrangements based on your jurisdiction and preferences.'
+          value: 'skip', 
+          label: 'Skip', 
+          description: 'Let\'s discuss structure options during consultation'
         }
       ]
     }
@@ -429,24 +401,27 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         );
 
       case 'radio':
+        // Check if this is the engagement style or investment structure question
+        const isCompactStyle = currentQuestion.id === 'involvementPreference' || currentQuestion.id === 'investmentTypePreference';
+        
         return (
           <RadioGroup
             value={currentAnswer as string}
             onValueChange={(value) => handleAnswer(currentQuestion.id, value)}
-            className="space-y-4"
+            className="space-y-3"
           >
             {'options' in currentQuestion && currentQuestion.options?.map((option: any, index: number) => (
               <div 
                 key={option.value} 
-                className={`group flex items-start space-x-4 p-6 rounded-xl border-2 hover:border-primary/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg animate-fade-in bg-gradient-to-r from-background to-muted/10 ${
-                  currentAnswer === option.value ? 'border-primary bg-primary/5 shadow-lg scale-[1.02]' : 'border-muted'
+                className={`group flex items-start space-x-3 ${isCompactStyle ? 'p-4' : 'p-6'} rounded-xl border-2 hover:border-primary/40 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg animate-fade-in bg-gradient-to-r from-background to-muted/10 ${
+                  currentAnswer === option.value ? 'border-primary bg-primary/5 shadow-lg scale-[1.01]' : 'border-muted'
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <RadioGroupItem value={option.value} id={option.value} className="mt-1.5" />
-                <div className="flex items-start space-x-3 flex-1">
+                <RadioGroupItem value={option.value} id={option.value} className="mt-1" />
+                <div className="flex items-start space-x-2 flex-1">
                   {option.icon && (
-                    <div className={`p-2 rounded-lg transition-all duration-300 ${
+                    <div className={`${isCompactStyle ? 'p-1.5' : 'p-2'} rounded-lg transition-all duration-300 ${
                       currentAnswer === option.value 
                         ? 'bg-primary/20 text-primary' 
                         : 'bg-muted/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
@@ -455,14 +430,14 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
                     </div>
                   )}
                   <div className="flex-1">
-                    <Label htmlFor={option.value} className="font-semibold cursor-pointer text-lg group-hover:text-primary transition-colors">
+                    <Label htmlFor={option.value} className={`font-semibold cursor-pointer ${isCompactStyle ? 'text-base' : 'text-lg'} group-hover:text-primary transition-colors`}>
                       {option.label}
                     </Label>
                     {option.description && (
-                      <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{option.description}</p>
+                      <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{option.description}</p>
                     )}
-                    {option.details && (
-                      <div className="text-xs text-muted-foreground mt-3 pl-3 border-l-2 border-primary/20 bg-muted/20 rounded-r-lg p-2">
+                    {option.details && !isCompactStyle && (
+                      <div className="text-xs text-muted-foreground mt-2 pl-3 border-l-2 border-primary/20 bg-muted/20 rounded-r-lg p-2">
                         {option.details}
                       </div>
                     )}
@@ -470,7 +445,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
                 </div>
                 {currentAnswer === option.value && (
                   <div className="text-primary animate-scale-in">
-                    <Sparkles className="w-5 h-5" />
+                    <Sparkles className={`${isCompactStyle ? 'w-4 h-4' : 'w-5 h-5'}`} />
                   </div>
                 )}
               </div>
@@ -872,8 +847,9 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
 
   if (standalone) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-4">
-          <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-4 relative">
+          <SplashCursor />
+          <div className="max-w-4xl mx-auto relative z-10">
             <div className="text-center mb-8">
               <h1 className="text-4xl font-bold mb-4">Investor Profile Assessment</h1>
               <p className="text-xl text-muted-foreground">
@@ -937,7 +913,9 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   }
 
   return (
-    <Card>
+    <>
+      <SplashCursor />
+      <Card className="relative z-10">
         <CardHeader>
           <div className="flex items-center justify-between mb-4">
             <Badge variant="outline">
@@ -987,5 +965,6 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         </Button>
       </CardFooter>
     </Card>
+    </>
   );
 };

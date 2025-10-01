@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { InvestorQuestionnaire } from '@/components/InvestorQuestionnaire';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { SplashCursor } from '@/components/ui/splash-cursor';
 
 interface InvestorAssessmentModalProps {
   open: boolean;
@@ -21,7 +22,8 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden p-0">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden p-0 relative">
+        {open && <SplashCursor />}
         <DialogHeader className="p-6 pb-0">
           <div className="flex items-center justify-between">
             <DialogTitle className="text-2xl font-bold">Investor Profile Assessment</DialogTitle>
