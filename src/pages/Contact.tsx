@@ -131,23 +131,6 @@ const Contact = () => {
       [field]: value
     }));
   };
-  const contactInfo = [{
-    icon: Building,
-    title: "Office Address",
-    details: ["DMCC Business Centre", "Level 1, Jewellery & Gemplex 3", "Dubai Multi Commodities Centre", "Dubai, UAE"]
-  }, {
-    icon: Phone,
-    title: "Phone Numbers",
-    details: ["+971 4 123 4567", "+971 50 123 4567", "WhatsApp Available"]
-  }, {
-    icon: Mail,
-    title: "Email Addresses",
-    details: ["info@luxurylabs.ae", "investments@luxurylabs.ae", "support@luxurylabs.ae"]
-  }, {
-    icon: Clock,
-    title: "Business Hours",
-    details: ["Sunday - Thursday: 9:00 AM - 6:00 PM", "Friday: 9:00 AM - 1:00 PM", "Saturday: Closed"]
-  }];
   const services = [{
     value: 'investment-flip',
     label: 'Property Investment Flip'
@@ -360,51 +343,60 @@ const Contact = () => {
 
           {/* Contact Information */}
           <div className="space-y-6">
-            {contactInfo.map((info, index) => {
-            const Icon = info.icon;
-            return <Card key={index}>
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-lg">
-                      <div className="w-10 h-10 bg-gradient-luxury rounded-lg flex items-center justify-center">
-                        <Icon className="h-5 w-5 text-background" />
-                      </div>
-                      {info.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-1">
-                      {info.details.map((detail, idx) => <p key={idx} className="text-sm text-muted-foreground">
-                          {detail}
-                        </p>)}
-                    </div>
-                  </CardContent>
-                </Card>;
-          })}
+            {/* Office Address */}
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <div className="w-10 h-10 bg-gradient-luxury rounded-lg flex items-center justify-center">
+                    <Building className="h-5 w-5 text-background" />
+                  </div>
+                  Office Address
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-1">
+                  <p className="text-sm text-muted-foreground">Luxury Labs Real Estate</p>
+                  <p className="text-sm text-muted-foreground">Business Bay, Dubai</p>
+                  <p className="text-sm text-muted-foreground">United Arab Emirates</p>
+                </div>
+              </CardContent>
+            </Card>
 
             {/* Quick Actions */}
-            <Card className="bg-gradient-luxury text-background h-full flex flex-col">
-              <CardContent className="p-6 text-center flex-1 flex flex-col justify-center">
-                <h3 className="font-semibold mb-4">Quick Actions</h3>
-                <div className="space-y-3 flex-1 flex flex-col justify-center">
-                  <Button variant="outline" size="sm" className="w-full bg-background text-foreground hover:bg-background/90" onClick={() => window.location.href = '/projects'}>
-                    <TrendingUp className="mr-2 h-4 w-4" />
-                    View Investment Opportunities
-                  </Button>
-                  <Button variant="outline" size="sm" className="w-full bg-background text-foreground hover:bg-background/90" onClick={() => {
-                  const messageElement = document.querySelector('textarea[placeholder*="Tell us about your project"]') as HTMLTextAreaElement;
-                  if (messageElement) {
-                    messageElement.value = 'I would like to schedule a consultation to discuss my investment needs.';
-                    messageElement.focus();
-                  }
-                }}>
-                    <Users className="mr-2 h-4 w-4" />
-                    Schedule Consultation
-                  </Button>
-                  <Button variant="outline" size="sm" className="w-full bg-background text-foreground hover:bg-background/90" onClick={() => window.open('https://wa.me/971501234567', '_blank')}>
-                    <MessageSquare className="mr-2 h-4 w-4" />
-                    WhatsApp Chat
-                  </Button>
-                </div>
+            <Card>
+              <CardHeader>
+                <CardTitle>Quick Actions</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Button 
+                  className="w-full" 
+                  variant="outline"
+                  onClick={() => window.location.href = 'mailto:info@luxurylabs.ae'}
+                >
+                  <Mail className="mr-2 h-4 w-4" />
+                  Email us: info@luxurylabs.ae
+                </Button>
+                <Button 
+                  className="w-full" 
+                  variant="outline"
+                  onClick={() => window.location.href = 'tel:+971555565345'}
+                >
+                  <Phone className="mr-2 h-4 w-4" />
+                  Call us: +971 55 556 5345
+                </Button>
+                <Button 
+                  className="w-full" 
+                  variant="outline"
+                  onClick={() => {
+                    document.querySelector('.calendly-inline-widget')?.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'center'
+                    });
+                  }}
+                >
+                  <Clock className="mr-2 h-4 w-4" />
+                  Schedule Consultation
+                </Button>
               </CardContent>
             </Card>
           </div>
