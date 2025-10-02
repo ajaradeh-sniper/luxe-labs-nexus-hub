@@ -14,7 +14,6 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { Trophy, DollarSign, TrendingUp, MapPin, Clock, User, Building, Crown, Diamond, Gem, Star, Sparkles, Award, Shield, Zap, ArrowUpDown, Phone, Mail } from 'lucide-react';
-import { SplashCursor } from '@/components/ui/splash-cursor';
 
 interface QuestionnaireData {
   investorType: string;
@@ -848,7 +847,6 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   if (standalone) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-4 relative">
-          <SplashCursor />
           <div className="max-w-4xl mx-auto relative z-10">
             <div className="text-center mb-8">
               <h1 className="text-4xl font-bold mb-4">Investor Profile Assessment</h1>
@@ -914,7 +912,6 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
 
   return (
     <>
-      <SplashCursor />
       <Card className="relative z-10">
         <CardHeader>
           <div className="flex items-center justify-between mb-4">
