@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { InvestorQuestionnaire } from '@/components/InvestorQuestionnaire';
 import { X } from 'lucide-react';
@@ -13,6 +13,10 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
   open,
   onOpenChange
 }) => {
+  useEffect(() => {
+    console.log('InvestorAssessmentModal open:', open);
+  }, [open]);
+
   const handleComplete = (data: any) => {
     // Handle completion - could show success message, redirect, etc.
     console.log('Assessment completed:', data);

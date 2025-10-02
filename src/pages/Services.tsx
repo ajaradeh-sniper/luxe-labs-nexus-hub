@@ -255,7 +255,7 @@ const Services = () => {
                 From curated villa investments and world-class renovations to luxury advisory and global media exposure — Luxury Labs is your partner for high-ROI Dubai property transformation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" onClick={() => setIsAssessmentModalOpen(true)}>
+                <Button size="lg" onClick={() => { console.log('Services: Open Investor Assessment (hero)'); setIsAssessmentModalOpen(true); }}>
                   Investment Assessment
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -305,7 +305,7 @@ const Services = () => {
                     <div className="flex gap-2">
                       <Button 
                         variant={service.buttons[0] === 'Coming Soon' ? 'secondary' : 'luxury'} 
-                        onClick={() => service.buttons[0] === 'Coming Soon' ? setIsContactModalOpen(true) : setIsAssessmentModalOpen(true)}
+                        onClick={() => { console.log('Services: Open Investor Assessment (card)'); service.buttons[0] === 'Coming Soon' ? setIsContactModalOpen(true) : setIsAssessmentModalOpen(true); }}
                       >
                         {service.id === 'diversified-fund' ? 'Register Interest' : (service.buttons[0] === 'Coming Soon' ? 'Contact Us' : 'Investor Profile Assessment')}
                       </Button>
