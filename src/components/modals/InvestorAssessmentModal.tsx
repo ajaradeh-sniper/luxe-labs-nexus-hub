@@ -1,9 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { InvestorQuestionnaire } from '@/components/InvestorQuestionnaire';
+
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
 
+// Lazy-load the heavy questionnaire to avoid render issues and show a fallback
+const InvestorQuestionnaireLazy = React.lazy(() =>
+  import('@/components/InvestorQuestionnaire').then((m) => ({ default: m.InvestorQuestionnaire }))
+);
+
+// Local error boundary to ensure the modal shows feedback instead of a blank overlay
+class AssessmentErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(error: any) { console.error('InvestorAssessment error:', error); }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="p-6 space-y-4">
+          <p className="text-destructive font-medium">We couldn’t load the assessment.</p>
+          <div className="flex gap-2">
+            <Button onClick={() => (window.location.href = '/investor-questionnaire')}>Open full page</Button>
+            <Button variant="secondary" onClick={() => this.setState({ hasError: false })}>Retry</Button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children as any;
+  }
+}
 interface InvestorAssessmentModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -44,10 +70,21 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
         </DialogHeader>
         
         <div className="px-6 pb-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-          <InvestorQuestionnaire 
-            standalone={false} 
-            onComplete={handleComplete}
-          />
+          <AssessmentErrorBoundary>
+            <Suspense
+              fallback={
+                <div className="py-10 flex items-center justify-center">
+                  <LoadingSpinner />
+                  <span className="ml-3">Loading assessment…</span>
+                </div>
+              }
+            >
+              <InvestorQuestionnaireLazy 
+                standalone={false} 
+                onComplete={handleComplete}
+              />
+            </Suspense>
+          </AssessmentErrorBoundary>
         </div>
       </DialogContent>
     </Dialog>
