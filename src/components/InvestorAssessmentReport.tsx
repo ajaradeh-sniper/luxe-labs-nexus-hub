@@ -71,7 +71,7 @@ export const InvestorAssessmentReport: React.FC = () => {
 
     try {
       const { data: settings, error } = await supabase
-        .from('investor_settings')
+        .from('investor_assessment')
         .select('preferences, completed_at')
         .eq('user_id', user.id)
         .single();
@@ -138,7 +138,7 @@ export const InvestorAssessmentReport: React.FC = () => {
     setIsSaving(true);
     try {
       const { error } = await supabase
-        .from('investor_settings')
+        .from('investor_assessment')
         .upsert({
           user_id: user.id,
           preferences: data,
