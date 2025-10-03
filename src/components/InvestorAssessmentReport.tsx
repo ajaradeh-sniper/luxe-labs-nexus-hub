@@ -23,12 +23,19 @@ interface AssessmentData {
   fundsTransferPreference: string;
 }
 
-const investmentSizeLabels: { [key: number]: string } = {
-  0: 'AED 500K',
-  1: 'AED 1M',
-  2: 'AED 5M',
-  3: 'AED 15M',
-  4: 'AED 50M+'
+const getInvestmentSizeLabel = (value: number): string => {
+  if (value === 0) return 'AED 500K';
+  if (value <= 20) return `AED ${(value * 0.5).toFixed(1)}M`;
+  return 'AED 50M+';
+};
+
+const getInvestmentSizeValue = (sizeString: string): number => {
+  if (sizeString === '500000-1000000') return 1;
+  if (sizeString === '1000000-5000000') return 8;
+  if (sizeString === '5000000-15000000') return 16;
+  if (sizeString === '15000000+') return 20;
+  if (sizeString === '50000000+') return 21;
+  return 1;
 };
 
 export const InvestorAssessmentReport: React.FC = () => {
@@ -66,14 +73,7 @@ export const InvestorAssessmentReport: React.FC = () => {
         
         // Set slider position based on saved data
         if (prefs.preferredInvestmentSize) {
-          const sizeMap: { [key: string]: number } = {
-            '500000-1000000': 0,
-            '1000000-5000000': 1,
-            '5000000-15000000': 2,
-            '15000000+': 3,
-            '50000000+': 4
-          };
-          setInvestmentSize([sizeMap[prefs.preferredInvestmentSize] || 1]);
+          setInvestmentSize([getInvestmentSizeValue(prefs.preferredInvestmentSize)]);
         }
       }
     } catch (error) {
@@ -92,8 +92,23 @@ export const InvestorAssessmentReport: React.FC = () => {
 
   const handleInvestmentSizeChange = (value: number[]) => {
     setInvestmentSize(value);
-    const sizeValues = ['500000-1000000', '1000000-5000000', '5000000-15000000', '15000000+', '50000000+'];
-    handleUpdate('preferredInvestmentSize', sizeValues[value[0]]);
+    // Map slider value to investment size range
+    const sliderValue = value[0];
+    let sizeRange: string;
+    
+    if (sliderValue === 0) {
+      sizeRange = '500000-1000000';
+    } else if (sliderValue <= 10) {
+      sizeRange = '1000000-5000000';
+    } else if (sliderValue <= 18) {
+      sizeRange = '5000000-15000000';
+    } else if (sliderValue <= 20) {
+      sizeRange = '15000000+';
+    } else {
+      sizeRange = '50000000+';
+    }
+    
+    handleUpdate('preferredInvestmentSize', sizeRange);
   };
 
   const handleSave = async () => {
@@ -191,12 +206,12 @@ export const InvestorAssessmentReport: React.FC = () => {
           <div className="space-y-2">
             <div className="flex justify-between text-xs text-muted-foreground">
               <span>Progress</span>
-              <span>{Object.keys(data).length}/8 fields</span>
+              <span>{Object.keys(data).length}/9 fields</span>
             </div>
             <div className="h-2 bg-muted rounded-full overflow-hidden">
               <div 
                 className="h-full bg-gradient-to-r from-primary to-primary/60 transition-all duration-300"
-                style={{ width: `${(Object.keys(data).length / 8) * 100}%` }}
+                style={{ width: `${Math.min((Object.keys(data).length / 9) * 100, 100)}%` }}
               />
             </div>
           </div>
@@ -316,13 +331,13 @@ export const InvestorAssessmentReport: React.FC = () => {
               <Slider
                 value={investmentSize}
                 onValueChange={handleInvestmentSizeChange}
-                max={4}
+                max={21}
                 step={1}
                 className="w-full"
               />
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>AED 500K</span>
-                <span className="text-lg font-bold text-primary">{investmentSizeLabels[investmentSize[0]]}</span>
+                <span className="text-lg font-bold text-primary">{getInvestmentSizeLabel(investmentSize[0])}</span>
                 <span>AED 50M+</span>
               </div>
             </div>
@@ -411,13 +426,13 @@ export const InvestorAssessmentReport: React.FC = () => {
                 <div className="text-xs text-muted-foreground">Fields Complete</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">{Math.round((Object.keys(data).length / 8) * 100)}%</div>
+                <div className="text-2xl font-bold text-primary">{Math.min(Math.round((Object.keys(data).length / 9) * 100), 100)}%</div>
                 <div className="text-xs text-muted-foreground">Profile Done</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl">{Object.keys(data).length >= 8 ? '🎉' : '⏳'}</div>
+                <div className="text-2xl">{Object.keys(data).length >= 9 ? '🎉' : '⏳'}</div>
                 <div className="text-xs text-muted-foreground">
-                  {Object.keys(data).length >= 8 ? 'Complete!' : 'In Progress'}
+                  {Object.keys(data).length >= 9 ? 'Complete!' : 'In Progress'}
                 </div>
               </div>
             </div>
