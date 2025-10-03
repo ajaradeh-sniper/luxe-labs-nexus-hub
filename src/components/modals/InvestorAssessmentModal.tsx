@@ -70,8 +70,8 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
 
   return createPortal(
     <div className="fixed inset-0 z-[10000]" role="dialog" aria-modal="true" aria-label="Investor Profile Assessment">
-      <div className="absolute inset-0 bg-black/80" onClick={() => onOpenChange(false)} />
-      <div className="fixed inset-0 flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/80 z-0" onClick={() => onOpenChange(false)} />
+      <div className="fixed inset-0 z-10 flex items-center justify-center p-4">
         <div className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-lg bg-background shadow-lg">
           <div className="p-6 pb-0 flex items-center justify-between">
             <h2 className="text-2xl font-bold">Investor Profile Assessment</h2>

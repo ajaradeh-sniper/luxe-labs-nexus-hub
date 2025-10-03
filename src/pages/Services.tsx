@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Helmet } from "react-helmet-async"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -49,6 +49,7 @@ import alBarariVilla from "@/assets/al-barari-villa-hd.jpg"
 const Services = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isAssessmentModalOpen, setIsAssessmentModalOpen] = useState(false);
+  const navigate = useNavigate();
   const investmentServices = [
     {
       id: 'single-property',
