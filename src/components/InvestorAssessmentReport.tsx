@@ -25,8 +25,19 @@ interface AssessmentData {
 
 const getInvestmentSizeLabel = (value: number): string => {
   if (value === 0) return 'AED 500K';
-  if (value <= 20) return `AED ${(value * 0.5).toFixed(1)}M`;
-  return 'AED 50M+';
+  if (value <= 20) {
+    // 500K increments up to 10M
+    return `AED ${(value * 0.5).toFixed(1)}M`;
+  }
+  if (value === 21) return 'AED 15M';
+  if (value === 22) return 'AED 20M';
+  if (value === 23) return 'AED 25M';
+  if (value === 24) return 'AED 30M';
+  if (value === 25) return 'AED 35M';
+  if (value === 26) return 'AED 40M';
+  if (value === 27) return 'AED 45M';
+  if (value === 28) return 'AED 50M';
+  return 'AED 100M+';
 };
 
 const getInvestmentSizeValue = (sizeString: string): number => {
@@ -34,7 +45,8 @@ const getInvestmentSizeValue = (sizeString: string): number => {
   if (sizeString === '1000000-5000000') return 8;
   if (sizeString === '5000000-15000000') return 16;
   if (sizeString === '15000000+') return 20;
-  if (sizeString === '50000000+') return 21;
+  if (sizeString === '50000000+') return 28;
+  if (sizeString === '100000000+') return 29;
   return 1;
 };
 
@@ -104,8 +116,10 @@ export const InvestorAssessmentReport: React.FC = () => {
       sizeRange = '5000000-15000000';
     } else if (sliderValue <= 20) {
       sizeRange = '15000000+';
-    } else {
+    } else if (sliderValue <= 28) {
       sizeRange = '50000000+';
+    } else {
+      sizeRange = '100000000+';
     }
     
     handleUpdate('preferredInvestmentSize', sizeRange);
@@ -331,14 +345,14 @@ export const InvestorAssessmentReport: React.FC = () => {
               <Slider
                 value={investmentSize}
                 onValueChange={handleInvestmentSizeChange}
-                max={21}
+                max={29}
                 step={1}
                 className="w-full"
               />
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>AED 500K</span>
                 <span className="text-lg font-bold text-primary">{getInvestmentSizeLabel(investmentSize[0])}</span>
-                <span>AED 50M+</span>
+                <span>AED 100M+</span>
               </div>
             </div>
           </div>
