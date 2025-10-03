@@ -43,6 +43,15 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
     console.log('InvestorAssessmentModal open:', open);
   }, [open]);
 
+  const handleRadixOpenChange = (next: boolean) => {
+    console.log('Dialog onOpenChange (radix):', next);
+    if (next) {
+      onOpenChange(true);
+    } else {
+      console.warn('Prevented auto-close');
+    }
+  };
+
   const handleComplete = (data: any) => {
     // Handle completion - could show success message, redirect, etc.
     console.log('Assessment completed:', data);
@@ -50,7 +59,7 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleRadixOpenChange}>
       <DialogContent forceMount className="max-w-4xl max-h-[90vh] overflow-hidden p-0 relative" onPointerDownOutside={(e) => e.preventDefault()} onInteractOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()} onOpenAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader className="p-6 pb-0">
           <div className="flex items-center justify-between">
