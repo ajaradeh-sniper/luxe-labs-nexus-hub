@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense } from 'react';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { createPortal } from 'react-dom';
 
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -43,14 +43,7 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
     console.log('InvestorAssessmentModal open:', open);
   }, [open]);
 
-  const handleRadixOpenChange = (next: boolean) => {
-    console.log('Dialog onOpenChange (radix):', next);
-    if (next) {
-      onOpenChange(true);
-    } else {
-      console.warn('Prevented auto-close');
-    }
-  };
+// Removed Radix onOpenChange intercept; using simple portal modal
 
   const handleComplete = (data: any) => {
     // Handle completion - could show success message, redirect, etc.
@@ -58,12 +51,30 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
     onOpenChange(false);
   };
 
-  return (
-    <Dialog open={open} onOpenChange={handleRadixOpenChange}>
-      <DialogContent forceMount className="max-w-4xl max-h-[90vh] overflow-hidden p-0 relative" onPointerDownOutside={(e) => e.preventDefault()} onInteractOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()} onOpenAutoFocus={(e) => e.preventDefault()}>
-        <DialogHeader className="p-6 pb-0">
-          <div className="flex items-center justify-between">
-            <DialogTitle className="text-2xl font-bold">Investor Profile Assessment</DialogTitle>
+  if (!open) return null;
+
+  // Lock scroll and handle Escape
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onOpenChange(false);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open, onOpenChange]);
+
+  return createPortal(
+    <div className="fixed inset-0 z-[10000]" role="dialog" aria-modal="true" aria-label="Investor Profile Assessment">
+      <div className="absolute inset-0 bg-black/80" onClick={() => onOpenChange(false)} />
+      <div className="fixed inset-0 flex items-center justify-center p-4">
+        <div className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-lg bg-background shadow-lg">
+          <div className="p-6 pb-0 flex items-center justify-between">
+            <h2 className="text-2xl font-bold">Investor Profile Assessment</h2>
             <Button 
               variant="ghost" 
               size="sm" 
@@ -73,29 +84,32 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
               <X className="h-4 w-4" />
             </Button>
           </div>
-          <DialogDescription className="text-muted-foreground">
+          <p className="px-6 text-muted-foreground">
             Help us understand your investment preferences to provide personalized opportunities
-          </DialogDescription>
-        </DialogHeader>
-        
-        <div className="px-6 pb-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-          <AssessmentErrorBoundary>
-            <Suspense
-              fallback={
-                <div className="py-10 flex items-center justify-center">
-                  <LoadingSpinner />
-                  <span className="ml-3">Loading assessment…</span>
-                </div>
-              }
-            >
-              <InvestorQuestionnaireLazy 
-                standalone={false} 
-                onComplete={handleComplete}
-              />
-            </Suspense>
-          </AssessmentErrorBoundary>
+          </p>
+          <div className="px-6 pb-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <AssessmentErrorBoundary>
+              <Suspense
+                fallback={
+                  <div className="py-10 flex items-center justify-center">
+                    <LoadingSpinner />
+                    <span className="ml-3">Loading assessment…</span>
+                  </div>
+                }
+              >
+                <InvestorQuestionnaireLazy 
+                  standalone={false} 
+                  onComplete={(data: any) => {
+                    console.log('Assessment completed:', data);
+                    onOpenChange(false);
+                  }}
+                />
+              </Suspense>
+            </AssessmentErrorBoundary>
+          </div>
         </div>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </div>,
+    document.body
   );
 };
