@@ -101,30 +101,27 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       options: [
         { 
           value: 'conservative', 
-          label: 'Emerald Tier', 
+          label: 'Apartments & Townhouses', 
           range: 'AED 5M-15M', 
           returns: '6%-15%',
           description: 'Stable luxury returns',
-          icon: <Shield className="w-6 h-6" />,
-          gradient: 'from-emerald-500/20 to-green-600/20'
+          image: '/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png'
         },
         { 
           value: 'moderate', 
-          label: 'Sapphire Tier', 
+          label: 'Luxury Villas & Penthouses', 
           range: 'AED 15M-45M', 
           returns: '15%-30%',
           description: 'Premium balanced growth',
-          icon: <Sparkles className="w-6 h-6" />,
-          gradient: 'from-blue-500/20 to-indigo-600/20'
+          image: '/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png'
         },
         { 
           value: 'aggressive', 
-          label: 'Diamond Tier', 
+          label: 'Luxury Mansions', 
           range: 'AED 45M+', 
           returns: '25%-60%',
           description: 'Ultra-premium returns',
-          icon: <Diamond className="w-6 h-6" />,
-          gradient: 'from-purple-500/20 to-pink-600/20'
+          image: '/lovable-uploads/d6d93f42-4152-430f-bb17-3221a60d919b.png'
         }
       ]
     },
@@ -183,10 +180,8 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           label: 'Preferred payback period',
           type: 'radio',
           options: [
-            { value: '8-12', label: '8-12 months', description: 'Short-term investment' },
-            { value: '10-15', label: '10-15 months', description: 'Medium-term investment' },
-            { value: '24', label: '24 months', description: 'Long-term investment' },
-            { value: '36', label: '36 months', description: 'Extended investment period' }
+            { value: 'short-term', label: 'Short-term investment (One Flip)', description: '8-12 months' },
+            { value: '24+', label: '24 Months+ (Long-Term investment - Fund)', description: 'Extended investment period' }
           ]
         }
       ]
@@ -201,7 +196,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         { 
           value: 'no_involvement', 
           label: 'No Involvement', 
-          description: 'Just financial payback and monthly updates and project monitoring',
+          description: 'Just financial payback and monthly updates and project monitoring and luxury labs will do end to end service',
           details: 'Perfect for busy investors who prefer passive involvement. You receive comprehensive monthly reports with financial updates, project photos, timeline progress, and milestone achievements. No decision-making required from your side.'
         },
         { 
@@ -213,7 +208,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         { 
           value: 'full_involvement', 
           label: 'Full Involvement', 
-          description: 'Selection of property, selection of design, project management',
+          description: 'Lead the selection of property, design, materials and supplies, QA & PM',
           details: 'For hands-on investors who want complete control. You participate in property sourcing, design development, contractor selection, timeline management, and all major project decisions. Includes weekly calls and real-time project access.'
         },
         { 
@@ -235,19 +230,13 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           value: 'in_uae', 
           label: 'In UAE', 
           description: 'Direct ownership or SPV structure in Dubai',
-          icon: <Landmark className="w-5 h-5" />
+          image: '/lovable-uploads/9bdf3759-8541-414d-a494-7d6f9d38185c.png'
         },
         { 
           value: 'outside_uae', 
           label: 'Outside UAE', 
           description: 'International property investments',
-          icon: <Globe className="w-5 h-5" />
-        },
-        { 
-          value: 'skip', 
-          label: 'Skip', 
-          description: 'Let\'s discuss structure options during consultation',
-          icon: <Star className="w-5 h-5" />
+          image: '/lovable-uploads/b2b9ab2c-7e3d-4eab-b79f-a0b91cd6ba50.png'
         }
       ]
     },
@@ -258,6 +247,12 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       icon: <ArrowUpDown className="w-7 h-7" />,
       type: 'radio',
       options: [
+        { 
+          value: 'skip', 
+          label: 'Skip', 
+          description: 'Let\'s discuss transfer options during consultation',
+          icon: <Star className="w-5 h-5" />
+        },
         { 
           value: 'crypto', 
           label: 'Crypto Transfer', 
@@ -271,16 +266,10 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
           icon: <Landmark className="w-5 h-5" />
         },
         { 
-          value: 'international_uae_spv', 
-          label: 'International Transfer to UAE SPV', 
-          description: 'Cross-border transfer to UAE special purpose vehicle',
+          value: 'international', 
+          label: 'International Transfer (UAE or Cayman Islands)', 
+          description: 'Cross-border transfer to SPV',
           icon: <Globe className="w-5 h-5" />
-        },
-        { 
-          value: 'international_cayman_spv', 
-          label: 'International Transfer to Cayman SPV', 
-          description: 'Cross-border transfer to Cayman Islands SPV',
-          icon: <Ship className="w-5 h-5" />
         },
         { 
           value: 'other', 
@@ -408,7 +397,11 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
 
       // Redirect after 1 second (message) + 3 seconds (cursor effect) = 4 seconds total
       setTimeout(() => {
-        navigate('/');
+        if (onComplete) {
+          onComplete(answers as QuestionnaireData);
+        } else {
+          navigate('/services');
+        }
       }, 4000);
 
       if (onComplete) {
@@ -444,7 +437,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
               <SelectTrigger className="w-full text-base p-6 bg-background border-2 border-muted hover:border-primary transition-colors">
                 <SelectValue placeholder="Select your investor type..." />
               </SelectTrigger>
-              <SelectContent className="bg-background border-2 border-muted shadow-lg z-50">
+              <SelectContent className="bg-background border-2 border-muted shadow-lg z-[100000]">
                 {'options' in currentQuestion && currentQuestion.options?.map((option: any) => (
                   <SelectItem 
                     key={option.value} 
@@ -477,6 +470,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       case 'radio':
         // Check if this is the engagement style or investment structure question
         const isCompactStyle = currentQuestion.id === 'involvementPreference' || currentQuestion.id === 'investmentTypePreference' || currentQuestion.id === 'fundsTransferPreference';
+        const hasImages = currentQuestion.id === 'investmentTypePreference';
         const fundsTransferOther = answers.fundsTransferOther as string;
         
         return (
@@ -489,24 +483,33 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
               {'options' in currentQuestion && currentQuestion.options?.map((option: any, index: number) => (
                 <div 
                   key={option.value} 
-                  className={`group flex items-start space-x-3 ${isCompactStyle ? 'p-4' : 'p-6'} rounded-xl border-2 hover:border-primary/40 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg animate-fade-in bg-gradient-to-r from-background to-muted/10 ${
-                    currentAnswer === option.value ? 'border-primary bg-primary/5 shadow-lg scale-[1.01]' : 'border-muted'
+                  className={`group flex items-start space-x-3 ${isCompactStyle ? 'p-4' : 'p-6'} rounded-xl border-2 transition-all duration-200 cursor-pointer ${
+                    currentAnswer === option.value ? 'border-primary bg-primary/10 shadow-md' : 'border-muted hover:border-primary/30'
                   }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  onClick={() => handleAnswer(currentQuestion.id, option.value)}
                 >
                   <RadioGroupItem value={option.value} id={option.value} className="mt-1" />
-                  <div className="flex items-start space-x-2 flex-1">
-                    {option.icon && (
-                      <div className={`${isCompactStyle ? 'p-1.5' : 'p-2'} rounded-lg transition-all duration-300 animate-pulse ${
+                  <div className="flex items-start space-x-3 flex-1">
+                    {option.image && (
+                      <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                        <img 
+                          src={option.image} 
+                          alt={option.label}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    {option.icon && !option.image && (
+                      <div className={`${isCompactStyle ? 'p-1.5' : 'p-2'} rounded-lg transition-all duration-200 ${
                         currentAnswer === option.value 
-                          ? 'bg-primary/20 text-primary animate-none' 
-                          : 'bg-muted/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary group-hover:animate-none'
+                          ? 'bg-primary/20 text-primary' 
+                          : 'bg-muted/50 text-muted-foreground'
                       }`}>
                         {option.icon}
                       </div>
                     )}
                     <div className="flex-1">
-                      <Label htmlFor={option.value} className={`font-semibold cursor-pointer ${isCompactStyle ? 'text-base' : 'text-lg'} group-hover:text-primary transition-colors`}>
+                      <Label htmlFor={option.value} className={`font-semibold cursor-pointer ${isCompactStyle ? 'text-base' : 'text-lg'} transition-colors`}>
                         {option.label}
                       </Label>
                       {option.description && (
@@ -520,7 +523,7 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
                     </div>
                   </div>
                   {currentAnswer === option.value && (
-                    <div className="text-primary animate-scale-in">
+                    <div className="text-primary">
                       <Sparkles className={`${isCompactStyle ? 'w-4 h-4' : 'w-5 h-5'}`} />
                     </div>
                   )}
@@ -582,46 +585,36 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
               {'options' in currentQuestion && currentQuestion.options?.map((option: any, index: number) => (
                 <div 
                   key={option.value}
-                  className={`group relative p-8 border-2 rounded-2xl cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-fade-in ${
+                  className={`group relative rounded-2xl cursor-pointer transition-all duration-200 overflow-hidden ${
                     selectedPreference === option.value 
-                      ? 'border-primary bg-gradient-to-br from-primary/10 via-background to-primary/5 shadow-2xl scale-105' 
-                      : `border-muted hover:border-primary/40 bg-gradient-to-br ${option.gradient || 'from-muted/20 to-muted/40'}`
+                      ? 'ring-4 ring-primary shadow-xl' 
+                      : 'hover:ring-2 hover:ring-primary/50'
                   }`}
-                  style={{ animationDelay: `${index * 150}ms` }}
                   onClick={() => handleAnswer(currentQuestion.id, option.value)}
                 >
-                  <div className="text-center relative">
-                    <div className={`flex justify-center mb-4 transition-all duration-300 ${
-                      selectedPreference === option.value ? 'text-primary' : 'text-muted-foreground group-hover:text-primary'
-                    }`}>
-                      {option.icon}
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={option.image} 
+                      alt={option.label}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+                    <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                      <h4 className="font-bold text-xl mb-2">
+                        {option.label}
+                      </h4>
+                      <div className="text-2xl font-bold mb-2">
+                        {option.range}
+                      </div>
+                      <div className="text-lg font-semibold text-white/90 mb-2">{option.returns}</div>
+                      <p className="text-sm text-white/80 leading-relaxed">{option.description}</p>
                     </div>
-                    <h4 className={`font-bold text-xl mb-4 transition-colors ${
-                      selectedPreference === option.value ? 'text-primary' : 'text-foreground group-hover:text-primary'
-                    }`}>
-                      {option.label}
-                    </h4>
-                    <div className="text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                      {option.range}
-                    </div>
-                    <div className="text-xl font-semibold text-muted-foreground mb-4">{option.returns}</div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{option.description}</p>
                     {selectedPreference === option.value && (
-                      <div className="mt-6 flex justify-center animate-scale-in">
-                        <div className="flex items-center space-x-2 bg-primary/20 text-primary px-4 py-2 rounded-full">
-                          <Crown className="w-4 h-4" />
-                          <span className="font-semibold">Selected</span>
-                        </div>
+                      <div className="absolute top-4 right-4 bg-primary text-primary-foreground p-2 rounded-full">
+                        <Sparkles className="w-5 h-5" />
                       </div>
                     )}
                   </div>
-                  {selectedPreference === option.value && (
-                    <div className="absolute -top-2 -right-2 text-primary animate-scale-in">
-                      <div className="bg-primary text-primary-foreground p-2 rounded-full">
-                        <Sparkles className="w-4 h-4" />
-                      </div>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
@@ -639,31 +632,31 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
                   key={option.value}
                   onClick={() => handleAnswer(currentQuestion.id, option.value)}
                   className={`
-                    relative p-8 rounded-2xl border-2 text-left transition-all duration-300 hover:scale-105
+                    relative p-8 rounded-2xl border-2 text-left transition-all duration-200 bg-gradient-to-br
                     ${isSelected 
-                      ? 'border-primary bg-primary/10 shadow-lg shadow-primary/20 scale-105' 
-                      : 'border-muted hover:border-primary/50 hover:shadow-md'
+                      ? 'border-primary from-primary/10 via-primary/5 to-transparent shadow-lg' 
+                      : 'border-muted from-muted/20 to-transparent hover:border-primary/40 hover:from-primary/5'
                     }
                   `}
                 >
                   <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className={`p-3 rounded-lg transition-colors ${isSelected ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
+                    <div className="flex items-start justify-between mb-6">
+                      <div className={`p-4 rounded-xl transition-colors ${isSelected ? 'bg-primary text-primary-foreground shadow-lg' : 'bg-muted text-muted-foreground'}`}>
                         {option.icon}
                       </div>
                       {isSelected && (
-                        <div className="flex items-center space-x-1 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                          <Sparkles className="w-3 h-3" />
+                        <div className="flex items-center space-x-1 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold shadow-md">
+                          <Sparkles className="w-4 h-4" />
                           <span>Selected</span>
                         </div>
                       )}
                     </div>
-                    <h3 className={`text-xl font-bold mb-3 transition-colors ${isSelected ? 'text-primary' : 'text-foreground'}`}>
+                    <h3 className={`text-2xl font-bold mb-4 transition-colors ${isSelected ? 'text-primary' : 'text-foreground'}`}>
                       {option.label}
                     </h3>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <DollarSign className="w-4 h-4" />
-                      <span className="text-sm font-medium">{option.usdRange}</span>
+                    <div className="flex items-center gap-2 text-muted-foreground bg-muted/30 rounded-lg px-4 py-3">
+                      <DollarSign className="w-5 h-5" />
+                      <span className="text-base font-semibold">{option.usdRange}</span>
                     </div>
                   </div>
                 </button>
