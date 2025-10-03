@@ -260,8 +260,15 @@ export default function Investors() {
       </section>
 
       {/* Investor Assessment Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-foreground mb-6 font-playfair">Investor Profile Assessment</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-montserrat">
+              Help us understand your investment preferences and goals. Complete your profile to receive personalized 
+              opportunities that align with your objectives and unlock exclusive access to curated deals.
+            </p>
+          </div>
           <InvestorAssessmentReport />
         </div>
       </section>
