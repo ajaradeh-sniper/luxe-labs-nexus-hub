@@ -51,7 +51,7 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
     onOpenChange(false);
   };
 
-  if (!open) return null;
+  
 
   // Lock scroll and handle Escape
   useEffect(() => {
@@ -67,6 +67,8 @@ export const InvestorAssessmentModal: React.FC<InvestorAssessmentModalProps> = (
       document.removeEventListener('keydown', onKey);
     };
   }, [open, onOpenChange]);
+
+  if (!open) return null;
 
   return createPortal(
     <div className="fixed inset-0 z-[10000]" role="dialog" aria-modal="true" aria-label="Investor Profile Assessment">
