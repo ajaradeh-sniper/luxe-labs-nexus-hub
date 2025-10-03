@@ -13,7 +13,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { Trophy, DollarSign, TrendingUp, MapPin, Clock, User, Building, Crown, Diamond, Gem, Star, Sparkles, Award, Shield, Zap, ArrowUpDown, Phone, Mail } from 'lucide-react';
+import { Trophy, DollarSign, TrendingUp, MapPin, Clock, User, Building, Crown, Diamond, Gem, Star, Sparkles, Award, Shield, Zap, ArrowUpDown, Phone, Mail, Bitcoin, Landmark, Globe, Ship, PenLine } from 'lucide-react';
+import { SplashCursor } from '@/components/ui/splash-cursor';
+import { useNavigate } from 'react-router-dom';
 
 interface QuestionnaireData {
   investorType: string;
@@ -29,6 +31,8 @@ interface QuestionnaireData {
   geographicPreference: string[];
   involvementPreference: string;
   investmentTypePreference: string;
+  fundsTransferPreference: string;
+  fundsTransferOther?: string;
   propertyTypes: string[];
   expectedReturns: string;
   liquidityPreference: string;
@@ -53,8 +57,10 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   const [answers, setAnswers] = useState<Partial<QuestionnaireData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUSDInput, setIsUSDInput] = useState(false); // Track currency input mode
+  const [showCongratulations, setShowCongratulations] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const questions = [
     {
@@ -228,17 +234,59 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         { 
           value: 'in_uae', 
           label: 'In UAE', 
-          description: 'Direct ownership or SPV structure in Dubai'
+          description: 'Direct ownership or SPV structure in Dubai',
+          icon: <Landmark className="w-5 h-5" />
         },
         { 
           value: 'outside_uae', 
           label: 'Outside UAE', 
-          description: 'International property investments'
+          description: 'International property investments',
+          icon: <Globe className="w-5 h-5" />
         },
         { 
           value: 'skip', 
           label: 'Skip', 
-          description: 'Let\'s discuss structure options during consultation'
+          description: 'Let\'s discuss structure options during consultation',
+          icon: <Star className="w-5 h-5" />
+        }
+      ]
+    },
+    {
+      id: 'fundsTransferPreference',
+      title: 'Funds Transfer Preference',
+      subtitle: 'Your preferred method of transferring investment funds',
+      icon: <ArrowUpDown className="w-7 h-7" />,
+      type: 'radio',
+      options: [
+        { 
+          value: 'crypto', 
+          label: 'Crypto Transfer', 
+          description: 'Digital currency transfer',
+          icon: <Bitcoin className="w-5 h-5" />
+        },
+        { 
+          value: 'uae_transfer', 
+          label: 'UAE-UAE Transfer/Wire', 
+          description: 'Domestic bank transfer within UAE',
+          icon: <Landmark className="w-5 h-5" />
+        },
+        { 
+          value: 'international_uae_spv', 
+          label: 'International Transfer to UAE SPV', 
+          description: 'Cross-border transfer to UAE special purpose vehicle',
+          icon: <Globe className="w-5 h-5" />
+        },
+        { 
+          value: 'international_cayman_spv', 
+          label: 'International Transfer to Cayman SPV', 
+          description: 'Cross-border transfer to Cayman Islands SPV',
+          icon: <Ship className="w-5 h-5" />
+        },
+        { 
+          value: 'other', 
+          label: 'Other', 
+          description: 'Specify your preferred transfer method',
+          icon: <PenLine className="w-5 h-5" />
         }
       ]
     }
@@ -289,52 +337,79 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
+      const completionData = {
+        user_id: user?.id,
+        preferences: answers,
+        completed_at: new Date().toISOString(),
+        device: navigator.userAgent,
+        browser: navigator.userAgent.split(')')[0].split('(')[1] || 'Unknown',
+        screen_resolution: `${window.screen.width}x${window.screen.height}`,
+        language: navigator.language,
+      };
+
       if (user) {
         // Handle demo mode - don't try to save to database
         if (user.id === 'demo-admin') {
           // Store in localStorage for demo mode
-          localStorage.setItem('demo_investor_preferences', JSON.stringify({
-            user_id: user.id,
-            preferences: answers,
-            completed_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          }));
+          localStorage.setItem('demo_investor_preferences', JSON.stringify(completionData));
+        } else {
+          // Normal database save for real users
+          console.log('Saving to investor_settings:', { user_id: user.id })
+          const { error } = await supabase
+            .from('investor_settings')
+            .upsert({
+              user_id: user.id,
+              preferences: answers,
+              completed_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            });
 
-          toast({
-            title: "Profile Complete!",
-            description: "Your investor profile has been saved successfully (demo mode)."
-          });
+          if (error) throw error;
 
-          if (onComplete) {
-            onComplete(answers as QuestionnaireData);
-          }
-          return;
+          // Send notification to admin dashboard
+          await supabase
+            .from('notifications')
+            .insert({
+              user_id: user.id,
+              title: 'Investor Assessment Completed',
+              message: `User ${user.email} completed investor assessment`,
+              type: 'investor_assessment',
+              metadata: completionData
+            });
         }
-
-        // Normal database save for real users
-        console.log('Saving to investor_settings:', { user_id: user.id })
-        const { error } = await supabase
-          .from('investor_settings')
-          .upsert({
-            user_id: user.id,
-            preferences: answers,
-            completed_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          });
-
-        if (error) throw error;
-
-        toast({
-          title: "Profile Complete!",
-          description: "Your investor profile has been saved successfully."
-        });
-      } else {
-        // For unauthenticated users, just show success
-        toast({
-          title: "Assessment Complete!",
-          description: "Thank you for completing your investor profile. We'll contact you soon."
-        });
       }
+
+      // Send email notification
+      try {
+        await supabase.functions.invoke('send-email', {
+          body: {
+            to: 'admin@luxurylabs.com',
+            subject: 'New Investor Assessment Completed',
+            html: `
+              <h2>New Investor Assessment Completed</h2>
+              <p><strong>Completion Time:</strong> ${new Date().toLocaleString()}</p>
+              <p><strong>User:</strong> ${user ? user.email : answers.contactInfo?.email || 'Anonymous'}</p>
+              <p><strong>Device:</strong> ${completionData.device}</p>
+              <p><strong>Browser:</strong> ${completionData.browser}</p>
+              <p><strong>Screen Resolution:</strong> ${completionData.screen_resolution}</p>
+              <p><strong>Language:</strong> ${completionData.language}</p>
+              <h3>Assessment Responses:</h3>
+              <pre>${JSON.stringify(answers, null, 2)}</pre>
+            `
+          }
+        });
+      } catch (emailError) {
+        console.error('Email sending failed:', emailError);
+        // Don't fail the submission if email fails
+      }
+
+      // Show congratulations screen
+      setShowCongratulations(true);
+
+      // Redirect after 1 second (message) + 3 seconds (cursor effect) = 4 seconds total
+      setTimeout(() => {
+        navigate('/');
+      }, 4000);
 
       if (onComplete) {
         onComplete(answers as QuestionnaireData);
@@ -401,55 +476,72 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
 
       case 'radio':
         // Check if this is the engagement style or investment structure question
-        const isCompactStyle = currentQuestion.id === 'involvementPreference' || currentQuestion.id === 'investmentTypePreference';
+        const isCompactStyle = currentQuestion.id === 'involvementPreference' || currentQuestion.id === 'investmentTypePreference' || currentQuestion.id === 'fundsTransferPreference';
+        const fundsTransferOther = answers.fundsTransferOther as string;
         
         return (
-          <RadioGroup
-            value={currentAnswer as string}
-            onValueChange={(value) => handleAnswer(currentQuestion.id, value)}
-            className="space-y-3"
-          >
-            {'options' in currentQuestion && currentQuestion.options?.map((option: any, index: number) => (
-              <div 
-                key={option.value} 
-                className={`group flex items-start space-x-3 ${isCompactStyle ? 'p-4' : 'p-6'} rounded-xl border-2 hover:border-primary/40 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg animate-fade-in bg-gradient-to-r from-background to-muted/10 ${
-                  currentAnswer === option.value ? 'border-primary bg-primary/5 shadow-lg scale-[1.01]' : 'border-muted'
-                }`}
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <RadioGroupItem value={option.value} id={option.value} className="mt-1" />
-                <div className="flex items-start space-x-2 flex-1">
-                  {option.icon && (
-                    <div className={`${isCompactStyle ? 'p-1.5' : 'p-2'} rounded-lg transition-all duration-300 ${
-                      currentAnswer === option.value 
-                        ? 'bg-primary/20 text-primary' 
-                        : 'bg-muted/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
-                    }`}>
-                      {option.icon}
-                    </div>
-                  )}
-                  <div className="flex-1">
-                    <Label htmlFor={option.value} className={`font-semibold cursor-pointer ${isCompactStyle ? 'text-base' : 'text-lg'} group-hover:text-primary transition-colors`}>
-                      {option.label}
-                    </Label>
-                    {option.description && (
-                      <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{option.description}</p>
-                    )}
-                    {option.details && !isCompactStyle && (
-                      <div className="text-xs text-muted-foreground mt-2 pl-3 border-l-2 border-primary/20 bg-muted/20 rounded-r-lg p-2">
-                        {option.details}
+          <div className="space-y-4">
+            <RadioGroup
+              value={currentAnswer as string}
+              onValueChange={(value) => handleAnswer(currentQuestion.id, value)}
+              className="space-y-3"
+            >
+              {'options' in currentQuestion && currentQuestion.options?.map((option: any, index: number) => (
+                <div 
+                  key={option.value} 
+                  className={`group flex items-start space-x-3 ${isCompactStyle ? 'p-4' : 'p-6'} rounded-xl border-2 hover:border-primary/40 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg animate-fade-in bg-gradient-to-r from-background to-muted/10 ${
+                    currentAnswer === option.value ? 'border-primary bg-primary/5 shadow-lg scale-[1.01]' : 'border-muted'
+                  }`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <RadioGroupItem value={option.value} id={option.value} className="mt-1" />
+                  <div className="flex items-start space-x-2 flex-1">
+                    {option.icon && (
+                      <div className={`${isCompactStyle ? 'p-1.5' : 'p-2'} rounded-lg transition-all duration-300 animate-pulse ${
+                        currentAnswer === option.value 
+                          ? 'bg-primary/20 text-primary animate-none' 
+                          : 'bg-muted/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary group-hover:animate-none'
+                      }`}>
+                        {option.icon}
                       </div>
                     )}
+                    <div className="flex-1">
+                      <Label htmlFor={option.value} className={`font-semibold cursor-pointer ${isCompactStyle ? 'text-base' : 'text-lg'} group-hover:text-primary transition-colors`}>
+                        {option.label}
+                      </Label>
+                      {option.description && (
+                        <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{option.description}</p>
+                      )}
+                      {option.details && !isCompactStyle && (
+                        <div className="text-xs text-muted-foreground mt-2 pl-3 border-l-2 border-primary/20 bg-muted/20 rounded-r-lg p-2">
+                          {option.details}
+                        </div>
+                      )}
+                    </div>
                   </div>
+                  {currentAnswer === option.value && (
+                    <div className="text-primary animate-scale-in">
+                      <Sparkles className={`${isCompactStyle ? 'w-4 h-4' : 'w-5 h-5'}`} />
+                    </div>
+                  )}
                 </div>
-                {currentAnswer === option.value && (
-                  <div className="text-primary animate-scale-in">
-                    <Sparkles className={`${isCompactStyle ? 'w-4 h-4' : 'w-5 h-5'}`} />
-                  </div>
-                )}
+              ))}
+            </RadioGroup>
+            {currentQuestion.id === 'fundsTransferPreference' && currentAnswer === 'other' && (
+              <div className="mt-6 space-y-3 animate-fade-in">
+                <Label htmlFor="funds-transfer-other" className="text-base font-medium">
+                  Please specify your transfer method:
+                </Label>
+                <Input
+                  id="funds-transfer-other"
+                  placeholder="Describe your preferred transfer method..."
+                  value={fundsTransferOther || ''}
+                  onChange={(e) => handleAnswer('fundsTransferOther', e.target.value)}
+                  className="text-base"
+                />
               </div>
-            ))}
-          </RadioGroup>
+            )}
+          </div>
         );
 
       case 'checkbox':
@@ -826,6 +918,12 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
       const otherDescription = answers.otherDescription as string;
       return otherDescription && otherDescription.trim().length > 0;
     }
+
+    // For funds transfer preference, check if "other" is selected and needs description
+    if (currentQuestion.id === 'fundsTransferPreference' && answer === 'other') {
+      const fundsTransferOther = answers.fundsTransferOther as string;
+      return fundsTransferOther && fundsTransferOther.trim().length > 0;
+    }
     
     if (currentQuestion.type === 'timeline') {
       const timelineData = answer as { fundsAvailable: string; paybackPeriod: string };
@@ -843,6 +941,32 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
     
     return true;
   };
+
+  if (showCongratulations) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/10 flex items-center justify-center relative overflow-hidden">
+        <SplashCursor />
+        <div className="text-center z-10 animate-scale-in">
+          <div className="mb-6 flex justify-center">
+            <div className="p-8 rounded-full bg-primary/20 animate-pulse">
+              <Trophy className="w-24 h-24 text-primary" />
+            </div>
+          </div>
+          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-primary/60 bg-clip-text text-transparent animate-fade-in">
+            Congratulations!
+          </h1>
+          <p className="text-2xl text-muted-foreground animate-fade-in" style={{ animationDelay: '200ms' }}>
+            Your investor profile is complete
+          </p>
+          <div className="mt-6 flex justify-center gap-2 animate-fade-in" style={{ animationDelay: '400ms' }}>
+            <Sparkles className="w-6 h-6 text-primary animate-pulse" />
+            <Crown className="w-6 h-6 text-primary animate-pulse" style={{ animationDelay: '100ms' }} />
+            <Diamond className="w-6 h-6 text-primary animate-pulse" style={{ animationDelay: '200ms' }} />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (standalone) {
     return (
@@ -905,6 +1029,32 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
               </Button>
             </CardFooter>
           </Card>
+        </div>
+      </div>
+    );
+  }
+
+  if (showCongratulations) {
+    return (
+      <div className="fixed inset-0 bg-gradient-to-br from-background via-background to-primary/10 flex items-center justify-center z-50 overflow-hidden">
+        <SplashCursor />
+        <div className="text-center z-10 animate-scale-in">
+          <div className="mb-6 flex justify-center">
+            <div className="p-8 rounded-full bg-primary/20 animate-pulse">
+              <Trophy className="w-24 h-24 text-primary" />
+            </div>
+          </div>
+          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-primary/60 bg-clip-text text-transparent animate-fade-in">
+            Congratulations!
+          </h1>
+          <p className="text-2xl text-muted-foreground animate-fade-in" style={{ animationDelay: '200ms' }}>
+            Your investor profile is complete
+          </p>
+          <div className="mt-6 flex justify-center gap-2 animate-fade-in" style={{ animationDelay: '400ms' }}>
+            <Sparkles className="w-6 h-6 text-primary animate-pulse" />
+            <Crown className="w-6 h-6 text-primary animate-pulse" style={{ animationDelay: '100ms' }} />
+            <Diamond className="w-6 h-6 text-primary animate-pulse" style={{ animationDelay: '200ms' }} />
+          </div>
         </div>
       </div>
     );
