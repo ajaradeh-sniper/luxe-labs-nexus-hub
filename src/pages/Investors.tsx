@@ -7,12 +7,11 @@ import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
-import businessBayImage from "@/assets/business-bay.jpg";
-import downtownImage from "@/assets/downtown-luxury.jpg";
-import marinaTowerImage from "@/assets/marina-tower.jpg";
+import { InvestorAssessmentReport } from "@/components/InvestorAssessmentReport";
 import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg";
 import palmVillaImage from "@/assets/palm-villa-for-sale.jpg";
 import luxuryPenthouseImage from "@/assets/luxury-penthouse.jpg";
+import downtownImage from "@/assets/downtown-luxury.jpg";
 export default function Investors() {
   const {
     user
@@ -260,79 +259,16 @@ export default function Investors() {
         </div>
       </section>
 
-      {/* Investors Section */}
+      {/* Investor Assessment Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <InvestorAssessmentReport />
+        </div>
+      </section>
+
+      {/* CTA Section */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          {/* Current Opportunities */}
-          <div className="mb-20">
-            <h2 className="text-4xl font-bold text-foreground text-center mb-12 font-playfair">Current Opportunities</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[{
-                title: "Downtown Premium Villa",
-                location: "Downtown Dubai",
-                investment: "AED 2.5M",
-                returns: "32%",
-                timeline: "8 months",
-                image: downtownImage,
-                status: "75% Funded"
-              }, {
-                title: "Marina Luxury Penthouse",
-                location: "Dubai Marina",
-                investment: "AED 1.8M",
-                returns: "28%",
-                timeline: "6 months",
-                image: marinaTowerImage,
-                status: "Available"
-              }, {
-                title: "Business Bay Apartment",
-                location: "Business Bay",
-                investment: "AED 1.2M",
-                returns: "30%",
-                timeline: "5 months",
-                image: businessBayImage,
-                status: "New"
-              }].map((opportunity, index) => <Card key={index} className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="relative h-48">
-                      <img src={opportunity.image} alt={opportunity.title} className="w-full h-full object-cover" />
-                      <div className="absolute top-4 left-4">
-                        <Badge variant="secondary" className="bg-background/80 text-foreground">
-                          {opportunity.status}
-                        </Badge>
-                      </div>
-                      <div className="absolute top-4 right-4">
-                        <Badge className="luxury-gradient text-primary-foreground">
-                          {opportunity.returns} ROI
-                        </Badge>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-foreground mb-2 font-playfair">{opportunity.title}</h3>
-                      <p className="text-muted-foreground mb-4 font-montserrat">{opportunity.location}</p>
-                      <div className="space-y-2 mb-6">
-                        <div className="flex justify-between">
-                          <span className="text-muted-foreground font-montserrat">Investment Required:</span>
-                          <span className="font-semibold text-foreground font-montserrat">{opportunity.investment}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-muted-foreground font-montserrat">Timeline:</span>
-                          <span className="font-semibold text-foreground font-montserrat">{opportunity.timeline}</span>
-                        </div>
-                      </div>
-                      <Button className="w-full luxury-gradient text-primary-foreground font-montserrat">
-                        View Details
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>)}
-            </div>
-          </div>
-
-
-          {/* Key Metrics */}
-          
-
-          {/* CTA Section */}
           <div className="text-center">
             <Card className="p-12 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm max-w-4xl mx-auto">
               <CardContent className="p-0">
