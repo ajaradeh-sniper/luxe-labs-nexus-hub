@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Helmet } from "react-helmet-async"
 import { Navigation } from "@/components/Navigation"
 import { Button } from "@/components/ui/button"
@@ -5,11 +6,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { TrendingUp, Calendar, Users, FileText, ArrowRight, Star, Building, Target, CheckCircle, Shield } from "lucide-react"
 import { Link } from "react-router-dom"
+import { InvestorAssessmentModal } from "@/components/modals/InvestorAssessmentModal"
 import luxuryDubaiSkyline from "@/assets/luxury-dubai-skyline.jpg"
 import luxuryInteriorModern from "@/assets/luxury-interior-modern.jpg"
 import dubaeMarinaLuxury from "@/assets/dubai-marina-luxury.jpg"
 
 const Index = () => {
+  const [showInvestorAssessment, setShowInvestorAssessment] = useState(false);
+  
   return (
     <>
       <Helmet>
@@ -46,12 +50,10 @@ const Index = () => {
                 <span className="block">with Exceptional Quality and Returns</span>
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button size="lg" variant="luxury" className="text-lg px-8 py-6" asChild>
-                  <Link to="/investor-questionnaire">
-                    <TrendingUp className="mr-2 h-5 w-5" />
-                    Start Investing
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
+                <Button size="lg" variant="luxury" className="text-lg px-8 py-6" onClick={() => setShowInvestorAssessment(true)}>
+                  <TrendingUp className="mr-2 h-5 w-5" />
+                  Start Investing
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20" asChild>
                   <Link to="/about">Learn More</Link>
@@ -103,10 +105,8 @@ const Index = () => {
                         Lead or co-lead curated villa transformations in Dubai's most exclusive areas with exceptional returns.
                       </p>
                       <div className="flex flex-col gap-2">
-                        <Button size="sm" variant="luxury" className="w-full" asChild>
-                          <Link to="/investor-questionnaire">
-                            Start Investing
-                          </Link>
+                        <Button size="sm" variant="luxury" className="w-full" onClick={() => setShowInvestorAssessment(true)}>
+                          Start Investing
                         </Button>
                         <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
                           <Link to="/services">
@@ -127,10 +127,8 @@ const Index = () => {
                         Join vetted Dubai villa flips with other investors from AED 500K minimum investment.
                       </p>
                       <div className="flex flex-col gap-2">
-                        <Button size="sm" variant="luxury" className="w-full" asChild>
-                          <Link to="/investor-questionnaire">
-                            Start Investing
-                          </Link>
+                        <Button size="sm" variant="luxury" className="w-full" onClick={() => setShowInvestorAssessment(true)}>
+                          Start Investing
                         </Button>
                         <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
                           <Link to="/services">
@@ -151,10 +149,8 @@ const Index = () => {
                         Long-term diversified portfolio of luxury villas with professional management and steady returns.
                       </p>
                       <div className="flex flex-col gap-2">
-                        <Button size="sm" variant="luxury" className="w-full" asChild>
-                          <Link to="/investor-questionnaire">
-                            Start Investing
-                          </Link>
+                        <Button size="sm" variant="luxury" className="w-full" onClick={() => setShowInvestorAssessment(true)}>
+                          Start Investing
                         </Button>
                         <Button size="sm" variant="outline" className="w-full bg-background text-foreground border-foreground hover:bg-foreground hover:text-background" asChild>
                           <Link to="/services">
@@ -377,6 +373,8 @@ const Index = () => {
           </div>
         </section>
       </div>
+      
+      <InvestorAssessmentModal open={showInvestorAssessment} onOpenChange={setShowInvestorAssessment} />
     </>
   )
 }

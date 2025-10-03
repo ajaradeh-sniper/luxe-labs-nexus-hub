@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -56,7 +56,6 @@ export default function Landing() {
   const [disclaimerOpen, setDisclaimerOpen] = useState(false);
   const [legalNoticeOpen, setLegalNoticeOpen] = useState(false);
   const [cookieOpen, setCookieOpen] = useState(false);
-  const navigate = useNavigate();
 
   // Service data from Services page
   const investmentServices = [{
@@ -206,7 +205,7 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => { console.log('Landing: Navigate to Investor Questionnaire'); navigate('/investor-questionnaire'); }}>
+                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => { console.log('Landing: Open Investor Assessment'); setShowInvestorAssessment(true); }}>
                     Start Investor Assessment
                     <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
