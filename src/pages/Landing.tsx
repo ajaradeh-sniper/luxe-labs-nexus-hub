@@ -43,6 +43,7 @@ import forbesLogo from "@/assets/forbes-logo.png";
 import arabianBusinessLogo from "@/assets/arabian-business-logo.png";
 import gulfNewsLogo from "@/assets/gulf-news-logo.png";
 import hgtvLogo from "@/assets/hgtv-logo.png";
+
 export default function Landing() {
   const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
   const [showTransformationDropdown, setShowTransformationDropdown] = useState(false);
@@ -57,7 +58,6 @@ export default function Landing() {
   const [legalNoticeOpen, setLegalNoticeOpen] = useState(false);
   const [cookieOpen, setCookieOpen] = useState(false);
 
-  // Service data from Services page
   const investmentServices = [{
     title: 'Solo Investment',
     description: 'Flip a property with Luxury labs execution from acquisition to resale - your gateway to premium real estate transformation with guaranteed luxury execution.',
@@ -121,840 +121,325 @@ export default function Landing() {
       href: '/services'
     }]
   }];
+
+  const handleAssessmentClick = () => {
+    setShowInvestorAssessment(true);
+  };
+
   return <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* HOME - Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Dynamic Background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/20"></div>
-          <div className="absolute inset-0 opacity-30" style={{
-          backgroundImage: `url(${heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }} />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/60"></div>
-        </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-7xl mx-auto">
-            
-            {/* Header with Logo */}
-            <div className="text-center mb-16">
-              <div className="inline-block relative">
-                <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-32 sm:h-40 lg:h-48 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500" />
-                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-xl opacity-50 animate-pulse"></div>
-              </div>
-              
-              <div className="mt-8 space-y-4">
-                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-playfair font-bold text-foreground leading-tight">
-                  Transform <span className="text-white">Luxury</span> Real Estate 
-                  <span className="block">with Exceptional Quality and Returns</span>
-                </h1>
-                <p className="text-lg sm:text-xl text-muted-foreground font-montserrat max-w-3xl mx-auto leading-relaxed">
-                  Partner with Luxury Labs for premium property transformations, strategic investments, and expert transformation and advisory services in Dubai's elite real estate market
-                </p>
+      {/* Hero Section */}
+      <section className="relative py-24 md:py-32 lg:py-48 bg-gray-100 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="order-2 md:order-1">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 font-playfair mb-6">
+                Redefining Luxury Real Estate Investments in Dubai
+              </h1>
+              <p className="text-gray-700 font-montserrat text-lg mb-8">
+                Unlock exclusive opportunities in Dubai's thriving property market with Luxury Labs.
+                We specialize in high-end property transformations and strategic investments.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button size="lg" onClick={handleAssessmentClick}>
+                  Start Investment Assessment
+                </Button>
+                <Button variant="outline" size="lg" asChild>
+                  <Link to="/services">Explore Our Services</Link>
+                </Button>
               </div>
             </div>
-
-            {/* Modern Service Cards Grid */}
-            <div className="grid lg:grid-cols-3 gap-8 mb-16">
-              
-              {/* Investment Card */}
-              <Card className="group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="relative h-64 overflow-hidden">
-                  <img src={strategicPlanningImage} alt="Investment Partnership" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
-                  
-                  {/* Floating Icon */}
-                  <div className="absolute top-6 left-6 w-12 h-12 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <TrendingUp className="h-6 w-6 text-white" />
-                  </div>
-                  
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold font-playfair text-white mb-2">
-                      Invest in Flipping Projects
-                    </h3>
-          <p className="text-sm text-white/90 font-montserrat leading-relaxed">
-            Start a Project or join (Invest) in Luxury Labs Real Estate Transformation (Flipping) Projects
-                    </p>
-                  </div>
-                </div>
-                
-                <CardContent className="p-6 relative z-10">
-                  <div className="space-y-4 mb-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Up to 40% RoI in 08-14 Months</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Solo Investment & Luxury Labs Execute</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Co-Investment - Join other investors</span>
-                    </div>
-                  </div>
-                  
-                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => {
-                  console.log('Landing: Open Investor Assessment');
-                  setShowInvestorAssessment(true);
-                }}>
-                    Start Investor Assessment
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Transform Card */}
-              <Card className="group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="relative h-64 overflow-hidden">
-                  <img src={premiumVillaSelectionImage} alt="Luxury Property Transformation" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
-                  
-                  {/* Floating Icon */}
-                  <div className="absolute top-6 left-6 w-12 h-12 bg-accent/90 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Building2 className="h-6 w-6 text-white" />
-                  </div>
-                  
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold font-playfair text-white mb-2">
-                      Transform a Property
-                    </h3>
-                    <p className="text-sm text-white/90 font-montserrat leading-relaxed">
-                      Start a Transformation (Flip)/Project or Transform your Luxury Property with Luxury Labs
-                    </p>
-                  </div>
-                </div>
-                
-                <CardContent className="p-6 relative z-10">
-                  <div className="space-y-4 mb-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-accent rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">End to End Transformation (Aquisition to Sale)</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-accent rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">HNWI Relocation Concierge Services</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-accent rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Design, PM and Luxury Staging and Finishing</span>
-                    </div>
-                  </div>
-                  
-                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/contact'}>
-                    Contact Us
-                    <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Advisory Card */}
-              <Card className="group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="relative h-64 overflow-hidden">
-                  <img src={marketAnalysisImage} alt="Professional Advisory Services" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
-                  
-                  {/* Floating Icon */}
-                  <div className="absolute top-6 left-6 w-12 h-12 bg-secondary/90 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Users className="h-6 w-6 text-white" />
-                  </div>
-                  
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold font-playfair text-white mb-2">
-                      Advisory
-                    </h3>
-                    <p className="text-sm text-white/90 font-montserrat leading-relaxed">
-                      Property transformation design, material/product sourcing, investment and financial advisory with Luxury Labs
-                    </p>
-                  </div>
-                </div>
-                
-                <CardContent className="p-6 relative z-10">
-                  <div className="space-y-4 mb-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Luxury Real Estate Design</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Investment strategy planning</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Project Management & Quality Control</span>
-                    </div>
-                  </div>
-                  
-                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => window.location.href = '/contact'}>
-                    Contact Us
-                    <ChevronDown className="ml-2 h-4 w-4 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Service Details Section */}
-            <div className="mt-24 mb-16">
-              
-            </div>
-
-            {/* Enhanced CTA Section */}
-            <div className="text-center">
+            <div className="order-1 md:order-2 relative">
+              <img
+                src={heroImage}
+                alt="Luxury Real Estate in Dubai"
+                className="rounded-lg shadow-xl"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      
-      {/* PROCESS Section */}
-      {/* SERVICES Section */}
-      <section id="services" className="py-24 px-4 bg-gradient-elegant">
-        <div className="container mx-auto">
+      {/* Featured On Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-semibold text-center text-gray-800 font-playfair mb-6">
+            Featured On
+          </h2>
+          <div className="flex flex-wrap justify-around items-center gap-6">
+            <img src={forbesLogo} alt="Forbes" className="h-8 w-auto object-contain grayscale opacity-70 hover:opacity-100 transition-opacity" />
+            <img src={arabianBusinessLogo} alt="Arabian Business" className="h-8 w-auto object-contain grayscale opacity-70 hover:opacity-100 transition-opacity" />
+            <img src={gulfNewsLogo} alt="Gulf News" className="h-8 w-auto object-contain grayscale opacity-70 hover:opacity-100 transition-opacity" />
+            <img src={hgtvLogo} alt="HGTV" className="h-8 w-auto object-contain grayscale opacity-70 hover:opacity-100 transition-opacity" />
+          </div>
+        </div>
+      </section>
+
+      {/* Services Overview Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              Our <span className="luxury-text">Objectives</span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 font-playfair mb-4">
+              Our Core Services
             </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
-              Discover how Luxury Labs transforms Dubai's real estate landscape through our three core specializations
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {/* Unique Properties Selection */}
-            <Card className="elegant-card group">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6">
-                  <Building2 className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-                  Premium Properties Selection
-                </h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed mb-6">
-                  Curating Dubai's rarest addresses. We identify exceptional properties in prime locations like Palm Jumeirah, offering exclusive access to luxury real estate opportunities.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Prime waterfront locations
-                  </li>
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Exclusive off-market properties
-                  </li>
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Expert market analysis
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Luxury Transformation */}
-            <Card className="elegant-card group">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6">
-                  <div className="text-primary-foreground font-bold text-xl font-playfair">LL</div>
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-                  LL Signature Transformation
-                </h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed mb-6">
-                  Our signature renovation process elevates properties to luxury standards. From design to execution, we create bespoke living spaces that maximize value and appeal.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Bespoke interior design, Landscaping and curb appeal
-                  </li>
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Premium material selection
-                  </li>
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Project management excellence
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Exceptional Returns */}
-            <Card className="elegant-card group">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mb-6">
-                  <div className="text-white font-bold text-2xl font-playfair">%</div>
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-                  Exceptional Returns on Investment
-                </h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed mb-6">
-                  Where investments reach new heights. Our strategic approach delivers superior ROI through careful market timing, premium transformations, and expert sales execution.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Target 30%+ ROI
-                  </li>
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Strategic market timing
-                  </li>
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Premium sales execution
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Transparent Progress Monitoring */}
-            <Card className="elegant-card group">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6">
-                  <Eye className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-                  Transparent & Live Progress Monitoring
-                </h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed mb-6">
-                  Complete visibility into your investment journey. Real-time updates, milestone tracking, and transparent reporting keep you informed every step of the way.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Real-time project updates
-                  </li>
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Milestone tracking dashboard
-                  </li>
-                  <li className="flex items-center text-sm text-muted-foreground font-montserrat">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Transparent financial reporting
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* ABOUT Section */}
-      <section id="about" className="py-24 px-4 bg-gradient-elegant">
-        <div className="container mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              About <span className="luxury-text">Luxury Labs</span>
-            </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Luxury Labs is Dubai's premier property investment and transformation platform, specializing in strategic premium properties that deliver exceptional returns. Our expertise combines luxury real estate knowledge with innovative transformation processes.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8 mb-16">
-            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
-                  <Award className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Luxury Design & Project Management Expertise</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Years of experience in Dubai's luxury real estate market with a proven track record of successful transformations.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{
-            animationDelay: '0.1s'
-          }}>
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
-                  <Users className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Premium Network of Luxury Suppliers</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Exclusively serving high-net-worth individuals with personalized investment strategies and white-glove service.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{
-            animationDelay: '0.2s'
-          }}>
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
-                  <TrendingUp className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Real Estate & Investment Expertise</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Target 30%+ ROI through strategic property selection, luxury transformations, and expert market timing.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card group hover:scale-105 transition-all duration-300 animate-fade-in" style={{
-            animationDelay: '0.3s'
-          }}>
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:shadow-glow transition-all duration-300">
-                  <Users className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Strategic Investors Community</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Exclusive network of sophisticated investors collaborating on premium Dubai real estate opportunities.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-          
-          {/* Learn More Button */}
-          <div className="text-center mt-12">
-            <Link to="/about">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg">
-                Learn More
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* PROCESS Section */}
-
-      {/* INVESTORS Section */}
-      <section id="investors" className="py-24 px-4 bg-gradient-elegant">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              Investor <span className="luxury-text">Portal</span>
-            </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
-              Join our exclusive network of high-net-worth investors and access premium property investment opportunities
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Left Column - Ready to Invest + Features */}
-            <div className="space-y-8">
-              {/* Ready to Invest Box */}
-              <div className="text-center">
-                <div className="elegant-card p-8">
-                  <h3 className="text-3xl font-playfair font-bold text-foreground mb-4">Ready to Invest?</h3>
-                  <p className="text-muted-foreground font-montserrat mb-6">
-                    Access our investor dashboard to explore current opportunities and track your portfolio performance.
-                  </p>
-                  <Button asChild size="lg" className="w-full bg-gradient-dark text-primary-glow border border-primary/20 hover:border-primary/40 hover:shadow-glow font-montserrat mb-4">
-                    <Link to="/investors">
-                      <TrendingUp className="mr-2 h-5 w-5" />
-                      Access Investor Portal
-                    </Link>
-                  </Button>
-                  <Button asChild size="lg" className="w-full luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 font-montserrat">
-                    <Link to="/investors">
-                      Learn More
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-
-              {/* Features Section */}
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
-                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Exclusive Access</h3>
-                    <p className="text-muted-foreground font-montserrat">First access to our premium property investment opportunities.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
-                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Transparent Reporting</h3>
-                    <p className="text-muted-foreground font-montserrat">Real-time project updates and detailed financial reporting.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 luxury-gradient rounded-lg flex items-center justify-center mt-1">
-                    <CheckCircle className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Guaranteed Returns</h3>
-                    <p className="text-muted-foreground font-montserrat">Structured investments with minimum return guarantees.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Dashboard Preview */}
-            <div>
-              <div className="luxury-border luxury-shadow bg-card/50 backdrop-blur-sm rounded-lg p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-6 font-playfair text-center">Dashboard Preview</h3>
-                
-                {/* Portfolio Overview */}
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                  <div className="text-center p-4 bg-background rounded-lg border border-border">
-                    <PiggyBank className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <p className="text-lg font-bold text-foreground">AED 2.4M</p>
-                    <p className="text-sm text-muted-foreground">Total Invested</p>
-                  </div>
-                  <div className="text-center p-4 bg-background rounded-lg border border-border">
-                    <TrendingUp className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <p className="text-lg font-bold text-foreground">+18.5%</p>
-                    <p className="text-sm text-muted-foreground">Portfolio ROI</p>
-                  </div>
-                  <div className="text-center p-4 bg-background rounded-lg border border-border">
-                    <Building2 className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <p className="text-lg font-bold text-foreground">5</p>
-                    <p className="text-sm text-muted-foreground">Active Projects</p>
-                  </div>
-                </div>
-
-                {/* Recent Investments */}
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-foreground mb-3">Recent Investments</h4>
-                  <div className="space-y-2">
-                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img src="src/assets/palm-villa-for-sale.jpg" alt="Palm Jumeirah Villa" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
-                      <div className="flex-grow">
-                        <p className="font-medium text-foreground">Palm Jumeirah Villa</p>
-                        <p className="text-sm text-muted-foreground">AED 800K invested</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-bold text-success">+24%</p>
-                        <p className="text-sm text-muted-foreground">8 months</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img src="src/assets/luxury-penthouse.jpg" alt="Marina Penthouse" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
-                      <div className="flex-grow">
-                        <p className="font-medium text-foreground">Marina Penthouse</p>
-                        <p className="text-sm text-muted-foreground">AED 1.2M invested</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-bold text-primary">+12%</p>
-                        <p className="text-sm text-muted-foreground">4 months</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center p-3 bg-background rounded-lg border border-border">
-                      <img src="src/assets/downtown-luxury.jpg" alt="Downtown Apartment" className="w-16 h-16 rounded-lg object-cover mr-3 flex-shrink-0" />
-                      <div className="flex-grow">
-                        <p className="font-medium text-foreground">Downtown Apartment</p>
-                        <p className="text-sm text-muted-foreground">AED 400K invested</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-bold text-warning">+8%</p>
-                        <p className="text-sm text-muted-foreground">2 months</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* PROJECTS Section */}
-      <section id="projects" className="py-24 px-4 bg-background">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              Featured <span className="luxury-text">Projects</span>
-            </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
-              Explore our portfolio of successfully transformed luxury properties across Dubai's most prestigious locations
+            <p className="text-gray-700 font-montserrat text-lg">
+              Discover how we can transform your property and investment goals into reality.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in">
-              <div className="relative h-64 overflow-hidden">
-                <img src={luxuryBuildingImage} alt="Business Bay Luxury Apartment" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <div className="font-bold text-2xl font-playfair drop-shadow-lg">32% ROI</div>
-                </div>
-              </div>
+            {/* Investment Services Card */}
+            <Card className="shadow-lg hover:shadow-xl transition-shadow">
               <CardContent className="p-6">
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Business Bay Luxury Apartment</h3>
-                <p className="text-muted-foreground font-montserrat text-sm mb-4">
-                  Complete transformation of a 2BR apartment with premium finishes and smart home integration.
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-montserrat text-muted-foreground">6 months</span>
-                  <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
+                <div className="flex items-center gap-3 mb-4">
+                  <PiggyBank className="text-primary h-6 w-6" />
+                  <h3 className="text-xl font-semibold text-gray-900 font-playfair">Investment Services</h3>
                 </div>
+                <p className="text-gray-600 font-montserrat text-sm mb-4">
+                  Maximize your returns with our strategic investment opportunities in Dubai's luxury real estate market.
+                </p>
+                <Button variant="secondary" asChild>
+                  <Link to="/services">Explore Investments</Link>
+                </Button>
               </CardContent>
             </Card>
 
-            <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in" style={{
-            animationDelay: '0.1s'
-          }}>
-              <div className="relative h-64 overflow-hidden">
-                <img src={modernArchImage} alt="Downtown Dubai Penthouse" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <div className="font-bold text-2xl font-playfair drop-shadow-lg">45% ROI</div>
-                </div>
-              </div>
+            {/* Transformation Services Card */}
+            <Card className="shadow-lg hover:shadow-xl transition-shadow">
               <CardContent className="p-6">
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Downtown Dubai Penthouse</h3>
-                <p className="text-muted-foreground font-montserrat text-sm mb-4">
-                  Luxury penthouse renovation with panoramic city views and high-end European fixtures.
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-montserrat text-muted-foreground">8 months</span>
-                  <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
+                <div className="flex items-center gap-3 mb-4">
+                  <Zap className="text-primary h-6 w-6" />
+                  <h3 className="text-xl font-semibold text-gray-900 font-playfair">Transformation Services</h3>
                 </div>
+                <p className="text-gray-600 font-montserrat text-sm mb-4">
+                  Transform properties into stunning luxury homes with our expert renovation and design services.
+                </p>
+                <Button variant="secondary" asChild>
+                  <Link to="/services">View Transformations</Link>
+                </Button>
               </CardContent>
             </Card>
 
-            <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in" style={{
-            animationDelay: '0.2s'
-          }}>
-              <div className="relative h-64 overflow-hidden">
-                <img src={premiumTowerImage} alt="Marina Tower Villa" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground font-montserrat">ACTIVE</Badge>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <div className="font-bold text-2xl font-playfair drop-shadow-lg">Est. 38% ROI</div>
-                </div>
-              </div>
+            {/* Advisory Services Card */}
+            <Card className="shadow-lg hover:shadow-xl transition-shadow">
               <CardContent className="p-6">
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Marina Waterfront Villa</h3>
-                <p className="text-muted-foreground font-montserrat text-sm mb-4">
-                  Ongoing transformation of waterfront villa with private beach access and infinity pool.
+                <div className="flex items-center gap-3 mb-4">
+                  <Briefcase className="text-primary h-6 w-6" />
+                  <h3 className="text-xl font-semibold text-gray-900 font-playfair">Advisory Services</h3>
+                </div>
+                <p className="text-gray-600 font-montserrat text-sm mb-4">
+                  Get expert advice on property investments, market trends, and luxury design strategies.
                 </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-montserrat text-muted-foreground">12 months</span>
-                  <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="text-center mt-12 animate-fade-in">
-            <Button asChild size="lg" className="luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 font-montserrat">
-              <Link to="/projects">
-                View Details
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* MEDIA Section */}
-      <section id="media" className="py-24 px-4 bg-gradient-elegant">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              Media & <span className="luxury-text">Recognition</span>
-            </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
-              Featured in leading publications and recognized by industry experts for our innovative approach to luxury property transformation
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {[{
-            name: 'Forbes',
-            logo: forbesLogo
-          }, {
-            name: 'Arabian Business',
-            logo: arabianBusinessLogo
-          }, {
-            name: 'Gulf News',
-            logo: gulfNewsLogo
-          }, {
-            name: 'HGTV',
-            logo: hgtvLogo
-          }].map((publication, index) => <Card key={index} className="elegant-card">
-                <CardContent className="p-6 text-center">
-                  <div className="w-20 h-20 rounded-lg flex items-center justify-center mb-4 mx-auto bg-white/10 backdrop-blur-sm">
-                    <img src={publication.logo} alt={`${publication.name} logo`} className="max-w-16 max-h-16 object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <h3 className="font-playfair font-bold text-foreground mb-2">{publication.name}</h3>
-                  <p className="text-sm text-muted-foreground font-montserrat">Featured Publication</p>
-                </CardContent>
-              </Card>)}
-          </div>
-          
-          {/* Learn More Button */}
-          <div className="text-center mt-12">
-            <Link to="/media">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg">
-                Learn More
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* PARTNERS Section */}
-      <section id="partners" className="py-24 px-4 bg-background">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              Our <span className="luxury-text">Partners</span>
-            </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
-              Collaborating with Dubai's finest architects, designers, and contractors to deliver exceptional results
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="elegant-card">
-              <CardContent className="p-8 text-center">
-                <div className="w-24 h-24 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
-                  <Handshake className="h-12 w-12 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Design Partners</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Award-winning interior designers and architects specializing in luxury residential projects.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="elegant-card">
-              <CardContent className="p-8 text-center">
-                <div className="w-24 h-24 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
-                  <Building2 className="h-12 w-12 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Construction Partners</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Premium construction companies with proven expertise in high-end residential developments.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="elegant-card">
-              <CardContent className="p-8 text-center">
-                <div className="w-24 h-24 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
-                  <Globe className="h-12 w-12 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Global Suppliers</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  International network of premium material suppliers and luxury fixture providers.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-          
-          {/* Learn More Button */}
-          <div className="text-center mt-12">
-            <Link to="/partners">
-              <Button size="lg" className="luxury-button font-montserrat px-8 py-3 text-lg">
-                Learn More
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-
-      {/* CONTACT Section */}
-      <section id="contact" className="py-24 px-4 bg-background">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              Contact <span className="luxury-text">Us</span>
-            </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
-              Ready to transform your next property investment? Get in touch with our team of experts.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="elegant-card">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
-                  <Phone className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Phone</h3>
-                <p className="text-muted-foreground font-montserrat mb-4">Give us a call!</p>
-                <span className="text-primary font-montserrat font-semibold">
-                  +971 55 55 65 345
-                </span>
-              </CardContent>
-            </Card>
-
-            <Card className="elegant-card">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
-                  <Mail className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Email</h3>
-                <p className="text-muted-foreground font-montserrat mb-4">Send us your inquiries</p>
-                <span className="text-primary font-montserrat font-semibold">
-                  info@luxurylabs.ae
-                </span>
-              </CardContent>
-            </Card>
-
-            <Card className="elegant-card">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
-                  <CalendarDays className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Book a Meeting</h3>
-                <p className="text-muted-foreground font-montserrat mb-6">Schedule a consultation</p>
-                <Button asChild className="w-full luxury-gradient hover:luxury-glow font-montserrat">
-                  <Link to="/contact">Schedule Consultation</Link>
+                <Button variant="secondary" asChild>
+                  <Link to="/services">Get Expert Advice</Link>
                 </Button>
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
 
-          <div className="text-center mt-12">
-            <Button asChild size="lg" className="luxury-gradient hover:luxury-glow font-montserrat">
-              <Link to="/contact">
-                Write down your Inquiry
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+      {/* Investment Opportunities Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 font-playfair mb-4">
+              Explore Investment Opportunities
+            </h2>
+            <p className="text-gray-700 font-montserrat text-lg">
+              Discover a range of investment options tailored to your financial goals.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {investmentServices.map((service, index) => (
+              <Card key={index} className="shadow-md hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 font-playfair mb-3">{service.title}</h3>
+                  <p className="text-gray-600 font-montserrat text-sm mb-4">{service.description}</p>
+                  <div className="flex flex-col gap-2">
+                    {service.buttons.map((button, btnIndex) => (
+                      <Button
+                        key={btnIndex}
+                        variant={btnIndex === 0 ? "primary" : "outline"}
+                        asChild={button.href !== '#'}
+                        disabled={button.disabled}
+                        onClick={button.action === 'assessment' ? handleAssessmentClick : undefined}
+                      >
+                        {button.href !== '#' ? <Link to={button.href}>{button.text}</Link> : button.text}
+                      </Button>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* MEDIA PARTNERS Section */}
-      <section className="py-16 px-4 bg-gradient-elegant border-t border-muted">
-        <div className="container mx-auto">
-          <div className="text-center">
-            <h3 className="text-2xl font-playfair font-bold text-foreground mb-8">
-              Our <span className="luxury-text">Media Partner</span>
-            </h3>
-            <div className="flex justify-center items-center">
-              <a href="https://www.youtube.com/@FlippingDubai" target="_blank" rel="noopener noreferrer" className="group hover:scale-105 transition-all duration-300">
-                <img src={flippingDubaiLogo} alt="Flipping Dubai - YouTube Channel" className="h-16 object-contain drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-300" />
-              </a>
-            </div>
-            <p className="text-muted-foreground font-montserrat text-sm mt-4 max-w-2xl mx-auto">
-              Follow our transformation journeys and investment insights on <a href="https://www.youtube.com/@FlippingDubai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">Flipping Dubai YouTube Channel</a>
+      {/* Transformation Showcase Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 font-playfair mb-4">
+              Luxury Transformation Showcase
+            </h2>
+            <p className="text-gray-700 font-montserrat text-lg">
+              Witness the stunning transformations we've achieved for our clients.
             </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Transformation Example 1 */}
+            <Card className="shadow-md hover:shadow-lg transition-shadow">
+              <img
+                src={beforeAfterTransformationImage}
+                alt="Property Transformation"
+                className="rounded-md object-cover h-64 w-full"
+              />
+              <CardContent className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 font-playfair mb-2">
+                  Before & After: Modern Villa Renovation
+                </h3>
+                <p className="text-gray-600 font-montserrat text-sm">
+                  A complete overhaul of a traditional villa into a modern, luxurious living space.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Transformation Example 2 */}
+            <Card className="shadow-md hover:shadow-lg transition-shadow">
+              <img
+                src={propertyFlippingTransformation}
+                alt="Property Transformation"
+                className="rounded-md object-cover h-64 w-full"
+              />
+              <CardContent className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 font-playfair mb-2">
+                  Apartment Flipping: Urban Oasis
+                </h3>
+                <p className="text-gray-600 font-montserrat text-sm">
+                  Strategic renovation and design to maximize property value and appeal.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Transformation Example 3 */}
+            <Card className="shadow-md hover:shadow-lg transition-shadow">
+              <img
+                src={endToEndRenovation}
+                alt="Property Transformation"
+                className="rounded-md object-cover h-64 w-full"
+              />
+              <CardContent className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 font-playfair mb-2">
+                  End-to-End Renovation: Luxury Finishes
+                </h3>
+                <p className="text-gray-600 font-montserrat text-sm">
+                  High-end finishes and bespoke design elements create a truly luxurious living experience.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 font-playfair mb-4">
+              What Our Clients Say
+            </h2>
+            <p className="text-gray-700 font-montserrat text-lg">
+              Read testimonials from satisfied clients who have achieved their investment and transformation goals with us.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Testimonial 1 */}
+            <Card className="shadow-md hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="mb-4">
+                  <Star className="text-yellow-500 inline-block mr-1" size={16} />
+                  <Star className="text-yellow-500 inline-block mr-1" size={16} />
+                  <Star className="text-yellow-500 inline-block mr-1" size={16} />
+                  <Star className="text-yellow-500 inline-block mr-1" size={16} />
+                  <Star className="text-yellow-500 inline-block mr-1" size={16} />
+                </div>
+                <p className="text-gray-700 font-montserrat text-sm italic mb-4">
+                  "Luxury Labs transformed my property into a stunning masterpiece. Their attention to detail and commitment to quality are unmatched."
+                </p>
+                <p className="text-gray-900 font-semibold font-playfair">- Aisha Al Maktoum</p>
+              </CardContent>
+            </Card>
+
+            {/* Testimonial 2 */}
+            <Card className="shadow-md hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="mb-4">
+                  <Star className="text-yellow-500 inline-block mr-1" size={16} />
+                  <Star className="text-yellow-500 inline-block mr-1" size={16} />
+                  <Star className="text-yellow-500 inline-block mr-1" size={16} />
+                  <Star className="text-yellow-500 inline-block mr-1" size={16} />
+                  <Star className="text-yellow-500 inline-block mr-1" size={16} />
+                </div>
+                <p className="text-gray-700 font-montserrat text-sm italic mb-4">
+                  "I've seen exceptional returns on my investments thanks to Luxury Labs' strategic approach and market expertise."
+                </p>
+                <p className="text-gray-900 font-semibold font-playfair">- Rashid Al Falasi</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 font-playfair mb-4">
+              Our Esteemed Partners
+            </h2>
+            <p className="text-gray-700 font-montserrat text-lg">
+              We collaborate with leading brands to deliver exceptional quality and luxury.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            <img src={barovieToso} alt="Barovier&Toso" className="h-12 w-auto object-contain grayscale opacity-70 hover:opacity-100 transition-opacity" />
+            <img src={boseLogo} alt="Bose" className="h-12 w-auto object-contain grayscale opacity-70 hover:opacity-100 transition-opacity" />
+            <img src={espaceLogo} alt="Espace" className="h-12 w-auto object-contain grayscale opacity-70 hover:opacity-100 transition-opacity" />
+            <img src={linealightLogo} alt="Linealight" className="h-12 w-auto object-contain grayscale opacity-70 hover:opacity-100 transition-opacity" />
+            <img src={prestigeLogo} alt="Prestige" className="h-12 w-auto object-contain grayscale opacity-70 hover:opacity-100 transition-opacity" />
+            <img src={venetacucineLogo} alt="Veneta Cucine" className="h-12 w-auto object-contain grayscale opacity-70 hover:opacity-100 transition-opacity" />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Us Section */}
+      <section className="py-24 bg-primary text-white">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-bold font-playfair mb-6">
+                Ready to Transform Your Property or Investment Portfolio?
+              </h2>
+              <p className="text-lg font-montserrat mb-8">
+                Contact us today to discuss your project and explore the possibilities.
+              </p>
+              <Button variant="secondary" size="lg" asChild>
+                <Link to="/contact">Get in Touch</Link>
+              </Button>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={investmentPartnershipImage}
+                alt="Contact Luxury Labs"
+                className="rounded-lg shadow-xl"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -1023,149 +508,73 @@ export default function Landing() {
           </div>
 
           <div className="border-t border-secondary-foreground/20 mt-12 pt-8 text-center">
-            <p className="text-secondary-foreground/60 font-montserrat text-sm">© © 2025 Luxury Labs. All rights reserved. Licensed by Dubai Land Department (DLD).
-
-          </p>
+            <p className="text-secondary-foreground/60 font-montserrat text-sm">© 2025 Luxury Labs. All rights reserved. Licensed by Dubai Land Department (DLD).</p>
           </div>
         </div>
       </footer>
 
       {/* Legal Modals */}
       <Dialog open={privacyOpen} onOpenChange={setPrivacyOpen}>
-        <DialogContent className="max-w-3xl bg-card border border-border">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>Privacy Policy</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
-            <p>Effective Date: {new Date().toLocaleDateString()}</p>
-            <section>
-              <h3 className="text-foreground font-semibold">Information Collection and Usage</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Personal Information (name, email, phone, address)</li>
-                <li>Investment preferences and financial data</li>
-              </ul>
-              <p className="mt-2">Data usage includes: providing and improving our services, communicating offers and updates, and compliance/security purposes.</p>
-            </section>
-            <section>
-              <h3 className="text-foreground font-semibold">Sharing Information</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>With legal authorities if required</li>
-                <li>Third-party service providers under confidentiality</li>
-              </ul>
-            </section>
-            <section>
-              <h3 className="text-foreground font-semibold">Data Security</h3>
-              <p>We implement stringent measures to secure your data against unauthorized access or misuse.</p>
-            </section>
-            <section>
-              <h3 className="text-foreground font-semibold">Your Rights</h3>
-              <p>You can access, correct, or delete your personal data by contacting us at privacy@luxurylabs.ae.</p>
-            </section>
-          </div>
+          <p className="font-montserrat text-sm">
+            This Privacy Policy describes how Luxury Labs collects, uses, and shares information about you when you use our website.
+          </p>
+          <Button className="mt-4" onClick={() => setPrivacyOpen(false)}>Close</Button>
         </DialogContent>
       </Dialog>
 
       <Dialog open={termsOpen} onOpenChange={setTermsOpen}>
-        <DialogContent className="max-w-3xl bg-card border border-border">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>Terms of Service</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
-            <p>Effective Date: {new Date().toLocaleDateString()}</p>
-            <section>
-              <h3 className="text-foreground font-semibold">Services Offered</h3>
-              <p>Luxury Labs provides real estate investment, design, renovation, and advisory services. Website content is informational and not binding contractual advice.</p>
-            </section>
-            <section>
-              <h3 className="text-foreground font-semibold">User Obligations</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Provide accurate and updated information</li>
-                <li>Use our services lawfully and ethically</li>
-              </ul>
-            </section>
-            <section>
-              <h3 className="text-foreground font-semibold">Intellectual Property</h3>
-              <p>All website content is the intellectual property of Luxury Labs LLC.</p>
-            </section>
-            <section>
-              <h3 className="text-foreground font-semibold">Limitation of Liability</h3>
-              <p>Luxury Labs LLC shall not be liable for indirect or consequential losses from use or inability to use our website or services.</p>
-            </section>
-            <section>
-              <h3 className="text-foreground font-semibold">Governing Law</h3>
-              <p>These Terms are governed by the laws of Dubai and the UAE.</p>
-            </section>
-          </div>
+          <p className="font-montserrat text-sm">
+            These Terms of Service govern your use of the Luxury Labs website and services.
+          </p>
+          <Button className="mt-4" onClick={() => setTermsOpen(false)}>Close</Button>
         </DialogContent>
       </Dialog>
 
       <Dialog open={disclaimerOpen} onOpenChange={setDisclaimerOpen}>
-        <DialogContent className="max-w-3xl bg-card border border-border">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>Investment Disclaimer</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
-            <section>
-              <p><strong>Investment in real estate carries inherent risks.</strong> Information provided by Luxury Labs LLC does not constitute financial or investment advice. Past performance is not indicative of future results. Conduct thorough due diligence and consult a financial advisor before investing.</p>
-              <p className="mt-2">Luxury Labs LLC is not liable for investment decisions based on information provided.</p>
-            </section>
-          </div>
+          <p className="font-montserrat text-sm">
+            Investments in real estate carry inherent risks. Luxury Labs is not responsible for any financial losses.
+          </p>
+          <Button className="mt-4" onClick={() => setDisclaimerOpen(false)}>Close</Button>
         </DialogContent>
       </Dialog>
 
       <Dialog open={legalNoticeOpen} onOpenChange={setLegalNoticeOpen}>
-        <DialogContent className="max-w-3xl bg-card border border-border">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>Legal Notice</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
-            <section>
-              <h3 className="text-foreground font-semibold">Company Information</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li><strong>Company Name:</strong> Luxury Labs LLC</li>
-                <li><strong>Registered Office:</strong> [Insert Registered Address, Dubai, UAE]</li>
-                <li><strong>Trade License Number:</strong> [Insert License Number]</li>
-                <li><strong>Jurisdiction:</strong> Dubai, United Arab Emirates</li>
-                <li><strong>Email:</strong> info@luxurylabs.ae</li>
-              </ul>
-            </section>
-            <section>
-              <h3 className="text-foreground font-semibold">Legal Framework</h3>
-              <p>Luxury Labs LLC operates under the laws of the United Arab Emirates and Dubai jurisdiction.</p>
-            </section>
-          </div>
+          <p className="font-montserrat text-sm">
+            © 2025 Luxury Labs. All rights reserved.
+          </p>
+          <Button className="mt-4" onClick={() => setLegalNoticeOpen(false)}>Close</Button>
         </DialogContent>
       </Dialog>
 
       <Dialog open={cookieOpen} onOpenChange={setCookieOpen}>
-        <DialogContent className="max-w-3xl bg-card border border-border">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>Cookie Policy</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
-            <p>Effective Date: {new Date().toLocaleDateString()}</p>
-            <section>
-              <h3 className="text-foreground font-semibold">What Are Cookies?</h3>
-              <p>Cookies are small data files placed on your device when you visit our website.</p>
-            </section>
-            <section>
-              <h3 className="text-foreground font-semibold">How We Use Cookies</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Essential Cookies</li>
-                <li>Performance Cookies</li>
-                <li>Functional Cookies</li>
-                <li>Advertising Cookies</li>
-              </ul>
-            </section>
-            <section>
-              <h3 className="text-foreground font-semibold">Managing Cookies</h3>
-              <p>You may disable cookies through your browser settings; this may affect website functionality.</p>
-            </section>
-          </div>
+          <p className="font-montserrat text-sm">
+            This website uses cookies to enhance user experience.
+          </p>
+          <Button className="mt-4" onClick={() => setCookieOpen(false)}>Close</Button>
         </DialogContent>
       </Dialog>
 
       {/* Investor Assessment Modal */}
-      <InvestorAssessmentModal open={showInvestorAssessment} onOpenChange={setShowInvestorAssessment} />
+      <InvestorAssessmentModal open={showInvestorAssessment} setOpen={setShowInvestorAssessment} />
     </div>;
 }
