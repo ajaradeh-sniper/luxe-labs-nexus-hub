@@ -205,7 +205,10 @@ export default function Landing() {
                     </div>
                   </div>
                   
-                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => { console.log('Landing: Open Investor Assessment'); setShowInvestorAssessment(true); }}>
+                  <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat group/btn" onClick={() => {
+                  console.log('Landing: Open Investor Assessment');
+                  setShowInvestorAssessment(true);
+                }}>
                     Start Investor Assessment
                     <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
@@ -990,19 +993,39 @@ export default function Landing() {
             <div>
               <h4 className="font-bold text-secondary-foreground font-playfair mb-4">Legal</h4>
               <ul className="space-y-2 font-montserrat text-sm">
-                <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setPrivacyOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Privacy Policy</button></li>
-                <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setTermsOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Terms of Service</button></li>
-                <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDisclaimerOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Investment Disclaimer</button></li>
-                <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLegalNoticeOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Legal Notice</button></li>
-                <li><button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCookieOpen(true); }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Cookie Policy</button></li>
+                <li><button type="button" onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setPrivacyOpen(true);
+                }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Privacy Policy</button></li>
+                <li><button type="button" onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setTermsOpen(true);
+                }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Terms of Service</button></li>
+                <li><button type="button" onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setDisclaimerOpen(true);
+                }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Investment Disclaimer</button></li>
+                <li><button type="button" onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setLegalNoticeOpen(true);
+                }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Legal Notice</button></li>
+                <li><button type="button" onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setCookieOpen(true);
+                }} className="text-secondary-foreground/80 hover:text-primary transition-colors">Cookie Policy</button></li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-secondary-foreground/20 mt-12 pt-8 text-center">
-            <p className="text-secondary-foreground/60 font-montserrat text-sm">
-              © 2025 Luxury Labs. All rights reserved. Licensed by RERA.
-            </p>
+            <p className="text-secondary-foreground/60 font-montserrat text-sm">© © 2025 Luxury Labs. All rights reserved. Licensed by Dubai Land Department (DLD).
+
+          </p>
           </div>
         </div>
       </footer>
