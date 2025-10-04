@@ -13,7 +13,9 @@ import dubaiMarinaImage from "@/assets/dubai-marina-luxury.jpg";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 const Contact = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -77,7 +79,6 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       const emailHtml = `
         <h2>New Contact Form Submission</h2>
@@ -89,8 +90,9 @@ const Contact = () => {
         <p><strong>Message:</strong></p>
         <p>${formData.message}</p>
       `;
-
-      const { error } = await supabase.functions.invoke('send-email', {
+      const {
+        error
+      } = await supabase.functions.invoke('send-email', {
         body: {
           to: 'info@luxurylabs.ae',
           subject: `New Contact Form Submission from ${formData.name}`,
@@ -98,14 +100,11 @@ const Contact = () => {
           reply_to: formData.email
         }
       });
-
       if (error) throw error;
-
       toast({
         title: 'Message Sent!',
-        description: 'Thank you for contacting us. We\'ll get back to you within 24 hours.',
+        description: 'Thank you for contacting us. We\'ll get back to you within 24 hours.'
       });
-
       setFormData({
         name: '',
         email: '',
@@ -283,11 +282,10 @@ const Contact = () => {
                 </p>
               </CardHeader>
               <CardContent>
-                <div 
-                  className="calendly-inline-widget" 
-                  data-url="https://calendly.com/ali-luxurylabs" 
-                  style={{ minWidth: '320px', height: '700px' }}
-                />
+                <div className="calendly-inline-widget" data-url="https://calendly.com/ali-luxurylabs" style={{
+                minWidth: '320px',
+                height: '700px'
+              }} />
               </CardContent>
             </Card>
           </div>
@@ -307,7 +305,7 @@ const Contact = () => {
               <CardContent>
                 <div className="space-y-1">
                   <p className="text-sm text-muted-foreground">Luxury Labs Real Estate Transformation FZO</p>
-                  <p className="text-sm text-muted-foreground">Business Bay, Dubai</p>
+                  <p className="text-sm text-muted-foreground">UAE - Dubai</p>
                   <p className="text-sm text-muted-foreground">United Arab Emirates</p>
                 </div>
               </CardContent>
@@ -319,32 +317,20 @@ const Contact = () => {
                 <CardTitle>Quick Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button 
-                  className="w-full" 
-                  variant="outline"
-                  onClick={() => window.location.href = 'mailto:info@luxurylabs.ae'}
-                >
+                <Button className="w-full" variant="outline" onClick={() => window.location.href = 'mailto:info@luxurylabs.ae'}>
                   <Mail className="mr-2 h-4 w-4" />
                   Email us: info@luxurylabs.ae
                 </Button>
-                <Button 
-                  className="w-full" 
-                  variant="outline"
-                  onClick={() => window.location.href = 'tel:+971555565345'}
-                >
+                <Button className="w-full" variant="outline" onClick={() => window.location.href = 'tel:+971555565345'}>
                   <Phone className="mr-2 h-4 w-4" />
                   Call us: +971 55 556 5345
                 </Button>
-                <Button 
-                  className="w-full" 
-                  variant="outline"
-                  onClick={() => {
-                    document.querySelector('.calendly-inline-widget')?.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'center'
-                    });
-                  }}
-                >
+                <Button className="w-full" variant="outline" onClick={() => {
+                document.querySelector('.calendly-inline-widget')?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
+                });
+              }}>
                   <Clock className="mr-2 h-4 w-4" />
                   Schedule Consultation
                 </Button>
