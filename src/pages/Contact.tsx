@@ -436,7 +436,7 @@ const Contact = () => {
 
             <div className="border-t border-secondary-foreground/20 mt-12 pt-8 text-center">
               <p className="text-secondary-foreground/60 font-montserrat text-sm">
-                © 2025 Luxury Labs. All rights reserved. Licensed by RERA.
+                © 2025 Luxury Labs. All rights reserved. Licensed by Dubai Land Department (DLD).
               </p>
             </div>
           </div>
