@@ -305,7 +305,7 @@ const Contact = () => {
               <CardContent>
                 <div className="space-y-1">
                   <p className="text-sm text-muted-foreground">Luxury Labs Real Estate Transformation FZO</p>
-                  <p className="text-sm text-muted-foreground">UAE - Dubai</p>
+                  <p className="text-sm text-muted-foreground">Dubai Silicon Oasis Freezone</p>
                   <p className="text-sm text-muted-foreground">United Arab Emirates</p>
                 </div>
               </CardContent>
