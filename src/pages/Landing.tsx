@@ -136,6 +136,19 @@ export default function Landing() {
           backgroundRepeat: 'no-repeat'
         }} />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/60"></div>
+          
+          {/* Our Services Button */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary hover:text-white transition-all duration-300"
+              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Our Services
+              <ChevronDown className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
         </div>
 
         {/* Floating Elements */}
