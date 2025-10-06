@@ -36,7 +36,7 @@ import hnwiConciergeAcquisition from "@/assets/hnwi-concierge-acquisition.jpg";
 import premiumPropertySelection from "@/assets/premium-property-selection.jpg";
 import signatureTransformation from "@/assets/signature-transformation.jpg";
 import exceptionalRoi from "@/assets/exceptional-roi.jpg";
-import transparentMonitoring from "@/assets/transparent-monitoring.jpg";
+import transparentMonitoring from "@/assets/smart-home-monitoring.png";
 import barovieToso from "@/assets/barovie-toso-logo.png";
 import boseLogo from "@/assets/bose-logo.png";
 import espaceLogo from "@/assets/espace-logo.png";
