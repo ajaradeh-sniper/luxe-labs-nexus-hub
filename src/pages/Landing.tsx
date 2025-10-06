@@ -33,6 +33,10 @@ import diversifiedPortfolioFund from "@/assets/diversified-portfolio-fund.jpg";
 import realEstateConsultationAdvisory from "@/assets/real-estate-consultation-advisory.jpg";
 import endToEndRenovation from "@/assets/end-to-end-renovation.jpg";
 import hnwiConciergeAcquisition from "@/assets/hnwi-concierge-acquisition.jpg";
+import premiumPropertySelection from "@/assets/premium-property-selection.jpg";
+import signatureTransformation from "@/assets/signature-transformation.jpg";
+import exceptionalRoi from "@/assets/exceptional-roi.jpg";
+import transparentMonitoring from "@/assets/transparent-monitoring.jpg";
 import barovieToso from "@/assets/barovie-toso-logo.png";
 import boseLogo from "@/assets/bose-logo.png";
 import espaceLogo from "@/assets/espace-logo.png";
@@ -349,11 +353,16 @@ export default function Landing() {
 
           <div className="grid md:grid-cols-4 gap-8">
             {/* Unique Properties Selection */}
-            <Card className="elegant-card group">
+            <Card className="elegant-card group overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={premiumPropertySelection} 
+                  alt="Premium Properties Selection" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+              </div>
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6">
-                  <Building2 className="h-8 w-8 text-white" />
-                </div>
                 <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
                   Premium Properties Selection
                 </h3>
@@ -378,11 +387,16 @@ export default function Landing() {
             </Card>
 
             {/* Luxury Transformation */}
-            <Card className="elegant-card group">
+            <Card className="elegant-card group overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={signatureTransformation} 
+                  alt="LL Signature Transformation" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+              </div>
               <CardContent className="p-8">
-                <div className="w-16 h-16 luxury-gradient rounded-xl flex items-center justify-center mb-6">
-                  <div className="text-primary-foreground font-bold text-xl font-playfair">LL</div>
-                </div>
                 <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
                   LL Signature Transformation
                 </h3>
@@ -407,11 +421,16 @@ export default function Landing() {
             </Card>
 
             {/* Exceptional Returns */}
-            <Card className="elegant-card group">
+            <Card className="elegant-card group overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={exceptionalRoi} 
+                  alt="Exceptional Returns on Investment" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+              </div>
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mb-6">
-                  <div className="text-white font-bold text-2xl font-playfair">%</div>
-                </div>
                 <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
                   Exceptional Returns on Investment
                 </h3>
@@ -436,11 +455,16 @@ export default function Landing() {
             </Card>
 
             {/* Transparent Progress Monitoring */}
-            <Card className="elegant-card group">
+            <Card className="elegant-card group overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={transparentMonitoring} 
+                  alt="Transparent & Live Progress Monitoring" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+              </div>
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6">
-                  <Eye className="h-8 w-8 text-white" />
-                </div>
                 <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
                   Transparent & Live Progress Monitoring
                 </h3>
@@ -458,7 +482,7 @@ export default function Landing() {
                   </li>
                   <li className="flex items-center text-sm text-muted-foreground font-montserrat">
                     <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                    Transparent financial reporting
+                    Detailed financial reporting
                   </li>
                 </ul>
               </CardContent>
