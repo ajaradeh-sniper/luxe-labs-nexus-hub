@@ -355,7 +355,7 @@ const Contact = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <ScrollArea className="h-96">
+                <ScrollArea className="h-[700px]">
                   {filteredFAQs.length > 0 ? <div className="space-y-4">
                       {filteredFAQs.map((category, categoryIndex) => <div key={categoryIndex}>
                           <div className="flex items-center gap-2 mb-3">
