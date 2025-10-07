@@ -710,6 +710,7 @@ export default function Landing() {
             <Card className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in">
               <div className="relative h-64 overflow-hidden">
                 <img src={luxuryBuildingImage} alt="Business Bay Luxury Apartment" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
                 <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="font-bold text-2xl font-playfair drop-shadow-lg">32% ROI</div>
@@ -732,6 +733,7 @@ export default function Landing() {
           }}>
               <div className="relative h-64 overflow-hidden">
                 <img src={modernArchImage} alt="Downtown Dubai Penthouse" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
                 <Badge className="absolute top-4 right-4 luxury-gradient text-primary-foreground font-montserrat">SOLD</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="font-bold text-2xl font-playfair drop-shadow-lg">45% ROI</div>
@@ -754,6 +756,7 @@ export default function Landing() {
           }}>
               <div className="relative h-64 overflow-hidden">
                 <img src={premiumTowerImage} alt="Marina Tower Villa" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
                 <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground font-montserrat">ACTIVE</Badge>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="font-bold text-2xl font-playfair drop-shadow-lg">Est. 38% ROI</div>
