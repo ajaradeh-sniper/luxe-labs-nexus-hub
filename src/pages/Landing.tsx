@@ -773,7 +773,7 @@ export default function Landing() {
           </div>
 
           <div className="text-center mt-12 animate-fade-in">
-            <Button asChild size="lg" className="luxury-gradient hover:luxury-glow hover:scale-105 transition-all duration-300 font-montserrat">
+            <Button asChild size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg">
               <Link to="/projects">
                 View Details
                 <ArrowRight className="ml-2 h-5 w-5" />
