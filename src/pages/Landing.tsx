@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp, PiggyBank, Eye, DollarSign, Home, BarChart3, Shield, Briefcase, HeartHandshake, Zap, CalendarDays } from "lucide-react";
+import { Building2, LayoutDashboard, Phone, Mail, MapPin, Users, Award, TrendingUp, Star, CheckCircle, ArrowRight, Handshake, Globe, Palette, ChevronDown, ChevronUp, PiggyBank, Eye, DollarSign, Home, BarChart3, Shield, Briefcase, HeartHandshake, Zap, CalendarDays, Play } from "lucide-react";
 import { InvestorAssessmentModal } from "@/components/modals/InvestorAssessmentModal";
 import luxuryLabsLogo from "@/assets/luxury-labs-logo.png";
 import heroImage from "/lovable-uploads/d4ad1a46-cb19-4670-bb37-9f665291308a.png";
@@ -43,10 +43,6 @@ import espaceLogo from "@/assets/espace-logo.png";
 import linealightLogo from "@/assets/linealight-logo.png";
 import prestigeLogo from "@/assets/prestige-logo.png";
 import venetacucineLogo from "@/assets/venetacucine-logo.png";
-import forbesLogo from "@/assets/forbes-logo.png";
-import arabianBusinessLogo from "@/assets/arabian-business-logo.png";
-import gulfNewsLogo from "@/assets/gulf-news-logo.png";
-import hgtvLogo from "@/assets/hgtv-logo.png";
 export default function Landing() {
   const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
   const [showTransformationDropdown, setShowTransformationDropdown] = useState(false);
@@ -798,28 +794,29 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
-            {[{
-            name: 'Forbes',
-            logo: forbesLogo
-          }, {
-            name: 'Arabian Business',
-            logo: arabianBusinessLogo
-          }, {
-            name: 'Gulf News',
-            logo: gulfNewsLogo
-          }, {
-            name: 'HGTV',
-            logo: hgtvLogo
-          }].map((publication, index) => <Card key={index} className="elegant-card">
-                <CardContent className="p-6 text-center">
-                  <div className="w-20 h-20 rounded-lg flex items-center justify-center mb-4 mx-auto bg-white/10 backdrop-blur-sm">
-                    <img src={publication.logo} alt={`${publication.name} logo`} className="max-w-16 max-h-16 object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300" />
+          <div className="max-w-5xl mx-auto">
+            <Card className="elegant-card overflow-hidden">
+              <CardContent className="p-0">
+                <div
+                  className="relative h-96 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center cursor-pointer group overflow-hidden rounded-lg"
+                  onClick={() => window.open('https://www.youtube.com/watch?v=D2HrgCFYNv4', '_blank')}
+                >
+                  <img 
+                    src="https://img.youtube.com/vi/D2HrgCFYNv4/maxresdefault.jpg"
+                    alt="Downtown Transformation Video Thumbnail"
+                    className="absolute inset-0 w-full h-full object-contain"
+                  />
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+                  <div className="relative z-10 text-center">
+                    <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                      <Play className="h-8 w-8 text-primary-foreground ml-1" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2 font-playfair drop-shadow-lg">Featured: JW Marriot, Marina, Dubai</h3>
+                    <p className="text-white font-montserrat drop-shadow-md">Watch our latest luxury property transformation at JW Marriot Marina</p>
                   </div>
-                  <h3 className="font-playfair font-bold text-foreground mb-2">{publication.name}</h3>
-                  <p className="text-sm text-muted-foreground font-montserrat">Featured Publication</p>
-                </CardContent>
-              </Card>)}
+                </div>
+              </CardContent>
+            </Card>
           </div>
           
           {/* Learn More Button */}
