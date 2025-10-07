@@ -143,12 +143,9 @@ export default function Landing() {
           
           {/* Our Services Button */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary hover:text-white transition-all duration-300"
-              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-            >
+            <Button variant="outline" size="lg" className="bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary hover:text-white transition-all duration-300" onClick={() => document.getElementById('services')?.scrollIntoView({
+            behavior: 'smooth'
+          })}>
               Our Services
               <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
@@ -355,11 +352,7 @@ export default function Landing() {
             {/* Unique Properties Selection */}
             <Card className="elegant-card group overflow-hidden">
               <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={premiumPropertySelection} 
-                  alt="Premium Properties Selection" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
+                <img src={premiumPropertySelection} alt="Premium Properties Selection" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
               </div>
               <CardContent className="p-8">
@@ -389,11 +382,7 @@ export default function Landing() {
             {/* Luxury Transformation */}
             <Card className="elegant-card group overflow-hidden">
               <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={signatureTransformation} 
-                  alt="LL Signature Transformation" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
+                <img src={signatureTransformation} alt="LL Signature Transformation" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
               </div>
               <CardContent className="p-8">
@@ -423,11 +412,7 @@ export default function Landing() {
             {/* Exceptional Returns */}
             <Card className="elegant-card group overflow-hidden">
               <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={exceptionalRoi} 
-                  alt="Exceptional Returns on Investment" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
+                <img src={exceptionalRoi} alt="Exceptional Returns on Investment" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
               </div>
               <CardContent className="p-8">
@@ -457,11 +442,7 @@ export default function Landing() {
             {/* Transparent Progress Monitoring */}
             <Card className="elegant-card group overflow-hidden">
               <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={transparentMonitoring} 
-                  alt="Transparent & Live Progress Monitoring" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
+                <img src={transparentMonitoring} alt="Transparent & Live Progress Monitoring" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
               </div>
               <CardContent className="p-8">
@@ -851,66 +832,7 @@ export default function Landing() {
       </section>
 
       {/* PARTNERS Section */}
-      <section id="partners" className="py-24 px-4 bg-background">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              Our <span className="luxury-text">Partners</span>
-            </h2>
-            <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
-              Collaborating with Dubai's finest architects, designers, and contractors to deliver exceptional results
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="elegant-card">
-              <CardContent className="p-8 text-center">
-                <div className="w-24 h-24 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
-                  <Handshake className="h-12 w-12 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Design Partners</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Award-winning interior designers and architects specializing in luxury residential projects.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="elegant-card">
-              <CardContent className="p-8 text-center">
-                <div className="w-24 h-24 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
-                  <Building2 className="h-12 w-12 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Construction Partners</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  Premium construction companies with proven expertise in high-end residential developments.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="elegant-card">
-              <CardContent className="p-8 text-center">
-                <div className="w-24 h-24 luxury-gradient rounded-xl flex items-center justify-center mb-6 mx-auto">
-                  <Globe className="h-12 w-12 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Global Suppliers</h3>
-                <p className="text-muted-foreground font-montserrat leading-relaxed">
-                  International network of premium material suppliers and luxury fixture providers.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-          
-          {/* Learn More Button */}
-          <div className="text-center mt-12">
-            <Link to="/partners">
-              <Button size="lg" className="luxury-button font-montserrat px-8 py-3 text-lg">
-                Learn More
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      
 
 
       {/* CONTACT Section */}
