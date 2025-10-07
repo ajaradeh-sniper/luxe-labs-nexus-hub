@@ -920,7 +920,7 @@ export default function Landing() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-16 w-auto" />
+                <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-64 w-auto" />
               </div>
               <p className="text-secondary-foreground/80 font-montserrat text-sm">
                 Dubai's premier property investment and transformation platform.
