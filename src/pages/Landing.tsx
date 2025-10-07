@@ -143,7 +143,7 @@ export default function Landing() {
           
           {/* Our Services Button */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-            <Button variant="outline" size="lg" className="bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary hover:text-white transition-all duration-300" onClick={() => document.getElementById('services')?.scrollIntoView({
+            <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-foreground font-semibold font-montserrat px-8 py-3 text-lg" onClick={() => document.getElementById('services')?.scrollIntoView({
             behavior: 'smooth'
           })}>
               Our Services
