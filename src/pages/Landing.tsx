@@ -819,6 +819,21 @@ export default function Landing() {
             </Card>
           </div>
           
+          {/* Our Media Partner */}
+          <div className="text-center mt-16 mb-8">
+            <h3 className="text-2xl font-playfair font-bold text-foreground mb-8">
+              Our <span className="luxury-text">Media Partner</span>
+            </h3>
+            <div className="flex justify-center items-center">
+              <a href="https://www.youtube.com/@FlippingDubai" target="_blank" rel="noopener noreferrer" className="group hover:scale-105 transition-all duration-300">
+                <img src={flippingDubaiLogo} alt="Flipping Dubai - YouTube Channel" className="h-16 object-contain drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-300" />
+              </a>
+            </div>
+            <p className="text-muted-foreground font-montserrat text-sm mt-4 max-w-2xl mx-auto">
+              Follow our transformation journeys and investment insights on <a href="https://www.youtube.com/@FlippingDubai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">Flipping Dubai YouTube Channel</a>
+            </p>
+          </div>
+          
           {/* Learn More Button */}
           <div className="text-center mt-12">
             <Link to="/media">
@@ -895,25 +910,6 @@ export default function Landing() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* MEDIA PARTNERS Section */}
-      <section className="py-16 px-4 bg-gradient-elegant border-t border-muted">
-        <div className="container mx-auto">
-          <div className="text-center">
-            <h3 className="text-2xl font-playfair font-bold text-foreground mb-8">
-              Our <span className="luxury-text">Media Partner</span>
-            </h3>
-            <div className="flex justify-center items-center">
-              <a href="https://www.youtube.com/@FlippingDubai" target="_blank" rel="noopener noreferrer" className="group hover:scale-105 transition-all duration-300">
-                <img src={flippingDubaiLogo} alt="Flipping Dubai - YouTube Channel" className="h-16 object-contain drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-300" />
-              </a>
-            </div>
-            <p className="text-muted-foreground font-montserrat text-sm mt-4 max-w-2xl mx-auto">
-              Follow our transformation journeys and investment insights on <a href="https://www.youtube.com/@FlippingDubai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">Flipping Dubai YouTube Channel</a>
-            </p>
           </div>
         </div>
       </section>
