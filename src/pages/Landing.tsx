@@ -412,9 +412,7 @@ export default function Landing() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
               </div>
               <CardContent className="p-8">
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-                  Exceptional RoI & Apprecation Value to property
-                </h3>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Exceptional RoI & Apprecation Value</h3>
                 <p className="text-muted-foreground font-montserrat leading-relaxed mb-6">
                   Where investments reach new heights. Our strategic approach delivers superior ROI through careful market timing, premium transformations, and expert sales execution.
                 </p>
@@ -797,15 +795,8 @@ export default function Landing() {
           <div className="max-w-5xl mx-auto">
             <Card className="elegant-card overflow-hidden">
               <CardContent className="p-0">
-                <div
-                  className="relative h-96 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center cursor-pointer group overflow-hidden rounded-lg"
-                  onClick={() => window.open('https://www.youtube.com/watch?v=D2HrgCFYNv4', '_blank')}
-                >
-                  <img 
-                    src="https://img.youtube.com/vi/D2HrgCFYNv4/maxresdefault.jpg"
-                    alt="Downtown Transformation Video Thumbnail"
-                    className="absolute inset-0 w-full h-full object-contain"
-                  />
+                <div className="relative h-96 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center cursor-pointer group overflow-hidden rounded-lg" onClick={() => window.open('https://www.youtube.com/watch?v=D2HrgCFYNv4', '_blank')}>
+                  <img src="https://img.youtube.com/vi/D2HrgCFYNv4/maxresdefault.jpg" alt="Downtown Transformation Video Thumbnail" className="absolute inset-0 w-full h-full object-contain" />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
                   <div className="relative z-10 text-center">
                     <div className="w-20 h-20 luxury-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
