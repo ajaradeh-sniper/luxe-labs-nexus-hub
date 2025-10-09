@@ -366,7 +366,7 @@ export default function About() {
       </section>
 
       {/* Our Edge Section */}
-      <section className="py-24 px-4 bg-gradient-to-b from-background via-muted/20 to-background">
+      <section className="hidden py-24 px-4 bg-gradient-to-b from-background via-muted/20 to-background">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <Badge className="mb-4 text-sm px-4 py-2">Competitive Advantage</Badge>
