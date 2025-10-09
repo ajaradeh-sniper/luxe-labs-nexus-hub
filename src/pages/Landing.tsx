@@ -331,6 +331,153 @@ export default function Landing() {
       </section>
 
       
+      {/* HOW IT WORKS Section */}
+      <section id="how-it-works" className="py-24 px-4 relative overflow-hidden">
+        {/* Background with subtle gold gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/20"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-primary/5 to-transparent"></div>
+        
+        <div className="container mx-auto relative z-10">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
+              How It <span className="luxury-text">Works</span>
+            </h2>
+            <p className="text-xl font-montserrat text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              Investing in Dubai luxury property has never been this effortless. Here's how we turn villas into world-class assets.
+            </p>
+          </div>
+
+          {/* Steps Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            
+            {/* Step 1 */}
+            <Card className="group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 animate-fade-in">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <CardContent className="p-8 relative z-10">
+                {/* Step Number */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-primary to-primary/60 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-2xl font-bold text-white">1</span>
+                </div>
+                
+                {/* Icon */}
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Briefcase className="h-8 w-8 text-primary" />
+                </div>
+                
+                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">
+                  Select Your Investment Model
+                </h3>
+                <p className="text-muted-foreground font-montserrat leading-relaxed mb-4">
+                  Choose between Solo Flip or Shared Stake Flip (8-14 months), or Diversified Fund (3+ years) — each built for different goals and capital sizes.
+                </p>
+                <p className="text-sm text-muted-foreground font-montserrat italic">
+                  Investments via dedicated Special Purpose Vehicle (SPV ADGM/DIFC or Cayman Islands)
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Step 2 */}
+            <Card className="group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <CardContent className="p-8 relative z-10">
+                {/* Step Number */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-primary to-primary/60 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-2xl font-bold text-white">2</span>
+                </div>
+                
+                {/* Icon */}
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Home className="h-8 w-8 text-primary" />
+                </div>
+                
+                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">
+                  We Curate & Transform
+                </h3>
+                <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  Our team acquires, designs, and renovates prime Dubai villas using world-class suppliers and luxury top class-grade craftsmanship.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Step 3 */}
+            <Card className="group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <CardContent className="p-8 relative z-10">
+                {/* Step Number */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-primary to-primary/60 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-2xl font-bold text-white">3</span>
+                </div>
+                
+                {/* Icon */}
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <BarChart3 className="h-8 w-8 text-primary" />
+                </div>
+                
+                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">
+                  Track Your Project
+                </h3>
+                <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  Follow progress in your private investor dashboard — ROI forecasts, updates, and milestones, all in real time.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Step 4 */}
+            <Card className="group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <CardContent className="p-8 relative z-10">
+                {/* Step Number */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-primary to-primary/60 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-2xl font-bold text-white">4</span>
+                </div>
+                
+                {/* Icon */}
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <DollarSign className="h-8 w-8 text-primary" />
+                </div>
+                
+                <h3 className="text-xl font-playfair font-bold text-foreground mb-4">
+                  Earn & Reinvest
+                </h3>
+                <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  Upon completion, receive your returns or reinvest in the next curated opportunity.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white font-semibold font-montserrat px-8 py-3 text-lg group"
+              onClick={() => setShowInvestorAssessment(true)}
+            >
+              Start Your Journey
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            <Button 
+              asChild
+              size="lg" 
+              variant="outline"
+              className="border-2 border-primary text-foreground hover:bg-primary/10 font-semibold font-montserrat px-8 py-3 text-lg"
+            >
+              <Link to="/projects">
+                View Current Projects
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* PROCESS Section */}
       {/* SERVICES Section */}
       <section id="services" className="py-24 px-4 bg-gradient-elegant">
