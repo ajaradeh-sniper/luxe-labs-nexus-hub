@@ -31,7 +31,7 @@ const Index = () => {
       <Navigation />
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center">
+        <section className="relative h-screen flex items-center overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${luxuryDubaiSkyline})` }}
@@ -39,39 +39,45 @@ const Index = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30" />
           </div>
           
-          <div className="relative container mx-auto px-4 text-white">
+          {/* Floating Decorative Elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-20 right-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-20 left-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          </div>
+          
+          <div className="relative container mx-auto px-4 text-white z-10">
             <div className="max-w-3xl">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 font-playfair">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 font-playfair animate-fade-in">
                 Luxury Labs
-                <span className="block text-3xl md:text-4xl text-primary">Real Estate Excellence</span>
+                <span className="block text-3xl md:text-4xl text-primary animate-fade-in" style={{ animationDelay: '0.2s' }}>Real Estate Excellence</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-white font-montserrat">
+              <p className="text-xl md:text-2xl mb-8 text-white font-montserrat animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 Transform Luxury Real Estate
                 <span className="block">with Exceptional Quality and Returns</span>
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button size="lg" variant="luxury" className="text-lg px-8 py-6" onClick={() => setShowInvestorAssessment(true)}>
+              <div className="flex flex-col sm:flex-row gap-4 mb-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+                <Button size="lg" variant="luxury" className="text-lg px-8 py-6 hover-scale" onClick={() => setShowInvestorAssessment(true)}>
                   <TrendingUp className="mr-2 h-5 w-5" />
                   Start Investing
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20" asChild>
+                <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 hover-scale" asChild>
                   <Link to="/about">Learn More</Link>
                 </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20" asChild>
+                <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 hover-scale" asChild>
                   <Link to="/auth">Admin Access</Link>
                 </Button>
               </div>
-              <div className="flex flex-wrap gap-4">
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-4 py-2">
+              <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-4 py-2 hover:bg-white/30 transition-all duration-300 hover-scale">
                   <Star className="mr-2 h-4 w-4" />
                   Dubai Property Market
                 </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-4 py-2">
+                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-4 py-2 hover:bg-white/30 transition-all duration-300 hover-scale">
                   <Building className="mr-2 h-4 w-4" />
                   Investment Excellence
                 </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-4 py-2">
+                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-4 py-2 hover:bg-white/30 transition-all duration-300 hover-scale">
                   <Target className="mr-2 h-4 w-4" />
                   18.5% Average ROI
                 </Badge>
@@ -81,9 +87,20 @@ const Index = () => {
         </section>
 
         {/* Services Section */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
+        <section className="py-20 bg-background relative overflow-hidden">
+          {/* Decorative Background Elements */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="absolute top-10 right-10 w-2 h-2 bg-primary rounded-full animate-pulse" />
+            <div className="absolute top-20 left-20 w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+            <div className="absolute bottom-20 right-40 w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16 animate-fade-in">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
+                Premium Services
+              </Badge>
               <h2 className="text-4xl font-bold mb-4 font-playfair">Our Services</h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Complete luxury property investment ecosystem in Dubai
@@ -95,9 +112,10 @@ const Index = () => {
               <div className="lg:col-span-3 space-y-6">
                 <h3 className="text-2xl font-bold mb-6 text-center font-playfair">Investment Services</h3>
                 <div className="space-y-6">
-                  <Card className="group hover:shadow-luxury transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                  <Card className="group hover:shadow-luxury transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in overflow-hidden relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
+                    <CardContent className="p-6 relative z-10">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4 shadow-glow group-hover:scale-110 transition-transform duration-300">
                         <TrendingUp className="h-8 w-8 text-background" />
                       </div>
                       <h4 className="text-xl font-semibold mb-3">Single Property Flip</h4>
@@ -117,9 +135,10 @@ const Index = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="group hover:shadow-luxury transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                  <Card className="group hover:shadow-luxury transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in overflow-hidden relative" style={{ animationDelay: '0.1s' }}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
+                    <CardContent className="p-6 relative z-10">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4 shadow-glow group-hover:scale-110 transition-transform duration-300">
                         <Users className="h-8 w-8 text-background" />
                       </div>
                       <h4 className="text-xl font-semibold mb-3">Shared Stake (Co-Invest)</h4>
@@ -139,9 +158,10 @@ const Index = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="group hover:shadow-luxury transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                  <Card className="group hover:shadow-luxury transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in overflow-hidden relative" style={{ animationDelay: '0.2s' }}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
+                    <CardContent className="p-6 relative z-10">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4 shadow-glow group-hover:scale-110 transition-transform duration-300">
                         <Building className="h-8 w-8 text-background" />
                       </div>
                       <h4 className="text-xl font-semibold mb-3">Diversified Fund</h4>
@@ -167,9 +187,10 @@ const Index = () => {
               <div className="lg:col-span-2 space-y-6">
                 <h3 className="text-2xl font-bold mb-6 text-center font-playfair">Transformation Services</h3>
                 <div className="space-y-6">
-                  <Card className="group hover:shadow-luxury transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                  <Card className="group hover:shadow-luxury transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in overflow-hidden relative" style={{ animationDelay: '0.3s' }}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
+                    <CardContent className="p-6 relative z-10">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4 shadow-glow group-hover:scale-110 transition-transform duration-300">
                         <Shield className="h-8 w-8 text-background" />
                       </div>
                       <h4 className="text-xl font-semibold mb-3">Relocation Concierge</h4>
@@ -191,9 +212,10 @@ const Index = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="group hover:shadow-luxury transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                  <Card className="group hover:shadow-luxury transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in overflow-hidden relative" style={{ animationDelay: '0.4s' }}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
+                    <CardContent className="p-6 relative z-10">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4 shadow-glow group-hover:scale-110 transition-transform duration-300">
                         <FileText className="h-8 w-8 text-background" />
                       </div>
                       <h4 className="text-xl font-semibold mb-3">Advisory Services</h4>
@@ -215,9 +237,10 @@ const Index = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="group hover:shadow-luxury transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4">
+                  <Card className="group hover:shadow-luxury transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in overflow-hidden relative" style={{ animationDelay: '0.5s' }}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
+                    <CardContent className="p-6 relative z-10">
+                      <div className="w-16 h-16 bg-gradient-luxury rounded-2xl flex items-center justify-center mb-4 shadow-glow group-hover:scale-110 transition-transform duration-300">
                         <Star className="h-8 w-8 text-background" />
                       </div>
                       <h4 className="text-xl font-semibold mb-3">Flipping Dubai Media</h4>
@@ -245,9 +268,18 @@ const Index = () => {
         </section>
 
         {/* Investment Options Section */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
+        <section className="py-20 bg-gradient-to-b from-background to-background/50 relative overflow-hidden">
+          {/* Floating decorative orbs */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-1/4 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16 animate-fade-in">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
+                Investment Plans
+              </Badge>
               <h2 className="text-4xl font-bold mb-4 font-playfair">Investment Options</h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Choose the investment strategy that aligns with your financial goals and risk profile
@@ -255,8 +287,9 @@ const Index = () => {
             </div>
             
             <div className="grid md:grid-cols-3 gap-8">
-              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
-                <CardContent className="p-0">
+              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm hover:shadow-glow transition-all duration-500 hover:-translate-y-2 animate-fade-in group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="p-0 relative z-10">
                   <div className="text-center mb-6">
                     <Badge variant="outline" className="mb-4 text-primary border-primary/30 bg-primary/5">
                       Portfolio Investment
@@ -285,13 +318,14 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm relative">
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <Badge className="luxury-gradient text-primary-foreground px-4 py-1">
+              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm relative hover:shadow-glow transition-all duration-500 hover:-translate-y-2 animate-fade-in group overflow-hidden" style={{ animationDelay: '0.1s' }}>
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+                  <Badge className="luxury-gradient text-primary-foreground px-4 py-1 shadow-lg animate-pulse">
                     Most Popular
                   </Badge>
                 </div>
-                <CardContent className="p-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="p-0 relative z-10">
                   <div className="text-center mb-6">
                     <Badge variant="outline" className="mb-4 text-primary border-primary/30 bg-primary/5">
                       Individual Project
@@ -320,8 +354,9 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm">
-                <CardContent className="p-0">
+              <Card className="p-8 luxury-border luxury-shadow bg-card/50 backdrop-blur-sm hover:shadow-glow transition-all duration-500 hover:-translate-y-2 animate-fade-in group relative overflow-hidden" style={{ animationDelay: '0.2s' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="p-0 relative z-10">
                   <div className="text-center mb-6">
                     <Badge variant="outline" className="mb-4 text-primary border-primary/30 bg-primary/5">
                       Premium Access
@@ -354,18 +389,25 @@ const Index = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-luxury text-background">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Investment?</h2>
-            <p className="text-xl text-background/80 mb-8 max-w-2xl mx-auto">
+        <section className="py-20 bg-gradient-luxury text-background relative overflow-hidden">
+          {/* Animated background elements */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-10 left-20 w-40 h-40 bg-background/10 rounded-full blur-2xl animate-pulse" />
+            <div className="absolute bottom-10 right-20 w-56 h-56 bg-background/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-background/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+          </div>
+          
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <h2 className="text-4xl font-bold mb-6 animate-fade-in">Ready to Transform Your Investment?</h2>
+            <p className="text-xl text-background/80 mb-8 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
               Join sophisticated investors who trust Luxury Labs for exceptional returns
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="outline" className="bg-background text-foreground hover:bg-background/90">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <Button size="lg" variant="outline" className="bg-background text-foreground hover:bg-background/90 hover-scale shadow-lg">
                 <Calendar className="mr-2 h-5 w-5" />
                 Schedule Consultation
               </Button>
-              <Button size="lg" variant="outline" className="bg-background text-foreground hover:bg-background/90">
+              <Button size="lg" variant="outline" className="bg-background text-foreground hover:bg-background/90 hover-scale shadow-lg">
                 <FileText className="mr-2 h-5 w-5" />
                 View Investment Guide
               </Button>
