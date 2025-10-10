@@ -379,37 +379,38 @@ export default function Landing() {
             {/* Step 1 */}
             <div className="group animate-fade-in hover:scale-105 transition-all duration-500">
               <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-card via-card to-muted/20 backdrop-blur-xl shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
+                {/* Background Image */}
+                <div className="relative h-48 w-full overflow-hidden">
+                  <img 
+                    src={investmentPartnershipImage} 
+                    alt="Investment Partnership"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-card"></div>
+                  
+                  {/* Icon in top-left */}
+                  <div className="absolute top-4 left-4 w-12 h-12 bg-gradient-to-br from-primary via-primary/90 to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Briefcase className="h-6 w-6 text-white" strokeWidth={2} />
+                  </div>
+                  
+                  {/* Step Number Badge */}
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-xl shadow-primary/40">
+                    <span className="text-xl font-bold text-white">1</span>
+                  </div>
+                </div>
+                
                 {/* Shimmer Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 
-                {/* Top Accent Line */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary/60"></div>
-                
-                {/* Corner Glow */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/30 transition-colors duration-500"></div>
-                
-                <CardContent className="p-8 relative z-10">
-                  {/* Step Number Badge */}
-                  <div className="absolute -top-5 -right-5 w-20 h-20 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-2xl shadow-primary/40 group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-3xl font-bold text-white">1</span>
-                  </div>
-                  
-                  {/* Icon Container */}
-                  <div className="relative mb-6 inline-block">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 via-primary/15 to-primary/5 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                      <Briefcase className="h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
-                    </div>
-                    <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary/20 rounded-lg blur-sm"></div>
-                  </div>
-                  
-                  <h3 className="text-2xl font-playfair font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                <CardContent className="p-6 relative z-10">
+                  <h3 className="text-xl font-playfair font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                     Select Your Investment Model
                   </h3>
-                  <p className="text-muted-foreground font-montserrat leading-relaxed mb-4">
+                  <p className="text-sm text-muted-foreground font-montserrat leading-relaxed mb-3">
                     Choose between Solo Flip or Shared Stake Flip (8-14 months), or Diversified Fund (3+ years) — each built for different goals and capital sizes.
                   </p>
-                  <div className="pt-4 border-t border-border/50">
-                    <p className="text-sm text-muted-foreground/80 font-montserrat italic">
+                  <div className="pt-3 border-t border-border/50">
+                    <p className="text-xs text-muted-foreground/80 font-montserrat italic">
                       Investments via dedicated Special Purpose Vehicle (SPV ADGM/DIFC or Cayman Islands)
                     </p>
                   </div>
@@ -420,26 +421,34 @@ export default function Landing() {
             {/* Step 2 */}
             <div className="group animate-fade-in hover:scale-105 transition-all duration-500" style={{ animationDelay: '0.15s' }}>
               <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-card via-card to-muted/20 backdrop-blur-xl shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary/60"></div>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/30 transition-colors duration-500"></div>
+                {/* Background Image */}
+                <div className="relative h-48 w-full overflow-hidden">
+                  <img 
+                    src={luxuryTransformationImage} 
+                    alt="Luxury Transformation"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-card"></div>
+                  
+                  {/* Icon in top-left */}
+                  <div className="absolute top-4 left-4 w-12 h-12 bg-gradient-to-br from-primary via-primary/90 to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Home className="h-6 w-6 text-white" strokeWidth={2} />
+                  </div>
+                  
+                  {/* Step Number Badge */}
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-xl shadow-primary/40">
+                    <span className="text-xl font-bold text-white">2</span>
+                  </div>
+                </div>
                 
-                <CardContent className="p-8 relative z-10">
-                  <div className="absolute -top-5 -right-5 w-20 h-20 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-2xl shadow-primary/40 group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-3xl font-bold text-white">2</span>
-                  </div>
-                  
-                  <div className="relative mb-6 inline-block">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 via-primary/15 to-primary/5 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                      <Home className="h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
-                    </div>
-                    <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary/20 rounded-lg blur-sm"></div>
-                  </div>
-                  
-                  <h3 className="text-2xl font-playfair font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                
+                <CardContent className="p-6 relative z-10">
+                  <h3 className="text-xl font-playfair font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                     We Curate & Transform
                   </h3>
-                  <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">
                     Our team acquires, designs, and renovates prime Dubai villas using world-class suppliers and luxury top class-grade craftsmanship.
                   </p>
                 </CardContent>
@@ -449,26 +458,34 @@ export default function Landing() {
             {/* Step 3 */}
             <div className="group animate-fade-in hover:scale-105 transition-all duration-500" style={{ animationDelay: '0.3s' }}>
               <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-card via-card to-muted/20 backdrop-blur-xl shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary/60"></div>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/30 transition-colors duration-500"></div>
+                {/* Background Image */}
+                <div className="relative h-48 w-full overflow-hidden">
+                  <img 
+                    src={transparentMonitoring} 
+                    alt="Track Progress"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-card"></div>
+                  
+                  {/* Icon in top-left */}
+                  <div className="absolute top-4 left-4 w-12 h-12 bg-gradient-to-br from-primary via-primary/90 to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <BarChart3 className="h-6 w-6 text-white" strokeWidth={2} />
+                  </div>
+                  
+                  {/* Step Number Badge */}
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-xl shadow-primary/40">
+                    <span className="text-xl font-bold text-white">3</span>
+                  </div>
+                </div>
                 
-                <CardContent className="p-8 relative z-10">
-                  <div className="absolute -top-5 -right-5 w-20 h-20 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-2xl shadow-primary/40 group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-3xl font-bold text-white">3</span>
-                  </div>
-                  
-                  <div className="relative mb-6 inline-block">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 via-primary/15 to-primary/5 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                      <BarChart3 className="h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
-                    </div>
-                    <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary/20 rounded-lg blur-sm"></div>
-                  </div>
-                  
-                  <h3 className="text-2xl font-playfair font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                
+                <CardContent className="p-6 relative z-10">
+                  <h3 className="text-xl font-playfair font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                     Track Your Project
                   </h3>
-                  <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">
                     Follow progress in your private investor dashboard — ROI forecasts, updates, and milestones, all in real time.
                   </p>
                 </CardContent>
@@ -478,26 +495,34 @@ export default function Landing() {
             {/* Step 4 */}
             <div className="group animate-fade-in hover:scale-105 transition-all duration-500" style={{ animationDelay: '0.45s' }}>
               <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-card via-card to-muted/20 backdrop-blur-xl shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary/60"></div>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/30 transition-colors duration-500"></div>
+                {/* Background Image */}
+                <div className="relative h-48 w-full overflow-hidden">
+                  <img 
+                    src={exceptionalRoi} 
+                    alt="Exceptional Returns"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-card"></div>
+                  
+                  {/* Icon in top-left */}
+                  <div className="absolute top-4 left-4 w-12 h-12 bg-gradient-to-br from-primary via-primary/90 to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <DollarSign className="h-6 w-6 text-white" strokeWidth={2} />
+                  </div>
+                  
+                  {/* Step Number Badge */}
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-xl shadow-primary/40">
+                    <span className="text-xl font-bold text-white">4</span>
+                  </div>
+                </div>
                 
-                <CardContent className="p-8 relative z-10">
-                  <div className="absolute -top-5 -right-5 w-20 h-20 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-2xl shadow-primary/40 group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-3xl font-bold text-white">4</span>
-                  </div>
-                  
-                  <div className="relative mb-6 inline-block">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 via-primary/15 to-primary/5 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                      <DollarSign className="h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
-                    </div>
-                    <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary/20 rounded-lg blur-sm"></div>
-                  </div>
-                  
-                  <h3 className="text-2xl font-playfair font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                
+                <CardContent className="p-6 relative z-10">
+                  <h3 className="text-xl font-playfair font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                     Earn & Reinvest
                   </h3>
-                  <p className="text-muted-foreground font-montserrat leading-relaxed">
+                  <p className="text-sm text-muted-foreground font-montserrat leading-relaxed">
                     Upon completion, receive your returns or reinvest in the next curated opportunity.
                   </p>
                 </CardContent>
