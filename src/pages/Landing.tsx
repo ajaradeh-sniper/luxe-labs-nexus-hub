@@ -396,8 +396,10 @@ export default function Landing() {
                   
                   {/* Icon Container */}
                   <div className="relative mb-6 inline-block">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 via-primary/15 to-primary/5 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                      <Briefcase className="h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+                    <div className="relative w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg overflow-hidden">
+                      <img src={investmentPartnershipImage} alt="Investment Model" className="absolute inset-0 w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/85"></div>
+                      <Briefcase className="relative z-10 h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
                     </div>
                     <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary/20 rounded-lg blur-sm"></div>
                   </div>
@@ -430,8 +432,10 @@ export default function Landing() {
                   </div>
                   
                   <div className="relative mb-6 inline-block">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 via-primary/15 to-primary/5 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                      <Home className="h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+                    <div className="relative w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg overflow-hidden">
+                      <img src={luxuryTransformationImage} alt="Curate & Transform" className="absolute inset-0 w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/85"></div>
+                      <Home className="relative z-10 h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
                     </div>
                     <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary/20 rounded-lg blur-sm"></div>
                   </div>
@@ -459,8 +463,10 @@ export default function Landing() {
                   </div>
                   
                   <div className="relative mb-6 inline-block">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 via-primary/15 to-primary/5 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                      <BarChart3 className="h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+                    <div className="relative w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg overflow-hidden">
+                      <img src={transparentMonitoring} alt="Track Your Project" className="absolute inset-0 w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/85"></div>
+                      <BarChart3 className="relative z-10 h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
                     </div>
                     <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary/20 rounded-lg blur-sm"></div>
                   </div>
@@ -488,8 +494,10 @@ export default function Landing() {
                   </div>
                   
                   <div className="relative mb-6 inline-block">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 via-primary/15 to-primary/5 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                      <DollarSign className="h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+                    <div className="relative w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg overflow-hidden">
+                      <img src={exceptionalRoi} alt="Earn & Reinvest" className="absolute inset-0 w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/85"></div>
+                      <DollarSign className="relative z-10 h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
                     </div>
                     <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary/20 rounded-lg blur-sm"></div>
                   </div>
