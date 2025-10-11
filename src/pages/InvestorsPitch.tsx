@@ -19,16 +19,56 @@ import {
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
 const InvestorsPitch = () => {
-  // Investment Overview Data
+  // Investment Overview Data with icons
   const investmentData = [
-    { category: "Raise Amount", description: "AED 30–40 million equity into Luxury Labs FZCO" },
-    { category: "Structure", description: "Equity in holding company (FZCO) with subsidiaries (Design, Media, Brokerage, Contracting) and SPVs per project" },
-    { category: "Investor Entry", description: "Institutional, Family Offices, or UHNW individuals" },
-    { category: "Investor ROI Target", description: "20–25% per project / 35%+ IRR at company level" },
-    { category: "Investment Horizon", description: "24–36 months (Institutional readiness phase)" },
-    { category: "Founders' Retained Equity", description: "40%+ (via sweat equity + profit share + anti-dilution clause)" },
-    { category: "Exit Options", description: "Fund creation, equity resale, or bank refinancing" },
-    { category: "Current Stage", description: "Proof of Concept Complete (JW Marriott, JVC, JGE) — Now Scaling" }
+    { 
+      category: "Raise Amount", 
+      description: "AED 30–40 million equity into Luxury Labs FZCO",
+      icon: TrendingUp,
+      color: "hsl(var(--primary))"
+    },
+    { 
+      category: "Structure", 
+      description: "Equity in holding company (FZCO) with subsidiaries (Design, Media, Brokerage, Contracting) and SPVs per project",
+      icon: Building2,
+      color: "hsl(var(--accent))"
+    },
+    { 
+      category: "Investor Entry", 
+      description: "Institutional, Family Offices, or UHNW individuals",
+      icon: Users,
+      color: "hsl(var(--secondary))"
+    },
+    { 
+      category: "Investor ROI Target", 
+      description: "20–25% per project / 35%+ IRR at company level",
+      icon: Target,
+      color: "hsl(var(--primary))"
+    },
+    { 
+      category: "Investment Horizon", 
+      description: "24–36 months (Institutional readiness phase)",
+      icon: Calendar,
+      color: "hsl(var(--accent))"
+    },
+    { 
+      category: "Founders' Retained Equity", 
+      description: "40%+ (via sweat equity + profit share + anti-dilution clause)",
+      icon: Shield,
+      color: "hsl(var(--secondary))"
+    },
+    { 
+      category: "Exit Options", 
+      description: "Fund creation, equity resale, or bank refinancing",
+      icon: ArrowRight,
+      color: "hsl(var(--primary))"
+    },
+    { 
+      category: "Current Stage", 
+      description: "Proof of Concept Complete (JW Marriott, JVC, JGE) — Now Scaling",
+      icon: CheckCircle2,
+      color: "hsl(var(--accent))"
+    }
   ];
 
   // Use of Funds Data
@@ -131,26 +171,62 @@ const InvestorsPitch = () => {
       </section>
 
       {/* Investment Overview */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-background relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12 animate-fade-in">
+            <div className="text-center mb-16 animate-fade-in">
+              <Badge className="bg-primary/10 text-primary border-primary/20 mb-4" variant="outline">
+                <LineChart className="w-3 h-3 mr-1" />
+                Investment Terms
+              </Badge>
               <h2 className="text-4xl font-playfair font-bold mb-4 text-foreground">Investment Overview</h2>
               <p className="text-muted-foreground text-lg">Core investment terms and structure</p>
             </div>
             
-            <div className="grid gap-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <div className="grid md:grid-cols-2 gap-6">
               {investmentData.map((item, index) => (
-                <Card key={index} className="p-6 hover-scale border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-2" />
+                <Card 
+                  key={index} 
+                  className="group relative p-8 hover-scale border-border/50 bg-card/80 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 animate-fade-in overflow-hidden"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
+                  {/* Gradient Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-accent/0 group-hover:from-primary/5 group-hover:to-accent/5 transition-all duration-300" />
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-4 mb-4">
+                      {/* Icon Container */}
+                      <div 
+                        className="p-3 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300"
+                        style={{ backgroundColor: `${item.color}15` }}
+                      >
+                        <item.icon 
+                          className="w-6 h-6" 
+                          style={{ color: item.color }}
+                        />
+                      </div>
+                      
+                      {/* Category Title */}
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+                          {item.category}
+                        </h3>
+                        <div className="h-0.5 w-12 bg-gradient-to-r from-primary to-accent rounded-full" />
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-foreground mb-2">{item.category}</h3>
-                      <p className="text-muted-foreground">{item.description}</p>
-                    </div>
+                    
+                    {/* Description */}
+                    <p className="text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
+                  
+                  {/* Decorative Corner */}
+                  <div 
+                    className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-2xl"
+                    style={{ backgroundColor: item.color }}
+                  />
                 </Card>
               ))}
             </div>
