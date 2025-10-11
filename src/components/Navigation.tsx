@@ -38,6 +38,7 @@ export function Navigation({ viewingRole }: NavigationProps = {}) {
     { path: "/media", label: t('navigation.media') },
     { path: "/partners", label: t('navigation.partners') },
     { path: "/investors", label: t('navigation.investors') },
+    { path: "/investors-pitch", label: "Investors Pitch" },
     { path: "/contact", label: t('navigation.contact') },
     { path: "/projects", label: t('navigation.projects') || "Featured Projects" }
   ]

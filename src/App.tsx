@@ -83,6 +83,7 @@ import TermsOfService from "./pages/legal/TermsOfService"
 import InvestmentDisclaimer from "./pages/legal/InvestmentDisclaimer"
 import LegalNotice from "./pages/legal/LegalNotice"
 import CookiePolicy from "./pages/legal/CookiePolicy"
+import InvestorsPitch from "./pages/InvestorsPitch"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -107,6 +108,7 @@ function App() {
           <Route path="/media" element={<Media />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/investors" element={<Investors />} />
+          <Route path="/investors-pitch" element={<InvestorsPitch />} />
           <Route path="/contact" element={<Contact />} />
           
           {/* Legal Routes */}
