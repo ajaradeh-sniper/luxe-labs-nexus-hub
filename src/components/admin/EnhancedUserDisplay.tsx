@@ -160,7 +160,7 @@ export function EnhancedUserDisplay({ user, showInvestorData = false }: Enhanced
 
   const getSourceLabel = (source: UserSource) => {
     switch (source.type) {
-      case 'luxury_labs': return 'Added by Luxury Labs';
+      case 'luxury_labs': return 'Added by REVERA ESTATES';
       case 'referral': return `Referred by ${source.referredBy}`;
       case 'website_application': return 'Website Application';
       default: return 'Unknown Source';

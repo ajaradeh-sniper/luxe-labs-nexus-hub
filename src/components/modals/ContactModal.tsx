@@ -47,7 +47,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
       const { error } = await supabase.functions.invoke('send-email', {
         body: {
-          to: 'info@luxurylabs.ae',
+          to: 'info@reveraestates.ae',
           subject: `New Contact Form Submission from ${formData.name}`,
           html: emailHtml,
           reply_to: formData.email
@@ -113,7 +113,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           <div className="flex items-center justify-between">
             <DialogTitle className="flex items-center gap-2 text-2xl font-bold">
               <MessageSquare className="h-6 w-6 text-primary" />
-              Contact Luxury Labs
+              Contact REVERA ESTATES
             </DialogTitle>
             <Button 
               variant="ghost" 

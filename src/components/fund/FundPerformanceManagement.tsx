@@ -477,7 +477,7 @@ export function FundPerformanceManagement() {
                     <div className="space-y-4">
                       <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
                         <div>
-                          <p className="font-medium">Luxury Labs (GP)</p>
+                          <p className="font-medium">REVERA ESTATES (GP)</p>
                           <p className="text-sm text-muted-foreground">General Partner</p>
                         </div>
                         <div className="text-right">
@@ -505,7 +505,7 @@ export function FundPerformanceManagement() {
                                 <Pie
                                   data={[
                                     { name: 'LP Investors', value: 75, fill: '#0088FE' },
-                                    { name: 'GP (Luxury Labs)', value: 25, fill: '#00C49F' }
+                                    { name: 'GP (REVERA ESTATES)', value: 25, fill: '#00C49F' }
                                   ]}
                                   cx="50%"
                                   cy="50%"
@@ -514,7 +514,7 @@ export function FundPerformanceManagement() {
                                   outerRadius={60}
                                   dataKey="value"
                                 >
-                                  {[{ name: 'LP Investors', value: 75, fill: '#0088FE' }, { name: 'GP (Luxury Labs)', value: 25, fill: '#00C49F' }].map((entry, index) => (
+                                  {[{ name: 'LP Investors', value: 75, fill: '#0088FE' }, { name: 'GP (REVERA ESTATES)', value: 25, fill: '#00C49F' }].map((entry, index) => (
                                     <Cell key={`cell-${index}`} fill={entry.fill} />
                                   ))}
                                 </Pie>

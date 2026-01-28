@@ -39,15 +39,15 @@ export default function Investors() {
   return <>
       <Helmet>
         <title>Investor Opportunities | Dubai Villa Investments with High ROI</title>
-        <meta name="description" content="Access vetted Dubai villa flips. Track ROI, manage your portfolio, and join exclusive property investment opportunities with Luxury Labs." />
+        <meta name="description" content="Access vetted Dubai villa flips. Track ROI, manage your portfolio, and join exclusive property investment opportunities with REVERA ESTATES." />
         <meta name="keywords" content="Dubai property investment, villa investment opportunities, high ROI Dubai, property portfolio, luxury real estate investment" />
         <meta property="og:title" content="Investor Opportunities | Dubai Villa Investments with High ROI" />
-        <meta property="og:description" content="Access vetted Dubai villa flips. Track ROI, manage your portfolio, and join exclusive property investment opportunities with Luxury Labs." />
+        <meta property="og:description" content="Access vetted Dubai villa flips. Track ROI, manage your portfolio, and join exclusive property investment opportunities with REVERA ESTATES." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://luxurylabs.ae/investors" />
+        <meta property="og:url" content="https://reveraestates.ae/investors" />
         <meta name="twitter:title" content="Investor Opportunities | Dubai Villa Investments with High ROI" />
-        <meta name="twitter:description" content="Access vetted Dubai villa flips. Track ROI, manage your portfolio, and join exclusive property investment opportunities with Luxury Labs." />
-        <link rel="canonical" href="https://luxurylabs.ae/investors" />
+        <meta name="twitter:description" content="Access vetted Dubai villa flips. Track ROI, manage your portfolio, and join exclusive property investment opportunities with REVERA ESTATES." />
+        <link rel="canonical" href="https://reveraestates.ae/investors" />
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />

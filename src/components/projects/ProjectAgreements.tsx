@@ -264,7 +264,7 @@ export function ProjectAgreements() {
                   <div className="flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-2">
                       <CheckCircle className={`h-4 w-4 ${agreement.signatures.luxury_labs_signed ? 'text-green-500' : 'text-gray-300'}`} />
-                      <span>Luxury Labs</span>
+                      <span>REVERA ESTATES</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className={`h-4 w-4 ${agreement.signatures.counterparty_signed ? 'text-green-500' : 'text-gray-300'}`} />
@@ -581,7 +581,7 @@ function AgreementDetailDialog({
                 </CardHeader>
                 <CardContent className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span>Luxury Labs:</span>
+                    <span>REVERA ESTATES:</span>
                     <CheckCircle className={`h-5 w-5 ${agreement.signatures.luxury_labs_signed ? 'text-green-500' : 'text-gray-300'}`} />
                   </div>
                   <div className="flex items-center justify-between">

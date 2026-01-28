@@ -65,11 +65,16 @@ export function Navigation({ viewingRole }: NavigationProps = {}) {
           {isDashboardPage && (
             <SidebarTrigger className="p-2" />
           )}
-          <Link to="/" className="flex-shrink-0">
+          <Link to="/" className="flex-shrink-0 flex items-center gap-3">
             <img 
-              src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
-              alt="Luxury Labs Logo" 
-              className="h-16 w-auto cursor-pointer hover:opacity-80 transition-opacity"
+              src="/revera-icon.png" 
+              alt="REVERA ESTATES" 
+              className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity"
+            />
+            <img 
+              src="/revera-logo.png" 
+              alt="REVERA ESTATES" 
+              className="h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity hidden sm:block"
             />
           </Link>
         </div>

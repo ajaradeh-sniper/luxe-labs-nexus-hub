@@ -78,8 +78,8 @@ interface SystemConfig {
 
 const defaultConfig: SystemConfig = {
   general: {
-    companyName: 'Luxury Labs Real Estate',
-    companyEmail: 'admin@luxurylabs.com',
+    companyName: 'REVERA ESTATES',
+    companyEmail: 'admin@reveraestates.ae',
     timezone: 'Asia/Dubai',
     currency: 'AED',
     language: 'en',

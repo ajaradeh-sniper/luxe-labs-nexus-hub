@@ -29,7 +29,7 @@ const Contact = () => {
   const faqData = [{
     category: "Investment Opportunities",
     items: [{
-      question: "What types of investment opportunities does Luxury Labs offer?",
+      question: "What types of investment opportunities does REVERA ESTATES offer?",
       answer: "We offer three main investment models: Co-Investment (join transformation projects with other investors), Fund Investment (diversified portfolio for long-term growth including flips to sell and rent), and HNWI Concierge (personalized luxury property renovation services)."
     }, {
       question: "What is the minimum investment amount?",
@@ -53,7 +53,7 @@ const Contact = () => {
   }, {
     category: "Getting Started",
     items: [{
-      question: "How do I get started with Luxury Labs?",
+      question: "How do I get started with REVERA ESTATES?",
       answer: "Start by filling out our contact form or booking a consultation call. We'll discuss your investment goals, budget, and preferences to recommend the best opportunities for your portfolio."
     }, {
       question: "What documents do I need to invest?",

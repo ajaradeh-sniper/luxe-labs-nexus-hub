@@ -841,7 +841,7 @@ export function EmailSystem() {
                     id="from-name"
                     value={settings.from_name}
                     onChange={(e) => setSettings({...settings, from_name: e.target.value})}
-                    placeholder="Luxury Labs"
+                    placeholder="REVERA ESTATES"
                   />
                 </div>
               </div>

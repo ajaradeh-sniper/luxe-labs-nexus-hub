@@ -386,7 +386,7 @@ export const InvestorAssessmentReport: React.FC = () => {
                 </SelectTrigger>
                 <SelectContent className="z-[100000]">
                   <SelectItem value="no_involvement">🎯 No Involvement</SelectItem>
-                  <SelectItem value="support_luxury_labs">🤝 Support Luxury Labs</SelectItem>
+                  <SelectItem value="support_revera">🤝 Support REVERA ESTATES</SelectItem>
                   <SelectItem value="full_involvement">👨‍💼 Full Involvement</SelectItem>
                   <SelectItem value="other">💬 Let's discuss</SelectItem>
                 </SelectContent>
