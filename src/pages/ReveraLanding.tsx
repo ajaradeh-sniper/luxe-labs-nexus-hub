@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -25,9 +25,17 @@ import {
   FileText,
   Users,
   Menu,
-  X
+  X,
+  Star,
+  Shield,
+  Award
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import heroVilla from "@/assets/revera-hero-villa.jpg";
+import luxuryInterior from "@/assets/luxury-interior-modern.jpg";
+import palmVilla from "@/assets/palm-jumeirah-villa-hd.jpg";
+import dubaiHillsVilla from "@/assets/dubai-hills-villa-hd.jpg";
+import emiratesHillsVilla from "@/assets/emirates-hills-villa-hd.jpg";
 
 // Placeholder constants - replace with actual values
 const CONTACT_EMAIL = "invest@reveraestates.ae";
@@ -157,7 +165,7 @@ export default function ReveraLanding() {
                 Contact
               </button>
               <Link to="/flipping" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Full Website
+                Investor Website
               </Link>
             </div>
 
@@ -210,7 +218,7 @@ export default function ReveraLanding() {
                 <button onClick={() => scrollToSection("invest")} className="text-left text-muted-foreground hover:text-primary">Invest in Flips</button>
                 <button onClick={() => scrollToSection("flipping-dubai")} className="text-left text-muted-foreground hover:text-primary">Flipping Dubai</button>
                 <button onClick={() => scrollToSection("contact")} className="text-left text-muted-foreground hover:text-primary">Contact</button>
-                <Link to="/flipping" className="text-muted-foreground hover:text-primary">Full Website</Link>
+                <Link to="/flipping" className="text-muted-foreground hover:text-primary">Investor Website</Link>
                 <div className="flex gap-2 pt-4 border-t border-border/50">
                   <Button size="sm" className="flex-1 bg-primary text-primary-foreground" asChild>
                     <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">Book a Call</a>
@@ -228,76 +236,160 @@ export default function ReveraLanding() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/b2b9ab2c-7e3d-4eab-b79f-a0b91cd6ba50.png')] bg-cover bg-center opacity-10" />
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s] ease-linear hover:scale-105"
+          style={{ backgroundImage: `url(${heroVilla})` }}
+        />
+        {/* Overlay Gradients */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
         
-        {/* Floating Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        {/* Floating Orbs with enhanced animation */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-primary/5 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }} />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="animate-fade-in">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold mb-6">
-              <span className="text-primary">REVERA</span> Estates
-            </h1>
-            <p className="text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed">
-              We create high-impact luxury transformations — pairing disciplined investment execution with timeless design.
-            </p>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left animate-fade-in">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <Star className="h-4 w-4 text-primary" />
+                <span className="text-sm text-primary font-medium">Dubai's Premier Property Flipping Experts</span>
+              </div>
+              
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold mb-6">
+                <span className="text-primary">REVERA</span> Estates
+              </h1>
+              <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mb-8 leading-relaxed">
+                We create high-impact luxury transformations — pairing disciplined investment execution with timeless design.
+              </p>
 
-            {/* Value Bullets */}
-            <div className="flex flex-wrap justify-center gap-6 mb-12">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span>End-to-end execution</span>
+              {/* Value Bullets with staggered animation */}
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-10">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/30 backdrop-blur-sm rounded-lg px-4 py-2 border border-border/30 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                  <Shield className="h-5 w-5 text-primary" />
+                  <span>End-to-end execution</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/30 backdrop-blur-sm rounded-lg px-4 py-2 border border-border/30 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                  <Award className="h-5 w-5 text-primary" />
+                  <span>Luxury-led materials & staging</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/30 backdrop-blur-sm rounded-lg px-4 py-2 border border-border/30 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+                  <Eye className="h-5 w-5 text-primary" />
+                  <span>Full transparency & reporting</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span>Luxury-led materials & staging</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span>Full transparency & reporting</span>
+
+              {/* CTAs */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+                <Button 
+                  size="lg" 
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 shadow-luxury hover:shadow-glow transition-all duration-300 hover:scale-105"
+                  onClick={() => scrollToSection("invest")}
+                >
+                  Start Investor Intake
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-primary/50 hover:border-primary hover:bg-primary/10 transition-all duration-300"
+                  onClick={() => scrollToSection("services")}
+                >
+                  Explore Services
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="ghost"
+                  className="text-muted-foreground hover:text-primary"
+                  asChild
+                >
+                  <a href={`mailto:${CONTACT_EMAIL}`}>
+                    <Mail className="mr-2 h-5 w-5" />
+                    Email Us
+                  </a>
+                </Button>
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button 
-                size="lg" 
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8"
-                onClick={() => scrollToSection("invest")}
-              >
-                Start Investor Intake
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-border hover:border-primary"
-                onClick={() => scrollToSection("services")}
-              >
-                Explore Services
-              </Button>
-              <Button 
-                size="lg" 
-                variant="ghost"
-                className="text-muted-foreground hover:text-primary"
-                asChild
-              >
-                <a href={`mailto:${CONTACT_EMAIL}`}>
-                  <Mail className="mr-2 h-5 w-5" />
-                  Email Us
-                </a>
-              </Button>
+            {/* Hero Image Cards - Hidden on mobile, visible on larger screens */}
+            <div className="hidden lg:block relative">
+              <div className="relative">
+                {/* Main Image */}
+                <div className="relative rounded-2xl overflow-hidden shadow-luxury border border-primary/20 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                  <img 
+                    src={palmVilla} 
+                    alt="Luxury Villa Transformation" 
+                    className="w-full h-80 object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <p className="text-xs text-primary font-medium uppercase tracking-wider">Featured Project</p>
+                    <p className="text-lg font-playfair font-bold">Palm Jumeirah Villa</p>
+                  </div>
+                </div>
+                
+                {/* Floating Stats Cards */}
+                <div className="absolute -top-4 -right-4 bg-card/90 backdrop-blur-md rounded-xl p-4 shadow-elegant border border-border/50 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+                  <p className="text-3xl font-bold text-primary">35%+</p>
+                  <p className="text-xs text-muted-foreground">Avg. ROI</p>
+                </div>
+                
+                <div className="absolute -bottom-4 -left-4 bg-card/90 backdrop-blur-md rounded-xl p-4 shadow-elegant border border-border/50 animate-fade-in" style={{ animationDelay: '0.7s' }}>
+                  <p className="text-3xl font-bold text-primary">50+</p>
+                  <p className="text-xs text-muted-foreground">Projects Delivered</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <ChevronRight className="h-6 w-6 text-muted-foreground rotate-90" />
+          <ChevronRight className="h-6 w-6 text-primary/70 rotate-90" />
+        </div>
+      </section>
+
+      {/* Showcase Gallery Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-secondary/20 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-playfair font-bold mb-4">Luxury Transformations</h2>
+            <p className="text-muted-foreground">Our portfolio of premium property flips across Dubai's most exclusive locations</p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="relative group overflow-hidden rounded-xl aspect-square">
+              <img src={dubaiHillsVilla} alt="Dubai Hills Villa" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-sm font-medium">Dubai Hills</p>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-xl aspect-square">
+              <img src={emiratesHillsVilla} alt="Emirates Hills Villa" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-sm font-medium">Emirates Hills</p>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-xl aspect-square">
+              <img src={palmVilla} alt="Palm Jumeirah" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-sm font-medium">Palm Jumeirah</p>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-xl aspect-square">
+              <img src={luxuryInterior} alt="Luxury Interior" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-sm font-medium">Luxury Interiors</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -313,9 +405,9 @@ export default function ReveraLanding() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {/* Flipping Projects */}
-            <Card className="bg-card/50 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-luxury group">
+            <Card className="bg-card/50 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-luxury hover:-translate-y-1 group">
               <CardHeader>
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
                   <TrendingUp className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle className="text-lg">Flipping Projects</CardTitle>
@@ -327,18 +419,20 @@ export default function ReveraLanding() {
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="text-primary p-0 hover:bg-transparent"
-                  onClick={() => scrollToSection("invest")}
+                  className="text-primary p-0 hover:bg-transparent group-hover:translate-x-1 transition-transform"
+                  asChild
                 >
-                  Learn More <ChevronRight className="h-4 w-4 ml-1" />
+                  <Link to="/flipping">
+                    View Investor Website <ChevronRight className="h-4 w-4 ml-1" />
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
 
             {/* Flipping Dubai Media */}
-            <Card className="bg-card/50 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-luxury group">
+            <Card className="bg-card/50 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-luxury hover:-translate-y-1 group">
               <CardHeader>
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
                   <Video className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle className="text-lg">Flipping Dubai Media</CardTitle>
@@ -350,7 +444,7 @@ export default function ReveraLanding() {
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="text-primary p-0 hover:bg-transparent"
+                  className="text-primary p-0 hover:bg-transparent group-hover:translate-x-1 transition-transform"
                   onClick={() => scrollToSection("flipping-dubai")}
                 >
                   Learn More <ChevronRight className="h-4 w-4 ml-1" />
@@ -359,9 +453,9 @@ export default function ReveraLanding() {
             </Card>
 
             {/* Consulting */}
-            <Card className="bg-card/50 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-luxury group">
+            <Card className="bg-card/50 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-luxury hover:-translate-y-1 group">
               <CardHeader>
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
                   <Eye className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle className="text-lg">Consulting</CardTitle>
@@ -373,7 +467,7 @@ export default function ReveraLanding() {
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="text-primary p-0 hover:bg-transparent"
+                  className="text-primary p-0 hover:bg-transparent group-hover:translate-x-1 transition-transform"
                   onClick={() => scrollToSection("contact")}
                 >
                   Get in Touch <ChevronRight className="h-4 w-4 ml-1" />
@@ -382,9 +476,9 @@ export default function ReveraLanding() {
             </Card>
 
             {/* Design & Renovation */}
-            <Card className="bg-card/50 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-luxury group">
+            <Card className="bg-card/50 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-luxury hover:-translate-y-1 group">
               <CardHeader>
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
                   <Palette className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle className="text-lg">Design & Renovation</CardTitle>
@@ -396,7 +490,7 @@ export default function ReveraLanding() {
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="text-primary p-0 hover:bg-transparent"
+                  className="text-primary p-0 hover:bg-transparent group-hover:translate-x-1 transition-transform"
                   onClick={() => scrollToSection("contact")}
                 >
                   Get in Touch <ChevronRight className="h-4 w-4 ml-1" />
@@ -406,10 +500,11 @@ export default function ReveraLanding() {
           </div>
 
           {/* Full-width Booth Design Card */}
-          <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/30 hover:border-primary/50 transition-all duration-300">
-            <CardContent className="p-8">
+          <Card className="bg-gradient-to-r from-primary/10 via-primary/5 to-card border-primary/30 hover:border-primary/50 transition-all duration-300 hover:shadow-luxury overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+            <CardContent className="p-8 relative">
               <div className="flex flex-col lg:flex-row items-center gap-8">
-                <div className="h-16 w-16 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+                <div className="h-16 w-16 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0 hover:scale-110 transition-transform duration-300">
                   <LayoutGrid className="h-8 w-8 text-primary" />
                 </div>
                 <div className="flex-1 text-center lg:text-left">
@@ -420,7 +515,7 @@ export default function ReveraLanding() {
                   </p>
                 </div>
                 <Button 
-                  className="bg-primary text-primary-foreground hover:bg-primary/90"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury hover:shadow-glow transition-all duration-300 hover:scale-105"
                   onClick={() => scrollToSection("contact")}
                 >
                   Inquire Now
