@@ -88,7 +88,7 @@ export type Database = {
           entity: string | null
           entity_id: string | null
           id: number
-          ip: unknown | null
+          ip: unknown
           user_agent: string | null
         }
         Insert: {
@@ -99,7 +99,7 @@ export type Database = {
           entity?: string | null
           entity_id?: string | null
           id?: number
-          ip?: unknown | null
+          ip?: unknown
           user_agent?: string | null
         }
         Update: {
@@ -110,7 +110,7 @@ export type Database = {
           entity?: string | null
           entity_id?: string | null
           id?: number
-          ip?: unknown | null
+          ip?: unknown
           user_agent?: string | null
         }
         Relationships: [
@@ -1538,7 +1538,7 @@ export type Database = {
           action_type: string
           created_at: string
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           share_id: string
           user_agent: string | null
         }
@@ -1547,7 +1547,7 @@ export type Database = {
           action_type: string
           created_at?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           share_id: string
           user_agent?: string | null
         }
@@ -1556,7 +1556,7 @@ export type Database = {
           action_type?: string
           created_at?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           share_id?: string
           user_agent?: string | null
         }
@@ -2195,7 +2195,7 @@ export type Database = {
           details: Json | null
           event_type: string
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           severity: string | null
           user_agent: string | null
           user_id: string | null
@@ -2205,7 +2205,7 @@ export type Database = {
           details?: Json | null
           event_type: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           severity?: string | null
           user_agent?: string | null
           user_id?: string | null
@@ -2215,7 +2215,7 @@ export type Database = {
           details?: Json | null
           event_type?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           severity?: string | null
           user_agent?: string | null
           user_id?: string | null
@@ -2437,7 +2437,7 @@ export type Database = {
           created_at: string
           device_type: string | null
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           metadata: Json | null
           os: string | null
           page_source: string
@@ -2460,7 +2460,7 @@ export type Database = {
           created_at?: string
           device_type?: string | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           metadata?: Json | null
           os?: string | null
           page_source: string
@@ -2483,7 +2483,7 @@ export type Database = {
           created_at?: string
           device_type?: string | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           metadata?: Json | null
           os?: string | null
           page_source?: string
@@ -2507,7 +2507,7 @@ export type Database = {
           created_at: string
           details: Json | null
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           resource: string | null
           resource_id: string | null
           user_agent: string | null
@@ -2518,7 +2518,7 @@ export type Database = {
           created_at?: string
           details?: Json | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           resource?: string | null
           resource_id?: string | null
           user_agent?: string | null
@@ -2529,7 +2529,7 @@ export type Database = {
           created_at?: string
           details?: Json | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           resource?: string | null
           resource_id?: string | null
           user_agent?: string | null
@@ -2583,7 +2583,7 @@ export type Database = {
           created_at: string
           email: string
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           message: string | null
           name: string
           phone: string | null
@@ -2601,7 +2601,7 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           message?: string | null
           name: string
           phone?: string | null
@@ -2619,7 +2619,7 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           message?: string | null
           name?: string
           phone?: string | null
@@ -2701,10 +2701,7 @@ export type Database = {
         }
         Returns: boolean
       }
-      cleanup_rate_limits: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
-      }
+      cleanup_rate_limits: { Args: never; Returns: undefined }
       get_button_analytics: {
         Args: { end_date?: string; start_date?: string }
         Returns: {
@@ -2716,22 +2713,10 @@ export type Database = {
           unique_users: number
         }[]
       }
-      get_current_investor_id: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
-      get_user_role: {
-        Args: { user_uuid?: string }
-        Returns: string
-      }
-      is_admin: {
-        Args: { user_uuid?: string }
-        Returns: boolean
-      }
-      is_verified_admin: {
-        Args: { user_uuid?: string }
-        Returns: boolean
-      }
+      get_current_investor_id: { Args: never; Returns: string }
+      get_user_role: { Args: { user_uuid?: string }; Returns: string }
+      is_admin: { Args: { user_uuid?: string }; Returns: boolean }
+      is_verified_admin: { Args: { user_uuid?: string }; Returns: boolean }
       log_security_event: {
         Args: {
           p_details?: Json
@@ -2745,14 +2730,8 @@ export type Database = {
         Args: { referral_data: Json; user_role?: string }
         Returns: Json
       }
-      promote_to_admin: {
-        Args: { user_email: string }
-        Returns: undefined
-      }
-      track_submission_rate_limit: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
-      }
+      promote_to_admin: { Args: { user_email: string }; Returns: undefined }
+      track_submission_rate_limit: { Args: never; Returns: undefined }
     }
     Enums: {
       lead_status: "new" | "qualified" | "go_decision" | "no_go" | "converted"
