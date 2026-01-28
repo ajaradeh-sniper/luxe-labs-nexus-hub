@@ -74,6 +74,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// REVERA Landing specific colors
+				revera: {
+					dark: 'hsl(var(--revera-dark))',
+					panel: 'hsl(var(--revera-panel))',
+					panel2: 'hsl(var(--revera-panel2))',
+					text: 'hsl(var(--revera-text))',
+					muted: 'hsl(var(--revera-muted))',
+					line: 'hsl(var(--revera-line))',
+					gold: 'hsl(var(--revera-gold))',
+					stone: 'hsl(var(--revera-stone))'
 				}
 			},
 			backgroundImage: {
