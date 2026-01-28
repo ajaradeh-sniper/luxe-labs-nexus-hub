@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { Routes, Route, Navigate } from "react-router-dom"
+import ReveraLanding from "./pages/ReveraLanding"
 import Landing from "./pages/Landing"
 import Index from "./pages/Index"
 import Auth from "./pages/Auth"
@@ -99,8 +100,11 @@ function App() {
     <ErrorBoundary>
       <TooltipProvider>
         <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Landing />} />
+          {/* New Premium Landing Page */}
+          <Route path="/" element={<ReveraLanding />} />
+          
+          {/* Original Website Pages under /flipping */}
+          <Route path="/flipping" element={<Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/investor-questionnaire" element={<InvestorQuestionnairePage />} />
           <Route path="/services" element={<Services />} />
