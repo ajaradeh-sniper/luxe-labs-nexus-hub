@@ -76,7 +76,7 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Luxury Labs Brand Colors - Dark Mode */
+    /* REVERA ESTATES Brand Colors - Dark Mode */
     --background: 0 0% 8%; /* Rich dark background */
     --foreground: 0 0% 96%; /* Champagne White #FDF9F2 */
 
@@ -130,6 +130,16 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 0 0% 96%;
     --sidebar-border: 0 0% 22%;
     --sidebar-ring: 42 35% 55%;
+
+    /* REVERA Landing Page Colors */
+    --revera-dark: 220 20% 4%;
+    --revera-panel: 220 18% 8%;
+    --revera-panel2: 220 15% 6%;
+    --revera-text: 216 20% 95%;
+    --revera-muted: 216 15% 70%;
+    --revera-line: 0 0% 100% / 0.10;
+    --revera-gold: 42 50% 55%;
+    --revera-stone: 38 25% 76%;
   }
 }
 
