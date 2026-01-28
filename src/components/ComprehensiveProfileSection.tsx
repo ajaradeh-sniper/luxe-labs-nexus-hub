@@ -58,13 +58,13 @@ export function ComprehensiveProfileSection({ onEditAssessment }: { onEditAssess
 
   // Profile form state
   const [profileData, setProfileData] = useState({
-    firstName: "Luxury",
-    lastName: "Labs", 
-    email: "admin@luxurylabs.ae",
+    firstName: "REVERA",
+    lastName: "ESTATES", 
+    email: "admin@reveraestates.ae",
     phone: "+971 50 123 4567",
     role: "Administrator",
     bio: "Leading luxury real estate transformation in Dubai with over 10 years of experience in premium property development.",
-    company: "Luxury Labs FZO",
+    company: "REVERA ESTATES FZCO",
     position: "CEO & Founder",
     address: "Dubai International Financial Centre, Dubai, UAE"
   })

@@ -125,7 +125,7 @@ const Payments = () => {
   return (
     <>
       <Helmet>
-        <title>Payments | Client Dashboard | Luxury Labs</title>
+        <title>Payments | Client Dashboard | REVERA ESTATES</title>
         <meta name="description" content="Manage your payments and view transaction history" />
       </Helmet>
 

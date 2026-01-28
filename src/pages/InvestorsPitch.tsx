@@ -49,7 +49,7 @@ const InvestorsPitch = () => {
 
   // Holding Company Structure
   const holdingStructure = {
-    holding: "Luxury Labs FZCO",
+    holding: "REVERA ESTATES FZCO",
     subsidiaries: [
       { name: "Design Studio", icon: Award },
       { name: "Media Production", icon: Sparkles },

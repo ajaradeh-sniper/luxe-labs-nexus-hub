@@ -53,7 +53,7 @@ const Services = () => {
   const investmentServices = [
     {
       id: 'single-property',
-      title: 'Flip a luxury property with Luxury Labs',
+      title: 'Flip a luxury property with REVERA ESTATES',
       description: 'Lead or co-lead a curated villa transformation in Palm Jumeirah, Dubai Marina, or Emirates Hills.',
       icon: TrendingUp,
       features: [
@@ -66,8 +66,8 @@ const Services = () => {
     },
     {
       id: 'shared-stake',
-      title: 'Shared Stake Investment in luxury labs flip',
-      description: 'Join Dubai villa flips with entry points from AED 500K. Diversify risk while benefiting from Luxury Labs\' curated property selection and luxury-grade renovations.',
+      title: 'Shared Stake Investment in REVERA ESTATES flip',
+      description: 'Join Dubai villa flips with entry points from AED 500K. Diversify risk while benefiting from REVERA ESTATES\' curated property selection and luxury-grade renovations.',
       icon: Users,
       features: [
         'Accessible entry into Dubai luxury real estate',
@@ -80,7 +80,7 @@ const Services = () => {
     {
       id: 'diversified-fund',
       title: 'Diversified Fund (3–7 Years)',
-      description: 'Build long-term wealth with a curated portfolio of luxury villas, transformed to Luxury Labs\' design standards.',
+      description: 'Build long-term wealth with a curated portfolio of luxury villas, transformed to REVERA ESTATES\' design standards.',
       icon: BarChart3,
       features: [
         'Ideal for HNWIs seeking stable, diversified yield',

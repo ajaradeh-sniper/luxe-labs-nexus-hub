@@ -65,7 +65,7 @@ export default function About() {
               Dubai's Premier Investment Platform
             </Badge>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 font-playfair bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-              Luxury Labs
+              REVERA ESTATES
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl leading-relaxed mb-8">
               Transforming Dubai's luxury real estate landscape through strategic investments, 

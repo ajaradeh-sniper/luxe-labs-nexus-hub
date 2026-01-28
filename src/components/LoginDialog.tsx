@@ -99,12 +99,12 @@ export function LoginDialog({ trigger }: LoginDialogProps) {
         <DialogHeader className="text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <img 
-              src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" 
-              alt="Luxury Labs Logo" 
+              src="/revera-icon.png" 
+              alt="REVERA ESTATES" 
               className="h-12 w-auto" 
             />
             <div>
-              <DialogTitle className="text-2xl font-playfair">Luxury Labs</DialogTitle>
+              <DialogTitle className="text-2xl font-playfair">REVERA ESTATES</DialogTitle>
               <DialogDescription className="text-primary font-montserrat text-sm">
                 Property Solutions Portal
               </DialogDescription>

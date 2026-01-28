@@ -60,7 +60,7 @@ export default function Landing() {
   // Service data from Services page
   const investmentServices = [{
     title: 'Solo Investment',
-    description: 'Flip a property with Luxury labs execution from acquisition to resale - your gateway to premium real estate transformation with guaranteed luxury execution.',
+    description: 'Flip a property with REVERA ESTATES execution from acquisition to resale - your gateway to premium real estate transformation with guaranteed luxury execution.',
     buttons: [{
       text: 'Investment Assessment',
       action: 'assessment'
@@ -70,7 +70,7 @@ export default function Landing() {
     }]
   }, {
     title: 'Co-Investment',
-    description: 'Join Luxury Labs Transformation projects with pool of investors - share the rewards while minimizing individual risk through our vetted network.',
+    description: 'Join REVERA ESTATES Transformation projects with pool of investors - share the rewards while minimizing individual risk through our vetted network.',
     buttons: [{
       text: 'Investment Assessment',
       action: 'assessment'
@@ -158,7 +158,7 @@ export default function Landing() {
             {/* Header with Logo */}
             <div className="text-center mb-16">
               <div className="inline-block relative">
-                <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-32 sm:h-40 lg:h-48 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500" />
+                <img src="/revera-logo.png" alt="REVERA ESTATES" className="h-24 sm:h-32 lg:h-40 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500" />
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-xl opacity-50 animate-pulse"></div>
               </div>
               
@@ -168,7 +168,7 @@ export default function Landing() {
                   <span className="block">with Exceptional Quality and Returns</span>
                 </h1>
                 <p className="text-lg sm:text-xl text-muted-foreground font-montserrat max-w-3xl mx-auto leading-relaxed">
-                  Partner with Luxury Labs for premium property transformations, strategic investments, and expert transformation and advisory services in Dubai's elite real estate market
+                  Partner with REVERA ESTATES for premium property transformations, strategic investments, and expert transformation and advisory services in Dubai's elite real estate market
                 </p>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default function Landing() {
                       Invest in Flipping Projects
                     </h3>
           <p className="text-sm text-white/90 font-montserrat leading-relaxed">
-            Start a Project or join (Invest) in Luxury Labs Real Estate Transformation (Flipping) Projects
+            Start a Project or join (Invest) in REVERA ESTATES Real Estate Transformation (Flipping) Projects
                     </p>
                   </div>
                 </div>
@@ -207,7 +207,7 @@ export default function Landing() {
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm font-montserrat text-foreground">Solo Investment & Luxury Labs Execute</span>
+                      <span className="text-sm font-montserrat text-foreground">Solo Investment & REVERA ESTATES Execute</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
@@ -243,7 +243,7 @@ export default function Landing() {
                       Transform a Property
                     </h3>
                     <p className="text-sm text-white/90 font-montserrat leading-relaxed">
-                      Start a Transformation (Flip)/Project or Transform your Luxury Property with Luxury Labs
+                      Start a Transformation (Flip)/Project or Transform your Luxury Property with REVERA ESTATES
                     </p>
                   </div>
                 </div>
@@ -289,7 +289,7 @@ export default function Landing() {
                       Advisory
                     </h3>
                     <p className="text-sm text-white/90 font-montserrat leading-relaxed">
-                      Property transformation design, material/product sourcing, investment and financial advisory with Luxury Labs
+                      Property transformation design, material/product sourcing, investment and financial advisory with REVERA ESTATES
                     </p>
                   </div>
                 </div>
@@ -567,7 +567,7 @@ export default function Landing() {
               Our <span className="luxury-text">Objectives</span>
             </h2>
             <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
-              Discover how Luxury Labs transforms Dubai's real estate landscape through our three core specializations
+              Discover how REVERA ESTATES transforms Dubai's real estate landscape through our three core specializations
             </p>
           </div>
 
@@ -698,10 +698,10 @@ export default function Landing() {
         <div className="container mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              About <span className="luxury-text">Luxury Labs</span>
+              About <span className="luxury-text">REVERA ESTATES</span>
             </h2>
             <p className="text-xl font-montserrat text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Luxury Labs is Dubai's premier property investment and transformation platform, specializing in strategic premium properties that deliver exceptional returns. Our expertise combines luxury real estate knowledge with innovative transformation processes.
+              REVERA ESTATES is Dubai's premier property investment and transformation platform, specializing in strategic premium properties that deliver exceptional returns. Our expertise combines luxury real estate knowledge with innovative transformation processes.
             </p>
           </div>
 
@@ -1102,7 +1102,7 @@ export default function Landing() {
                 <h3 className="text-xl font-playfair font-bold text-foreground mb-4">Email</h3>
                 <p className="text-muted-foreground font-montserrat mb-4">Send us your inquiries</p>
                 <span className="text-primary font-montserrat font-semibold">
-                  info@luxurylabs.ae
+                  info@reveraestates.ae
                 </span>
               </CardContent>
             </Card>
@@ -1138,7 +1138,7 @@ export default function Landing() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <img src="/lovable-uploads/341fb04c-ec6c-4a68-8851-829da0b5a18b.png" alt="Luxury Labs Logo" className="h-64 w-auto" />
+                <img src="/revera-logo.png" alt="REVERA ESTATES" className="h-16 w-auto" />
               </div>
               <p className="text-secondary-foreground/80 font-montserrat text-sm">
                 Dubai's premier property investment and transformation platform.
@@ -1232,7 +1232,7 @@ export default function Landing() {
             </section>
             <section>
               <h3 className="text-foreground font-semibold">Your Rights</h3>
-              <p>You can access, correct, or delete your personal data by contacting us at privacy@luxurylabs.ae.</p>
+              <p>You can access, correct, or delete your personal data by contacting us at privacy@reveraestates.ae.</p>
             </section>
           </div>
         </DialogContent>
@@ -1247,7 +1247,7 @@ export default function Landing() {
             <p>Effective Date: {new Date().toLocaleDateString()}</p>
             <section>
               <h3 className="text-foreground font-semibold">Services Offered</h3>
-              <p>Luxury Labs provides real estate investment, design, renovation, and advisory services. Website content is informational and not binding contractual advice.</p>
+              <p>REVERA ESTATES provides real estate investment, design, renovation, and advisory services. Website content is informational and not binding contractual advice.</p>
             </section>
             <section>
               <h3 className="text-foreground font-semibold">User Obligations</h3>
@@ -1258,11 +1258,11 @@ export default function Landing() {
             </section>
             <section>
               <h3 className="text-foreground font-semibold">Intellectual Property</h3>
-              <p>All website content is the intellectual property of Luxury Labs LLC.</p>
+              <p>All website content is the intellectual property of REVERA ESTATES LLC.</p>
             </section>
             <section>
               <h3 className="text-foreground font-semibold">Limitation of Liability</h3>
-              <p>Luxury Labs LLC shall not be liable for indirect or consequential losses from use or inability to use our website or services.</p>
+              <p>REVERA ESTATES LLC shall not be liable for indirect or consequential losses from use or inability to use our website or services.</p>
             </section>
             <section>
               <h3 className="text-foreground font-semibold">Governing Law</h3>
@@ -1279,8 +1279,8 @@ export default function Landing() {
           </DialogHeader>
           <div className="space-y-4 max-h-[70vh] overflow-y-auto text-muted-foreground">
             <section>
-              <p><strong>Investment in real estate carries inherent risks.</strong> Information provided by Luxury Labs LLC does not constitute financial or investment advice. Past performance is not indicative of future results. Conduct thorough due diligence and consult a financial advisor before investing.</p>
-              <p className="mt-2">Luxury Labs LLC is not liable for investment decisions based on information provided.</p>
+              <p><strong>Investment in real estate carries inherent risks.</strong> Information provided by REVERA ESTATES LLC does not constitute financial or investment advice. Past performance is not indicative of future results. Conduct thorough due diligence and consult a financial advisor before investing.</p>
+              <p className="mt-2">REVERA ESTATES LLC is not liable for investment decisions based on information provided.</p>
             </section>
           </div>
         </DialogContent>
@@ -1295,16 +1295,16 @@ export default function Landing() {
             <section>
               <h3 className="text-foreground font-semibold">Company Information</h3>
               <ul className="list-disc pl-6 space-y-1">
-                <li><strong>Company Name:</strong> Luxury Labs LLC</li>
+                <li><strong>Company Name:</strong> REVERA ESTATES LLC</li>
                 <li><strong>Registered Office:</strong> [Insert Registered Address, Dubai, UAE]</li>
                 <li><strong>Trade License Number:</strong> [Insert License Number]</li>
                 <li><strong>Jurisdiction:</strong> Dubai, United Arab Emirates</li>
-                <li><strong>Email:</strong> info@luxurylabs.ae</li>
+                <li><strong>Email:</strong> info@reveraestates.ae</li>
               </ul>
             </section>
             <section>
               <h3 className="text-foreground font-semibold">Legal Framework</h3>
-              <p>Luxury Labs LLC operates under the laws of the United Arab Emirates and Dubai jurisdiction.</p>
+              <p>REVERA ESTATES LLC operates under the laws of the United Arab Emirates and Dubai jurisdiction.</p>
             </section>
           </div>
         </DialogContent>

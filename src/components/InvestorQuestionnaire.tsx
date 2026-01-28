@@ -196,12 +196,12 @@ export const InvestorQuestionnaire: React.FC<InvestorQuestionnaireProps> = ({
         { 
           value: 'no_involvement', 
           label: 'No Involvement', 
-          description: 'Just financial payback and monthly updates and project monitoring and luxury labs will do end to end service',
+          description: 'Just financial payback and monthly updates and project monitoring and REVERA ESTATES will do end to end service',
           details: 'Perfect for busy investors who prefer passive involvement. You receive comprehensive monthly reports with financial updates, project photos, timeline progress, and milestone achievements. No decision-making required from your side.'
         },
         { 
-          value: 'support_luxury_labs', 
-          label: 'Support Luxury Labs', 
+          value: 'support_revera', 
+          label: 'Support REVERA ESTATES', 
           description: 'Selection of property options, selection of design options, monthly updates and project monitoring',
           details: 'Ideal for investors who want strategic input without daily management. You participate in key decisions like property selection from curated options and approve major design choices. Includes all reporting benefits plus consultation calls.'
         },
